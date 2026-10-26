@@ -1,0 +1,138 @@
+// AuxoKit File upload — Figma "File upload input" examples (node 1149:48972) and dropzone (1149:48981), page 3279:34618.
+// FileInput = Figma "Default" (Input field Add-on text: a "Choose file" segment). FileDropzone = Figma "Advanced" /
+// "With CTAs" × Initial/Hover/Disabled/Success/Danger. The real <input type="file"> stays in the accessibility tree.
+import { useId, useState, type DragEvent, type ReactNode } from 'react';
+import { cn } from '../../lib/cn';
+import { buttonVariants } from './Button';
+import type { FieldStatus } from './Input';
+
+export interface FileInputProps {
+  onFiles: (files: File[]) => void;
+  accept?: string;
+  multiple?: boolean;
+  disabled?: boolean;
+  id?: string;
+  'aria-describedby'?: string;
+  className?: string;
+}
+
+export function FileInput({ onFiles, accept, multiple, disabled, id, className, ...aria }: FileInputProps) {
+  const autoId = useId();
+  const [names, setNames] = useState<string[]>([]);
+  return (
+    <label
+      htmlFor={id ?? autoId}
+      className={cn(
+        'flex w-full overflow-hidden rounded-base border border-default-medium bg-neutral-secondary-medium text-sm leading-5 shadow-xs',
+        'focus-within:border-brand focus-within:shadow-focus-brand',
+        disabled ? 'cursor-not-allowed text-fg-disabled' : 'cursor-pointer',
+        className,
+      )}
+    >
+      <input
+        id={id ?? autoId}
+        type="file"
+        accept={accept}
+        multiple={multiple}
+        disabled={disabled}
+        className="sr-only"
+        onChange={(e) => {
+          const files = [...(e.target.files ?? [])];
+          setNames(files.map((f) => f.name));
+          onFiles(files);
+        }}
+        {...aria}
+      />
+      <span className={cn('shrink-0 border-e border-default-medium bg-neutral-tertiary px-3 py-2.5 font-medium', disabled ? 'text-fg-disabled' : 'text-heading')}>
+        Choose file
+      </span>
+      <span className={cn('truncate px-3 py-2.5', names.length ? 'text-heading' : 'text-body-subtle')}>
+        {names.length ? names.join(', ') : 'No file chosen'}
+      </span>
+    </label>
+  );
+}
+
+export type FileDropzoneVariant = 'advanced' | 'ctas';
+
+export interface FileDropzoneProps {
+  onFiles: (files: File[]) => void;
+  variant?: FileDropzoneVariant;
+  accept?: string;
+  multiple?: boolean;
+  disabled?: boolean;
+  status?: FieldStatus;
+  /** e.g. "SVG, PNG, JPG or GIF (max. 800×400px)". */
+  hint?: ReactNode;
+  /** "With CTAs": extra buttons under the text (gap-6). */
+  actions?: ReactNode;
+  className?: string;
+}
+
+const UploadIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
+    <path d="M12 16V4m0 0-4 4m4-4 4 4M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+
+const statusShell: Record<'default' | FieldStatus, string> = {
+  default: 'border-default-medium bg-neutral-secondary-medium',
+  success: 'border-success-subtle bg-success-soft text-fg-success-strong',
+  danger: 'border-danger-subtle bg-danger-soft text-fg-danger-strong',
+};
+
+export function FileDropzone({ onFiles, variant = 'advanced', accept, multiple, disabled, status, hint, actions, className }: FileDropzoneProps) {
+  const id = useId();
+  const [dragging, setDragging] = useState(false);
+  const ctas = variant === 'ctas';
+  const tone = disabled ? 'text-fg-disabled' : status ? '' : ctas ? 'text-body' : 'text-body-subtle';
+
+  const onDrop = (e: DragEvent<HTMLLabelElement>) => {
+    e.preventDefault();
+    setDragging(false);
+    if (!disabled) onFiles([...e.dataTransfer.files]);
+  };
+
+  return (
+    <label
+      htmlFor={id}
+      onDragOver={(e) => {
+        e.preventDefault();
+        if (!disabled) setDragging(true);
+      }}
+      onDragLeave={() => setDragging(false)}
+      onDrop={onDrop}
+      className={cn(
+        'flex w-full flex-col items-center justify-center gap-2 rounded-base border px-6 py-8 text-center transition-colors',
+        'focus-within:shadow-focus-brand',
+        statusShell[status ?? 'default'],
+        disabled ? 'cursor-not-allowed' : cn('cursor-pointer', !status && 'hover:bg-neutral-tertiary', dragging && !status && 'bg-neutral-tertiary'),
+        className,
+      )}
+    >
+      <input
+        id={id}
+        type="file"
+        accept={accept}
+        multiple={multiple}
+        disabled={disabled}
+        className="sr-only"
+        onChange={(e) => onFiles([...(e.target.files ?? [])])}
+      />
+      <span className={cn(ctas ? '[&_svg]:size-9' : '[&_svg]:size-6', tone)}>
+        <UploadIcon />
+      </span>
+      <span className={cn('text-sm', tone)}>
+        <span className="font-semibold">Click to upload</span> or drag and drop
+      </span>
+      {hint && <span className={cn('text-xs font-medium', tone)}>{hint}</span>}
+      {ctas ? (
+        actions && <span className="mt-2 flex flex-wrap items-center justify-center gap-6">{actions}</span>
+      ) : (
+        <span className={cn(buttonVariants({ size: 'xs' }), 'mt-2', disabled && 'pointer-events-none border border-default-medium bg-disabled text-fg-disabled')} aria-hidden>
+          Browse
+        </span>
+      )}
+    </label>
+  );
+}
