@@ -9,7 +9,9 @@
     "lint": "oxlint",
     "preview": "vite preview",
     "lint:tokens": "node .claude/skills/auxokit-review/scripts/lint-tokens.mjs src",
-    "tokens:build": "node .claude/skills/auxokit-design-system/scripts/build-tokens.mjs && cp .claude/skills/auxokit-design-system/tokens/auxokit.css src/styles/auxokit.css"
+    "tokens:build": "node .claude/skills/auxokit-design-system/scripts/build-tokens.mjs && cp .claude/skills/auxokit-design-system/tokens/auxokit.css src/styles/auxokit.css",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "clsx": "^2.1.1",
@@ -26,6 +28,17 @@
     "oxlint": "^1.88.0",
     "tailwindcss": "^4.3.3",
     "typescript": "~6.0.3",
-    "vite": "^8.3.4"
+    "vite": "^8.3.4",
+    "storybook": "^10.6.4",
+    "@storybook/react-vite": "^10.6.4",
+    "@chromatic-com/storybook": "latest",
+    "@storybook/addon-vitest": "^10.6.4",
+    "@storybook/addon-a11y": "^10.6.4",
+    "@storybook/addon-docs": "^10.6.4",
+    "@storybook/addon-mcp": "^10.6.4",
+    "vitest": "latest",
+    "@vitest/browser-playwright": "latest",
+    "@vitest/coverage-v8": "latest",
+    "playwright": "latest"
   }
 }
