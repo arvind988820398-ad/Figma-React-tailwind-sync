@@ -1,6 +1,6 @@
 // AuxoKit themes map to the Figma "Themes" collection modes. Tokens switch automatically;
 // never branch color classes on the theme in TS.
-export const themes = ['modern', 'minimal', 'enterprise', 'playful', 'mono'] as const;
+export const themes = ['modern', 'minimal', 'enterprise', 'mono'] as const;
 export type AuxoTheme = (typeof themes)[number];
 
 const STORAGE_KEY = 'auxokit-theme';

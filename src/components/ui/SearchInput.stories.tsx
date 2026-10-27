@@ -1,10 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { figmaDesign } from '../../../.storybook/auxokit/figma';
 import { useState, type ComponentProps } from 'react';
 import { SearchInput } from './SearchInput';
 
 // AuxoKit Search input — mirrors the Figma "Search form" set (node 1149:46581).
 const meta = {
-  title: 'AuxoKit/SearchInput',
+  title: 'Components/SearchInput',
+  parameters: { design: figmaDesign('SearchInput') },
   component: SearchInput,
   args: { onSearch: () => {}, variant: 'default', size: 'base', placeholder: 'Search components', label: 'Search', buttonLabel: 'Search' },
   argTypes: {

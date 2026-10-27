@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { figmaDesign } from '../../../.storybook/auxokit/figma';
 import { IconShape, type IconShapeColor, type IconShapeSize } from './IconShape';
 import { CogIcon } from '../icons';
 
@@ -7,7 +8,8 @@ const colors = ['brand', 'success', 'danger', 'warning', 'gray', 'dark', 'white'
 const sizes = ['xs', 'sm', 'base', 'lg', 'xl', '2xl'] as const satisfies readonly IconShapeSize[];
 
 const meta = {
-  title: 'AuxoKit/IconShape',
+  title: 'Components/IconShape',
+  parameters: { design: figmaDesign('IconShape') },
   component: IconShape,
   args: { children: <CogIcon />, color: 'brand', size: 'base', shape: 'square' },
   argTypes: {

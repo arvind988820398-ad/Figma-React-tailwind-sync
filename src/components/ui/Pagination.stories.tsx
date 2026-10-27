@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { figmaDesign } from '../../../.storybook/auxokit/figma';
 import { useState } from 'react';
 import { Pagination, type PaginationProps } from './Pagination';
 
@@ -20,9 +21,9 @@ function PaginationDemo({ page: initial, onPageChange, helper, ...args }: Pagina
 }
 
 const meta = {
-  title: 'AuxoKit/Pagination',
+  title: 'Components/Pagination',
   component: Pagination,
-  parameters: { layout: 'padded' },
+  parameters: { design: figmaDesign('Pagination'), layout: 'padded' },
   args: { page: 3, pageCount: 10, onPageChange: () => {}, variant: 'default', siblings: 1 },
   argTypes: { variant: { control: 'select', options: ['default', 'arrows', 'two-buttons'] } },
   render: (args) => <PaginationDemo {...args} />,

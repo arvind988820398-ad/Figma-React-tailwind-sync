@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { figmaDesign } from '../../../.storybook/auxokit/figma';
 import { Popover, PopoverItem, type PopoverPlacement } from './Popover';
 import { Avatar } from './Avatar';
 import { Button } from './Button';
@@ -8,7 +9,8 @@ import { CogIcon, MailIcon, PlusIcon } from '../icons';
 const placements = ['top', 'right', 'bottom', 'left'] as const satisfies readonly PopoverPlacement[];
 
 const meta = {
-  title: 'AuxoKit/Popover',
+  title: 'Components/Popover',
+  parameters: { design: figmaDesign('Popover') },
   component: Popover,
   // Room for the panel on every side; click the trigger to open it.
   decorators: [(Story) => <div className="px-40 py-32">{Story()}</div>],

@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { figmaDesign } from '../../../.storybook/auxokit/figma';
 import { useState } from 'react';
 import { Button } from './Button';
 import { Drawer, type DrawerPlacement, type DrawerProps } from './Drawer';
@@ -23,7 +24,8 @@ function DrawerDemo({ open: _open, onOpenChange, ...args }: DrawerProps & { butt
 }
 
 const meta = {
-  title: 'AuxoKit/Drawer',
+  title: 'Components/Drawer',
+  parameters: { design: figmaDesign('Drawer') },
   component: Drawer,
   args: {
     open: false,

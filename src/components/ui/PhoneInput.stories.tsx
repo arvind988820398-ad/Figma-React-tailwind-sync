@@ -1,11 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { figmaDesign } from '../../../.storybook/auxokit/figma';
 import { useState, type ComponentProps } from 'react';
 import { HelperText, Label } from './Input';
 import { defaultCountries, PhoneInput } from './PhoneInput';
 
 // AuxoKit Phone input — mirrors the Figma "Phone form" set (node 1149:46719).
 const meta = {
-  title: 'AuxoKit/PhoneInput',
+  title: 'Components/PhoneInput',
+  parameters: { design: figmaDesign('PhoneInput') },
   component: PhoneInput,
   args: { value: '', onChange: () => {}, country: 'US', onCountryChange: () => {}, placeholder: '123-456-7890', disabled: false, 'aria-label': 'Phone number' },
   argTypes: {

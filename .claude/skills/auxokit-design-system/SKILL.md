@@ -10,11 +10,11 @@ AuxoKit is a Tailwind-native design system in Figma (`TKsoawKvPxaNCff4q43Mli`). 
 ## Non-negotiable rules
 
 1. **Only semantic token classes for color.** `bg-brand`, `text-heading`, `border-default-medium` — never `bg-blue-600`, `text-gray-500`, `#hex`, `rgb()`, `bg-[...]`, or inline `style={{color}}`. The class name *is* the Figma variable name (`colors/background/bg-brand` → `bg-brand`). The default Tailwind palette is deliberately removed in strict mode, so raw palette classes silently produce nothing.
-2. **No `dark:` color overrides.** Every semantic token already switches in dark mode and across the 5 themes. Writing `dark:bg-gray-800` breaks theming. (`dark:` is fine for non-color things like swapping an illustration.)
+2. **No `dark:` color overrides.** Every semantic token already switches in dark mode and across the 4 themes. Writing `dark:bg-gray-800` breaks theming. (`dark:` is fine for non-color things like swapping an illustration.)
 3. **Spacing on the 4px scale only** (`p-2.5`, `gap-1.5`, `px-4`). No arbitrary values (`p-[13px]`). Figma spacing variables are `spacing/N` = N×4px, identical to Tailwind.
 4. **Radius from the themed scale:** `rounded-xxs`, `rounded-xs`, `rounded-sm`, `rounded`, `rounded-base`, `rounded-lg`, `rounded-xl`, `rounded-full`, `rounded-none`. These change per theme (Modern `rounded-base` = 12px, Enterprise = 4px, Mono = 1px). Never `rounded-md`/`rounded-2xl`/`rounded-[...]`.
 5. **Shadows from the effect styles:** `shadow-xs` (default for controls), `shadow`, and the overlay ladder `shadow-md` (Tooltip) → `shadow-lg` (Dropdown, Popover, Toast, menus) → `shadow-xl` (Modal, Drawer); `shadow-2xl` for marketing; focus rings `shadow-focus-brand|secondary|success|danger|warning|dark`.
-6. **Typography:** `text-xxs…text-6xl` with weights `font-normal|medium|semibold|bold|extrabold`. Body font comes from the theme (`font-sans` → Inter / Open Sans / IBM Plex Serif / Shantell Sans / IBM Plex Mono). Never set `font-[...]` families.
+6. **Typography:** `text-xxs…text-6xl` with weights `font-normal|medium|semibold|bold|extrabold`. Body font comes from the theme (`font-sans` → Inter / Open Sans / IBM Plex Serif / IBM Plex Mono). Never set `font-[...]` families.
 7. **Use the AuxoKit component before hand-rolling markup.** Check `references/components.json` → the component's doc section. If the needed variant does not exist in Figma, say so and propose adding it to Figma first rather than inventing a one-off in code.
 8. **Variants mirror Figma.** Props come from Figma variant properties via the registry's `propMap` (e.g. Figma `Color=Brand, Size=l` → `<Button color="brand" size="lg">`). Hover/Focus/Disabled/Active are CSS states, never props. Breakpoint variants are responsive classes, never props.
 
@@ -34,7 +34,7 @@ Pick the component with the "Choosing a component" table below, then the variant
 
 Full details: `references/setup.md`. Short version:
 1. Copy `tokens/auxokit.css` into the app (e.g. `src/styles/auxokit.css`) and import it after Tailwind: `@import "tailwindcss"; @import "./auxokit.css";` (Tailwind v4).
-2. Load the five theme fonts (Google Fonts `<link>` in `index.html`, listed in setup.md).
+2. Load the four theme fonts (Google Fonts `<link>` in `index.html`, listed in setup.md).
 3. Set `<html data-theme="modern">`; toggle `class="dark"` for dark mode.
 4. `npm i clsx tailwind-merge`, then copy `templates/lib/cn.ts` and the components you need from `templates/components/` into `src/components/ui/`.
 5. Never hand-edit `auxokit.css`; regenerate it with the `auxokit-figma-sync` skill.

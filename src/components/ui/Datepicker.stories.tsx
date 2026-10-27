@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { figmaDesign } from '../../../.storybook/auxokit/figma';
 import { useState } from 'react';
 import { Calendar, Datepicker, type DatepickerProps, type DateRange } from './Datepicker';
 import { HelperText, Label } from './Input';
@@ -9,7 +10,8 @@ import { HelperText, Label } from './Input';
 type DemoArgs = Omit<DatepickerProps, 'mode' | 'value' | 'onChange'>;
 
 const meta = {
-  title: 'AuxoKit/Datepicker',
+  title: 'Components/Datepicker',
+  parameters: { design: figmaDesign('Datepicker') },
   component: Datepicker,
   args: { size: 'base', placeholder: 'Select date', weekStart: 0 },
   argTypes: {

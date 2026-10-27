@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { figmaDesign } from '../../../.storybook/auxokit/figma';
 import { HelperText, Label } from './Input';
 import { Select } from './Select';
 
@@ -12,7 +13,8 @@ const countryOptions = (
 );
 
 const meta = {
-  title: 'AuxoKit/Select',
+  title: 'Components/Select',
+  parameters: { design: figmaDesign('Select') },
   component: Select,
   args: { children: countryOptions, defaultValue: '', size: 'base', disabled: false, 'aria-label': 'Country' },
   argTypes: {

@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { figmaDesign } from '../../../.storybook/auxokit/figma';
 import { useState } from 'react';
 import { CogIcon, MailIcon, PlusIcon } from '../icons';
 import { Avatar } from './Avatar';
@@ -8,7 +9,8 @@ import { Dropdown, DropdownCheckboxItem, DropdownHeader, DropdownItem, DropdownS
 
 // AuxoKit Dropdown — mirrors the Figma "Dropdown menu" set (node 1149:39895), item 1149:39651, header 1149:39866.
 const meta = {
-  title: 'AuxoKit/Dropdown',
+  title: 'Components/Dropdown',
+  parameters: { design: figmaDesign('Dropdown') },
   component: Dropdown,
   // Leave room below the trigger for the open menu.
   decorators: [(Story) => <div className="flex min-h-72 items-start"><Story /></div>],

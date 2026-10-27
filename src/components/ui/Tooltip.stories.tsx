@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { figmaDesign } from '../../../.storybook/auxokit/figma';
 import { Tooltip, type TooltipPlacement } from './Tooltip';
 import { Button } from './Button';
 import { CogIcon } from '../icons';
@@ -7,7 +8,8 @@ import { CogIcon } from '../icons';
 const placements = ['top', 'right', 'bottom', 'left'] as const satisfies readonly TooltipPlacement[];
 
 const meta = {
-  title: 'AuxoKit/Tooltip',
+  title: 'Components/Tooltip',
+  parameters: { design: figmaDesign('Tooltip') },
   component: Tooltip,
   // Room for the bubble on every side; hover or focus the trigger to show it.
   decorators: [(Story) => <div className="p-16">{Story()}</div>],

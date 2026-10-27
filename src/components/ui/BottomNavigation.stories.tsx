@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { figmaDesign } from '../../../.storybook/auxokit/figma';
 import type { ReactNode } from 'react';
 import { CheckIcon, CogIcon, InfoIcon, MailIcon, PlusIcon } from '../icons';
 import { BottomNavigation } from './BottomNavigation';
@@ -21,9 +22,9 @@ const Screen = ({ children }: { children: ReactNode }) => (
 );
 
 const meta = {
-  title: 'AuxoKit/BottomNavigation',
+  title: 'Components/BottomNavigation',
   component: BottomNavigation,
-  parameters: { layout: 'padded' },
+  parameters: { design: figmaDesign('BottomNavigation'), layout: 'padded' },
   args: { items, variant: 'default', fixed: false },
   argTypes: { variant: { control: 'select', options: ['default', 'bordered', 'action'] } },
 } satisfies Meta<typeof BottomNavigation>;

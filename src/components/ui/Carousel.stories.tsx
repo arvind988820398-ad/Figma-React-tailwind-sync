@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { figmaDesign } from '../../../.storybook/auxokit/figma';
 import { Card, CardText, CardTitle } from './Card';
 import { Carousel } from './Carousel';
 
@@ -18,9 +19,9 @@ const cards = ['Ada', 'Grace', 'Alan', 'Katherine', 'Margaret'].map((n) => (
 ));
 
 const meta = {
-  title: 'AuxoKit/Carousel',
+  title: 'Components/Carousel',
   component: Carousel,
-  parameters: { layout: 'padded' },
+  parameters: { design: figmaDesign('Carousel'), layout: 'padded' },
   args: { label: 'Sample photos', variant: 'slides', controls: true, indicators: true, children: slides, className: 'aspect-video max-w-3xl' },
   argTypes: {
     variant: { control: 'select', options: ['slides', 'cards'] },

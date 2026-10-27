@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { figmaDesign } from '../../../.storybook/auxokit/figma';
 import { CheckIcon, CogIcon, MailIcon, PlusIcon } from '../icons';
 import { Avatar } from './Avatar';
 import { Badge } from './Badge';
@@ -9,7 +10,8 @@ import { List, ListItem } from './List';
 
 // AuxoKit List — mirrors the Figma "List" set (node 1149:70444).
 const meta = {
-  title: 'AuxoKit/List',
+  title: 'Components/List',
+  parameters: { design: figmaDesign('List') },
   component: List,
   args: { variant: 'default' },
   argTypes: {

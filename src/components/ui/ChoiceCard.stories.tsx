@@ -1,11 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { figmaDesign } from '../../../.storybook/auxokit/figma';
 import { useState, type ComponentProps } from 'react';
 import { ChoiceCard, ChoiceGroup } from './ChoiceCard';
 import { InfoIcon, MailIcon } from '../icons';
 
 // AuxoKit Choice cards — mirrors the Figma "Checkbox/Radio form" set (node 1149:54726), groups 1149:55022.
 const meta = {
-  title: 'AuxoKit/ChoiceCard',
+  title: 'Components/ChoiceCard',
+  parameters: { design: figmaDesign('ChoiceCard') },
   component: ChoiceCard,
   args: { title: 'Starter', description: 'For personal projects', variant: 'card', type: 'radio', disabled: false },
   argTypes: {

@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { figmaDesign } from '../../../.storybook/auxokit/figma';
 import { useState } from 'react';
 import { CogIcon, InfoIcon, MailIcon } from '../icons';
 import { Tabs, type TabsProps, type TabsVariant } from './Tabs';
@@ -37,9 +38,9 @@ function TabsDemo({ value: initial, onValueChange, ...args }: TabsProps) {
 }
 
 const meta = {
-  title: 'AuxoKit/Tabs',
+  title: 'Components/Tabs',
   component: Tabs,
-  parameters: { layout: 'padded' },
+  parameters: { design: figmaDesign('Tabs'), layout: 'padded' },
   args: { items, value: 'profile', onValueChange: () => {}, variant: 'text', label: 'Tabs' },
   argTypes: { variant: { control: 'select', options: variants } },
   render: (args) => <TabsDemo {...args} />,

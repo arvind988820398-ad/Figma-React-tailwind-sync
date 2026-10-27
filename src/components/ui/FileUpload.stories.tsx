@@ -1,11 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { figmaDesign } from '../../../.storybook/auxokit/figma';
 import { FileDropzone, FileInput } from './FileUpload';
 import { HelperText, Label } from './Input';
 
 // AuxoKit File upload — mirrors the Figma "File upload input" examples (node 1149:48972) and dropzone (1149:48981).
 // FileInput = Figma "Default"; FileDropzone = Figma "Advanced" / "With CTAs".
 const meta = {
-  title: 'AuxoKit/FileUpload',
+  title: 'Components/FileUpload',
+  parameters: { design: figmaDesign('FileUpload') },
   component: FileInput,
   args: { onFiles: () => {}, multiple: false, disabled: false },
   decorators: [

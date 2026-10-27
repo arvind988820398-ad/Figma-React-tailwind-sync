@@ -1,11 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { figmaDesign } from '../../../.storybook/auxokit/figma';
 import { useState } from 'react';
 import { Label } from './Input';
 import { TimeInput, TimeSlots, type TimeSlotsProps } from './Timepicker';
 
 // AuxoKit Timepicker — mirrors the Figma "Timepicker form" (node 1149:52636).
 const meta = {
-  title: 'AuxoKit/Timepicker',
+  title: 'Components/Timepicker',
+  parameters: { design: figmaDesign('Timepicker') },
   component: TimeInput,
   args: { 'aria-label': 'Start time', defaultValue: '09:30', size: 'base', className: 'w-48', disabled: false },
   argTypes: {

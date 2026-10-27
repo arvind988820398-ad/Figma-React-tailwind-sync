@@ -37,7 +37,7 @@ Figma MCP connected (`whoami` works). Before any `use_figma` call: `create_sessi
    node auxokit-review/scripts/lint-tokens.mjs src
    ```
    Removed/renamed tokens now show as `unknown-token` errors at every usage, with suggestions. Fix renames mechanically; for removals ask what replaces them (check Figma).
-5. **Docs.** Regenerate `references/tokens.md` usage table if tokens were added/removed (add a "Use for" line for each new token in the same style), and update the cheat sheet in the design-system `SKILL.md` when a commonly used token changes meaning.
+5. **Docs.** Regenerate `references/tokens.md` usage table if tokens were added/removed (add a "Use for" line for each new token in the same style), and update the cheat sheet in the design-system `SKILL.md` when a commonly used token changes meaning. Then `npm run docs:build` so the Storybook token pages pick the changes up (`npm run tokens:build` already does this).
 6. **Report**: counts by kind, files touched, lint result, follow-ups.
 
 ## B. Component sync (Figma → code)
@@ -54,6 +54,7 @@ Figma MCP connected (`whoami` works). Before any `use_figma` call: `create_sessi
    - For removed values: remove from the component types so TypeScript flags every usage; fix `code-usage` call sites (ask which replacement to use when not obvious).
    - For a `new-set`: add a registry entry and a doc section with Figma ref, API, recipe (from the spec script), **When to use / When not to use**, accessibility.
 4. Run the reviewer's linter and the project's typecheck/tests.
+5. **Storybook.** Add or update the component's `*.stories.tsx` (one story per variant axis), then `npm run docs:build`. The generator reads `components.json`, the doc sections and the token manifest, and reports registry ↔ code drift (a prop map value missing from the React union); `npm run docs:check` fails in CI on stale docs and prints drift (`npm run docs:check -- --strict` fails on drift too). The Guides → Figma sync page in Storybook shows the same findings.
 
 ## C. Code → Figma (only with explicit user approval — these write to the shared Figma file)
 
@@ -62,10 +63,15 @@ Figma MCP connected (`whoami` works). Before any `use_figma` call: `create_sessi
 - **Audit fixes.** Items in `figma-audit.md` are fixed by designers in Figma; you may offer to apply clear-cut variable re-binds (e.g. Badge Success text → `text-fg-success-strong`) only when the user explicitly asks, then re-run section A and remove the fixed rows.
 - Never change token **values** in Figma from code; values are design decisions.
 
+## D. Storybook docs
+
+The Storybook under `.storybook/` is generated from the bridge files above: `scripts/build-docs.mjs` turns `components.json`, `references/components/*.md`, `references/tokens.md`, `figma-audit.md` and `token-manifest.json` into `generated/auxokit-docs.ts`, which the docs page template and the guide pages render. Nothing in Storybook is hand-written per component, so the only way to change what it says is to change those sources and rebuild. Whenever a sync touches them, finish with `npm run docs:build` (or `npm run docs:check` to verify).
+
 ## Drift check for CI (optional)
 Commit the exports and add a CI step that fails when the app's `auxokit.css` differs from a fresh build:
 ```bash
 node .claude/skills/auxokit-design-system/scripts/build-tokens.mjs --out /tmp/ax && diff -q /tmp/ax/auxokit.css src/styles/auxokit.css
 node .claude/skills/auxokit-review/scripts/lint-tokens.mjs src --max-warnings 0
+npm run docs:check
 ```
 Figma-side drift needs Figma API access; run sections A/B on a schedule (e.g. weekly) instead.

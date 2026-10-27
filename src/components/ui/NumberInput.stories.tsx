@@ -1,11 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { figmaDesign } from '../../../.storybook/auxokit/figma';
 import { useState, type ComponentProps } from 'react';
 import { HelperText, Label } from './Input';
 import { NumberInput } from './NumberInput';
 
 // AuxoKit Number input — mirrors the Figma "Number form" set (node 1149:46630).
 const meta = {
-  title: 'AuxoKit/NumberInput',
+  title: 'Components/NumberInput',
+  parameters: { design: figmaDesign('NumberInput') },
   component: NumberInput,
   args: { value: 2, onChange: () => {}, min: 0, max: 10, step: 1, variant: 'buttons', size: 'base', disabled: false, 'aria-label': 'Quantity' },
   argTypes: {

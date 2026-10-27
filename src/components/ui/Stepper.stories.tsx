@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { figmaDesign } from '../../../.storybook/auxokit/figma';
 import { useState } from 'react';
 import { CheckIcon, CogIcon, InfoIcon, MailIcon } from '../icons';
 import { Button } from './Button';
@@ -15,9 +16,9 @@ const steps: Step[] = [
 const variants: StepperVariant[] = ['default', 'dots', 'icons', 'only-icons', 'cards', 'vertical'];
 
 const meta = {
-  title: 'AuxoKit/Stepper',
+  title: 'Components/Stepper',
   component: Stepper,
-  parameters: { layout: 'padded' },
+  parameters: { design: figmaDesign('Stepper'), layout: 'padded' },
   args: { steps, current: 1, variant: 'default' },
   argTypes: { variant: { control: 'select', options: variants } },
 } satisfies Meta<typeof Stepper>;

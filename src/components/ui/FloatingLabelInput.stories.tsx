@@ -1,9 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { figmaDesign } from '../../../.storybook/auxokit/figma';
 import { FloatingLabelInput } from './FloatingLabelInput';
 
 // AuxoKit Floating label input — mirrors the Figma "Floating label" set (node 1149:50454).
 const meta = {
-  title: 'AuxoKit/FloatingLabelInput',
+  title: 'Components/FloatingLabelInput',
+  parameters: { design: figmaDesign('FloatingLabelInput') },
   component: FloatingLabelInput,
   args: { label: 'Email', variant: 'outlined', size: 'base', disabled: false },
   argTypes: {

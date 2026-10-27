@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { figmaDesign } from '../../../.storybook/auxokit/figma';
 import { CogIcon } from '../icons';
 import { Badge } from './Badge';
 import { Breadcrumb } from './Breadcrumb';
@@ -7,7 +8,8 @@ import { Dropdown, DropdownItem } from './Dropdown';
 
 // AuxoKit Breadcrumb — mirrors the Figma "Breadcrumb" set (node 1148:31317). The last item is the current page.
 const meta = {
-  title: 'AuxoKit/Breadcrumb',
+  title: 'Components/Breadcrumb',
+  parameters: { design: figmaDesign('Breadcrumb') },
   component: Breadcrumb,
   args: {
     items: [{ label: 'Home', href: '#' }, { label: 'Projects', href: '#' }, { label: 'AuxoKit' }],

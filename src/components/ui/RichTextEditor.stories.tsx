@@ -1,11 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { figmaDesign } from '../../../.storybook/auxokit/figma';
 import { useState } from 'react';
 import { Button } from './Button';
 import { RichTextEditor, type RichTextEditorProps } from './RichTextEditor';
 
 // AuxoKit Rich text editor — mirrors the Figma "Rich text editor input" (node 1149:49749).
 const meta = {
-  title: 'AuxoKit/RichTextEditor',
+  title: 'Components/RichTextEditor',
+  parameters: { design: figmaDesign('RichTextEditor') },
   component: RichTextEditor,
   args: {
     label: 'Article body',

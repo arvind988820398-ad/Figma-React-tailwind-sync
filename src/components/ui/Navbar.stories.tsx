@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { figmaDesign } from '../../../.storybook/auxokit/figma';
 import { CogIcon, InfoIcon, MailIcon } from '../icons';
 import { Avatar } from './Avatar';
 import { Button } from './Button';
@@ -25,9 +26,9 @@ const links = [
 ];
 
 const meta = {
-  title: 'AuxoKit/Navbar',
+  title: 'Components/Navbar',
   component: Navbar,
-  parameters: { layout: 'fullscreen' },
+  parameters: { design: figmaDesign('Navbar'), layout: 'fullscreen' },
   args: {
     logo: <Logo />,
     links,

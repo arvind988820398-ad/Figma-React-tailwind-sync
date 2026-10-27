@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { figmaDesign } from '../../../.storybook/auxokit/figma';
 import { CheckIcon, CogIcon, InfoIcon } from '../icons';
 import { Avatar } from './Avatar';
 import { Button } from './Button';
@@ -20,9 +21,9 @@ const actions = (
 );
 
 const meta = {
-  title: 'AuxoKit/Timeline',
+  title: 'Components/Timeline',
   component: Timeline,
-  parameters: { layout: 'padded' },
+  parameters: { design: figmaDesign('Timeline'), layout: 'padded' },
   decorators: [(Story) => <div className="w-full max-w-3xl"><Story /></div>],
   args: { items: events, variant: 'default' },
   argTypes: { variant: { control: 'select', options: ['default', 'icons', 'cards', 'horizontal'] } },

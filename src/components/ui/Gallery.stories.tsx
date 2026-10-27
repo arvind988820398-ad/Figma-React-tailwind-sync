@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { figmaDesign } from '../../../.storybook/auxokit/figma';
 import { useState } from 'react';
 import { Gallery, type GalleryProps } from './Gallery';
 import { Tabs } from './Tabs';
@@ -10,9 +11,9 @@ const photos = ['forest', 'coast', 'alps', 'desert', 'lake', 'city'].map((seed, 
 }));
 
 const meta = {
-  title: 'AuxoKit/Gallery',
+  title: 'Components/Gallery',
   component: Gallery,
-  parameters: { layout: 'padded' },
+  parameters: { design: figmaDesign('Gallery'), layout: 'padded' },
   args: { images: photos, variant: 'grid-3' },
   argTypes: {
     variant: { control: 'select', options: ['grid-3', 'grid-2', 'masonry', 'featured'] },

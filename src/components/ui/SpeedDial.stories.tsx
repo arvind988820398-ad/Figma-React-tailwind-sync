@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { figmaDesign } from '../../../.storybook/auxokit/figma';
 import { CheckIcon, CogIcon, MailIcon, PlusIcon } from '../icons';
 import { SpeedDial, type SpeedDialDirection, type SpeedDialVariant } from './SpeedDial';
 
@@ -15,7 +16,8 @@ const variants: SpeedDialVariant[] = ['default', 'rounded', 'menu', 'dropdown'];
 const directions: SpeedDialDirection[] = ['top', 'bottom', 'left', 'right'];
 
 const meta = {
-  title: 'AuxoKit/SpeedDial',
+  title: 'Components/SpeedDial',
+  parameters: { design: figmaDesign('SpeedDial') },
   component: SpeedDial,
   // Tall, wide frame so the menu has room to open in any direction.
   decorators: [(Story) => <div className="flex h-96 w-96 items-center justify-center"><Story /></div>],

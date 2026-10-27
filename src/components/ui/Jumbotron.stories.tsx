@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { figmaDesign } from '../../../.storybook/auxokit/figma';
 import { Jumbotron } from './Jumbotron';
 import { Alert } from './Alert';
 import { Button } from './Button';
@@ -6,9 +7,9 @@ import { ArrowRightIcon } from '../icons';
 
 // AuxoKit Jumbotron (hero) — mirrors the Figma "Jumbotron" set (node 1149:67227).
 const meta = {
-  title: 'AuxoKit/Jumbotron',
+  title: 'Components/Jumbotron',
   component: Jumbotron,
-  parameters: { layout: 'fullscreen' },
+  parameters: { design: figmaDesign('Jumbotron'), layout: 'fullscreen' },
   args: {
     variant: 'centered',
     surface: 'primary',
@@ -62,7 +63,7 @@ export const BackgroundImage: Story = {
     variant: 'image',
     backgroundImage: 'https://picsum.photos/seed/aurora/1600/900',
     title: 'Built for every theme',
-    lead: 'Modern, Minimal, Enterprise, Playful and Mono — light and dark.',
+    lead: 'Modern, Minimal, Enterprise and Mono — light and dark.',
     actions: (
       <>
         <Button size="lg">Get started</Button>

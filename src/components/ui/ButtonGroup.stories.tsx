@@ -1,11 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { figmaDesign } from '../../../.storybook/auxokit/figma';
 import { useState } from 'react';
 import { CogIcon, MailIcon, PlusIcon } from '../icons';
 import { ButtonGroup, ButtonGroupItem, type ButtonGroupProps, type ButtonGroupSize } from './ButtonGroup';
 
 // AuxoKit Button group — mirrors the Figma "Group button" set (node 1149:31694). Gray = Secondary, White = Tertiary.
 const meta = {
-  title: 'AuxoKit/ButtonGroup',
+  title: 'Components/ButtonGroup',
+  parameters: { design: figmaDesign('ButtonGroup') },
   component: ButtonGroup,
   args: {
     color: 'white',

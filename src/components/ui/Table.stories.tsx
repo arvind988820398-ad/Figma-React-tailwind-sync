@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { figmaDesign } from '../../../.storybook/auxokit/figma';
 import { InfoIcon, PlusIcon } from '../icons';
 import { Badge } from './Badge';
 import { Button } from './Button';
@@ -68,9 +69,9 @@ const toolbar = (
 );
 
 const meta = {
-  title: 'AuxoKit/Table',
+  title: 'Components/Table',
   component: Table,
-  parameters: { layout: 'padded' },
+  parameters: { design: figmaDesign('Table'), layout: 'padded' },
   args: { children: content },
   argTypes: {
     striped: { control: 'select', options: ['rows', 'columns'] },

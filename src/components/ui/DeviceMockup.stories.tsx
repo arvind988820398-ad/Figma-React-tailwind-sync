@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { figmaDesign } from '../../../.storybook/auxokit/figma';
 import { DeviceMockup } from './DeviceMockup';
 
 // AuxoKit Device mockup — mirrors the Figma "Mockups" set (node 1149:41354).
@@ -6,9 +7,9 @@ const phoneScreen = <img src="https://picsum.photos/seed/appscreen/448/896" alt=
 const wideScreen = <img src="https://picsum.photos/seed/dashboard/1600/1000" alt="" />;
 
 const meta = {
-  title: 'AuxoKit/DeviceMockup',
+  title: 'Components/DeviceMockup',
   component: DeviceMockup,
-  parameters: { layout: 'padded' },
+  parameters: { design: figmaDesign('DeviceMockup'), layout: 'padded' },
   args: { device: 'iphone', label: 'App home screen', children: phoneScreen },
   argTypes: {
     device: { control: 'select', options: ['iphone', 'android', 'tablet', 'laptop', 'imac', 'watch'] },

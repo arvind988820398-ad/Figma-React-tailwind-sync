@@ -1,0 +1,21 @@
+import { Markdown, Meta } from '@storybook/addon-docs/blocks';
+import { auxokitDocs } from '../generated/auxokit-docs';
+import { RadiusScale, ShadowScale } from '../auxokit/blocks';
+
+<Meta title="Foundations/Radius & shadows" />
+
+# Radius and shadows
+
+## Radius
+
+Radius is themed: the same class renders differently per theme (Modern `rounded-base` is 12px, Enterprise 4px, Mono 1px). The live column follows the Theme toolbar menu. Never use `rounded-md`, `rounded-2xl` or arbitrary values.
+
+<RadiusScale />
+
+<Markdown>{auxokitDocs.tokens.radiusNote}</Markdown>
+
+## Shadows
+
+Shadows come from the Figma effect styles. Use `shadow-xs` on controls and the overlay ladder `shadow-md` → `shadow-lg` → `shadow-xl` for tooltips, menus and modals. Focus rings are shadows too, applied with `focus-visible:`.
+
+<ShadowScale />

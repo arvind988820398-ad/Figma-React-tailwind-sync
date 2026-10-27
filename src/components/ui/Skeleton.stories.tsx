@@ -1,13 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { figmaDesign } from '../../../.storybook/auxokit/figma';
 import { Skeleton, SkeletonLine, SkeletonMedia, type SkeletonType } from './Skeleton';
 
 // AuxoKit Skeleton — mirrors the Figma "Skeleton" set (node 1149:85600).
 const types = ['text', 'simple-text', 'image', 'card', 'list', 'widget'] as const satisfies readonly SkeletonType[];
 
 const meta = {
-  title: 'AuxoKit/Skeleton',
+  title: 'Components/Skeleton',
   component: Skeleton,
-  parameters: { layout: 'padded' },
+  parameters: { design: figmaDesign('Skeleton'), layout: 'padded' },
   decorators: [(Story) => <div className="w-full max-w-md">{Story()}</div>],
   args: { type: 'text', label: 'Loading…' },
   argTypes: {

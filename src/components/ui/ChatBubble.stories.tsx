@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { figmaDesign } from '../../../.storybook/auxokit/figma';
 import { ArrowRightIcon } from '../icons';
 import { Avatar } from './Avatar';
 import { Button } from './Button';
@@ -11,7 +12,8 @@ const photos = ['forest', 'coast', 'alps', 'desert', 'lake'].map((seed, i) => ({
 }));
 
 const meta = {
-  title: 'AuxoKit/ChatBubble',
+  title: 'Components/ChatBubble',
+  parameters: { design: figmaDesign('ChatBubble') },
   component: ChatBubble,
   args: {
     direction: 'received',

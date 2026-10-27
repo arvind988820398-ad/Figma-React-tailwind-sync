@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { figmaDesign } from '../../../.storybook/auxokit/figma';
 import { Alert, type AlertColor } from './Alert';
 import { Badge } from './Badge';
 import { Button } from './Button';
@@ -8,9 +9,9 @@ import { InfoIcon } from '../icons';
 const colors = ['neutral', 'info', 'success', 'warning', 'danger'] as const satisfies readonly AlertColor[];
 
 const meta = {
-  title: 'AuxoKit/Alert',
+  title: 'Components/Alert',
   component: Alert,
-  parameters: { layout: 'padded' },
+  parameters: { design: figmaDesign('Alert'), layout: 'padded' },
   args: { color: 'neutral', variant: 'default', children: 'A short message for the user.' },
   argTypes: {
     color: { control: 'select', options: colors },

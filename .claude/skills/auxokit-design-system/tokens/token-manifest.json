@@ -8,7 +8,6 @@
     "modern",
     "minimal",
     "enterprise",
-    "playful",
     "mono"
   ],
   "modes": [
@@ -40,16 +39,6 @@
     {
       "figma": "Enterprise (dark)",
       "theme": "enterprise",
-      "scheme": "dark"
-    },
-    {
-      "figma": "Playful (light)",
-      "theme": "playful",
-      "scheme": "light"
-    },
-    {
-      "figma": "Playful (dark)",
-      "theme": "playful",
       "scheme": "dark"
     },
     {
@@ -677,8 +666,6 @@
         "minimal-dark": 8,
         "enterprise-light": 8,
         "enterprise-dark": 8,
-        "playful-light": 8,
-        "playful-dark": 8,
         "mono-light": 8,
         "mono-dark": 8
       }
@@ -694,8 +681,6 @@
         "minimal-dark": "0 (spacing/0)",
         "enterprise-light": "0 (spacing/0)",
         "enterprise-dark": "0 (spacing/0)",
-        "playful-light": "0 (spacing/0)",
-        "playful-dark": "0 (spacing/0)",
         "mono-light": "0 (spacing/0)",
         "mono-dark": "0 (spacing/0)"
       }
@@ -711,8 +696,6 @@
         "minimal-dark": "2 (border/border-radius/rounded-sm)",
         "enterprise-light": 1,
         "enterprise-dark": 1,
-        "playful-light": "2 (border/border-radius/rounded-sm)",
-        "playful-dark": "2 (border/border-radius/rounded-sm)",
         "mono-light": 1,
         "mono-dark": 1
       }
@@ -728,8 +711,6 @@
         "minimal-dark": "2 (border/border-radius/rounded-sm)",
         "enterprise-light": 1,
         "enterprise-dark": 1,
-        "playful-light": "2 (border/border-radius/rounded-sm)",
-        "playful-dark": "2 (border/border-radius/rounded-sm)",
         "mono-light": 1,
         "mono-dark": 1
       }
@@ -745,8 +726,6 @@
         "minimal-dark": "4 (border/border-radius/rounded)",
         "enterprise-light": 1,
         "enterprise-dark": 1,
-        "playful-light": 10,
-        "playful-dark": 10,
         "mono-light": 1,
         "mono-dark": 1
       }
@@ -762,8 +741,6 @@
         "minimal-dark": "6 (border/border-radius/rounded-md)",
         "enterprise-light": "4 (border/border-radius/rounded)",
         "enterprise-dark": "4 (border/border-radius/rounded)",
-        "playful-light": 10,
-        "playful-dark": 10,
         "mono-light": 1,
         "mono-dark": 1
       }
@@ -779,8 +756,6 @@
         "minimal-dark": "8 (border/border-radius/rounded-lg)",
         "enterprise-light": "4 (border/border-radius/rounded)",
         "enterprise-dark": "4 (border/border-radius/rounded)",
-        "playful-light": 20,
-        "playful-dark": 20,
         "mono-light": 1,
         "mono-dark": 1
       }
@@ -796,8 +771,6 @@
         "minimal-dark": "16 (border/border-radius/rounded-2xl)",
         "enterprise-light": "4 (border/border-radius/rounded)",
         "enterprise-dark": "4 (border/border-radius/rounded)",
-        "playful-light": "16 (border/border-radius/rounded-2xl)",
-        "playful-dark": "16 (border/border-radius/rounded-2xl)",
         "mono-light": 1,
         "mono-dark": 1
       }
@@ -813,8 +786,6 @@
         "minimal-dark": "24 (border/border-radius/rounded-3xl)",
         "enterprise-light": "4 (border/border-radius/rounded)",
         "enterprise-dark": "4 (border/border-radius/rounded)",
-        "playful-light": "24 (border/border-radius/rounded-3xl)",
-        "playful-dark": "24 (border/border-radius/rounded-3xl)",
         "mono-light": 1,
         "mono-dark": 1
       }
@@ -830,8 +801,6 @@
         "minimal-dark": "9999 (border/border-radius/rounded-full)",
         "enterprise-light": "9999 (border/border-radius/rounded-full)",
         "enterprise-dark": "9999 (border/border-radius/rounded-full)",
-        "playful-light": "9999 (border/border-radius/rounded-full)",
-        "playful-dark": "9999 (border/border-radius/rounded-full)",
         "mono-light": "9999 (border/border-radius/rounded-full)",
         "mono-dark": "9999 (border/border-radius/rounded-full)"
       }
@@ -847,8 +816,6 @@
         "minimal-dark": "Open Sans",
         "enterprise-light": "IBM Plex Serif",
         "enterprise-dark": "IBM Plex Serif",
-        "playful-light": "Shantell Sans",
-        "playful-dark": "Shantell Sans",
         "mono-light": "IBM Plex Mono",
         "mono-dark": "IBM Plex Mono"
       }
@@ -864,8 +831,6 @@
         "minimal-dark": "#0c0a09 (colors/stone/950)",
         "enterprise-light": "#ffffff (white)",
         "enterprise-dark": "#09090b (colors/zinc/950)",
-        "playful-light": "#ffffff (white)",
-        "playful-dark": "#020618 (colors/slate/950)",
         "mono-light": "#ffffff (white)",
         "mono-dark": "#0a0a0a (colors/neutral/950)"
       }
@@ -881,8 +846,6 @@
         "minimal-dark": "#0c0a09 (colors/stone/950)",
         "enterprise-light": "#f4f4f5 (colors/zinc/100)",
         "enterprise-dark": "#09090b (colors/zinc/950)",
-        "playful-light": "#f1f5f9 (colors/slate/100)",
-        "playful-dark": "#020618 (colors/slate/950)",
         "mono-light": "#f5f5f5 (colors/neutral/100)",
         "mono-dark": "#0a0a0a (colors/neutral/950)"
       }
@@ -898,8 +861,6 @@
         "minimal-dark": "#ffffff (white)",
         "enterprise-light": "#ffffff (white)",
         "enterprise-dark": "#ffffff (white)",
-        "playful-light": "#ffffff (white)",
-        "playful-dark": "#ffffff (white)",
         "mono-light": "#ffffff (white)",
         "mono-dark": "#ffffff (white)"
       }
@@ -915,8 +876,6 @@
         "minimal-dark": "#1c1917 (colors/stone/900)",
         "enterprise-light": "#ffffff (white)",
         "enterprise-dark": "#18181b (colors/zinc/900)",
-        "playful-light": "#ffffff (white)",
-        "playful-dark": "#131c34 (colors/slate/900)",
         "mono-light": "#ffffff (white)",
         "mono-dark": "#171717 (colors/neutral/900)"
       }
@@ -932,8 +891,6 @@
         "minimal-dark": "#0c0a09 (colors/stone/950)",
         "enterprise-light": "#ffffff (white)",
         "enterprise-dark": "#09090b (colors/zinc/950)",
-        "playful-light": "#ffffff (white)",
-        "playful-dark": "#020618 (colors/slate/950)",
         "mono-light": "#ffffff (white)",
         "mono-dark": "#0a0a0a (colors/neutral/950)"
       }
@@ -949,8 +906,6 @@
         "minimal-dark": "#292524 (colors/stone/800)",
         "enterprise-light": "#ffffff (white)",
         "enterprise-dark": "#27272a (colors/zinc/800)",
-        "playful-light": "#ffffff (white)",
-        "playful-dark": "#1d293d (colors/slate/800)",
         "mono-light": "#ffffff (white)",
         "mono-dark": "#262626 (colors/neutral/800)"
       }
@@ -966,8 +921,6 @@
         "minimal-dark": "#44403b (colors/stone/700)",
         "enterprise-light": "#ffffff (white)",
         "enterprise-dark": "#3f3f46 (colors/zinc/700)",
-        "playful-light": "#ffffff (white)",
-        "playful-dark": "#314158 (colors/slate/700)",
         "mono-light": "#ffffff (white)",
         "mono-dark": "#404040 (colors/neutral/700)"
       }
@@ -983,8 +936,6 @@
         "minimal-dark": "#1c1917 (colors/stone/900)",
         "enterprise-light": "#ffffff (white)",
         "enterprise-dark": "#18181b (colors/zinc/900)",
-        "playful-light": "#f8fafc (colors/slate/50)",
-        "playful-dark": "#131c34 (colors/slate/900)",
         "mono-light": "#fafafa (colors/neutral/50)",
         "mono-dark": "#171717 (colors/neutral/900)"
       }
@@ -1000,8 +951,6 @@
         "minimal-dark": "#0c0a09 (colors/stone/950)",
         "enterprise-light": "#ffffff (white)",
         "enterprise-dark": "#09090b (colors/zinc/950)",
-        "playful-light": "#f8fafc (colors/slate/50)",
-        "playful-dark": "#020618 (colors/slate/950)",
         "mono-light": "#fafafa (colors/neutral/50)",
         "mono-dark": "#0a0a0a (colors/neutral/950)"
       }
@@ -1017,8 +966,6 @@
         "minimal-dark": "#292524 (colors/stone/800)",
         "enterprise-light": "#ffffff (white)",
         "enterprise-dark": "#27272a (colors/zinc/800)",
-        "playful-light": "#f8fafc (colors/slate/50)",
-        "playful-dark": "#1d293d (colors/slate/800)",
         "mono-light": "#fafafa (colors/neutral/50)",
         "mono-dark": "#262626 (colors/neutral/800)"
       }
@@ -1034,8 +981,6 @@
         "minimal-dark": "#44403b (colors/stone/700)",
         "enterprise-light": "#ffffff (white)",
         "enterprise-dark": "#3f3f46 (colors/zinc/700)",
-        "playful-light": "#f8fafc (colors/slate/50)",
-        "playful-dark": "#314158 (colors/slate/700)",
         "mono-light": "#fafafa (colors/neutral/50)",
         "mono-dark": "#404040 (colors/neutral/700)"
       }
@@ -1051,8 +996,6 @@
         "minimal-dark": "#1c1917 (colors/stone/900)",
         "enterprise-light": "#f4f4f5 (colors/zinc/100)",
         "enterprise-dark": "#18181b (colors/zinc/900)",
-        "playful-light": "#f1f5f9 (colors/slate/100)",
-        "playful-dark": "#131c34 (colors/slate/900)",
         "mono-light": "#f5f5f5 (colors/neutral/100)",
         "mono-dark": "#171717 (colors/neutral/900)"
       }
@@ -1068,8 +1011,6 @@
         "minimal-dark": "#292524 (colors/stone/800)",
         "enterprise-light": "#f4f4f5 (colors/zinc/100)",
         "enterprise-dark": "#27272a (colors/zinc/800)",
-        "playful-light": "#f1f5f9 (colors/slate/100)",
-        "playful-dark": "#1d293d (colors/slate/800)",
         "mono-light": "#f5f5f5 (colors/neutral/100)",
         "mono-dark": "#262626 (colors/neutral/800)"
       }
@@ -1085,8 +1026,6 @@
         "minimal-dark": "#44403b (colors/stone/700)",
         "enterprise-light": "#f4f4f5 (colors/zinc/100)",
         "enterprise-dark": "#3f3f46 (colors/zinc/700)",
-        "playful-light": "#f1f5f9 (colors/slate/100)",
-        "playful-dark": "#314158 (colors/slate/700)",
         "mono-light": "#f5f5f5 (colors/neutral/100)",
         "mono-dark": "#404040 (colors/neutral/700)"
       }
@@ -1102,8 +1041,6 @@
         "minimal-dark": "#44403b (colors/stone/700)",
         "enterprise-light": "#e4e4e7 (colors/zinc/200)",
         "enterprise-dark": "#3f3f46 (colors/zinc/700)",
-        "playful-light": "#e2e8f0 (colors/slate/200)",
-        "playful-dark": "#314158 (colors/slate/700)",
         "mono-light": "#e5e5e5 (colors/neutral/200)",
         "mono-dark": "#404040 (colors/neutral/700)"
       }
@@ -1119,8 +1056,6 @@
         "minimal-dark": "#57534d (colors/stone/600)",
         "enterprise-light": "#e4e4e7 (colors/zinc/200)",
         "enterprise-dark": "#52525c (colors/zinc/600)",
-        "playful-light": "#e2e8f0 (colors/slate/200)",
-        "playful-dark": "#45556c (colors/slate/600)",
         "mono-light": "#e5e5e5 (colors/neutral/200)",
         "mono-dark": "#525252 (colors/neutral/600)"
       }
@@ -1136,8 +1071,6 @@
         "minimal-dark": "#57534d (colors/stone/600)",
         "enterprise-light": "#d4d4d8 (colors/zinc/300)",
         "enterprise-dark": "#52525c (colors/zinc/600)",
-        "playful-light": "#cad5e2 (colors/slate/300)",
-        "playful-dark": "#45556c (colors/slate/600)",
         "mono-light": "#d4d4d4 (colors/neutral/300)",
         "mono-dark": "#525252 (colors/neutral/600)"
       }
@@ -1153,8 +1086,6 @@
         "minimal-dark": "#ffffff (white)",
         "enterprise-light": "#ffffff (white)",
         "enterprise-dark": "#ffffff (white)",
-        "playful-light": "#ffffff (white)",
-        "playful-dark": "#ffffff (white)",
         "mono-light": "#ffffff (white)",
         "mono-dark": "#ffffff (white)"
       }
@@ -1170,8 +1101,6 @@
         "minimal-dark": "#0c0a09 (colors/stone/950)",
         "enterprise-light": "#18181b (colors/zinc/900)",
         "enterprise-dark": "#18181b (colors/zinc/900)",
-        "playful-light": "#131c34 (colors/slate/900)",
-        "playful-dark": "#131c34 (colors/slate/900)",
         "mono-light": "#171717 (colors/neutral/900)",
         "mono-dark": "#171717 (colors/neutral/900)"
       }
@@ -1187,8 +1116,6 @@
         "minimal-dark": "#ffffff (white)",
         "enterprise-light": "#18181b (colors/zinc/900)",
         "enterprise-dark": "#ffffff (white)",
-        "playful-light": "#131c34 (colors/slate/900)",
-        "playful-dark": "#ffffff (white)",
         "mono-light": "#171717 (colors/neutral/900)",
         "mono-dark": "#ffffff (white)"
       }
@@ -1204,8 +1131,6 @@
         "minimal-dark": "#a6a09b (colors/stone/400)",
         "enterprise-light": "#52525c (colors/zinc/600)",
         "enterprise-dark": "#9f9fa9 (colors/zinc/400)",
-        "playful-light": "#45556c (colors/slate/600)",
-        "playful-dark": "#90a1b9 (colors/slate/400)",
         "mono-light": "#525252 (colors/neutral/600)",
         "mono-dark": "#a1a1a1 (colors/neutral/400)"
       }
@@ -1221,8 +1146,6 @@
         "minimal-dark": "#a6a09b (colors/stone/400)",
         "enterprise-light": "#71717b (colors/zinc/500)",
         "enterprise-dark": "#9f9fa9 (colors/zinc/400)",
-        "playful-light": "#62748e (colors/slate/500)",
-        "playful-dark": "#90a1b9 (colors/slate/400)",
         "mono-light": "#737373 (colors/neutral/500)",
         "mono-dark": "#a1a1a1 (colors/neutral/400)"
       }
@@ -1238,8 +1161,6 @@
         "minimal-dark": "#e7e5e4 (colors/stone/200)",
         "enterprise-light": "#a2f4fd (colors/cyan/200)",
         "enterprise-dark": "#a2f4fd (colors/cyan/200)",
-        "playful-light": "#fccee8 (colors/pink/200)",
-        "playful-dark": "#fccee8 (colors/pink/200)",
         "mono-light": "#c6d2ff (colors/indigo/200)",
         "mono-dark": "#c6d2ff (colors/indigo/200)"
       }
@@ -1255,8 +1176,6 @@
         "minimal-dark": "#79716b (colors/stone/500)",
         "enterprise-light": "#007595 (colors/cyan/700)",
         "enterprise-dark": "#00b8db (colors/cyan/500)",
-        "playful-light": "#c6005c (colors/pink/700)",
-        "playful-dark": "#f6339a (colors/pink/500)",
         "mono-light": "#432dd7 (colors/indigo/700)",
         "mono-dark": "#615fff (colors/indigo/500)"
       }
@@ -1272,8 +1191,6 @@
         "minimal-dark": "#a6a09b (colors/stone/400)",
         "enterprise-light": "#104e64 (colors/cyan/900)",
         "enterprise-dark": "#00d3f2 (colors/cyan/400)",
-        "playful-light": "#861043 (colors/pink/900)",
-        "playful-dark": "#fb64b6 (colors/pink/400)",
         "mono-light": "#312c85 (colors/indigo/900)",
         "mono-dark": "#7c86ff (colors/indigo/400)"
       }
@@ -1289,8 +1206,6 @@
         "minimal-dark": "#00a63e (colors/green/600)",
         "enterprise-light": "#008236 (colors/green/700)",
         "enterprise-dark": "#00a63e (colors/green/600)",
-        "playful-light": "#008236 (colors/green/700)",
-        "playful-dark": "#00a63e (colors/green/600)",
         "mono-light": "#008236 (colors/green/700)",
         "mono-dark": "#00a63e (colors/green/600)"
       }
@@ -1306,8 +1221,6 @@
         "minimal-dark": "#7bf1a8 (colors/green/300)",
         "enterprise-light": "#0d542b (colors/green/900)",
         "enterprise-dark": "#7bf1a8 (colors/green/300)",
-        "playful-light": "#0d542b (colors/green/900)",
-        "playful-dark": "#7bf1a8 (colors/green/300)",
         "mono-light": "#0d542b (colors/green/900)",
         "mono-dark": "#7bf1a8 (colors/green/300)"
       }
@@ -1323,8 +1236,6 @@
         "minimal-dark": "#0c0a09 (colors/stone/950)",
         "enterprise-light": "#ecfeff (colors/cyan/50)",
         "enterprise-dark": "#053345 (colors/cyan/950)",
-        "playful-light": "#fdf2f8 (colors/pink/50)",
-        "playful-dark": "#510424 (colors/pink/950)",
         "mono-light": "#eef2ff (colors/indigo/50)",
         "mono-dark": "#1e1a4d (colors/indigo/950)"
       }
@@ -1340,8 +1251,6 @@
         "minimal-dark": "#1c1917 (colors/stone/900)",
         "enterprise-light": "#cefafe (colors/cyan/100)",
         "enterprise-dark": "#104e64 (colors/cyan/900)",
-        "playful-light": "#fce7f3 (colors/pink/100)",
-        "playful-dark": "#861043 (colors/pink/900)",
         "mono-light": "#e0e7ff (colors/indigo/100)",
         "mono-dark": "#312c85 (colors/indigo/900)"
       }
@@ -1357,8 +1266,6 @@
         "minimal-dark": "#57534d (colors/stone/600)",
         "enterprise-light": "#104e64 (colors/cyan/900)",
         "enterprise-dark": "#0092b8 (colors/cyan/600)",
-        "playful-light": "#861043 (colors/pink/900)",
-        "playful-dark": "#e60076 (colors/pink/600)",
         "mono-light": "#312c85 (colors/indigo/900)",
         "mono-dark": "#4f39f6 (colors/indigo/600)"
       }
@@ -1374,8 +1281,6 @@
         "minimal-dark": "#1c1917 (colors/stone/900)",
         "enterprise-light": "#a2f4fd (colors/cyan/200)",
         "enterprise-dark": "#104e64 (colors/cyan/900)",
-        "playful-light": "#fccee8 (colors/pink/200)",
-        "playful-dark": "#861043 (colors/pink/900)",
         "mono-light": "#c6d2ff (colors/indigo/200)",
         "mono-dark": "#312c85 (colors/indigo/900)"
       }
@@ -1391,8 +1296,6 @@
         "minimal-dark": "#44403b (colors/stone/700)",
         "enterprise-light": "#005f78 (colors/cyan/800)",
         "enterprise-dark": "#007595 (colors/cyan/700)",
-        "playful-light": "#a3004c (colors/pink/800)",
-        "playful-dark": "#c6005c (colors/pink/700)",
         "mono-light": "#372aac (colors/indigo/800)",
         "mono-dark": "#432dd7 (colors/indigo/700)"
       }
@@ -1408,8 +1311,6 @@
         "minimal-dark": "#0d542b (colors/green/900)",
         "enterprise-light": "#f0fdf4 (colors/green/50)",
         "enterprise-dark": "#032e15 (colors/green/950)",
-        "playful-light": "#f0fdf4 (colors/green/50)",
-        "playful-dark": "#032e15 (colors/green/950)",
         "mono-light": "#f0fdf4 (colors/green/50)",
         "mono-dark": "#032e15 (colors/green/950)"
       }
@@ -1425,8 +1326,6 @@
         "minimal-dark": "#00a63e (colors/green/600)",
         "enterprise-light": "#008236 (colors/green/700)",
         "enterprise-dark": "#00a63e (colors/green/600)",
-        "playful-light": "#008236 (colors/green/700)",
-        "playful-dark": "#00a63e (colors/green/600)",
         "mono-light": "#008236 (colors/green/700)",
         "mono-dark": "#00a63e (colors/green/600)"
       }
@@ -1442,8 +1341,6 @@
         "minimal-dark": "#0d542b (colors/green/900)",
         "enterprise-light": "#dcfce7 (colors/green/100)",
         "enterprise-dark": "#0d542b (colors/green/900)",
-        "playful-light": "#dcfce7 (colors/green/100)",
-        "playful-dark": "#0d542b (colors/green/900)",
         "mono-light": "#dcfce7 (colors/green/100)",
         "mono-dark": "#0d542b (colors/green/900)"
       }
@@ -1459,8 +1356,6 @@
         "minimal-dark": "#008236 (colors/green/700)",
         "enterprise-light": "#016630 (colors/green/800)",
         "enterprise-dark": "#008236 (colors/green/700)",
-        "playful-light": "#016630 (colors/green/800)",
-        "playful-dark": "#008236 (colors/green/700)",
         "mono-light": "#016630 (colors/green/800)",
         "mono-dark": "#008236 (colors/green/700)"
       }
@@ -1476,8 +1371,6 @@
         "minimal-dark": "#460809 (colors/red/950)",
         "enterprise-light": "#fef2f2 (colors/red/50)",
         "enterprise-dark": "#460809 (colors/red/950)",
-        "playful-light": "#fef2f2 (colors/red/50)",
-        "playful-dark": "#460809 (colors/red/950)",
         "mono-light": "#fef2f2 (colors/red/50)",
         "mono-dark": "#460809 (colors/red/950)"
       }
@@ -1493,8 +1386,6 @@
         "minimal-dark": "#c10007 (colors/red/700)",
         "enterprise-light": "#c10007 (colors/red/700)",
         "enterprise-dark": "#c10007 (colors/red/700)",
-        "playful-light": "#c10007 (colors/red/700)",
-        "playful-dark": "#c10007 (colors/red/700)",
         "mono-light": "#c10007 (colors/red/700)",
         "mono-dark": "#c10007 (colors/red/700)"
       }
@@ -1510,8 +1401,6 @@
         "minimal-dark": "#82181a (colors/red/900)",
         "enterprise-light": "#ffe2e2 (colors/red/100)",
         "enterprise-dark": "#82181a (colors/red/900)",
-        "playful-light": "#ffe2e2 (colors/red/100)",
-        "playful-dark": "#82181a (colors/red/900)",
         "mono-light": "#ffe2e2 (colors/red/100)",
         "mono-dark": "#82181a (colors/red/900)"
       }
@@ -1527,8 +1416,6 @@
         "minimal-dark": "#9f0712 (colors/red/800)",
         "enterprise-light": "#9f0712 (colors/red/800)",
         "enterprise-dark": "#9f0712 (colors/red/800)",
-        "playful-light": "#9f0712 (colors/red/800)",
-        "playful-dark": "#9f0712 (colors/red/800)",
         "mono-light": "#9f0712 (colors/red/800)",
         "mono-dark": "#9f0712 (colors/red/800)"
       }
@@ -1544,8 +1431,6 @@
         "minimal-dark": "#441306 (colors/orange/950)",
         "enterprise-light": "#fff8f1 (colors/orange/50)",
         "enterprise-dark": "#441306 (colors/orange/950)",
-        "playful-light": "#fff8f1 (colors/orange/50)",
-        "playful-dark": "#441306 (colors/orange/950)",
         "mono-light": "#fff8f1 (colors/orange/50)",
         "mono-dark": "#441306 (colors/orange/950)"
       }
@@ -1561,8 +1446,6 @@
         "minimal-dark": "#d03801 (colors/orange/600)",
         "enterprise-light": "#ff5a1f (colors/orange/500)",
         "enterprise-dark": "#d03801 (colors/orange/600)",
-        "playful-light": "#ff5a1f (colors/orange/500)",
-        "playful-dark": "#d03801 (colors/orange/600)",
         "mono-light": "#ff5a1f (colors/orange/500)",
         "mono-dark": "#d03801 (colors/orange/600)"
       }
@@ -1578,8 +1461,6 @@
         "minimal-dark": "#771d1d (colors/orange/900)",
         "enterprise-light": "#feecdc (colors/orange/100)",
         "enterprise-dark": "#771d1d (colors/orange/900)",
-        "playful-light": "#feecdc (colors/orange/100)",
-        "playful-dark": "#771d1d (colors/orange/900)",
         "mono-light": "#feecdc (colors/orange/100)",
         "mono-dark": "#771d1d (colors/orange/900)"
       }
@@ -1595,8 +1476,6 @@
         "minimal-dark": "#b43403 (colors/orange/700)",
         "enterprise-light": "#b43403 (colors/orange/700)",
         "enterprise-dark": "#b43403 (colors/orange/700)",
-        "playful-light": "#b43403 (colors/orange/700)",
-        "playful-dark": "#b43403 (colors/orange/700)",
         "mono-light": "#b43403 (colors/orange/700)",
         "mono-dark": "#b43403 (colors/orange/700)"
       }
@@ -1612,8 +1491,6 @@
         "minimal-dark": "#292524 (colors/stone/800)",
         "enterprise-light": "#27272a (colors/zinc/800)",
         "enterprise-dark": "#27272a (colors/zinc/800)",
-        "playful-light": "#1d293d (colors/slate/800)",
-        "playful-dark": "#1d293d (colors/slate/800)",
         "mono-light": "#262626 (colors/neutral/800)",
         "mono-dark": "#262626 (colors/neutral/800)"
       }
@@ -1629,8 +1506,6 @@
         "minimal-dark": "#44403b (colors/stone/700)",
         "enterprise-light": "#18181b (colors/zinc/900)",
         "enterprise-dark": "#3f3f46 (colors/zinc/700)",
-        "playful-light": "#131c34 (colors/slate/900)",
-        "playful-dark": "#314158 (colors/slate/700)",
         "mono-light": "#171717 (colors/neutral/900)",
         "mono-dark": "#404040 (colors/neutral/700)"
       }
@@ -1646,8 +1521,6 @@
         "minimal-dark": "#292524 (colors/stone/800)",
         "enterprise-light": "#f4f4f5 (colors/zinc/100)",
         "enterprise-dark": "#27272a (colors/zinc/800)",
-        "playful-light": "#f1f5f9 (colors/slate/100)",
-        "playful-dark": "#1d293d (colors/slate/800)",
         "mono-light": "#f5f5f5 (colors/neutral/100)",
         "mono-dark": "#262626 (colors/neutral/800)"
       }
@@ -1663,8 +1536,6 @@
         "minimal-dark": "#ad46ff (colors/purple/500)",
         "enterprise-light": "#ad46ff (colors/purple/500)",
         "enterprise-dark": "#ad46ff (colors/purple/500)",
-        "playful-light": "#ad46ff (colors/purple/500)",
-        "playful-dark": "#ad46ff (colors/purple/500)",
         "mono-light": "#ad46ff (colors/purple/500)",
         "mono-dark": "#ad46ff (colors/purple/500)"
       }
@@ -1680,8 +1551,6 @@
         "minimal-dark": "#57534d (colors/stone/600)",
         "enterprise-light": "#27272a (colors/zinc/800)",
         "enterprise-dark": "#52525c (colors/zinc/600)",
-        "playful-light": "#1d293d (colors/slate/800)",
-        "playful-dark": "#45556c (colors/slate/600)",
         "mono-light": "#262626 (colors/neutral/800)",
         "mono-dark": "#525252 (colors/neutral/600)"
       }
@@ -1697,8 +1566,6 @@
         "minimal-dark": "#00a6f4 (colors/sky/500)",
         "enterprise-light": "#00a6f4 (colors/sky/500)",
         "enterprise-dark": "#00a6f4 (colors/sky/500)",
-        "playful-light": "#00a6f4 (colors/sky/500)",
-        "playful-dark": "#00a6f4 (colors/sky/500)",
         "mono-light": "#00a6f4 (colors/sky/500)",
         "mono-dark": "#00a6f4 (colors/sky/500)"
       }
@@ -1714,8 +1581,6 @@
         "minimal-dark": "#00bba7 (colors/teal/500)",
         "enterprise-light": "#009689 (colors/teal/600)",
         "enterprise-dark": "#00bba7 (colors/teal/500)",
-        "playful-light": "#009689 (colors/teal/600)",
-        "playful-dark": "#00bba7 (colors/teal/500)",
         "mono-light": "#009689 (colors/teal/600)",
         "mono-dark": "#00bba7 (colors/teal/500)"
       }
@@ -1731,8 +1596,6 @@
         "minimal-dark": "#f6339a (colors/pink/500)",
         "enterprise-light": "#e60076 (colors/pink/600)",
         "enterprise-dark": "#f6339a (colors/pink/500)",
-        "playful-light": "#e60076 (colors/pink/600)",
-        "playful-dark": "#f6339a (colors/pink/500)",
         "mono-light": "#e60076 (colors/pink/600)",
         "mono-dark": "#f6339a (colors/pink/500)"
       }
@@ -1748,8 +1611,6 @@
         "minimal-dark": "#00b8db (colors/cyan/500)",
         "enterprise-light": "#00b8db (colors/cyan/500)",
         "enterprise-dark": "#00b8db (colors/cyan/500)",
-        "playful-light": "#00b8db (colors/cyan/500)",
-        "playful-dark": "#00b8db (colors/cyan/500)",
         "mono-light": "#00b8db (colors/cyan/500)",
         "mono-dark": "#00b8db (colors/cyan/500)"
       }
@@ -1765,8 +1626,6 @@
         "minimal-dark": "#e12afb (colors/fuchsia/500)",
         "enterprise-light": "#c800de (colors/fuchsia/600)",
         "enterprise-dark": "#e12afb (colors/fuchsia/500)",
-        "playful-light": "#c800de (colors/fuchsia/600)",
-        "playful-dark": "#e12afb (colors/fuchsia/500)",
         "mono-light": "#c800de (colors/fuchsia/600)",
         "mono-dark": "#e12afb (colors/fuchsia/500)"
       }
@@ -1782,8 +1641,6 @@
         "minimal-dark": "#615fff (colors/indigo/500)",
         "enterprise-light": "#4f39f6 (colors/indigo/600)",
         "enterprise-dark": "#615fff (colors/indigo/500)",
-        "playful-light": "#4f39f6 (colors/indigo/600)",
-        "playful-dark": "#615fff (colors/indigo/500)",
         "mono-light": "#4f39f6 (colors/indigo/600)",
         "mono-dark": "#615fff (colors/indigo/500)"
       }
@@ -1799,8 +1656,6 @@
         "minimal-dark": "#ff8a4c (colors/orange/400)",
         "enterprise-light": "#ff8a4c (colors/orange/400)",
         "enterprise-dark": "#ff8a4c (colors/orange/400)",
-        "playful-light": "#ff8a4c (colors/orange/400)",
-        "playful-dark": "#ff8a4c (colors/orange/400)",
         "mono-light": "#ff8a4c (colors/orange/400)",
         "mono-dark": "#ff8a4c (colors/orange/400)"
       }
@@ -1816,8 +1671,6 @@
         "minimal-dark": "#0c0a09 (colors/stone/950)",
         "enterprise-light": "#ffffff (white)",
         "enterprise-dark": "#09090b (colors/zinc/950)",
-        "playful-light": "#ffffff (white)",
-        "playful-dark": "#020618 (colors/slate/950)",
         "mono-light": "#ffffff (white)",
         "mono-dark": "#0a0a0a (colors/neutral/950)"
       }
@@ -1833,8 +1686,6 @@
         "minimal-dark": "#1c1917 (colors/stone/900)",
         "enterprise-light": "#ffffff (white)",
         "enterprise-dark": "#18181b (colors/zinc/900)",
-        "playful-light": "#ffffff (white)",
-        "playful-dark": "#131c34 (colors/slate/900)",
         "mono-light": "#ffffff (white)",
         "mono-dark": "#171717 (colors/neutral/900)"
       }
@@ -1850,8 +1701,6 @@
         "minimal-dark": "#292524 (colors/stone/800)",
         "enterprise-light": "#ffffff (white)",
         "enterprise-dark": "#27272a (colors/zinc/800)",
-        "playful-light": "#ffffff (white)",
-        "playful-dark": "#1d293d (colors/slate/800)",
         "mono-light": "#ffffff (white)",
         "mono-dark": "#262626 (colors/neutral/800)"
       }
@@ -1867,8 +1716,6 @@
         "minimal-dark": "#1c1917 (colors/stone/900)",
         "enterprise-light": "#fafafa (colors/zinc/50)",
         "enterprise-dark": "#18181b (colors/zinc/900)",
-        "playful-light": "#f8fafc (colors/slate/50)",
-        "playful-dark": "#131c34 (colors/slate/900)",
         "mono-light": "#fafafa (colors/neutral/50)",
         "mono-dark": "#171717 (colors/neutral/900)"
       }
@@ -1884,8 +1731,6 @@
         "minimal-dark": "#1c1917 (colors/stone/900)",
         "enterprise-light": "#f4f4f5 (colors/zinc/100)",
         "enterprise-dark": "#18181b (colors/zinc/900)",
-        "playful-light": "#f1f5f9 (colors/slate/100)",
-        "playful-dark": "#131c34 (colors/slate/900)",
         "mono-light": "#f5f5f5 (colors/neutral/100)",
         "mono-dark": "#171717 (colors/neutral/900)"
       }
@@ -1901,8 +1746,6 @@
         "minimal-dark": "#292524 (colors/stone/800)",
         "enterprise-light": "#f4f4f5 (colors/zinc/100)",
         "enterprise-dark": "#27272a (colors/zinc/800)",
-        "playful-light": "#f1f5f9 (colors/slate/100)",
-        "playful-dark": "#1d293d (colors/slate/800)",
         "mono-light": "#f5f5f5 (colors/neutral/100)",
         "mono-dark": "#262626 (colors/neutral/800)"
       }
@@ -1918,8 +1761,6 @@
         "minimal-dark": "#44403b (colors/stone/700)",
         "enterprise-light": "#f4f4f5 (colors/zinc/100)",
         "enterprise-dark": "#3f3f46 (colors/zinc/700)",
-        "playful-light": "#f1f5f9 (colors/slate/100)",
-        "playful-dark": "#314158 (colors/slate/700)",
         "mono-light": "#f5f5f5 (colors/neutral/100)",
         "mono-dark": "#404040 (colors/neutral/700)"
       }
@@ -1935,8 +1776,6 @@
         "minimal-dark": "#1c1917 (colors/stone/900)",
         "enterprise-light": "#e4e4e7 (colors/zinc/200)",
         "enterprise-dark": "#18181b (colors/zinc/900)",
-        "playful-light": "#e2e8f0 (colors/slate/200)",
-        "playful-dark": "#131c34 (colors/slate/900)",
         "mono-light": "#e5e5e5 (colors/neutral/200)",
         "mono-dark": "#171717 (colors/neutral/900)"
       }
@@ -1952,8 +1791,6 @@
         "minimal-dark": "#292524 (colors/stone/800)",
         "enterprise-light": "#e4e4e7 (colors/zinc/200)",
         "enterprise-dark": "#27272a (colors/zinc/800)",
-        "playful-light": "#e2e8f0 (colors/slate/200)",
-        "playful-dark": "#1d293d (colors/slate/800)",
         "mono-light": "#e5e5e5 (colors/neutral/200)",
         "mono-dark": "#262626 (colors/neutral/800)"
       }
@@ -1969,8 +1806,6 @@
         "minimal-dark": "#fb2c36 (colors/red/500)",
         "enterprise-light": "#c10007 (colors/red/700)",
         "enterprise-dark": "#fb2c36 (colors/red/500)",
-        "playful-light": "#c10007 (colors/red/700)",
-        "playful-dark": "#fb2c36 (colors/red/500)",
         "mono-light": "#c10007 (colors/red/700)",
         "mono-dark": "#fb2c36 (colors/red/500)"
       }
@@ -1986,8 +1821,6 @@
         "minimal-dark": "#ffa2a2 (colors/red/300)",
         "enterprise-light": "#82181a (colors/red/900)",
         "enterprise-dark": "#ffa2a2 (colors/red/300)",
-        "playful-light": "#82181a (colors/red/900)",
-        "playful-dark": "#ffa2a2 (colors/red/300)",
         "mono-light": "#82181a (colors/red/900)",
         "mono-dark": "#ffa2a2 (colors/red/300)"
       }
@@ -2003,8 +1836,6 @@
         "minimal-dark": "#ff5a1f (colors/orange/500)",
         "enterprise-light": "#d03801 (colors/orange/600)",
         "enterprise-dark": "#ff5a1f (colors/orange/500)",
-        "playful-light": "#d03801 (colors/orange/600)",
-        "playful-dark": "#ff5a1f (colors/orange/500)",
         "mono-light": "#d03801 (colors/orange/600)",
         "mono-dark": "#ff5a1f (colors/orange/500)"
       }
@@ -2020,8 +1851,6 @@
         "minimal-dark": "#fdba8c (colors/orange/300)",
         "enterprise-light": "#771d1d (colors/orange/900)",
         "enterprise-dark": "#fdba8c (colors/orange/300)",
-        "playful-light": "#771d1d (colors/orange/900)",
-        "playful-dark": "#fdba8c (colors/orange/300)",
         "mono-light": "#771d1d (colors/orange/900)",
         "mono-dark": "#fdba8c (colors/orange/300)"
       }
@@ -2037,8 +1866,6 @@
         "minimal-dark": "#fdc700 (colors/yellow/400)",
         "enterprise-light": "#fdc700 (colors/yellow/400)",
         "enterprise-dark": "#fdc700 (colors/yellow/400)",
-        "playful-light": "#fdc700 (colors/yellow/400)",
-        "playful-dark": "#fdc700 (colors/yellow/400)",
         "mono-light": "#fdc700 (colors/yellow/400)",
         "mono-dark": "#fdc700 (colors/yellow/400)"
       }
@@ -2054,8 +1881,6 @@
         "minimal-dark": "#d6d3d1 (colors/stone/300)",
         "enterprise-light": "#104e64 (colors/cyan/900)",
         "enterprise-dark": "#53eafd (colors/cyan/300)",
-        "playful-light": "#c6005c (colors/pink/700)",
-        "playful-dark": "#fda5d5 (colors/pink/300)",
         "mono-light": "#432dd7 (colors/indigo/700)",
         "mono-dark": "#a3b3ff (colors/indigo/300)"
       }
@@ -2071,8 +1896,6 @@
         "minimal-dark": "#57534d (colors/stone/600)",
         "enterprise-light": "#9f9fa9 (colors/zinc/400)",
         "enterprise-dark": "#52525c (colors/zinc/600)",
-        "playful-light": "#90a1b9 (colors/slate/400)",
-        "playful-dark": "#45556c (colors/slate/600)",
         "mono-light": "#a1a1a1 (colors/neutral/400)",
         "mono-dark": "#a1a1a1 (colors/neutral/400)"
       }
@@ -2088,8 +1911,6 @@
         "minimal-dark": "#ad46ff (colors/purple/500)",
         "enterprise-light": "#9810fa (colors/purple/600)",
         "enterprise-dark": "#ad46ff (colors/purple/500)",
-        "playful-light": "#9810fa (colors/purple/600)",
-        "playful-dark": "#ad46ff (colors/purple/500)",
         "mono-light": "#9810fa (colors/purple/600)",
         "mono-dark": "#ad46ff (colors/purple/500)"
       }
@@ -2105,8 +1926,6 @@
         "minimal-dark": "#00b8db (colors/cyan/500)",
         "enterprise-light": "#0092b8 (colors/cyan/600)",
         "enterprise-dark": "#00b8db (colors/cyan/500)",
-        "playful-light": "#0092b8 (colors/cyan/600)",
-        "playful-dark": "#00b8db (colors/cyan/500)",
         "mono-light": "#0092b8 (colors/cyan/600)",
         "mono-dark": "#00b8db (colors/cyan/500)"
       }
@@ -2122,8 +1941,6 @@
         "minimal-dark": "#615fff (colors/indigo/500)",
         "enterprise-light": "#4f39f6 (colors/indigo/600)",
         "enterprise-dark": "#615fff (colors/indigo/500)",
-        "playful-light": "#4f39f6 (colors/indigo/600)",
-        "playful-dark": "#615fff (colors/indigo/500)",
         "mono-light": "#4f39f6 (colors/indigo/600)",
         "mono-dark": "#615fff (colors/indigo/500)"
       }
@@ -2139,8 +1956,6 @@
         "minimal-dark": "#f6339a (colors/pink/500)",
         "enterprise-light": "#e60076 (colors/pink/600)",
         "enterprise-dark": "#f6339a (colors/pink/500)",
-        "playful-light": "#e60076 (colors/pink/600)",
-        "playful-dark": "#f6339a (colors/pink/500)",
         "mono-light": "#e60076 (colors/pink/600)",
         "mono-dark": "#f6339a (colors/pink/500)"
       }
@@ -2156,8 +1971,6 @@
         "minimal-dark": "#7ccf00 (colors/lime/500)",
         "enterprise-light": "#5ea500 (colors/lime/600)",
         "enterprise-dark": "#7ccf00 (colors/lime/500)",
-        "playful-light": "#5ea500 (colors/lime/600)",
-        "playful-dark": "#7ccf00 (colors/lime/500)",
         "mono-light": "#5ea500 (colors/lime/600)",
         "mono-dark": "#7ccf00 (colors/lime/500)"
       }
@@ -2173,8 +1986,6 @@
         "minimal-dark": "#44403b (colors/stone/700)",
         "enterprise-light": "#e4e4e7 (colors/zinc/200)",
         "enterprise-dark": "#3f3f46 (colors/zinc/700)",
-        "playful-light": "#e2e8f0 (colors/slate/200)",
-        "playful-dark": "#314158 (colors/slate/700)",
         "mono-light": "#e5e5e5 (colors/neutral/200)",
         "mono-dark": "#404040 (colors/neutral/700)"
       }
@@ -2190,8 +2001,6 @@
         "minimal-dark": "#57534d (colors/stone/600)",
         "enterprise-light": "#e4e4e7 (colors/zinc/200)",
         "enterprise-dark": "#52525c (colors/zinc/600)",
-        "playful-light": "#e2e8f0 (colors/slate/200)",
-        "playful-dark": "#45556c (colors/slate/600)",
         "mono-light": "#e5e5e5 (colors/neutral/200)",
         "mono-dark": "#525252 (colors/neutral/600)"
       }
@@ -2207,8 +2016,6 @@
         "minimal-dark": "#0d542b (colors/green/900)",
         "enterprise-light": "#b9f8cf (colors/green/200)",
         "enterprise-dark": "#0d542b (colors/green/900)",
-        "playful-light": "#b9f8cf (colors/green/200)",
-        "playful-dark": "#0d542b (colors/green/900)",
         "mono-light": "#b9f8cf (colors/green/200)",
         "mono-dark": "#0d542b (colors/green/900)"
       }
@@ -2224,8 +2031,6 @@
         "minimal-dark": "#00a63e (colors/green/600)",
         "enterprise-light": "#008236 (colors/green/700)",
         "enterprise-dark": "#00a63e (colors/green/600)",
-        "playful-light": "#008236 (colors/green/700)",
-        "playful-dark": "#00a63e (colors/green/600)",
         "mono-light": "#008236 (colors/green/700)",
         "mono-dark": "#00a63e (colors/green/600)"
       }
@@ -2241,8 +2046,6 @@
         "minimal-dark": "#82181a (colors/red/900)",
         "enterprise-light": "#ffc9c9 (colors/red/200)",
         "enterprise-dark": "#82181a (colors/red/900)",
-        "playful-light": "#ffc9c9 (colors/red/200)",
-        "playful-dark": "#82181a (colors/red/900)",
         "mono-light": "#ffc9c9 (colors/red/200)",
         "mono-dark": "#82181a (colors/red/900)"
       }
@@ -2258,8 +2061,6 @@
         "minimal-dark": "#e7000b (colors/red/600)",
         "enterprise-light": "#c10007 (colors/red/700)",
         "enterprise-dark": "#e7000b (colors/red/600)",
-        "playful-light": "#c10007 (colors/red/700)",
-        "playful-dark": "#e7000b (colors/red/600)",
         "mono-light": "#c10007 (colors/red/700)",
         "mono-dark": "#e7000b (colors/red/600)"
       }
@@ -2275,8 +2076,6 @@
         "minimal-dark": "#771d1d (colors/orange/900)",
         "enterprise-light": "#fcd9bd (colors/orange/200)",
         "enterprise-dark": "#771d1d (colors/orange/900)",
-        "playful-light": "#fcd9bd (colors/orange/200)",
-        "playful-dark": "#771d1d (colors/orange/900)",
         "mono-light": "#fcd9bd (colors/orange/200)",
         "mono-dark": "#771d1d (colors/orange/900)"
       }
@@ -2292,8 +2091,6 @@
         "minimal-dark": "#ff5a1f (colors/orange/500)",
         "enterprise-light": "#d03801 (colors/orange/600)",
         "enterprise-dark": "#ff5a1f (colors/orange/500)",
-        "playful-light": "#d03801 (colors/orange/600)",
-        "playful-dark": "#ff5a1f (colors/orange/500)",
         "mono-light": "#d03801 (colors/orange/600)",
         "mono-dark": "#ff5a1f (colors/orange/500)"
       }
@@ -2309,8 +2106,6 @@
         "minimal-dark": "#1c1917 (colors/stone/900)",
         "enterprise-light": "#a2f4fd (colors/cyan/200)",
         "enterprise-dark": "#104e64 (colors/cyan/900)",
-        "playful-light": "#fccee8 (colors/pink/200)",
-        "playful-dark": "#861043 (colors/pink/900)",
         "mono-light": "#c6d2ff (colors/indigo/200)",
         "mono-dark": "#312c85 (colors/indigo/900)"
       }
@@ -2326,8 +2121,6 @@
         "minimal-dark": "#57534d (colors/stone/600)",
         "enterprise-light": "#0092b8 (colors/cyan/600)",
         "enterprise-dark": "#0092b8 (colors/cyan/600)",
-        "playful-light": "#e60076 (colors/pink/600)",
-        "playful-dark": "#e60076 (colors/pink/600)",
         "mono-light": "#4f39f6 (colors/indigo/600)",
         "mono-dark": "#4f39f6 (colors/indigo/600)"
       }
@@ -2343,8 +2136,6 @@
         "minimal-dark": "#57534d (colors/stone/600)",
         "enterprise-light": "#007595 (colors/cyan/700)",
         "enterprise-dark": "#00b8db (colors/cyan/500)",
-        "playful-light": "#861043 (colors/pink/900)",
-        "playful-dark": "#e60076 (colors/pink/600)",
         "mono-light": "#312c85 (colors/indigo/900)",
         "mono-dark": "#4f39f6 (colors/indigo/600)"
       }
@@ -2360,8 +2151,6 @@
         "minimal-dark": "#44403b (colors/stone/700)",
         "enterprise-light": "#27272a (colors/zinc/800)",
         "enterprise-dark": "#3f3f46 (colors/zinc/700)",
-        "playful-light": "#1d293d (colors/slate/800)",
-        "playful-dark": "#314158 (colors/slate/700)",
         "mono-light": "#262626 (colors/neutral/800)",
         "mono-dark": "#404040 (colors/neutral/700)"
       }
@@ -2377,8 +2166,6 @@
         "minimal-dark": "#03071280",
         "enterprise-light": "#03071280",
         "enterprise-dark": "#03071280",
-        "playful-light": "#03071280",
-        "playful-dark": "#03071280",
         "mono-light": "#03071280",
         "mono-dark": "#03071280"
       }
@@ -2394,8 +2181,6 @@
         "minimal-dark": "#ad46ff (colors/purple/500)",
         "enterprise-light": "#ad46ff (colors/purple/500)",
         "enterprise-dark": "#ad46ff (colors/purple/500)",
-        "playful-light": "#ad46ff (colors/purple/500)",
-        "playful-dark": "#ad46ff (colors/purple/500)",
         "mono-light": "#ad46ff (colors/purple/500)",
         "mono-dark": "#ad46ff (colors/purple/500)"
       }
@@ -2411,8 +2196,6 @@
         "minimal-dark": "#ff8a4c (colors/orange/400)",
         "enterprise-light": "#ff8a4c (colors/orange/400)",
         "enterprise-dark": "#ff8a4c (colors/orange/400)",
-        "playful-light": "#ff8a4c (colors/orange/400)",
-        "playful-dark": "#ff8a4c (colors/orange/400)",
         "mono-light": "#ff8a4c (colors/orange/400)",
         "mono-dark": "#ff8a4c (colors/orange/400)"
       }
@@ -2428,8 +2211,6 @@
         "minimal-dark": "#ffffff4d (colors/white-alpha/30)",
         "enterprise-light": "#ffffff4d (colors/white-alpha/30)",
         "enterprise-dark": "#ffffff4d (colors/white-alpha/30)",
-        "playful-light": "#ffffff4d (colors/white-alpha/30)",
-        "playful-dark": "#ffffff4d (colors/white-alpha/30)",
         "mono-light": "#ffffff4d (colors/white-alpha/30)",
         "mono-dark": "#ffffff4d (colors/white-alpha/30)"
       }
@@ -2445,8 +2226,6 @@
         "minimal-dark": "#101828e5 (colors/dark-alpha/90)",
         "enterprise-light": "#101828e5 (colors/dark-alpha/90)",
         "enterprise-dark": "#101828e5 (colors/dark-alpha/90)",
-        "playful-light": "#101828e5 (colors/dark-alpha/90)",
-        "playful-dark": "#101828e5 (colors/dark-alpha/90)",
         "mono-light": "#101828e5 (colors/dark-alpha/90)",
         "mono-dark": "#101828e5 (colors/dark-alpha/90)"
       }

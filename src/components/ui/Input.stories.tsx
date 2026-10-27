@@ -1,10 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { figmaDesign } from '../../../.storybook/auxokit/figma';
 import { HelperText, Input, Label } from './Input';
 import { InfoIcon, MailIcon } from '../icons';
 
 // AuxoKit Input field — mirrors the Figma "Input field" set (node 1149:46826), Label (1149:94727) and Helper (1149:94741).
 const meta = {
-  title: 'AuxoKit/Input',
+  title: 'Components/Input',
+  parameters: { design: figmaDesign('Input') },
   component: Input,
   args: { placeholder: 'name@company.com', size: 'base', disabled: false, 'aria-label': 'Email' },
   argTypes: {

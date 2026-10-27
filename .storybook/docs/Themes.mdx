@@ -1,0 +1,16 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { ModeTable, ThemeMatrix } from '../auxokit/blocks';
+
+<Meta title="Foundations/Themes" />
+
+# Themes
+
+The Figma **Themes** collection has eight modes: four themes, each in light and dark. Code switches them with two attributes on `<html>`: `data-theme="modern|minimal|enterprise|mono"` and the `dark` class (see `src/lib/theme.ts`). Every semantic token, the radius scale and the body font change with them; component code never branches on the theme.
+
+<ModeTable />
+
+## All eight modes side by side
+
+Each card below pins its own theme and scheme, independent of the toolbar, so you can compare them at once.
+
+<ThemeMatrix />

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { figmaDesign } from '../../../.storybook/auxokit/figma';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Toast, ToastViewport, type ToastColor, type ToastProps } from './Toast';
 import { Avatar } from './Avatar';
@@ -11,7 +12,8 @@ import { CheckIcon, InfoIcon } from '../icons';
 const colors = ['neutral', 'warning', 'danger'] as const satisfies readonly ToastColor[];
 
 const meta = {
-  title: 'AuxoKit/Toast',
+  title: 'Components/Toast',
+  parameters: { design: figmaDesign('Toast') },
   component: Toast,
   args: { color: 'neutral', icon: <InfoIcon />, children: 'Item moved successfully.', onDismiss: () => {} },
   argTypes: {

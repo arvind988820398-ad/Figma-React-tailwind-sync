@@ -133,7 +133,7 @@ line('   AuxoKit design tokens for Tailwind CSS v4 — GENERATED, DO NOT EDIT BY
 line(`   Source: Figma ${stamp}`);
 line('   Regenerate: node .claude/skills/auxokit-design-system/scripts/build-tokens.mjs');
 line('   Usage (main CSS):  @import "tailwindcss";  @import "./auxokit.css";');
-line('   Theme switch:      <html data-theme="modern|minimal|enterprise|playful|mono" class="dark?">');
+line('   Theme switch:      <html data-theme="modern|minimal|enterprise|mono" class="dark?">');
 line('   ========================================================================== */');
 line();
 line('@custom-variant dark (&:where(.dark, .dark *));');

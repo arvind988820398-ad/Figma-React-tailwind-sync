@@ -1,11 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { figmaDesign } from '../../../.storybook/auxokit/figma';
 import { Card, CardText, CardTitle } from './Card';
 import { Button } from './Button';
 import { ArrowRightIcon } from '../icons';
 
 // AuxoKit Card — mirrors the Figma "Card" set (node 1149:34153).
 const meta = {
-  title: 'AuxoKit/Card',
+  title: 'Components/Card',
+  parameters: { design: figmaDesign('Card') },
   component: Card,
   args: {
     padding: 'base',

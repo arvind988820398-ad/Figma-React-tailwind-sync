@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { figmaDesign } from '../../../.storybook/auxokit/figma';
 import { useState } from 'react';
 import { Button } from './Button';
 import { Input, Label } from './Input';
@@ -34,7 +35,8 @@ function ModalDemo({ open: _open, onOpenChange, footer, ...args }: ModalProps & 
 }
 
 const meta = {
-  title: 'AuxoKit/Modal',
+  title: 'Components/Modal',
+  parameters: { design: figmaDesign('Modal') },
   component: Modal,
   args: {
     open: false,

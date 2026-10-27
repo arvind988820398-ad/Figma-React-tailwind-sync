@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { figmaDesign } from '../../../.storybook/auxokit/figma';
 import { Avatar, AvatarGroup, type AvatarSize, type AvatarStatus } from './Avatar';
 
 // AuxoKit Avatar — mirrors the Figma "Avatar" set (node 1146:5178), dot 1146:5625, group 1146:5549.
@@ -6,7 +7,8 @@ const sizes = ['xs', 'sm', 'base', 'lg', 'xl', '2xl'] as const satisfies readonl
 const statuses = ['online', 'offline', 'away'] as const satisfies readonly AvatarStatus[];
 
 const meta = {
-  title: 'AuxoKit/Avatar',
+  title: 'Components/Avatar',
+  parameters: { design: figmaDesign('Avatar') },
   component: Avatar,
   args: { name: 'Ada Lovelace', size: 'base' },
   argTypes: {

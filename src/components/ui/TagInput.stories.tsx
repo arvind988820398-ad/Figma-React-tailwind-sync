@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { figmaDesign } from '../../../.storybook/auxokit/figma';
 import { useState, type ComponentProps } from 'react';
 import { Avatar } from './Avatar';
 import { HelperText, Label } from './Input';
@@ -6,7 +7,8 @@ import { TagInput } from './TagInput';
 
 // AuxoKit Tag input — mirrors the Figma "Tag input" set (node 1149:49173).
 const meta = {
-  title: 'AuxoKit/TagInput',
+  title: 'Components/TagInput',
+  parameters: { design: figmaDesign('TagInput') },
   component: TagInput,
   args: { value: ['design', 'tokens'], onChange: () => {}, size: 'base', placeholder: 'Add a tag…', disabled: false, 'aria-label': 'Tags' },
   argTypes: {

@@ -2,6 +2,8 @@ import type { Decorator, Preview } from '@storybook/react-vite';
 import { useEffect, type ReactNode } from 'react';
 import '../src/styles/app.css';
 import { setTheme, themes, type AuxoTheme } from '../src/lib/theme';
+import { AuxoDocsContainer } from './auxokit/DocsContainer';
+import { AuxoKitDocsPage } from './auxokit/DocsPage';
 
 // Theme + dark mode come from the AuxoKit tokens (Figma "Themes" collection modes).
 // The toolbar switches data-theme / .dark on <html>, exactly like the app does.
@@ -20,6 +22,7 @@ const withAuxoTheme: Decorator = (Story, context) => (
 
 const preview: Preview = {
   decorators: [withAuxoTheme],
+  tags: ['autodocs'],
   globalTypes: {
     theme: {
       description: 'AuxoKit theme',
@@ -41,6 +44,16 @@ const preview: Preview = {
   initialGlobals: { theme: 'modern', scheme: 'light' },
   parameters: {
     layout: 'centered',
+    options: {
+      storySort: {
+        order: ['Introduction', 'Foundations', ['Colors', 'Typography', 'Radius & shadows', 'Themes'], 'Guides', ['Choosing a component', 'Figma sync'], 'Components'],
+      },
+    },
+    docs: {
+      page: AuxoKitDocsPage,
+      container: AuxoDocsContainer,
+      toc: true,
+    },
     controls: {
       matchers: {
         color: /(background|color)$/i,

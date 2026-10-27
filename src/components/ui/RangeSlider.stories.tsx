@@ -1,10 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { figmaDesign } from '../../../.storybook/auxokit/figma';
 import { useState, type ComponentProps } from 'react';
 import { RangeSlider } from './RangeSlider';
 
 // AuxoKit Range slider — mirrors the Figma "Range Slider examples" (node 1149:54340), bar 1149:54365, thumb 1149:54373.
 const meta = {
-  title: 'AuxoKit/RangeSlider',
+  title: 'Components/RangeSlider',
+  parameters: { design: figmaDesign('RangeSlider') },
   component: RangeSlider,
   args: { value: 40, onChange: () => {}, label: 'Volume', min: 0, max: 100, step: 1, showMinMax: false, disabled: false },
   render: (args) => <SingleDemo {...args} />,

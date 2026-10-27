@@ -1,9 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { figmaDesign } from '../../../.storybook/auxokit/figma';
 import { Button } from './Button';
 
 // AuxoKit Button — mirrors the Figma "Button" set (node 1146:24616).
 const meta = {
-  title: 'AuxoKit/Button',
+  title: 'Components/Button',
+  parameters: { design: figmaDesign('Button') },
   component: Button,
   args: { children: 'Button', color: 'brand', size: 'base', disabled: false },
   argTypes: {

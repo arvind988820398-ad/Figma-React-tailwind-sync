@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { figmaDesign } from '../../../.storybook/auxokit/figma';
 import { useState, type ComponentProps } from 'react';
 import { Autocomplete, type AutocompleteOption } from './Autocomplete';
 import { Avatar } from './Avatar';
@@ -19,7 +20,8 @@ const people: AutocompleteOption[] = [
 const fruits: AutocompleteOption[] = ['Apple', 'Banana', 'Cherry', 'Grape', 'Mango', 'Orange', 'Peach', 'Pear'].map((f) => ({ value: f.toLowerCase(), label: f }));
 
 const meta = {
-  title: 'AuxoKit/Autocomplete',
+  title: 'Components/Autocomplete',
+  parameters: { design: figmaDesign('Autocomplete') },
   component: Autocomplete,
   args: { options: people, value: null, onChange: () => {}, size: 'base', placeholder: 'Search people or projects', emptyText: 'No results', 'aria-label': 'Assignee' },
   argTypes: {

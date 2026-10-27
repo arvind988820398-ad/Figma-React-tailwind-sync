@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { figmaDesign } from '../../../.storybook/auxokit/figma';
 import { Button } from './Button';
 import { HelperText, Label } from './Input';
 import { Textarea, TextareaToolButton } from './Textarea';
@@ -6,7 +7,8 @@ import { CogIcon, PlusIcon } from '../icons';
 
 // AuxoKit Textarea — mirrors the Figma "Textarea input" set (node 1149:49679), examples 1149:50131.
 const meta = {
-  title: 'AuxoKit/Textarea',
+  title: 'Components/Textarea',
+  parameters: { design: figmaDesign('Textarea') },
   component: Textarea,
   args: { placeholder: 'Write your thoughts here…', rows: 4, disabled: false, 'aria-label': 'Message' },
   argTypes: {

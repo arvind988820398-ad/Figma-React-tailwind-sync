@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { figmaDesign } from '../../../.storybook/auxokit/figma';
 import { CogIcon, MailIcon } from '../icons';
 import { Accordion, type AccordionItem } from './Accordion';
 import { IconShape } from './IconShape';
@@ -19,9 +20,9 @@ const faq: AccordionItem[] = [
 ];
 
 const meta = {
-  title: 'AuxoKit/Accordion',
+  title: 'Components/Accordion',
   component: Accordion,
-  parameters: { layout: 'padded' },
+  parameters: { design: figmaDesign('Accordion'), layout: 'padded' },
   decorators: [(Story) => <div className="w-full max-w-2xl"><Story /></div>],
   args: { items: faq, variant: 'default', multiple: false, defaultValue: ['what'] },
   argTypes: { variant: { control: 'select', options: ['default', 'flush', 'cards', 'nested', 'subheader'] } },

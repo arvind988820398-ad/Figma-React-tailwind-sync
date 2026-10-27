@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { figmaDesign } from '../../../.storybook/auxokit/figma';
 import { Spinner, type SpinnerSize } from './Spinner';
 import { Button } from './Button';
 import { Badge } from './Badge';
@@ -7,7 +8,8 @@ import { Badge } from './Badge';
 const sizes = ['xs', 'sm', 'md', 'lg', 'xl'] as const satisfies readonly SpinnerSize[];
 
 const meta = {
-  title: 'AuxoKit/Spinner',
+  title: 'Components/Spinner',
+  parameters: { design: figmaDesign('Spinner') },
   component: Spinner,
   args: { size: 'sm', track: true, label: 'Loading…' },
   argTypes: {

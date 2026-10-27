@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { figmaDesign } from '../../../.storybook/auxokit/figma';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Banner, type BannerProps } from './Banner';
 import { Button } from './Button';
@@ -7,9 +8,9 @@ import { MailIcon } from '../icons';
 
 // AuxoKit Banner — mirrors the Figma "Banner" set (node 1146:21254).
 const meta = {
-  title: 'AuxoKit/Banner',
+  title: 'Components/Banner',
   component: Banner,
-  parameters: { layout: 'padded' },
+  parameters: { design: figmaDesign('Banner'), layout: 'padded' },
   args: {
     children: (
       <>

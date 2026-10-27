@@ -1,11 +1,13 @@
 import { useState } from 'react';
+import { figmaDesign } from '../../../.storybook/auxokit/figma';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Rating, RatingInput } from './Rating';
 import { Badge } from './Badge';
 
 // AuxoKit Rating — mirrors the Figma "Rating" set (node 1149:82444).
 const meta = {
-  title: 'AuxoKit/Rating',
+  title: 'Components/Rating',
+  parameters: { design: figmaDesign('Rating') },
   component: Rating,
   args: { value: 4, max: 5 },
   argTypes: {

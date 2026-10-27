@@ -1,10 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { figmaDesign } from '../../../.storybook/auxokit/figma';
 import { useState, type ComponentProps } from 'react';
 import { Checkbox, Radio } from './Checkbox';
 
 // AuxoKit Checkbox & Radio — mirrors the Figma "Checkbox input" set (node 1149:54707).
 const meta = {
-  title: 'AuxoKit/Checkbox',
+  title: 'Components/Checkbox',
+  parameters: { design: figmaDesign('Checkbox') },
   component: Checkbox,
   args: { label: 'Remember me', disabled: false },
 } satisfies Meta<typeof Checkbox>;

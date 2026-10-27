@@ -1,10 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { figmaDesign } from '../../../.storybook/auxokit/figma';
 import { CopyInput } from './CopyInput';
 import { HelperText, Label } from './Input';
 
 // AuxoKit Copy to clipboard — mirrors the Figma "Copy to clipboard form" set (node 1149:46768).
 const meta = {
-  title: 'AuxoKit/CopyInput',
+  title: 'Components/CopyInput',
+  parameters: { design: figmaDesign('CopyInput') },
   component: CopyInput,
   args: { value: 'npm install auxokit', variant: 'joined', 'aria-label': 'Install command' },
   argTypes: {

@@ -11,8 +11,6 @@
   "Minimal (dark)",
   "Enterprise (light)",
   "Enterprise (dark)",
-  "Playful (light)",
-  "Playful (dark)",
   "Mono (light)",
   "Mono (dark)"
  ],
@@ -46,8 +44,6 @@
     "{border/border-radius/rounded-sm}",
     1,
     1,
-    "{border/border-radius/rounded-sm}",
-    "{border/border-radius/rounded-sm}",
     1,
     1
    ]
@@ -61,8 +57,6 @@
     "{border/border-radius/rounded-sm}",
     1,
     1,
-    "{border/border-radius/rounded-sm}",
-    "{border/border-radius/rounded-sm}",
     1,
     1
    ]
@@ -76,8 +70,6 @@
     "{border/border-radius/rounded}",
     1,
     1,
-    10,
-    10,
     1,
     1
    ]
@@ -91,8 +83,6 @@
     "{border/border-radius/rounded-md}",
     "{border/border-radius/rounded}",
     "{border/border-radius/rounded}",
-    10,
-    10,
     1,
     1
    ]
@@ -106,8 +96,6 @@
     "{border/border-radius/rounded-lg}",
     "{border/border-radius/rounded}",
     "{border/border-radius/rounded}",
-    20,
-    20,
     1,
     1
    ]
@@ -121,8 +109,6 @@
     "{border/border-radius/rounded-2xl}",
     "{border/border-radius/rounded}",
     "{border/border-radius/rounded}",
-    "{border/border-radius/rounded-2xl}",
-    "{border/border-radius/rounded-2xl}",
     1,
     1
    ]
@@ -136,8 +122,6 @@
     "{border/border-radius/rounded-3xl}",
     "{border/border-radius/rounded}",
     "{border/border-radius/rounded}",
-    "{border/border-radius/rounded-3xl}",
-    "{border/border-radius/rounded-3xl}",
     1,
     1
    ]
@@ -203,8 +187,6 @@
     "Open Sans",
     "IBM Plex Serif",
     "IBM Plex Serif",
-    "Shantell Sans",
-    "Shantell Sans",
     "IBM Plex Mono",
     "IBM Plex Mono"
    ]
@@ -283,8 +265,6 @@
     "{white}",
     "{colors/zinc/950}",
     "{white}",
-    "{colors/slate/950}",
-    "{white}",
     "{colors/neutral/950}"
    ]
   },
@@ -361,8 +341,6 @@
     "{colors/stone/950}",
     "{colors/zinc/100}",
     "{colors/zinc/950}",
-    "{colors/slate/100}",
-    "{colors/slate/950}",
     "{colors/neutral/100}",
     "{colors/neutral/950}"
    ]
@@ -381,8 +359,6 @@
     "{white}",
     "{colors/zinc/900}",
     "{white}",
-    "{colors/slate/900}",
-    "{white}",
     "{colors/neutral/900}"
    ]
   },
@@ -395,8 +371,6 @@
     "{colors/stone/950}",
     "{white}",
     "{colors/zinc/950}",
-    "{white}",
-    "{colors/slate/950}",
     "{white}",
     "{colors/neutral/950}"
    ]
@@ -411,8 +385,6 @@
     "{white}",
     "{colors/zinc/800}",
     "{white}",
-    "{colors/slate/800}",
-    "{white}",
     "{colors/neutral/800}"
    ]
   },
@@ -426,8 +398,6 @@
     "{white}",
     "{colors/zinc/700}",
     "{white}",
-    "{colors/slate/700}",
-    "{white}",
     "{colors/neutral/700}"
    ]
   },
@@ -440,8 +410,6 @@
     "{colors/stone/900}",
     "{white}",
     "{colors/zinc/900}",
-    "{colors/slate/50}",
-    "{colors/slate/900}",
     "{colors/neutral/50}",
     "{colors/neutral/900}"
    ]
@@ -455,8 +423,6 @@
     "{colors/stone/950}",
     "{white}",
     "{colors/zinc/950}",
-    "{colors/slate/50}",
-    "{colors/slate/950}",
     "{colors/neutral/50}",
     "{colors/neutral/950}"
    ]
@@ -470,8 +436,6 @@
     "{colors/stone/800}",
     "{white}",
     "{colors/zinc/800}",
-    "{colors/slate/50}",
-    "{colors/slate/800}",
     "{colors/neutral/50}",
     "{colors/neutral/800}"
    ]
@@ -485,8 +449,6 @@
     "{colors/stone/700}",
     "{white}",
     "{colors/zinc/700}",
-    "{colors/slate/50}",
-    "{colors/slate/700}",
     "{colors/neutral/50}",
     "{colors/neutral/700}"
    ]
@@ -500,8 +462,6 @@
     "{colors/stone/900}",
     "{colors/zinc/100}",
     "{colors/zinc/900}",
-    "{colors/slate/100}",
-    "{colors/slate/900}",
     "{colors/neutral/100}",
     "{colors/neutral/900}"
    ]
@@ -515,8 +475,6 @@
     "{colors/stone/800}",
     "{colors/zinc/100}",
     "{colors/zinc/800}",
-    "{colors/slate/100}",
-    "{colors/slate/800}",
     "{colors/neutral/100}",
     "{colors/neutral/800}"
    ]
@@ -530,8 +488,6 @@
     "{colors/stone/700}",
     "{colors/zinc/100}",
     "{colors/zinc/700}",
-    "{colors/slate/100}",
-    "{colors/slate/700}",
     "{colors/neutral/100}",
     "{colors/neutral/700}"
    ]
@@ -545,8 +501,6 @@
     "{colors/stone/700}",
     "{colors/zinc/200}",
     "{colors/zinc/700}",
-    "{colors/slate/200}",
-    "{colors/slate/700}",
     "{colors/neutral/200}",
     "{colors/neutral/700}"
    ]
@@ -560,8 +514,6 @@
     "{colors/stone/600}",
     "{colors/zinc/200}",
     "{colors/zinc/600}",
-    "{colors/slate/200}",
-    "{colors/slate/600}",
     "{colors/neutral/200}",
     "{colors/neutral/600}"
    ]
@@ -575,8 +527,6 @@
     "{colors/stone/600}",
     "{colors/zinc/300}",
     "{colors/zinc/600}",
-    "{colors/slate/300}",
-    "{colors/slate/600}",
     "{colors/neutral/300}",
     "{colors/neutral/600}"
    ]
@@ -594,8 +544,6 @@
     "{colors/stone/950}",
     "{colors/zinc/900}",
     "{colors/zinc/900}",
-    "{colors/slate/900}",
-    "{colors/slate/900}",
     "{colors/neutral/900}",
     "{colors/neutral/900}"
    ]
@@ -608,8 +556,6 @@
     "{colors/stone/900}",
     "{white}",
     "{colors/zinc/900}",
-    "{white}",
-    "{colors/slate/900}",
     "{white}",
     "{colors/neutral/900}",
     "{white}"
@@ -624,8 +570,6 @@
     "{colors/stone/400}",
     "{colors/zinc/600}",
     "{colors/zinc/400}",
-    "{colors/slate/600}",
-    "{colors/slate/400}",
     "{colors/neutral/600}",
     "{colors/neutral/400}"
    ]
@@ -639,8 +583,6 @@
     "{colors/stone/400}",
     "{colors/zinc/500}",
     "{colors/zinc/400}",
-    "{colors/slate/500}",
-    "{colors/slate/400}",
     "{colors/neutral/500}",
     "{colors/neutral/400}"
    ]
@@ -654,8 +596,6 @@
     "{colors/stone/200}",
     "{colors/cyan/200}",
     "{colors/cyan/200}",
-    "{colors/pink/200}",
-    "{colors/pink/200}",
     "{colors/indigo/200}",
     "{colors/indigo/200}"
    ]
@@ -669,8 +609,6 @@
     "{colors/stone/500}",
     "{colors/cyan/700}",
     "{colors/cyan/500}",
-    "{colors/pink/700}",
-    "{colors/pink/500}",
     "{colors/indigo/700}",
     "{colors/indigo/500}"
    ]
@@ -684,8 +622,6 @@
     "{colors/stone/400}",
     "{colors/cyan/900}",
     "{colors/cyan/400}",
-    "{colors/pink/900}",
-    "{colors/pink/400}",
     "{colors/indigo/900}",
     "{colors/indigo/400}"
    ]
@@ -695,8 +631,6 @@
    "v": [
     "{colors/emerald/700}",
     "{colors/emerald/600}",
-    "{colors/green/700}",
-    "{colors/green/600}",
     "{colors/green/700}",
     "{colors/green/600}",
     "{colors/green/700}",
@@ -715,8 +649,6 @@
     "{colors/green/900}",
     "{colors/green/300}",
     "{colors/green/900}",
-    "{colors/green/300}",
-    "{colors/green/900}",
     "{colors/green/300}"
    ]
   },
@@ -729,8 +661,6 @@
     "{colors/stone/950}",
     "{colors/cyan/50}",
     "{colors/cyan/950}",
-    "{colors/pink/50}",
-    "{colors/pink/950}",
     "{colors/indigo/50}",
     "{colors/indigo/950}"
    ]
@@ -744,8 +674,6 @@
     "{colors/stone/900}",
     "{colors/cyan/100}",
     "{colors/cyan/900}",
-    "{colors/pink/100}",
-    "{colors/pink/900}",
     "{colors/indigo/100}",
     "{colors/indigo/900}"
    ]
@@ -759,8 +687,6 @@
     "{colors/stone/600}",
     "{colors/cyan/900}",
     "{colors/cyan/600}",
-    "{colors/pink/900}",
-    "{colors/pink/600}",
     "{colors/indigo/900}",
     "{colors/indigo/600}"
    ]
@@ -774,8 +700,6 @@
     "{colors/stone/900}",
     "{colors/cyan/200}",
     "{colors/cyan/900}",
-    "{colors/pink/200}",
-    "{colors/pink/900}",
     "{colors/indigo/200}",
     "{colors/indigo/900}"
    ]
@@ -789,8 +713,6 @@
     "{colors/stone/700}",
     "{colors/cyan/800}",
     "{colors/cyan/700}",
-    "{colors/pink/800}",
-    "{colors/pink/700}",
     "{colors/indigo/800}",
     "{colors/indigo/700}"
    ]
@@ -805,8 +727,6 @@
     "{colors/green/50}",
     "{colors/green/950}",
     "{colors/green/50}",
-    "{colors/green/950}",
-    "{colors/green/50}",
     "{colors/green/950}"
    ]
   },
@@ -815,8 +735,6 @@
    "v": [
     "{colors/emerald/700}",
     "{colors/emerald/600}",
-    "{colors/green/700}",
-    "{colors/green/600}",
     "{colors/green/700}",
     "{colors/green/600}",
     "{colors/green/700}",
@@ -835,8 +753,6 @@
     "{colors/green/100}",
     "{colors/green/900}",
     "{colors/green/100}",
-    "{colors/green/900}",
-    "{colors/green/100}",
     "{colors/green/900}"
    ]
   },
@@ -845,8 +761,6 @@
    "v": [
     "{colors/emerald/800}",
     "{colors/emerald/700}",
-    "{colors/green/800}",
-    "{colors/green/700}",
     "{colors/green/800}",
     "{colors/green/700}",
     "{colors/green/800}",
@@ -865,8 +779,6 @@
     "{colors/red/50}",
     "{colors/red/950}",
     "{colors/red/50}",
-    "{colors/red/950}",
-    "{colors/red/50}",
     "{colors/red/950}"
    ]
   },
@@ -875,8 +787,6 @@
    "v": [
     "{colors/rose/700}",
     "{colors/rose/700}",
-    "{colors/red/700}",
-    "{colors/red/700}",
     "{colors/red/700}",
     "{colors/red/700}",
     "{colors/red/700}",
@@ -895,8 +805,6 @@
     "{colors/red/100}",
     "{colors/red/900}",
     "{colors/red/100}",
-    "{colors/red/900}",
-    "{colors/red/100}",
     "{colors/red/900}"
    ]
   },
@@ -910,16 +818,12 @@
     "{colors/red/800}",
     "{colors/red/800}",
     "{colors/red/800}",
-    "{colors/red/800}",
-    "{colors/red/800}",
     "{colors/red/800}"
    ]
   },
   "colors/background/bg-warning-soft": {
    "t": "C",
    "v": [
-    "{colors/orange/50}",
-    "{colors/orange/950}",
     "{colors/orange/50}",
     "{colors/orange/950}",
     "{colors/orange/50}",
@@ -940,16 +844,12 @@
     "{colors/orange/500}",
     "{colors/orange/600}",
     "{colors/orange/500}",
-    "{colors/orange/600}",
-    "{colors/orange/500}",
     "{colors/orange/600}"
    ]
   },
   "colors/background/bg-warning-medium": {
    "t": "C",
    "v": [
-    "{colors/orange/100}",
-    "{colors/orange/900}",
     "{colors/orange/100}",
     "{colors/orange/900}",
     "{colors/orange/100}",
@@ -973,8 +873,6 @@
     "{colors/stone/800}",
     "{colors/zinc/800}",
     "{colors/zinc/800}",
-    "{colors/slate/800}",
-    "{colors/slate/800}",
     "{colors/neutral/800}",
     "{colors/neutral/800}"
    ]
@@ -988,8 +886,6 @@
     "{colors/stone/700}",
     "{colors/zinc/900}",
     "{colors/zinc/700}",
-    "{colors/slate/900}",
-    "{colors/slate/700}",
     "{colors/neutral/900}",
     "{colors/neutral/700}"
    ]
@@ -1003,8 +899,6 @@
     "{colors/stone/800}",
     "{colors/zinc/100}",
     "{colors/zinc/800}",
-    "{colors/slate/100}",
-    "{colors/slate/800}",
     "{colors/neutral/100}",
     "{colors/neutral/800}"
    ]
@@ -1022,8 +916,6 @@
     "{colors/stone/600}",
     "{colors/zinc/800}",
     "{colors/zinc/600}",
-    "{colors/slate/800}",
-    "{colors/slate/600}",
     "{colors/neutral/800}",
     "{colors/neutral/600}"
    ]
@@ -1042,16 +934,12 @@
     "{colors/teal/600}",
     "{colors/teal/500}",
     "{colors/teal/600}",
-    "{colors/teal/500}",
-    "{colors/teal/600}",
     "{colors/teal/500}"
    ]
   },
   "colors/background/bg-pink": {
    "t": "C",
    "v": [
-    "{colors/pink/600}",
-    "{colors/pink/500}",
     "{colors/pink/600}",
     "{colors/pink/500}",
     "{colors/pink/600}",
@@ -1076,16 +964,12 @@
     "{colors/fuchsia/600}",
     "{colors/fuchsia/500}",
     "{colors/fuchsia/600}",
-    "{colors/fuchsia/500}",
-    "{colors/fuchsia/600}",
     "{colors/fuchsia/500}"
    ]
   },
   "colors/background/bg-indigo": {
    "t": "C",
    "v": [
-    "{colors/indigo/600}",
-    "{colors/indigo/500}",
     "{colors/indigo/600}",
     "{colors/indigo/500}",
     "{colors/indigo/600}",
@@ -1110,8 +994,6 @@
     "{white}",
     "{colors/zinc/950}",
     "{white}",
-    "{colors/slate/950}",
-    "{white}",
     "{colors/neutral/950}"
    ]
   },
@@ -1124,8 +1006,6 @@
     "{colors/stone/900}",
     "{white}",
     "{colors/zinc/900}",
-    "{white}",
-    "{colors/slate/900}",
     "{white}",
     "{colors/neutral/900}"
    ]
@@ -1140,8 +1020,6 @@
     "{white}",
     "{colors/zinc/800}",
     "{white}",
-    "{colors/slate/800}",
-    "{white}",
     "{colors/neutral/800}"
    ]
   },
@@ -1154,8 +1032,6 @@
     "{colors/stone/900}",
     "{colors/zinc/50}",
     "{colors/zinc/900}",
-    "{colors/slate/50}",
-    "{colors/slate/900}",
     "{colors/neutral/50}",
     "{colors/neutral/900}"
    ]
@@ -1169,8 +1045,6 @@
     "{colors/stone/900}",
     "{colors/zinc/100}",
     "{colors/zinc/900}",
-    "{colors/slate/100}",
-    "{colors/slate/900}",
     "{colors/neutral/100}",
     "{colors/neutral/900}"
    ]
@@ -1184,8 +1058,6 @@
     "{colors/stone/800}",
     "{colors/zinc/100}",
     "{colors/zinc/800}",
-    "{colors/slate/100}",
-    "{colors/slate/800}",
     "{colors/neutral/100}",
     "{colors/neutral/800}"
    ]
@@ -1199,8 +1071,6 @@
     "{colors/stone/700}",
     "{colors/zinc/100}",
     "{colors/zinc/700}",
-    "{colors/slate/100}",
-    "{colors/slate/700}",
     "{colors/neutral/100}",
     "{colors/neutral/700}"
    ]
@@ -1214,8 +1084,6 @@
     "{colors/stone/900}",
     "{colors/zinc/200}",
     "{colors/zinc/900}",
-    "{colors/slate/200}",
-    "{colors/slate/900}",
     "{colors/neutral/200}",
     "{colors/neutral/900}"
    ]
@@ -1229,8 +1097,6 @@
     "{colors/stone/800}",
     "{colors/zinc/200}",
     "{colors/zinc/800}",
-    "{colors/slate/200}",
-    "{colors/slate/800}",
     "{colors/neutral/200}",
     "{colors/neutral/800}"
    ]
@@ -1240,8 +1106,6 @@
    "v": [
     "{colors/rose/700}",
     "{colors/rose/500}",
-    "{colors/red/700}",
-    "{colors/red/500}",
     "{colors/red/700}",
     "{colors/red/500}",
     "{colors/red/700}",
@@ -1260,8 +1124,6 @@
     "{colors/red/900}",
     "{colors/red/300}",
     "{colors/red/900}",
-    "{colors/red/300}",
-    "{colors/red/900}",
     "{colors/red/300}"
    ]
   },
@@ -1275,16 +1137,12 @@
     "{colors/orange/600}",
     "{colors/orange/500}",
     "{colors/orange/600}",
-    "{colors/orange/500}",
-    "{colors/orange/600}",
     "{colors/orange/500}"
    ]
   },
   "colors/text/text-fg-warning": {
    "t": "C",
    "v": [
-    "{colors/orange/900}",
-    "{colors/orange/300}",
     "{colors/orange/900}",
     "{colors/orange/300}",
     "{colors/orange/900}",
@@ -1308,8 +1166,6 @@
     "{colors/stone/300}",
     "{colors/cyan/900}",
     "{colors/cyan/300}",
-    "{colors/pink/700}",
-    "{colors/pink/300}",
     "{colors/indigo/700}",
     "{colors/indigo/300}"
    ]
@@ -1323,8 +1179,6 @@
     "{colors/stone/600}",
     "{colors/zinc/400}",
     "{colors/zinc/600}",
-    "{colors/slate/400}",
-    "{colors/slate/600}",
     "{colors/neutral/400}",
     "{colors/neutral/400}"
    ]
@@ -1332,8 +1186,6 @@
   "colors/text/text-fg-purple": {
    "t": "C",
    "v": [
-    "{colors/purple/600}",
-    "{colors/purple/500}",
     "{colors/purple/600}",
     "{colors/purple/500}",
     "{colors/purple/600}",
@@ -1354,16 +1206,12 @@
     "{colors/cyan/600}",
     "{colors/cyan/500}",
     "{colors/cyan/600}",
-    "{colors/cyan/500}",
-    "{colors/cyan/600}",
     "{colors/cyan/500}"
    ]
   },
   "colors/text/text-fg-indigo": {
    "t": "C",
    "v": [
-    "{colors/indigo/600}",
-    "{colors/indigo/500}",
     "{colors/indigo/600}",
     "{colors/indigo/500}",
     "{colors/indigo/600}",
@@ -1384,16 +1232,12 @@
     "{colors/pink/600}",
     "{colors/pink/500}",
     "{colors/pink/600}",
-    "{colors/pink/500}",
-    "{colors/pink/600}",
     "{colors/pink/500}"
    ]
   },
   "colors/text/text-fg-lime": {
    "t": "C",
    "v": [
-    "{colors/lime/600}",
-    "{colors/lime/500}",
     "{colors/lime/600}",
     "{colors/lime/500}",
     "{colors/lime/600}",
@@ -1413,8 +1257,6 @@
     "{colors/stone/700}",
     "{colors/zinc/200}",
     "{colors/zinc/700}",
-    "{colors/slate/200}",
-    "{colors/slate/700}",
     "{colors/neutral/200}",
     "{colors/neutral/700}"
    ]
@@ -1428,8 +1270,6 @@
     "{colors/stone/600}",
     "{colors/zinc/200}",
     "{colors/zinc/600}",
-    "{colors/slate/200}",
-    "{colors/slate/600}",
     "{colors/neutral/200}",
     "{colors/neutral/600}"
    ]
@@ -1439,8 +1279,6 @@
    "v": [
     "{colors/emerald/200}",
     "{colors/emerald/900}",
-    "{colors/green/200}",
-    "{colors/green/900}",
     "{colors/green/200}",
     "{colors/green/900}",
     "{colors/green/200}",
@@ -1459,8 +1297,6 @@
     "{colors/green/700}",
     "{colors/green/600}",
     "{colors/green/700}",
-    "{colors/green/600}",
-    "{colors/green/700}",
     "{colors/green/600}"
    ]
   },
@@ -1469,8 +1305,6 @@
    "v": [
     "{colors/rose/200}",
     "{colors/rose/900}",
-    "{colors/red/200}",
-    "{colors/red/900}",
     "{colors/red/200}",
     "{colors/red/900}",
     "{colors/red/200}",
@@ -1489,16 +1323,12 @@
     "{colors/red/700}",
     "{colors/red/600}",
     "{colors/red/700}",
-    "{colors/red/600}",
-    "{colors/red/700}",
     "{colors/red/600}"
    ]
   },
   "colors/border/border-warning-subtle": {
    "t": "C",
    "v": [
-    "{colors/orange/200}",
-    "{colors/orange/900}",
     "{colors/orange/200}",
     "{colors/orange/900}",
     "{colors/orange/200}",
@@ -1519,8 +1349,6 @@
     "{colors/orange/600}",
     "{colors/orange/500}",
     "{colors/orange/600}",
-    "{colors/orange/500}",
-    "{colors/orange/600}",
     "{colors/orange/500}"
    ]
   },
@@ -1533,8 +1361,6 @@
     "{colors/stone/900}",
     "{colors/cyan/200}",
     "{colors/cyan/900}",
-    "{colors/pink/200}",
-    "{colors/pink/900}",
     "{colors/indigo/200}",
     "{colors/indigo/900}"
    ]
@@ -1548,8 +1374,6 @@
     "{colors/stone/600}",
     "{colors/cyan/600}",
     "{colors/cyan/600}",
-    "{colors/pink/600}",
-    "{colors/pink/600}",
     "{colors/indigo/600}",
     "{colors/indigo/600}"
    ]
@@ -1563,8 +1387,6 @@
     "{colors/stone/600}",
     "{colors/cyan/700}",
     "{colors/cyan/500}",
-    "{colors/pink/900}",
-    "{colors/pink/600}",
     "{colors/indigo/900}",
     "{colors/indigo/600}"
    ]
@@ -1578,8 +1400,6 @@
     "{colors/stone/700}",
     "{colors/zinc/800}",
     "{colors/zinc/700}",
-    "{colors/slate/800}",
-    "{colors/slate/700}",
     "{colors/neutral/800}",
     "{colors/neutral/700}"
    ]
@@ -1588,8 +1408,6 @@
    "t": "C",
    "v": [
     "#f9fafb80",
-    "#03071280",
-    "#03071280",
     "#03071280",
     "#03071280",
     "#03071280",

@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { figmaDesign } from '../../../.storybook/auxokit/figma';
 import { CheckIcon, CogIcon, InfoIcon, MailIcon, PlusIcon } from '../icons';
 import { Alert } from './Alert';
 import { Badge } from './Badge';
@@ -24,9 +25,9 @@ const IconHeader = () => (
 );
 
 const meta = {
-  title: 'AuxoKit/Sidebar',
+  title: 'Components/Sidebar',
   component: Sidebar,
-  parameters: { layout: 'padded' },
+  parameters: { design: figmaDesign('Sidebar'), layout: 'padded' },
   decorators: [
     (Story) => (
       <div className="h-120 w-fit overflow-hidden rounded-base border border-default">

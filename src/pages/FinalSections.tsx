@@ -320,7 +320,7 @@ export default function FinalSections() {
               variant="image"
               backgroundImage="/demo/photo-1.svg"
               title="Built for every theme"
-              lead="Modern, Minimal, Enterprise, Playful and Mono — light and dark."
+              lead="Modern, Minimal, Enterprise and Mono — light and dark."
               actions={<><Button size="lg">Get started</Button><Button size="lg" color="tertiary">Watch demo</Button></>}
             />
           </div>

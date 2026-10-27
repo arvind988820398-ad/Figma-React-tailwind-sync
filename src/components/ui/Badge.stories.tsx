@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { figmaDesign } from '../../../.storybook/auxokit/figma';
 import { Badge, type BadgeColor } from './Badge';
 import { Avatar } from './Avatar';
 import { Spinner } from './Spinner';
@@ -8,7 +9,8 @@ import { CheckIcon } from '../icons';
 const colors = ['gray', 'white', 'brand', 'success', 'warning', 'danger'] as const satisfies readonly BadgeColor[];
 
 const meta = {
-  title: 'AuxoKit/Badge',
+  title: 'Components/Badge',
+  parameters: { design: figmaDesign('Badge') },
   component: Badge,
   args: { children: 'Badge', color: 'gray', size: 'sm', circle: false },
   argTypes: {

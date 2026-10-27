@@ -1,10 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { figmaDesign } from '../../../.storybook/auxokit/figma';
 import { Kbd } from './Kbd';
 import { ArrowRightIcon } from '../icons';
 
 // AuxoKit Kbd — mirrors the Figma "KBD" set (node 1149:92754).
 const meta = {
-  title: 'AuxoKit/Kbd',
+  title: 'Components/Kbd',
+  parameters: { design: figmaDesign('Kbd') },
   component: Kbd,
   args: { children: 'Ctrl' },
 } satisfies Meta<typeof Kbd>;

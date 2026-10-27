@@ -1,10 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { figmaDesign } from '../../../.storybook/auxokit/figma';
 import { useState, type ComponentProps } from 'react';
 import { Toggle } from './Toggle';
 
 // AuxoKit Toggle — mirrors the Figma "Toggle switches" set (node 1149:54432).
 const meta = {
-  title: 'AuxoKit/Toggle',
+  title: 'Components/Toggle',
+  parameters: { design: figmaDesign('Toggle') },
   component: Toggle,
   args: { checked: false, onCheckedChange: () => {}, size: 'base', children: 'Enable notifications', disabled: false },
   argTypes: {
