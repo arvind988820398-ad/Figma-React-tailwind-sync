@@ -78,8 +78,8 @@ API: `<List variant="default|divider|cta">` + `<ListItem icon media description 
 
 ## Table
 Figma: page `3284:22719` · set `1149:87477` (Striped columns, Striped rows, With table caption) · template `templates/components/Table.tsx`
-API: `<Table striped="rows|columns" caption toolbar>` + `TableHead/TableBody/TableRow/TableHeaderCell/TableCell`.
-- Wrapper: `relative overflow-x-auto rounded-base border border-default bg-neutral-secondary-soft shadow-xs`.
+API: `<Table striped="rows|columns" caption toolbar stickyHeader containerClassName>` + `TableHead/TableBody/TableRow/TableHeaderCell/TableCell`.
+- Wrapper: `relative flex flex-col rounded-base border border-default bg-neutral-secondary-soft shadow-xs`; the toolbar stays put and an inner `overflow-auto` region holds the table. `stickyHeader` pins the header cells (`sticky top-0`) while rows scroll; bound the height with `containerClassName` (layout only: `max-h-96`, or `min-h-0 flex-1` inside a flex column).
 - Toolbar row: search `Input` (36px, `text-sm`), Secondary `sm` "Filters", Brand `sm` "Add …".
 - Caption block (With table caption): `p-5 bg-neutral-secondary-soft border-b border-default`; title `text-lg font-medium leading-none text-heading`, description `text-base text-body`.
 - Header cells: `h-11 px-5 bg-neutral-secondary-medium border-b border-default text-sm font-medium leading-none text-body text-start`.

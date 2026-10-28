@@ -1,5 +1,7 @@
 // AuxoKit Table — Figma set "Table (free-component)" (node 1149:87477, page 3284:22719).
 // Figma types: Striped rows / Striped columns = `striped`; With table caption = `caption`. Toolbar = `toolbar` slot.
+// `stickyHeader` keeps the header row visible while the body scrolls inside the wrapper; bound the wrapper's height
+// with `containerClassName` (e.g. `max-h-96`, or `min-h-0 flex-1` in a flex column).
 import type { HTMLAttributes, ReactNode, TdHTMLAttributes, ThHTMLAttributes } from 'react';
 import { cn } from '../../lib/cn';
 
@@ -16,21 +18,33 @@ export interface TableProps extends HTMLAttributes<HTMLTableElement> {
   caption?: { title: ReactNode; description?: ReactNode };
   /** Row above the table: search Input, Secondary "Filters", Brand "Add …". */
   toolbar?: ReactNode;
+  /** Header row stays visible while the rows scroll; give the wrapper a height with `containerClassName`. */
+  stickyHeader?: boolean;
+  /** Layout classes for the scrolling wrapper (height, flex sizing). */
+  containerClassName?: string;
 }
 
-export function Table({ striped, caption, toolbar, className, children, ...props }: TableProps) {
+// With border-collapse the header's bottom border stays behind when the cells stick, so the line is drawn by the cell.
+const stickyHead =
+  '[&_thead_th]:sticky [&_thead_th]:top-0 [&_thead_th]:z-10 ' +
+  '[&_thead_th]:after:pointer-events-none [&_thead_th]:after:absolute [&_thead_th]:after:inset-x-0 [&_thead_th]:after:bottom-0 ' +
+  '[&_thead_th]:after:h-px [&_thead_th]:after:bg-neutral-quaternary';
+
+export function Table({ striped, caption, toolbar, stickyHeader, containerClassName, className, children, ...props }: TableProps) {
   return (
-    <div className="relative overflow-x-auto rounded-base border border-default bg-neutral-secondary-soft shadow-xs">
-      {toolbar && <div className="flex flex-wrap items-center justify-between gap-3 border-b border-default p-4">{toolbar}</div>}
-      <table className={cn('w-full text-start text-sm', striped && striping[striped], className)} {...props}>
-        {caption && (
-          <caption className="border-b border-default bg-neutral-secondary-soft p-5 text-start">
-            <span className="block text-lg font-medium leading-none text-heading">{caption.title}</span>
-            {caption.description && <span className="mt-2 block text-base font-normal text-body">{caption.description}</span>}
-          </caption>
-        )}
-        {children}
-      </table>
+    <div className={cn('relative flex flex-col rounded-base border border-default bg-neutral-secondary-soft shadow-xs', containerClassName)}>
+      {toolbar && <div className="flex shrink-0 flex-wrap items-center justify-between gap-3 border-b border-default p-4">{toolbar}</div>}
+      <div className="min-h-0 flex-1 overflow-auto">
+        <table className={cn('w-full text-start text-sm', striped && striping[striped], stickyHeader && stickyHead, className)} {...props}>
+          {caption && (
+            <caption className="border-b border-default bg-neutral-secondary-soft p-5 text-start">
+              <span className="block text-lg font-medium leading-none text-heading">{caption.title}</span>
+              {caption.description && <span className="mt-2 block text-base font-normal text-body">{caption.description}</span>}
+            </caption>
+          )}
+          {children}
+        </table>
+      </div>
     </div>
   );
 }

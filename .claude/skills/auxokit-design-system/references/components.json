@@ -275,13 +275,13 @@
      }
     },
     "Type": {
-     "prop": "addon",
+     "prop": null,
      "values": {
-      "Default": null,
-      "Add-on icon": "icon",
-      "Add-on text": "text",
-      "Inner button": "button",
-      "Stacked placeholder": "stacked"
+      "Default": "<Input>",
+      "Add-on icon": "<Input addonIcon>",
+      "Add-on text": "<Input addonText>",
+      "Inner button": "<Input endAction>",
+      "Stacked placeholder": "<Input stackedLabel>"
      }
     },
     "State": {

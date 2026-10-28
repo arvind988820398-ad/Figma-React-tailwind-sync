@@ -30,12 +30,12 @@ API: `<Jumbotron title lead actions eyebrow variant="centered|split|image" media
 
 ## Gallery
 Figma: page `320:17990` · set `1149:56037` "Gallery" (Grid 3 columns, Grid 2 columns, Featured image, Carousel, With filters, Masonry × Mobile/Tablet/Desktop) · template `templates/components/Gallery.tsx`
-API: `<Gallery images variant="grid-3|grid-2|masonry|featured">`.
-Grid `grid grid-cols-2 md:grid-cols-3 gap-4` (or 2 columns); images `h-auto max-w-full rounded-base`; Masonry `columns-2 md:columns-4 gap-4` with `mb-4` items; Featured image: one large image above a row of thumbnails `gap-4`; With filters: `Tabs variant="pills"` above the grid; Carousel: `Carousel`.
+API: `<Gallery images={[{src, alt, tags?}]} variant="grid-3|grid-2|masonry|featured|carousel|filters" label allLabel>`.
+Grid `grid grid-cols-2 md:grid-cols-3 gap-4` (or 2 columns); images `h-auto max-w-full rounded-base`; Masonry `columns-2 md:columns-4 gap-4` with `mb-4` items; Featured image: one large image above a row of thumbnails `gap-4`; With filters (`variant="filters"`): `Tabs variant="pills"` built from the images' `tags` above a 3-column grid, first pill `allLabel`; Carousel (`variant="carousel"`): the `Carousel` component with controls and no indicators.
 **Use** for browsable image collections. **Don't** for a single hero image or product listings with data (Cards).
 
 ## DeviceMockup
 Figma: page `702:18224` · set `1149:41354` "Mockups" (Stylus pen, Android & pen, Android, iPhone, Tablet, iMac, Laptop, Smartwatch) · template `templates/components/DeviceMockup.tsx`
-API: `<DeviceMockup device="iphone|android|tablet|laptop|imac|watch" label>{screen}</DeviceMockup>`.
+API: `<DeviceMockup device="iphone|android|android-pen|stylus|tablet|laptop|imac|watch" label>{screen}</DeviceMockup>`. `android-pen` is the phone with the stylus leaning beside it; `stylus` is the pen alone (no screen slot).
 Device frames are drawn with `bg-neutral-quaternary` bezels (iMac/Laptop/Smartwatch add `bg-neutral-tertiary-medium` / `bg-neutral-tertiary` stands), `rounded-xl`-scale outer radius, and an image/screen slot. Sizes in Figma: phones 448×896, tablet 768×1012, iMac 896×735, laptop 896×473, watch 320×476 — keep the aspect ratio and scale with `w-full max-w-*`.
 **Use** on marketing pages to present product screenshots. **Don't** inside the product UI.

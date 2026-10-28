@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { figmaDesign } from '../../../.storybook/auxokit/figma';
+import { Button } from './Button';
 import { HelperText, Input, Label } from './Input';
 import { InfoIcon, MailIcon } from '../icons';
 
@@ -79,3 +80,18 @@ export const AllSizes: Story = {
     </div>
   ),
 };
+
+// Figma "Input field" types beyond Default: each is a slot on the same component.
+export const AddOnText: Story = { args: { addonText: 'https://', placeholder: 'auxokit.dev' } };
+export const AddOnIcon: Story = { args: { addonIcon: <MailIcon />, placeholder: 'name@company.com', type: 'email' } };
+export const InnerButton: Story = {
+  args: {
+    placeholder: 'Search the docs',
+    endAction: (
+      <Button color="tertiary" size="xs">
+        Search
+      </Button>
+    ),
+  },
+};
+export const StackedPlaceholder: Story = { args: { stackedLabel: 'Full name', defaultValue: 'Ada Lovelace' } };

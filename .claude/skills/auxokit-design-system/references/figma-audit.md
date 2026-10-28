@@ -40,3 +40,11 @@ Rows 1–25, 27–29, 31, 33–35, 39–41 are resolved and were removed:
 | 44 | Colored shadow demo styles `shadow-{blue-600,green-500,…}/50` exist as local effect styles | Effect styles | Not exported to code (palette colors are not tokens) | Move them to a docs page or delete |
 
 Code mirrors Figma values exactly (the generated CSS is a faithful copy, so designers see exactly what ships).
+
+## Code ahead of Figma
+
+Variants that exist in code because a product needed them; add them to the Figma set, then re-run the sync so the registry lists them.
+
+| # | Component | Code | Proposed Figma addition |
+|---|---|---|---|
+| 45 | Navbar `1149:74216` | `size="compact"`: bar `py-1` (44px tall with `sm` logo/action controls) for dense app shells | Add a `Size = Default / Compact` property to the Navbar set with the compact padding |

@@ -50,3 +50,8 @@ export const Handhelds: Story = {
     </div>
   ),
 };
+
+/** Figma "Android & pen": the phone with a stylus leaning beside it. */
+export const AndroidAndPen: Story = { args: { device: 'android-pen', label: 'App home screen on Android with stylus' } };
+/** Figma "Stylus pen": the pen on its own (no screen slot). */
+export const StylusPen: Story = { args: { device: 'stylus', label: 'Stylus pen', children: null } };

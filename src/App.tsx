@@ -14,11 +14,18 @@ import { Spinner } from './components/ui/Spinner'
 import { Toggle } from './components/ui/Toggle'
 import { Tooltip } from './components/ui/Tooltip'
 import { loadTheme, setTheme, themes, type AuxoTheme } from './lib/theme'
+import { MaterialsApp } from './features/materials/MaterialsApp'
 import ComponentGallery from './pages/ComponentGallery'
 
-type Page = 'overview' | 'components'
-const pagePath: Record<Page, string> = { overview: '/', components: '/components' }
-const pageFromPath = (): Page => (window.location.pathname.startsWith('/components') ? 'components' : 'overview')
+type Page = 'overview' | 'components' | 'materials'
+const pagePath: Record<Page, string> = { overview: '/', components: '/components', materials: '/materials' }
+const pageLabel: Record<Page, string> = { overview: 'Overview', components: 'Components', materials: 'Materials app' }
+const pageFromPath = (): Page => {
+  const { pathname } = window.location
+  if (pathname.startsWith('/components')) return 'components'
+  if (pathname.startsWith('/materials')) return 'materials'
+  return 'overview'
+}
 
 function Section({ title, children }: { title: string; children: ReactNode }) {
   return (
@@ -56,6 +63,9 @@ export default function App() {
     setTheme(next, nextDark)
   }
 
+  // The materials app brings its own chrome (rail, top bar) and is pinned to the Modern theme; its account menu toggles dark mode.
+  if (page === 'materials') return <MaterialsApp />
+
   return (
     <div className="min-h-screen bg-neutral-primary font-sans">
       <header className="sticky top-0 z-40 border-b border-default bg-neutral-primary-soft">
@@ -66,7 +76,7 @@ export default function App() {
             </IconShape>
             <span className="text-base font-semibold text-heading">AuxoKit starter</span>
             <nav aria-label="Pages" className="ms-4 flex gap-1">
-              {(['overview', 'components'] as const).map((p) => (
+              {(['overview', 'components', 'materials'] as const).map((p) => (
                 <a
                   key={p}
                   href={pagePath[p]}
@@ -77,7 +87,7 @@ export default function App() {
                   }}
                   className={buttonVariants({ color: 'ghost', size: 'sm', className: page === p ? 'bg-neutral-secondary-medium text-fg-brand' : 'text-body' })}
                 >
-                  {p === 'overview' ? 'Overview' : 'Components'}
+                  {pageLabel[p]}
                 </a>
               ))}
             </nav>

@@ -349,8 +349,8 @@ export default function FinalSections() {
       </Section>
 
       <Section id="device-mockup" title="Device mockup" figma={figma['device-mockup']} note="Marketing frames for screenshots; they scale with width and keep the Figma aspect ratios.">
-        <div className="grid items-end gap-10 rounded-base border border-default bg-neutral-primary-soft p-8 md:grid-cols-3">
-          {(['iphone', 'android', 'watch'] as Device[]).map((d) => (
+        <div className="grid items-end gap-10 rounded-base border border-default bg-neutral-primary-soft p-8 md:grid-cols-5">
+          {(['iphone', 'android', 'android-pen', 'stylus', 'watch'] as Device[]).map((d) => (
             <Labeled key={d} label={`device="${d}"`}>
               <DeviceMockup device={d} label={`App home screen on ${d}`}>
                 <img src="/demo/screen.svg" alt="" />

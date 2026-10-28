@@ -7,7 +7,7 @@
 - [ ] No `dark:` color classes; theme switching via `data-theme` + `.dark` only.
 - [ ] Radius from the themed scale; component defaults respected (controls/cards `rounded-base`, badges `rounded-sm`, checkbox `rounded-xs`, menu rows `rounded`).
 - [ ] Shadows: `shadow-xs` on controls/cards, `shadow-lg` menus, `shadow-xl` dialogs, focus via `shadow-focus-*` with `focus-visible:`.
-- [ ] Typography: `text-xxs…6xl`, weights normal/medium/semibold/bold/extrabold, line-height from size (or the `leading-5/6` used in control recipes).
+- [ ] Typography: `text-xxs…6xl`, weights normal/medium/semibold/bold/extrabold, line-height from size (or the `leading-5/6` used in control recipes). No font family anywhere in feature code; when a server runs, `node .claude/skills/auxokit-compose/scripts/check-fonts.mjs <url>` proves the rendered family, sizes and weights.
 - [ ] Spacing on the 4px scale; fractional steps only 0.5/1.5/2.5/3.5/4.5 unless an ignore comment explains a Figma pixel size.
 
 ## Component contract

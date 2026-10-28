@@ -4,7 +4,7 @@ All components here are **spec verified** (2026-10-26). Navigation items are lin
 
 ## Navbar
 Figma: page `3279:21067` · navbar `1149:74216` (Default, With icons, With search input, With links, Centered logo × Mobile/Tablet/Desktop) · content `1149:74308` (9 types) · nav link `1149:74002` (13 types × Initial/Hover/Active/Disabled) · mega menus `1149:74737` (full width), `1149:75228` (fixed width: Icon shape, Categories, Default, Icons & CTA) · mobile menu `1149:75488` (Default, Bordered links) · template `templates/components/Navbar.tsx`
-API: `<Navbar logo links actions search sticky>`; `NavLink` for custom layouts.
+API: `<Navbar logo links actions search sticky size="base|compact">`; `NavLink` for custom layouts. `compact` (`py-1`, 44px with `sm` controls) is a code-ahead size for dense app shells — see figma-audit.md.
 
 - Bar: `sticky top-0 z-40 w-full border-b border-default bg-neutral-primary-soft py-6` → content `mx-auto flex max-w-screen-xl items-center justify-between gap-8 px-4` (height of the content row 30–40px).
 - Logo (`Logo sm`) · links `flex gap-8` (Only links `gap-6`) · actions Secondary `base` + Brand `base` (icons type: Ghost `sm` icon buttons, 36px avatar).

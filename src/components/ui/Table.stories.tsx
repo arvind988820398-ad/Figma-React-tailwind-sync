@@ -100,3 +100,28 @@ export const Full: Story = {
     caption: { title: 'Our products', description: 'Browse the products in stock and their current prices.' },
   },
 };
+
+/** Header stays visible while the rows scroll inside a bounded wrapper (`stickyHeader` + `containerClassName`). */
+export const StickyHeader: Story = {
+  args: { stickyHeader: true, containerClassName: 'max-h-80' },
+  render: (args) => (
+    <Table {...args}>
+      <TableHead>
+        <TableRow>
+          <TableHeaderCell>Product</TableHeaderCell>
+          <TableHeaderCell>Category</TableHeaderCell>
+          <TableHeaderCell>Price</TableHeaderCell>
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        {Array.from({ length: 30 }, (_, i) => (
+          <TableRow key={i}>
+            <TableCell>Product {i + 1}</TableCell>
+            <TableCell>{['Laptop', 'Phone', 'Audio', 'Accessory'][i % 4]}</TableCell>
+            <TableCell>${(199 + i * 37).toLocaleString()}</TableCell>
+          </TableRow>
+        ))}
+      </TableBody>
+    </Table>
+  ),
+};

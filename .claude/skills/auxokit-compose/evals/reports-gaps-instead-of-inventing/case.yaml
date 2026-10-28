@@ -1,0 +1,7 @@
+schema_version: "1.1"
+name: reports-gaps-instead-of-inventing
+expected_outcome: |
+  The page is built from existing AuxoKit components (Card, Badge, Avatar/AvatarGroup, Button ghost, etc.) with
+  layout glue for the columns. The drag handle and the colour picker are NOT implemented as custom components:
+  they appear as labelled placeholders and are listed under "Gaps for Figma" with a proposed Figma addition.
+  Nothing new is added under src/components/ui and no raw controls are hand-written.

@@ -1,5 +1,7 @@
 // AuxoKit Input field — Figma set "Input field" (node 1149:46826, page 3279:34618),
 // Label (1149:94727) and Helper (1149:94741).
+// Figma Type → slot: Default · Add-on icon = `addonIcon` · Add-on text = `addonText` · Inner button = `endAction` ·
+// Stacked placeholder = `stackedLabel`. Sizes and states are shared with every other field.
 import { forwardRef, type InputHTMLAttributes, type LabelHTMLAttributes, type HTMLAttributes, type ReactNode } from 'react';
 import { cn } from '../../lib/cn';
 
@@ -30,23 +32,76 @@ export function inputVariants({ size = 'base', status }: { size?: FieldSize; sta
   );
 }
 
+// Shell used when the field wraps more than the <input> (Inner button, Stacked placeholder): focus moves to the wrapper.
+const shell = 'focus-within:border-brand focus-within:shadow-focus-brand';
+// The bare <input> inside such a shell: the shell owns padding, border and colors.
+const bare =
+  'block w-full min-w-0 border-0 bg-transparent p-0 shadow-none placeholder:text-body-subtle focus:outline-none ' +
+  'disabled:cursor-not-allowed disabled:text-fg-disabled disabled:placeholder:text-fg-disabled';
+
 export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
   size?: FieldSize;
   status?: FieldStatus;
   leftIcon?: ReactNode;
   rightIcon?: ReactNode;
+  /** Figma "Add-on icon": a leading segment holding an icon, joined to the field. */
+  addonIcon?: ReactNode;
+  /** Figma "Add-on text": a leading segment holding text ("https://", "₹", "@"), joined to the field. */
+  addonText?: ReactNode;
+  /** Figma "Inner button": a Tertiary xs Button inside the end of the field. */
+  endAction?: ReactNode;
+  /** Figma "Stacked placeholder": a small label above the value inside the field. */
+  stackedLabel?: ReactNode;
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
-  { size = 'base', status, leftIcon, rightIcon, className, ...props },
+  { size = 'base', status, leftIcon, rightIcon, addonIcon, addonText, endAction, stackedLabel, className, ...props },
   ref,
 ) {
   const s = sizes[size];
   const iconColor = status === 'success' ? 'text-fg-success-strong' : status === 'danger' ? 'text-fg-danger-strong' : 'text-body-subtle';
+  const invalid = status === 'danger' || undefined;
+
+  if (stackedLabel) {
+    return (
+      <div className={cn(inputVariants({ size, status }), shell, 'flex flex-col gap-0.5 py-1.5', className)}>
+        <span className="text-xs leading-4 text-body-subtle">{stackedLabel}</span>
+        <input ref={ref} aria-invalid={invalid} className={cn(bare, 'text-sm leading-5')} {...props} />
+      </div>
+    );
+  }
+
+  if (endAction) {
+    return (
+      <div className={cn(inputVariants({ size, status }), shell, 'flex items-center gap-2 py-1 pe-1', className)}>
+        <input ref={ref} aria-invalid={invalid} className={bare} {...props} />
+        <span className="inline-flex shrink-0 items-center [&_button]:rounded">{endAction}</span>
+      </div>
+    );
+  }
+
+  if (addonIcon || addonText) {
+    return (
+      <div className={cn('flex w-full', className)}>
+        <span
+          className={cn(
+            'inline-flex shrink-0 items-center rounded-s-base border border-e-0 border-default-medium bg-neutral-tertiary text-sm text-body-subtle',
+            s.iconPos,
+            s.icon,
+          )}
+          aria-hidden
+        >
+          {addonIcon ?? addonText}
+        </span>
+        <input ref={ref} aria-invalid={invalid} className={cn(inputVariants({ size, status }), 'rounded-s-none')} {...props} />
+      </div>
+    );
+  }
+
   const input = (
     <input
       ref={ref}
-      aria-invalid={status === 'danger' || undefined}
+      aria-invalid={invalid}
       className={cn(inputVariants({ size, status }), leftIcon && s.withLeft, rightIcon && s.withRight, !leftIcon && !rightIcon && className)}
       {...props}
     />

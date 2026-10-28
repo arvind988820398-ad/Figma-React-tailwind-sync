@@ -23,10 +23,11 @@ React + TypeScript + Vite + Tailwind CSS v4, wired to the AuxoKit design system 
 - `src/styles/app.css` — Tailwind entry (`@import "tailwindcss"` + tokens).
 - `src/components/ui/` — all 56 AuxoKit components (every Figma component set). Each file names its Figma node; the registry in `.claude/skills/auxokit-design-system/references/components.json` maps Figma variants to props.
 - `src/lib/theme.ts` — `setTheme(theme, dark)`; themes `modern | minimal | enterprise | mono`, saved per browser.
-- `src/App.tsx` — Overview page and the **Components** page (`/components`, in `src/pages/`) showing every variant; replace the overview with your app.
+- `src/App.tsx` — Overview page, the **Components** page (`/components`, in `src/pages/`) showing every variant, and the **Materials app** (`/materials`); replace the overview with your app.
+- `src/features/materials/` — a complete material-management app built from AuxoKit components (Figma "Material - powerplay", section 3073:26924): app shell, Material List with filters/table/pagination, the Add New Materials drawer, and a persistent store. Also in Storybook under Examples.
 - `public/demo/` — placeholder images for the Components page; delete them together with `src/pages/` when you no longer need the gallery.
 - `.storybook/` — Storybook config, the generated docs data (`generated/auxokit-docs.ts`), the docs page template and blocks (`auxokit/`), the guide pages (`docs/*.mdx`) and the generator (`scripts/build-docs.mjs`). Stories live next to each component as `*.stories.tsx`.
-- `.claude/skills/` — the Claude Code skills: `auxokit-design-system` (build UI), `auxokit-review` (review against Figma), `auxokit-figma-sync` (keep Figma and code in sync).
+- `.claude/skills/` — the Claude Code skills: `auxokit-design-system` (build UI), `auxokit-compose` (build any screen from a reference image, mockup or Figma frame using only existing components; gaps go back to Figma instead of becoming one-off components; ships `check-composition.mjs` for code and `check-fonts.mjs` for the rendered page), `auxokit-review` (review against Figma), `auxokit-figma-sync` (keep Figma and code in sync).
 
 ## Rules of thumb
 

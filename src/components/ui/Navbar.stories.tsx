@@ -93,3 +93,19 @@ export const NavLinkStates: Story = {
     </div>
   ),
 };
+
+/** Code-ahead `size="compact"`: a 44px app bar (py-1 with sm controls). */
+export const Compact: Story = {
+  args: {
+    size: 'compact',
+    logo: <span className="text-sm font-semibold text-heading">AuxoKit</span>,
+    actions: (
+      <>
+        <Button color="tertiary" size="sm">
+          Log in
+        </Button>
+        <Button size="sm">Get started</Button>
+      </>
+    ),
+  },
+};
