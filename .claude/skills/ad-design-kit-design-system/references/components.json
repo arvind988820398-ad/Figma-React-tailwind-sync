@@ -1,6 +1,7 @@
 {
  "$comment": "AD Design Kit component registry: the single mapping between Figma component sets and React components. figmaVariants is the snapshot the sync skill diffs against; propMap says how each Figma property becomes a React prop. Interaction states (Initial/Hover/Focus/Active/Disabled/Read-only) are CSS states, never props. Breakpoint/Mobile variants are responsive layouts, never props. specVerified=true means every variant (or every Type at the base size/Desktop breakpoint) had its token bindings read from Figma and written into the doc section.",
  "fileKey": "TKsoawKvPxaNCff4q43Mli",
+ "storybookUrl": "https://ad-design-kit-storybook.netlify.app",
  "snapshotAt": "2026-10-27",
  "components": [
   {
@@ -1686,6 +1687,14 @@
      "Mobile",
      "Tablet",
      "Desktop"
+    ],
+    "Size": [
+     "Default",
+     "Compact"
+    ],
+    "Width": [
+     "Contained",
+     "Fluid"
     ]
    },
    "parts": {
@@ -1708,6 +1717,20 @@
     },
     "Breakpoint": {
      "responsive": true
+    },
+    "Size": {
+     "prop": "size",
+     "values": {
+      "Default": "base",
+      "Compact": "compact"
+     }
+    },
+    "Width": {
+     "prop": "fluid",
+     "values": {
+      "Contained": "false",
+      "Fluid": "true"
+     }
     }
    },
    "template": "templates/components/Navbar.tsx"
@@ -2031,6 +2054,9 @@
      "With remove button",
      "Placeholder"
     ],
+    "User": [
+     "(13 sample people)"
+    ],
     "Size": [
      "xs",
      "sm",
@@ -2060,6 +2086,9 @@
       "With remove button": "onRemove",
       "Placeholder": "initials"
      }
+    },
+    "User": {
+     "note": "Sample photo/initials only; in code pass src, name or initials"
     }
    },
    "parts": {

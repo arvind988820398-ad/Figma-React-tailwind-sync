@@ -53,6 +53,7 @@ Figma: page `1149:31693` · set `1149:31694` (xs/sm/base/lg × Gray/White) · ex
 API: `<ButtonGroup color="gray|white" size vertical label>` + `<ButtonGroupItem active iconOnly>`.
 A joined row of Buttons: Figma "Gray" = **Secondary** buttons, "White" = **Tertiary** buttons, same size scale; items overlap by 1px (`-space-x-px`), first `rounded-e-none`, last `rounded-s-none`, middle `rounded-none`; the group carries `shadow-xs` (items `shadow-none`). The selected item uses the Tertiary Hover style (`bg-neutral-secondary-medium text-heading`). Vertical: `flex-col -space-y-px`, ends `rounded-b-none`/`rounded-t-none`. Example types: icon buttons (36px, `text-body`, active `text-heading`), Plus & minus, Numbers (pager), With dropdown button, With badge, Start CTA, Icon button + Info.
 **Use** for 2–5 closely related actions or a compact view switcher. **Don't** for unrelated actions, primary CTAs, or >5 options. If it switches content panels, use `Tabs variant="segmented"` for ARIA.
+A11y: the wrapper is `role="group"` with an `aria-label`; toggle groups set `aria-pressed` on each button; icon-only items need an `aria-label`.
 
 ## Speed dial
 Figma: page `14231:74723` · examples `1149:84847` (Default, Rounded, Menu, Article dropdown menu × Top/Bottom/Right/Left) · item `1149:84896` (4 types × Initial/Hover/Disabled × Rounded × Horizontal) · menus `1149:84972` (Vertical, Horizontal, Dropdown menu) · template `templates/components/SpeedDial.tsx`
@@ -65,7 +66,11 @@ API: `<SpeedDial actions={[{label,icon,onSelect,disabled}]} variant="default|rou
 - Place `fixed end-6 bottom-6 z-40`.
 
 **Use** on mobile-first or canvas-like screens for 3–6 creation actions. **Don't** on dense desktop pages with a toolbar, for navigation, or for a single action.
+A11y: the trigger has an `aria-label`, `aria-expanded` and `aria-controls`; every action needs a visible label, tooltip or `aria-label`.
 
 ## Download app button
 Figma: set `1146:24595` (Google Play / AppStore × Light / Dark). Store badge link: `inline-flex items-center gap-3 rounded-base px-4 py-2.5` — Dark `bg-dark text-white hover:bg-dark-strong`; Light `bg-neutral-primary-soft border border-default text-heading hover:bg-neutral-secondary-medium`. Only for store links (`<a>`). · template `templates/components/DownloadAppButton.tsx`
 API: `<DownloadAppButton store="app-store|google-play" tone="dark|light" href>`.
+**Use** for App Store and Google Play badges on marketing and landing pages. **Don't** for in-app actions (Button) or ordinary links.
+A11y: it is a link; the store name is visible text and the logo is decorative (`aria-hidden`).
+

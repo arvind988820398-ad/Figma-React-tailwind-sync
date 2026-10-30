@@ -46,7 +46,7 @@ One row per region. Keep it in your reply so the user can see the mapping and co
 | 1 | Top bar | org switcher, bell, avatar | `Navbar` logo slot + `Dropdown` + `Button ghost iconOnly` + `Avatar` | match |
 | 2 | Filter chips | removable keyword chips | `Badge color="white" rightIcon` | composed |
 | 3 | Colour picker | 8 swatches, one selected | — | **gap** |
-| 4 | Nav tabs under the header | Material List / Indent / … | `Tabs variant="underline"` (Figma "Nav tabs") directly below the `Navbar`, inside `mx-auto max-w-screen-xl px-4` | match |
+| 4 | Nav tabs under the header | Overview / Orders / Reports / … | `Tabs variant="underline"` (Figma "Nav tabs") directly below the `Navbar`, inside `mx-auto max-w-screen-xl px-4` | match |
 
 Status meanings:
 - **match** — one component, one of its variants.

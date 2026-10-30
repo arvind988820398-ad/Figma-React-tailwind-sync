@@ -4,7 +4,7 @@ All components here are **spec verified** (2026-10-26). Navigation items are lin
 
 ## Navbar
 Figma: page `3279:21067` · navbar `1149:74216` (Default, With icons, With search input, With links, Centered logo × Mobile/Tablet/Desktop) · content `1149:74308` (9 types) · nav link `1149:74002` (13 types × Initial/Hover/Active/Disabled) · mega menus `1149:74737` (full width), `1149:75228` (fixed width: Icon shape, Categories, Default, Icons & CTA) · mobile menu `1149:75488` (Default, Bordered links) · template `templates/components/Navbar.tsx`
-API: `<Navbar logo links actions search sticky size="base|compact">`; `NavLink` for custom layouts. `compact` (`py-1`, 44px with `sm` controls) is a code-ahead size for dense app shells; `fluid` drops the centered `max-w-screen-xl` container so the bar spans an app shell's full width — both in figma-audit.md.
+API: `<Navbar logo links actions search sticky size="base|compact">`; `NavLink` for custom layouts. `compact` (`py-1`, 44px with `sm` controls; Figma `Size = Compact`) is for dense app shells; `fluid` drops the centered `max-w-screen-xl` container so the bar spans an app shell's full width (Figma `Width = Fluid`).
 
 - Bar: `sticky top-0 z-40 w-full border-b border-default bg-neutral-primary-soft py-6` → content `mx-auto flex max-w-screen-xl items-center justify-between gap-8 px-4` (height of the content row 30–40px).
 - Logo (`Logo sm`) · links `flex gap-8` (Only links `gap-6`) · actions Secondary `base` + Brand `base` (icons type: Ghost `sm` icon buttons, 36px avatar).
@@ -16,6 +16,7 @@ API: `<Navbar logo links actions search sticky size="base|compact">`; `NavLink` 
 - Breakpoint variants = responsive classes (`md:flex` links, `md:hidden` menu button).
 
 **Use** as the global site/app header. **Don't** exceed ~7 top-level links (use a mega menu or Sidebar), duplicate Sidebar navigation, or switch in-page views (Tabs).
+A11y: links sit in a `<nav>` with an `aria-label`; the current page has `aria-current="page"`; the mobile menu button has `aria-expanded` and `aria-controls`.
 
 ## Sidebar
 Figma: page `3279:34616` · sidebar `1149:82628` (Default, With alert, Double sidebar × Contracted) · item `1149:82699` (With icon, With badge × Initial/Hover-Active/Disabled/Collapsed) · header `1149:82737` (Heading, Logo, User select) · template `templates/components/Sidebar.tsx`
@@ -28,12 +29,14 @@ API: `<Sidebar header sections={[[{label,href,icon,current,disabled,badge}]]} fo
 - Double sidebar: icon rail (`py-5 gap-2`) + panel (`p-5 gap-5`) separated by `border-e border-default`; panel title `text-base font-semibold text-heading`, search `Input sm`.
 
 **Use** for app navigation with many destinations or nested sections. **Don't** on marketing sites (Navbar), as a permanent column on mobile (use Drawer), or for page-local filters.
+A11y: a `<nav>` with an `aria-label`; the current item has `aria-current="page"`; disabled items set `aria-disabled`; collapsed icon-only items still need an accessible name.
 
 ## Breadcrumb
 Figma: page `3284:24206` · set `1148:31317` (Default, Background, With dropdown, With group buttons, Only buttons, With badge) · item `1148:31348` (Initial/Hover/Active) · template `templates/components/Breadcrumb.tsx`
 API: `<Breadcrumb items={[{label, href, icon}]} variant="default|background">`; last item is the current page.
 `<nav aria-label="Breadcrumb"><ol class="flex items-center gap-2.5">`; item `inline-flex items-center gap-1.5 text-sm font-medium leading-5 text-body hover:text-fg-brand` (leading home icon `size-4`), separator chevron `size-4 text-body-subtle` `aria-hidden`; current page `text-body-subtle` + `aria-current="page"`. Background type: `rounded-base border border-default-medium bg-neutral-secondary-medium p-2.5 shadow-xs`. With dropdown / With badge: last crumb is a Secondary `xs` Button with chevron (badge: `Badge brand sm`). With group buttons: `ButtonGroup` (2 buttons). Only buttons: Ghost `xs` Buttons, `gap-1`.
 **Use** in hierarchies ≥ 3 levels deep. **Don't** as primary navigation, for linear flows (Stepper), or on top-level pages.
+A11y: a `<nav>` with an `aria-label` around an ordered list; the last item has `aria-current="page"`; separators are `aria-hidden`.
 
 ## Tabs
 Figma: page `3283:24214` · tabs `1149:80530` (7 types × Mobile) · tab `1149:80596` (Default, Pill, Border bottom, User select × Initial/Hover-Active) · template `templates/components/Tabs.tsx`
@@ -56,6 +59,7 @@ Figma: page `3284:22482` · set `1149:81850` (Two buttons, Default, Text buttons
 API: `<Pagination page pageCount onPageChange variant="default|arrows|two-buttons" helper>`.
 Built entirely from Buttons: a joined row of **Tertiary `sm`** buttons (`-space-x-px`, outer ends `rounded-base`, inner `rounded-none`, group `shadow-xs`); page numbers are 36px squares; the **current page uses the Tertiary Hover style** (`bg-neutral-secondary-medium text-heading`) + `aria-current="page"` (no Active variant in Figma, figma-audit.md #42); prev/next icon buttons (`text-heading`/`text-body`). Two buttons: separate Tertiary `sm` buttons `gap-3`. With dropdown / Dropdown & buttons: Secondary `sm` "Rows per page" select. With input / Simple with input: `Input sm` + `text-sm font-medium leading-none text-body` ("of 20") + Brand `sm` "Go". Helper text: "Showing **1–10** of **100**" `text-sm text-body`, numbers `font-semibold text-heading`.
 **Use** for large ordered datasets. **Don't** for feeds (infinite scroll / Load more) or a single page. Use Arrows/Two buttons when the total is unknown.
+A11y: a `<nav>` with an `aria-label`; the current page has `aria-current="page"`; previous and next icon buttons have `aria-label`s.
 
 ## BottomNavigation
 Figma: page `208:15901` · bar `1146:27386` (Bordered, Default, Action button, Pagination, Segment controls) · item `1146:27379` (Initial/Hover) · desktop `1146:27418` (Call, Media Player) · template `templates/components/BottomNavigation.tsx`
@@ -67,6 +71,7 @@ API: `<BottomNavigation items={[{label,href,icon,current}]} variant="default|bor
 - Desktop (Call / Media Player): `bg-neutral-primary-soft px-8 py-3 gap-8`, `text-sm text-body`, round 36px controls (danger "end call" `bg-danger text-white`), progress `Progress labelPosition="side"`.
 
 **Use** on mobile for 3–5 top-level destinations. **Don't** on desktop, with >5 items, or for actions (except one center action).
+A11y: a `<nav>` with an `aria-label`; the active item has `aria-current`; every item keeps a text label, never icon only.
 
 ## Stepper
 Figma: page `110:14549` · navigation `1149:84064` (Default, Only icons, Vertical, Icons & text, With dots, Cards × Mobile/Desktop) · step `1149:84155` (7 types × Initial/Active/Completed/Error/Disabled) · examples `1149:83977` · template `templates/components/Stepper.tsx`
@@ -83,3 +88,5 @@ API: `<Stepper steps={[{title,description,icon,status}]} current variant>`.
 
 Connectors: `h-px flex-1 bg-…` drawn as borders in Figma — Default `border-t border-default`, With dots `border-t-2`, Only icons / Icons & text `border-t-4`; spacing between steps `gap-4`–`gap-5`. Vertical: `flex-col` with `border-s border-default`. Examples place the stepper in a `rounded-base border border-default bg-neutral-secondary-soft` card with a step title `text-lg font-medium leading-none text-body` and Secondary + Brand `base` actions (`gap-8`/`gap-12`).
 **Use** for linear multi-step processes. **Don't** for non-linear navigation (Tabs) or >6 steps. Current step `aria-current="step"`.
+A11y: an ordered list; the current step has `aria-current`; completed steps are also stated in screen-reader text, not only with a check icon.
+

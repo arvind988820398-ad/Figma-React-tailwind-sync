@@ -37,6 +37,7 @@ API: `<Drawer open onOpenChange title footer placement="start|end|bottom" size="
 - Swipeable: handle `h-1.5 w-8 rounded-full bg-neutral-quaternary`, tiles `rounded-base border border-default-medium bg-neutral-secondary-medium p-4 gap-2.5` with `IconShape size="lg" color="white" shape="circle"`.
 
 **Use** for secondary tasks that keep page context: filters, details, create/edit forms, mobile navigation. **Don't** for quick confirmations (Modal), desktop primary navigation (Sidebar), or content that needs its own URL.
+A11y: a native `<dialog>` labelled by its title (`aria-labelledby`), so focus stays inside and Esc closes it; the close button has an `aria-label`; focus returns to the trigger.
 
 ## Dropdown
 Figma: page `3282:18862` · menu `1149:39895` (16 types) · item `1149:39651` (16 types × Initial/Hover/Disabled) · header `1149:39866` (5 types) · triggers `1149:40204` (6 types) · template `templates/components/Dropdown.tsx`
@@ -61,6 +62,7 @@ API: `<Popover trigger title placement padding="text|rich|none">`; `PopoverItem`
 - Vertical items: list of `px-3 py-2 gap-1.5 text-sm leading-none text-body` rows with `size-4` icons.
 
 **Use** for rich, interactive or longer content anchored to an element (profile cards, password rules, inline help with links). **Don't** for one-line labels (Tooltip), action menus (Dropdown), or content required to finish a task.
+A11y: the trigger has `aria-haspopup`, `aria-expanded` and `aria-controls`; the panel is `role="dialog"` labelled by its title.
 
 ## Tooltip
 Figma: page `3283:24170` · set `1149:93859` (Top/Bottom/Left/Right) · template `templates/components/Tooltip.tsx`

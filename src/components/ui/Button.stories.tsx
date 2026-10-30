@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { expect } from 'storybook/test';
 import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
 import { Button } from './Button';
 
@@ -52,4 +53,17 @@ export const AllSizes: Story = {
       ))}
     </div>
   ),
+};
+
+// Proves the preview loaded the real token CSS: a toVisible check would also pass unstyled.
+// Brand uses `bg-brand` → --adk-bg-brand → brand-700 #1447e6 and `rounded-base` (12px) in Modern light.
+export const CssCheck: Story = {
+  tags: ['ai-generated'],
+  args: { children: 'Submit' },
+  globals: { theme: 'modern', scheme: 'light' },
+  play: async ({ canvas }) => {
+    const button = canvas.getByRole('button', { name: /submit/i });
+    await expect(getComputedStyle(button).backgroundColor).toBe('rgb(20, 71, 230)'); // ad-design-kit-lint-ignore: asserts the resolved bg-brand value
+    await expect(getComputedStyle(button).borderTopLeftRadius).toBe('12px');
+  },
 };

@@ -1,0 +1,831 @@
+{
+ "$comment": "One-line purpose of every Figma component set. Source for the generated Figma descriptions (ad-design-kit-figma-sync/scripts/build-figma-descriptions.mjs). Edit the summary here, not in Figma.",
+ "sets": [
+  {
+   "node": "1146:15151",
+   "figmaName": "Alert",
+   "react": "Alert",
+   "role": "main",
+   "summary": "Alert — persistent, contextual message for a page or section (validation summary, account status, offline)."
+  },
+  {
+   "node": "1146:19028",
+   "figmaName": "Accordion",
+   "react": "Accordion",
+   "role": "main",
+   "summary": "Accordion — collapsible sections (Default, Flush, Separate cards, Multi-level, With sub-header)."
+  },
+  {
+   "node": "1146:21254",
+   "figmaName": "Banner",
+   "react": "Banner",
+   "role": "main",
+   "summary": "Banner — site-wide, dismissible announcement strip (promo, cookie notice, maintenance, newsletter)."
+  },
+  {
+   "node": "1146:22250",
+   "figmaName": "Badge",
+   "react": "Badge",
+   "role": "main",
+   "summary": "Badge — short status, category or count label (1–2 words)."
+  },
+  {
+   "node": "1146:24595",
+   "figmaName": "Download App Button",
+   "react": "DownloadAppButton",
+   "role": "main",
+   "summary": "Download App Button — App Store / Google Play badge link for marketing pages."
+  },
+  {
+   "node": "1146:24616",
+   "figmaName": "Button",
+   "react": "Button",
+   "role": "main",
+   "summary": "Button — triggers an action (submit, open overlay, start a flow)."
+  },
+  {
+   "node": "1146:27379",
+   "figmaName": "Bottom navigation (Buttons)",
+   "react": "BottomNavigation",
+   "role": "part",
+   "summary": "Bottom navigation item — icon + label destination (Initial, Hover/active)."
+  },
+  {
+   "node": "1146:27386",
+   "figmaName": "Bottom navigation",
+   "react": "BottomNavigation",
+   "role": "main",
+   "summary": "Bottom navigation — mobile bar for 3–5 top-level destinations (Bordered, Action button, Pagination, Segment controls)."
+  },
+  {
+   "node": "1146:27418",
+   "figmaName": "Bottom navigation (Desktop)",
+   "react": "BottomNavigation",
+   "role": "part",
+   "summary": "Bottom bar (desktop) — call and media-player control bars."
+  },
+  {
+   "node": "1149:31694",
+   "figmaName": "Group button",
+   "react": "ButtonGroup",
+   "role": "main",
+   "summary": "Button group — joined row of Secondary (Gray) or Tertiary (White) buttons for 2–5 related actions or a compact view switcher."
+  },
+  {
+   "node": "1149:31799",
+   "figmaName": "Group button examples",
+   "react": "ButtonGroup",
+   "role": "part",
+   "summary": "Button group examples — ready-made compositions (icons, numbers, plus & minus, with dropdown/badge, vertical)."
+  },
+  {
+   "node": "1148:31317",
+   "figmaName": "Breadcrumb",
+   "react": "Breadcrumb",
+   "role": "main",
+   "summary": "Breadcrumb — location in a hierarchy ≥3 levels deep (Default, Background, dropdown, group buttons, badge)."
+  },
+  {
+   "node": "1148:31348",
+   "figmaName": "Breadcrumb item",
+   "react": "Breadcrumb",
+   "role": "part",
+   "summary": "Breadcrumb item — link with optional icon and separator (Initial, Hover, Active = current page)."
+  },
+  {
+   "node": "1149:34153",
+   "figmaName": "Card",
+   "react": "Card",
+   "role": "main",
+   "summary": "Card — groups information about one entity (product, post, profile, plan, KPI); 15 layouts."
+  },
+  {
+   "node": "1149:35600",
+   "figmaName": "Bubble content",
+   "react": "ChatBubble",
+   "role": "part",
+   "summary": "Bubble content — text, file, audio, calendar, image grid, link preview."
+  },
+  {
+   "node": "1149:35687",
+   "figmaName": "Bubble",
+   "react": "ChatBubble",
+   "role": "part",
+   "summary": "Bubble — message container. Orientation=Right is used by received messages, Orientation=Left (brand-tinted) by sent messages; Clean = no fill."
+  },
+  {
+   "node": "1149:35720",
+   "figmaName": "Chat bubble",
+   "react": "ChatBubble",
+   "role": "main",
+   "summary": "Chat bubble — conversational message row with avatar (Text, File, Audio, Calendar, Images, URL × received Left / sent Right)."
+  },
+  {
+   "node": "1149:41738",
+   "figmaName": "Carousel",
+   "react": "Carousel",
+   "role": "main",
+   "summary": "Carousel — slides of equivalent visual items or testimonials."
+  },
+  {
+   "node": "1149:41774",
+   "figmaName": "Carousel control",
+   "react": "Carousel",
+   "role": "part",
+   "summary": "Carousel control — previous/next button on imagery (overlay-light fill)."
+  },
+  {
+   "node": "1149:41777",
+   "figmaName": "Carousel indicator",
+   "react": "Carousel",
+   "role": "part",
+   "summary": "Carousel indicator — slide dot (Initial, Active)."
+  },
+  {
+   "node": "1149:41354",
+   "figmaName": "Mockups",
+   "react": "DeviceMockup",
+   "role": "main",
+   "summary": "Device mockups — phone, tablet, laptop, desktop, watch frames for product screenshots on marketing pages."
+  },
+  {
+   "node": "1149:37097",
+   "figmaName": "Drawer",
+   "react": "Drawer",
+   "role": "main",
+   "summary": "Drawer — side or bottom panel for secondary tasks that keep page context (filters, details, create/edit forms, mobile navigation)."
+  },
+  {
+   "node": "1149:37184",
+   "figmaName": "Drawer heading",
+   "react": "Drawer",
+   "role": "part",
+   "summary": "Drawer heading — title row with close button (heading, logo, icon, avatar, user group, breadcrumb)."
+  },
+  {
+   "node": "1149:37232",
+   "figmaName": "Drawer footer",
+   "react": "Drawer",
+   "role": "part",
+   "summary": "Drawer footer — action row (two buttons, buttons & links, three buttons, confirm)."
+  },
+  {
+   "node": "1149:39651",
+   "figmaName": "Dropdown list item",
+   "react": "Dropdown",
+   "role": "part",
+   "summary": "Dropdown item — menu row (16 types × Initial/Hover/Disabled)."
+  },
+  {
+   "node": "1149:39866",
+   "figmaName": "Dropdown header",
+   "react": "Dropdown",
+   "role": "part",
+   "summary": "Dropdown header — user/info block at the top of a menu."
+  },
+  {
+   "node": "1149:39895",
+   "figmaName": "Dropdown menu",
+   "react": "Dropdown",
+   "role": "main",
+   "summary": "Dropdown menu — list of actions or options revealed from a trigger (16 layouts: profile, separators, radio/checkbox/toggle, users, scroll, grid, language)."
+  },
+  {
+   "node": "1149:40204",
+   "figmaName": "Dropdown (ready to use examples)",
+   "react": "Dropdown",
+   "role": "part",
+   "summary": "Dropdown triggers — Button, Ghost button, icon button, Avatar, Avatar & name, Link."
+  },
+  {
+   "node": "1149:46505",
+   "figmaName": "Input form",
+   "react": "Input",
+   "role": "part",
+   "summary": "Input form — Label + Input field + Helper stack (gap 10px)."
+  },
+  {
+   "node": "1149:46541",
+   "figmaName": "Select form",
+   "react": "Select",
+   "role": "main",
+   "summary": "Select form — choose one value from 5+ known options."
+  },
+  {
+   "node": "1149:46581",
+   "figmaName": "Search form",
+   "react": "SearchInput",
+   "role": "main",
+   "summary": "Search form — filter/search content (with search/filters buttons)."
+  },
+  {
+   "node": "1149:46630",
+   "figmaName": "Number form",
+   "react": "NumberInput",
+   "role": "main",
+   "summary": "Number form — small bounded integers with steppers (quantity, guests)."
+  },
+  {
+   "node": "1149:46719",
+   "figmaName": "Phone form",
+   "react": "PhoneInput",
+   "role": "main",
+   "summary": "Phone form — phone number with country dial-code selector."
+  },
+  {
+   "node": "1149:46768",
+   "figmaName": "Copy to clipboard form",
+   "react": "CopyInput",
+   "role": "main",
+   "summary": "Copy to clipboard form — read-only value with copy action (API keys, links, codes)."
+  },
+  {
+   "node": "1149:46826",
+   "figmaName": "Input field",
+   "react": "Input",
+   "role": "main",
+   "summary": "Input field — single-line text control (4 sizes, 7 states)."
+  },
+  {
+   "node": "1149:48972",
+   "figmaName": "File upload input",
+   "react": "FileUpload",
+   "role": "part",
+   "summary": "File upload — Default (single file in a form) or Advanced dropzone."
+  },
+  {
+   "node": "1149:48981",
+   "figmaName": "File upload input",
+   "react": "FileUpload",
+   "role": "main",
+   "summary": "File upload dropzone — multiple files / media; states Initial, Hover, Disabled, Success, Danger."
+  },
+  {
+   "node": "1149:49173",
+   "figmaName": "Tag input",
+   "react": "TagInput",
+   "role": "main",
+   "summary": "Tag input — free-form multiple values as chips (emails, keywords)."
+  },
+  {
+   "node": "1149:49523",
+   "figmaName": "OTP Inputs",
+   "react": "OtpInput",
+   "role": "main",
+   "summary": "OTP input box — one-time code digit (4 sizes, 7 states)."
+  },
+  {
+   "node": "1149:49576",
+   "figmaName": "OTP form examples",
+   "react": "OtpInput",
+   "role": "part",
+   "summary": "OTP form examples — 4–8 digit code entry with optional separators."
+  },
+  {
+   "node": "1149:49679",
+   "figmaName": "Textarea input",
+   "react": "Textarea",
+   "role": "main",
+   "summary": "Textarea — multi-line plain text (comments, descriptions); toolbar variants for chat/comments."
+  },
+  {
+   "node": "1149:49749",
+   "figmaName": "Rich text editor input",
+   "react": "RichTextEditor",
+   "role": "main",
+   "summary": "Rich text editor — multi-line text with formatting toolbar."
+  },
+  {
+   "node": "1149:50131",
+   "figmaName": "Textarea input ready to use examples",
+   "react": "Textarea",
+   "role": "part",
+   "summary": "Textarea examples — Label + Textarea + Helper compositions."
+  },
+  {
+   "node": "1149:94727",
+   "figmaName": "Label",
+   "react": "Label",
+   "role": "main",
+   "summary": "Label — form field label (required asterisk, info icon, hint)."
+  },
+  {
+   "node": "1149:94741",
+   "figmaName": "Helper",
+   "react": "HelperText",
+   "role": "main",
+   "summary": "Helper — helper/validation text under a field (12px)."
+  },
+  {
+   "node": "1149:50454",
+   "figmaName": "Floating label",
+   "react": "FloatingLabelInput",
+   "role": "main",
+   "summary": "Floating label input — label floats inside the field (Default/underline, With background/filled, Bordered/outlined)."
+  },
+  {
+   "node": "1149:51147",
+   "figmaName": "Datepicker cell",
+   "react": "Datepicker",
+   "role": "part",
+   "summary": "Datepicker cell — day/month/year cell (Initial, Hover, Active, range start/between/end, Outlined = today, Disabled)."
+  },
+  {
+   "node": "1149:51164",
+   "figmaName": "Datepicker controls",
+   "react": "Datepicker",
+   "role": "part",
+   "summary": "Datepicker controls — month/year header with previous/next buttons."
+  },
+  {
+   "node": "1149:51169",
+   "figmaName": "Datepicker dropdown menu",
+   "react": "Datepicker",
+   "role": "part",
+   "summary": "Datepicker menu — calendar popover (Default, Range, Year, Month, Day/Year/Month pickers)."
+  },
+  {
+   "node": "1149:51284",
+   "figmaName": "Datepicker (ready to use examples)",
+   "react": "Datepicker",
+   "role": "main",
+   "summary": "Datepicker — pick a date or range near \"now\" (bookings, due dates)."
+  },
+  {
+   "node": "1149:52243",
+   "figmaName": "Timepicker input",
+   "react": "Timepicker",
+   "role": "part",
+   "summary": "Timepicker input — time field with clock icon (add-on variants, 4 sizes, 7 states)."
+  },
+  {
+   "node": "1149:52636",
+   "figmaName": "Timepicker form",
+   "react": "Timepicker",
+   "role": "main",
+   "summary": "Timepicker — pick a time of day or a booking slot (single or range)."
+  },
+  {
+   "node": "1149:52665",
+   "figmaName": "Timepicker dropdown menus",
+   "react": "Timepicker",
+   "role": "part",
+   "summary": "Timepicker menu — slot list, time input, or slider popovers."
+  },
+  {
+   "node": "1149:53126",
+   "figmaName": "Autocomplete input (ready to use examples)",
+   "react": "Autocomplete",
+   "role": "main",
+   "summary": "Autocomplete — type to pick from a large or remote list (users, cities, tags)."
+  },
+  {
+   "node": "1149:53147",
+   "figmaName": "Autocomplete dropdown menu",
+   "react": "Autocomplete",
+   "role": "part",
+   "summary": "Autocomplete menu — suggestion listbox (Default, CTA, save option, advanced, categories)."
+  },
+  {
+   "node": "1149:53218",
+   "figmaName": "Autocomplete list item",
+   "react": "Autocomplete",
+   "role": "part",
+   "summary": "Autocomplete item — suggestion row (Initial, Hover, Disabled)."
+  },
+  {
+   "node": "1149:54340",
+   "figmaName": "Range Slider examples",
+   "react": "RangeSlider",
+   "role": "main",
+   "summary": "Range slider — approximate value(s) in a bounded range (price filter, volume)."
+  },
+  {
+   "node": "1149:54358",
+   "figmaName": "Range Slider helper",
+   "react": "RangeSlider",
+   "role": "part",
+   "summary": "Range slider helper — min/max labels."
+  },
+  {
+   "node": "1149:54365",
+   "figmaName": "Range Slider bars",
+   "react": "RangeSlider",
+   "role": "part",
+   "summary": "Range slider bar — track + filled range."
+  },
+  {
+   "node": "1149:54373",
+   "figmaName": "Range Slider thumb",
+   "react": "RangeSlider",
+   "role": "part",
+   "summary": "Range slider thumb — Initial / Active."
+  },
+  {
+   "node": "1149:54432",
+   "figmaName": "Toggle switches",
+   "react": "Toggle",
+   "role": "main",
+   "summary": "Toggle switch — binary setting that applies immediately (base, lg)."
+  },
+  {
+   "node": "1149:54457",
+   "figmaName": "Toggle inputs",
+   "react": "Toggle",
+   "role": "part",
+   "summary": "Toggle inputs — toggle with label/helper, icons, card and segmented-control layouts."
+  },
+  {
+   "node": "1149:54502",
+   "figmaName": "Label (toggle)",
+   "react": "Toggle",
+   "role": "part",
+   "summary": "Toggle label."
+  },
+  {
+   "node": "1149:54510",
+   "figmaName": "Helper (toggle)",
+   "react": "Toggle",
+   "role": "part",
+   "summary": "Toggle helper text."
+  },
+  {
+   "node": "1149:54513",
+   "figmaName": "Toggle group",
+   "react": "Toggle",
+   "role": "part",
+   "summary": "Toggle group — stacked settings list."
+  },
+  {
+   "node": "1149:54707",
+   "figmaName": "Checkbox input",
+   "react": "Checkbox",
+   "role": "main",
+   "summary": "Checkbox / Radio input — Checkbox for independent opt-ins and multi-select; Radio for one of 2–5 visible options."
+  },
+  {
+   "node": "1149:54726",
+   "figmaName": "Checkbox/Radio form",
+   "react": "ChoiceCard",
+   "role": "main",
+   "summary": "Checkbox / Radio form (choice cards) — options that need description or visuals (plans, payment, shipping). The whole card is the label."
+  },
+  {
+   "node": "1149:55022",
+   "figmaName": "Checkbox/Radio group",
+   "react": "ChoiceCard",
+   "role": "part",
+   "summary": "Checkbox / Radio group — stacked or grid groups of choices inside a fieldset with legend."
+  },
+  {
+   "node": "1149:55119",
+   "figmaName": "Label (checkbox&radio)",
+   "react": "Checkbox",
+   "role": "part",
+   "summary": "Checkbox / Radio label."
+  },
+  {
+   "node": "1149:55133",
+   "figmaName": "Helper (checkbox&radio)",
+   "react": "Checkbox",
+   "role": "part",
+   "summary": "Checkbox / Radio helper text."
+  },
+  {
+   "node": "1149:56037",
+   "figmaName": "Gallery",
+   "react": "Gallery",
+   "role": "main",
+   "summary": "Gallery — browsable image collection (grids, featured, carousel, filters, masonry)."
+  },
+  {
+   "node": "1149:56578",
+   "figmaName": "Icon Shape",
+   "react": "IconShape",
+   "role": "main",
+   "summary": "Icon shape — decorative coloured container for an icon (6 sizes × 7 colours × circle/square)."
+  },
+  {
+   "node": "1149:67227",
+   "figmaName": "Jumbotron",
+   "react": "Jumbotron",
+   "role": "main",
+   "summary": "Jumbotron — landing-page hero with one message and ≤2 CTAs (heading + CTA, background image, illustration, form, gradient, navbar, bento)."
+  },
+  {
+   "node": "1149:70209",
+   "figmaName": "List item",
+   "react": "List",
+   "role": "part",
+   "summary": "List item — 11 row types (icons, numbers, badges, images, transactions) × Initial/Hover/Disabled."
+  },
+  {
+   "node": "1149:70444",
+   "figmaName": "List",
+   "react": "List",
+   "role": "main",
+   "summary": "List — vertically stacked items with 1–3 attributes (Default, Divider, Card, CTA)."
+  },
+  {
+   "node": "1149:71305",
+   "figmaName": "Modal",
+   "react": "Modal",
+   "role": "main",
+   "summary": "Modal — blocking dialog for decisions or short focused tasks (confirm, sign in, short forms ≤6 fields)."
+  },
+  {
+   "node": "1149:71403",
+   "figmaName": "Modal header",
+   "react": "Modal",
+   "role": "part",
+   "summary": "Modal header — title row with close (icon, breadcrumb, avatars, logo, supporting text)."
+  },
+  {
+   "node": "1149:71444",
+   "figmaName": "Modal footer",
+   "react": "Modal",
+   "role": "part",
+   "summary": "Modal footer — actions row (buttons, buttons & links, three buttons, pagination)."
+  },
+  {
+   "node": "1149:74002",
+   "figmaName": "Nav link",
+   "react": "Navbar",
+   "role": "part",
+   "summary": "Nav link — navigation link (13 types × Initial/Hover/Active/Disabled)."
+  },
+  {
+   "node": "1149:74216",
+   "figmaName": "Navbar",
+   "react": "Navbar",
+   "role": "main",
+   "summary": "Navbar — global site/app header (logo, ≤7 links, search, actions); breakpoint variants are responsive layouts."
+  },
+  {
+   "node": "1149:74308",
+   "figmaName": "Navbar content",
+   "react": "Navbar",
+   "role": "part",
+   "summary": "Navbar content — inner layouts of the navbar row."
+  },
+  {
+   "node": "1149:74737",
+   "figmaName": "Megamenu (full-width)",
+   "react": "Navbar",
+   "role": "part",
+   "summary": "Mega menu (full width) — large navigation panel under the navbar."
+  },
+  {
+   "node": "1149:75228",
+   "figmaName": "Megamenu (fixed-width)",
+   "react": "Navbar",
+   "role": "part",
+   "summary": "Mega menu (fixed width) — dropdown navigation panel with icons, categories or CTA."
+  },
+  {
+   "node": "1149:75488",
+   "figmaName": "Mobile menu",
+   "react": "Navbar",
+   "role": "part",
+   "summary": "Mobile menu — navbar links, search and account actions on small screens."
+  },
+  {
+   "node": "1149:80530",
+   "figmaName": "Nav tabs",
+   "react": "Tabs",
+   "role": "main",
+   "summary": "Nav tabs — switch between peer views of the same context (Default, Pills, Button, Button group, Border bottom, Vertical)."
+  },
+  {
+   "node": "1149:80596",
+   "figmaName": "Nav item",
+   "react": "Tabs",
+   "role": "part",
+   "summary": "Nav item (tab) — single tab (Default, Pill, Border bottom, User select × Initial/Active)."
+  },
+  {
+   "node": "1149:81090",
+   "figmaName": "Popover",
+   "react": "Popover",
+   "role": "main",
+   "summary": "Popover — rich or interactive content anchored to an element (profile card, password rules, inline help)."
+  },
+  {
+   "node": "1149:81187",
+   "figmaName": "Popover content",
+   "react": "Popover",
+   "role": "part",
+   "summary": "Popover content — text, profiles, image, progress, password strength, paragraphs, CTA."
+  },
+  {
+   "node": "1149:81850",
+   "figmaName": "Pagination",
+   "react": "Pagination",
+   "role": "main",
+   "summary": "Pagination — navigate large ordered datasets (numbers, arrows, rows-per-page, jump-to input)."
+  },
+  {
+   "node": "1149:82279",
+   "figmaName": "Progress Bars",
+   "react": "Progress",
+   "role": "main",
+   "summary": "Progress — determinate progress with label (top, side, bottom) in 6 colours."
+  },
+  {
+   "node": "1149:82364",
+   "figmaName": "Bars",
+   "react": "Progress",
+   "role": "part",
+   "summary": "Progress bar track (base 6px, lg 10px)."
+  },
+  {
+   "node": "1149:82444",
+   "figmaName": "Rating",
+   "react": "Rating",
+   "role": "main",
+   "summary": "Rating — display aggregate stars or collect a 1–5 rating (radio input)."
+  },
+  {
+   "node": "1149:82628",
+   "figmaName": "Sidebar (Free component)",
+   "react": "Sidebar",
+   "role": "main",
+   "summary": "Sidebar — app navigation with many destinations or nested sections (Default, With alert, Double; collapsible)."
+  },
+  {
+   "node": "1149:82699",
+   "figmaName": "Navigation list item",
+   "react": "Sidebar",
+   "role": "part",
+   "summary": "Sidebar item — icon + label link with optional badge (Initial, Hover/Active, Disabled, Collapsed group)."
+  },
+  {
+   "node": "1149:82737",
+   "figmaName": "Sidebar header",
+   "react": "Sidebar",
+   "role": "part",
+   "summary": "Sidebar header — logo, heading or user select."
+  },
+  {
+   "node": "1149:83298",
+   "figmaName": "Interactive-spinner",
+   "react": "Spinner",
+   "role": "part",
+   "summary": "Interactive spinner — animation frames for prototypes."
+  },
+  {
+   "node": "1149:83311",
+   "figmaName": "Spinner",
+   "react": "Spinner",
+   "role": "main",
+   "summary": "Spinner — indeterminate loading indicator (xs 12, sm 24, md 50, lg 75, xl 100; optional track)."
+  },
+  {
+   "node": "1149:84847",
+   "figmaName": "Speed dial (ready to use examples)",
+   "react": "SpeedDial",
+   "role": "main",
+   "summary": "Speed dial — floating action button revealing 3–6 creation actions (vertical, horizontal, menu)."
+  },
+  {
+   "node": "1149:84896",
+   "figmaName": "Speed dial (navigation link)",
+   "react": "SpeedDial",
+   "role": "part",
+   "summary": "Speed dial item — action button with icon/label (Initial, Hover, Disabled; square or round)."
+  },
+  {
+   "node": "1149:84972",
+   "figmaName": "Speed dial (menus)",
+   "react": "SpeedDial",
+   "role": "part",
+   "summary": "Speed dial menus — vertical, horizontal, or dropdown list of actions."
+  },
+  {
+   "node": "1149:84989",
+   "figmaName": "Interactive speed dial",
+   "react": "SpeedDial",
+   "role": "part",
+   "summary": "Interactive speed dial — prototype flow."
+  },
+  {
+   "node": "1149:85017",
+   "figmaName": "Interactive speed dial",
+   "react": "SpeedDial",
+   "role": "part",
+   "summary": "Interactive speed dial — prototype flow."
+  },
+  {
+   "node": "1149:85600",
+   "figmaName": "Skeleton",
+   "react": "Skeleton",
+   "role": "main",
+   "summary": "Skeleton — loading placeholder matching the final layout (card, image + text, text, list, widget)."
+  },
+  {
+   "node": "1149:83977",
+   "figmaName": "Stepper examples",
+   "react": "Stepper",
+   "role": "part",
+   "summary": "Stepper examples — stepper inside a card with step content and actions."
+  },
+  {
+   "node": "1149:84064",
+   "figmaName": "Stepper navigation",
+   "react": "Stepper",
+   "role": "main",
+   "summary": "Stepper — progress through a linear multi-step process (default, icons, dots, vertical, cards)."
+  },
+  {
+   "node": "1149:84155",
+   "figmaName": "Stepper nav link",
+   "react": "Stepper",
+   "role": "part",
+   "summary": "Stepper step — 7 types × Initial/Active/Completed/Error/Disabled."
+  },
+  {
+   "node": "1149:87477",
+   "figmaName": "Table (free-component)",
+   "react": "Table",
+   "role": "main",
+   "summary": "Table — structured data to compare, sort or act on (striped rows/columns, caption, toolbar, status badges, row actions)."
+  },
+  {
+   "node": "1149:91248",
+   "figmaName": "Timeline dots",
+   "react": "Timeline",
+   "role": "part",
+   "summary": "Timeline dot — ellipse, icon or avatar marker."
+  },
+  {
+   "node": "1149:91254",
+   "figmaName": "Timeline",
+   "react": "Timeline",
+   "role": "main",
+   "summary": "Timeline — chronological events or activity (vertical, cards, user actions, stacked, horizontal)."
+  },
+  {
+   "node": "1149:91357",
+   "figmaName": "Timeline Item",
+   "react": "Timeline",
+   "role": "part",
+   "summary": "Timeline item — event content (text & button, card, user actions, stacked cards, horizontal)."
+  },
+  {
+   "node": "1149:92754",
+   "figmaName": "KBD",
+   "react": "Kbd",
+   "role": "main",
+   "summary": "KBD — keyboard key for shortcuts in tooltips, menus and docs."
+  },
+  {
+   "node": "1149:93859",
+   "figmaName": "Tooltip",
+   "react": "Tooltip",
+   "role": "main",
+   "summary": "Tooltip — short (≤8 words) label on hover and focus (top, bottom, left, right)."
+  },
+  {
+   "node": "1149:93975",
+   "figmaName": "Toast",
+   "react": "Toast",
+   "role": "main",
+   "summary": "Toast — brief, non-blocking feedback about an action just taken (auto-dismiss 4–6s)."
+  },
+  {
+   "node": "1146:5178",
+   "figmaName": "Avatar",
+   "react": "Avatar",
+   "role": "main",
+   "summary": "Avatar — person or organisation picture or initials (6 sizes; status dot; remove button; placeholder)."
+  },
+  {
+   "node": "1146:5549",
+   "figmaName": "Avatar group",
+   "react": "Avatar",
+   "role": "part",
+   "summary": "Avatar group — overlapping avatars with an optional counter."
+  },
+  {
+   "node": "1146:5592",
+   "figmaName": "Avatar group label",
+   "react": "Avatar",
+   "role": "part",
+   "summary": "Avatar label — name and helper text next to an avatar."
+  },
+  {
+   "node": "1146:5625",
+   "figmaName": "Avatar dot",
+   "react": "Avatar",
+   "role": "part",
+   "summary": "Avatar status dot — online, offline, away."
+  },
+  {
+   "node": "1146:5641",
+   "figmaName": "Avatar remove button",
+   "react": "Avatar",
+   "role": "part",
+   "summary": "Avatar remove button."
+  }
+ ]
+}

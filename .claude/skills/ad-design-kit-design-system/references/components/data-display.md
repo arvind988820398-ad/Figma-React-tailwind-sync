@@ -27,6 +27,7 @@ Shell for every type: `rounded-base border border-default bg-neutral-primary-sof
 
 Mobile Version = the same content stacked at mobile width (responsive classes, not a prop).
 **Use** to group information about one entity (products, posts, profiles, plans, KPIs). **Don't** wrap every section in a card, nest cards, or put cards inside a Modal. Whole-card links: one stretched `<a>`, no nested interactive elements.
+A11y: a plain container, so give its title a real heading; if the whole card is clickable, use one stretched link, never nested links or buttons.
 
 ## Accordion
 Figma: page `3282:18777` · set `1146:19028` (Default, Flush, Separate Cards, Multi-level, With sub-header × Desktop/Mobile) · template `templates/components/Accordion.tsx`
@@ -40,6 +41,7 @@ API: `<Accordion items={[{value,title,content,icon,subtitle,items}]} variant mul
 - With sub-header: 36px leading icon, sub-text `text-sm text-body`.
 
 **Use** for FAQs, long settings, progressive disclosure. **Don't** hide content users must compare or read, nest >2 levels, or use as page navigation. Triggers are `<button aria-expanded aria-controls>`.
+A11y: each header is a `<button>` with `aria-expanded` and `aria-controls`; each panel is a `role="region"` labelled by its header.
 
 ## Avatar
 Figma: page `3197:21106` · avatar `1146:5178` (4 types × 13 users × 6 sizes) · group `1146:5549` · group label `1146:5592` · dot `1146:5625` · remove `1146:5641` · template `templates/components/Avatar.tsx`
@@ -54,6 +56,7 @@ Image `rounded-full object-cover`; placeholder `bg-neutral-tertiary text-body fo
 Group: overlap `-space-x-4` (lg) / `-space-x-3.5` (base) / `-space-x-2` (sm); ring `border-2 border-buffer` (sm: `border`); counter `bg-neutral-quaternary text-body font-medium` (`text-sm` lg, `text-xs` base, `text-xxs` sm).
 Group label (name + helper): sm `text-xs font-medium leading-4 text-heading` / `text-xs text-body`, `gap-1.5`; base `text-base font-medium leading-none` / `text-sm leading-none text-body`, `gap-2`; lg `text-base` / `text-base`, `gap-2.5`; xl `text-xl` / `text-lg`, `gap-2.5`.
 **Use** for people and organizations. **Don't** for generic icons (IconShape) or brand logos in content. Provide `alt` or `aria-hidden` when the name is adjacent.
+A11y: image avatars are `role="img"` with the person's name as `aria-label`; status dots have screen-reader text; an avatar next to the visible name can be decorative.
 
 ## IconShape
 Figma: page `1149:56577` · set `1149:56578` (6 sizes × 7 colors × Circle/Square) · template `templates/components/IconShape.tsx`
@@ -64,6 +67,7 @@ Figma: page `1149:56577` · set `1149:56578` (6 sizes × 7 colors × Circle/Squa
 | Icon | `size-2.5` | `size-4` | `size-5` | `size-7` | `size-9` | `size-14` |
 Square `rounded-base`, circle `rounded-full`. Colors: brand `bg-brand-softer text-fg-brand` · success (Green) `bg-success-soft text-fg-success-strong` · danger (Red) `bg-danger-soft text-fg-danger-strong` · warning (Yellow) `bg-warning-soft text-fg-warning` · gray `bg-neutral-tertiary text-body` · dark `bg-dark text-white` · white `bg-neutral-primary-medium border border-default-medium text-body`.
 **Use** as a decorative container for icons (feature lists, toasts, steppers, empty states). **Don't** as a button or for people. `aria-hidden`.
+A11y: decorative (`aria-hidden`), so its meaning must also be in nearby text.
 
 ## List
 Figma: page `3284:24113` · list `1149:70444` (Divider, Card, Default, CTA) · item `1149:70209` (11 types × Initial/Hover-Active/Disabled) · template `templates/components/List.tsx`
@@ -75,6 +79,7 @@ API: `<List variant="default|divider|cta">` + `<ListItem icon media description 
 - Card item (CTA list): `rounded-base border border-default bg-neutral-secondary-soft p-4 gap-6`, title `text-base font-semibold leading-4 text-heading`, helper `text-sm text-body`, trailing chevron `text-body-subtle`.
 
 **Use** for stacked items with 1–3 attributes. **Don't** for comparable multi-column data (Table) or media-rich blocks (Card grid). Use `<ul>/<li>`.
+A11y: a semantic `<ul>`; interactive rows are focusable and disabled rows set `aria-disabled`; icons are `aria-hidden`.
 
 ## Table
 Figma: page `3284:22719` · set `1149:87477` (Striped columns, Striped rows, With table caption) · template `templates/components/Table.tsx`
@@ -88,6 +93,7 @@ API: `<Table striped="rows|columns" caption toolbar stickyHeader containerClassN
 - Status: `Badge size="sm"` success/warning/danger. Row actions: Tertiary `xs` + Danger `xs` Buttons.
 
 **Use** for data users compare, sort or act on across rows. **Don't** for layout, ≤2 attributes (List), or narrow screens without a responsive strategy. `<th scope>`; sortable headers are buttons with `aria-sort`.
+A11y: a real `<table>` with `<th>` headers; give it a caption or `aria-label`; row-selection checkboxes need labels naming the row; sortable headers should set `aria-sort`.
 
 ## Timeline
 Figma: page `1149:91247` · timeline `1149:91254` (Default, Icons & Card, User actions, Stacked cards, Horizontal, Horizontal advanced × Desktop/Mobile) · item `1149:91357` (6 types) · dot `1149:91248` (Ellipse, Icon, Avatar) · template `templates/components/Timeline.tsx`
@@ -100,6 +106,7 @@ API: `<Timeline items={[{date,title,description,icon,avatar,actions}]} variant="
 - Horizontal: `border-t border-default pt-5 flex gap-11`; small items: title `text-lg font-semibold`, link `text-sm font-medium text-fg-brand`.
 
 **Use** for chronological events or activity history. **Don't** for steps the user must complete (Stepper) or unordered lists.
+A11y: an ordered list in time order; dots and icons are `aria-hidden`, so dates and events must be in text.
 
 ## ChatBubble
 Figma: page `380:18014` · chat bubble `1149:35720` (Text, File, Audio, Calendar, Images, URL × Left/Right) · bubble `1149:35687` (Left/Right × Clean) · content `1149:35600` (7 types) · template `templates/components/ChatBubble.tsx`
@@ -109,15 +116,19 @@ API: `<ChatBubble direction="received|sent" name time avatar status menu clean>`
 - Content types: File (`text-sm font-medium text-heading` + `text-xs text-body`, file icon `text-heading`), Audio (play button, waveform bars `rounded-full bg-gray`, active `bg-brand`), Calendar (event card `rounded-base border border-default bg-neutral-primary-soft p-2`, highlighted `bg-warning-soft text-fg-warning`), Images (`rounded-base`, overflow tile `bg-overlay-dark` + `text-xl font-medium text-white`), Link preview (`rounded-base bg-neutral-secondary-strong p-4`, title `text-heading`, url `text-xs text-body-subtle`, link `text-fg-brand`).
 
 **Use** for conversational UIs. **Don't** for threaded comments/forums (List + Avatars) or notifications.
+A11y: sender and time are visible text; action buttons have `aria-label`s; decorative icons are `aria-hidden`.
 
 ## Carousel
 Figma: page `3284:23924` · carousel `1149:41738` (Default, Default with controls & indicators, With cards, Cards & bottom controls) · control `1149:41774` · indicator `1149:41777` · template `templates/components/Carousel.tsx`
 API: `<Carousel label variant="slides|cards" controls indicators>{slides}</Carousel>`.
 Viewport `relative overflow-hidden rounded-base` (placeholder `bg-gray`); controls `size-11 rounded-full bg-overlay-light text-white` with `size-7` icons, `px-8` from the edges; indicators `size-3.5 rounded-full bg-overlay-light`, active `bg-white`. Card carousels: Cards `gap-8`, bottom controls as 40px white-icon buttons.
 **Use** sparingly for galleries of equivalent visual items or testimonials. **Don't** hide important content in later slides, auto-advance without pause, or use as the key hero message.
+A11y: a group with `aria-roledescription="carousel"`; previous, next and indicator buttons have `aria-label`s and the active indicator has `aria-current`; slide changes are announced through `aria-live`; never autoplay without a pause control.
 
 ## Kbd
 Figma: page `13693:81938` · set `1149:92754` (49 keys) · template `templates/components/Kbd.tsx`
 API: `<Kbd>⌘</Kbd>`.
 `<kbd class="inline-flex items-center gap-2.5 rounded-base border border-default-medium bg-neutral-tertiary px-2 py-1.5 text-xs font-semibold leading-4 text-heading">` (arrow keys: icon `size-4`).
 **Use** to show keyboard shortcuts in tooltips, menus, docs. **Don't** for generic code (`<code>`) or as a button.
+A11y: uses the semantic `<kbd>` element; spell out key names that could be ambiguous.
+

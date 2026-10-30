@@ -1,8 +1,7 @@
 // AD Design Kit Navbar — Figma set "Navbar" (node 1149:74216, page 3279:21067), nav link 1149:74002, mobile menu 1149:75488.
 // Breakpoint variants are responsive classes: links show from md, the menu button below md.
-// `size="compact"` (py-1, 44px tall with sm controls) is a code addition for dense app shells; Figma has only the
-// py-6 bar — see figma-audit.md "Code ahead of Figma" until a Compact variant is added to the set.
-// `fluid` drops the centered max-w-screen-xl container so an app shell's bar spans the full width (also code-ahead).
+// Size: base = py-6 bar (Figma Size=Default); compact = py-1, 44px tall with sm controls (Figma Size=Compact).
+// `fluid` drops the centered max-w-screen-xl container so the bar spans an app shell (Figma Width=Fluid).
 import { useId, useState, type AnchorHTMLAttributes, type ReactNode } from 'react';
 import { cn } from '../../lib/cn';
 

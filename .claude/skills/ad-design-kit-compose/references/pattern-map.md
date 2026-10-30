@@ -10,7 +10,7 @@ Use this after reading the registry (`ad-design-kit-design-system/references/com
 | Icon-only left rail (Slack, Linear, Figma) | `Sidebar collapsed` | Near-miss: do not hand-roll a narrower rail; labels become tooltips |
 | Full sidebar with sections and badges | `Sidebar` with `sections`, `header`, `footer` | Active item via `current` |
 | Site-level links inside the header bar itself (Product · Pricing · Docs) | `Navbar links` (`NavLink` with `current`), up to ~7 | Beyond that the Navbar doc sends you to a mega menu or `Sidebar` |
-| Row of nav tabs directly under the header (Material List · Indent · GRN …) | `Tabs variant="underline"` — the Figma set is "Nav tabs" | Place it as the next sibling of the `Navbar`, inside the same `mx-auto max-w-screen-xl px-4` container; never in a padded or shadowed band of its own |
+| Row of nav tabs directly under the header (Overview · Orders · Reports …) | `Tabs variant="underline"` — the Figma set is "Nav tabs" | Place it as the next sibling of the `Navbar`, inside the same `mx-auto max-w-screen-xl px-4` container; never in a padded or shadowed band of its own |
 | Tabs that switch views of the same record or page (Overview · Activity · Files) | `Tabs variant="underline"` or `pills` | Inside the page content |
 | Segmented control / view switcher | `Tabs variant="segmented"` or `ButtonGroup` | `Tabs` when it switches panels (ARIA), `ButtonGroup` for actions |
 | Breadcrumbs | `Breadcrumb` (`items`, `variant="background"`) | |

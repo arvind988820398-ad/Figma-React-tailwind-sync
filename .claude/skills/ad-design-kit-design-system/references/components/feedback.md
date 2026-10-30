@@ -56,25 +56,31 @@ Figma: page `3283:24168` · set `1146:22250` (6 colors × 2 sizes × 5 types × 
 
 Recipe: `inline-flex items-center rounded-sm border font-medium` · sm `gap-1 px-1 py-0.5 text-xs leading-4` (icon `size-3`) · lg `gap-1.5 px-1.5 py-1 text-sm leading-4` (icon `size-3.5`) · round `rounded-full p-0 size-5|6 text-xs`. Colors: gray `bg-neutral-secondary border-default-medium text-heading` · white `bg-neutral-primary-soft border-default text-heading` · brand `bg-brand-softer border-brand-subtle text-fg-brand-strong` · success `bg-success-soft border-success-subtle text-fg-success-strong` · warning `bg-warning-soft border-warning-subtle text-fg-warning` · danger `bg-danger-soft border-danger-subtle text-fg-danger-strong`.
 **Use** for 1–2 word status, category, count or "New". **Don't** as a clickable action, for sentences, or more than 2–3 per row.
+A11y: plain text, so the label must make sense on its own ("3 unread", not "3"); never show status with colour alone.
 
 ## Progress
 Figma: page `3283:24173` · labelled `1149:82279` (6 colors × Top/Side/Bottom label) · bars `1149:82364` (base/lg × 25–100) · template `templates/components/Progress.tsx`
 Track `w-full rounded-base bg-neutral-quaternary` — `h-1.5` (base) / `h-2.5` (lg); fill `rounded-base` + `bg-brand` (Figma "Primary") · `bg-gray` · `bg-dark` · `bg-success` · `bg-danger` · `bg-warning`. Labels: `text-xs font-medium leading-4 text-body` for both the label and the value, `gap-1.5` to the bar (side label: same, inline).
 **Use** for determinate progress (uploads, completion, quotas). **Don't** for unknown durations (Spinner/Skeleton) or ratings. `role="progressbar"` + `aria-valuenow/min/max`.
+A11y: `role="progressbar"` with `aria-valuemin`, `aria-valuemax` and `aria-valuenow`; give it a visible label or an `aria-label`.
 
 ## Spinner
 Figma: page `3284:24046` · set `1149:83311` (xs 12 · sm 24 · md 50 · lg 75 · xl 100 × Track) · interactive `1149:83298` · template `templates/components/Spinner.tsx`
 SVG `animate-spin`: track `fill-neutral-quaternary` (omit when `track={false}`), arc `fill-brand`. Sizes: `xs size-3` · `sm size-6` · `md size-12.5` · `lg size-18.75` · `xl size-25`. In buttons use `xs`/`sm`.
 **Use** for short waits where layout is unknown, or in-button loading. **Don't** for known layouts (Skeleton) or known progress (Progress). `role="status"` + sr-only label.
+A11y: `role="status"` with screen-reader text ("Loading"); inside a button, also set `aria-busy` and `disabled` on the button.
 
 ## Skeleton
 Figma: page `13251:80911` · set `1149:85600` (Card + Image, Image + Text, Text, List, Simple text, Widget) · template `templates/components/Skeleton.tsx`
 API: `<Skeleton type="text|simple-text|image|card|list|widget">`; primitives `SkeletonLine`, `SkeletonMedia`.
 Lines `h-2 rounded-full` — primary line `bg-gray`, secondary/meta line `bg-neutral-quaternary` (lines vary in width: full, ~85%, ~60%, ~25%). Media block `rounded-lg bg-gray` with a centered placeholder icon `fill-neutral-quaternary` (`size-5`). Lists: rows `py-2.5` with a short `bg-gray` title, `bg-neutral-quaternary` subtitle and a right-aligned value. Wrap in `animate-pulse`.
 **Use** while loading content of known layout. **Don't** for button loading, waits >3s without progress, or a layout different from the loaded content. `aria-busy="true"` + sr-only "Loading".
+A11y: the placeholder is `role="status"` with `aria-busy` and screen-reader text; the shapes themselves are `aria-hidden`.
 
 ## Rating
 Figma: page `1149:82443` · set `1149:82444` (Default, With badge, Radio input) · template `templates/components/Rating.tsx`
 API: `<Rating value max label badge>` (display) · `<RatingInput value onChange label>` (radio group).
 Stars `size-4.5 fill-fg-yellow` (empty: `fill-neutral-quaternary`), `gap-2` to the text; score text `text-sm leading-none text-body`; "With badge" prepends `Badge color="brand" size="sm"`; "Radio input" = row of `ChoiceCard` "Only text" circles (`gap-4`, text `text-sm text-heading`).
 **Use** to display aggregate ratings or collect a 1–5 rating (radio group). **Don't** for continuous scores; don't make display-only stars look interactive.
+A11y: a read-only rating is `role="img"` with an `aria-label` such as "4 out of 5"; an editable rating is radio inputs in a `fieldset` with a `legend`.
+
