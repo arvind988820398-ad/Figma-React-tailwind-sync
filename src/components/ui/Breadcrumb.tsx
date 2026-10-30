@@ -1,4 +1,4 @@
-// AuxoKit Breadcrumb — Figma set "Breadcrumb" (node 1148:31317, page 3284:24206), item 1148:31348.
+// AD Design Kit Breadcrumb — Figma set "Breadcrumb" (node 1148:31317, page 3284:24206), item 1148:31348.
 // The last item is the current page. "With dropdown/badge/group buttons" types: pass a Button or Badge as the last `label`.
 import type { HTMLAttributes, ReactNode } from 'react';
 import { cn } from '../../lib/cn';

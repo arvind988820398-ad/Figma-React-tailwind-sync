@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { figmaDesign } from '../../../.storybook/auxokit/figma';
+import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
 import { Button } from './Button';
 import { HelperText, Label } from './Input';
 import { Textarea, TextareaToolButton } from './Textarea';
 import { CogIcon, PlusIcon } from '../icons';
 
-// AuxoKit Textarea — mirrors the Figma "Textarea input" set (node 1149:49679), examples 1149:50131.
+// AD Design Kit Textarea — mirrors the Figma "Textarea input" set (node 1149:49679), examples 1149:50131.
 const meta = {
   title: 'Components/Textarea',
   parameters: { design: figmaDesign('Textarea') },

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { MaterialsApp } from './MaterialsApp';
 import { SAMPLE_MATERIALS } from './types';
 
-// Full application example built from AuxoKit components (Figma "Material - powerplay", section 3073:26924).
+// Full application example built from AD Design Kit components (Figma "Material - powerplay", section 3073:26924).
 // The shell is pinned to the Modern theme, so the Theme toolbar does not change it; the Scheme toolbar still does.
 const meta = {
   title: 'Examples/Materials app',

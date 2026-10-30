@@ -61,7 +61,7 @@ const Logo = () => (
     <IconShape size="sm" color="brand">
       <CogIcon />
     </IconShape>
-    <span className="text-lg font-semibold text-heading">AuxoKit</span>
+    <span className="text-lg font-semibold text-heading">AD Design Kit</span>
   </span>
 )
 
@@ -122,7 +122,7 @@ function DropdownDemos() {
             </Button>
           }
         >
-          <DropdownHeader name="Ada Lovelace" email="ada@auxokit.dev" />
+          <DropdownHeader name="Ada Lovelace" email="ada@ad-design-kit.dev" />
           <DropdownItem>Dashboard</DropdownItem>
           <DropdownItem trailing={<Badge color="white" size="sm">3</Badge>}>Notifications</DropdownItem>
           <DropdownItem description="Billing and invoices">Plan</DropdownItem>
@@ -523,10 +523,10 @@ export default function MoreSections() {
       <Section id="breadcrumb" title="Breadcrumb" figma={figma.breadcrumb} note="The last crumb is the current page (aria-current). Use for hierarchies 3+ levels deep.">
         <div className="flex flex-col gap-4 rounded-base border border-default bg-neutral-primary-soft p-5">
           <Labeled label='variant="default"'>
-            <Breadcrumb items={[{ label: 'Home', href: '#breadcrumb', icon: <HomeIcon /> }, { label: 'Projects', href: '#breadcrumb' }, { label: 'AuxoKit' }]} />
+            <Breadcrumb items={[{ label: 'Home', href: '#breadcrumb', icon: <HomeIcon /> }, { label: 'Projects', href: '#breadcrumb' }, { label: 'AD Design Kit' }]} />
           </Labeled>
           <Labeled label='variant="background"'>
-            <Breadcrumb variant="background" items={[{ label: 'Home', href: '#breadcrumb', icon: <HomeIcon /> }, { label: 'Projects', href: '#breadcrumb' }, { label: 'AuxoKit' }]} />
+            <Breadcrumb variant="background" items={[{ label: 'Home', href: '#breadcrumb', icon: <HomeIcon /> }, { label: 'Projects', href: '#breadcrumb' }, { label: 'AD Design Kit' }]} />
           </Labeled>
           <Labeled label="With badge">
             <Breadcrumb items={[{ label: 'Home', href: '#breadcrumb', icon: <HomeIcon /> }, { label: 'Releases', href: '#breadcrumb' }, { label: <Badge color="brand" size="sm">v2.0</Badge> }]} />
@@ -538,8 +538,8 @@ export default function MoreSections() {
                 { label: 'Projects', href: '#breadcrumb' },
                 {
                   label: (
-                    <Dropdown label="Projects" trigger={<Button size="xs" color="secondary" rightIcon={<ChevronDown />}>AuxoKit</Button>}>
-                      <DropdownItem>AuxoKit</DropdownItem>
+                    <Dropdown label="Projects" trigger={<Button size="xs" color="secondary" rightIcon={<ChevronDown />}>AD Design Kit</Button>}>
+                      <DropdownItem>AD Design Kit</DropdownItem>
                       <DropdownItem>Marketing site</DropdownItem>
                       <DropdownItem>Mobile app</DropdownItem>
                     </Dropdown>

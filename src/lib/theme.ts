@@ -1,11 +1,11 @@
-// AuxoKit themes map to the Figma "Themes" collection modes. Tokens switch automatically;
+// AD Design Kit themes map to the Figma "Themes" collection modes. Tokens switch automatically;
 // never branch color classes on the theme in TS.
 export const themes = ['modern', 'minimal', 'enterprise', 'mono'] as const;
-export type AuxoTheme = (typeof themes)[number];
+export type ADDesignKitTheme = (typeof themes)[number];
 
-const STORAGE_KEY = 'auxokit-theme';
+const STORAGE_KEY = 'ad-design-kit-theme';
 
-export function setTheme(theme: AuxoTheme, dark: boolean) {
+export function setTheme(theme: ADDesignKitTheme, dark: boolean) {
   const el = document.documentElement;
   el.dataset.theme = theme;
   el.classList.toggle('dark', dark);
@@ -16,7 +16,7 @@ export function setTheme(theme: AuxoTheme, dark: boolean) {
   }
 }
 
-export function loadTheme(): { theme: AuxoTheme; dark: boolean } {
+export function loadTheme(): { theme: ADDesignKitTheme; dark: boolean } {
   try {
     const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) ?? 'null');
     if (saved && themes.includes(saved.theme)) return { theme: saved.theme, dark: !!saved.dark };

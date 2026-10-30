@@ -181,7 +181,7 @@ function PhoneDemo() {
 
 function TagDemo() {
   const [tags, setTags] = useState(['design', 'tokens'])
-  const [emails, setEmails] = useState(['ada@auxokit.dev'])
+  const [emails, setEmails] = useState(['ada@ad-design-kit.dev'])
   return (
     <>
       <Group title="size">
@@ -321,7 +321,7 @@ export default function InputSections() {
         <div className="grid gap-6 rounded-base border border-default bg-neutral-primary-soft p-5 md:grid-cols-3">
           {(['joined', 'inner', 'icon'] as CopyInputVariant[]).map((v) => (
             <Labeled key={v} label={`variant="${v}"`}>
-              <CopyInput className="w-full" variant={v} value="npm install auxokit" aria-label={`Install command (${v})`} />
+              <CopyInput className="w-full" variant={v} value="npm install ad-design-kit" aria-label={`Install command (${v})`} />
             </Labeled>
           ))}
         </div>
@@ -348,7 +348,7 @@ export default function InputSections() {
                   variant={variant}
                   size={size}
                   label="Email"
-                  defaultValue={state === 'Initial' || state === 'Disabled' ? undefined : 'ada@auxokit.dev'}
+                  defaultValue={state === 'Initial' || state === 'Disabled' ? undefined : 'ada@ad-design-kit.dev'}
                   disabled={state === 'Disabled'}
                   readOnly={state === 'Read only'}
                   status={state === 'Success' ? 'success' : state === 'Danger' ? 'danger' : undefined}

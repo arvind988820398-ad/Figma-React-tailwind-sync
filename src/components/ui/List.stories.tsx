@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { figmaDesign } from '../../../.storybook/auxokit/figma';
+import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
 import { CheckIcon, CogIcon, MailIcon, PlusIcon } from '../icons';
 import { Avatar } from './Avatar';
 import { Badge } from './Badge';
@@ -8,7 +8,7 @@ import { Card } from './Card';
 import { IconShape } from './IconShape';
 import { List, ListItem } from './List';
 
-// AuxoKit List — mirrors the Figma "List" set (node 1149:70444).
+// AD Design Kit List — mirrors the Figma "List" set (node 1149:70444).
 const meta = {
   title: 'Components/List',
   parameters: { design: figmaDesign('List') },
@@ -51,12 +51,12 @@ export const Divider: Story = {
   args: { variant: 'divider' },
   render: (args) => (
     <List {...args} className="w-80">
-      <ListItem media={<Avatar name="Ada Lovelace" size="base" />} description="ada@auxokit.dev" trailing="$320">
+      <ListItem media={<Avatar name="Ada Lovelace" size="base" />} description="ada@ad-design-kit.dev" trailing="$320">
         Ada Lovelace
       </ListItem>
       <ListItem
         media={<Avatar name="Grace Hopper" size="base" />}
-        description="grace@auxokit.dev"
+        description="grace@ad-design-kit.dev"
         trailing={
           <Badge color="success" size="sm">
             Paid
@@ -67,7 +67,7 @@ export const Divider: Story = {
       </ListItem>
       <ListItem
         media={<Avatar name="Alan Turing" size="base" />}
-        description="alan@auxokit.dev"
+        description="alan@ad-design-kit.dev"
         trailing={
           <Button size="xs" color="secondary">
             View
@@ -116,10 +116,10 @@ export const InsideCard: Story = {
   render: (args) => (
     <Card className="w-80">
       <List {...args}>
-        <ListItem media={<Avatar name="Ada Lovelace" size="base" />} description="ada@auxokit.dev" trailing="$320">
+        <ListItem media={<Avatar name="Ada Lovelace" size="base" />} description="ada@ad-design-kit.dev" trailing="$320">
           Ada Lovelace
         </ListItem>
-        <ListItem media={<Avatar name="Grace Hopper" size="base" />} description="grace@auxokit.dev" trailing="$180">
+        <ListItem media={<Avatar name="Grace Hopper" size="base" />} description="grace@ad-design-kit.dev" trailing="$180">
           Grace Hopper
         </ListItem>
       </List>

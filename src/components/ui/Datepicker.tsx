@@ -1,4 +1,4 @@
-// AuxoKit Datepicker — Figma "Datepicker (ready to use examples)" (node 1149:51284, page 1149:51144),
+// AD Design Kit Datepicker — Figma "Datepicker (ready to use examples)" (node 1149:51284, page 1149:51144),
 // cell 1149:51147, controls 1149:51164, menu 1149:51169. Figma Type: Default = mode "single", Range = mode "range"
 // (two months). <Calendar> is the menu on its own; <Datepicker> adds the Input trigger and the popup.
 import { useEffect, useId, useMemo, useRef, useState, type KeyboardEvent } from 'react';
@@ -204,7 +204,7 @@ export function Datepicker(props: DatepickerProps) {
     };
   }, [open]);
 
-  const iconPad = size === 'sm' ? 'ps-8.5' : size === 'base' ? 'ps-9' : size === 'lg' ? 'ps-11' : 'ps-12'; // auxokit-lint-ignore: 10px pad + 16px icon + 8px gap = 34px
+  const iconPad = size === 'sm' ? 'ps-8.5' : size === 'base' ? 'ps-9' : size === 'lg' ? 'ps-11' : 'ps-12'; // ad-design-kit-lint-ignore: 10px pad + 16px icon + 8px gap = 34px
   const iconPos = size === 'sm' ? 'ps-2.5' : size === 'base' ? 'ps-3' : size === 'lg' ? 'ps-3.5' : 'ps-4';
 
   return (

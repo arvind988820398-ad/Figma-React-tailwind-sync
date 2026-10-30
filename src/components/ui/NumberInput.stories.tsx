@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { figmaDesign } from '../../../.storybook/auxokit/figma';
+import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
 import { useState, type ComponentProps } from 'react';
 import { HelperText, Label } from './Input';
 import { NumberInput } from './NumberInput';
 
-// AuxoKit Number input — mirrors the Figma "Number form" set (node 1149:46630).
+// AD Design Kit Number input — mirrors the Figma "Number form" set (node 1149:46630).
 const meta = {
   title: 'Components/NumberInput',
   parameters: { design: figmaDesign('NumberInput') },

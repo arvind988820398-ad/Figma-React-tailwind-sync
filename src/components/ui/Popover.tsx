@@ -1,4 +1,4 @@
-// AuxoKit Popover — Figma set "Popover" (node 1149:81090, page 3303:16685), content 1149:81187.
+// AD Design Kit Popover — Figma set "Popover" (node 1149:81090, page 3303:16685), content 1149:81187.
 // Click-to-open panel anchored to its trigger; Esc and outside click close it. For collision-aware positioning,
 // wrap a headless primitive (Radix Popover / Floating UI) and keep these classes.
 import { cloneElement, useEffect, useId, useRef, useState, type ReactElement, type ReactNode } from 'react';

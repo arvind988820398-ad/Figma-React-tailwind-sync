@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import { figmaDesign } from '../../../.storybook/auxokit/figma';
+import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Banner, type BannerProps } from './Banner';
 import { Button } from './Button';
 import { Input } from './Input';
 import { MailIcon } from '../icons';
 
-// AuxoKit Banner — mirrors the Figma "Banner" set (node 1146:21254).
+// AD Design Kit Banner — mirrors the Figma "Banner" set (node 1146:21254).
 const meta = {
   title: 'Components/Banner',
   component: Banner,
@@ -14,7 +14,7 @@ const meta = {
   args: {
     children: (
       <>
-        New brand identity has been launched for the <a href="#banner">AuxoKit Library</a>
+        New brand identity has been launched for the <a href="#banner">AD Design Kit Library</a>
       </>
     ),
     floating: false,
@@ -44,7 +44,7 @@ export const WithIcon: Story = {
 export const HeadingAndActions: Story = {
   args: {
     title: 'Integration is the key',
-    children: 'You can integrate AuxoKit with React, Vue, Angular and plain HTML.',
+    children: 'You can integrate AD Design Kit with React, Vue, Angular and plain HTML.',
     actions: (
       <>
         <Button size="xs" color="tertiary">Learn more</Button>
@@ -71,7 +71,7 @@ export const Newsletter: Story = {
 export const Floating: Story = {
   args: {
     floating: true,
-    logo: <span className="text-base font-semibold text-heading">AuxoKit</span>,
+    logo: <span className="text-base font-semibold text-heading">AD Design Kit</span>,
     children: 'Build websites even faster with components on top of Tailwind CSS',
     actions: <Button size="sm">Sign up</Button>,
   },

@@ -1,4 +1,4 @@
-// AuxoKit Copy to clipboard — Figma set "Copy to clipboard form" (node 1149:46768, page 3279:34618).
+// AD Design Kit Copy to clipboard — Figma set "Copy to clipboard form" (node 1149:46768, page 3279:34618).
 // Read-only Input field + copy Button. Figma types → variant: Default with button=joined (Brand base) ·
 // Inner button / Large input=inner (Tertiary xs inside) · Default=icon (Secondary icon button joined).
 // "Copied" is announced through an aria-live region.

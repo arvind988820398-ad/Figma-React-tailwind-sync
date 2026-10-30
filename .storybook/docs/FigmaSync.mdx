@@ -1,6 +1,6 @@
 import { Markdown, Meta } from '@storybook/addon-docs/blocks';
-import { auxokitDocs } from '../generated/auxokit-docs';
-import { SyncSummary, SyncTable } from '../auxokit/blocks';
+import { adDesignKitDocs } from '../generated/ad-design-kit-docs';
+import { SyncSummary, SyncTable } from '../ad-design-kit/blocks';
 
 <Meta title="Guides/Figma sync" />
 
@@ -12,7 +12,7 @@ Figma is the source of truth for tokens and component variants; code is the sour
 
 ## How a sync works
 
-1. **Tokens (Figma → code).** The `auxokit-figma-sync` skill exports the Figma variable collections, diffs them against the committed snapshot, rebuilds `auxokit.css` and the token manifest, and copies the CSS into the app (`npm run tokens:build`). The token linter (`npm run lint:tokens`) then flags any class that no longer exists.
+1. **Tokens (Figma → code).** The `ad-design-kit-figma-sync` skill exports the Figma variable collections, diffs them against the committed snapshot, rebuilds `ad-design-kit.css` and the token manifest, and copies the CSS into the app (`npm run tokens:build`). The token linter (`npm run lint:tokens`) then flags any class that no longer exists.
 2. **Components (Figma → code).** The skill inventories every component page, diffs variant properties and values against the registry (`components.json`), and updates the React components, the prop maps and the usage docs.
 3. **Storybook docs.** `npm run docs:build` regenerates this Storybook's data from the registry, usage docs, token manifest and Figma audit. It runs automatically before `npm run storybook`; `npm run docs:check` fails in CI when the docs are stale or drift is found.
 4. **Code → Figma** (with explicit approval only): component usage descriptions and Code Connect mappings can be pushed back to the Figma file.
@@ -27,11 +27,11 @@ Every component set in the registry, its Figma node and whether the React source
 
 Code follows the intended design where Figma is still inconsistent; each row says what code does so reviewers do not flag it as drift. Designers fix these in Figma, then the sync removes the row.
 
-<Markdown>{auxokitDocs.guides.auditOpen}</Markdown>
+<Markdown>{adDesignKitDocs.guides.auditOpen}</Markdown>
 
 <details>
 <summary>Previously fixed in Figma</summary>
 
-<Markdown>{auxokitDocs.guides.auditFixed}</Markdown>
+<Markdown>{adDesignKitDocs.guides.auditFixed}</Markdown>
 
 </details>

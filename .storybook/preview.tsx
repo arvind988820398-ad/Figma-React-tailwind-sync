@@ -1,31 +1,31 @@
 import type { Decorator, Preview } from '@storybook/react-vite';
 import { useEffect, type ReactNode } from 'react';
 import '../src/styles/app.css';
-import { setTheme, themes, type AuxoTheme } from '../src/lib/theme';
-import { AuxoDocsContainer } from './auxokit/DocsContainer';
-import { AuxoKitDocsPage } from './auxokit/DocsPage';
+import { setTheme, themes, type ADDesignKitTheme } from '../src/lib/theme';
+import { ADDesignKitDocsContainer } from './ad-design-kit/DocsContainer';
+import { ADDesignKitDocsPage } from './ad-design-kit/DocsPage';
 
-// Theme + dark mode come from the AuxoKit tokens (Figma "Themes" collection modes).
+// Theme + dark mode come from the AD Design Kit tokens (Figma "Themes" collection modes).
 // The toolbar switches data-theme / .dark on <html>, exactly like the app does.
-function ThemeFrame({ theme, dark, children }: { theme: AuxoTheme; dark: boolean; children: ReactNode }) {
+function ThemeFrame({ theme, dark, children }: { theme: ADDesignKitTheme; dark: boolean; children: ReactNode }) {
   useEffect(() => {
     setTheme(theme, dark);
   }, [theme, dark]);
   return <div className="bg-neutral-primary p-6 text-body">{children}</div>;
 }
 
-const withAuxoTheme: Decorator = (Story, context) => (
-  <ThemeFrame theme={context.globals.theme as AuxoTheme} dark={context.globals.scheme === 'dark'}>
+const withADDesignKitTheme: Decorator = (Story, context) => (
+  <ThemeFrame theme={context.globals.theme as ADDesignKitTheme} dark={context.globals.scheme === 'dark'}>
     <Story />
   </ThemeFrame>
 );
 
 const preview: Preview = {
-  decorators: [withAuxoTheme],
+  decorators: [withADDesignKitTheme],
   tags: ['autodocs'],
   globalTypes: {
     theme: {
-      description: 'AuxoKit theme',
+      description: 'AD Design Kit theme',
       toolbar: { title: 'Theme', icon: 'paintbrush', items: [...themes], dynamicTitle: true },
     },
     scheme: {
@@ -50,8 +50,8 @@ const preview: Preview = {
       },
     },
     docs: {
-      page: AuxoKitDocsPage,
-      container: AuxoDocsContainer,
+      page: ADDesignKitDocsPage,
+      container: ADDesignKitDocsContainer,
       toc: true,
     },
     controls: {

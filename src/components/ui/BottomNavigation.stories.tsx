@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { figmaDesign } from '../../../.storybook/auxokit/figma';
+import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
 import type { ReactNode } from 'react';
 import { CheckIcon, CogIcon, InfoIcon, MailIcon, PlusIcon } from '../icons';
 import { BottomNavigation } from './BottomNavigation';
 
-// AuxoKit Bottom navigation — mirrors the Figma "Bottom navigation" set (node 1146:27386).
+// AD Design Kit Bottom navigation — mirrors the Figma "Bottom navigation" set (node 1146:27386).
 // Shown inline (not `fixed`) so the canvas can display it; pass `fixed` in an app.
 const items = [
   { label: 'Home', href: '#', icon: <CheckIcon />, current: true },

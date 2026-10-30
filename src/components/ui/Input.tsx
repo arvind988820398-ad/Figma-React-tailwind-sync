@@ -1,4 +1,4 @@
-// AuxoKit Input field — Figma set "Input field" (node 1149:46826, page 3279:34618),
+// AD Design Kit Input field — Figma set "Input field" (node 1149:46826, page 3279:34618),
 // Label (1149:94727) and Helper (1149:94741).
 // Figma Type → slot: Default · Add-on icon = `addonIcon` · Add-on text = `addonText` · Inner button = `endAction` ·
 // Stacked placeholder = `stackedLabel`. Sizes and states are shared with every other field.
@@ -9,7 +9,7 @@ export type FieldSize = 'sm' | 'base' | 'lg' | 'xl';
 export type FieldStatus = 'success' | 'danger';
 
 const sizes: Record<FieldSize, { box: string; withLeft: string; withRight: string; icon: string; iconPos: string }> = {
-  sm: { box: 'px-2.5 py-2 text-sm leading-5', withLeft: 'ps-8.5', withRight: 'pe-8.5', icon: '[&_svg]:size-4', iconPos: 'px-2.5' }, // auxokit-lint-ignore: 10px pad + 16px icon + 8px gap = 34px
+  sm: { box: 'px-2.5 py-2 text-sm leading-5', withLeft: 'ps-8.5', withRight: 'pe-8.5', icon: '[&_svg]:size-4', iconPos: 'px-2.5' }, // ad-design-kit-lint-ignore: 10px pad + 16px icon + 8px gap = 34px
   base: { box: 'px-3 py-2.5 text-sm leading-5', withLeft: 'ps-9', withRight: 'pe-9', icon: '[&_svg]:size-4', iconPos: 'px-3' },
   lg: { box: 'px-3.5 py-3 text-base leading-6', withLeft: 'ps-11', withRight: 'pe-11', icon: '[&_svg]:size-5', iconPos: 'px-3.5' },
   xl: { box: 'px-4 py-3.5 text-base leading-6', withLeft: 'ps-12', withRight: 'pe-12', icon: '[&_svg]:size-5', iconPos: 'px-4' },

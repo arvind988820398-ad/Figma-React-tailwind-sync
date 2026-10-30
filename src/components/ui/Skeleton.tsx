@@ -1,4 +1,4 @@
-// AuxoKit Skeleton — Figma set "Skeleton" (node 1149:85600, page 13251:80911).
+// AD Design Kit Skeleton — Figma set "Skeleton" (node 1149:85600, page 13251:80911).
 // Primary lines bg-gray, secondary lines bg-neutral-quaternary, media blocks rounded-lg bg-gray with a placeholder icon.
 import type { HTMLAttributes } from 'react';
 import { cn } from '../../lib/cn';

@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { figmaDesign } from '../../../.storybook/auxokit/figma';
+import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
 import { Card, CardText, CardTitle } from './Card';
 import { Carousel } from './Carousel';
 
-// AuxoKit Carousel — mirrors the Figma "Carousel" set (node 1149:41738).
+// AD Design Kit Carousel — mirrors the Figma "Carousel" set (node 1149:41738).
 const photos = ['forest', 'coast', 'alps', 'desert'].map((seed, i) => ({
   src: `https://picsum.photos/seed/${seed}/1200/675`,
   alt: `Sample landscape ${i + 1}`,

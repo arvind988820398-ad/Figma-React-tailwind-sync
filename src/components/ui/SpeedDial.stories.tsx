@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { figmaDesign } from '../../../.storybook/auxokit/figma';
+import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
 import { CheckIcon, CogIcon, MailIcon, PlusIcon } from '../icons';
 import { SpeedDial, type SpeedDialDirection, type SpeedDialVariant } from './SpeedDial';
 
-// AuxoKit Speed dial — mirrors the Figma "Speed dial (ready to use examples)" set (node 1149:84847).
+// AD Design Kit Speed dial — mirrors the Figma "Speed dial (ready to use examples)" set (node 1149:84847).
 // Shown inline (not `fixed`) so the canvas can display it; pass `fixed` in an app.
 const actions = [
   { label: 'Share', icon: <MailIcon /> },

@@ -1,4 +1,4 @@
-// AuxoKit Alert — Figma set "Alert" (node 1146:15151, page 3284:18927).
+// AD Design Kit Alert — Figma set "Alert" (node 1146:15151, page 3284:18927).
 import type { HTMLAttributes, ReactNode } from 'react';
 import { cn } from '../../lib/cn';
 

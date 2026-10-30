@@ -1,4 +1,4 @@
-// AuxoKit Toggle — Figma set "Toggle switches" (node 1149:54432, page 1149:54431).
+// AD Design Kit Toggle — Figma set "Toggle switches" (node 1149:54432, page 1149:54431).
 import { useId, type ButtonHTMLAttributes, type ReactNode } from 'react';
 import { cn } from '../../lib/cn';
 

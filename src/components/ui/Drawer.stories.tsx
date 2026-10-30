@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { figmaDesign } from '../../../.storybook/auxokit/figma';
+import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
 import { useState } from 'react';
 import { Button } from './Button';
 import { Drawer, type DrawerPlacement, type DrawerProps } from './Drawer';
 import { Input, Label } from './Input';
 import { NavLink } from './Navbar';
 
-// AuxoKit Drawer — mirrors the Figma "Drawer" set (node 1149:37097), heading 1149:37184, footer 1149:37232.
+// AD Design Kit Drawer — mirrors the Figma "Drawer" set (node 1149:37097), heading 1149:37184, footer 1149:37232.
 function DrawerDemo({ open: _open, onOpenChange, ...args }: DrawerProps & { buttonLabel?: string }) {
   const [open, setOpen] = useState(false);
   const change = (o: boolean) => {
@@ -33,7 +33,7 @@ const meta = {
     title: 'Drawer title',
     placement: 'start',
     size: 'sm',
-    children: <p>Body content is composed from other AuxoKit components: forms, lists, alerts or navigation.</p>,
+    children: <p>Body content is composed from other AD Design Kit components: forms, lists, alerts or navigation.</p>,
     footer: (
       <>
         <Button>Save</Button>

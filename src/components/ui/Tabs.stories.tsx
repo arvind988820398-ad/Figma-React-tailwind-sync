@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { figmaDesign } from '../../../.storybook/auxokit/figma';
+import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
 import { useState } from 'react';
 import { CogIcon, InfoIcon, MailIcon } from '../icons';
 import { Tabs, type TabsProps, type TabsVariant } from './Tabs';
 
-// AuxoKit Tabs — mirrors the Figma "Nav tabs" set (node 1149:80530).
+// AD Design Kit Tabs — mirrors the Figma "Nav tabs" set (node 1149:80530).
 const variants: TabsVariant[] = ['text', 'underline', 'pills', 'button', 'segmented', 'vertical-pills', 'vertical-list'];
 
 const items = [

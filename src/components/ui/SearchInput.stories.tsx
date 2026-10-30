@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { figmaDesign } from '../../../.storybook/auxokit/figma';
+import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
 import { useState, type ComponentProps } from 'react';
 import { SearchInput } from './SearchInput';
 
-// AuxoKit Search input — mirrors the Figma "Search form" set (node 1149:46581).
+// AD Design Kit Search input — mirrors the Figma "Search form" set (node 1149:46581).
 const meta = {
   title: 'Components/SearchInput',
   parameters: { design: figmaDesign('SearchInput') },

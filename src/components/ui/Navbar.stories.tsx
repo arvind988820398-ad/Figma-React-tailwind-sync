@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { figmaDesign } from '../../../.storybook/auxokit/figma';
+import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
 import { CogIcon, InfoIcon, MailIcon } from '../icons';
 import { Avatar } from './Avatar';
 import { Button } from './Button';
@@ -7,13 +7,13 @@ import { IconShape } from './IconShape';
 import { Input } from './Input';
 import { Navbar, NavLink } from './Navbar';
 
-// AuxoKit Navbar — mirrors the Figma "Navbar" set (node 1149:74216) and "Nav link" (1149:74002).
+// AD Design Kit Navbar — mirrors the Figma "Navbar" set (node 1149:74216) and "Nav link" (1149:74002).
 const Logo = () => (
   <span className="flex items-center gap-2">
     <IconShape size="sm" color="brand">
       <CogIcon />
     </IconShape>
-    <span className="text-lg font-semibold text-heading">AuxoKit</span>
+    <span className="text-lg font-semibold text-heading">AD Design Kit</span>
   </span>
 );
 
@@ -98,7 +98,7 @@ export const NavLinkStates: Story = {
 export const Compact: Story = {
   args: {
     size: 'compact',
-    logo: <span className="text-sm font-semibold text-heading">AuxoKit</span>,
+    logo: <span className="text-sm font-semibold text-heading">AD Design Kit</span>,
     actions: (
       <>
         <Button color="tertiary" size="sm">
@@ -109,3 +109,6 @@ export const Compact: Story = {
     ),
   },
 };
+
+/** Code-ahead `fluid`: the content row spans the full width, for app shells. */
+export const Fluid: Story = { args: { ...Compact.args, fluid: true }, parameters: { layout: 'fullscreen' } };

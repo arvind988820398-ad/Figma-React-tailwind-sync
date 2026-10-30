@@ -1,14 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { figmaDesign } from '../../../.storybook/auxokit/figma';
+import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
 import { CogIcon, MailIcon } from '../icons';
 import { Accordion, type AccordionItem } from './Accordion';
 import { IconShape } from './IconShape';
 
-// AuxoKit Accordion — mirrors the Figma "Accordion" set (node 1146:19028).
+// AD Design Kit Accordion — mirrors the Figma "Accordion" set (node 1146:19028).
 const faq: AccordionItem[] = [
   {
     value: 'what',
-    title: 'What is AuxoKit?',
+    title: 'What is AD Design Kit?',
     content: (
       <p>
         An open-source design system with Figma components and matching React + Tailwind code. <a href="#">Read the docs</a>.

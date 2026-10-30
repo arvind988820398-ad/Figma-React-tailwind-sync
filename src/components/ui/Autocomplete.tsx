@@ -1,4 +1,4 @@
-// AuxoKit Autocomplete — Figma "Autocomplete input (ready to use examples)" (node 1149:53126, page 1149:53107),
+// AD Design Kit Autocomplete — Figma "Autocomplete input (ready to use examples)" (node 1149:53126, page 1149:53107),
 // menu 1149:53147, item 1149:53218. Combobox pattern: input with role="combobox", listbox popup, arrow keys move the
 // active option (aria-activedescendant), Enter selects, Esc closes. Matching text is highlighted (Figma "Highlighted text").
 import { useId, useMemo, useRef, useState, type KeyboardEvent, type ReactNode } from 'react';

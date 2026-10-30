@@ -1,4 +1,4 @@
-// AuxoKit Icon Shape — Figma set "Icon Shape" (node 1149:56578, page 1149:56577).
+// AD Design Kit Icon Shape — Figma set "Icon Shape" (node 1149:56578, page 1149:56577).
 import type { HTMLAttributes } from 'react';
 import { cn } from '../../lib/cn';
 

@@ -1,0 +1,10 @@
+schema_version: "1.1"
+name: screenshot-to-screen
+expected_outcome: |
+  The screen is composed only from existing AD Design Kit components (Navbar/Sidebar/Tabs/Input/Dropdown/Button/Table/
+  Checkbox/Tooltip/Pagination…) with layout glue. No new file appears under src/components/ui, no raw <button>,
+  <input>, <select> or <table> elements are written by hand, and no hex colours or arbitrary Tailwind values are used.
+  The reply contains a composition map (region → AD Design Kit component → status) and a gaps section, and the
+  check-composition script passes.
+context:
+  scaffold_script: place-files.sh

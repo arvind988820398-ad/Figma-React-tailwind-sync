@@ -1,4 +1,4 @@
-// AuxoKit Jumbotron (hero) — Figma set "Jumbotron" (node 1149:67227, page 267:16342).
+// AD Design Kit Jumbotron (hero) — Figma set "Jumbotron" (node 1149:67227, page 267:16342).
 // Figma Type → variant: Heading + CTA = centered · Text + Illustration / Link + Forms = split (pass `media`) ·
 // Bg-image = image (pass `backgroundImage`). Bg gradient, With navbar and Bento cards are compositions of these
 // sections with Navbar / Alert pill / Cards. Breakpoint variants are responsive classes.

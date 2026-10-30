@@ -1,4 +1,4 @@
-// AuxoKit Range slider — Figma "Range Slider examples" (node 1149:54340, page 1149:54339), helper 1149:54358,
+// AD Design Kit Range slider — Figma "Range Slider examples" (node 1149:54340, page 1149:54339), helper 1149:54358,
 // bar 1149:54365, thumb 1149:54373. Figma Type: Default = one value, Range = [low, high] with two thumbs.
 // Thumbs are role="slider" with arrow / Page / Home / End keys; a value tooltip shows while dragging or focused.
 import { useId, useRef, useState, type KeyboardEvent, type PointerEvent as ReactPointerEvent, type ReactNode } from 'react';

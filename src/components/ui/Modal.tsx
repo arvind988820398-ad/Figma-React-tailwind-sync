@@ -1,4 +1,4 @@
-// AuxoKit Modal — Figma set "Modal" (node 1149:71305, page 3284:23179), header 1149:71403, footer 1149:71444.
+// AD Design Kit Modal — Figma set "Modal" (node 1149:71305, page 3284:23179), header 1149:71403, footer 1149:71444.
 // Uses the native <dialog> element for focus trapping, Esc handling and top-layer stacking.
 import { useEffect, useId, useRef, type ReactNode } from 'react';
 import { cn } from '../../lib/cn';

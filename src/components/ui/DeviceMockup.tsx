@@ -1,4 +1,4 @@
-// AuxoKit Device mockup — Figma set "Mockups" (node 1149:41354, page 702:18224).
+// AD Design Kit Device mockup — Figma set "Mockups" (node 1149:41354, page 702:18224).
 // Figma Type → device: iPhone=iphone · Android=android · Android & pen=android-pen (phone with a stylus beside it) ·
 // Stylus pen=stylus (the pen alone) · Tablet=tablet · Laptop=laptop · iMac=imac · Smartwatch=watch.
 // Bezels bg-neutral-quaternary, stands and pen caps bg-neutral-tertiary(-medium).

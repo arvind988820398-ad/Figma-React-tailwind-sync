@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { figmaDesign } from '../../../.storybook/auxokit/figma';
+import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
 import { Tooltip, type TooltipPlacement } from './Tooltip';
 import { Button } from './Button';
 import { CogIcon } from '../icons';
 
-// AuxoKit Tooltip — mirrors the Figma "Tooltip" set (node 1149:93859).
+// AD Design Kit Tooltip — mirrors the Figma "Tooltip" set (node 1149:93859).
 const placements = ['top', 'right', 'bottom', 'left'] as const satisfies readonly TooltipPlacement[];
 
 const meta = {

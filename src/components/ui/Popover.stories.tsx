@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { figmaDesign } from '../../../.storybook/auxokit/figma';
+import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
 import { Popover, PopoverItem, type PopoverPlacement } from './Popover';
 import { Avatar } from './Avatar';
 import { Button } from './Button';
 import { CogIcon, MailIcon, PlusIcon } from '../icons';
 
-// AuxoKit Popover — mirrors the Figma "Popover" set (node 1149:81090), content 1149:81187.
+// AD Design Kit Popover — mirrors the Figma "Popover" set (node 1149:81090), content 1149:81187.
 const placements = ['top', 'right', 'bottom', 'left'] as const satisfies readonly PopoverPlacement[];
 
 const meta = {

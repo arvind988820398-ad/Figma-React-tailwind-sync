@@ -1,4 +1,4 @@
-// AuxoKit Table — Figma set "Table (free-component)" (node 1149:87477, page 3284:22719).
+// AD Design Kit Table — Figma set "Table (free-component)" (node 1149:87477, page 3284:22719).
 // Figma types: Striped rows / Striped columns = `striped`; With table caption = `caption`. Toolbar = `toolbar` slot.
 // `stickyHeader` keeps the header row visible while the body scrolls inside the wrapper; bound the wrapper's height
 // with `containerClassName` (e.g. `max-h-96`, or `min-h-0 flex-1` in a flex column).

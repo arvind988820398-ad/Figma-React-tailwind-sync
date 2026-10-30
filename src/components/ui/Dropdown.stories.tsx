@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { figmaDesign } from '../../../.storybook/auxokit/figma';
+import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
 import { useState } from 'react';
 import { CogIcon, MailIcon, PlusIcon } from '../icons';
 import { Avatar } from './Avatar';
@@ -7,7 +7,7 @@ import { Badge } from './Badge';
 import { Button } from './Button';
 import { Dropdown, DropdownCheckboxItem, DropdownHeader, DropdownItem, DropdownSeparator, type DropdownProps } from './Dropdown';
 
-// AuxoKit Dropdown — mirrors the Figma "Dropdown menu" set (node 1149:39895), item 1149:39651, header 1149:39866.
+// AD Design Kit Dropdown — mirrors the Figma "Dropdown menu" set (node 1149:39895), item 1149:39651, header 1149:39866.
 const meta = {
   title: 'Components/Dropdown',
   parameters: { design: figmaDesign('Dropdown') },
@@ -47,7 +47,7 @@ export const UserProfile: Story = {
     ),
     children: (
       <>
-        <DropdownHeader name="Ada Lovelace" email="ada@auxokit.dev" />
+        <DropdownHeader name="Ada Lovelace" email="ada@ad-design-kit.dev" />
         <DropdownItem>Dashboard</DropdownItem>
         <DropdownItem trailing={<Badge color="white" size="sm">3</Badge>}>Notifications</DropdownItem>
         <DropdownItem description="Billing and invoices">Plan</DropdownItem>
@@ -104,7 +104,7 @@ export const AvatarTrigger: Story = {
     ),
     children: (
       <>
-        <DropdownHeader name="Grace Hopper" email="grace@auxokit.dev" avatar={<Avatar name="Grace Hopper" size="sm" />} />
+        <DropdownHeader name="Grace Hopper" email="grace@ad-design-kit.dev" avatar={<Avatar name="Grace Hopper" size="sm" />} />
         <DropdownItem>Profile</DropdownItem>
         <DropdownItem>Sign out</DropdownItem>
       </>

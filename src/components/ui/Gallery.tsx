@@ -1,4 +1,4 @@
-// AuxoKit Gallery — Figma set "Gallery" (node 1149:56037, page 320:17990).
+// AD Design Kit Gallery — Figma set "Gallery" (node 1149:56037, page 320:17990).
 // Figma Type → variant: Grid 3 columns=grid-3 · Grid 2 columns=grid-2 · Masonry=masonry · Featured image=featured ·
 // Carousel=carousel (one image at a time with prev/next) · With filters=filters (pill Tabs above a 3-column grid).
 import { useMemo, useState } from 'react';

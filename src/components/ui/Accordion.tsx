@@ -1,4 +1,4 @@
-// AuxoKit Accordion — Figma set "Accordion" (node 1146:19028, page 3282:18777).
+// AD Design Kit Accordion — Figma set "Accordion" (node 1146:19028, page 3282:18777).
 // Figma Style → variant: Default=default · Flush=flush · Separate Cards=cards · Multi-level=nested · With sub-header=subheader.
 import { useId, useState, type ReactNode } from 'react';
 import { cn } from '../../lib/cn';
@@ -65,7 +65,7 @@ function AccordionRow({ item, variant, open, onToggle, nested }: { item: Accordi
       )}
     >
       <h3>
-        <button // auxokit-lint-ignore: disclosure trigger (aria-expanded), not an action Button
+        <button // ad-design-kit-lint-ignore: disclosure trigger (aria-expanded), not an action Button
           type="button"
           id={`${id}-trigger`}
           aria-expanded={open}

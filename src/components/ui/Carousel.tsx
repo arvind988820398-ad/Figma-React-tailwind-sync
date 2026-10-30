@@ -1,4 +1,4 @@
-// AuxoKit Carousel — Figma set "Carousel" (node 1149:41738, page 3284:23924), control 1149:41774, indicator 1149:41777.
+// AD Design Kit Carousel — Figma set "Carousel" (node 1149:41738, page 3284:23924), control 1149:41774, indicator 1149:41777.
 // Figma Type → variant: Default / Default with controls & indicators = slides (toggle `controls` / `indicators`) ·
 // With cards / Cards & bottom controls = cards (scrolling row, controls under it). No auto-advance by design.
 import { Children, useId, useRef, useState, type ReactNode } from 'react';

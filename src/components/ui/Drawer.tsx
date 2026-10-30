@@ -1,6 +1,6 @@
-// AuxoKit Drawer — Figma set "Drawer" (node 1149:37097, page 13261:80923), heading 1149:37184, footer 1149:37232.
+// AD Design Kit Drawer — Figma set "Drawer" (node 1149:37097, page 13261:80923), heading 1149:37184, footer 1149:37232.
 // Native <dialog> (focus trap, Esc, top layer) pinned to an edge. Body content (forms, lists, alerts, navigation)
-// is composed from other AuxoKit components.
+// is composed from other AD Design Kit components.
 import { useEffect, useId, useRef, type ReactNode } from 'react';
 import { cn } from '../../lib/cn';
 

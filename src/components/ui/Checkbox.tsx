@@ -1,4 +1,4 @@
-// AuxoKit Checkbox & Radio — Figma set "Checkbox input" (node 1149:54707, page 1149:54696).
+// AD Design Kit Checkbox & Radio — Figma set "Checkbox input" (node 1149:54707, page 1149:54696).
 import { forwardRef, useId, type InputHTMLAttributes, type ReactNode } from 'react';
 import { cn } from '../../lib/cn';
 

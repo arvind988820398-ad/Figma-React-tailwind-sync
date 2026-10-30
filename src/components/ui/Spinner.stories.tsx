@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { figmaDesign } from '../../../.storybook/auxokit/figma';
+import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
 import { Spinner, type SpinnerSize } from './Spinner';
 import { Button } from './Button';
 import { Badge } from './Badge';
 
-// AuxoKit Spinner — mirrors the Figma "Spinner" set (node 1149:83311).
+// AD Design Kit Spinner — mirrors the Figma "Spinner" set (node 1149:83311).
 const sizes = ['xs', 'sm', 'md', 'lg', 'xl'] as const satisfies readonly SpinnerSize[];
 
 const meta = {

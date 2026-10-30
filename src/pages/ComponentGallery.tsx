@@ -1,4 +1,4 @@
-// Every Figma variant of each AuxoKit React component, laid out as labelled grids.
+// Every Figma variant of each AD Design Kit React component, laid out as labelled grids.
 // Interaction states (Hover / Focus / Active) are CSS states in code — hover or Tab to see them.
 import { Fragment, useState } from 'react'
 import { ArrowRightIcon, CheckIcon, CogIcon, InfoIcon, MailIcon, PlusIcon } from '../components/icons'
@@ -27,7 +27,7 @@ const outlineColors = ['success', 'danger', 'warning'] as const
 const badgeColors: BadgeColor[] = ['gray', 'white', 'brand', 'success', 'warning', 'danger']
 const badgeSizes: BadgeSize[] = ['sm', 'lg']
 const alertColors: AlertColor[] = ['neutral', 'info', 'success', 'warning', 'danger']
-const alertVariants: AlertVariant[] = ['default', 'complex', 'pill', 'border-top'] // auxokit-lint-ignore: Alert prop values, not classes
+const alertVariants: AlertVariant[] = ['default', 'complex', 'pill', 'border-top'] // ad-design-kit-lint-ignore: Alert prop values, not classes
 const fieldSizes: FieldSize[] = ['sm', 'base', 'lg', 'xl']
 const avatarSizes: AvatarSize[] = ['xs', 'sm', 'base', 'lg', 'xl', '2xl']
 const avatarStatuses: AvatarStatus[] = ['online', 'offline', 'away']
@@ -81,7 +81,7 @@ export default function ComponentGallery() {
         <div className="flex flex-col gap-2">
           <h1 className="text-3xl font-bold leading-9 text-heading">Component variants</h1>
           <p className="text-base text-body">
-            Every Figma variant of all 56 AuxoKit components with React code, labelled with the props that produce it. Hover, Focus and Active are CSS
+            Every Figma variant of all 56 AD Design Kit components with React code, labelled with the props that produce it. Hover, Focus and Active are CSS
             states: hover a component or press Tab to see them. Switch the theme in the header to see all variants re-theme.
           </p>
         </div>
@@ -199,7 +199,7 @@ export default function ComponentGallery() {
                   case 'Initial':
                     return <Input {...common} placeholder="name@company.com" />
                   case 'Filled':
-                    return <Input {...common} defaultValue="ada@auxokit.dev" />
+                    return <Input {...common} defaultValue="ada@ad-design-kit.dev" />
                   case 'Disabled':
                     return <Input {...common} disabled placeholder="Disabled" />
                   case 'Read-only':

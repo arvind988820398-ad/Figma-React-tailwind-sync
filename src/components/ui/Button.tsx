@@ -1,4 +1,4 @@
-// AuxoKit Button — Figma set "Button" (node 1146:24616, page 2542:21012).
+// AD Design Kit Button — Figma set "Button" (node 1146:24616, page 2542:21012).
 // Variant classes are the exact Figma token bindings; see references/components/actions.md.
 import { forwardRef, type ButtonHTMLAttributes, type ReactNode } from 'react';
 import { cn } from '../../lib/cn';

@@ -59,7 +59,7 @@ const UpIcon = () => (
 )
 
 const faq = [
-  { value: 'what', title: 'What is AuxoKit?', content: <p>An open-source design system with Figma components and matching React + Tailwind code. <a href="#accordion">Read the docs</a>.</p> },
+  { value: 'what', title: 'What is AD Design Kit?', content: <p>An open-source design system with Figma components and matching React + Tailwind code. <a href="#accordion">Read the docs</a>.</p> },
   { value: 'figma', title: 'Is there a Figma file?', content: <p>Yes. Every component here maps to a Figma component set with the same variants.</p> },
   { value: 'diff', title: 'How does it stay in sync?', content: <p>Tokens are exported from Figma variables and compiled to Tailwind utilities with the same names.</p> },
 ]
@@ -87,7 +87,7 @@ function SidebarDemo() {
               collapsed ? (
                 <IconShape size="sm" color="brand"><CogIcon /></IconShape>
               ) : (
-                <span className="text-lg font-medium leading-6 text-heading">AuxoKit</span>
+                <span className="text-lg font-medium leading-6 text-heading">AD Design Kit</span>
               )
             }
             sections={[main, more]}
@@ -362,9 +362,9 @@ export default function ContentSections() {
           <Group title='variant="divider" (rich items)'>
             <div className="rounded-base border border-default bg-neutral-primary-soft p-5">
               <List variant="divider">
-                <ListItem media={<Avatar name="Ada Lovelace" size="base" />} description="ada@auxokit.dev" trailing="$320">Ada Lovelace</ListItem>
-                <ListItem media={<Avatar name="Grace Hopper" size="base" />} description="grace@auxokit.dev" trailing={<Badge color="success" size="sm">Paid</Badge>}>Grace Hopper</ListItem>
-                <ListItem media={<Avatar name="Alan Turing" size="base" />} description="alan@auxokit.dev" trailing={<Button size="xs" color="secondary">View</Button>}>Alan Turing</ListItem>
+                <ListItem media={<Avatar name="Ada Lovelace" size="base" />} description="ada@ad-design-kit.dev" trailing="$320">Ada Lovelace</ListItem>
+                <ListItem media={<Avatar name="Grace Hopper" size="base" />} description="grace@ad-design-kit.dev" trailing={<Badge color="success" size="sm">Paid</Badge>}>Grace Hopper</ListItem>
+                <ListItem media={<Avatar name="Alan Turing" size="base" />} description="alan@ad-design-kit.dev" trailing={<Button size="xs" color="secondary">View</Button>}>Alan Turing</ListItem>
               </List>
             </div>
           </Group>

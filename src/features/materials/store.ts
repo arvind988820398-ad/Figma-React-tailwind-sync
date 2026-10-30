@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { SAMPLE_INDENTS, type Indent, type IndentStatus } from './indents';
 import { SAMPLE_MATERIALS, type Material, type MaterialDraft, type Scope } from './types';
 
-export const MATERIALS_STORAGE_KEY = 'auxokit-materials';
+export const MATERIALS_STORAGE_KEY = 'ad-design-kit-materials';
 
 const newId = () => (typeof crypto !== 'undefined' && 'randomUUID' in crypto ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(16).slice(2)}`);
 
@@ -61,7 +61,7 @@ export function useMaterials({ storageKey = MATERIALS_STORAGE_KEY, seed }: UseMa
 }
 
 // ---------------- Indents ----------------
-export const INDENTS_STORAGE_KEY = 'auxokit-indents';
+export const INDENTS_STORAGE_KEY = 'ad-design-kit-indents';
 
 export interface UseIndentsOptions {
   storageKey?: string | null;

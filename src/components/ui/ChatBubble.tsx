@@ -1,4 +1,4 @@
-// AuxoKit Chat bubble — Figma set "Chat bubble" (node 1149:35720, page 380:18014), bubble 1149:35687, content 1149:35600.
+// AD Design Kit Chat bubble — Figma set "Chat bubble" (node 1149:35720, page 380:18014), bubble 1149:35687, content 1149:35600.
 // Figma Direction: Left = received (bg-neutral-tertiary), Right = sent (bg-brand-softer, row mirrored).
 // Figma Type = the content child: Text (plain children), File, Audio, Images, URL (ChatFile / ChatAudio / ChatImages /
 // ChatLinkPreview below); Calendar is a composition. "Clean" = no fill.

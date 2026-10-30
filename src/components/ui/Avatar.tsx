@@ -1,4 +1,4 @@
-// AuxoKit Avatar — Figma set "Avatar" (node 1146:5178, page 3197:21106), dot 1146:5625, group 1146:5549.
+// AD Design Kit Avatar — Figma set "Avatar" (node 1146:5178, page 3197:21106), dot 1146:5625, group 1146:5549.
 import type { HTMLAttributes } from 'react';
 import { cn } from '../../lib/cn';
 

@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { figmaDesign } from '../../../.storybook/auxokit/figma';
+import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
 import { HelperText, Label } from './Input';
 import { Select } from './Select';
 
-// AuxoKit Select — mirrors the Figma "Select form" set (node 1149:46541).
+// AD Design Kit Select — mirrors the Figma "Select form" set (node 1149:46541).
 const countries = ['United States', 'Canada', 'United Kingdom', 'Germany', 'India', 'Japan'];
 const countryOptions = (
   <>

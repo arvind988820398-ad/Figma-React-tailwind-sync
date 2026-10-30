@@ -1,12 +1,12 @@
 import { Markdown, Meta } from '@storybook/addon-docs/blocks';
-import { auxokitDocs } from '../generated/auxokit-docs';
-import { SyncSummary } from '../auxokit/blocks';
+import { adDesignKitDocs } from '../generated/ad-design-kit-docs';
+import { SyncSummary } from '../ad-design-kit/blocks';
 
 <Meta title="Introduction" />
 
-# AuxoKit
+# AD Design Kit
 
-AuxoKit is a Tailwind-native design system that lives in Figma and ships as React + Tailwind CSS v4 code. Every Figma variable has a code twin with the same name, and every Figma component set has a React twin with the same variants. This Storybook is generated from the same registry the Figma sync uses, so what you read here is what is in Figma.
+AD Design Kit is a Tailwind-native design system that lives in Figma and ships as React + Tailwind CSS v4 code. Every Figma variable has a code twin with the same name, and every Figma component set has a React twin with the same variants. This Storybook is generated from the same registry the Figma sync uses, so what you read here is what is in Figma.
 
 <SyncSummary />
 
@@ -18,15 +18,15 @@ AuxoKit is a Tailwind-native design system that lives in Figma and ships as Reac
 
 ## Non-negotiable rules
 
-<Markdown>{auxokitDocs.guides.rules}</Markdown>
+<Markdown>{adDesignKitDocs.guides.rules}</Markdown>
 
 ## Where the sources live
 
 | What | Where |
 |---|---|
-| Figma file | [{auxokitDocs.fileKey}]({auxokitDocs.fileUrl}) |
-| Generated tokens | `src/styles/auxokit.css` (never edit by hand) |
+| Figma file | [{adDesignKitDocs.fileKey}]({adDesignKitDocs.fileUrl}) |
+| Generated tokens | `src/styles/ad-design-kit.css` (never edit by hand) |
 | Components | `src/components/ui/*.tsx`, stories next to each file |
-| Registry (Figma ⇄ React) | `.claude/skills/auxokit-design-system/references/components.json` |
-| Usage docs | `.claude/skills/auxokit-design-system/references/components/*.md` |
-| Sync & review skills | `.claude/skills/auxokit-figma-sync`, `.claude/skills/auxokit-review` |
+| Registry (Figma ⇄ React) | `.claude/skills/ad-design-kit-design-system/references/components.json` |
+| Usage docs | `.claude/skills/ad-design-kit-design-system/references/components/*.md` |
+| Sync & review skills | `.claude/skills/ad-design-kit-figma-sync`, `.claude/skills/ad-design-kit-review` |

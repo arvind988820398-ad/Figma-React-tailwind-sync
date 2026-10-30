@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { figmaDesign } from '../../../.storybook/auxokit/figma';
+import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Toast, ToastViewport, type ToastColor, type ToastProps } from './Toast';
 import { Avatar } from './Avatar';
@@ -8,7 +8,7 @@ import { IconShape } from './IconShape';
 import { Progress } from './Progress';
 import { CheckIcon, InfoIcon } from '../icons';
 
-// AuxoKit Toast — mirrors the Figma "Toast" set (node 1149:93975).
+// AD Design Kit Toast — mirrors the Figma "Toast" set (node 1149:93975).
 const colors = ['neutral', 'warning', 'danger'] as const satisfies readonly ToastColor[];
 
 const meta = {

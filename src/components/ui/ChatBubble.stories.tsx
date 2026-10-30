@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { figmaDesign } from '../../../.storybook/auxokit/figma';
+import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
 import { ArrowRightIcon } from '../icons';
 import { Avatar } from './Avatar';
 import { Button } from './Button';
 import { ChatAudio, ChatBubble, ChatFile, ChatImages, ChatLinkPreview } from './ChatBubble';
 
-// AuxoKit Chat bubble — mirrors the Figma "Chat bubble" set (node 1149:35720).
+// AD Design Kit Chat bubble — mirrors the Figma "Chat bubble" set (node 1149:35720).
 const photos = ['forest', 'coast', 'alps', 'desert', 'lake'].map((seed, i) => ({
   src: `https://picsum.photos/seed/${seed}/400/400`,
   alt: `Offsite photo ${i + 1}`,
@@ -90,9 +90,9 @@ export const WithLinkPreview: Story = {
     status: undefined,
     children: (
       <ChatLinkPreview
-        href="https://auxokit.dev/docs"
-        title="AuxoKit documentation"
-        description="auxokit.dev"
+        href="https://ad-design-kit.dev/docs"
+        title="AD Design Kit documentation"
+        description="ad-design-kit.dev"
         image={<img src="https://picsum.photos/seed/docs/640/360" alt="" className="aspect-video w-full rounded-base object-cover" />}
       />
     ),

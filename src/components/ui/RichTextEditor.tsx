@@ -1,5 +1,5 @@
-// AuxoKit Rich text editor — Figma "Rich text editor input" (node 1149:49749, page 3279:34618).
-// This template gives the AuxoKit shell, toolbar and states around a minimal contentEditable editor (browser editing
+// AD Design Kit Rich text editor — Figma "Rich text editor input" (node 1149:49749, page 3279:34618).
+// This template gives the AD Design Kit shell, toolbar and states around a minimal contentEditable editor (browser editing
 // commands). For production editing, keep these classes and swap the editable area for Tiptap or Lexical.
 // Figma Type: Default = no footer · Buttons inside = `footer` · Buttons outside = put Buttons after the component.
 import { useEffect, useId, useRef, useState, type ReactNode } from 'react';

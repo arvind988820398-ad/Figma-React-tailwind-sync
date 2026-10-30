@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { figmaDesign } from '../../../.storybook/auxokit/figma';
+import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
 import { useState } from 'react';
 import { Pagination, type PaginationProps } from './Pagination';
 
-// AuxoKit Pagination — mirrors the Figma "Pagination" set (node 1149:81850).
+// AD Design Kit Pagination — mirrors the Figma "Pagination" set (node 1149:81850).
 function PaginationDemo({ page: initial, onPageChange, helper, ...args }: PaginationProps) {
   const [page, setPage] = useState(initial);
   const pageSize = 10;

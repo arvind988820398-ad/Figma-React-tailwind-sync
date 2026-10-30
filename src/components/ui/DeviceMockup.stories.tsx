@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { figmaDesign } from '../../../.storybook/auxokit/figma';
+import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
 import { DeviceMockup } from './DeviceMockup';
 
-// AuxoKit Device mockup — mirrors the Figma "Mockups" set (node 1149:41354).
+// AD Design Kit Device mockup — mirrors the Figma "Mockups" set (node 1149:41354).
 const phoneScreen = <img src="https://picsum.photos/seed/appscreen/448/896" alt="" />;
 const wideScreen = <img src="https://picsum.photos/seed/dashboard/1600/1000" alt="" />;
 

@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { figmaDesign } from '../../../.storybook/auxokit/figma';
+import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
 import { Gallery } from './Gallery';
 
-// AuxoKit Gallery — mirrors the Figma "Gallery" set (node 1149:56037).
+// AD Design Kit Gallery — mirrors the Figma "Gallery" set (node 1149:56037).
 const categories = ['Business', 'Fashion', 'Toys', 'Cars'];
 const photos = Array.from({ length: 9 }, (_, i) => ({
   src: `https://picsum.photos/seed/gallery-${i + 1}/640/640`,

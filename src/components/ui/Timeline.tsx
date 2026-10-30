@@ -1,4 +1,4 @@
-// AuxoKit Timeline — Figma set "Timeline" (node 1149:91254, page 1149:91247), item 1149:91357, dot 1149:91248.
+// AD Design Kit Timeline — Figma set "Timeline" (node 1149:91254, page 1149:91247), item 1149:91357, dot 1149:91248.
 // Figma Type → variant: Default=default (ellipse dots) · Icons & Card=icons (icon dots; set `card` for card items) ·
 // User actions / Stacked cards=cards · Horizontal / Horizontal advanced=horizontal.
 import type { ReactNode } from 'react';

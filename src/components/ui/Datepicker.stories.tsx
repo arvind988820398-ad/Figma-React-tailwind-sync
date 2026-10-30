@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { figmaDesign } from '../../../.storybook/auxokit/figma';
+import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
 import { useState } from 'react';
 import { Calendar, Datepicker, type DatepickerProps, type DateRange } from './Datepicker';
 import { HelperText, Label } from './Input';
 
-// AuxoKit Datepicker — mirrors the Figma "Datepicker (ready to use examples)" (node 1149:51284).
+// AD Design Kit Datepicker — mirrors the Figma "Datepicker (ready to use examples)" (node 1149:51284).
 // DatepickerProps is a discriminated union (single | range), which collapses `StoryObj<typeof meta>` to `never`.
 // Stories are therefore typed by the props shared by both modes; the demos below own `mode`, `value` and `onChange`.
 type DemoArgs = Omit<DatepickerProps, 'mode' | 'value' | 'onChange'>;

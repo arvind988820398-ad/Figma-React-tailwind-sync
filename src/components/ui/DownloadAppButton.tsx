@@ -1,4 +1,4 @@
-// AuxoKit Download app button — Figma set "Download App Button" (node 1146:24595, page 2542:21012).
+// AD Design Kit Download app button — Figma set "Download App Button" (node 1146:24595, page 2542:21012).
 // Figma Device → store, Type → tone. Always a link (<a>) to the store listing. The glyphs here are simplified;
 // follow Apple / Google badge guidelines (or their official badges) when shipping.
 import type { AnchorHTMLAttributes } from 'react';

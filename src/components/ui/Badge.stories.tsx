@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { figmaDesign } from '../../../.storybook/auxokit/figma';
+import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
 import { Badge, type BadgeColor } from './Badge';
 import { Avatar } from './Avatar';
 import { Spinner } from './Spinner';
 import { CheckIcon } from '../icons';
 
-// AuxoKit Badge — mirrors the Figma "Badge" set (node 1146:22250).
+// AD Design Kit Badge — mirrors the Figma "Badge" set (node 1146:22250).
 const colors = ['gray', 'white', 'brand', 'success', 'warning', 'danger'] as const satisfies readonly BadgeColor[];
 
 const meta = {

@@ -1,0 +1,2500 @@
+{
+ "$comment": "AD Design Kit component registry: the single mapping between Figma component sets and React components. figmaVariants is the snapshot the sync skill diffs against; propMap says how each Figma property becomes a React prop. Interaction states (Initial/Hover/Focus/Active/Disabled/Read-only) are CSS states, never props. Breakpoint/Mobile variants are responsive layouts, never props. specVerified=true means every variant (or every Type at the base size/Desktop breakpoint) had its token bindings read from Figma and written into the doc section.",
+ "fileKey": "TKsoawKvPxaNCff4q43Mli",
+ "snapshotAt": "2026-10-27",
+ "components": [
+  {
+   "react": "Button",
+   "doc": "actions.md#button",
+   "page": "2542:21012",
+   "node": "1146:24616",
+   "figmaName": "Button",
+   "specVerified": true,
+   "figmaVariants": {
+    "Color": [
+     "Brand",
+     "Secondary",
+     "Tertiary",
+     "Success",
+     "Danger",
+     "Warning",
+     "Dark",
+     "Ghost"
+    ],
+    "Size": [
+     "xs",
+     "sm",
+     "base",
+     "lg",
+     "xl"
+    ],
+    "State": [
+     "Initial",
+     "Hover",
+     "Focus",
+     "Disabled"
+    ],
+    "Icon only": [
+     "False",
+     "True"
+    ],
+    "Outline": [
+     "False",
+     "True"
+    ],
+    "Logo inside": [
+     "False",
+     "True"
+    ]
+   },
+   "propMap": {
+    "Color": {
+     "prop": "color",
+     "values": {
+      "Brand": "brand",
+      "Secondary": "secondary",
+      "Tertiary": "tertiary",
+      "Success": "success",
+      "Danger": "danger",
+      "Warning": "warning",
+      "Dark": "dark",
+      "Ghost": "ghost"
+     }
+    },
+    "Size": {
+     "prop": "size",
+     "values": {
+      "xs": "xs",
+      "sm": "sm",
+      "base": "base",
+      "lg": "lg",
+      "xl": "xl"
+     }
+    },
+    "Icon only": {
+     "prop": "iconOnly"
+    },
+    "Outline": {
+     "prop": "outline",
+     "allowedWith": {
+      "color": [
+       "success",
+       "danger",
+       "warning"
+      ]
+     }
+    },
+    "Logo inside": {
+     "prop": "logo"
+    },
+    "State": {
+     "css": true
+    },
+    "Show left icon": {
+     "prop": "leftIcon",
+     "slot": true
+    },
+    "Show right icon": {
+     "prop": "rightIcon",
+     "slot": true
+    },
+    "Button text": {
+     "prop": "children"
+    }
+   },
+   "template": "templates/components/Button.tsx"
+  },
+  {
+   "react": "DownloadAppButton",
+   "doc": "actions.md#download-app-button",
+   "page": "2542:21012",
+   "node": "1146:24595",
+   "figmaName": "Download App Button",
+   "figmaVariants": {
+    "Device": [
+     "Google Play",
+     "AppStore"
+    ],
+    "Type": [
+     "Light",
+     "Dark"
+    ]
+   },
+   "propMap": {
+    "Device": {
+     "prop": "store",
+     "values": {
+      "Google Play": "google-play",
+      "AppStore": "app-store"
+     }
+    },
+    "Type": {
+     "prop": "tone",
+     "values": {
+      "Light": "light",
+      "Dark": "dark"
+     }
+    }
+   },
+   "specVerified": true,
+   "template": "templates/components/DownloadAppButton.tsx"
+  },
+  {
+   "react": "ButtonGroup",
+   "doc": "actions.md#button-group",
+   "page": "1149:31693",
+   "node": "1149:31694",
+   "figmaName": "Group button",
+   "figmaVariants": {
+    "Type": [
+     "Default"
+    ],
+    "Size": [
+     "xs",
+     "sm",
+     "base",
+     "lg"
+    ],
+    "Color": [
+     "Gray",
+     "White"
+    ]
+   },
+   "propMap": {
+    "Size": {
+     "prop": "size",
+     "values": {
+      "xs": "xs",
+      "sm": "sm",
+      "base": "base",
+      "lg": "lg"
+     }
+    },
+    "Color": {
+     "prop": "color",
+     "values": {
+      "Gray": "gray",
+      "White": "white"
+     }
+    }
+   },
+   "parts": {
+    "ButtonGroupExamples": "1149:31799"
+   },
+   "specVerified": true,
+   "template": "templates/components/ButtonGroup.tsx"
+  },
+  {
+   "react": "SpeedDial",
+   "doc": "actions.md#speed-dial",
+   "page": "14231:74723",
+   "node": "1149:84847",
+   "figmaName": "Speed dial (ready to use examples)",
+   "figmaVariants": {
+    "Type": [
+     "Default",
+     "Rounded",
+     "Menu",
+     "Article dropdown menu"
+    ],
+    "Position": [
+     "Top",
+     "Bottom",
+     "Right",
+     "Left"
+    ]
+   },
+   "propMap": {
+    "Type": {
+     "prop": "variant",
+     "values": {
+      "Default": "default",
+      "Rounded": "rounded",
+      "Menu": "menu",
+      "Article dropdown menu": "dropdown"
+     }
+    },
+    "Position": {
+     "prop": "direction",
+     "values": {
+      "Top": "top",
+      "Bottom": "bottom",
+      "Right": "right",
+      "Left": "left"
+     }
+    }
+   },
+   "parts": {
+    "SpeedDialItem": "1149:84896",
+    "SpeedDialMenu": "1149:84972",
+    "InteractiveSpeedDialA": "1149:84989",
+    "InteractiveSpeedDialB": "1149:85017"
+   },
+   "specVerified": true,
+   "template": "templates/components/SpeedDial.tsx"
+  },
+  {
+   "react": "Input",
+   "doc": "forms.md#input",
+   "page": "3279:34618",
+   "node": "1149:46826",
+   "figmaName": "Input field",
+   "specVerified": true,
+   "figmaVariants": {
+    "Type": [
+     "Default",
+     "Add-on icon",
+     "Add-on text",
+     "Inner button",
+     "Stacked placeholder"
+    ],
+    "Size": [
+     "sm",
+     "base",
+     "lg",
+     "xl"
+    ],
+    "State": [
+     "Initial",
+     "Focus/Typing",
+     "Filled",
+     "Disabled",
+     "Read-only",
+     "Success",
+     "Danger"
+    ]
+   },
+   "propMap": {
+    "Size": {
+     "prop": "size",
+     "values": {
+      "sm": "sm",
+      "base": "base",
+      "lg": "lg",
+      "xl": "xl"
+     }
+    },
+    "Type": {
+     "prop": null,
+     "values": {
+      "Default": "<Input>",
+      "Add-on icon": "<Input addonIcon>",
+      "Add-on text": "<Input addonText>",
+      "Inner button": "<Input endAction>",
+      "Stacked placeholder": "<Input stackedLabel>"
+     }
+    },
+    "State": {
+     "css": true,
+     "except": {
+      "Success": {
+       "prop": "status",
+       "value": "success"
+      },
+      "Danger": {
+       "prop": "status",
+       "value": "danger"
+      },
+      "Read-only": {
+       "prop": "readOnly"
+      },
+      "Disabled": {
+       "prop": "disabled"
+      }
+     }
+    }
+   },
+   "parts": {
+    "InputFormExamples": "1149:46505"
+   },
+   "template": "templates/components/Input.tsx"
+  },
+  {
+   "react": "Label",
+   "doc": "forms.md#label-and-helpertext",
+   "page": "3279:34618",
+   "node": "1149:94727",
+   "figmaName": "Label",
+   "specVerified": true,
+   "figmaVariants": {
+    "Type": [
+     "Default",
+     "Required & icon",
+     "Two texts"
+    ]
+   },
+   "propMap": {
+    "Show asterisk": {
+     "prop": "required"
+    },
+    "Show label icon": {
+     "prop": "icon",
+     "slot": true
+    },
+    "Helper text": {
+     "prop": "hint"
+    }
+   },
+   "template": "templates/components/Input.tsx"
+  },
+  {
+   "react": "HelperText",
+   "doc": "forms.md#label-and-helpertext",
+   "page": "3279:34618",
+   "node": "1149:94741",
+   "figmaName": "Helper",
+   "specVerified": true,
+   "figmaVariants": {
+    "Type": [
+     "Default",
+     "Tags",
+     "Left & Right text",
+     "Progress bar",
+     "Features"
+    ]
+   },
+   "template": "templates/components/Input.tsx"
+  },
+  {
+   "react": "Select",
+   "doc": "forms.md#select",
+   "page": "3279:34618",
+   "node": "1149:46541",
+   "figmaName": "Select form",
+   "figmaVariants": {
+    "Type": [
+     "Default",
+     "Inline",
+     "With Buttons",
+     "2 inputs",
+     "Range inputs",
+     "3 inputs",
+     "Left button"
+    ]
+   },
+   "specVerified": true,
+   "propMap": {
+    "Type": {
+     "prop": null,
+     "values": {
+      "Default": "<Select> in a Label/HelperText field",
+      "Inline": "Label beside <Select size=\"sm\">",
+      "Left button": "composition"
+     }
+    },
+    "Size": {
+     "prop": "size",
+     "fromInputField": true
+    },
+    "State": {
+     "css": true,
+     "except": {
+      "Success": {
+       "prop": "status",
+       "value": "success"
+      },
+      "Danger": {
+       "prop": "status",
+       "value": "danger"
+      },
+      "Disabled": {
+       "prop": "disabled"
+      }
+     }
+    }
+   },
+   "template": "templates/components/Select.tsx"
+  },
+  {
+   "react": "SearchInput",
+   "doc": "forms.md#searchinput",
+   "page": "3279:34618",
+   "node": "1149:46581",
+   "figmaName": "Search form",
+   "figmaVariants": {
+    "Type": [
+     "Default",
+     "Inline",
+     "With buttons",
+     "With spaced buttons",
+     "Inner button",
+     "Three buttons",
+     "With button (spaced)",
+     "With button (no-space)"
+    ]
+   },
+   "specVerified": true,
+   "propMap": {
+    "Type": {
+     "prop": "variant",
+     "values": {
+      "Default": "default",
+      "With button (spaced)": "button",
+      "With button (no-space)": "joined",
+      "Inner button": "inner"
+     },
+     "compositions": [
+      "Inline",
+      "With buttons",
+      "With spaced buttons",
+      "Three buttons"
+     ]
+    }
+   },
+   "template": "templates/components/SearchInput.tsx"
+  },
+  {
+   "react": "NumberInput",
+   "doc": "forms.md#numberinput",
+   "page": "3279:34618",
+   "node": "1149:46630",
+   "figmaName": "Number form",
+   "figmaVariants": {
+    "Type": [
+     "Default",
+     "Inline",
+     "With buttons",
+     "With spaced buttons",
+     "Inner button",
+     "Three buttons",
+     "Stacked placeholder",
+     "With progress bar",
+     "Stacked inputs",
+     "Stacked full",
+     "Range",
+     "Ghost input",
+     "One button"
+    ]
+   },
+   "specVerified": true,
+   "propMap": {
+    "Type": {
+     "prop": "variant",
+     "values": {
+      "Default": "default",
+      "With buttons": "buttons",
+      "With spaced buttons": "spaced",
+      "Ghost input": "ghost"
+     },
+     "compositions": [
+      "Inline",
+      "Inner button",
+      "Three buttons",
+      "Stacked placeholder",
+      "With progress bar",
+      "Stacked inputs",
+      "Stacked full",
+      "Range",
+      "One button"
+     ]
+    }
+   },
+   "template": "templates/components/NumberInput.tsx"
+  },
+  {
+   "react": "PhoneInput",
+   "doc": "forms.md#phoneinput",
+   "page": "3279:34618",
+   "node": "1149:46719",
+   "figmaName": "Phone form",
+   "figmaVariants": {
+    "Type": [
+     "Default",
+     "Inline",
+     "With spaced buttons",
+     "Inner button",
+     "Three buttons",
+     "Stacked with button",
+     "Select & Button",
+     "One button"
+    ]
+   },
+   "specVerified": true,
+   "propMap": {
+    "Type": {
+     "prop": null,
+     "values": {
+      "Default": "<PhoneInput>"
+     },
+     "compositions": [
+      "Inline",
+      "With spaced buttons",
+      "Inner button",
+      "Three buttons",
+      "Stacked with button",
+      "Select & Button",
+      "One button"
+     ]
+    }
+   },
+   "template": "templates/components/PhoneInput.tsx"
+  },
+  {
+   "react": "CopyInput",
+   "doc": "forms.md#copyinput",
+   "page": "3279:34618",
+   "node": "1149:46768",
+   "figmaName": "Copy to clipboard form",
+   "figmaVariants": {
+    "Type": [
+     "Default",
+     "Inline",
+     "With spaced buttons",
+     "Inner button",
+     "Three buttons",
+     "Select & Button",
+     "Default with button",
+     "Add-on",
+     "Two buttons",
+     "Large input"
+    ]
+   },
+   "specVerified": true,
+   "propMap": {
+    "Type": {
+     "prop": "variant",
+     "values": {
+      "Default with button": "joined",
+      "Inner button": "inner",
+      "Large input": "inner",
+      "Default": "icon"
+     },
+     "compositions": [
+      "Inline",
+      "With spaced buttons",
+      "Three buttons",
+      "Select & Button",
+      "Add-on",
+      "Two buttons"
+     ]
+    }
+   },
+   "template": "templates/components/CopyInput.tsx"
+  },
+  {
+   "react": "FileUpload",
+   "doc": "forms.md#fileupload",
+   "page": "3279:34618",
+   "node": "1149:48981",
+   "figmaName": "File upload input",
+   "figmaVariants": {
+    "Type": [
+     "Advanced",
+     "With cta's"
+    ],
+    "Size": [
+     "base"
+    ],
+    "State": [
+     "Initial",
+     "Hover",
+     "Disabled",
+     "Success",
+     "Danger"
+    ]
+   },
+   "parts": {
+    "FileUploadExamples": "1149:48972"
+   },
+   "specVerified": true,
+   "propMap": {
+    "Type": {
+     "prop": "variant",
+     "component": "FileDropzone",
+     "values": {
+      "Advanced": "advanced",
+      "With cta's": "ctas"
+     }
+    },
+    "State": {
+     "css": true,
+     "except": {
+      "Disabled": {
+       "prop": "disabled"
+      },
+      "Success": {
+       "prop": "status",
+       "value": "success"
+      },
+      "Danger": {
+       "prop": "status",
+       "value": "danger"
+      }
+     }
+    },
+    "examples": {
+     "Default": "<FileInput>"
+    }
+   },
+   "template": "templates/components/FileUpload.tsx"
+  },
+  {
+   "react": "TagInput",
+   "doc": "forms.md#taginput",
+   "page": "3279:34618",
+   "node": "1149:49173",
+   "figmaName": "Tag input",
+   "figmaVariants": {
+    "Type": [
+     "Default"
+    ],
+    "Size": [
+     "sm",
+     "base",
+     "lg",
+     "xl"
+    ],
+    "State": [
+     "Initial",
+     "Focus",
+     "Filled",
+     "Disabled",
+     "Success",
+     "Danger"
+    ]
+   },
+   "propMap": {
+    "Size": {
+     "prop": "size",
+     "values": {
+      "sm": "sm",
+      "base": "base",
+      "lg": "lg",
+      "xl": "xl"
+     }
+    }
+   },
+   "specVerified": true,
+   "template": "templates/components/TagInput.tsx"
+  },
+  {
+   "react": "OtpInput",
+   "doc": "forms.md#otpinput",
+   "page": "3279:34618",
+   "node": "1149:49523",
+   "figmaName": "OTP Inputs",
+   "figmaVariants": {
+    "Type": [
+     "Default"
+    ],
+    "Size": [
+     "sm",
+     "base",
+     "lg",
+     "xl"
+    ],
+    "State": [
+     "Initial",
+     "Focus",
+     "Filled",
+     "Disabled",
+     "Read-only",
+     "Success",
+     "Danger"
+    ]
+   },
+   "propMap": {
+    "Size": {
+     "prop": "size",
+     "values": {
+      "sm": "sm",
+      "base": "base",
+      "lg": "lg",
+      "xl": "xl"
+     }
+    }
+   },
+   "parts": {
+    "OtpExamples": "1149:49576"
+   },
+   "specVerified": true,
+   "template": "templates/components/OtpInput.tsx"
+  },
+  {
+   "react": "Textarea",
+   "doc": "forms.md#textarea",
+   "page": "3279:34618",
+   "node": "1149:49679",
+   "figmaName": "Textarea input",
+   "figmaVariants": {
+    "Type": [
+     "Default",
+     "Chatroom",
+     "Buttons inside",
+     "Buttons outside"
+    ],
+    "State": [
+     "Initial",
+     "Focus",
+     "Filled"
+    ]
+   },
+   "parts": {
+    "TextareaExamples": "1149:50131"
+   },
+   "specVerified": true,
+   "propMap": {
+    "Type": {
+     "prop": null,
+     "values": {
+      "Default": "<Textarea>",
+      "Buttons inside": "footer",
+      "Buttons outside": "composition",
+      "Chatroom": "composition"
+     }
+    },
+    "State": {
+     "css": true
+    }
+   },
+   "template": "templates/components/Textarea.tsx"
+  },
+  {
+   "react": "RichTextEditor",
+   "doc": "forms.md#richtexteditor",
+   "page": "3279:34618",
+   "node": "1149:49749",
+   "figmaName": "Rich text editor input",
+   "figmaVariants": {
+    "Type": [
+     "Buttons inside",
+     "Buttons outside",
+     "Default"
+    ],
+    "State": [
+     "Initial",
+     "Focus",
+     "Filled"
+    ]
+   },
+   "specVerified": true,
+   "propMap": {
+    "Type": {
+     "prop": null,
+     "values": {
+      "Default": "<RichTextEditor>",
+      "Buttons inside": "footer",
+      "Buttons outside": "Buttons after the component"
+     }
+    },
+    "State": {
+     "css": true
+    }
+   },
+   "template": "templates/components/RichTextEditor.tsx"
+  },
+  {
+   "react": "FloatingLabelInput",
+   "doc": "forms.md#floatinglabelinput",
+   "page": "1149:50453",
+   "node": "1149:50454",
+   "figmaName": "Floating label",
+   "figmaVariants": {
+    "Type": [
+     "Default",
+     "With background",
+     "Bordered"
+    ],
+    "Size": [
+     "sm",
+     "base",
+     "lg",
+     "xl"
+    ],
+    "State": [
+     "Initial",
+     "Focus",
+     "Filled",
+     "Disabled",
+     "Read only",
+     "Success",
+     "Danger"
+    ]
+   },
+   "propMap": {
+    "Type": {
+     "prop": "variant",
+     "values": {
+      "Default": "underline",
+      "With background": "filled",
+      "Bordered": "outlined"
+     }
+    },
+    "Size": {
+     "prop": "size",
+     "values": {
+      "sm": "sm",
+      "base": "base",
+      "lg": "lg",
+      "xl": "xl"
+     }
+    }
+   },
+   "specVerified": true,
+   "template": "templates/components/FloatingLabelInput.tsx"
+  },
+  {
+   "react": "Datepicker",
+   "doc": "forms.md#datepicker",
+   "page": "1149:51144",
+   "node": "1149:51284",
+   "figmaName": "Datepicker (ready to use examples)",
+   "figmaVariants": {
+    "Type": [
+     "Default",
+     "Range"
+    ]
+   },
+   "parts": {
+    "DatepickerCell": "1149:51147",
+    "DatepickerMenu": "1149:51169",
+    "DatepickerControls": "1149:51164"
+   },
+   "specVerified": true,
+   "propMap": {
+    "Type": {
+     "prop": "mode",
+     "values": {
+      "Default": "single",
+      "Range": "range"
+     }
+    },
+    "parts": {
+     "DatepickerMenu": "<Calendar>"
+    }
+   },
+   "template": "templates/components/Datepicker.tsx"
+  },
+  {
+   "react": "Timepicker",
+   "doc": "forms.md#timepicker",
+   "page": "1149:52187",
+   "node": "1149:52636",
+   "figmaName": "Timepicker form",
+   "figmaVariants": {
+    "Type": [
+     "Default",
+     "Inline",
+     "With Dropdown",
+     "With button",
+     "With select",
+     "Range"
+    ]
+   },
+   "parts": {
+    "TimepickerInput": "1149:52243",
+    "TimepickerMenu": "1149:52665"
+   },
+   "specVerified": true,
+   "propMap": {
+    "Type": {
+     "prop": null,
+     "values": {
+      "Default": "<TimeInput>",
+      "Inline": "Label beside <TimeInput>",
+      "With Dropdown": "<TimeSlots> in a Popover",
+      "Range": "two <TimeInput>s"
+     },
+     "compositions": [
+      "With button",
+      "With select"
+     ]
+    },
+    "TimepickerInput": {
+     "Type": {
+      "prop": "addon",
+      "values": {
+       "Default": null,
+       "Left add-on": "start",
+       "Right add-on": "end"
+      }
+     },
+     "Size": {
+      "prop": "size"
+     },
+     "State": {
+      "css": true,
+      "except": {
+       "Success": {
+        "prop": "status",
+        "value": "success"
+       },
+       "Danger": {
+        "prop": "status",
+        "value": "danger"
+       }
+      }
+     }
+    }
+   },
+   "template": "templates/components/Timepicker.tsx"
+  },
+  {
+   "react": "Autocomplete",
+   "doc": "forms.md#autocomplete",
+   "page": "1149:53107",
+   "node": "1149:53126",
+   "figmaName": "Autocomplete input (ready to use examples)",
+   "figmaVariants": {
+    "Type": [
+     "Default",
+     "User",
+     "Highlighted text",
+     "Advanced with save",
+     "Advanced",
+     "Categories"
+    ]
+   },
+   "parts": {
+    "AutocompleteMenu": "1149:53147",
+    "AutocompleteItem": "1149:53218"
+   },
+   "specVerified": true,
+   "propMap": {
+    "Type": {
+     "prop": null,
+     "values": {
+      "Default": "options",
+      "User": "options with icon=<Avatar>",
+      "Highlighted text": "built in",
+      "Categories": "options with group",
+      "Advanced with save": "footer",
+      "Advanced": "options with description"
+     }
+    }
+   },
+   "template": "templates/components/Autocomplete.tsx"
+  },
+  {
+   "react": "RangeSlider",
+   "doc": "forms.md#rangeslider",
+   "page": "1149:54339",
+   "node": "1149:54340",
+   "figmaName": "Range Slider examples",
+   "figmaVariants": {
+    "Type": [
+     "Default",
+     "Range"
+    ]
+   },
+   "parts": {
+    "RangeSliderHelper": "1149:54358",
+    "RangeSliderBar": "1149:54365",
+    "RangeSliderThumb": "1149:54373"
+   },
+   "specVerified": true,
+   "propMap": {
+    "Type": {
+     "prop": "value",
+     "values": {
+      "Default": "number",
+      "Range": "[number, number]"
+     }
+    }
+   },
+   "template": "templates/components/RangeSlider.tsx"
+  },
+  {
+   "react": "Toggle",
+   "doc": "forms.md#toggle",
+   "page": "1149:54431",
+   "node": "1149:54432",
+   "figmaName": "Toggle switches",
+   "specVerified": true,
+   "figmaVariants": {
+    "Type": [
+     "Default"
+    ],
+    "Size": [
+     "base",
+     "lg"
+    ],
+    "Status": [
+     "Initial",
+     "Focus",
+     "Disabled"
+    ],
+    "Checked": [
+     "False",
+     "True"
+    ]
+   },
+   "propMap": {
+    "Size": {
+     "prop": "size",
+     "values": {
+      "base": "base",
+      "lg": "lg"
+     }
+    },
+    "Checked": {
+     "prop": "checked"
+    },
+    "Status": {
+     "css": true
+    }
+   },
+   "parts": {
+    "ToggleInputs": "1149:54457",
+    "ToggleLabel": "1149:54502",
+    "ToggleHelper": "1149:54510",
+    "ToggleGroup": "1149:54513"
+   },
+   "template": "templates/components/Toggle.tsx"
+  },
+  {
+   "react": "Checkbox",
+   "doc": "forms.md#checkbox-and-radio",
+   "page": "1149:54696",
+   "node": "1149:54707",
+   "figmaName": "Checkbox input",
+   "specVerified": true,
+   "figmaVariants": {
+    "Type": [
+     "Checkbox input",
+     "Radio input"
+    ],
+    "Size": [
+     "base",
+     "Default"
+    ],
+    "Status": [
+     "Initial",
+     "Focus",
+     "Disabled"
+    ],
+    "Checked": [
+     "False",
+     "True"
+    ]
+   },
+   "propMap": {
+    "Type": {
+     "component": {
+      "Checkbox input": "Checkbox",
+      "Radio input": "Radio"
+     }
+    },
+    "Checked": {
+     "prop": "checked"
+    },
+    "Status": {
+     "css": true
+    }
+   },
+   "parts": {
+    "ChoiceLabel": "1149:55119",
+    "ChoiceHelper": "1149:55133"
+   },
+   "template": "templates/components/Checkbox.tsx"
+  },
+  {
+   "react": "ChoiceCard",
+   "doc": "forms.md#choicecard",
+   "page": "1149:54696",
+   "node": "1149:54726",
+   "figmaName": "Checkbox/Radio form",
+   "figmaVariants": {
+    "Type": [
+     "Default",
+     "Left checkbox card",
+     "Icon & text",
+     "With side icon & text",
+     "Advanced",
+     "Simple",
+     "Only Icon",
+     "Box icon & logo",
+     "With helper",
+     "Advanced (Radio inputs)",
+     "Only text",
+     "Icons & text",
+     "Color",
+     "Rating",
+     "Dots & text",
+     "Payment",
+     "Icon & toggle",
+     "Bordered left input"
+    ],
+    "Status": [
+     "Initial",
+     "Hover",
+     "Checked"
+    ]
+   },
+   "parts": {
+    "ChoiceGroup": "1149:55022"
+   },
+   "specVerified": true,
+   "propMap": {
+    "Type": {
+     "prop": "variant",
+     "values": {
+      "Left checkbox card": "card",
+      "Icon & text": "card + icon",
+      "Advanced": "card",
+      "Advanced (Radio inputs)": "card type=radio",
+      "Bordered left input": "bordered",
+      "Simple": "chip",
+      "Only text": "circle",
+      "Only Icon": "circle",
+      "Rating": "circle"
+     },
+     "compositions": [
+      "Default",
+      "With side icon & text",
+      "Box icon & logo",
+      "With helper",
+      "Icons & text",
+      "Color",
+      "Dots & text",
+      "Payment",
+      "Icon & toggle"
+     ]
+    },
+    "Status": {
+     "css": true,
+     "note": "Checked via has-checked:"
+    }
+   },
+   "template": "templates/components/ChoiceCard.tsx"
+  },
+  {
+   "react": "Alert",
+   "doc": "feedback.md#alert",
+   "page": "3284:18927",
+   "node": "1146:15151",
+   "figmaName": "Alert",
+   "specVerified": true,
+   "figmaVariants": {
+    "Type": [
+     "Complex",
+     "Default",
+     "Small",
+     "Border top"
+    ],
+    "Color": [
+     "Success",
+     "Info",
+     "Warning",
+     "Default",
+     "Danger"
+    ]
+   },
+   "propMap": {
+    "Type": {
+     "prop": "variant",
+     "values": {
+      "Default": "default",
+      "Complex": "complex",
+      "Small": "pill",
+      "Border top": "border-top"
+     }
+    },
+    "Color": {
+     "prop": "color",
+     "values": {
+      "Default": "neutral",
+      "Info": "info",
+      "Success": "success",
+      "Warning": "warning",
+      "Danger": "danger"
+     }
+    },
+    "Heading text": {
+     "prop": "title"
+    },
+    "Body text": {
+     "prop": "children"
+    },
+    "Show left icon": {
+     "prop": "icon",
+     "slot": true
+    },
+    "Show right icon": {
+     "prop": "onDismiss"
+    }
+   },
+   "template": "templates/components/Alert.tsx"
+  },
+  {
+   "react": "Toast",
+   "doc": "feedback.md#toast",
+   "page": "3337:16705",
+   "node": "1149:93975",
+   "figmaName": "Toast",
+   "figmaVariants": {
+    "Type": [
+     "Avatar & button",
+     "Icon shape & text",
+     "Icon shape & buttons",
+     "With header",
+     "Icon & text",
+     "Warning",
+     "With illustration",
+     "Error",
+     "With progress bar"
+    ]
+   },
+   "specVerified": true,
+   "propMap": {
+    "Type": {
+     "prop": null,
+     "values": {
+      "Icon & text": "icon + children",
+      "Icon shape & text": "icon=<IconShape>",
+      "Icon shape & buttons": "title + actions",
+      "Avatar & button": "icon=<Avatar> + title + actions",
+      "With header": "header",
+      "With progress bar": "children=<Progress>",
+      "With illustration": "children",
+      "Warning": {
+       "prop": "color",
+       "value": "warning"
+      },
+      "Error": {
+       "prop": "color",
+       "value": "danger"
+      }
+     }
+    }
+   },
+   "template": "templates/components/Toast.tsx"
+  },
+  {
+   "react": "Badge",
+   "doc": "feedback.md#badge",
+   "page": "3283:24168",
+   "node": "1146:22250",
+   "figmaName": "Badge",
+   "specVerified": true,
+   "figmaVariants": {
+    "Theme": [
+     "Gray",
+     "White",
+     "Brand",
+     "Danger",
+     "Warning",
+     "Success"
+    ],
+    "Size": [
+     "sm",
+     "lg"
+    ],
+    "Type": [
+     "Default",
+     "With avatar",
+     "With dot",
+     "With loader",
+     "With secondary text"
+    ],
+    "Only icon": [
+     "False",
+     "True"
+    ],
+    "Only text": [
+     "False",
+     "True"
+    ]
+   },
+   "propMap": {
+    "Theme": {
+     "prop": "color",
+     "values": {
+      "Gray": "gray",
+      "White": "white",
+      "Brand": "brand",
+      "Danger": "danger",
+      "Warning": "warning",
+      "Success": "success"
+     }
+    },
+    "Size": {
+     "prop": "size",
+     "values": {
+      "sm": "sm",
+      "lg": "lg"
+     }
+    },
+    "Type": {
+     "prop": "leading",
+     "values": {
+      "Default": null,
+      "With avatar": "avatar",
+      "With dot": "dot",
+      "With loader": "spinner",
+      "With secondary text": null
+     }
+    },
+    "Only icon": {
+     "prop": "iconOnly"
+    },
+    "Only text": {
+     "prop": "circle"
+    }
+   },
+   "template": "templates/components/Badge.tsx"
+  },
+  {
+   "react": "Progress",
+   "doc": "feedback.md#progress",
+   "page": "3283:24173",
+   "node": "1149:82279",
+   "figmaName": "Progress Bars",
+   "specVerified": true,
+   "figmaVariants": {
+    "Color": [
+     "Primary",
+     "Gray",
+     "Dark",
+     "Success",
+     "Danger",
+     "Warning"
+    ],
+    "Type": [
+     "Top label",
+     "Side label",
+     "Bottom label"
+    ]
+   },
+   "propMap": {
+    "Color": {
+     "prop": "color",
+     "values": {
+      "Primary": "brand",
+      "Gray": "gray",
+      "Dark": "dark",
+      "Success": "success",
+      "Danger": "danger",
+      "Warning": "warning"
+     }
+    },
+    "Type": {
+     "prop": "labelPosition",
+     "values": {
+      "Top label": "top",
+      "Side label": "side",
+      "Bottom label": "bottom"
+     }
+    }
+   },
+   "parts": {
+    "ProgressBar": "1149:82364"
+   },
+   "template": "templates/components/Progress.tsx"
+  },
+  {
+   "react": "Spinner",
+   "doc": "feedback.md#spinner",
+   "page": "3284:24046",
+   "node": "1149:83311",
+   "figmaName": "Spinner",
+   "figmaVariants": {
+    "Type": [
+     "Default"
+    ],
+    "Size": [
+     "xs",
+     "sm",
+     "md",
+     "lg",
+     "xl"
+    ],
+    "Track": [
+     "True",
+     "False"
+    ]
+   },
+   "propMap": {
+    "Size": {
+     "prop": "size",
+     "values": {
+      "xs": "xs",
+      "sm": "sm",
+      "md": "md",
+      "lg": "lg",
+      "xl": "xl"
+     }
+    },
+    "Track": {
+     "prop": "track"
+    }
+   },
+   "parts": {
+    "InteractiveSpinner": "1149:83298"
+   },
+   "specVerified": true,
+   "template": "templates/components/Spinner.tsx"
+  },
+  {
+   "react": "Skeleton",
+   "doc": "feedback.md#skeleton",
+   "page": "13251:80911",
+   "node": "1149:85600",
+   "figmaName": "Skeleton",
+   "figmaVariants": {
+    "Type": [
+     "Card + Image",
+     "Image + Text",
+     "Text",
+     "List",
+     "Simple text",
+     "Widget"
+    ],
+    "Dark Version": [
+     "False"
+    ]
+   },
+   "specVerified": true,
+   "propMap": {
+    "Type": {
+     "prop": "type",
+     "values": {
+      "Text": "text",
+      "Simple text": "simple-text",
+      "Image + Text": "image",
+      "Card + Image": "card",
+      "List": "list",
+      "Widget": "widget"
+     }
+    }
+   },
+   "template": "templates/components/Skeleton.tsx"
+  },
+  {
+   "react": "Rating",
+   "doc": "feedback.md#rating",
+   "page": "1149:82443",
+   "node": "1149:82444",
+   "figmaName": "Rating",
+   "figmaVariants": {
+    "Type": [
+     "Default",
+     "With badge",
+     "Radio input"
+    ]
+   },
+   "specVerified": true,
+   "propMap": {
+    "Type": {
+     "prop": null,
+     "values": {
+      "Default": "<Rating>",
+      "With badge": "<Rating badge>",
+      "Radio input": "<RatingInput>"
+     }
+    }
+   },
+   "template": "templates/components/Rating.tsx"
+  },
+  {
+   "react": "Modal",
+   "doc": "overlays.md#modal",
+   "page": "3284:23179",
+   "node": "1149:71305",
+   "figmaName": "Modal",
+   "specVerified": true,
+   "figmaVariants": {
+    "Type": [
+     "Info",
+     "Popup",
+     "Sign In",
+     "Create product",
+     "With radio inputs",
+     "With timeline",
+     "With progress bar",
+     "With list",
+     "OTP",
+     "Share"
+    ]
+   },
+   "parts": {
+    "ModalHeader": "1149:71403",
+    "ModalFooter": "1149:71444"
+   },
+   "template": "templates/components/Modal.tsx"
+  },
+  {
+   "react": "Drawer",
+   "doc": "overlays.md#drawer",
+   "page": "13261:80923",
+   "node": "1149:37097",
+   "figmaName": "Drawer",
+   "figmaVariants": {
+    "Type": [
+     "Default",
+     "Navigation",
+     "With forms",
+     "Advanced",
+     "With alert",
+     "With list",
+     "Bottom",
+     "Swipeable"
+    ]
+   },
+   "parts": {
+    "DrawerHeader": "1149:37184",
+    "DrawerFooter": "1149:37232"
+   },
+   "specVerified": true,
+   "propMap": {
+    "Type": {
+     "prop": null,
+     "values": {
+      "Bottom": {
+       "prop": "placement",
+       "value": "bottom"
+      },
+      "Swipeable": {
+       "prop": "placement",
+       "value": "bottom"
+      },
+      "Default": "children",
+      "Navigation": "children",
+      "With forms": "children",
+      "Advanced": "children",
+      "With alert": "children",
+      "With list": "children"
+     }
+    }
+   },
+   "template": "templates/components/Drawer.tsx"
+  },
+  {
+   "react": "Dropdown",
+   "doc": "overlays.md#dropdown",
+   "page": "3282:18862",
+   "node": "1149:39895",
+   "figmaName": "Dropdown menu ",
+   "specVerified": true,
+   "figmaVariants": {
+    "Type": [
+     "Default",
+     "User profile",
+     "with separator",
+     "With radio input",
+     "With toggle",
+     "Checkbox",
+     "Users",
+     "With scroll",
+     "Heading & Button",
+     "User selection",
+     "Text & illustration",
+     "With forms",
+     "Grid",
+     "Language select",
+     "Menu",
+     "With number inputs"
+    ]
+   },
+   "parts": {
+    "DropdownItem": "1149:39651",
+    "DropdownHeader": "1149:39866",
+    "DropdownTriggers": "1149:40204"
+   },
+   "propMap": {
+    "Type": {
+     "prop": null,
+     "note": "Menu types are compositions of DropdownItem / DropdownCheckboxItem / DropdownHeader / DropdownSeparator"
+    }
+   },
+   "template": "templates/components/Dropdown.tsx"
+  },
+  {
+   "react": "Popover",
+   "doc": "overlays.md#popover",
+   "page": "3303:16685",
+   "node": "1149:81090",
+   "figmaName": "Popover",
+   "figmaVariants": {
+    "Type": [
+     "Default",
+     "Vertical items"
+    ],
+    "Position": [
+     "Left",
+     "Right",
+     "Top",
+     "Bottom"
+    ]
+   },
+   "propMap": {
+    "Position": {
+     "prop": "placement",
+     "values": {
+      "Left": "left",
+      "Right": "right",
+      "Top": "top",
+      "Bottom": "bottom"
+     }
+    }
+   },
+   "parts": {
+    "PopoverContent": "1149:81187"
+   },
+   "specVerified": true,
+   "template": "templates/components/Popover.tsx"
+  },
+  {
+   "react": "Tooltip",
+   "doc": "overlays.md#tooltip",
+   "page": "3283:24170",
+   "node": "1149:93859",
+   "figmaName": "Tooltip",
+   "specVerified": true,
+   "figmaVariants": {
+    "Type": [
+     "Default"
+    ],
+    "Position": [
+     "Top",
+     "Bottom",
+     "Left",
+     "Right"
+    ]
+   },
+   "propMap": {
+    "Position": {
+     "prop": "placement",
+     "values": {
+      "Top": "top",
+      "Bottom": "bottom",
+      "Left": "left",
+      "Right": "right"
+     }
+    },
+    "Text": {
+     "prop": "content"
+    }
+   },
+   "template": "templates/components/Tooltip.tsx"
+  },
+  {
+   "react": "Navbar",
+   "doc": "navigation.md#navbar",
+   "page": "3279:21067",
+   "node": "1149:74216",
+   "figmaName": "Navbar ",
+   "figmaVariants": {
+    "Type": [
+     "Default",
+     "With icons",
+     "With search input",
+     "With links",
+     "Centered logo"
+    ],
+    "Breakpoint": [
+     "Mobile",
+     "Tablet",
+     "Desktop"
+    ]
+   },
+   "parts": {
+    "NavLink": "1149:74002",
+    "NavbarContent": "1149:74308",
+    "MegaMenuFull": "1149:74737",
+    "MegaMenu": "1149:75228",
+    "MobileMenu": "1149:75488"
+   },
+   "specVerified": true,
+   "propMap": {
+    "Type": {
+     "prop": null,
+     "values": {
+      "Default": "links + actions",
+      "With links": "links",
+      "With search input": "search",
+      "With icons": "actions"
+     }
+    },
+    "Breakpoint": {
+     "responsive": true
+    }
+   },
+   "template": "templates/components/Navbar.tsx"
+  },
+  {
+   "react": "Sidebar",
+   "doc": "navigation.md#sidebar",
+   "page": "3279:34616",
+   "node": "1149:82628",
+   "figmaName": "Sidebar (Free component)",
+   "figmaVariants": {
+    "Type": [
+     "Default",
+     "With alert",
+     "Double sidebar"
+    ],
+    "Contracted": [
+     "False",
+     "True"
+    ]
+   },
+   "propMap": {
+    "Contracted": {
+     "prop": "collapsed"
+    }
+   },
+   "parts": {
+    "SidebarItem": "1149:82699",
+    "SidebarHeader": "1149:82737"
+   },
+   "specVerified": true,
+   "template": "templates/components/Sidebar.tsx"
+  },
+  {
+   "react": "Breadcrumb",
+   "doc": "navigation.md#breadcrumb",
+   "page": "3284:24206",
+   "node": "1148:31317",
+   "figmaName": "Breadcrumb",
+   "figmaVariants": {
+    "Type": [
+     "Default",
+     "Background",
+     "With dropdown",
+     "With group buttons",
+     "Only buttons",
+     "With badge"
+    ]
+   },
+   "parts": {
+    "BreadcrumbItem": "1148:31348"
+   },
+   "specVerified": true,
+   "propMap": {
+    "Type": {
+     "prop": "variant",
+     "values": {
+      "Default": "default",
+      "Background": "background"
+     },
+     "compositions": {
+      "With dropdown": "last label = <Dropdown>",
+      "With badge": "last label = <Badge>"
+     }
+    }
+   },
+   "template": "templates/components/Breadcrumb.tsx"
+  },
+  {
+   "react": "Tabs",
+   "doc": "navigation.md#tabs",
+   "page": "3283:24214",
+   "node": "1149:80530",
+   "figmaName": "Nav tabs",
+   "specVerified": true,
+   "figmaVariants": {
+    "Type": [
+     "Default",
+     "Pills",
+     "Button",
+     "Button group",
+     "Border bottom",
+     "Vertical with list item",
+     "Vertical pills"
+    ],
+    "State": [
+     "Initial"
+    ],
+    "Mobile": [
+     "False",
+     "True"
+    ]
+   },
+   "propMap": {
+    "Type": {
+     "prop": "variant",
+     "values": {
+      "Default": "text",
+      "Pills": "pills",
+      "Button": "button",
+      "Button group": "segmented",
+      "Border bottom": "underline",
+      "Vertical with list item": "vertical-list",
+      "Vertical pills": "vertical-pills"
+     }
+    }
+   },
+   "parts": {
+    "Tab": "1149:80596"
+   },
+   "template": "templates/components/Tabs.tsx"
+  },
+  {
+   "react": "Pagination",
+   "doc": "navigation.md#pagination",
+   "page": "3284:22482",
+   "node": "1149:81850",
+   "figmaName": "Pagination",
+   "figmaVariants": {
+    "Type": [
+     "Two buttons",
+     "Default",
+     "Text buttons",
+     "Buttons & helper text",
+     "With dropdown",
+     "With input",
+     "Simple with input",
+     "Arrows",
+     "Dropdown & buttons"
+    ]
+   },
+   "specVerified": true,
+   "propMap": {
+    "Type": {
+     "prop": "variant",
+     "values": {
+      "Default": "default",
+      "Arrows": "arrows",
+      "Two buttons": "two-buttons",
+      "Buttons & helper text": {
+       "prop": "helper"
+      }
+     }
+    }
+   },
+   "template": "templates/components/Pagination.tsx"
+  },
+  {
+   "react": "BottomNavigation",
+   "doc": "navigation.md#bottomnavigation",
+   "page": "208:15901",
+   "node": "1146:27386",
+   "figmaName": "Bottom navigation",
+   "figmaVariants": {
+    "Style": [
+     "Bordered",
+     "Default",
+     "Action button",
+     "Pagination",
+     "Segment controls"
+    ]
+   },
+   "parts": {
+    "BottomNavItem": "1146:27379",
+    "BottomBarDesktop": "1146:27418"
+   },
+   "specVerified": true,
+   "propMap": {
+    "Style": {
+     "prop": "variant",
+     "values": {
+      "Default": "default",
+      "Bordered": "bordered",
+      "Action button": "action"
+     },
+     "compositions": [
+      "Pagination",
+      "Segment controls"
+     ]
+    }
+   },
+   "template": "templates/components/BottomNavigation.tsx"
+  },
+  {
+   "react": "Stepper",
+   "doc": "navigation.md#stepper",
+   "page": "110:14549",
+   "node": "1149:84064",
+   "figmaName": "Stepper navigation",
+   "figmaVariants": {
+    "Type": [
+     "Default",
+     "Only icons",
+     "Vertical",
+     "Icons & text",
+     "With dots",
+     "Cards"
+    ],
+    "Breakpoint": [
+     "Mobile",
+     "Desktop"
+    ]
+   },
+   "parts": {
+    "Step": "1149:84155",
+    "StepperExamples": "1149:83977"
+   },
+   "specVerified": true,
+   "propMap": {
+    "Type": {
+     "prop": "variant",
+     "values": {
+      "Default": "default",
+      "With dots": "dots",
+      "Icons & text": "icons",
+      "Only icons": "only-icons",
+      "Cards": "cards",
+      "Vertical": "vertical"
+     }
+    },
+    "Breakpoint": {
+     "responsive": true
+    },
+    "StepState": {
+     "derivedFrom": "current",
+     "override": {
+      "Error": {
+       "status": "error"
+      },
+      "Disabled": {
+       "status": "disabled"
+      }
+     }
+    }
+   },
+   "template": "templates/components/Stepper.tsx"
+  },
+  {
+   "react": "Card",
+   "doc": "data-display.md#card",
+   "page": "13559:76418",
+   "node": "1149:34153",
+   "figmaName": "Card",
+   "specVerified": true,
+   "figmaVariants": {
+    "Type": [
+     "Default",
+     "With Image",
+     "Split",
+     "Centered with full image",
+     "User profile",
+     "Login form",
+     "E-commerce",
+     "CTA card",
+     "With full width tabs",
+     "With nav tabs",
+     "Pricing card",
+     "Testimonial card",
+     "Card with list",
+     "Crypto",
+     "Grid card"
+    ],
+    "Mobile Version": [
+     "False",
+     "True"
+    ]
+   },
+   "template": "templates/components/Card.tsx"
+  },
+  {
+   "react": "Accordion",
+   "doc": "data-display.md#accordion",
+   "page": "3282:18777",
+   "node": "1146:19028",
+   "figmaName": "Accordion",
+   "figmaVariants": {
+    "Style": [
+     "Default",
+     "Flush",
+     "Separate Cards",
+     "Multi-level",
+     "With sub-header"
+    ],
+    "Dark Version": [
+     "False"
+    ],
+    "Icon": [
+     "True"
+    ],
+    "Breakpoint": [
+     "Desktop",
+     "Mobile"
+    ]
+   },
+   "propMap": {
+    "Style": {
+     "prop": "variant",
+     "values": {
+      "Default": "default",
+      "Flush": "flush",
+      "Separate Cards": "cards",
+      "Multi-level": "nested",
+      "With sub-header": "subheader"
+     }
+    }
+   },
+   "specVerified": true,
+   "template": "templates/components/Accordion.tsx"
+  },
+  {
+   "react": "Avatar",
+   "doc": "data-display.md#avatar",
+   "page": "3197:21106",
+   "node": "1146:5178",
+   "figmaName": "Avatar",
+   "specVerified": true,
+   "figmaVariants": {
+    "Type": [
+     "Default",
+     "With status",
+     "With remove button",
+     "Placeholder"
+    ],
+    "Size": [
+     "xs",
+     "sm",
+     "base",
+     "lg",
+     "xl",
+     "2xl"
+    ]
+   },
+   "propMap": {
+    "Size": {
+     "prop": "size",
+     "values": {
+      "xs": "xs",
+      "sm": "sm",
+      "base": "base",
+      "lg": "lg",
+      "xl": "xl",
+      "2xl": "2xl"
+     }
+    },
+    "Type": {
+     "prop": null,
+     "values": {
+      "Default": null,
+      "With status": "status",
+      "With remove button": "onRemove",
+      "Placeholder": "initials"
+     }
+    }
+   },
+   "parts": {
+    "AvatarGroup": "1146:5549",
+    "AvatarDot": "1146:5625",
+    "AvatarRemove": "1146:5641",
+    "AvatarGroupLabel": "1146:5592"
+   },
+   "template": "templates/components/Avatar.tsx"
+  },
+  {
+   "react": "IconShape",
+   "doc": "data-display.md#iconshape",
+   "page": "1149:56577",
+   "node": "1149:56578",
+   "figmaName": "Icon Shape",
+   "specVerified": true,
+   "figmaVariants": {
+    "Size": [
+     "xs",
+     "sm",
+     "base",
+     "lg",
+     "xl",
+     "2xl"
+    ],
+    "Color": [
+     "White",
+     "Dark",
+     "Brand",
+     "Red",
+     "Gray",
+     "Green",
+     "Yellow"
+    ],
+    "Type": [
+     "Circle",
+     "Square"
+    ]
+   },
+   "propMap": {
+    "Size": {
+     "prop": "size"
+    },
+    "Color": {
+     "prop": "color",
+     "values": {
+      "White": "white",
+      "Dark": "dark",
+      "Brand": "brand",
+      "Red": "danger",
+      "Gray": "gray",
+      "Green": "success",
+      "Yellow": "warning"
+     }
+    },
+    "Type": {
+     "prop": "shape",
+     "values": {
+      "Circle": "circle",
+      "Square": "square"
+     }
+    }
+   },
+   "template": "templates/components/IconShape.tsx"
+  },
+  {
+   "react": "List",
+   "doc": "data-display.md#list",
+   "page": "3284:24113",
+   "node": "1149:70444",
+   "figmaName": "List",
+   "figmaVariants": {
+    "Type": [
+     "Divider",
+     "Card",
+     "Default",
+     "CTA"
+    ]
+   },
+   "parts": {
+    "ListItem": "1149:70209"
+   },
+   "specVerified": true,
+   "propMap": {
+    "Type": {
+     "prop": "variant",
+     "values": {
+      "Default": "default",
+      "Divider": "divider",
+      "CTA": "cta",
+      "Card": "<Card> + variant=\"divider\""
+     }
+    }
+   },
+   "template": "templates/components/List.tsx"
+  },
+  {
+   "react": "Table",
+   "doc": "data-display.md#table",
+   "page": "3284:22719",
+   "node": "1149:87477",
+   "figmaName": "Table (free-component)",
+   "figmaVariants": {
+    "Type": [
+     "Striped columns",
+     "Striped rows",
+     "With table caption"
+    ],
+    "Breakpoint": [
+     "Desktop"
+    ]
+   },
+   "specVerified": true,
+   "propMap": {
+    "Type": {
+     "prop": null,
+     "values": {
+      "Striped rows": {
+       "prop": "striped",
+       "value": "rows"
+      },
+      "Striped columns": {
+       "prop": "striped",
+       "value": "columns"
+      },
+      "With table caption": {
+       "prop": "caption"
+      }
+     }
+    }
+   },
+   "template": "templates/components/Table.tsx"
+  },
+  {
+   "react": "Timeline",
+   "doc": "data-display.md#timeline",
+   "page": "1149:91247",
+   "node": "1149:91254",
+   "figmaName": "Timeline",
+   "figmaVariants": {
+    "Type": [
+     "Default",
+     "Icons & Card",
+     "User actions",
+     "Stacked cards",
+     "Horizontal",
+     "Horizontal advanced"
+    ],
+    "Breakpoint": [
+     "Desktop",
+     "Mobile"
+    ]
+   },
+   "parts": {
+    "TimelineItem": "1149:91357",
+    "TimelineDot": "1149:91248"
+   },
+   "specVerified": true,
+   "propMap": {
+    "Type": {
+     "prop": "variant",
+     "values": {
+      "Default": "default",
+      "Icons & Card": "icons",
+      "User actions": "cards",
+      "Stacked cards": "cards",
+      "Horizontal": "horizontal",
+      "Horizontal advanced": "horizontal"
+     }
+    },
+    "Breakpoint": {
+     "responsive": true
+    }
+   },
+   "template": "templates/components/Timeline.tsx"
+  },
+  {
+   "react": "ChatBubble",
+   "doc": "data-display.md#chatbubble",
+   "page": "380:18014",
+   "node": "1149:35720",
+   "figmaName": "Chat bubble",
+   "figmaVariants": {
+    "Type": [
+     "Text",
+     "File",
+     "Audio",
+     "Calendar",
+     "Images",
+     "URL"
+    ],
+    "Direction": [
+     "Left",
+     "Right"
+    ]
+   },
+   "parts": {
+    "Bubble": "1149:35687",
+    "BubbleContent": "1149:35600"
+   },
+   "specVerified": true,
+   "propMap": {
+    "Direction": {
+     "prop": "direction",
+     "values": {
+      "Left": "received",
+      "Right": "sent"
+     }
+    },
+    "Type": {
+     "prop": "children",
+     "values": {
+      "Text": "text",
+      "File": "<ChatFile>",
+      "Audio": "<ChatAudio>",
+      "Images": "<ChatImages>",
+      "URL": "<ChatLinkPreview>",
+      "Calendar": "composition"
+     }
+    },
+    "Clean": {
+     "prop": "clean"
+    }
+   },
+   "template": "templates/components/ChatBubble.tsx"
+  },
+  {
+   "react": "Carousel",
+   "doc": "data-display.md#carousel",
+   "page": "3284:23924",
+   "node": "1149:41738",
+   "figmaName": "Carousel",
+   "figmaVariants": {
+    "Type": [
+     "Default",
+     "Default with controls & indicators",
+     "With cards",
+     "Cards & bottom controls"
+    ]
+   },
+   "parts": {
+    "CarouselControl": "1149:41774",
+    "CarouselIndicator": "1149:41777"
+   },
+   "specVerified": true,
+   "propMap": {
+    "Type": {
+     "prop": "variant",
+     "values": {
+      "Default": "slides controls={false} indicators={false}",
+      "Default with controls & indicators": "slides",
+      "With cards": "cards",
+      "Cards & bottom controls": "cards"
+     }
+    }
+   },
+   "template": "templates/components/Carousel.tsx"
+  },
+  {
+   "react": "Kbd",
+   "doc": "data-display.md#kbd",
+   "page": "13693:81938",
+   "node": "1149:92754",
+   "figmaName": "KBD",
+   "figmaVariants": {
+    "Keyboard": [
+     "(49 keys)"
+    ],
+    "Dark mode": [
+     "False"
+    ]
+   },
+   "specVerified": true,
+   "propMap": {
+    "Keyboard": {
+     "prop": "children"
+    }
+   },
+   "template": "templates/components/Kbd.tsx"
+  },
+  {
+   "react": "Banner",
+   "doc": "marketing.md#banner",
+   "page": "248:16106",
+   "node": "1146:21254",
+   "figmaName": "Banner",
+   "figmaVariants": {
+    "Type": [
+     "Default",
+     "Logo + Button",
+     "Newsletter",
+     "Icon & link",
+     "Heading & description"
+    ],
+    "Breakpoint": [
+     "Mobile",
+     "Tablet",
+     "Desktop"
+    ]
+   },
+   "specVerified": true,
+   "propMap": {
+    "Type": {
+     "prop": null,
+     "values": {
+      "Default": "children",
+      "Icon & link": "icon",
+      "Heading & description": "title + actions",
+      "Newsletter": "actions=<form>",
+      "Logo + Button": "logo + floating"
+     }
+    },
+    "Breakpoint": {
+     "responsive": true
+    }
+   },
+   "template": "templates/components/Banner.tsx"
+  },
+  {
+   "react": "Jumbotron",
+   "doc": "marketing.md#jumbotron",
+   "page": "267:16342",
+   "node": "1149:67227",
+   "figmaName": "Jumbotron",
+   "figmaVariants": {
+    "Type": [
+     "Heading + CTA",
+     "Bg-image",
+     "Text + Illustration",
+     "Link + Forms",
+     "Bg gradient",
+     "With navbar",
+     "Bento cards"
+    ],
+    "Breakpoint": [
+     "Mobile",
+     "Tablet",
+     "Desktop"
+    ]
+   },
+   "specVerified": true,
+   "propMap": {
+    "Type": {
+     "prop": "variant",
+     "values": {
+      "Heading + CTA": "centered",
+      "Text + Illustration": "split",
+      "Link + Forms": "split surface=secondary",
+      "Bg-image": "image",
+      "Bg gradient": "centered + eyebrow"
+     },
+     "compositions": [
+      "With navbar",
+      "Bento cards"
+     ]
+    },
+    "Breakpoint": {
+     "responsive": true
+    }
+   },
+   "template": "templates/components/Jumbotron.tsx"
+  },
+  {
+   "react": "Gallery",
+   "doc": "marketing.md#gallery",
+   "page": "320:17990",
+   "node": "1149:56037",
+   "figmaName": "Gallery",
+   "specVerified": true,
+   "figmaVariants": {
+    "Type": [
+     "Grid 3 columns",
+     "Grid 2 columns",
+     "Featured image",
+     "Carousel",
+     "With filters",
+     "Masonry"
+    ],
+    "Breakpoint": [
+     "Mobile",
+     "Tablet",
+     "Desktop"
+    ]
+   },
+   "propMap": {
+    "Type": {
+     "prop": "variant",
+     "values": {
+      "Grid 3 columns": "grid-3",
+      "Grid 2 columns": "grid-2",
+      "Featured image": "featured",
+      "Carousel": "carousel",
+      "With filters": "filters",
+      "Masonry": "masonry"
+     }
+    }
+   },
+   "template": "templates/components/Gallery.tsx"
+  },
+  {
+   "react": "DeviceMockup",
+   "doc": "marketing.md#devicemockup",
+   "page": "702:18224",
+   "node": "1149:41354",
+   "figmaName": "Mockups",
+   "specVerified": true,
+   "figmaVariants": {
+    "Type": [
+     "Stylus pen",
+     "Android & pen",
+     "Android",
+     "iPhone",
+     "Tablet",
+     "iMac",
+     "Laptop",
+     "Smartwatch"
+    ]
+   },
+   "propMap": {
+    "Type": {
+     "prop": "device",
+     "values": {
+      "Stylus pen": "stylus",
+      "Android & pen": "android-pen",
+      "Android": "android",
+      "iPhone": "iphone",
+      "Tablet": "tablet",
+      "iMac": "imac",
+      "Laptop": "laptop",
+      "Smartwatch": "watch"
+     }
+    }
+   },
+   "template": "templates/components/DeviceMockup.tsx"
+  }
+ ]
+}

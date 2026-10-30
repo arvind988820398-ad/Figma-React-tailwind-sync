@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { figmaDesign } from '../../../.storybook/auxokit/figma';
+import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
 import { CheckIcon, CogIcon, InfoIcon } from '../icons';
 import { Avatar } from './Avatar';
 import { Button } from './Button';
 import { Timeline, type TimelineItem } from './Timeline';
 
-// AuxoKit Timeline — mirrors the Figma "Timeline" set (node 1149:91254), item 1149:91357, dot 1149:91248.
+// AD Design Kit Timeline — mirrors the Figma "Timeline" set (node 1149:91254), item 1149:91357, dot 1149:91248.
 const events: TimelineItem[] = [
   { date: 'March 2026', title: 'Figma file published', description: 'Tokens, themes and 58 component sets released to the team.' },
   { date: 'May 2026', title: 'React library', description: 'Every component mapped to a React template with the same variants.' },

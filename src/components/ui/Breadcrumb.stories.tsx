@@ -1,18 +1,18 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { figmaDesign } from '../../../.storybook/auxokit/figma';
+import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
 import { CogIcon } from '../icons';
 import { Badge } from './Badge';
 import { Breadcrumb } from './Breadcrumb';
 import { Button } from './Button';
 import { Dropdown, DropdownItem } from './Dropdown';
 
-// AuxoKit Breadcrumb — mirrors the Figma "Breadcrumb" set (node 1148:31317). The last item is the current page.
+// AD Design Kit Breadcrumb — mirrors the Figma "Breadcrumb" set (node 1148:31317). The last item is the current page.
 const meta = {
   title: 'Components/Breadcrumb',
   parameters: { design: figmaDesign('Breadcrumb') },
   component: Breadcrumb,
   args: {
-    items: [{ label: 'Home', href: '#' }, { label: 'Projects', href: '#' }, { label: 'AuxoKit' }],
+    items: [{ label: 'Home', href: '#' }, { label: 'Projects', href: '#' }, { label: 'AD Design Kit' }],
     variant: 'default',
   },
   argTypes: { variant: { control: 'select', options: ['default', 'background'] } },
@@ -44,8 +44,8 @@ export const WithDropdown: Story = {
       { label: 'Projects', href: '#' },
       {
         label: (
-          <Dropdown label="Projects" trigger={<Button size="xs" color="secondary">AuxoKit</Button>}>
-            <DropdownItem>AuxoKit</DropdownItem>
+          <Dropdown label="Projects" trigger={<Button size="xs" color="secondary">AD Design Kit</Button>}>
+            <DropdownItem>AD Design Kit</DropdownItem>
             <DropdownItem>Marketing site</DropdownItem>
             <DropdownItem>Mobile app</DropdownItem>
           </Dropdown>

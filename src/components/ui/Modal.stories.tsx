@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { figmaDesign } from '../../../.storybook/auxokit/figma';
+import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
 import { useState } from 'react';
 import { Button } from './Button';
 import { Input, Label } from './Input';
 import { Modal, type ModalProps, type ModalSize } from './Modal';
 
-// AuxoKit Modal — mirrors the Figma "Modal" set (node 1149:71305), header 1149:71403, footer 1149:71444.
+// AD Design Kit Modal — mirrors the Figma "Modal" set (node 1149:71305), header 1149:71403, footer 1149:71444.
 function ModalDemo({ open: _open, onOpenChange, footer, ...args }: ModalProps & { buttonLabel?: string }) {
   const [open, setOpen] = useState(false);
   const change = (o: boolean) => {
@@ -100,7 +100,7 @@ function DeleteDemo(args: ModalProps) {
 export const SignInForm: Story = {
   args: {
     size: 'sm',
-    title: 'Sign in to AuxoKit',
+    title: 'Sign in to AD Design Kit',
     children: (
       <>
         <div className="flex flex-col gap-2.5">

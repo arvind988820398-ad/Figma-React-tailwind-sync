@@ -1,14 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { figmaDesign } from '../../../.storybook/auxokit/figma';
+import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
 import { CopyInput } from './CopyInput';
 import { HelperText, Label } from './Input';
 
-// AuxoKit Copy to clipboard — mirrors the Figma "Copy to clipboard form" set (node 1149:46768).
+// AD Design Kit Copy to clipboard — mirrors the Figma "Copy to clipboard form" set (node 1149:46768).
 const meta = {
   title: 'Components/CopyInput',
   parameters: { design: figmaDesign('CopyInput') },
   component: CopyInput,
-  args: { value: 'npm install auxokit', variant: 'joined', 'aria-label': 'Install command' },
+  args: { value: 'npm install ad-design-kit', variant: 'joined', 'aria-label': 'Install command' },
   argTypes: {
     variant: { control: 'select', options: ['joined', 'inner', 'icon'] },
   },
@@ -27,7 +27,7 @@ type Story = StoryObj<typeof meta>;
 export const Joined: Story = {};
 export const InnerButton: Story = { args: { variant: 'inner' } };
 export const IconButton: Story = { args: { variant: 'icon' } };
-export const LongValue: Story = { args: { value: 'https://auxokit.dev/share/8f3a2c1d-77b4-4e0e-9c52-1a2b3c4d5e6f', 'aria-label': 'Share link' } };
+export const LongValue: Story = { args: { value: 'https://ad-design-kit.dev/share/8f3a2c1d-77b4-4e0e-9c52-1a2b3c4d5e6f', 'aria-label': 'Share link' } };
 
 export const WithLabelAndHelperText: Story = {
   render: (args) => (

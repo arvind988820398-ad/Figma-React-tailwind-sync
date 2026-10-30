@@ -1,4 +1,4 @@
-// AuxoKit Card — Figma set "Card" (node 1149:34153, page 13559:76418).
+// AD Design Kit Card — Figma set "Card" (node 1149:34153, page 13559:76418).
 import type { HTMLAttributes, ReactNode } from 'react';
 import { cn } from '../../lib/cn';
 

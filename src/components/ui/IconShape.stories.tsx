@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { figmaDesign } from '../../../.storybook/auxokit/figma';
+import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
 import { IconShape, type IconShapeColor, type IconShapeSize } from './IconShape';
 import { CogIcon } from '../icons';
 
-// AuxoKit Icon Shape — mirrors the Figma "Icon Shape" set (node 1149:56578).
+// AD Design Kit Icon Shape — mirrors the Figma "Icon Shape" set (node 1149:56578).
 const colors = ['brand', 'success', 'danger', 'warning', 'gray', 'dark', 'white'] as const satisfies readonly IconShapeColor[];
 const sizes = ['xs', 'sm', 'base', 'lg', 'xl', '2xl'] as const satisfies readonly IconShapeSize[];
 

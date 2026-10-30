@@ -1,4 +1,4 @@
-// AuxoKit Toast — Figma set "Toast" (node 1149:93975, page 3337:16705).
+// AD Design Kit Toast — Figma set "Toast" (node 1149:93975, page 3337:16705).
 // Figma types map to props: Icon & text / Icon shape & text = icon + children; Icon shape & buttons / With progress bar /
 // With illustration / Avatar & button = title + actions (+ children); With header = header; Warning / Error = color.
 import { useEffect, useRef, type HTMLAttributes, type ReactNode } from 'react';

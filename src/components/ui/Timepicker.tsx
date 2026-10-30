@@ -1,4 +1,4 @@
-// AuxoKit Timepicker — Figma "Timepicker form" (node 1149:52636, page 1149:52187), input 1149:52243, menus 1149:52665.
+// AD Design Kit Timepicker — Figma "Timepicker form" (node 1149:52636, page 1149:52187), input 1149:52243, menus 1149:52665.
 // <TimeInput> = Timepicker input (native type="time" on the Input field shell with a clock icon; `addon` joins a
 // bg-neutral-tertiary icon segment). <TimeSlots> = slot menu (selected slot bg-brand text-white). Prefer TimeInput
 // unless a slot UI is required.
@@ -28,7 +28,7 @@ export const TimeInput = forwardRef<HTMLInputElement, TimeInputProps>(function T
       ref={ref}
       type="time"
       aria-invalid={status === 'danger' || undefined}
-      // Hide the browser's own clock button; the AuxoKit icon replaces it.
+      // Hide the browser's own clock button; the AD Design Kit icon replaces it.
       className={cn(inputVariants({ size, status }), '[&::-webkit-calendar-picker-indicator]:hidden', extra)}
       {...props}
     />

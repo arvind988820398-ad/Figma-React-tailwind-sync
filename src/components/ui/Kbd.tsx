@@ -1,4 +1,4 @@
-// AuxoKit Kbd — Figma set "KBD" (node 1149:92754, page 13693:81938).
+// AD Design Kit Kbd — Figma set "KBD" (node 1149:92754, page 13693:81938).
 import type { HTMLAttributes } from 'react';
 import { cn } from '../../lib/cn';
 

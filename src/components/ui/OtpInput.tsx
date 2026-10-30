@@ -1,4 +1,4 @@
-// AuxoKit OTP input — Figma "OTP Inputs" boxes (node 1149:49523) and examples (1149:49576), page 3279:34618.
+// AD Design Kit OTP input — Figma "OTP Inputs" boxes (node 1149:49523) and examples (1149:49576), page 3279:34618.
 // Figma examples → variant: Default=default · Spaced=spaced · Separator=separator · Separator spaced=separator-spaced.
 // Typing advances, Backspace goes back, arrows move, pasting fills every box.
 import { useId, useRef, type ClipboardEvent, type KeyboardEvent } from 'react';

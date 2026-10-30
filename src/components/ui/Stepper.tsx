@@ -1,4 +1,4 @@
-// AuxoKit Stepper — Figma set "Stepper navigation" (node 1149:84064, page 110:14549), step 1149:84155.
+// AD Design Kit Stepper — Figma set "Stepper navigation" (node 1149:84064, page 110:14549), step 1149:84155.
 // Figma Type → variant: Default=default · With dots=dots · Icons & text=icons · Only icons=only-icons · Cards=cards ·
 // Vertical=vertical (Number & text steps). Step state comes from `current`; `status` overrides with error/disabled.
 import type { ReactNode } from 'react';

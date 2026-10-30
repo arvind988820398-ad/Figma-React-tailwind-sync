@@ -1,7 +1,8 @@
-// AuxoKit Navbar — Figma set "Navbar" (node 1149:74216, page 3279:21067), nav link 1149:74002, mobile menu 1149:75488.
+// AD Design Kit Navbar — Figma set "Navbar" (node 1149:74216, page 3279:21067), nav link 1149:74002, mobile menu 1149:75488.
 // Breakpoint variants are responsive classes: links show from md, the menu button below md.
 // `size="compact"` (py-1, 44px tall with sm controls) is a code addition for dense app shells; Figma has only the
 // py-6 bar — see figma-audit.md "Code ahead of Figma" until a Compact variant is added to the set.
+// `fluid` drops the centered max-w-screen-xl container so an app shell's bar spans the full width (also code-ahead).
 import { useId, useState, type AnchorHTMLAttributes, type ReactNode } from 'react';
 import { cn } from '../../lib/cn';
 
@@ -44,6 +45,8 @@ export interface NavbarProps {
   logo: ReactNode;
   /** base = Figma bar (py-6). compact = dense app bar (py-1; pair with sm controls for a 44px header). */
   size?: NavbarSize;
+  /** Full-width content row (app shells) instead of the centered max-w-screen-xl container. */
+  fluid?: boolean;
   links?: NavbarLink[];
   /** Right side: Secondary + Brand base buttons, icon buttons or an avatar. */
   actions?: ReactNode;
@@ -54,13 +57,13 @@ export interface NavbarProps {
   className?: string;
 }
 
-export function Navbar({ logo, size = 'base', links = [], actions, search, sticky, className }: NavbarProps) {
+export function Navbar({ logo, size = 'base', fluid = false, links = [], actions, search, sticky, className }: NavbarProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuId = useId();
 
   return (
     <nav className={cn('w-full border-b border-default bg-neutral-primary-soft', sticky && 'sticky top-0 z-40', className)}>
-      <div className={cn('mx-auto flex max-w-screen-xl items-center justify-between gap-8 px-4', size === 'compact' ? 'py-1' : 'py-6')}>
+      <div className={cn('flex items-center justify-between gap-8 px-4', !fluid && 'mx-auto max-w-screen-xl', size === 'compact' ? 'py-1' : 'py-6')}>
         <div className="flex shrink-0 items-center">{logo}</div>
         {links.length > 0 && (
           <ul className="hidden flex-1 items-center gap-8 md:flex">

@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { figmaDesign } from '../../../.storybook/auxokit/figma';
+import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
 import { useState, type ComponentProps } from 'react';
 import { RangeSlider } from './RangeSlider';
 
-// AuxoKit Range slider — mirrors the Figma "Range Slider examples" (node 1149:54340), bar 1149:54365, thumb 1149:54373.
+// AD Design Kit Range slider — mirrors the Figma "Range Slider examples" (node 1149:54340), bar 1149:54365, thumb 1149:54373.
 const meta = {
   title: 'Components/RangeSlider',
   parameters: { design: figmaDesign('RangeSlider') },

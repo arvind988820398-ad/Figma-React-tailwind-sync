@@ -1,4 +1,4 @@
-// AuxoKit Pagination — Figma set "Pagination" (node 1149:81850, page 3284:22482).
+// AD Design Kit Pagination — Figma set "Pagination" (node 1149:81850, page 3284:22482).
 // Built from Tertiary sm Buttons joined into one row. Figma has no "current" variant; the current page uses the
 // Tertiary Hover style (figma-audit.md #42).
 import type { HTMLAttributes, ReactNode } from 'react';

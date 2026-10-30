@@ -1,11 +1,11 @@
-// AuxoKit Spinner — Figma set "Spinner" (node 1149:83311, page 3284:24046).
+// AD Design Kit Spinner — Figma set "Spinner" (node 1149:83311, page 3284:24046).
 import type { SVGAttributes } from 'react';
 import { cn } from '../../lib/cn';
 
 export type SpinnerSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 // Figma sizes: xs 12 · sm 24 · md 50 · lg 75 · xl 100.
-const sizes: Record<SpinnerSize, string> = { xs: 'size-3', sm: 'size-6', md: 'size-12.5', lg: 'size-18.75', xl: 'size-25' }; // auxokit-lint-ignore: Figma pixel sizes 50/75
+const sizes: Record<SpinnerSize, string> = { xs: 'size-3', sm: 'size-6', md: 'size-12.5', lg: 'size-18.75', xl: 'size-25' }; // ad-design-kit-lint-ignore: Figma pixel sizes 50/75
 
 export interface SpinnerProps extends SVGAttributes<SVGSVGElement> {
   size?: SpinnerSize;

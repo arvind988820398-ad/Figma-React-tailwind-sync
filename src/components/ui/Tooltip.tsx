@@ -1,4 +1,4 @@
-// AuxoKit Tooltip — Figma set "Tooltip" (node 1149:93859, page 3283:24170).
+// AD Design Kit Tooltip — Figma set "Tooltip" (node 1149:93859, page 3283:24170).
 // Minimal CSS-positioned tooltip. For collision-aware positioning, wrap a headless
 // primitive (Radix Tooltip / Floating UI) and keep these classes on the bubble.
 import { useId, useState, type ReactElement, type ReactNode, cloneElement } from 'react';

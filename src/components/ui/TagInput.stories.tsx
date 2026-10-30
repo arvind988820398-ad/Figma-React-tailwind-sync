@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { figmaDesign } from '../../../.storybook/auxokit/figma';
+import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
 import { useState, type ComponentProps } from 'react';
 import { Avatar } from './Avatar';
 import { HelperText, Label } from './Input';
 import { TagInput } from './TagInput';
 
-// AuxoKit Tag input — mirrors the Figma "Tag input" set (node 1149:49173).
+// AD Design Kit Tag input — mirrors the Figma "Tag input" set (node 1149:49173).
 const meta = {
   title: 'Components/TagInput',
   parameters: { design: figmaDesign('TagInput') },
@@ -38,7 +38,7 @@ export const Default: Story = {};
 export const Empty: Story = { args: { value: [] } };
 export const WithLeadingAvatar: Story = {
   args: {
-    value: ['ada@auxokit.dev', 'grace@auxokit.dev'],
+    value: ['ada@ad-design-kit.dev', 'grace@ad-design-kit.dev'],
     placeholder: 'Add email…',
     'aria-label': 'Invite emails',
     renderLeading: (tag) => <Avatar name={tag} size="xs" />,

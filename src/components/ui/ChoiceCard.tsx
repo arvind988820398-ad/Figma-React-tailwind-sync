@@ -1,4 +1,4 @@
-// AuxoKit Choice cards — Figma set "Checkbox/Radio form" (node 1149:54726, page 1149:54696), groups 1149:55022.
+// AD Design Kit Choice cards — Figma set "Checkbox/Radio form" (node 1149:54726, page 1149:54696), groups 1149:55022.
 // The whole card is a <label> around a real checkbox/radio, so clicking anywhere selects it. Figma types → variant:
 // Left checkbox card / Icon & text / Advanced = card · Bordered left input = bordered · Simple = chip ·
 // Only text / Only icon = circle.

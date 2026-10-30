@@ -1,4 +1,4 @@
-// "Add New Materials" drawer (Figma frames 27:9762 collapsed, 27:9783 expanded). AuxoKit Drawer at the design's
+// "Add New Materials" drawer (Figma frames 27:9762 collapsed, 27:9783 expanded). AD Design Kit Drawer at the design's
 // 624px width, with the optional sections (Stock, Financial, Additional specification) expanding from brand links.
 import { useId, useState, type ReactNode } from 'react';
 import { Button } from '../../components/ui/Button';

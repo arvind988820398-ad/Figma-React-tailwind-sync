@@ -1,4 +1,4 @@
-// AuxoKit Banner — Figma set "Banner" (node 1146:21254, page 248:16106).
+// AD Design Kit Banner — Figma set "Banner" (node 1146:21254, page 248:16106).
 // Figma Type → props: Default = children with an inline link · Icon & link = icon + link · Heading & description =
 // title + actions · Newsletter = actions holding an Input form · Logo + Button = logo + floating.
 // Breakpoint variants are responsive classes. Persist dismissal in the app (one banner at a time).
@@ -43,7 +43,7 @@ export function Banner({ title, icon, actions, logo, floating, sticky, onDismiss
       <div className="flex shrink-0 items-center gap-3">
         {actions}
         {onDismiss && (
-          <button // auxokit-lint-ignore: Figma dismiss = 32px Ghost icon button, same as Alert/Toast close
+          <button // ad-design-kit-lint-ignore: Figma dismiss = 32px Ghost icon button, same as Alert/Toast close
             type="button"
             onClick={onDismiss}
             aria-label="Dismiss announcement"

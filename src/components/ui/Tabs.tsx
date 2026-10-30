@@ -1,4 +1,4 @@
-// AuxoKit Tabs — Figma set "Nav tabs" (node 1149:80530, page 3283:24214), tab 1149:80596.
+// AD Design Kit Tabs — Figma set "Nav tabs" (node 1149:80530, page 3283:24214), tab 1149:80596.
 // Figma Type → variant: Default=text · Border bottom=underline · Pills=pills · Button=button · Button group=segmented ·
 // Vertical pills=vertical-pills · Vertical with list item=vertical-list. Mobile = horizontal scroll (overflow-x-auto).
 import { useId, useRef, type KeyboardEvent, type ReactNode } from 'react';

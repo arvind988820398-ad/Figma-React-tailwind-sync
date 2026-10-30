@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { figmaDesign } from '../../../.storybook/auxokit/figma';
+import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
 import { useState, type ComponentProps } from 'react';
 import { OtpInput } from './OtpInput';
 
-// AuxoKit OTP input — mirrors the Figma "OTP Inputs" boxes (node 1149:49523) and examples (1149:49576).
+// AD Design Kit OTP input — mirrors the Figma "OTP Inputs" boxes (node 1149:49523) and examples (1149:49576).
 const meta = {
   title: 'Components/OtpInput',
   parameters: { design: figmaDesign('OtpInput') },

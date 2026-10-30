@@ -1,4 +1,4 @@
-// AuxoKit Sidebar — Figma set "Sidebar (Free component)" (node 1149:82628, page 3279:34616),
+// AD Design Kit Sidebar — Figma set "Sidebar (Free component)" (node 1149:82628, page 3279:34616),
 // item 1149:82699, header 1149:82737. Figma "Contracted" → `collapsed` (icons only, labels in tooltips).
 import type { ReactNode } from 'react';
 import { cn } from '../../lib/cn';

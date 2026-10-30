@@ -1,4 +1,4 @@
-// AuxoKit Dropdown — Figma set "Dropdown menu" (node 1149:39895, page 3282:18862), item 1149:39651, header 1149:39866,
+// AD Design Kit Dropdown — Figma set "Dropdown menu" (node 1149:39895, page 3282:18862), item 1149:39651, header 1149:39866,
 // triggers 1149:40204. Minimal menu (arrow keys, Esc, outside click). For collision-aware positioning, wrap a headless
 // primitive (Radix DropdownMenu / Floating UI) and keep these classes.
 import {

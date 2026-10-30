@@ -1,4 +1,4 @@
-// AuxoKit Search input — Figma set "Search form" (node 1149:46581, page 3279:34618).
+// AD Design Kit Search input — Figma set "Search form" (node 1149:46581, page 3279:34618).
 // Input field with a leading search icon inside <form role="search">. Figma types → variant:
 // Default=default · With button (spaced)=button · With button (no-space)=joined · Inner button=inner.
 import { useState, type FormEvent } from 'react';
@@ -42,7 +42,7 @@ export function SearchInput({
     e.preventDefault();
     onSearch(query.trim());
   };
-  const iconPad = size === 'sm' ? 'ps-8.5' : 'ps-9'; // auxokit-lint-ignore: 10px pad + 16px icon + 8px gap = 34px
+  const iconPad = size === 'sm' ? 'ps-8.5' : 'ps-9'; // ad-design-kit-lint-ignore: 10px pad + 16px icon + 8px gap = 34px
   const iconPos = size === 'sm' ? 'ps-2.5' : 'ps-3';
 
   return (

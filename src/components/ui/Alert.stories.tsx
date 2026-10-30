@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { figmaDesign } from '../../../.storybook/auxokit/figma';
+import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
 import { Alert, type AlertColor } from './Alert';
 import { Badge } from './Badge';
 import { Button } from './Button';
 import { InfoIcon } from '../icons';
 
-// AuxoKit Alert — mirrors the Figma "Alert" set (node 1146:15151).
+// AD Design Kit Alert — mirrors the Figma "Alert" set (node 1146:15151).
 const colors = ['neutral', 'info', 'success', 'warning', 'danger'] as const satisfies readonly AlertColor[];
 
 const meta = {
@@ -15,7 +15,7 @@ const meta = {
   args: { color: 'neutral', variant: 'default', children: 'A short message for the user.' },
   argTypes: {
     color: { control: 'select', options: colors },
-    variant: { control: 'select', options: ['default', 'complex', 'pill', 'border-top'] }, // auxokit-lint-ignore: Alert prop values, not classes
+    variant: { control: 'select', options: ['default', 'complex', 'pill', 'border-top'] }, // ad-design-kit-lint-ignore: Alert prop values, not classes
   },
 } satisfies Meta<typeof Alert>;
 
@@ -25,7 +25,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {};
 export const WithIcon: Story = { args: { color: 'info', icon: <InfoIcon /> } };
 export const Dismissible: Story = { args: { color: 'success', icon: <InfoIcon />, onDismiss: () => {} } };
-export const BorderTop: Story = { args: { variant: 'border-top', color: 'warning', icon: <InfoIcon /> } }; // auxokit-lint-ignore: Alert prop value, not a class
+export const BorderTop: Story = { args: { variant: 'border-top', color: 'warning', icon: <InfoIcon /> } }; // ad-design-kit-lint-ignore: Alert prop value, not a class
 
 // Figma "Complex": title + body + action buttons + dismiss.
 export const Complex: Story = {
@@ -54,7 +54,7 @@ export const Pill: Story = {
     children: (
       <span className="flex items-center gap-2">
         <Badge color="brand" size="sm">New</Badge>
-        AuxoKit 2.0 is out
+        AD Design Kit 2.0 is out
       </span>
     ),
   },

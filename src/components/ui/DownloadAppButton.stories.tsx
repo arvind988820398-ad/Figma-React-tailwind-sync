@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { figmaDesign } from '../../../.storybook/auxokit/figma';
+import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
 import { DownloadAppButton } from './DownloadAppButton';
 
-// AuxoKit Download app button — mirrors the Figma "Download App Button" set (node 1146:24595). Device → store, Type → tone.
+// AD Design Kit Download app button — mirrors the Figma "Download App Button" set (node 1146:24595). Device → store, Type → tone.
 const meta = {
   title: 'Components/DownloadAppButton',
   parameters: { design: figmaDesign('DownloadAppButton') },

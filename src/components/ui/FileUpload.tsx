@@ -1,4 +1,4 @@
-// AuxoKit File upload — Figma "File upload input" examples (node 1149:48972) and dropzone (1149:48981), page 3279:34618.
+// AD Design Kit File upload — Figma "File upload input" examples (node 1149:48972) and dropzone (1149:48981), page 3279:34618.
 // FileInput = Figma "Default" (Input field Add-on text: a "Choose file" segment). FileDropzone = Figma "Advanced" /
 // "With CTAs" × Initial/Hover/Disabled/Success/Danger. The real <input type="file"> stays in the accessibility tree.
 import { useId, useState, type DragEvent, type ReactNode } from 'react';

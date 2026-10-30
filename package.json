@@ -1,5 +1,5 @@
 {
-  "name": "auxokit-app",
+  "name": "ad-design-kit-app",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -8,8 +8,8 @@
     "build": "tsc -b && vite build",
     "lint": "oxlint",
     "preview": "vite preview",
-    "lint:tokens": "node .claude/skills/auxokit-review/scripts/lint-tokens.mjs src",
-    "tokens:build": "node .claude/skills/auxokit-design-system/scripts/build-tokens.mjs && cp .claude/skills/auxokit-design-system/tokens/auxokit.css src/styles/auxokit.css && npm run docs:build",
+    "lint:tokens": "node .claude/skills/ad-design-kit-review/scripts/lint-tokens.mjs src",
+    "tokens:build": "node .claude/skills/ad-design-kit-design-system/scripts/build-tokens.mjs && cp .claude/skills/ad-design-kit-design-system/tokens/ad-design-kit.css src/styles/ad-design-kit.css && npm run docs:build",
     "storybook": "npm run docs:build && storybook dev -p 6006",
     "build-storybook": "npm run docs:build && storybook build",
     "docs:build": "node .storybook/scripts/build-docs.mjs",

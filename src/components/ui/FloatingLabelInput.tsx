@@ -1,4 +1,4 @@
-// AuxoKit Floating label input — Figma set "Floating label" (node 1149:50454, page 1149:50453).
+// AD Design Kit Floating label input — Figma set "Floating label" (node 1149:50454, page 1149:50453).
 // Figma Type → variant: Default=underline · With background=filled · Bordered=outlined. Built with `peer` +
 // placeholder=" ": the label rests inside the field and floats when the field is focused or filled.
 import { forwardRef, useId, type InputHTMLAttributes, type ReactNode } from 'react';

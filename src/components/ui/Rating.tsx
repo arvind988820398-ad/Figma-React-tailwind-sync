@@ -1,4 +1,4 @@
-// AuxoKit Rating — Figma set "Rating" (node 1149:82444, page 1149:82443).
+// AD Design Kit Rating — Figma set "Rating" (node 1149:82444, page 1149:82443).
 // Default / With badge = <Rating> (display only). Radio input = <RatingInput> (ChoiceCard "Only text" circles).
 import { useId, type HTMLAttributes, type ReactNode } from 'react';
 import { cn } from '../../lib/cn';

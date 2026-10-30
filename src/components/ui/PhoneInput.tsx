@@ -1,4 +1,4 @@
-// AuxoKit Phone input — Figma set "Phone form" (node 1149:46719, page 3279:34618).
+// AD Design Kit Phone input — Figma set "Phone form" (node 1149:46719, page 3279:34618).
 // Country selector = Secondary base Button (flag + dial code + chevron) joined to the Input field; it opens a Dropdown.
 import { useId } from 'react';
 import { cn } from '../../lib/cn';

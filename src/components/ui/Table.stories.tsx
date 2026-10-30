@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { figmaDesign } from '../../../.storybook/auxokit/figma';
+import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
 import { InfoIcon, PlusIcon } from '../icons';
 import { Badge } from './Badge';
 import { Button } from './Button';
 import { Input } from './Input';
 import { Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow } from './Table';
 
-// AuxoKit Table — mirrors the Figma "Table (free-component)" set (node 1149:87477).
+// AD Design Kit Table — mirrors the Figma "Table (free-component)" set (node 1149:87477).
 const rows = [
   { name: 'Apple MacBook Pro', category: 'Laptop', price: '$2,999', status: 'success' as const, label: 'In stock' },
   { name: 'Microsoft Surface Pro', category: 'Laptop PC', price: '$1,999', status: 'warning' as const, label: 'Low stock' },

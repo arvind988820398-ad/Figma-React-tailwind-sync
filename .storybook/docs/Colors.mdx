@@ -1,18 +1,18 @@
 import { Markdown, Meta } from '@storybook/addon-docs/blocks';
-import { auxokitDocs } from '../generated/auxokit-docs';
-import { ColorTokens, TokenPairingRule } from '../auxokit/blocks';
+import { adDesignKitDocs } from '../generated/ad-design-kit-docs';
+import { ColorTokens, TokenPairingRule } from '../ad-design-kit/blocks';
 
 <Meta title="Foundations/Colors" />
 
 # Colors
 
-Semantic color tokens, straight from the Figma **Themes** collection (export {auxokitDocs.tokens.themesExportedAt.slice(0, 10)}). The class name is the Figma variable name: `colors/background/bg-brand` is `bg-brand`. Only these classes are allowed for color; the default Tailwind palette is removed in strict mode, and `dark:` color overrides are never needed because every token switches with the theme and scheme.
+Semantic color tokens, straight from the Figma **Themes** collection (export {adDesignKitDocs.tokens.themesExportedAt.slice(0, 10)}). The class name is the Figma variable name: `colors/background/bg-brand` is `bg-brand`. Only these classes are allowed for color; the default Tailwind palette is removed in strict mode, and `dark:` color overrides are never needed because every token switches with the theme and scheme.
 
 <TokenPairingRule />
 
 ## Cheat sheet
 
-<Markdown>{auxokitDocs.guides.cheatSheet}</Markdown>
+<Markdown>{adDesignKitDocs.guides.cheatSheet}</Markdown>
 
 ## Backgrounds
 

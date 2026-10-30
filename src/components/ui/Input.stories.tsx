@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { figmaDesign } from '../../../.storybook/auxokit/figma';
+import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
 import { Button } from './Button';
 import { HelperText, Input, Label } from './Input';
 import { InfoIcon, MailIcon } from '../icons';
 
-// AuxoKit Input field — mirrors the Figma "Input field" set (node 1149:46826), Label (1149:94727) and Helper (1149:94741).
+// AD Design Kit Input field — mirrors the Figma "Input field" set (node 1149:46826), Label (1149:94727) and Helper (1149:94741).
 const meta = {
   title: 'Components/Input',
   parameters: { design: figmaDesign('Input') },
@@ -27,7 +27,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
-export const Filled: Story = { args: { defaultValue: 'ada@auxokit.dev' } };
+export const Filled: Story = { args: { defaultValue: 'ada@ad-design-kit.dev' } };
 export const Disabled: Story = { args: { disabled: true, placeholder: 'Disabled' } };
 export const ReadOnly: Story = { args: { readOnly: true, defaultValue: 'Read only' } };
 
@@ -82,7 +82,7 @@ export const AllSizes: Story = {
 };
 
 // Figma "Input field" types beyond Default: each is a slot on the same component.
-export const AddOnText: Story = { args: { addonText: 'https://', placeholder: 'auxokit.dev' } };
+export const AddOnText: Story = { args: { addonText: 'https://', placeholder: 'ad-design-kit.dev' } };
 export const AddOnIcon: Story = { args: { addonIcon: <MailIcon />, placeholder: 'name@company.com', type: 'email' } };
 export const InnerButton: Story = {
   args: {

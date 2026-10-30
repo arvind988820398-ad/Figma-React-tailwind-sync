@@ -1,6 +1,6 @@
 import { Markdown, Meta } from '@storybook/addon-docs/blocks';
-import { auxokitDocs } from '../generated/auxokit-docs';
-import { TypeScale } from '../auxokit/blocks';
+import { adDesignKitDocs } from '../generated/ad-design-kit-docs';
+import { TypeScale } from '../ad-design-kit/blocks';
 
 <Meta title="Foundations/Typography" />
 
@@ -10,10 +10,10 @@ The body font comes from the theme (`typography/font-family/font-base` → `font
 
 | Theme | Font |
 |---|---|
-{Object.entries(auxokitDocs.tokens.fonts).map(([theme, font]) => `| ${theme} | ${font.split(' (')[0]} |`).join('\n')}
+{Object.entries(adDesignKitDocs.tokens.fonts).map(([theme, font]) => `| ${theme} | ${font.split(' (')[0]} |`).join('\n')}
 
 ## Size scale
 
 <TypeScale />
 
-<Markdown>{auxokitDocs.tokens.typographyNote}</Markdown>
+<Markdown>{adDesignKitDocs.tokens.typographyNote}</Markdown>

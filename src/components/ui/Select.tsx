@@ -1,11 +1,11 @@
-// AuxoKit Select — Figma set "Select form" (node 1149:46541, page 3279:34618).
+// AD Design Kit Select — Figma set "Select form" (node 1149:46541, page 3279:34618).
 // Native <select> on the Input field shell (Default/base) with a trailing chevron; same size scale and states as Input.
 import { forwardRef, type SelectHTMLAttributes } from 'react';
 import { cn } from '../../lib/cn';
 import { inputVariants, type FieldSize, type FieldStatus } from './Input';
 
 // Room for the chevron: size padding + 16/20px icon + 8px gap.
-const chevronPad: Record<FieldSize, string> = { sm: 'pe-8.5', base: 'pe-9', lg: 'pe-11', xl: 'pe-12' }; // auxokit-lint-ignore: 10px pad + 16px icon + 8px gap = 34px
+const chevronPad: Record<FieldSize, string> = { sm: 'pe-8.5', base: 'pe-9', lg: 'pe-11', xl: 'pe-12' }; // ad-design-kit-lint-ignore: 10px pad + 16px icon + 8px gap = 34px
 const chevronPos: Record<FieldSize, string> = { sm: 'pe-2.5 [&_svg]:size-4', base: 'pe-3 [&_svg]:size-4', lg: 'pe-3.5 [&_svg]:size-5', xl: 'pe-4 [&_svg]:size-5' };
 
 export interface SelectProps extends Omit<SelectHTMLAttributes<HTMLSelectElement>, 'size'> {

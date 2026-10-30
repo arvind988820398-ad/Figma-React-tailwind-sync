@@ -1,4 +1,4 @@
-// AuxoKit Bottom navigation — Figma set "Bottom navigation" (node 1146:27386, page 208:15901), item 1146:27379.
+// AD Design Kit Bottom navigation — Figma set "Bottom navigation" (node 1146:27386, page 208:15901), item 1146:27379.
 // Figma Style → variant: Default=default · Bordered=bordered · Action button=action (center Brand icon button).
 // Pagination and Segment controls styles are compositions (add Buttons / a segmented control above the items).
 import type { ReactNode } from 'react';

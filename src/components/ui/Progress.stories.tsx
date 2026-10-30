@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { figmaDesign } from '../../../.storybook/auxokit/figma';
+import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
 import { Progress, type ProgressColor } from './Progress';
 
-// AuxoKit Progress — mirrors the Figma "Progress Bars" set (node 1149:82279) and "Bars" (1149:82364).
+// AD Design Kit Progress — mirrors the Figma "Progress Bars" set (node 1149:82279) and "Bars" (1149:82364).
 const colors = ['brand', 'gray', 'dark', 'success', 'danger', 'warning'] as const satisfies readonly ProgressColor[];
 
 const meta = {

@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { figmaDesign } from '../../../.storybook/auxokit/figma';
+import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
 import { Jumbotron } from './Jumbotron';
 import { Alert } from './Alert';
 import { Button } from './Button';
 import { ArrowRightIcon } from '../icons';
 
-// AuxoKit Jumbotron (hero) — mirrors the Figma "Jumbotron" set (node 1149:67227).
+// AD Design Kit Jumbotron (hero) — mirrors the Figma "Jumbotron" set (node 1149:67227).
 const meta = {
   title: 'Components/Jumbotron',
   component: Jumbotron,
@@ -14,7 +14,7 @@ const meta = {
     variant: 'centered',
     surface: 'primary',
     title: 'We invest in the world’s potential',
-    lead: 'Here at AuxoKit we focus on markets where technology, innovation and capital can unlock long-term value.',
+    lead: 'Here at AD Design Kit we focus on markets where technology, innovation and capital can unlock long-term value.',
     actions: (
       <>
         <Button size="lg" rightIcon={<ArrowRightIcon />}>Get started</Button>
@@ -39,7 +39,7 @@ export const WithEyebrow: Story = {
   args: {
     eyebrow: (
       <Alert variant="pill" color="info">
-        New · AuxoKit 2.0 is out
+        New · AD Design Kit 2.0 is out
       </Alert>
     ),
   },

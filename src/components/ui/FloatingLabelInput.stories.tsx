@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { figmaDesign } from '../../../.storybook/auxokit/figma';
+import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
 import { FloatingLabelInput } from './FloatingLabelInput';
 
-// AuxoKit Floating label input — mirrors the Figma "Floating label" set (node 1149:50454).
+// AD Design Kit Floating label input — mirrors the Figma "Floating label" set (node 1149:50454).
 const meta = {
   title: 'Components/FloatingLabelInput',
   parameters: { design: figmaDesign('FloatingLabelInput') },
@@ -28,8 +28,8 @@ type Story = StoryObj<typeof meta>;
 export const Outlined: Story = {};
 export const Filled: Story = { args: { variant: 'filled' } };
 export const Underline: Story = { args: { variant: 'underline' } };
-export const WithValue: Story = { args: { defaultValue: 'ada@auxokit.dev' } };
-export const Success: Story = { args: { status: 'success', defaultValue: 'ada@auxokit.dev' } };
+export const WithValue: Story = { args: { defaultValue: 'ada@ad-design-kit.dev' } };
+export const Success: Story = { args: { status: 'success', defaultValue: 'ada@ad-design-kit.dev' } };
 export const Danger: Story = { args: { status: 'danger', defaultValue: 'ada@' } };
 export const Disabled: Story = { args: { disabled: true } };
 

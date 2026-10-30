@@ -1,4 +1,4 @@
-// Material List module: the AuxoKit Table as designed in Figma (toolbar slot for search/filters/actions, its own header
+// Material List module: the AD Design Kit Table as designed in Figma (toolbar slot for search/filters/actions, its own header
 // surface, row dividers and cell metrics), a selection + pagination footer, and the empty state.
 import { useMemo, useState, type ReactNode } from 'react';
 import { PlusIcon } from '../../components/icons';

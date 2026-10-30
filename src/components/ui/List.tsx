@@ -1,4 +1,4 @@
-// AuxoKit List — Figma set "List" (node 1149:70444, page 3284:24113), item 1149:70209.
+// AD Design Kit List — Figma set "List" (node 1149:70444, page 3284:24113), item 1149:70209.
 // Figma Type → variant: Default=default · Divider=divider · CTA=cta. Figma "Card" = <Card> wrapping a divider list.
 import type { HTMLAttributes, ReactNode } from 'react';
 import { cn } from '../../lib/cn';

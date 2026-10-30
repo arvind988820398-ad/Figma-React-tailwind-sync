@@ -1,6 +1,6 @@
 // Material management app (Figma "Material - powerplay", section 3073:26924): Material List with empty state,
 // the materials table and the "Add New Materials" drawer, plus the Indent module (requests from site supervisors),
-// composed from AuxoKit components.
+// composed from AD Design Kit components.
 import { useMemo, useState } from 'react';
 import { Button } from '../../components/ui/Button';
 import { FileDropzone } from '../../components/ui/FileUpload';

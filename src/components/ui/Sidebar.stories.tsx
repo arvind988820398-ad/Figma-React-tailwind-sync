@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { figmaDesign } from '../../../.storybook/auxokit/figma';
+import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
 import { CheckIcon, CogIcon, InfoIcon, MailIcon, PlusIcon } from '../icons';
 import { Alert } from './Alert';
 import { Badge } from './Badge';
 import { IconShape } from './IconShape';
 import { Sidebar, type SidebarItem } from './Sidebar';
 
-// AuxoKit Sidebar — mirrors the Figma "Sidebar (Free component)" set (node 1149:82628). Figma "Contracted" = `collapsed`.
+// AD Design Kit Sidebar — mirrors the Figma "Sidebar (Free component)" set (node 1149:82628). Figma "Contracted" = `collapsed`.
 const main: SidebarItem[] = [
   { label: 'Dashboard', href: '#', icon: <CheckIcon />, current: true },
   { label: 'Inbox', href: '#', icon: <MailIcon />, badge: <Badge color="danger" size="sm">3</Badge> },
@@ -17,7 +17,7 @@ const more: SidebarItem[] = [
   { label: 'Billing', href: '#', icon: <InfoIcon />, disabled: true },
 ];
 
-const TextHeader = () => <span className="text-lg font-medium leading-6 text-heading">AuxoKit</span>;
+const TextHeader = () => <span className="text-lg font-medium leading-6 text-heading">AD Design Kit</span>;
 const IconHeader = () => (
   <IconShape size="sm" color="brand">
     <CogIcon />

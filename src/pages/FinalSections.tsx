@@ -59,9 +59,9 @@ const VolumeHigh = () => (
 )
 
 const people: AutocompleteOption[] = [
-  { value: 'ada', label: 'Ada Lovelace', description: 'ada@auxokit.dev', icon: <Avatar name="Ada Lovelace" size="xs" />, group: 'People' },
-  { value: 'grace', label: 'Grace Hopper', description: 'grace@auxokit.dev', icon: <Avatar name="Grace Hopper" size="xs" />, group: 'People' },
-  { value: 'alan', label: 'Alan Turing', description: 'alan@auxokit.dev', icon: <Avatar name="Alan Turing" size="xs" />, group: 'People' },
+  { value: 'ada', label: 'Ada Lovelace', description: 'ada@ad-design-kit.dev', icon: <Avatar name="Ada Lovelace" size="xs" />, group: 'People' },
+  { value: 'grace', label: 'Grace Hopper', description: 'grace@ad-design-kit.dev', icon: <Avatar name="Grace Hopper" size="xs" />, group: 'People' },
+  { value: 'alan', label: 'Alan Turing', description: 'alan@ad-design-kit.dev', icon: <Avatar name="Alan Turing" size="xs" />, group: 'People' },
   { value: 'design', label: 'Design system', icon: <CogIcon />, group: 'Projects' },
   { value: 'docs', label: 'Documentation', icon: <InfoIcon />, group: 'Projects' },
   { value: 'archived', label: 'Archived project', icon: <InfoIcon />, group: 'Projects', disabled: true },
@@ -194,7 +194,7 @@ export default function FinalSections() {
       <Section id="rich-text" title="Rich text editor" figma={figma['rich-text']} note="Toolbar groups + editable area. Swap the editable area for Tiptap or Lexical in production; keep the shell classes.">
         <div className="grid gap-6 md:grid-cols-2">
           <Labeled label="Default">
-            <RichTextEditor className="w-full" label="Article body" defaultValue="<p>AuxoKit keeps <b>Figma</b> and <i>code</i> in sync.</p>" />
+            <RichTextEditor className="w-full" label="Article body" defaultValue="<p>AD Design Kit keeps <b>Figma</b> and <i>code</i> in sync.</p>" />
           </Labeled>
           <Labeled label="Buttons inside (footer)">
             <RichTextEditor
@@ -238,7 +238,7 @@ export default function FinalSections() {
             <ChatImages images={photos} />
           </ChatBubble>
           <ChatBubble name="Grace Hopper" time="11:50" avatar={<Avatar name="Grace Hopper" size="base" />}>
-            <ChatLinkPreview href="https://auxokit.dev/docs" title="AuxoKit documentation" description="auxokit.dev" image={<img src="/demo/photo-5.svg" alt="" className="aspect-video w-full rounded-base object-cover" />} />
+            <ChatLinkPreview href="https://ad-design-kit.dev/docs" title="AD Design Kit documentation" description="ad-design-kit.dev" image={<img src="/demo/photo-5.svg" alt="" className="aspect-video w-full rounded-base object-cover" />} />
           </ChatBubble>
           <ChatBubble name="Alan Turing" time="11:51" avatar={<Avatar name="Alan Turing" size="base" />} clean>
             “Clean” bubble: no fill, no padding.
@@ -266,7 +266,7 @@ export default function FinalSections() {
         <div className="flex flex-col gap-4 overflow-hidden rounded-base border border-default bg-neutral-secondary-soft pb-4">
           {bannerOpen ? (
             <Banner onDismiss={() => setBannerOpen(false)}>
-              New brand identity has been launched for the <a href="#banner">AuxoKit Library</a>
+              New brand identity has been launched for the <a href="#banner">AD Design Kit Library</a>
             </Banner>
           ) : (
             <div className="p-4"><Button size="xs" color="secondary" onClick={() => setBannerOpen(true)}>Show banner again</Button></div>
@@ -275,7 +275,7 @@ export default function FinalSections() {
             Get 5% commission per sale. <a href="#banner">Become a partner →</a>
           </Banner>
           <Banner title="Integration is the key" actions={<><Button size="xs" color="tertiary">Learn more</Button><Button size="xs">Get started</Button></>}>
-            You can integrate AuxoKit with React, Vue, Angular and plain HTML.
+            You can integrate AD Design Kit with React, Vue, Angular and plain HTML.
           </Banner>
           <Banner
             actions={
@@ -288,7 +288,7 @@ export default function FinalSections() {
             Sign up for our newsletter
           </Banner>
           <div className="px-4">
-            <Banner floating logo={<span className="text-base font-semibold text-heading">AuxoKit</span>} actions={<Button size="sm">Sign up</Button>}>
+            <Banner floating logo={<span className="text-base font-semibold text-heading">AD Design Kit</span>} actions={<Button size="sm">Sign up</Button>}>
               Build websites even faster with components on top of Tailwind CSS
             </Banner>
           </div>
@@ -299,9 +299,9 @@ export default function FinalSections() {
         <div className="flex flex-col gap-6">
           <div className="overflow-hidden rounded-base border border-default">
             <Jumbotron
-              eyebrow={<Alert variant="pill" color="info">New · AuxoKit 2.0 is out</Alert>}
+              eyebrow={<Alert variant="pill" color="info">New · AD Design Kit 2.0 is out</Alert>}
               title="We invest in the world’s potential"
-              lead="Here at AuxoKit we focus on markets where technology, innovation and capital can unlock long-term value."
+              lead="Here at AD Design Kit we focus on markets where technology, innovation and capital can unlock long-term value."
               actions={<><Button size="lg" rightIcon={<ArrowIcon />}>Get started</Button><Button size="lg" color="secondary">Learn more</Button></>}
             />
           </div>

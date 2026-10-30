@@ -1,4 +1,4 @@
-// AuxoKit Tag input — Figma set "Tag input" (node 1149:49173, page 3279:34618).
+// AD Design Kit Tag input — Figma set "Tag input" (node 1149:49173, page 3279:34618).
 // Input field shell (same size scale and states) holding Badge white sm chips. Enter or comma adds a tag,
 // Backspace in an empty field removes the last one.
 import { useId, useState, type KeyboardEvent, type ReactNode } from 'react';

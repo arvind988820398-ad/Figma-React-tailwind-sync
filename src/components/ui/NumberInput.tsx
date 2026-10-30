@@ -1,4 +1,4 @@
-// AuxoKit Number input — Figma set "Number form" (node 1149:46630, page 3279:34618).
+// AD Design Kit Number input — Figma set "Number form" (node 1149:46630, page 3279:34618).
 // Figma types → variant: Default=default (plain field) · With buttons=buttons (−/+ joined to a centered field) ·
 // With spaced buttons=spaced · Ghost input=ghost (borderless sm field with 32px buttons).
 import { useId } from 'react';

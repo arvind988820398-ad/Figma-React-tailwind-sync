@@ -1,4 +1,4 @@
-// AuxoKit Button group — Figma set "Group button" (node 1149:31694, page 1149:31693), examples 1149:31799.
+// AD Design Kit Button group — Figma set "Group button" (node 1149:31694, page 1149:31693), examples 1149:31799.
 // Figma Color: Gray = Secondary buttons, White = Tertiary buttons. Items overlap by 1px; the group carries shadow-xs.
 // If the group switches content panels, use <Tabs variant="segmented"> instead (tab semantics).
 import { createContext, forwardRef, useContext, type ButtonHTMLAttributes, type HTMLAttributes } from 'react';
@@ -43,7 +43,7 @@ export const ButtonGroupItem = forwardRef<HTMLButtonElement, ButtonGroupItemProp
 ) {
   const { color, size, vertical } = useContext(Ctx);
   return (
-    <button // auxokit-lint-ignore: styled with buttonVariants; adds joined corners + aria-pressed
+    <button // ad-design-kit-lint-ignore: styled with buttonVariants; adds joined corners + aria-pressed
       ref={ref}
       type={type}
       aria-pressed={active}

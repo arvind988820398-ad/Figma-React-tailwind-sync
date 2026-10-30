@@ -1,4 +1,4 @@
-// AuxoKit Progress — Figma sets "Progress Bars" (node 1149:82279) and "Bars" (1149:82364), page 3283:24173.
+// AD Design Kit Progress — Figma sets "Progress Bars" (node 1149:82279) and "Bars" (1149:82364), page 3283:24173.
 import type { HTMLAttributes, ReactNode } from 'react';
 import { cn } from '../../lib/cn';
 

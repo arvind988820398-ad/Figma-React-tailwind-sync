@@ -1,17 +1,17 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { figmaDesign } from '../../../.storybook/auxokit/figma';
+import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
 import { useState } from 'react';
 import { Button } from './Button';
 import { RichTextEditor, type RichTextEditorProps } from './RichTextEditor';
 
-// AuxoKit Rich text editor — mirrors the Figma "Rich text editor input" (node 1149:49749).
+// AD Design Kit Rich text editor — mirrors the Figma "Rich text editor input" (node 1149:49749).
 const meta = {
   title: 'Components/RichTextEditor',
   parameters: { design: figmaDesign('RichTextEditor') },
   component: RichTextEditor,
   args: {
     label: 'Article body',
-    defaultValue: '<p>AuxoKit keeps <b>Figma</b> and <i>code</i> in sync.</p>',
+    defaultValue: '<p>AD Design Kit keeps <b>Figma</b> and <i>code</i> in sync.</p>',
     placeholder: 'Write something…',
     minRows: 5,
     className: 'w-full',

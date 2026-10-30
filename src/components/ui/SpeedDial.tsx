@@ -1,4 +1,4 @@
-// AuxoKit Speed dial — Figma "Speed dial (ready to use examples)" (node 1149:84847, page 14231:74723),
+// AD Design Kit Speed dial — Figma "Speed dial (ready to use examples)" (node 1149:84847, page 14231:74723),
 // item 1149:84896, menus 1149:84972. Figma Type → variant: Default=default · Rounded=rounded · Menu=menu (icon + label
 // inside the item) · Article dropdown menu=dropdown. Figma Position → direction.
 import { useEffect, useId, useRef, useState, type ReactNode } from 'react';

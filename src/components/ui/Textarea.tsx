@@ -1,4 +1,4 @@
-// AuxoKit Textarea — Figma set "Textarea input" (node 1149:49679, page 3279:34618), examples 1149:50131.
+// AD Design Kit Textarea — Figma set "Textarea input" (node 1149:49679, page 3279:34618), examples 1149:50131.
 // Default = Input shell with p-3.5. "Buttons inside" = pass `footer` (toolbar icons + Brand sm submit).
 import { forwardRef, useId, type ButtonHTMLAttributes, type ReactNode, type TextareaHTMLAttributes } from 'react';
 import { cn } from '../../lib/cn';

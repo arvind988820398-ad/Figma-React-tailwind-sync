@@ -1,4 +1,4 @@
-// AuxoKit Badge — Figma set "Badge" (node 1146:22250, page 3283:24168).
+// AD Design Kit Badge — Figma set "Badge" (node 1146:22250, page 3283:24168).
 import type { HTMLAttributes, ReactNode } from 'react';
 import { cn } from '../../lib/cn';
 

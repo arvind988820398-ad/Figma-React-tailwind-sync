@@ -1,4 +1,4 @@
-// Application chrome from the "Material - powerplay" design, composed from AuxoKit only: the app rail is a collapsed
+// Application chrome from the "Material - powerplay" design, composed from AD Design Kit only: the app rail is a collapsed
 // Sidebar, the org bar is a Navbar, the module switcher under it is the "Nav tabs" set (Tabs, underline) placed in the
 // Navbar's documented container, and the projects panel is a Sidebar with `current`. No component sits in a custom band.
 import { useState, type MouseEvent, type ReactNode } from 'react';
@@ -31,7 +31,7 @@ function Rail() {
       label="Apps"
       className="shrink-0 border-e border-default"
       header={
-        <a href="/" className="flex size-9 items-center justify-center rounded-full bg-brand text-xs font-bold text-white" aria-label="AuxoKit starter">
+        <a href="/" className="flex size-9 items-center justify-center rounded-full bg-brand text-xs font-bold text-white" aria-label="AD Design Kit starter">
           A
         </a>
       }
@@ -63,7 +63,7 @@ function ThemeMenu() {
         Dark mode
       </DropdownCheckboxItem>
       <DropdownSeparator />
-      <DropdownItem onSelect={() => window.location.assign('/')}>Back to AuxoKit starter</DropdownItem>
+      <DropdownItem onSelect={() => window.location.assign('/')}>Back to AD Design Kit starter</DropdownItem>
     </Dropdown>
   );
 }
@@ -72,6 +72,7 @@ function TopBar({ org }: { org: string }) {
   return (
     <Navbar
       size="compact"
+      fluid
       className="shrink-0"
       logo={
         <Dropdown
@@ -136,9 +137,9 @@ export function AppShell({ org = 'Saurabh’s Demo Org', projectName = 'Project 
       <Rail />
       <div className="flex min-w-0 flex-1 flex-col">
         <TopBar org={org} />
-        {/* Nav tabs below the Navbar, aligned with it through the same documented container (mx-auto max-w-screen-xl px-4). */}
+        {/* Nav tabs below the Navbar, full width and aligned with it through the same fluid container (px-4). */}
         <div className="shrink-0 bg-neutral-primary-soft">
-          <div className="mx-auto max-w-screen-xl px-4 pt-4">
+          <div className="px-4 pt-4">
             <Tabs
               items={MODULES.map((m) => ({
                 value: m,

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { figmaDesign } from '../../../.storybook/auxokit/figma';
+import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
 import { useState, type ComponentProps } from 'react';
 import { Autocomplete, type AutocompleteOption } from './Autocomplete';
 import { Avatar } from './Avatar';
@@ -7,11 +7,11 @@ import { Button } from './Button';
 import { HelperText, Label } from './Input';
 import { CogIcon, InfoIcon, PlusIcon } from '../icons';
 
-// AuxoKit Autocomplete — mirrors the Figma "Autocomplete input (ready to use examples)" (node 1149:53126).
+// AD Design Kit Autocomplete — mirrors the Figma "Autocomplete input (ready to use examples)" (node 1149:53126).
 const people: AutocompleteOption[] = [
-  { value: 'ada', label: 'Ada Lovelace', description: 'ada@auxokit.dev', icon: <Avatar name="Ada Lovelace" size="xs" />, group: 'People' },
-  { value: 'grace', label: 'Grace Hopper', description: 'grace@auxokit.dev', icon: <Avatar name="Grace Hopper" size="xs" />, group: 'People' },
-  { value: 'alan', label: 'Alan Turing', description: 'alan@auxokit.dev', icon: <Avatar name="Alan Turing" size="xs" />, group: 'People' },
+  { value: 'ada', label: 'Ada Lovelace', description: 'ada@ad-design-kit.dev', icon: <Avatar name="Ada Lovelace" size="xs" />, group: 'People' },
+  { value: 'grace', label: 'Grace Hopper', description: 'grace@ad-design-kit.dev', icon: <Avatar name="Grace Hopper" size="xs" />, group: 'People' },
+  { value: 'alan', label: 'Alan Turing', description: 'alan@ad-design-kit.dev', icon: <Avatar name="Alan Turing" size="xs" />, group: 'People' },
   { value: 'design', label: 'Design system', icon: <CogIcon />, group: 'Projects' },
   { value: 'docs', label: 'Documentation', icon: <InfoIcon />, group: 'Projects' },
   { value: 'archived', label: 'Archived project', icon: <InfoIcon />, group: 'Projects', disabled: true },
