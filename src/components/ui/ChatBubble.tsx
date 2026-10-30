@@ -16,16 +16,20 @@ export interface ChatBubbleProps extends HTMLAttributes<HTMLDivElement> {
   /** Trailing actions (e.g. a ghost "more" icon button), size-5 icons. */
   menu?: ReactNode;
   clean?: boolean;
+  /** fixed = Figma's 320px bubble (default). fluid = the bubble fills 80% of the conversation width (full-page chat).
+   *  Code ahead of Figma: see figma-audit.md "Code ahead of Figma". */
+  width?: 'fixed' | 'fluid';
 }
 
-export function ChatBubble({ direction = 'received', name, time, avatar, status, menu, clean, className, children, ...props }: ChatBubbleProps) {
+export function ChatBubble({ direction = 'received', name, time, avatar, status, menu, clean, width = 'fixed', className, children, ...props }: ChatBubbleProps) {
   const sent = direction === 'sent';
   return (
     <div className={cn('flex items-start gap-2.5', sent && 'flex-row-reverse', className)} {...props}>
       {avatar}
       <div
         className={cn(
-          'flex w-full max-w-80 flex-col gap-1.5 rounded-base',
+          'flex w-full flex-col gap-1.5 rounded-base',
+          width === 'fluid' ? 'max-w-4/5' : 'max-w-80',
           !clean && 'p-4',
           !clean && (sent ? 'bg-brand-softer' : 'bg-neutral-tertiary'),
         )}

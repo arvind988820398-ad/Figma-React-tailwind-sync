@@ -12,6 +12,11 @@ export interface SidebarItem {
   disabled?: boolean;
   /** Trailing count, e.g. <Badge color="danger" size="sm">3</Badge>. */
   badge?: ReactNode;
+  /** Second line under the label (e.g. a timestamp). Code ahead of Figma: see figma-audit.md. */
+  meta?: ReactNode;
+  /** Item actions, e.g. a <Dropdown> with a ghost xs kebab Button. Rendered beside the link (never inside it),
+   *  shown on hover and keyboard focus, always on touch screens. Code ahead of Figma: see figma-audit.md. */
+  actions?: ReactNode;
 }
 
 export interface SidebarProps {
@@ -38,6 +43,7 @@ function Item({ item, collapsed }: { item: SidebarItem; collapsed?: boolean }) {
       className={cn(
         'flex items-center gap-1.5 rounded-base text-base font-medium transition-colors focus-visible:shadow-focus-brand focus-visible:outline-none [&_svg]:size-5 [&_svg]:shrink-0',
         collapsed ? 'size-10 justify-center' : 'px-2 py-1.5',
+        !collapsed && item.actions && 'pe-10',
         item.disabled
           ? 'pointer-events-none text-fg-disabled'
           : item.current
@@ -46,11 +52,28 @@ function Item({ item, collapsed }: { item: SidebarItem; collapsed?: boolean }) {
       )}
     >
       {item.icon}
-      {!collapsed && <span className="flex-1 truncate">{item.label}</span>}
+      {!collapsed &&
+        (item.meta ? (
+          <span className="flex min-w-0 flex-1 flex-col">
+            <span className="truncate">{item.label}</span>
+            <span className="truncate text-xs font-normal leading-4 text-body">{item.meta}</span>
+          </span>
+        ) : (
+          <span className="flex-1 truncate">{item.label}</span>
+        ))}
       {!collapsed && item.badge}
     </a>
   );
-  return <li>{collapsed ? <Tooltip content={item.label} placement="right">{link}</Tooltip> : link}</li>;
+  if (collapsed) return <li><Tooltip content={item.label} placement="right">{link}</Tooltip></li>;
+  if (!item.actions) return <li>{link}</li>;
+  return (
+    <li className="group/item relative focus-within:z-10 has-[[aria-expanded=true]]:z-10">
+      {link}
+      <div className="absolute end-1 top-1/2 -translate-y-1/2 opacity-0 transition-opacity group-hover/item:opacity-100 focus-within:opacity-100 has-[[aria-expanded=true]]:opacity-100 pointer-coarse:opacity-100">
+        {item.actions}
+      </div>
+    </li>
+  );
 }
 
 export function Sidebar({ header, sections, footer, collapsed = false, label = 'Sidebar', className }: SidebarProps) {

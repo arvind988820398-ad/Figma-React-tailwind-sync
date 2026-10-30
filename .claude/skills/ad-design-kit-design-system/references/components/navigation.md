@@ -20,7 +20,7 @@ A11y: links sit in a `<nav>` with an `aria-label`; the current page has `aria-cu
 
 ## Sidebar
 Figma: page `3279:34616` · sidebar `1149:82628` (Default, With alert, Double sidebar × Contracted) · item `1149:82699` (With icon, With badge × Initial/Hover-Active/Disabled/Collapsed) · header `1149:82737` (Heading, Logo, User select) · template `templates/components/Sidebar.tsx`
-API: `<Sidebar header sections={[[{label,href,icon,current,disabled,badge}]]} footer collapsed>`.
+API: `<Sidebar header sections={[[{label,href,icon,current,disabled,badge,meta,actions}]]} footer collapsed label>`. `meta` = second line under the label (`text-xs leading-4 text-body`, e.g. a timestamp); `actions` = per-item menu (a `Dropdown` with a ghost `xs` icon Button) rendered beside the link, shown on hover, keyboard focus and always on touch screens; the item reserves `pe-10` for it. Both are code ahead of Figma (figma-audit.md row 48).
 
 - Panel: `h-screen w-72 bg-neutral-primary-soft p-5 flex flex-col gap-5` (add `border-e border-default` when the page is the same color); collapsed `w-16 px-0 py-5 gap-4 items-center` (icons only + Tooltip).
 - Header: Logo/Heading `pb-4 border-b border-default` (heading `text-lg font-medium leading-6 text-heading`); User select `p-2` with `AvatarGroupLabel base` + chevron.

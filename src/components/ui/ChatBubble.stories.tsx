@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { expect } from 'storybook/test';
 import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
 import { ArrowRightIcon } from '../icons';
 import { Avatar } from './Avatar';
@@ -118,4 +119,19 @@ export const Conversation: Story = {
       </ChatBubble>
     </div>
   ),
+};
+
+// width="fluid": full-page chat, the bubble fills 80% of the conversation width (code ahead of Figma, audit row 47).
+export const FluidWidth: Story = {
+  args: { width: 'fluid', children: 'In a full-page conversation the bubble takes 80% of the available width.' },
+  render: (args) => (
+    <div className="w-[600px]" data-testid="conversation">{/* ad-design-kit-lint-ignore: fixed story frame to measure the 80% width */}
+      <ChatBubble {...args} />
+    </div>
+  ),
+  play: async ({ canvas }) => {
+    const row = canvas.getByTestId('conversation').firstElementChild as HTMLElement;
+    const bubble = canvas.getByText(/80% of the available width/).closest('.rounded-base') as HTMLElement;
+    await expect(Math.round((bubble.getBoundingClientRect().width / row.getBoundingClientRect().width) * 100)).toBe(80);
+  },
 };

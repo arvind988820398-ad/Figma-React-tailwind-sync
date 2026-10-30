@@ -274,3 +274,23 @@ export const OpenAlignedEnd: Story = {
     await expect(within(menu).queryByText(/@/)).not.toBeInTheDocument();
   },
 };
+
+// Destructive item: color="danger" (code ahead of Figma, audit row 49). Red text and icon, danger-soft hover.
+export const DangerItem: Story = {
+  args: {
+    label: 'Chat options',
+    trigger: <Button color="secondary">Options</Button>,
+    children: (
+      <>
+        <DropdownItem>Rename</DropdownItem>
+        <DropdownItem color="danger">Delete</DropdownItem>
+      </>
+    ),
+  },
+  play: async ({ canvas, canvasElement, userEvent }) => {
+    await userEvent.click(canvas.getByRole('button', { name: 'Options' }));
+    const del = within(canvasElement).getByRole('menuitem', { name: 'Delete' });
+    await expect(del).toHaveClass('text-fg-danger-strong');
+    await expect(within(canvasElement).getByRole('menuitem', { name: 'Rename' })).not.toHaveClass('text-fg-danger-strong');
+  },
+};

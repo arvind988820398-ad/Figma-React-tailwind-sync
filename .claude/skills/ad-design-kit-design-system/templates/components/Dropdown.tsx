@@ -108,9 +108,16 @@ export interface DropdownItemProps extends Omit<ButtonHTMLAttributes<HTMLButtonE
   /** Right side: Badge, shortcut, chevron… */
   trailing?: ReactNode;
   onSelect?: () => void;
+  /** danger = destructive action (Delete, Remove): fg-danger-strong text and icon, danger-soft hover.
+   *  Code ahead of Figma: see figma-audit.md "Code ahead of Figma". */
+  color?: 'default' | 'danger';
 }
 
-export function DropdownItem({ icon, description, trailing, onSelect, className, children, ...props }: DropdownItemProps) {
+// fg-danger-strong keeps 4.5:1 on the menu and on the danger-soft hover in every theme (fg-danger drops to 3.9:1 in dark).
+const dangerClasses =
+  'text-fg-danger-strong hover:bg-danger-soft hover:text-fg-danger-strong focus-visible:bg-danger-soft focus-visible:text-fg-danger-strong';
+
+export function DropdownItem({ icon, description, trailing, onSelect, color = 'default', className, children, ...props }: DropdownItemProps) {
   const close = useContext(CloseContext);
   return (
     <button
@@ -121,7 +128,7 @@ export function DropdownItem({ icon, description, trailing, onSelect, className,
         onSelect?.();
         close();
       }}
-      className={cn(itemClasses, className)}
+      className={cn(itemClasses, color === 'danger' && dangerClasses, className)}
       {...props}
     >
       {icon}

@@ -44,4 +44,10 @@ Code mirrors Figma values exactly (the generated CSS is a faithful copy, so desi
 
 Variants that exist in code because a product needed them; add them to the Figma set, then re-run the sync so the registry lists them.
 
-None open. Navbar `size="compact"` and `fluid` (old rows 45 and 46) were added to Figma on 2026-10-31 as `Size = Default / Compact` and `Width = Contained / Fluid` (Desktop variants).
+| # | Component | Code | Proposed Figma addition |
+|---|---|---|---|
+| 49 | Dropdown list item `1149:39651` | `color="danger"`: destructive item (Delete) with `text-fg-danger-strong` text and icon, `bg-danger-soft` hover | Add a `Color = Default / Danger` property to the Dropdown list item set (Danger: fg-danger-strong text and icon; Hover fill bg-danger-soft) |
+| 48 | Sidebar item `1149:82699` | `meta` (second line, e.g. timestamp) and `actions` (per-item menu beside the link, shown on hover/focus) for chat or file history | Add `Type = With meta` (two-line label) and a `Show actions` boolean with a trailing ghost icon Button (visible in Hover/Active) to the Navigation list item set |
+| 47 | Chat bubble `1149:35687` | `width="fluid"`: the bubble fills 80% of the conversation width (full-page chat) instead of Figma's 320px | Add a `Width = Fixed / Fluid` property to the Bubble set (Fluid = fill container, max 80%) |
+
+Closed: Navbar `size="compact"` and `fluid` (old rows 45 and 46) were added to Figma on 2026-10-31 as `Size = Default / Compact` and `Width = Contained / Fluid` (Desktop variants).
