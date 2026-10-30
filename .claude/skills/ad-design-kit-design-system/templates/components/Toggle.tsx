@@ -60,7 +60,7 @@ export function Toggle({ checked, onCheckedChange, size = 'base', disabled, chil
       {control}
       <div className="text-sm">
         <label htmlFor={switchId} className={cn('font-medium', disabled ? 'text-fg-disabled' : 'text-heading')}>{children}</label>
-        {description && <p className="text-body">{description}</p>}
+        {description && <p className="text-xs leading-4 text-body">{description}</p>}
       </div>
     </div>
   );

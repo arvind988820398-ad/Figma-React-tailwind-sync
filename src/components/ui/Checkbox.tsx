@@ -17,8 +17,8 @@ function ChoiceLayout({ id, label, description, control }: { id: string; label?:
     <div className="flex items-start gap-2.5">
       <span className="relative mt-0.5 flex">{control}</span>
       <div className="text-sm">
-        <label htmlFor={id} className="font-medium leading-4 text-heading">{label}</label>
-        {description && <p className="text-body">{description}</p>}
+        <label htmlFor={id} className="font-medium leading-5 text-heading">{label}</label>
+        {description && <p className="text-xs leading-4 text-body">{description}</p>}
       </div>
     </div>
   );

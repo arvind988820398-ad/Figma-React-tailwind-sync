@@ -97,7 +97,7 @@ export function Dropdown({ trigger, children, align = 'start', label, className 
 }
 
 const itemClasses =
-  'flex w-full items-center gap-1.5 rounded p-2 text-start text-sm font-medium leading-none text-body [&_svg]:size-4 ' +
+  'flex w-full items-center gap-1.5 rounded px-2 py-1.5 text-start text-sm font-medium leading-5 text-body [&_svg]:size-4 ' +
   'hover:bg-neutral-tertiary-medium hover:text-heading focus-visible:bg-neutral-tertiary-medium focus-visible:text-heading focus-visible:outline-none ' +
   'disabled:pointer-events-none disabled:text-fg-disabled';
 
@@ -127,7 +127,7 @@ export function DropdownItem({ icon, description, trailing, onSelect, className,
       {icon}
       <span className="flex min-w-0 flex-1 flex-col gap-1">
         <span>{children}</span>
-        {description && <span className="text-xs font-normal leading-none text-body-subtle">{description}</span>}
+        {description && <span className="text-xs font-normal leading-4 text-body-subtle">{description}</span>}
       </span>
       {trailing && <span className="ms-auto inline-flex shrink-0 items-center [&_svg]:size-3.5">{trailing}</span>}
     </button>
@@ -183,7 +183,7 @@ export function DropdownHeader({ name, email, avatar }: { name: ReactNode; email
     <div className="flex items-center gap-1.5 rounded bg-neutral-secondary-strong px-2.5 py-2">
       {avatar}
       <div className="flex min-w-0 flex-col gap-0.5">
-        <span className="truncate text-sm font-medium leading-none text-heading">{name}</span>
+        <span className="truncate text-sm font-medium leading-5 text-heading">{name}</span>
         {email && <span className="truncate text-sm text-body">{email}</span>}
       </div>
     </div>

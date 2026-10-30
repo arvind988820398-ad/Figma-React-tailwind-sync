@@ -66,10 +66,10 @@ Figma: Label `1149:94727` · Helper `1149:94741` · checkbox/toggle variants `11
 | Required asterisk | `text-fg-danger` directly after the text (`gap-1`) |
 | Label icon (info) | `size-3.5 text-body-subtle` |
 | Label hint ("Two texts") | `text-xs text-body-subtle` |
-| Helper (forms) | `text-xs leading-5 text-body` |
+| Helper (forms) | `text-xs leading-4 text-body` (every helper and description under a control uses this caption size) |
 | Helper "Left & Right text" | left `text-xs text-body`, right `text-xs font-medium text-fg-brand` |
 | Helper for checkbox / toggle | `text-sm text-body` |
-| Label for checkbox / radio | `text-sm font-medium leading-4 text-heading` |
+| Label for checkbox / radio | `text-sm font-medium leading-5 text-heading` (same 20px line height as form labels; the 16px box sits `mt-0.5`, centred on the first line) |
 
 Status helper text: danger `text-fg-danger`, success `text-fg-success`.
 **Use** a Label on every control, and HelperText under it for hints and validation messages. **Don't** use placeholder text as the label or put errors only in colour.
@@ -196,7 +196,7 @@ Figma: page `1149:53107` · examples `1149:53126` · menu `1149:53147` (Default,
 API: `<Autocomplete options={[{value,label,description,icon,group,disabled}]} value onChange footer size>`.
 - Menu = Dropdown menu shell: `rounded-base border border-default-medium bg-neutral-primary-medium p-2 gap-1.5 shadow-lg` (Advanced `gap-1`, Categories `gap-2`).
 - Group heading: `px-2.5 pt-2 text-sm font-semibold text-heading`.
-- Item: `flex items-center gap-1.5 rounded p-2 text-sm font-medium leading-none text-body`, icons `size-4 text-body`; hover `bg-neutral-tertiary-medium text-heading`; disabled `text-fg-disabled`. Bordered items add `border-b border-default`. Secondary text `text-xs text-body-subtle`. "Heading & description": title `text-sm font-medium text-heading`, description `text-sm text-body`, 36px icon.
+- Item: `flex items-center gap-1.5 rounded px-2 py-1.5 text-sm font-medium leading-5 text-body`, icons `size-4 text-body`; hover `bg-neutral-tertiary-medium text-heading`; disabled `text-fg-disabled`. Bordered items add `border-b border-default`. Secondary text `text-xs text-body-subtle`. "Heading & description": title `text-sm font-medium text-heading`, description `text-sm text-body`, 36px icon.
 - Category chips: Secondary `xs` Buttons; footer CTA Brand `xs`.
 
 **Use** to pick from a large or remote list with typing. **Don't** for <10 static options (Select). Implement combobox ARIA (`role="combobox"`, `aria-expanded`, `aria-activedescendant`).
@@ -220,7 +220,7 @@ Figma: page `1149:54431` · switches `1149:54432` · inputs `1149:54457` · labe
 | base | `w-9 h-5` | `size-4` |
 | lg | `w-11 h-6` | `size-5` |
 Off: track `bg-neutral-tertiary-medium border border-default-strong`, knob `bg-white shadow-xs`. On: `bg-brand border-brand-light`. Focus: `shadow-focus-brand`. Disabled: `bg-neutral-tertiary-medium border-light-medium`, knob `bg-neutral-secondary-soft`.
-Toggle inputs: label `text-sm font-medium text-heading` + helper `text-sm text-body`, `gap-2` (Left & Right label: `gap-3`). "Simple card" / "Advanced with icon": card `rounded-base border border-default bg-neutral-primary-soft p-4 gap-2.5 shadow-xs` (wide variants `gap-16`). "Advanced"/"Only icons" are **segmented controls**: `rounded-base bg-neutral-tertiary-medium p-1.5 gap-0.5`, segment `rounded-sm px-2 py-1 text-xs font-medium text-body`, selected segment `bg-neutral-primary-medium text-heading rounded` (use `Tabs variant="segmented"` semantics). Groups stack items `gap-4`.
+Toggle inputs: label `text-sm font-medium text-heading` + helper `text-xs leading-4 text-body`, `gap-2` (Left & Right label: `gap-3`). "Simple card" / "Advanced with icon": card `rounded-base border border-default bg-neutral-primary-soft p-4 gap-2.5 shadow-xs` (wide variants `gap-16`). "Advanced"/"Only icons" are **segmented controls**: `rounded-base bg-neutral-tertiary-medium p-1.5 gap-0.5`, segment `rounded-sm px-2 py-1 text-xs font-medium text-body`, selected segment `bg-neutral-primary-medium text-heading rounded` (use `Tabs variant="segmented"` semantics). Groups stack items `gap-4`.
 **Use** for settings that apply immediately. **Don't** inside forms submitted later (Checkbox), for choosing between named options (Tabs/Radio), or for actions. `role="switch"` + `aria-checked`.
 A11y: `role="switch"` with `aria-checked`; the visible label is the accessible name and is clickable; Space toggles it.
 

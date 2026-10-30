@@ -99,7 +99,7 @@ export const ChoiceCard = forwardRef<HTMLInputElement, ChoiceCardProps>(function
         <>
           {icon && <span className={cn('inline-flex shrink-0 [&_svg]:size-6', !disabled && variant === 'card' && 'peer-checked:text-fg-brand-strong')}>{icon}</span>}
           <span className={cn('flex min-w-0 flex-1 flex-col gap-1', !disabled && checkedText[variant])}>
-            <span className={cn('text-sm font-medium leading-4', disabled ? 'text-fg-disabled' : 'text-heading')}>{title}</span>
+            <span className={cn('text-sm font-medium leading-5', disabled ? 'text-fg-disabled' : 'text-heading')}>{title}</span>
             {description && <span className={cn('text-sm', disabled ? 'text-fg-disabled' : 'text-body')}>{description}</span>}
           </span>
           {trailing && <span className={cn('ms-auto shrink-0 text-sm font-medium', disabled ? 'text-fg-disabled' : 'text-heading')}>{trailing}</span>}

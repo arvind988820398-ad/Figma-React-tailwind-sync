@@ -7,6 +7,12 @@ Code follows the **intended** design where Figma is still inconsistent. Each row
 - **Row 32:** KBD gap and paddings are bound to `spacing/2` and `spacing/5`. The Range slider 67px gap no longer exists.
 - **Row 36:** 77 nav-link, tab, breadcrumb, list-row and stepper corners (6px) are bound to `rounded-base`, and 20 corners of 8px (Accordion, Autocomplete, Textarea chatroom bar, choice cards, Timeline, Skeleton, chat bubble, Carousel media) to `rounded-lg`, matching code. Tooltip arrows and device bezels stay unbound as art.
 - **Row 43:** Jumbotron copy is bound to text tokens; only the Bento illustration colors and its 16/20px art radii stay unbound, as intended.
+- **Rows 30, 37, 38, 42 and 44, resolved to common design-system practice (Material, Carbon, Atlassian, WCAG 2.2):**
+  - **Glyph vs surface colors (30).** Icons, stars and separator dots keep foreground tokens (`text-*`, used in code as `fill-*`); that is the standard, not a defect. Image placeholders follow one recipe: surface `bg-neutral-tertiary`, glyph `text-body-subtle` (Card and Chat no longer use `text-body` or the disabled color for it).
+  - **Line height follows font size (37).** `text-sm` always uses `leading-5` (20px) and `text-xs` `leading-4` (16px): checkbox and radio labels, choice-card titles, dropdown and autocomplete items now match form labels and nav links. Menu rows keep 32px by moving padding from 8px to 6px. Fixed 14px line heights are gone, which also meets WCAG 1.4.12 text spacing.
+  - **One helper-text size (38).** Every helper or description under a control is `text-xs leading-4 text-body` (12/16): form Helper, checkbox, radio and toggle helpers.
+  - **Selected is not hover (42).** The current Pagination page uses the selected style `bg-brand-softer border-brand-subtle text-fg-brand` with `aria-current="page"`, unchanged on hover.
+  - **Only tokens are published (44).** The eight colored demo shadows are renamed `_demo/shadow-…/50`, so they stay on the Shadows page but leave the published library; the token CSS is unchanged.
 - **Rows 45–46:** Navbar `Size = Default / Compact` and `Width = Contained / Fluid` were added (see "Code ahead of Figma").
 
 ## Fixed in Figma on 2026-10-27
@@ -30,13 +36,7 @@ Rows 1–25, 27–29, 31, 33–35, 39–41 are resolved and were removed:
 
 ## Components
 
-| # | Finding | Where | Code does | Suggested Figma fix |
-|---|---|---|---|---|
-| 30 | Shape fills bound to **text** tokens | Rating stars (`text-fg-yellow`), List transaction icon (`text-fg-success`), Card/Chat image placeholders (`text-body`, `text-fg-disabled`, `text-body-subtle`) | Uses the derived `fill-*` utilities (valid, generated for every text token) | Optional: add `bg-*` tokens if these are surfaces |
-| 37 | Line-height inconsistency | Labels `lh20` in forms vs `lh16` in checkbox/radio labels; Dropdown/Autocomplete items `lh14` (leading-none) vs Breadcrumb/Nav links `lh20` | Mirrors Figma per component (`leading-5` / `leading-4` / `leading-none`) | Decide one rule per role |
-| 38 | Helper text size differs | Form Helper `12px` vs checkbox/toggle helper `14px` | Mirrors (`text-xs` vs `text-sm`) | Align |
-| 42 | Pagination has no "current page" variant; Figma marks it with the Tertiary **Hover** state | `1149:81850` | Tertiary Hover style + `aria-current` | Add an Active state to Button or Pagination |
-| 44 | Colored shadow demo styles `shadow-{blue-600,green-500,…}/50` exist as local effect styles | Effect styles | Not exported to code (palette colors are not tokens) | Move them to a docs page or delete |
+None open.
 
 Code mirrors Figma values exactly (the generated CSS is a faithful copy, so designers see exactly what ships).
 

@@ -1,6 +1,6 @@
 // AD Design Kit Pagination — Figma set "Pagination" (node 1149:81850, page 3284:22482).
-// Built from Tertiary sm Buttons joined into one row. Figma has no "current" variant; the current page uses the
-// Tertiary Hover style (figma-audit.md #42).
+// Built from Tertiary sm Buttons joined into one row. The current page uses the selected style (brand tint +
+// aria-current="page"), distinct from hover, matching the Figma Pagination current-page button.
 import type { HTMLAttributes, ReactNode } from 'react';
 import { cn } from '../../lib/cn';
 import { buttonVariants } from './Button';
@@ -20,7 +20,7 @@ export interface PaginationProps extends Omit<HTMLAttributes<HTMLElement>, 'onCh
 }
 
 const joined = 'rounded-none shadow-none first:rounded-s-base last:rounded-e-base';
-const current = 'bg-neutral-secondary-medium text-heading';
+const current = 'relative z-10 border-brand-subtle bg-brand-softer text-fg-brand hover:bg-brand-softer hover:text-fg-brand';
 
 function pageList(page: number, count: number, siblings: number): (number | 'gap')[] {
   const pages = new Set([1, count]);

@@ -136,7 +136,7 @@ export function Autocomplete({ options, value, onChange, size = 'base', placehol
                     onClick={() => !o.disabled && choose(o)}
                     onMouseEnter={() => !o.disabled && setActive(enabled.indexOf(o))}
                     className={cn(
-                      'flex cursor-pointer items-center gap-1.5 rounded p-2 text-sm font-medium leading-none [&_svg]:size-4',
+                      'flex cursor-pointer items-center gap-1.5 rounded px-2 py-1.5 text-sm font-medium leading-5 [&_svg]:size-4',
                       o.disabled ? 'cursor-not-allowed text-fg-disabled' : isActive ? 'bg-neutral-tertiary-medium text-heading' : 'text-body',
                     )}
                   >

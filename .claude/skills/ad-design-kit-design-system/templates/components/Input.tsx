@@ -146,7 +146,7 @@ export interface HelperTextProps extends HTMLAttributes<HTMLParagraphElement> {
 export function HelperText({ status, className, ...props }: HelperTextProps) {
   return (
     <p
-      className={cn('mt-2.5 text-xs leading-5', status === 'danger' ? 'text-fg-danger' : status === 'success' ? 'text-fg-success' : 'text-body', className)}
+      className={cn('mt-2.5 text-xs leading-4', status === 'danger' ? 'text-fg-danger' : status === 'success' ? 'text-fg-success' : 'text-body', className)}
       {...props}
     />
   );

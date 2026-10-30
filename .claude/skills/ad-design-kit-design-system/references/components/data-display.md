@@ -7,6 +7,8 @@ Figma: page `13559:76418` · set `1149:34153` (15 types × Mobile Version) · te
 
 Shell for every type: `rounded-base border border-default bg-neutral-primary-soft shadow-xs flex flex-col gap-6` with `p-6` (most types) or `p-7` (Default, Grid card). Image cards clip media with `overflow-hidden`; media placeholders `bg-neutral-tertiary`.
 
+Image placeholder (any component, until a real image loads): surface `bg-neutral-tertiary`, centred glyph `text-body-subtle`; the glyph is decorative (`aria-hidden`) and the real image needs `alt` text.
+
 | Figma Type | Content recipe |
 |---|---|
 | Default | title `text-2xl font-semibold leading-8 text-heading`, text `text-base text-body`, Brand `base` CTA |
