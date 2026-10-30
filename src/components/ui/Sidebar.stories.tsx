@@ -63,8 +63,8 @@ export const WithoutHeader: Story = { args: { header: undefined } };
 export const ExpandedAndCollapsed: Story = {
   render: (args) => (
     <div className="flex h-full divide-x divide-default">
-      <Sidebar {...args} />
-      <Sidebar {...args} collapsed header={<IconHeader />} />
+      <Sidebar {...args} label="Main navigation (expanded)" />
+      <Sidebar {...args} label="Main navigation (collapsed)" collapsed header={<IconHeader />} />
     </div>
   ),
 };

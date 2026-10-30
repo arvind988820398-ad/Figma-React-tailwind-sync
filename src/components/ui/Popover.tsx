@@ -22,9 +22,11 @@ export interface PopoverProps {
   /** Content padding: `text` = px-3 py-2 (Figma "Text"); `rich` = p-3 stack; `none` for vertical item lists. */
   padding?: 'text' | 'rich' | 'none';
   className?: string;
+  /** Accessible name when there is no title (a dialog must be named). */
+  label?: string;
 }
 
-export function Popover({ trigger, title, children, placement = 'top', padding = 'text', className }: PopoverProps) {
+export function Popover({ trigger, title, children, placement = 'top', padding = 'text', className, label = 'More information' }: PopoverProps) {
   const [open, setOpen] = useState(false);
   const id = useId();
   const rootRef = useRef<HTMLSpanElement>(null);
@@ -62,6 +64,7 @@ export function Popover({ trigger, title, children, placement = 'top', padding =
           id={id}
           role="dialog"
           aria-labelledby={title ? `${id}-title` : undefined}
+          aria-label={title ? undefined : label}
           className={cn('absolute z-40 w-64 rounded-base border border-default-medium bg-neutral-primary-medium text-sm text-body shadow-lg', p.panel, className)}
         >
           <span aria-hidden className={cn('absolute size-3 rotate-45 border border-default-medium bg-neutral-primary-medium', p.arrow)} />

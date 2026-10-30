@@ -55,7 +55,7 @@ Full details: `references/setup.md`. Short version:
 | Solid status fill | `bg-success`, `bg-danger`, `bg-warning` (hover `-strong`) |
 | Headings / primary text | `text-heading` |
 | Body / secondary text | `text-body` |
-| Placeholder / meta text | `text-body-subtle` |
+| Placeholder / meta text | `text-body-subtle` on `bg-neutral-primary` and `-primary-soft` only; on tinted or secondary surfaces use `text-body` (keeps 4.5:1) |
 | Links, active nav | `text-fg-brand` |
 | Disabled | `bg-disabled`, `text-fg-disabled`, `border-default-medium` |
 | Default border | `border-default`; controls `border-default-medium`; strong `border-default-strong` |

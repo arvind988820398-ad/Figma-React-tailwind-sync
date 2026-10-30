@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
+import { expect, waitFor } from 'storybook/test';
 import { Tooltip, type TooltipPlacement } from './Tooltip';
 import { Button } from './Button';
 import { CogIcon } from '../icons';
@@ -55,4 +56,54 @@ export const AllPlacements: Story = {
       ))}
     </div>
   ),
+};
+
+// ── Interaction tests ────────────────────────────────────────────────────────────────────────────────────────────────
+
+// The bubble fades (transition-opacity), so visibility is awaited.
+// Hover shows the bubble and links it with aria-describedby; leaving hides it again.
+export const ShowOnHover: Story = {
+  play: async ({ canvas, userEvent }) => {
+    const trigger = canvas.getByRole('button', { name: 'Hover me' });
+    const tooltip = canvas.getByRole('tooltip', { hidden: true });
+    await waitFor(() => expect(tooltip).not.toBeVisible());
+    await expect(trigger).not.toHaveAttribute('aria-describedby');
+
+    await userEvent.hover(trigger);
+    await waitFor(() => expect(tooltip).toBeVisible());
+    await expect(trigger).toHaveAttribute('aria-describedby', tooltip.id);
+    await expect(trigger).toHaveAccessibleDescription('Tooltip content');
+
+    await userEvent.unhover(trigger);
+    await waitFor(() => expect(tooltip).not.toBeVisible());
+    await expect(trigger).not.toHaveAttribute('aria-describedby');
+  },
+};
+
+// Keyboard: focus shows it, Escape dismisses it (other keys don't), and tabbing away hides it.
+export const ShowOnFocus: Story = {
+  args: OnIconButton.args,
+  play: async ({ canvas, userEvent }) => {
+    const trigger = canvas.getByRole('button', { name: 'Settings' });
+    const tooltip = canvas.getByRole('tooltip', { hidden: true });
+
+    await userEvent.tab();
+    await expect(trigger).toHaveFocus();
+    await waitFor(() => expect(tooltip).toBeVisible());
+    await expect(trigger).toHaveAccessibleDescription('Settings');
+
+    await userEvent.keyboard('{Shift}');
+    await waitFor(() => expect(tooltip).toBeVisible());
+    await userEvent.keyboard('{Escape}');
+    await waitFor(() => expect(tooltip).not.toBeVisible());
+    await expect(trigger).toHaveFocus();
+
+    // Refocus, then blur by tabbing away.
+    await userEvent.tab({ shift: true });
+    await userEvent.tab();
+    await waitFor(() => expect(tooltip).toBeVisible());
+    await userEvent.tab();
+    await expect(trigger).not.toHaveFocus();
+    await waitFor(() => expect(tooltip).not.toBeVisible());
+  },
 };

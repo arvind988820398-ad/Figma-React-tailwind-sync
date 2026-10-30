@@ -1,10 +1,17 @@
 // AD Design Kit Datepicker — Figma "Datepicker (ready to use examples)" (node 1149:51284, page 1149:51144),
 // cell 1149:51147, controls 1149:51164, menu 1149:51169. Figma Type: Default = mode "single", Range = mode "range"
 // (two months). <Calendar> is the menu on its own; <Datepicker> adds the Input trigger and the popup.
-import { useEffect, useId, useMemo, useRef, useState, type KeyboardEvent } from 'react';
+import { useEffect, useId, useLayoutEffect, useMemo, useRef, useState, type KeyboardEvent } from 'react';
 import { cn } from '../../lib/cn';
 import { Button } from './Button';
 import { inputVariants, type FieldSize } from './Input';
+
+/** Split the month grid into weeks so each week is an ARIA row. */
+function chunk<T>(items: T[], size: number): T[][] {
+  const out: T[][] = [];
+  for (let i = 0; i < items.length; i += size) out.push(items.slice(i, i + size));
+  return out;
+}
 
 export type DateRange = { start: Date | null; end: Date | null };
 
@@ -35,6 +42,8 @@ interface CalendarBaseProps {
   weekStart?: 0 | 1;
   locale?: string;
   className?: string;
+  /** Move focus into the grid when the calendar appears (the Datepicker popup does; an inline calendar should not). */
+  autoFocus?: boolean;
 }
 
 export type CalendarProps = CalendarBaseProps &
@@ -73,14 +82,19 @@ export function Calendar(props: CalendarProps) {
     const step: Record<string, number> = { ArrowLeft: -1, ArrowRight: 1, ArrowUp: -7, ArrowDown: 7 };
     if (!(e.key in step)) return;
     e.preventDefault();
+    interacted.current = true;
     const next = addDays(focusDay, step[e.key]);
     setFocusDay(next);
     if (next.getMonth() !== focusDay.getMonth() && (next < view || next >= addMonths(view, range ? 2 : 1))) setView(new Date(next.getFullYear(), next.getMonth(), 1));
   };
 
-  useEffect(() => {
-    gridRef.current?.querySelector<HTMLButtonElement>(`[data-day="${focusDay.toDateString()}"]`)?.focus({ preventScroll: true });
-  }, [focusDay]);
+  // Layout effect: focus moves before the next key press is handled, so fast key repeat is never lost.
+  // Hidden outside-month cells share the same date, so only real cells are focused.
+  const interacted = useRef(false);
+  useLayoutEffect(() => {
+    if (!interacted.current && !props.autoFocus) return;
+    gridRef.current?.querySelector<HTMLButtonElement>(`[data-day="${focusDay.toDateString()}"]:not([data-outside])`)?.focus({ preventScroll: true });
+  }, [focusDay, view, props.autoFocus]);
 
   const cellClass = (d: Date, inMonth: boolean) => {
     if (!inMonth) return 'invisible';
@@ -122,12 +136,19 @@ export function Calendar(props: CalendarProps) {
             )}
           </div>
           <div role="grid" aria-label={m.toLocaleDateString(locale, { month: 'long', year: 'numeric' })} className="grid grid-cols-7">
+            <div role="row" className="contents">
             {weekdays.map((w) => (
               <span key={w} role="columnheader" className="flex h-6 items-center justify-center text-xs font-semibold leading-3 text-body">
                 {w}
               </span>
             ))}
-            {monthGrid(m, weekStart).map((d) => {
+            </div>
+            {chunk(monthGrid(m, weekStart), 7)
+              // Only weeks that contain a day of this month (an all-hidden row has no cells).
+              .filter((week) => week.some((d) => d.getMonth() === m.getMonth()))
+              .map((week, wi) => (
+            <div key={wi} role="row" className="contents">
+            {week.map((d) => {
               const inMonth = d.getMonth() === m.getMonth();
               const selected = range ? sameDay(d, props.value.start) || sameDay(d, props.value.end) : sameDay(d, props.value);
               return (
@@ -136,6 +157,7 @@ export function Calendar(props: CalendarProps) {
                   type="button"
                   role="gridcell"
                   data-day={d.toDateString()}
+                  data-outside={inMonth ? undefined : ''}
                   tabIndex={inMonth && sameDay(d, focusDay) ? 0 : -1}
                   aria-selected={selected}
                   aria-current={sameDay(d, today) ? 'date' : undefined}
@@ -154,6 +176,8 @@ export function Calendar(props: CalendarProps) {
                 </button>
               );
             })}
+            </div>
+            ))}
           </div>
         </div>
       ))}
@@ -217,8 +241,10 @@ export function Datepicker(props: DatepickerProps) {
         readOnly
         value={text}
         placeholder={placeholder}
+        role="combobox"
         aria-haspopup="dialog"
         aria-expanded={open}
+        aria-controls={open ? `${id ?? autoId}-dialog` : undefined}
         aria-label={props['aria-label']}
         aria-describedby={props['aria-describedby']}
         onClick={() => setOpen(true)}
@@ -231,11 +257,12 @@ export function Datepicker(props: DatepickerProps) {
         className={cn(inputVariants({ size }), iconPad, 'cursor-pointer read-only:bg-neutral-secondary-medium read-only:text-heading')}
       />
       {open && (
-        <div role="dialog" aria-label="Choose date" className="absolute start-0 top-full z-40 mt-2 flex flex-col gap-4 rounded-base border border-default-medium bg-neutral-primary-medium p-5 shadow-lg">
+        <div id={`${id ?? autoId}-dialog`} role="dialog" aria-label="Choose date" className="absolute start-0 top-full z-40 mt-2 flex flex-col gap-4 rounded-base border border-default-medium bg-neutral-primary-medium p-5 shadow-lg">
           {props.mode === 'range' ? (
-            <Calendar mode="range" value={props.value} onChange={props.onChange} min={min} max={max} weekStart={weekStart} locale={locale} />
+            <Calendar autoFocus mode="range" value={props.value} onChange={props.onChange} min={min} max={max} weekStart={weekStart} locale={locale} />
           ) : (
             <Calendar
+              autoFocus
               value={props.value}
               onChange={(d) => {
                 props.onChange(d);

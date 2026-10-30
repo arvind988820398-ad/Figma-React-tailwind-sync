@@ -64,6 +64,7 @@ export function Tabs({ items, value, onValueChange, variant = 'text', label, cla
     if (![...keys, 'Home', 'End'].includes(e.key)) return;
     e.preventDefault();
     const enabled = items.filter((i) => !i.disabled);
+    if (enabled.length === 0) return; // every tab disabled: nothing to move to
     const idx = enabled.findIndex((i) => i.value === value);
     const next =
       e.key === 'Home' ? enabled[0] : e.key === 'End' ? enabled[enabled.length - 1] : enabled[(idx + (e.key === keys[1] ? 1 : -1) + enabled.length) % enabled.length];

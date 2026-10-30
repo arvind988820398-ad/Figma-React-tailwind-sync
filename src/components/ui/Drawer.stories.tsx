@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
 import { useState } from 'react';
+import { expect, fn, waitFor, within } from 'storybook/test';
 import { Button } from './Button';
 import { Drawer, type DrawerPlacement, type DrawerProps } from './Drawer';
 import { Input, Label } from './Input';
@@ -108,5 +109,64 @@ export const Navigation: Story = {
         <NavLink href="#" disabled>Billing</NavLink>
       </nav>
     ),
+  },
+};
+
+// ── Interaction tests ────────────────────────────────────────────────────────────────────────────────────────────────
+// The native <dialog> lives in the top layer, so it is queried from the document body.
+
+// The close button closes the drawer, reports onOpenChange(false) and returns focus to the opener.
+export const CloseButton: Story = {
+  args: { onOpenChange: fn() },
+  play: async ({ args, canvas, canvasElement, userEvent }) => {
+    const body = within(canvasElement.ownerDocument.body);
+    const opener = canvas.getByRole('button', { name: 'Open drawer' });
+
+    await userEvent.click(opener);
+    const drawer = await body.findByRole('dialog', { name: 'Drawer title' });
+    await expect(drawer).toBeVisible();
+    await expect(args.onOpenChange).toHaveBeenLastCalledWith(true);
+    await expect(within(drawer).getByRole('button', { name: 'Save' })).toBeVisible();
+
+    // Clicks on content keep it open.
+    await userEvent.click(within(drawer).getByText(/Body content/));
+    await expect(drawer).toHaveAttribute('open');
+
+    await userEvent.click(within(drawer).getByRole('button', { name: 'Close' }));
+    await waitFor(() => expect(drawer).not.toHaveAttribute('open'));
+    await expect(args.onOpenChange).toHaveBeenLastCalledWith(false);
+    await expect(opener).toHaveFocus();
+  },
+};
+
+// A click on the backdrop (target is the <dialog> itself) closes the bottom sheet.
+export const BackdropClickClosesBottomSheet: Story = {
+  args: { onOpenChange: fn(), placement: 'bottom' },
+  play: async ({ args, canvas, canvasElement, userEvent }) => {
+    const body = within(canvasElement.ownerDocument.body);
+    await userEvent.click(canvas.getByRole('button', { name: 'Open drawer' }));
+    const drawer = await body.findByRole('dialog', { name: 'Drawer title' });
+    await expect(drawer).toHaveClass('bottom-0');
+
+    await userEvent.click(drawer);
+    await waitFor(() => expect(drawer).not.toHaveAttribute('open'));
+    await expect(args.onOpenChange).toHaveBeenLastCalledWith(false);
+  },
+};
+
+// Navigation drawer: focus starts inside, links are reachable by keyboard, no footer is rendered.
+export const NavigationKeyboard: Story = {
+  ...Navigation,
+  play: async ({ canvas, canvasElement, userEvent }) => {
+    const body = within(canvasElement.ownerDocument.body);
+    await userEvent.click(canvas.getByRole('button', { name: 'Open drawer' }));
+    const drawer = await body.findByRole('dialog', { name: 'Menu' });
+    const nav = within(drawer).getByRole('navigation', { name: 'Drawer navigation' });
+    await expect(within(nav).getByRole('link', { name: 'Dashboard' })).toHaveAttribute('aria-current', 'page');
+    await expect(drawer.querySelector('footer')).toBeNull();
+    // showModal() focuses the first focusable element: the close button.
+    await waitFor(() => expect(within(drawer).getByRole('button', { name: 'Close' })).toHaveFocus());
+    await userEvent.tab();
+    await expect(within(nav).getByRole('link', { name: 'Dashboard' })).toHaveFocus();
   },
 };

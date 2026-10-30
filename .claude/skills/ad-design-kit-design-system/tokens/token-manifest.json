@@ -1265,7 +1265,7 @@
         "minimal-light": "#1c1917 (colors/stone/900)",
         "minimal-dark": "#57534d (colors/stone/600)",
         "enterprise-light": "#104e64 (colors/cyan/900)",
-        "enterprise-dark": "#0092b8 (colors/cyan/600)",
+        "enterprise-dark": "#007595 (colors/cyan/700)",
         "mono-light": "#312c85 (colors/indigo/900)",
         "mono-dark": "#4f39f6 (colors/indigo/600)"
       }
@@ -1295,7 +1295,7 @@
         "minimal-light": "#292524 (colors/stone/800)",
         "minimal-dark": "#44403b (colors/stone/700)",
         "enterprise-light": "#005f78 (colors/cyan/800)",
-        "enterprise-dark": "#007595 (colors/cyan/700)",
+        "enterprise-dark": "#005f78 (colors/cyan/800)",
         "mono-light": "#372aac (colors/indigo/800)",
         "mono-dark": "#432dd7 (colors/indigo/700)"
       }
@@ -1321,13 +1321,13 @@
       "cssVar": "--adk-bg-success",
       "values": {
         "modern-light": "#007a55 (colors/emerald/700)",
-        "modern-dark": "#009966 (colors/emerald/600)",
+        "modern-dark": "#007a55 (colors/emerald/700)",
         "minimal-light": "#008236 (colors/green/700)",
-        "minimal-dark": "#00a63e (colors/green/600)",
+        "minimal-dark": "#008236 (colors/green/700)",
         "enterprise-light": "#008236 (colors/green/700)",
-        "enterprise-dark": "#00a63e (colors/green/600)",
+        "enterprise-dark": "#008236 (colors/green/700)",
         "mono-light": "#008236 (colors/green/700)",
-        "mono-dark": "#00a63e (colors/green/600)"
+        "mono-dark": "#008236 (colors/green/700)"
       }
     },
     "bg-success-medium": {
@@ -1351,13 +1351,13 @@
       "cssVar": "--adk-bg-success-strong",
       "values": {
         "modern-light": "#006045 (colors/emerald/800)",
-        "modern-dark": "#007a55 (colors/emerald/700)",
+        "modern-dark": "#006045 (colors/emerald/800)",
         "minimal-light": "#016630 (colors/green/800)",
-        "minimal-dark": "#008236 (colors/green/700)",
+        "minimal-dark": "#016630 (colors/green/800)",
         "enterprise-light": "#016630 (colors/green/800)",
-        "enterprise-dark": "#008236 (colors/green/700)",
+        "enterprise-dark": "#016630 (colors/green/800)",
         "mono-light": "#016630 (colors/green/800)",
-        "mono-dark": "#008236 (colors/green/700)"
+        "mono-dark": "#016630 (colors/green/800)"
       }
     },
     "bg-danger-soft": {
@@ -1440,13 +1440,13 @@
       "role": "bg",
       "cssVar": "--adk-bg-warning",
       "values": {
-        "modern-light": "#ff5a1f (colors/orange/500)",
+        "modern-light": "#d03801 (colors/orange/600)",
         "modern-dark": "#d03801 (colors/orange/600)",
-        "minimal-light": "#ff5a1f (colors/orange/500)",
+        "minimal-light": "#d03801 (colors/orange/600)",
         "minimal-dark": "#d03801 (colors/orange/600)",
-        "enterprise-light": "#ff5a1f (colors/orange/500)",
+        "enterprise-light": "#d03801 (colors/orange/600)",
         "enterprise-dark": "#d03801 (colors/orange/600)",
-        "mono-light": "#ff5a1f (colors/orange/500)",
+        "mono-light": "#d03801 (colors/orange/600)",
         "mono-dark": "#d03801 (colors/orange/600)"
       }
     },

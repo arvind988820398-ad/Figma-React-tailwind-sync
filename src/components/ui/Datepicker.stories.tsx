@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { expect, waitFor } from 'storybook/test';
 import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
 import { useState } from 'react';
 import { Calendar, Datepicker, type DatepickerProps, type DateRange } from './Datepicker';
@@ -105,4 +106,193 @@ export const InlineCalendar: Story = {
 export const InlineRangeCalendar: Story = {
   parameters: { layout: 'padded' },
   render: (args) => <InlineRangeCalendarDemo {...args} />,
+};
+
+
+// ---- Interaction tests -------------------------------------------------------------------------------------------
+const day = (d: Date, n = 0) => new Date(d.getFullYear(), d.getMonth(), d.getDate() + n);
+const fullLabel = (d: Date) => d.toLocaleDateString(undefined, { dateStyle: 'full' });
+const medium = (d: Date) => d.toLocaleDateString(undefined, { dateStyle: 'medium' });
+const monthLabel = (d: Date) => d.toLocaleDateString(undefined, { month: 'long', year: 'numeric' });
+const activeDay = (el: HTMLElement) => el.ownerDocument.activeElement?.getAttribute('data-day');
+// The roving-tabindex day (the one Tab returns to), which tracks the keyboard position.
+const rovingDay = (el: HTMLElement) => el.querySelector('[data-day][tabindex="0"]')?.getAttribute('data-day');
+
+// Click opens the popup with today focused; arrows move between days; Enter picks one and closes the popup.
+// Escape closes and returns focus to the field; ArrowDown reopens; Clear empties; Today picks today; clicking outside closes.
+export const SingleKeyboardAndFooter: Story = {
+  render: (args) => <SingleDemo {...args} />,
+  play: async ({ canvas, canvasElement, userEvent }) => {
+    const t = day(new Date());
+    const input = canvas.getByRole('combobox', { name: 'Due date' });
+    await expect(input).toHaveAttribute('aria-expanded', 'false');
+    await expect(input).not.toHaveAttribute('aria-controls');
+
+    await userEvent.click(input);
+    const dialog = canvas.getByRole('dialog', { name: 'Choose date' });
+    await expect(input).toHaveAttribute('aria-expanded', 'true');
+    await expect(input).toHaveAttribute('aria-controls', dialog.id);
+    await waitFor(() => expect(activeDay(canvasElement)).toBe(t.toDateString()));
+    await expect(canvas.getByRole('gridcell', { name: fullLabel(t) })).toHaveAttribute('aria-current', 'date');
+
+    await userEvent.keyboard('{ArrowRight}{ArrowDown}{ArrowLeft}');
+    const picked = day(t, 7);
+    await waitFor(() => expect(activeDay(canvasElement)).toBe(picked.toDateString()));
+    await expect(canvas.getByRole('grid', { name: monthLabel(picked) })).toBeVisible();
+    await userEvent.keyboard('{Enter}');
+    await expect(input).toHaveValue(medium(picked));
+    await expect(input).toHaveAttribute('aria-expanded', 'false');
+
+    // Reopen: the picked day is selected.
+    await userEvent.click(input);
+    await expect(canvas.getByRole('gridcell', { name: fullLabel(picked) })).toHaveAttribute('aria-selected', 'true');
+
+    await userEvent.keyboard('{Escape}');
+    await expect(input).toHaveAttribute('aria-expanded', 'false');
+    await expect(input).toHaveFocus();
+
+    await userEvent.keyboard('a');
+    await expect(input).toHaveAttribute('aria-expanded', 'false');
+    await userEvent.keyboard('{ArrowDown}');
+    await expect(input).toHaveAttribute('aria-expanded', 'true');
+
+    await userEvent.click(canvas.getByRole('button', { name: 'Clear' }));
+    await expect(input).toHaveValue('');
+    await expect(canvas.getByRole('dialog')).toBeVisible();
+
+    await userEvent.click(canvas.getByRole('button', { name: 'Today' }));
+    await expect(input).toHaveValue(medium(t));
+    await expect(canvas.queryByRole('dialog')).toBeNull();
+
+    // Enter opens; a pointer press outside the field closes.
+    input.focus();
+    await userEvent.keyboard('{Enter}');
+    await expect(input).toHaveAttribute('aria-expanded', 'true');
+    await userEvent.click(canvas.getByText(/arrow keys move between days/));
+    await expect(input).toHaveAttribute('aria-expanded', 'false');
+  },
+};
+
+// With min = today: earlier days are disabled; the month buttons move the view.
+export const MinMaxNavigation: Story = {
+  args: { min: today, max: inThirtyDays },
+  render: (args) => <SingleDemo {...args} />,
+  play: async ({ canvas, userEvent }) => {
+    const t = day(new Date());
+    await userEvent.click(canvas.getByRole('combobox', { name: 'Due date' }));
+    await expect(canvas.getByRole('gridcell', { name: fullLabel(t) })).toBeEnabled();
+
+    await userEvent.click(canvas.getByRole('button', { name: 'Previous month' }));
+    const prev = new Date(t.getFullYear(), t.getMonth() - 1, 1);
+    await expect(canvas.getByRole('grid', { name: monthLabel(prev) })).toBeVisible();
+    for (const cell of canvas.getAllByRole('gridcell')) await expect(cell).toBeDisabled();
+
+    await userEvent.click(canvas.getByRole('button', { name: 'Next month' }));
+    await userEvent.click(canvas.getByRole('button', { name: 'Next month' }));
+    const next = new Date(t.getFullYear(), t.getMonth() + 1, 1);
+    await expect(canvas.getByRole('grid', { name: monthLabel(next) })).toBeVisible();
+    // Anything after max (today + 30) is disabled.
+    const afterMax = day(inThirtyDays, 1);
+    if (afterMax.getMonth() === next.getMonth()) await expect(canvas.getByRole('gridcell', { name: fullLabel(afterMax) })).toBeDisabled();
+  },
+};
+
+// Range: first click sets the start, second the end; a click before the start restarts; Apply closes; Clear empties.
+export const RangeSelection: Story = {
+  args: { placeholder: 'Check-in – check-out' },
+  render: (args) => <RangeDemo {...args} />,
+  play: async ({ canvas, userEvent }) => {
+    const t = day(new Date());
+    const start = new Date(t.getFullYear(), t.getMonth(), 10);
+    const end = new Date(t.getFullYear(), t.getMonth() + 1, 5);
+    const between = new Date(t.getFullYear(), t.getMonth(), 20);
+    const earlier = new Date(t.getFullYear(), t.getMonth(), 3);
+    const input = canvas.getByRole('combobox', { name: 'Stay' });
+
+    await userEvent.click(input);
+    await expect(canvas.getAllByRole('grid')).toHaveLength(2);
+
+    await userEvent.click(canvas.getByRole('gridcell', { name: fullLabel(start) }));
+    await expect(input).toHaveValue(medium(start));
+    await userEvent.click(canvas.getByRole('gridcell', { name: fullLabel(end) }));
+    await expect(input).toHaveValue(`${medium(start)} – ${medium(end)}`);
+    await expect(canvas.getByRole('gridcell', { name: fullLabel(start) })).toHaveAttribute('aria-selected', 'true');
+    await expect(canvas.getByRole('gridcell', { name: fullLabel(end) })).toHaveAttribute('aria-selected', 'true');
+    await expect(canvas.getByRole('gridcell', { name: fullLabel(between) })).toHaveAttribute('aria-selected', 'false');
+    // The popup stays open in range mode.
+    await expect(canvas.getByRole('dialog')).toBeVisible();
+
+    // A third click starts a new range; a click before the start restarts it; the same day twice is a one-day range.
+    await userEvent.click(canvas.getByRole('gridcell', { name: fullLabel(between) }));
+    await expect(input).toHaveValue(medium(between));
+    await userEvent.click(canvas.getByRole('gridcell', { name: fullLabel(earlier) }));
+    await expect(input).toHaveValue(medium(earlier));
+    await userEvent.click(canvas.getByRole('gridcell', { name: fullLabel(earlier) }));
+    await expect(input).toHaveValue(`${medium(earlier)} – ${medium(earlier)}`);
+
+    await userEvent.click(canvas.getByRole('button', { name: 'Apply' }));
+    await expect(input).toHaveAttribute('aria-expanded', 'false');
+
+    await userEvent.click(input);
+    await userEvent.click(canvas.getByRole('button', { name: 'Clear' }));
+    await expect(input).toHaveValue('');
+  },
+};
+
+// Click a day, then use the keyboard across months in the two-month calendar: moving past the second month (or before the first) shifts the view.
+export const RangeCalendarKeyboard: Story = {
+  parameters: { layout: 'padded' },
+  render: (args) => <InlineRangeCalendarDemo {...args} />,
+  play: async ({ canvas, canvasElement, userEvent }) => {
+    const t = day(new Date());
+    await userEvent.click(canvas.getByRole('gridcell', { name: fullLabel(t) }));
+    await expect(activeDay(canvasElement)).toBe(t.toDateString());
+    await expect(canvas.getByRole('gridcell', { name: fullLabel(t) })).toHaveAttribute('aria-selected', 'true');
+
+    // One week per press; wait for focus to land before the next press.
+    for (let w = 1; w <= 9; w++) {
+      await userEvent.keyboard('{ArrowDown}');
+      await waitFor(() => expect(rovingDay(canvasElement)).toBe(day(t, 7 * w).toDateString()));
+    }
+    // Nine weeks is always past the second month, so the view has moved on.
+    await expect(canvas.getByRole('grid', { name: monthLabel(day(t, 63)) })).toBeVisible();
+    await expect(canvas.queryByRole('grid', { name: monthLabel(t) })).toBeNull();
+
+    for (let w = 8; w >= 0; w--) {
+      await userEvent.keyboard('{ArrowUp}');
+      await waitFor(() => expect(rovingDay(canvasElement)).toBe(day(t, 7 * w).toDateString()));
+    }
+    await expect(activeDay(canvasElement)).toBe(t.toDateString());
+    await expect(canvas.getByRole('grid', { name: monthLabel(t) })).toBeVisible();
+  },
+};
+
+// The inline single calendar: clicking a day selects it.
+export const InlineCalendarSelect: Story = {
+  parameters: { layout: 'padded' },
+  args: { weekStart: 1 },
+  render: (args) => <InlineCalendarDemo {...args} />,
+  play: async ({ canvas, userEvent }) => {
+    const t = day(new Date());
+    const target = new Date(t.getFullYear(), t.getMonth(), t.getDate() === 15 ? 16 : 15);
+    await expect(canvas.getAllByRole('columnheader')[0]).toHaveTextContent(new Date(2024, 0, 8).toLocaleDateString(undefined, { weekday: 'short' }).slice(0, 2));
+    await userEvent.click(canvas.getByRole('gridcell', { name: fullLabel(target) }));
+    await expect(canvas.getByRole('gridcell', { name: fullLabel(target) })).toHaveAttribute('aria-selected', 'true');
+    await expect(canvas.getByRole('gridcell', { name: fullLabel(t) })).toHaveAttribute('aria-selected', 'false');
+  },
+};
+
+// Every field size (icon offset and padding differ per size).
+export const AllSizes: Story = {
+  render: (args) => (
+    <>
+      {(['sm', 'base', 'lg', 'xl'] as const).map((size) => (
+        <Datepicker key={size} {...args} size={size} aria-label={`Date (${size})`} value={null} onChange={() => {}} />
+      ))}
+    </>
+  ),
+  play: async ({ canvas }) => {
+    await expect(canvas.getAllByRole('combobox')).toHaveLength(4);
+    await expect(canvas.getByRole('combobox', { name: 'Date (xl)' })).toHaveAttribute('placeholder', 'Select date');
+  },
 };

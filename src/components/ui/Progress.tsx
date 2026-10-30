@@ -1,5 +1,5 @@
 // AD Design Kit Progress — Figma sets "Progress Bars" (node 1149:82279) and "Bars" (1149:82364), page 3283:24173.
-import type { HTMLAttributes, ReactNode } from 'react';
+import { useId, type HTMLAttributes, type ReactNode } from 'react';
 import { cn } from '../../lib/cn';
 
 export type ProgressColor = 'brand' | 'gray' | 'dark' | 'success' | 'danger' | 'warning';
@@ -17,15 +17,18 @@ export interface ProgressProps extends HTMLAttributes<HTMLDivElement> {
   showValue?: boolean;
 }
 
-export function Progress({ value, color = 'brand', size = 'base', label, labelPosition = 'top', showValue = true, className, ...props }: ProgressProps) {
+export function Progress({ value, color = 'brand', size = 'base', label, labelPosition = 'top', showValue = true, className, 'aria-label': ariaLabel, ...props }: ProgressProps) {
   const pct = Math.max(0, Math.min(100, value));
+  const labelId = useId();
+  // Always named: the visible label, else aria-label, else a generic name (axe aria-progressbar-name).
   const bar = (
     <div
       role="progressbar"
       aria-valuenow={pct}
       aria-valuemin={0}
       aria-valuemax={100}
-      aria-label={typeof label === 'string' ? label : undefined}
+      aria-labelledby={label ? labelId : undefined}
+      aria-label={label ? undefined : ariaLabel ?? 'Progress'}
       className={cn('w-full overflow-hidden rounded-base bg-neutral-quaternary', size === 'lg' ? 'h-2.5' : 'h-1.5')}
     >
       <div className={cn('h-full rounded-base transition-[width]', fills[color])} style={{ width: `${pct}%` }} />
@@ -33,7 +36,7 @@ export function Progress({ value, color = 'brand', size = 'base', label, labelPo
   );
   const meta = (label || showValue) && (
     <div className="flex items-center justify-between gap-3 text-xs font-medium leading-4 text-body">
-      {label && <span>{label}</span>}
+      {label && <span id={labelId}>{label}</span>}
       {showValue && <span>{pct}%</span>}
     </div>
   );

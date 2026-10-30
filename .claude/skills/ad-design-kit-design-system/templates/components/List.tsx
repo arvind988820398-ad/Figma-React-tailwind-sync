@@ -73,7 +73,7 @@ export function ListItem({ icon, media, children, description, trailing, href, d
           {body}
         </a>
       ) : (
-        <div className={row}>{body}</div>
+        <div aria-disabled={disabled || undefined} className={row}>{body}</div>
       )}
     </li>
   );

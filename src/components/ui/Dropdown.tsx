@@ -127,7 +127,7 @@ export function DropdownItem({ icon, description, trailing, onSelect, className,
       {icon}
       <span className="flex min-w-0 flex-1 flex-col gap-1">
         <span>{children}</span>
-        {description && <span className="text-xs font-normal leading-4 text-body-subtle">{description}</span>}
+        {description && <span className="text-xs font-normal leading-4 text-body">{description}</span>}
       </span>
       {trailing && <span className="ms-auto inline-flex shrink-0 items-center [&_svg]:size-3.5">{trailing}</span>}
     </button>

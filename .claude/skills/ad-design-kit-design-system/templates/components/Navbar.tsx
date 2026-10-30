@@ -93,6 +93,7 @@ export function Navbar({ logo, size = 'base', fluid = false, links = [], actions
       {menuOpen && (
         <div id={menuId} className="flex flex-col gap-4 border-t border-default bg-neutral-primary-soft p-4 md:hidden">
           {search}
+          {links.length > 0 && (
           <ul className="flex flex-col gap-3">
             {links.map((l, i) => (
               <li key={i} className="border-b border-light pb-3">
@@ -100,6 +101,7 @@ export function Navbar({ logo, size = 'base', fluid = false, links = [], actions
               </li>
             ))}
           </ul>
+          )}
           {actions && <div className="flex gap-3">{actions}</div>}
         </div>
       )}

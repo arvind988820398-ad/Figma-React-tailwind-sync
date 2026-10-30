@@ -38,7 +38,7 @@ export function Avatar({ src, name, size = 'base', status, bordered, className, 
           aria-label={name}
           className={cn('flex size-full items-center justify-center rounded-full bg-neutral-tertiary font-semibold text-body', s.text, bordered && 'border-2 border-buffer')}
         >
-          {initials}
+          <span aria-hidden>{initials}</span>
         </span>
       )}
       {status && (

@@ -65,6 +65,7 @@ export function RangeSlider<V extends Value>({
 
   const onTrackDown = (e: ReactPointerEvent<HTMLDivElement>) => {
     if (disabled) return;
+    e.preventDefault(); // keep focus on the thumb we move to (the default mousedown would blur it)
     const n = fromPointer(e.clientX);
     const i = isRange && Math.abs(n - values[1]) < Math.abs(n - values[0]) ? 1 : 0;
     emit(i, n);

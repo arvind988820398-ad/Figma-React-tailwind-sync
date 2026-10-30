@@ -13,6 +13,8 @@
     "storybook": "npm run docs:build && storybook dev -p 6006",
     "build-storybook": "npm run docs:build && storybook build",
     "storybook:deploy": "npm run build-storybook && npx -y netlify-cli deploy --prod --dir storybook-static --no-build --site 5c4cfb1c-721f-4500-aca8-f53b0d116efc",
+    "test": "vitest run --project storybook",
+    "test:coverage": "vitest run --project storybook --coverage",
     "docs:build": "node .storybook/scripts/build-docs.mjs",
     "docs:check": "node .storybook/scripts/build-docs.mjs --check",
     "figma:descriptions": "node .claude/skills/ad-design-kit-figma-sync/scripts/build-figma-descriptions.mjs"

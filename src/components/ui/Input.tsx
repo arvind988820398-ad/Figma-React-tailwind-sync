@@ -65,7 +65,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
   if (stackedLabel) {
     return (
       <div className={cn(inputVariants({ size, status }), shell, 'flex flex-col gap-0.5 py-1.5', className)}>
-        <span className="text-xs leading-4 text-body-subtle">{stackedLabel}</span>
+        <span className="text-xs leading-4 text-body">{stackedLabel}</span>
         <input ref={ref} aria-invalid={invalid} className={cn(bare, 'text-sm leading-5')} {...props} />
       </div>
     );
@@ -85,7 +85,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
       <div className={cn('flex w-full', className)}>
         <span
           className={cn(
-            'inline-flex shrink-0 items-center rounded-s-base border border-e-0 border-default-medium bg-neutral-tertiary text-sm text-body-subtle',
+            'inline-flex shrink-0 items-center rounded-s-base border border-e-0 border-default-medium bg-neutral-tertiary text-sm text-body',
             s.iconPos,
             s.icon,
           )}

@@ -34,7 +34,13 @@ export function Table({ striped, caption, toolbar, stickyHeader, containerClassN
   return (
     <div className={cn('relative flex flex-col rounded-base border border-default bg-neutral-secondary-soft shadow-xs', containerClassName)}>
       {toolbar && <div className="flex shrink-0 flex-wrap items-center justify-between gap-3 border-b border-default p-4">{toolbar}</div>}
-      <div className="min-h-0 flex-1 overflow-auto">
+      <div
+        // A scrolling region must be reachable by keyboard (axe scrollable-region-focusable).
+        tabIndex={stickyHeader ? 0 : undefined}
+        role={stickyHeader ? 'region' : undefined}
+        aria-label={stickyHeader ? (typeof caption === 'string' ? caption : props['aria-label'] ?? 'Table') : undefined}
+        className="min-h-0 flex-1 overflow-auto focus-visible:shadow-focus-brand focus-visible:outline-none"
+      >
         <table className={cn('w-full text-start text-sm', striped && striping[striped], stickyHeader && stickyHead, className)} {...props}>
           {caption && (
             <caption className="border-b border-default bg-neutral-secondary-soft p-5 text-start">

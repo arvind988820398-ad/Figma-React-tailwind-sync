@@ -40,13 +40,14 @@ export function OtpInput({
 }: OtpInputProps) {
   const id = useId();
   const refs = useRef<(HTMLInputElement | null)[]>([]);
-  const chars = Array.from({ length }, (_, i) => value[i] ?? '');
+  // A space in `value` marks an empty box between filled ones, so clearing a box never shifts later characters.
+  const chars = Array.from({ length }, (_, i) => (value[i] && value[i] !== ' ' ? value[i] : ''));
   const focus = (i: number) => refs.current[Math.max(0, Math.min(length - 1, i))]?.focus();
 
   const setAt = (i: number, ch: string) => {
     const next = [...chars];
     next[i] = ch;
-    onChange(next.join('').slice(0, length));
+    onChange(next.map((c) => c || ' ').join('').replace(/\s+$/, '').slice(0, length));
   };
 
   const onKeyDown = (i: number, e: KeyboardEvent<HTMLInputElement>) => {

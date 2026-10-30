@@ -44,7 +44,7 @@ Figma: page `3282:18862` · menu `1149:39895` (16 types) · item `1149:39651` (1
 API: `<Dropdown trigger align label>` with `DropdownItem` (icon, description, trailing, onSelect), `DropdownCheckboxItem`, `DropdownHeader`, `DropdownSeparator`.
 
 - Menu: `z-40 w-52 rounded-base border border-default-medium bg-neutral-primary-medium p-2 flex flex-col gap-1.5 shadow-lg` (widths in Figma: 208 default, 224–320 for richer types). "With scroll": `p-0`, scroll area `max-h-*` with `p-2`, sticky search (`Input sm`) with `shadow-bottom-dropdown` and footer with `shadow-top` (edge shadows over the scrolled list).
-- Item: `flex items-center gap-1.5 rounded px-2 py-1.5 text-sm font-medium leading-5 text-body` (32px row; text-sm always uses its 20px line height) · icons `size-4 text-body` · hover `bg-neutral-tertiary-medium text-heading` · disabled `text-fg-disabled`. Secondary text `text-xs text-body-subtle leading-none`. Item types: Two icons (trailing `size-3.5`), Left/Right form (Checkbox/Radio/Toggle), With avatar & form, With badge (`Badge color="white" size="sm"`), User select (`AvatarGroupLabel sm`), Icon shapes (24px), With flag, Form & dot (`size-2 rounded-full bg-purple` etc.), Boxed grid tile (`rounded bg-neutral-secondary-strong p-3 gap-1.5`, icon `size-6`; hover `bg-neutral-quaternary text-heading`).
+- Item: `flex items-center gap-1.5 rounded px-2 py-1.5 text-sm font-medium leading-5 text-body` (32px row; text-sm always uses its 20px line height) · icons `size-4 text-body` · hover `bg-neutral-tertiary-medium text-heading` · disabled `text-fg-disabled`. Secondary text `text-xs leading-4 text-body` (subtle text drops below 4.5:1 on the hover fill). Item types: Two icons (trailing `size-3.5`), Left/Right form (Checkbox/Radio/Toggle), With avatar & form, With badge (`Badge color="white" size="sm"`), User select (`AvatarGroupLabel sm`), Icon shapes (24px), With flag, Form & dot (`size-2 rounded-full bg-purple` etc.), Boxed grid tile (`rounded bg-neutral-secondary-strong p-3 gap-1.5`, icon `size-6`; hover `bg-neutral-quaternary text-heading`).
 - Separator: wrapper `py-1` with `h-px bg-neutral-quaternary`.
 - Header: `rounded bg-neutral-secondary-strong px-2.5 py-2 gap-0.5` — name `text-sm font-medium leading-none text-heading`, email `text-sm text-body`; with avatar `gap-1.5` + `Badge brand sm`; "Big avatar" adds Secondary `xs` button; "Form" header = `Input sm`.
 - Triggers: Brand `base` Button with chevron, Ghost icon button (40px, `text-heading`), Secondary icon button (`text-body`), Avatar & name (Ghost button), Link (`text-base font-medium text-fg-brand` + chevron).
@@ -62,7 +62,7 @@ API: `<Popover trigger title placement padding="text|rich|none">`; `PopoverItem`
 - Vertical items: list of `px-3 py-2 gap-1.5 text-sm leading-none text-body` rows with `size-4` icons.
 
 **Use** for rich, interactive or longer content anchored to an element (profile cards, password rules, inline help with links). **Don't** for one-line labels (Tooltip), action menus (Dropdown), or content required to finish a task.
-A11y: the trigger has `aria-haspopup`, `aria-expanded` and `aria-controls`; the panel is `role="dialog"` labelled by its title.
+A11y: the trigger has `aria-haspopup`, `aria-expanded` and `aria-controls`; the panel is `role="dialog"` labelled by its title, or by `label` when there is no title.
 
 ## Tooltip
 Figma: page `3283:24170` · set `1149:93859` (Top/Bottom/Left/Right) · template `templates/components/Tooltip.tsx`

@@ -28,3 +28,5 @@ storybook-static
 
 # Agent worktrees created for skill test runs
 .claude/worktrees/
+
+coverage

@@ -143,7 +143,7 @@ export function Autocomplete({ options, value, onChange, size = 'base', placehol
                     {o.icon && <span className="inline-flex shrink-0">{o.icon}</span>}
                     <span className="flex min-w-0 flex-1 flex-col gap-1">
                       <span className="truncate"><Highlight text={o.label} query={query.trim()} /></span>
-                      {o.description && <span className="text-xs font-normal text-body-subtle">{o.description}</span>}
+                      {o.description && <span className="text-xs font-normal text-body">{o.description}</span>}
                     </span>
                     {o.value === value && (
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-fg-brand" aria-hidden>

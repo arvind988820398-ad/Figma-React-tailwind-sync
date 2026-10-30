@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { expect } from 'storybook/test';
 import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
 import { useState, type ComponentProps } from 'react';
 import { HelperText, Label } from './Input';
@@ -56,4 +57,45 @@ export const WithLabelAndHelperText: Story = {
       </div>
     </div>
   ),
+};
+
+// ---- Interaction tests -------------------------------------------------------------------------------------------
+// Typing fills the number; the country menu changes the dial code shown on the trigger.
+export const TypeAndPickCountry: Story = {
+  play: async ({ canvas, userEvent }) => {
+    const field = canvas.getByRole('textbox', { name: 'Phone number' });
+    await userEvent.type(field, '555-0100');
+    await expect(field).toHaveValue('555-0100');
+
+    const trigger = canvas.getByRole('button', { name: 'Country code United States +1' });
+    await expect(trigger).toHaveAttribute('aria-expanded', 'false');
+    await userEvent.click(trigger);
+    await expect(trigger).toHaveAttribute('aria-expanded', 'true');
+    await expect(canvas.getAllByRole('menuitem')).toHaveLength(5);
+    await userEvent.click(canvas.getByRole('menuitem', { name: /India/ }));
+
+    const updated = canvas.getByRole('button', { name: 'Country code India +91' });
+    await expect(updated).toHaveTextContent('+91');
+    await expect(canvas.queryByRole('menu')).toBeNull();
+    await expect(field).toHaveValue('555-0100');
+  },
+};
+
+// An unknown country code falls back to the first country in the list.
+export const UnknownCountryFallsBack: Story = {
+  args: { country: 'XX' },
+  play: async ({ canvas }) => {
+    await expect(canvas.getByRole('button', { name: 'Country code United States +1' })).toBeVisible();
+  },
+};
+
+// Disabled: neither the country trigger nor the field accept input; danger marks the field invalid.
+export const DisabledAndInvalid: Story = {
+  args: { value: '12', disabled: true, status: 'danger' },
+  play: async ({ canvas }) => {
+    const field = canvas.getByRole('textbox', { name: 'Phone number' });
+    await expect(field).toBeDisabled();
+    await expect(field).toHaveAttribute('aria-invalid', 'true');
+    await expect(canvas.getByRole('button', { name: /Country code/ })).toBeDisabled();
+  },
 };

@@ -686,7 +686,7 @@
     "{colors/stone/900}",
     "{colors/stone/600}",
     "{colors/cyan/900}",
-    "{colors/cyan/600}",
+    "{colors/cyan/700}",
     "{colors/indigo/900}",
     "{colors/indigo/600}"
    ]
@@ -712,7 +712,7 @@
     "{colors/stone/800}",
     "{colors/stone/700}",
     "{colors/cyan/800}",
-    "{colors/cyan/700}",
+    "{colors/cyan/800}",
     "{colors/indigo/800}",
     "{colors/indigo/700}"
    ]
@@ -734,13 +734,13 @@
    "t": "C",
    "v": [
     "{colors/emerald/700}",
-    "{colors/emerald/600}",
+    "{colors/emerald/700}",
     "{colors/green/700}",
-    "{colors/green/600}",
     "{colors/green/700}",
-    "{colors/green/600}",
     "{colors/green/700}",
-    "{colors/green/600}"
+    "{colors/green/700}",
+    "{colors/green/700}",
+    "{colors/green/700}"
    ]
   },
   "colors/background/bg-success-medium": {
@@ -760,13 +760,13 @@
    "t": "C",
    "v": [
     "{colors/emerald/800}",
-    "{colors/emerald/700}",
+    "{colors/emerald/800}",
     "{colors/green/800}",
-    "{colors/green/700}",
     "{colors/green/800}",
-    "{colors/green/700}",
     "{colors/green/800}",
-    "{colors/green/700}"
+    "{colors/green/800}",
+    "{colors/green/800}",
+    "{colors/green/800}"
    ]
   },
   "colors/background/bg-danger-soft": {
@@ -836,16 +836,7 @@
   },
   "colors/background/bg-warning": {
    "t": "C",
-   "v": [
-    "{colors/orange/500}",
-    "{colors/orange/600}",
-    "{colors/orange/500}",
-    "{colors/orange/600}",
-    "{colors/orange/500}",
-    "{colors/orange/600}",
-    "{colors/orange/500}",
-    "{colors/orange/600}"
-   ]
+   "v": "{colors/orange/600}"
   },
   "colors/background/bg-warning-medium": {
    "t": "C",

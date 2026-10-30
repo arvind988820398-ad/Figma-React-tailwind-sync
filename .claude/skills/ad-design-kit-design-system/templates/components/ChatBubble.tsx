@@ -32,10 +32,10 @@ export function ChatBubble({ direction = 'received', name, time, avatar, status,
       >
         <div className="flex items-center gap-1.5">
           <span className="text-sm font-semibold text-heading">{name}</span>
-          {time && <span className="text-sm text-body-subtle">{time}</span>}
+          {time && <span className="text-sm text-body">{time}</span>}
         </div>
         <div className="text-sm text-body">{children}</div>
-        {status && <span className="text-sm text-body-subtle">{status}</span>}
+        {status && <span className="text-sm text-body">{status}</span>}
       </div>
       {menu && <div className="shrink-0 text-body [&_svg]:size-5">{menu}</div>}
     </div>
@@ -112,7 +112,7 @@ export function ChatLinkPreview({ href, title, description, image }: { href: str
       <a href={href} className="flex flex-col gap-2 rounded-base bg-neutral-secondary-strong p-4 hover:bg-neutral-quaternary">
         {image}
         <span className="text-sm font-medium text-heading">{title}</span>
-        {description && <span className="text-xs text-body-subtle">{description}</span>}
+        {description && <span className="text-xs text-body">{description}</span>}
       </a>
     </div>
   );

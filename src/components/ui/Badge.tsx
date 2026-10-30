@@ -30,8 +30,11 @@ export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
 }
 
 export function Badge({ color = 'gray', size = 'sm', leading, rightIcon, circle, className, children, ...props }: BadgeProps) {
+  // An aria-label needs a role: an icon-only badge is announced as an image with that name.
+  const role = props.role ?? (props['aria-label'] ? 'img' : undefined);
   return (
     <span
+      role={role}
       className={cn(
         'inline-flex items-center border font-medium',
         circle ? cn('justify-center rounded-full p-0', sizes[size].round) : cn('rounded-sm', sizes[size].pill),

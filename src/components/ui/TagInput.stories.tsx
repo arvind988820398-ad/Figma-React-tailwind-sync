@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { expect } from 'storybook/test';
 import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
 import { useState, type ComponentProps } from 'react';
 import { Avatar } from './Avatar';
@@ -66,4 +67,78 @@ export const AllSizes: Story = {
       ))}
     </div>
   ),
+};
+
+// ---- Interaction tests -------------------------------------------------------------------------------------------
+const chips = (canvas: { queryAllByRole: (role: string, opts: { name: RegExp }) => HTMLElement[] }) =>
+  canvas.queryAllByRole('button', { name: /^Remove / }).map((b) => b.getAttribute('aria-label')?.replace('Remove ', ''));
+
+// Enter and comma add a tag; duplicates and blanks are ignored; Backspace in an empty field removes the last tag;
+// the chip's × removes that tag; leaving the field commits the draft.
+export const AddAndRemoveTags: Story = {
+  play: async ({ canvas, userEvent }) => {
+    const field = canvas.getByRole('textbox', { name: 'Tags' });
+    await expect(chips(canvas)).toEqual(['design', 'tokens']);
+    await expect(field).toHaveAttribute('placeholder', '');
+
+    await userEvent.type(field, 'react{Enter}');
+    await expect(chips(canvas)).toEqual(['design', 'tokens', 'react']);
+    await expect(field).toHaveValue('');
+
+    await userEvent.type(field, 'ui,');
+    await expect(chips(canvas)).toEqual(['design', 'tokens', 'react', 'ui']);
+
+    await userEvent.type(field, 'design{Enter}');
+    await userEvent.type(field, '   {Enter}');
+    await expect(chips(canvas)).toEqual(['design', 'tokens', 'react', 'ui']);
+    await expect(field).toHaveValue('');
+
+    // Backspace with a draft only edits the draft.
+    await userEvent.type(field, 'x{Backspace}');
+    await expect(chips(canvas)).toHaveLength(4);
+    await userEvent.keyboard('{Backspace}');
+    await expect(chips(canvas)).toEqual(['design', 'tokens', 'react']);
+
+    await userEvent.click(canvas.getByRole('button', { name: 'Remove design' }));
+    await expect(chips(canvas)).toEqual(['tokens', 'react']);
+
+    await userEvent.type(field, 'blurred');
+    await userEvent.tab();
+    await expect(chips(canvas)).toEqual(['tokens', 'react', 'blurred']);
+    await expect(field).toHaveValue('');
+  },
+};
+
+// Starting empty shows the placeholder; it hides once a tag exists and returns when the last tag is removed.
+export const PlaceholderWhenEmpty: Story = {
+  args: { value: [], status: 'success' },
+  play: async ({ canvas, userEvent }) => {
+    const field = canvas.getByRole('textbox', { name: 'Tags' });
+    await expect(field).toHaveAttribute('placeholder', 'Add a tag…');
+    await expect(field).not.toHaveAttribute('aria-invalid');
+    await userEvent.type(field, 'first{Enter}');
+    await expect(field).toHaveAttribute('placeholder', '');
+    await userEvent.keyboard('{Backspace}');
+    await expect(chips(canvas)).toEqual([]);
+    await expect(field).toHaveAttribute('placeholder', 'Add a tag…');
+    // Backspace with nothing left does nothing.
+    await userEvent.keyboard('{Backspace}');
+    await expect(chips(canvas)).toEqual([]);
+  },
+};
+
+// Disabled: no remove buttons, the field is disabled. Danger: the field is marked invalid.
+export const DisabledAndDanger: Story = {
+  render: (args) => (
+    <div className="flex flex-col gap-4">
+      <TagDemo {...args} value={['locked']} disabled aria-label="Locked tags" />
+      <TagDemo {...args} value={['bad']} status="danger" aria-label="Invalid tags" />
+    </div>
+  ),
+  play: async ({ canvas }) => {
+    await expect(canvas.getByRole('textbox', { name: 'Locked tags' })).toBeDisabled();
+    await expect(canvas.getByText('locked')).toBeVisible();
+    await expect(canvas.queryByRole('button', { name: 'Remove locked' })).toBeNull();
+    await expect(canvas.getByRole('textbox', { name: 'Invalid tags' })).toHaveAttribute('aria-invalid', 'true');
+  },
 };

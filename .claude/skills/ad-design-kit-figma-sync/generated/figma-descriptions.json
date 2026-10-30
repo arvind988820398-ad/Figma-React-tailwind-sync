@@ -311,7 +311,7 @@
    "figmaName": "OTP Inputs",
    "react": "OtpInput",
    "role": "main",
-   "description": "OTP input box — one-time code digit (4 sizes, 7 states).\n\nUse for one-time codes (4–8 characters) with autocomplete=\"one-time-code\", paste support, auto-advance.\nDon't for passwords or general numbers.\nAccessibility: the fields sit in a role=\"group\" with a label; each digit field has its own aria-label; typing moves focus forward and Backspace moves back.\n\nCode: <OtpInput size>\nDocs: https://ad-design-kit-storybook.netlify.app/?path=/docs/components-otpinput--docs",
+   "description": "OTP input box — one-time code digit (4 sizes, 7 states).\n\nUse for one-time codes (4–8 characters) with autocomplete=\"one-time-code\", paste support, auto-advance.\nDon't for passwords or general numbers.\nAccessibility: the fields sit in a role=\"group\" with a label; each digit field has its own aria-label; typing moves focus forward and Backspace moves back. An empty box between filled ones is a space in value, so clearing one box never shifts the others.\n\nCode: <OtpInput size>\nDocs: https://ad-design-kit-storybook.netlify.app/?path=/docs/components-otpinput--docs",
    "docUrl": "https://ad-design-kit-storybook.netlify.app/?path=/docs/components-otpinput--docs"
   },
   {
@@ -695,7 +695,7 @@
    "figmaName": "Popover",
    "react": "Popover",
    "role": "main",
-   "description": "Popover — rich or interactive content anchored to an element (profile card, password rules, inline help).\n\nUse for rich, interactive or longer content anchored to an element (profile cards, password rules, inline help with links).\nDon't for one-line labels (Tooltip), action menus (Dropdown), or content required to finish a task.\nAccessibility: the trigger has aria-haspopup, aria-expanded and aria-controls; the panel is role=\"dialog\" labelled by its title.\n\nCode: <Popover placement>\nDocs: https://ad-design-kit-storybook.netlify.app/?path=/docs/components-popover--docs",
+   "description": "Popover — rich or interactive content anchored to an element (profile card, password rules, inline help).\n\nUse for rich, interactive or longer content anchored to an element (profile cards, password rules, inline help with links).\nDon't for one-line labels (Tooltip), action menus (Dropdown), or content required to finish a task.\nAccessibility: the trigger has aria-haspopup, aria-expanded and aria-controls; the panel is role=\"dialog\" labelled by its title, or by label when there is no title.\n\nCode: <Popover placement>\nDocs: https://ad-design-kit-storybook.netlify.app/?path=/docs/components-popover--docs",
    "docUrl": "https://ad-design-kit-storybook.netlify.app/?path=/docs/components-popover--docs"
   },
   {
@@ -783,7 +783,7 @@
    "figmaName": "Speed dial (ready to use examples)",
    "react": "SpeedDial",
    "role": "main",
-   "description": "Speed dial — floating action button revealing 3–6 creation actions (vertical, horizontal, menu).\n\nUse on mobile-first or canvas-like screens for 3–6 creation actions.\nDon't on dense desktop pages with a toolbar, for navigation, or for a single action.\nAccessibility: the trigger has an aria-label, aria-expanded and aria-controls; every action needs a visible label, tooltip or aria-label.\n\nCode: <SpeedDial variant direction>\nDocs: https://ad-design-kit-storybook.netlify.app/?path=/docs/components-speeddial--docs",
+   "description": "Speed dial — floating action button revealing 3–6 creation actions (vertical, horizontal, menu).\n\nUse on mobile-first or canvas-like screens for 3–6 creation actions.\nDon't on dense desktop pages with a toolbar, for navigation, or for a single action.\nAccessibility: the trigger has an aria-label, aria-expanded and aria-controls; opening moves focus to the first available action, arrow keys and Home/End move between actions, Esc closes and returns focus; every action needs a visible label, tooltip or aria-label.\n\nCode: <SpeedDial variant direction>\nDocs: https://ad-design-kit-storybook.netlify.app/?path=/docs/components-speeddial--docs",
    "docUrl": "https://ad-design-kit-storybook.netlify.app/?path=/docs/components-speeddial--docs"
   },
   {

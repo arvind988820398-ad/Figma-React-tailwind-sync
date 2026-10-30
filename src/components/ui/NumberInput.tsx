@@ -1,7 +1,7 @@
 // AD Design Kit Number input — Figma set "Number form" (node 1149:46630, page 3279:34618).
 // Figma types → variant: Default=default (plain field) · With buttons=buttons (−/+ joined to a centered field) ·
 // With spaced buttons=spaced · Ghost input=ghost (borderless sm field with 32px buttons).
-import { useId } from 'react';
+import { useId, useState } from 'react';
 import { cn } from '../../lib/cn';
 import { buttonVariants } from './Button';
 import { inputVariants, type FieldSize } from './Input';
@@ -38,19 +38,36 @@ export function NumberInput({ value, onChange, min = -Infinity, max = Infinity, 
   const autoId = useId();
   const inputId = id ?? autoId;
   const clamp = (n: number) => Math.min(max, Math.max(min, n));
-  const set = (n: number) => onChange(clamp(n));
+  const set = (n: number) => {
+    setDraft(null);
+    onChange(clamp(n));
+  };
+  // What the user is typing: may be empty or out of range until blur, so the field can be cleared and retyped.
+  const [draft, setDraft] = useState<string | null>(null);
+  const onType = (text: string) => {
+    setDraft(text);
+    const n = Number(text);
+    if (text !== '' && Number.isFinite(n) && n >= min && n <= max) onChange(n);
+  };
+  const commit = () => {
+    if (draft === null) return;
+    const n = Number(draft);
+    if (draft !== '' && Number.isFinite(n)) set(n);
+    else setDraft(null);
+  };
 
   const field = (extra?: string) => (
     <input
       id={inputId}
       type="number"
       inputMode="numeric"
-      value={Number.isFinite(value) ? value : ''}
+      value={draft ?? (Number.isFinite(value) ? value : '')}
       min={Number.isFinite(min) ? min : undefined}
       max={Number.isFinite(max) ? max : undefined}
       step={step}
       disabled={disabled}
-      onChange={(e) => e.target.value !== '' && set(Number(e.target.value))}
+      onChange={(e) => onType(e.target.value)}
+      onBlur={commit}
       className={cn(inputVariants({ size }), '[appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none', extra)}
       {...aria}
     />

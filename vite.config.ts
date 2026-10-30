@@ -14,6 +14,15 @@ const dirname = import.meta.dirname ?? path.dirname(fileURLToPath(import.meta.ur
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   test: {
+    // Coverage for the design-system components only, measured by their Storybook stories.
+    // 80% on every metric is the bar; `npm run test:coverage` fails below it (Storybook shows the same report).
+    coverage: {
+      provider: 'v8',
+      include: ['src/components/ui/**/*.tsx'],
+      exclude: ['**/*.stories.tsx'],
+      reporter: ['text-summary', 'html', 'json-summary'],
+      thresholds: { statements: 80, branches: 80, functions: 80, lines: 80, perFile: true },
+    },
     projects: [{
       extends: true,
       plugins: [

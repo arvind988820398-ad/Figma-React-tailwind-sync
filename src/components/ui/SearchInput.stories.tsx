@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { expect } from 'storybook/test';
 import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
 import { useState, type ComponentProps } from 'react';
 import { SearchInput } from './SearchInput';
@@ -47,4 +48,38 @@ export const AllVariants: Story = {
       ))}
     </div>
   ),
+};
+
+// ---- Interaction tests -------------------------------------------------------------------------------------------
+// Enter submits the trimmed query.
+export const SubmitWithEnter: Story = {
+  play: async ({ canvas, userEvent }) => {
+    const field = canvas.getByRole('searchbox', { name: 'Search' });
+    await expect(canvas.getByRole('search', { name: 'Search' })).toContainElement(field);
+    await userEvent.type(field, '  button  {Enter}');
+    await expect(field).toHaveValue('  button  ');
+    await expect(canvas.getByText('Searched for “button”.')).toBeVisible();
+  },
+};
+
+// The inner button submits; editing a default value then submitting sends the edited query.
+export const SubmitWithInnerButton: Story = {
+  args: { variant: 'inner', defaultValue: 'Badge', size: 'sm', buttonLabel: 'Go' },
+  play: async ({ canvas, userEvent }) => {
+    const field = canvas.getByRole('searchbox', { name: 'Search' });
+    await expect(field).toHaveValue('Badge');
+    await userEvent.clear(field);
+    await userEvent.type(field, 'Avatar');
+    await userEvent.click(canvas.getByRole('button', { name: 'Go' }));
+    await expect(canvas.getByText('Searched for “Avatar”.')).toBeVisible();
+  },
+};
+
+// The joined button submits; an empty query is sent as an empty string.
+export const SubmitWithJoinedButton: Story = {
+  args: { variant: 'joined' },
+  play: async ({ canvas, userEvent }) => {
+    await userEvent.click(canvas.getByRole('button', { name: 'Search' }));
+    await expect(canvas.getByText('Searched for “”.')).toBeVisible();
+  },
 };

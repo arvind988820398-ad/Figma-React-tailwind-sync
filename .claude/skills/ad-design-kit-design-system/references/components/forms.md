@@ -51,7 +51,7 @@ Figma: page `3279:34618` · set `1149:46826` "Input field" (5 types × 4 sizes �
 | State Disabled / Read-only | native `disabled` / `readOnly` | |
 | Show left/right icon | `leftIcon`, `rightIcon` | ReactNode |
 
-Recipe: shell + size row + state row above. Add-on segment: `bg-neutral-tertiary text-body-subtle p-2.5` joined to the field (`rounded-s-base`, field `rounded-s-none`, shared border). Inner button: Tertiary `xs` Button inside the field, `rounded` radius. Stacked placeholder: label `text-xs text-body-subtle` above value `text-sm text-heading`, `gap-0.5`.
+Recipe: shell + size row + state row above. Add-on segment: `bg-neutral-tertiary text-body p-2.5` (text-body keeps 4.5:1 on the tinted segment) joined to the field (`rounded-s-base`, field `rounded-s-none`, shared border). Inner button: Tertiary `xs` Button inside the field, `rounded` radius. Stacked placeholder: label `text-xs text-body` above value `text-sm text-heading`, `gap-0.5`.
 
 **Use** for single-line free text: names, emails, URLs, search terms, numbers without steppers.
 **Don't** for long text (`Textarea`), known options (`Select`/`Autocomplete`/`Radio`), dates (`Datepicker`), on/off (`Toggle`), or read-only data that isn't a form value.
@@ -127,7 +127,7 @@ Figma: boxes `1149:49523` (sm–xl × 7 states) · examples `1149:49576` (Defaul
 API: `<OtpInput value onChange length variant="default|spaced|separator|separator-spaced" size status>`.
 Box = Input shell, square (`base` `size-10`, `sm` `size-9`, `lg` `size-12`, `xl` `size-13`), value `text-base font-semibold leading-4 text-heading text-center`, state table as above. Separator: 2px dash `border-t-2 border-dark` between groups. Examples use `sm` boxes.
 **Use** for one-time codes (4–8 characters) with `autocomplete="one-time-code"`, paste support, auto-advance. **Don't** for passwords or general numbers.
-A11y: the fields sit in a `role="group"` with a label; each digit field has its own `aria-label`; typing moves focus forward and Backspace moves back.
+A11y: the fields sit in a `role="group"` with a label; each digit field has its own `aria-label`; typing moves focus forward and Backspace moves back. An empty box between filled ones is a space in `value`, so clearing one box never shifts the others.
 
 ## Textarea
 Figma: `1149:49679` (Default, Chatroom, Buttons inside, Buttons outside × Initial/Focus/Filled) · examples `1149:50131` · template `templates/components/Textarea.tsx`
@@ -196,7 +196,7 @@ Figma: page `1149:53107` · examples `1149:53126` · menu `1149:53147` (Default,
 API: `<Autocomplete options={[{value,label,description,icon,group,disabled}]} value onChange footer size>`.
 - Menu = Dropdown menu shell: `rounded-base border border-default-medium bg-neutral-primary-medium p-2 gap-1.5 shadow-lg` (Advanced `gap-1`, Categories `gap-2`).
 - Group heading: `px-2.5 pt-2 text-sm font-semibold text-heading`.
-- Item: `flex items-center gap-1.5 rounded px-2 py-1.5 text-sm font-medium leading-5 text-body`, icons `size-4 text-body`; hover `bg-neutral-tertiary-medium text-heading`; disabled `text-fg-disabled`. Bordered items add `border-b border-default`. Secondary text `text-xs text-body-subtle`. "Heading & description": title `text-sm font-medium text-heading`, description `text-sm text-body`, 36px icon.
+- Item: `flex items-center gap-1.5 rounded px-2 py-1.5 text-sm font-medium leading-5 text-body`, icons `size-4 text-body`; hover `bg-neutral-tertiary-medium text-heading`; disabled `text-fg-disabled`. Bordered items add `border-b border-default`. Secondary text `text-xs text-body` (keeps 4.5:1 on the active fill). "Heading & description": title `text-sm font-medium text-heading`, description `text-sm text-body`, 36px icon.
 - Category chips: Secondary `xs` Buttons; footer CTA Brand `xs`.
 
 **Use** to pick from a large or remote list with typing. **Don't** for <10 static options (Select). Implement combobox ARIA (`role="combobox"`, `aria-expanded`, `aria-activedescendant`).

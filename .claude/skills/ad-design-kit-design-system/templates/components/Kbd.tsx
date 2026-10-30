@@ -2,7 +2,8 @@
 import type { HTMLAttributes } from 'react';
 import { cn } from '../../lib/cn';
 
-export function Kbd({ className, ...props }: HTMLAttributes<HTMLElement>) {
+/** Pass `aria-label` when the key is shown as an icon (e.g. an arrow): it becomes screen-reader text. */
+export function Kbd({ className, children, 'aria-label': ariaLabel, ...props }: HTMLAttributes<HTMLElement>) {
   return (
     <kbd
       className={cn(
@@ -10,6 +11,9 @@ export function Kbd({ className, ...props }: HTMLAttributes<HTMLElement>) {
         className,
       )}
       {...props}
-    />
+    >
+      {ariaLabel ? <span aria-hidden>{children}</span> : children}
+      {ariaLabel && <span className="sr-only">{ariaLabel}</span>}
+    </kbd>
   );
 }

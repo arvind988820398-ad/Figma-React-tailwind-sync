@@ -66,7 +66,7 @@ API: `<SpeedDial actions={[{label,icon,onSelect,disabled}]} variant="default|rou
 - Place `fixed end-6 bottom-6 z-40`.
 
 **Use** on mobile-first or canvas-like screens for 3–6 creation actions. **Don't** on dense desktop pages with a toolbar, for navigation, or for a single action.
-A11y: the trigger has an `aria-label`, `aria-expanded` and `aria-controls`; every action needs a visible label, tooltip or `aria-label`.
+A11y: the trigger has an `aria-label`, `aria-expanded` and `aria-controls`; opening moves focus to the first available action, arrow keys and Home/End move between actions, Esc closes and returns focus; every action needs a visible label, tooltip or `aria-label`.
 
 ## Download app button
 Figma: set `1146:24595` (Google Play / AppStore × Light / Dark). Store badge link: `inline-flex items-center gap-3 rounded-base px-4 py-2.5` — Dark `bg-dark text-white hover:bg-dark-strong`; Light `bg-neutral-primary-soft border border-default text-heading hover:bg-neutral-secondary-medium`. Only for store links (`<a>`). · template `templates/components/DownloadAppButton.tsx`

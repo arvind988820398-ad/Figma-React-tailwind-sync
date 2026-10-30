@@ -38,7 +38,7 @@ export function Carousel({ children, variant = 'slides', controls = true, indica
     const scroll = (dir: -1 | 1) => trackRef.current?.scrollBy({ left: dir * trackRef.current.clientWidth * 0.8, behavior: 'smooth' });
     return (
       <section aria-roledescription="carousel" aria-label={label} className={cn('flex flex-col gap-6', className)}>
-        <div ref={trackRef} className="flex snap-x snap-mandatory gap-8 overflow-x-auto pb-2 [scrollbar-width:none]">
+        <div ref={trackRef} tabIndex={0} aria-label="Slides" role="region" className="flex snap-x snap-mandatory gap-8 overflow-x-auto rounded-base pb-2 [scrollbar-width:none] focus-visible:shadow-focus-brand focus-visible:outline-none">
           {slides.map((s, i) => (
             <div key={i} role="group" aria-roledescription="slide" aria-label={`${i + 1} of ${slides.length}`} className="w-72 shrink-0 snap-start">
               {s}
@@ -63,7 +63,7 @@ export function Carousel({ children, variant = 'slides', controls = true, indica
     <section aria-roledescription="carousel" aria-label={label} className={cn('relative overflow-hidden rounded-base bg-gray', className)}>
       <div id={id} aria-live="polite" className="flex transition-transform duration-500 ease-out motion-reduce:transition-none" style={{ transform: `translateX(-${index * 100}%)` }}>
         {slides.map((s, i) => (
-          <div key={i} role="group" aria-roledescription="slide" aria-label={`${i + 1} of ${slides.length}`} aria-hidden={i !== index} className="w-full shrink-0">
+          <div key={i} role="group" aria-roledescription="slide" aria-label={`${i + 1} of ${slides.length}`} aria-hidden={i !== index} inert={i !== index} className="w-full shrink-0">
             {s}
           </div>
         ))}

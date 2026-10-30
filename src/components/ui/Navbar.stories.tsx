@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
+import { expect, within } from 'storybook/test';
 import { CogIcon, InfoIcon, MailIcon } from '../icons';
 import { Avatar } from './Avatar';
 import { Button } from './Button';
@@ -112,3 +113,47 @@ export const Compact: Story = {
 
 /** Code-ahead `fluid`: the content row spans the full width, for app shells. */
 export const Fluid: Story = { args: { ...Compact.args, fluid: true }, parameters: { layout: 'fullscreen' } };
+
+// Interaction (mobile): the menu button opens and closes the menu with links, search and actions.
+export const MobileMenu: Story = {
+  globals: { viewport: { value: 'mobile1', isRotated: false } },
+  args: { search: <Input size="sm" aria-label="Search site" placeholder="Search" leftIcon={<InfoIcon />} /> },
+  play: async ({ canvas, userEvent }) => {
+    const toggle = canvas.getByRole('button', { name: 'Open menu' });
+    await expect(toggle).toBeVisible();
+    await expect(toggle).toHaveAttribute('aria-expanded', 'false');
+    await expect(document.getElementById(toggle.getAttribute('aria-controls')!)).toBeNull();
+
+    await userEvent.click(toggle);
+    await expect(toggle).toHaveAttribute('aria-expanded', 'true');
+    await expect(toggle).toHaveAccessibleName('Close menu');
+    const menu = document.getElementById(toggle.getAttribute('aria-controls')!)!;
+    await expect(menu).toBeVisible();
+    const m = within(menu);
+    await expect(m.getAllByRole('listitem')).toHaveLength(links.length);
+    await expect(m.getByRole('link', { name: 'Home' })).toHaveAttribute('aria-current', 'page');
+    await expect(m.getByRole('link', { name: 'Pricing' })).not.toHaveAttribute('aria-current');
+    await expect(m.getByText('Careers')).toHaveAttribute('aria-disabled', 'true');
+    await expect(m.getByRole('textbox', { name: 'Search site' })).toBeVisible();
+    await expect(m.getByRole('button', { name: 'Get started' })).toBeVisible();
+    await expect(m.getByRole('button', { name: 'Log in' })).toBeVisible();
+
+    await userEvent.click(toggle);
+    await expect(toggle).toHaveAttribute('aria-expanded', 'false');
+    await expect(toggle).toHaveAccessibleName('Open menu');
+    await expect(menu).not.toBeInTheDocument();
+  },
+};
+
+// Interaction (mobile): with only a logo the menu opens to an empty list and no actions row.
+export const MobileMenuLogoOnly: Story = {
+  globals: { viewport: { value: 'mobile1', isRotated: false } },
+  args: { links: [], actions: undefined },
+  play: async ({ canvas, userEvent }) => {
+    await userEvent.click(canvas.getByRole('button', { name: 'Open menu' }));
+    const toggle = canvas.getByRole('button', { name: 'Close menu' });
+    const menu = within(document.getElementById(toggle.getAttribute('aria-controls')!)!);
+    await expect(menu.queryAllByRole('listitem')).toHaveLength(0);
+    await expect(canvas.queryAllByRole('button')).toHaveLength(1);
+  },
+};

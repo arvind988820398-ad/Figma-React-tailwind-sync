@@ -125,6 +125,7 @@ export function Stepper({ steps, current, variant = 'default', className }: Step
             <li
               key={i}
               aria-current={status === 'active' ? 'step' : undefined}
+              aria-disabled={status === 'disabled' || undefined}
               className={cn(
                 'flex flex-1 items-center gap-2 rounded-base border p-4 text-base font-medium [&_svg]:size-5',
                 status === 'initial' && 'border-default-medium bg-neutral-secondary-medium text-body',
@@ -148,7 +149,8 @@ export function Stepper({ steps, current, variant = 'default', className }: Step
         {steps.map((step, i) => {
           const status = statusOf(step, i, current);
           return (
-            <li key={i} aria-current={status === 'active' ? 'step' : undefined} className="flex gap-4">
+            <li key={i} aria-current={status === 'active' ? 'step' : undefined}
+              aria-disabled={status === 'disabled' || undefined} className="flex gap-4">
               <div className="flex flex-col items-center">
                 <Marker variant="vertical" status={status} index={i} />
                 {i < steps.length - 1 && <span className="w-px flex-1 border-s border-default" aria-hidden />}
@@ -172,7 +174,8 @@ export function Stepper({ steps, current, variant = 'default', className }: Step
       {steps.map((step, i) => {
         const status = statusOf(step, i, current);
         return (
-          <li key={i} aria-current={status === 'active' ? 'step' : undefined} className={cn('flex items-center gap-4', i < steps.length - 1 && 'flex-1')}>
+          <li key={i} aria-current={status === 'active' ? 'step' : undefined}
+              aria-disabled={status === 'disabled' || undefined} className={cn('flex items-center gap-4', i < steps.length - 1 && 'flex-1')}>
             <span className={cn('flex shrink-0 items-center', variant === 'dots' ? 'gap-3' : 'gap-2')}>
               <Marker variant={variant} status={status} index={i} icon={step.icon} />
               {showLabel ? (

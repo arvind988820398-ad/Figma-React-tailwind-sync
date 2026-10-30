@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
+import { expect, waitFor, within } from 'storybook/test';
 import { Popover, PopoverItem, type PopoverPlacement } from './Popover';
 import { Avatar } from './Avatar';
 import { Button } from './Button';
@@ -84,4 +85,107 @@ export const AllPlacements: Story = {
       ))}
     </div>
   ),
+};
+
+// ── Interaction tests ────────────────────────────────────────────────────────────────────────────────────────────────
+
+// Click opens a dialog named by its title; Escape closes it and returns focus to the trigger.
+export const OpenAndEscape: Story = {
+  play: async ({ canvas, userEvent }) => {
+    const trigger = canvas.getByRole('button', { name: 'Open popover' });
+    await expect(trigger).toHaveAttribute('aria-haspopup', 'dialog');
+    await expect(trigger).toHaveAttribute('aria-expanded', 'false');
+
+    await userEvent.click(trigger);
+    const dialog = canvas.getByRole('dialog', { name: 'Popover title' });
+    await expect(dialog).toBeVisible();
+    await expect(dialog).toHaveTextContent('amazing content');
+    await expect(trigger).toHaveAttribute('aria-expanded', 'true');
+    await expect(trigger).toHaveAttribute('aria-controls', dialog.id);
+
+    // Other keys are ignored.
+    await userEvent.keyboard('a');
+    await expect(dialog).toBeVisible();
+
+    await userEvent.keyboard('{Escape}');
+    await expect(canvas.queryByRole('dialog')).not.toBeInTheDocument();
+    await expect(trigger).toHaveAttribute('aria-expanded', 'false');
+    await expect(trigger).not.toHaveAttribute('aria-controls');
+    await expect(trigger).toHaveFocus();
+  },
+};
+
+// Clicks inside the panel keep it open; the trigger toggles it; a click outside closes it.
+export const DismissOnOutsideClick: Story = {
+  args: { ...RichContent.args },
+  play: async ({ canvas, canvasElement, userEvent }) => {
+    const trigger = canvas.getByRole('button', { name: /Ada Lovelace/ });
+
+    await userEvent.click(trigger);
+    const dialog = canvas.getByRole('dialog');
+    await expect(within(dialog).getByRole('link', { name: 'View profile' })).toBeVisible();
+    await userEvent.click(within(dialog).getByText(/First programmer/));
+    await expect(dialog).toBeVisible();
+
+    await userEvent.click(trigger);
+    await expect(canvas.queryByRole('dialog')).not.toBeInTheDocument();
+
+    await userEvent.click(trigger);
+    await expect(canvas.getByRole('dialog')).toBeVisible();
+    await userEvent.click(canvasElement.ownerDocument.body);
+    await waitFor(() => expect(canvas.queryByRole('dialog')).not.toBeInTheDocument());
+    await expect(trigger).toHaveAttribute('aria-expanded', 'false');
+  },
+};
+
+// Vertical items: link rows and plain (non-link) rows, opened to the right with no panel padding.
+export const VerticalItemsOpen: Story = {
+  args: {
+    ...VerticalItems.args,
+    placement: 'right',
+    title: 'Shortcuts',
+    children: (
+      <>
+        <PopoverItem icon={<PlusIcon />} href="#popover">New project</PopoverItem>
+        <PopoverItem icon={<MailIcon />}>3 unread messages</PopoverItem>
+      </>
+    ),
+  },
+  play: async ({ canvas, userEvent }) => {
+    await userEvent.click(canvas.getByRole('button', { name: 'Vertical items' }));
+    const dialog = canvas.getByRole('dialog', { name: 'Shortcuts' });
+    await expect(within(dialog).getByRole('link', { name: 'New project' })).toHaveAttribute('href', '#popover');
+    // The plain row is text, not a link.
+    await expect(within(dialog).getAllByRole('link')).toHaveLength(1);
+    await expect(within(dialog).getByText('3 unread messages')).toBeVisible();
+    await expect(dialog).toHaveClass('left-full');
+  },
+};
+
+// Opening each placement once; without a title the dialog has no aria-labelledby.
+export const OpenEachPlacement: Story = {
+  ...AllPlacements,
+  play: async ({ canvas, userEvent }) => {
+    for (const placement of placements) {
+      await userEvent.click(canvas.getByRole('button', { name: placement }));
+      const dialog = canvas.getByRole('dialog', { name: 'Popover title' });
+      await expect(dialog).toBeVisible();
+      await userEvent.keyboard('{Escape}');
+      await expect(canvas.queryByRole('dialog')).not.toBeInTheDocument();
+    }
+  },
+};
+
+export const UntitledOpenThenClosed: Story = {
+  args: { title: undefined, placement: 'left' },
+  play: async ({ canvas, userEvent }) => {
+    const trigger = canvas.getByRole('button', { name: 'Open popover' });
+    await userEvent.click(trigger);
+    const dialog = canvas.getByRole('dialog');
+    await expect(dialog).not.toHaveAttribute('aria-labelledby');
+    await expect(dialog).toHaveTextContent('amazing content');
+    // Closed again before the a11y scan: an untitled dialog has no accessible name (see report).
+    await userEvent.click(trigger);
+    await expect(canvas.queryByRole('dialog')).not.toBeInTheDocument();
+  },
 };
