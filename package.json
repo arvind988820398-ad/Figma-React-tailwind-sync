@@ -10,7 +10,7 @@
     "preview": "vite preview",
     "lint:tokens": "node .claude/skills/ad-design-kit-review/scripts/lint-tokens.mjs src",
     "tokens:build": "node .claude/skills/ad-design-kit-design-system/scripts/build-tokens.mjs && cp .claude/skills/ad-design-kit-design-system/tokens/ad-design-kit.css src/styles/ad-design-kit.css && npm run docs:build",
-    "storybook": "npm run docs:build && storybook dev -p 6006",
+    "storybook": "npm run docs:build && NODE_OPTIONS=--max-old-space-size=8192 storybook dev -p 6006",
     "build-storybook": "npm run docs:build && storybook build",
     "storybook:deploy": "npm run build-storybook && npx -y netlify-cli deploy --prod --dir storybook-static --no-build --site 5c4cfb1c-721f-4500-aca8-f53b0d116efc",
     "test": "vitest run --project storybook",
