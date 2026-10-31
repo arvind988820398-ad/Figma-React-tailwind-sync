@@ -1,5 +1,6 @@
 // AD Design Kit Sidebar — Figma set "Sidebar (Free component)" (node 1149:82628, page 3279:34616),
 // item 1149:82699, header 1149:82737. Figma "Contracted" → `collapsed` (icons only, labels in tooltips).
+// Figma Type "Double sidebar" → `rail`: a collapsed icon rail for the app's areas beside the panel for the current area.
 import type { ReactNode } from 'react';
 import { cn } from '../../lib/cn';
 import { Tooltip } from './Tooltip';
@@ -29,6 +30,9 @@ export interface SidebarProps {
   collapsed?: boolean;
   /** Accessible name for the navigation landmark. */
   label?: string;
+  /** Figma "Double sidebar": an icon rail (collapsed sidebar) before the panel, separated by a border. The panel's
+   *  header is usually the area title plus a small search Input. */
+  rail?: { sections: SidebarItem[][]; header?: ReactNode; label?: string };
   className?: string;
 }
 
@@ -42,7 +46,7 @@ function Item({ item, collapsed }: { item: SidebarItem; collapsed?: boolean }) {
       tabIndex={item.disabled ? -1 : undefined}
       className={cn(
         'flex items-center gap-1.5 rounded-base text-base font-medium transition-colors focus-visible:shadow-focus-brand focus-visible:outline-none [&_svg]:size-5 [&_svg]:shrink-0',
-        collapsed ? 'size-10 justify-center' : 'px-2 py-1.5',
+        collapsed ? 'size-9 justify-center' : 'px-2 py-1.5',
         !collapsed && item.actions && 'pe-10',
         item.disabled
           ? 'pointer-events-none text-fg-disabled'
@@ -76,7 +80,15 @@ function Item({ item, collapsed }: { item: SidebarItem; collapsed?: boolean }) {
   );
 }
 
-export function Sidebar({ header, sections, footer, collapsed = false, label = 'Sidebar', className }: SidebarProps) {
+export function Sidebar({ header, sections, footer, collapsed = false, label = 'Sidebar', rail, className }: SidebarProps) {
+  if (rail) {
+    return (
+      <div className={cn('flex h-full', className)}>
+        <Sidebar collapsed header={rail.header} sections={rail.sections} label={rail.label ?? 'Areas'} className="border-e border-default" />
+        <Sidebar header={header} sections={sections} footer={footer} label={label} />
+      </div>
+    );
+  }
   return (
     <nav
       aria-label={label}
@@ -87,13 +99,16 @@ export function Sidebar({ header, sections, footer, collapsed = false, label = '
       )}
     >
       {header && <div className={cn('border-b border-default pb-4', collapsed && 'flex w-full justify-center')}>{header}</div>}
-      {sections.map((items, i) => (
-        <ul key={i} className={cn('flex flex-col gap-2', i > 0 && 'border-t border-default pt-4', collapsed && 'items-center')}>
-          {items.map((item) => (
-            <Item key={item.label} item={item} collapsed={collapsed} />
-          ))}
-        </ul>
-      ))}
+      {/* Figma "Content": the item lists, 16px apart. */}
+      <div className={cn('flex flex-col gap-4', collapsed && 'w-full items-center')}>
+        {sections.map((items, i) => (
+          <ul key={i} className={cn('flex flex-col gap-2', i > 0 && 'border-t border-default pt-4', collapsed && 'w-full items-center')}>
+            {items.map((item) => (
+              <Item key={item.label} item={item} collapsed={collapsed} />
+            ))}
+          </ul>
+        ))}
+      </div>
       {footer && !collapsed && <div className="mt-auto">{footer}</div>}
     </nav>
   );

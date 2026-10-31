@@ -48,6 +48,18 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
 
+// Figma Type "Centered logo": links left, logo centred, actions right (md and up; below md it collapses like Default).
+export const CenteredLogo: Story = {
+  args: { centered: true },
+  play: async ({ canvasElement }) => {
+    const nav = canvasElement.querySelector('nav')!;
+    const row = nav.firstElementChild as HTMLElement;
+    await expect(row).toHaveClass('md:grid-cols-3');
+    // Links render first in the grid so they sit on the left of the logo.
+    await expect(within(nav).getAllByRole('list')[0]).toHaveClass('md:order-first');
+  },
+};
+
 export const WithSearch: Story = {
   args: {
     links: [{ label: 'Docs', href: '#', current: true }, { label: 'Components', href: '#' }, { label: 'Blog', href: '#' }],

@@ -20,14 +20,18 @@ export interface DrawerProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   title: ReactNode;
+  /** Figma heading "Heading icon" (shown when "Show heading left icon" is on): a 20px icon before the title. */
+  icon?: ReactNode;
   children: ReactNode;
   footer?: ReactNode;
   placement?: DrawerPlacement;
   size?: DrawerSize;
+  /** Figma Type "Swipeable": a bottom sheet with a drag handle centred on its top edge. Bottom placement only. */
+  swipeable?: boolean;
   className?: string;
 }
 
-export function Drawer({ open, onOpenChange, title, children, footer, placement = 'start', size = 'sm', className }: DrawerProps) {
+export function Drawer({ open, onOpenChange, title, icon, children, footer, placement = 'start', size = 'sm', swipeable = false, className }: DrawerProps) {
   const ref = useRef<HTMLDialogElement>(null);
   const titleId = useId();
 
@@ -51,10 +55,15 @@ export function Drawer({ open, onOpenChange, title, children, footer, placement 
         className,
       )}
     >
-      <div className="flex h-full flex-col gap-5 overflow-y-auto p-5">
-        {placement === 'bottom' && <div className="mx-auto h-1.5 w-8 shrink-0 rounded-full bg-neutral-quaternary" aria-hidden />}
+      <div className="relative flex h-full flex-col gap-5 overflow-y-auto p-5">
+        {swipeable && placement === 'bottom' && (
+          <div className="absolute start-1/2 top-2.5 h-1 w-6 -translate-x-1/2 rounded-full bg-neutral-quaternary rtl:translate-x-1/2" aria-hidden />
+        )}
         <header className="flex items-center justify-between gap-4 border-b border-default pb-4">
-          <h2 id={titleId} className="text-lg font-medium leading-6 text-heading">{title}</h2>
+          <h2 id={titleId} className="flex items-center gap-1.5 text-lg font-medium leading-6 text-heading [&_svg]:size-5 [&_svg]:shrink-0">
+            {icon}
+            {title}
+          </h2>
           <button
             type="button"
             onClick={() => onOpenChange(false)}

@@ -826,6 +826,55 @@
    "react": "Avatar",
    "role": "part",
    "summary": "Avatar remove button."
+  },
+  {
+   "node": "19395:3990",
+   "figmaName": "Table header",
+   "react": "Table",
+   "role": "part",
+   "summary": "Table header — toolbar above the table: search, filters, actions, tabs or stats (13 types × Desktop/Tablet/Mobile). Maps to the `toolbar` prop."
+  },
+  {
+   "node": "19395:33",
+   "figmaName": "Table cell (header)",
+   "react": "Table",
+   "role": "part",
+   "summary": "Table header cell — column heading (Text, Checkbox & icon, Only icon). Maps to <TableHeaderCell>."
+  },
+  {
+   "node": "19395:796",
+   "figmaName": "Table cell (base)",
+   "react": "Table",
+   "role": "part",
+   "summary": "Table cell — body cell content (text, badge, buttons, avatar, progress, form controls…) × Initial/Hover. Maps to <TableCell>."
+  },
+  {
+   "node": "19395:5717",
+   "figmaName": "Table Footer",
+   "react": "Table",
+   "role": "part",
+   "summary": "Table footer — row below the table: pagination, page-size select, counters and CTAs. Compose <Pagination> below the Table."
+  },
+  {
+   "node": "19395:6553",
+   "figmaName": "Text Block",
+   "react": "Skeleton",
+   "role": "part",
+   "summary": "Skeleton text block — placeholder lines (Small/Medium/Large × tone, light/dark). Maps to <SkeletonLine>."
+  },
+  {
+   "node": "19395:6581",
+   "figmaName": "Separator",
+   "react": "Modal",
+   "role": "part",
+   "summary": "Separator — divider with centered text (Default, Gradient lines, Dashed), e.g. \"or\" between sign-in options."
+  },
+  {
+   "node": "19395:6462",
+   "figmaName": "Country flag",
+   "react": "Dropdown",
+   "role": "part",
+   "summary": "Country flag — rounded flag artwork (12 countries × base/sm) for language and region pickers."
   }
  ]
 }

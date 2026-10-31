@@ -1320,9 +1320,9 @@
      "prop": "leading",
      "values": {
       "Default": null,
-      "With avatar": "avatar",
-      "With dot": "dot",
-      "With loader": "spinner",
+      "With avatar": "<Avatar size=\"xs\">",
+      "With dot": "<span> dot",
+      "With loader": "<Spinner size=\"xs\">",
       "With secondary text": null
      }
     },
@@ -1459,7 +1459,10 @@
      }
     }
    },
-   "template": "templates/components/Skeleton.tsx"
+   "template": "templates/components/Skeleton.tsx",
+   "parts": {
+    "SkeletonLine": "19395:6553"
+   }
   },
   {
    "react": "Rating",
@@ -1546,8 +1549,11 @@
        "value": "bottom"
       },
       "Swipeable": {
-       "prop": "placement",
-       "value": "bottom"
+       "prop": "swipeable",
+       "value": true,
+       "with": {
+        "placement": "bottom"
+       }
       },
       "Default": "children",
       "Navigation": "children",
@@ -1712,7 +1718,11 @@
       "Default": "links + actions",
       "With links": "links",
       "With search input": "search",
-      "With icons": "actions"
+      "With icons": "actions",
+      "Centered logo": {
+       "prop": "centered",
+       "value": true
+      }
      }
     },
     "Breakpoint": {
@@ -1755,6 +1765,18 @@
    "propMap": {
     "Contracted": {
      "prop": "collapsed"
+    },
+    "Type": {
+     "prop": null,
+     "values": {
+      "Default": "sections",
+      "With alert": {
+       "prop": "footer"
+      },
+      "Double sidebar": {
+       "prop": "rail"
+      }
+     }
     }
    },
    "parts": {
@@ -1789,11 +1811,13 @@
      "prop": "variant",
      "values": {
       "Default": "default",
-      "Background": "background"
+      "Background": "background",
+      "Only buttons": "buttons"
      },
      "compositions": {
       "With dropdown": "last label = <Dropdown>",
-      "With badge": "last label = <Badge>"
+      "With badge": "last label = <Badge>",
+      "With group buttons": "leading = <ButtonGroup>"
      }
     }
    },
@@ -1872,7 +1896,16 @@
       "Two buttons": "two-buttons",
       "Buttons & helper text": {
        "prop": "helper"
-      }
+      },
+      "Text buttons": "labeled",
+      "With dropdown": {
+       "prop": "pageSize"
+      },
+      "With input": {
+       "prop": "jumpTo"
+      },
+      "Simple with input": "jump",
+      "Dropdown & buttons": "select"
      }
     }
    },
@@ -1904,12 +1937,14 @@
      "values": {
       "Default": "default",
       "Bordered": "bordered",
-      "Action button": "action"
-     },
-     "compositions": [
-      "Pagination",
-      "Segment controls"
-     ]
+      "Action button": "action",
+      "Pagination": {
+       "prop": "pager"
+      },
+      "Segment controls": {
+       "prop": "segments"
+      }
+     }
     }
    },
    "template": "templates/components/BottomNavigation.tsx"
@@ -2084,7 +2119,7 @@
       "Default": null,
       "With status": "status",
       "With remove button": "onRemove",
-      "Placeholder": "initials"
+      "Placeholder": "name without src (initials)"
      }
     },
     "User": {
@@ -2221,7 +2256,13 @@
      }
     }
    },
-   "template": "templates/components/Table.tsx"
+   "template": "templates/components/Table.tsx",
+   "parts": {
+    "TableHeaderCell": "19395:33",
+    "TableCell": "19395:796",
+    "toolbar": "19395:3990",
+    "footer": "19395:5717"
+   }
   },
   {
    "react": "Timeline",

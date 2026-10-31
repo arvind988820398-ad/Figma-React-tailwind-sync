@@ -25,11 +25,13 @@ export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
   /** Figma Type: With dot / With avatar / With loader — pass the element (e.g. <span className="size-1.5 rounded-full bg-brand" />). */
   leading?: ReactNode;
   rightIcon?: ReactNode;
-  /** Figma "Only text" / "Only icon": round counter or icon badge. */
+  /** Figma "Only text": round counter of 1–2 characters. */
   circle?: boolean;
+  /** Figma "Only icon": round badge holding just an icon (the child). Give it an aria-label so it has a name. */
+  iconOnly?: boolean;
 }
 
-export function Badge({ color = 'gray', size = 'sm', leading, rightIcon, circle, className, children, ...props }: BadgeProps) {
+export function Badge({ color = 'gray', size = 'sm', leading, rightIcon, circle, iconOnly, className, children, ...props }: BadgeProps) {
   // An aria-label needs a role: an icon-only badge is announced as an image with that name.
   const role = props.role ?? (props['aria-label'] ? 'img' : undefined);
   return (
@@ -37,7 +39,7 @@ export function Badge({ color = 'gray', size = 'sm', leading, rightIcon, circle,
       role={role}
       className={cn(
         'inline-flex items-center border font-medium',
-        circle ? cn('justify-center rounded-full p-0', sizes[size].round) : cn('rounded-sm', sizes[size].pill),
+        circle || iconOnly ? cn('justify-center rounded-full p-0', sizes[size].round) : cn('rounded-sm', sizes[size].pill),
         colors[color],
         className,
       )}

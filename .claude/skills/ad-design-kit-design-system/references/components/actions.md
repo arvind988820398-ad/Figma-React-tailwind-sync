@@ -44,6 +44,30 @@ Base: `inline-flex items-center justify-center gap-1.5 rounded-base font-medium 
 
 Disabled (all but ghost): `bg-disabled border border-default-medium text-fg-disabled`; ghost: `text-fg-disabled`.
 
+**Variants**
+
+| Variant | Code | Use when | Don't use when |
+|---|---|---|---|
+| Color = Brand | `color="brand"` | The single primary action of a section, such as Save or Create project | A second action next to another Brand button — use Secondary instead |
+| Color = Secondary | `color="secondary"` | Supporting actions beside the primary one, such as Cancel or Export | The main call to action of the section — use Brand instead |
+| Color = Tertiary | `color="tertiary"` | Low-emphasis actions on light surfaces and outlined-style buttons | Actions inside toolbars or table rows — use Ghost instead |
+| Color = Success | `color="success"` | Confirming a positive outcome, such as Approve or Mark as done | Ordinary primary actions — use Brand instead |
+| Color = Danger | `color="danger"` | Destructive actions such as Delete; pair with a confirmation Modal | Reversible or neutral actions — use Secondary instead |
+| Color = Warning | `color="warning"` | Actions with risky but recoverable side effects, such as Override or Force sync | Ordinary primary actions — use Brand; irreversible actions — use Danger |
+| Color = Dark | `color="dark"` | High-contrast CTAs on light marketing sections | In-app forms and dialogs — use Brand or Secondary instead |
+| Color = Ghost | `color="ghost"` | Toolbars, table rows, card headers and other dense repeated actions | Standalone actions that must be found quickly — use Secondary instead |
+| Size = xs | `size="xs"` | Dense tables, chips and compact toolbars (32px) | Touch targets or forms — use base or larger |
+| Size = sm | `size="sm"` | Card footers, filters and secondary toolbars (36px) | Primary touch actions on mobile — use base or larger |
+| Size = base | `size="base"` | Default for forms, dialogs and page actions (40px) | Hero sections where the CTA must dominate — use lg or xl |
+| Size = lg | `size="lg"` | Prominent CTAs in landing sections and empty states (48px) | Dense app screens — use base instead |
+| Size = xl | `size="xl"` | Hero CTAs and the Speed dial trigger (52px) | Inside forms, cards or dialogs — use base instead |
+| Icon only = False | `children` text label | Any action whose meaning needs words | — |
+| Icon only = True | `iconOnly` + `aria-label` | Universal icons such as Close, Settings or More in tight spaces; add a Tooltip | Actions without a widely understood icon — keep a text label |
+| Outline = False | — | Default filled buttons for every color | — |
+| Outline = True | `outline` | Lower-emphasis Success, Danger or Warning actions, such as a secondary Remove | Brand, Secondary or Dark buttons — use Tertiary instead |
+| Logo inside = False | — | All ordinary actions | — |
+| Logo inside = True | `logo={<Logo />}` | Sign in with a third-party provider or brand-specific actions | Store download links — use Download app button; generic icons — use leftIcon |
+
 **When to use**: any action that changes state, submits, opens an overlay or starts a flow. **One `brand` button per section**; `secondary`/`tertiary` for the rest; `danger` for destructive confirmations; `ghost` in toolbars, rows, card headers; `dark` on light marketing sections; `iconOnly` for universal icons with `aria-label` + Tooltip.
 **When not to use**: navigation (use a link, or `<a className={buttonVariants({...})}>`); status display (Badge); view switching (Tabs/ButtonGroup); two `brand` buttons side by side; `success`/`warning` for ordinary primary actions; outline on brand/secondary/dark (use `tertiary`).
 A11y: `type="button"` by default; loading = keep width, `Spinner size="sm"`, `aria-busy` + `disabled`; prefer `base`+ on touch.
@@ -52,6 +76,17 @@ A11y: `type="button"` by default; loading = keep width, `Spinner size="sm"`, `ar
 Figma: page `1149:31693` · set `1149:31694` (xs/sm/base/lg × Gray/White) · examples `1149:31799` (12 types) · template `templates/components/ButtonGroup.tsx`
 API: `<ButtonGroup color="gray|white" size vertical label>` + `<ButtonGroupItem active iconOnly>`.
 A joined row of Buttons: Figma "Gray" = **Secondary** buttons, "White" = **Tertiary** buttons, same size scale; items overlap by 1px (`-space-x-px`), first `rounded-e-none`, last `rounded-s-none`, middle `rounded-none`; the group carries `shadow-xs` (items `shadow-none`). The selected item uses the Tertiary Hover style (`bg-neutral-secondary-medium text-heading`). Vertical: `flex-col -space-y-px`, ends `rounded-b-none`/`rounded-t-none`. Example types: icon buttons (36px, `text-body`, active `text-heading`), Plus & minus, Numbers (pager), With dropdown button, With badge, Start CTA, Icon button + Info.
+**Variants**
+
+| Variant | Code | Use when | Don't use when |
+|---|---|---|---|
+| Size = xs | `size="xs"` | Compact toolbars and table headers | Touch interfaces — use base or larger |
+| Size = sm | `size="sm"` | Filters and secondary toolbars next to sm controls | Primary page controls on mobile — use base |
+| Size = base | `size="base"` | Default for view switchers and pagers alongside base inputs | Dense table toolbars — use sm or xs |
+| Size = lg | `size="lg"` | Prominent switchers on marketing or pricing pages | Dense app screens — use base |
+| Color = Gray | `color="gray"` | Groups on white surfaces where the items need a visible fill | Groups on gray surfaces where contrast is low — use White |
+| Color = White | `color="white"` | Low-emphasis groups and groups placed on tinted surfaces | Groups that should read as filled controls — use Gray |
+
 **Use** for 2–5 closely related actions or a compact view switcher. **Don't** for unrelated actions, primary CTAs, or >5 options. If it switches content panels, use `Tabs variant="segmented"` for ARIA.
 A11y: the wrapper is `role="group"` with an `aria-label`; toggle groups set `aria-pressed` on each button; icon-only items need an `aria-label`.
 
@@ -65,12 +100,34 @@ API: `<SpeedDial actions={[{label,icon,onSelect,disabled}]} variant="default|rou
 - Dropdown menu type: Dropdown shell (`p-2 gap-1.5 shadow-lg`) with "Icon & text" rows `rounded p-2 gap-1.5 text-sm font-medium leading-none text-body`, icon `size-4`.
 - Place `fixed end-6 bottom-6 z-40`.
 
+**Variants**
+
+| Variant | Code | Use when | Don't use when |
+|---|---|---|---|
+| Type = Default | `variant="default"` | Square icon actions with tooltip labels, matching rectangular Buttons | Interfaces with round controls — use Rounded |
+| Type = Rounded | `variant="rounded"` | Round trigger and items on mobile or playful interfaces | Screens where controls are rectangular — use Default |
+| Type = Menu | `variant="menu"` | Actions whose icons are not self-explanatory; label shown under each icon | More than 4–5 actions or long labels — use Article dropdown menu |
+| Type = Article dropdown menu | `variant="dropdown"` | Longer action lists with text labels, such as article share or edit actions | Three or fewer universal icon actions — use Default |
+| Position = Top | `direction="top"` | Trigger fixed at the bottom of the screen; actions open upward | Trigger near the top edge — use Bottom |
+| Position = Bottom | `direction="bottom"` | Trigger near the top of the viewport; actions open downward | Bottom-anchored triggers — use Top |
+| Position = Right | `direction="right"` | Trigger at the left edge with free horizontal space | Narrow mobile screens — use Top |
+| Position = Left | `direction="left"` | Trigger at the right edge with free horizontal space | Narrow mobile screens — use Top |
+
 **Use** on mobile-first or canvas-like screens for 3–6 creation actions. **Don't** on dense desktop pages with a toolbar, for navigation, or for a single action.
 A11y: the trigger has an `aria-label`, `aria-expanded` and `aria-controls`; opening moves focus to the first available action, arrow keys and Home/End move between actions, Esc closes and returns focus; every action needs a visible label, tooltip or `aria-label`.
 
 ## Download app button
 Figma: set `1146:24595` (Google Play / AppStore × Light / Dark). Store badge link: `inline-flex items-center gap-3 rounded-base px-4 py-2.5` — Dark `bg-dark text-white hover:bg-dark-strong`; Light `bg-neutral-primary-soft border border-default text-heading hover:bg-neutral-secondary-medium`. Only for store links (`<a>`). · template `templates/components/DownloadAppButton.tsx`
 API: `<DownloadAppButton store="app-store|google-play" tone="dark|light" href>`.
+**Variants**
+
+| Variant | Code | Use when | Don't use when |
+|---|---|---|---|
+| Device = Google Play | `store="google-play"` | Linking to the Android app on Google Play | iOS links — use AppStore |
+| Device = AppStore | `store="app-store"` | Linking to the iOS app on the App Store | Android links — use Google Play |
+| Type = Light | `tone="light"` | Dark or colored backgrounds, or pages where many dark blocks already compete | Plain white sections where the badge must stand out — use Dark |
+| Type = Dark | `tone="dark"` | Default on light backgrounds; matches official store badge styling | Dark backgrounds where it loses contrast — use Light |
+
 **Use** for App Store and Google Play badges on marketing and landing pages. **Don't** for in-app actions (Button) or ordinary links.
 A11y: it is a link; the store name is visible text and the logo is decorative (`aria-hidden`).
 

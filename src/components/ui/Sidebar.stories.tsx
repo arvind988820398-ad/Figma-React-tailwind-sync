@@ -7,6 +7,7 @@ import { Badge } from './Badge';
 import { Button } from './Button';
 import { Dropdown, DropdownItem } from './Dropdown';
 import { IconShape } from './IconShape';
+import { Input } from './Input';
 import { Sidebar, type SidebarItem } from './Sidebar';
 
 // AD Design Kit Sidebar — mirrors the Figma "Sidebar (Free component)" set (node 1149:82628). Figma "Contracted" = `collapsed`.
@@ -48,6 +49,37 @@ export const Default: Story = {};
 
 // Icons only; labels move into tooltips (hover an item).
 export const Collapsed: Story = { args: { collapsed: true, header: <IconHeader /> } };
+
+// Figma "Double sidebar": an icon rail for the app's areas, a panel for the pages of the current area.
+export const DoubleSidebar: Story = {
+  args: {
+    rail: {
+      header: <IconHeader />,
+      sections: [
+        [
+          { label: 'Dashboard', href: '#', icon: <CheckIcon />, current: true },
+          { label: 'Inbox', href: '#', icon: <MailIcon /> },
+        ],
+        [{ label: 'Settings', href: '#', icon: <CogIcon /> }],
+      ],
+    },
+    label: 'Dashboard pages',
+    header: (
+      <div className="flex flex-col gap-4">
+        <span className="text-base font-semibold text-heading">Dashboard</span>
+        <Input size="sm" type="search" placeholder="Search" aria-label="Search pages" />
+      </div>
+    ),
+    sections: [main],
+  },
+  play: async ({ canvas }) => {
+    const areas = canvas.getByRole('navigation', { name: 'Areas' });
+    const pages = canvas.getByRole('navigation', { name: 'Dashboard pages' });
+    await expect(areas).toHaveClass('w-16', 'border-e');
+    await expect(within(areas).getByRole('link', { name: 'Dashboard' })).toHaveAttribute('aria-current', 'page');
+    await expect(within(pages).getByRole('link', { name: /Inbox/ })).toBeVisible();
+  },
+};
 
 export const WithAlert: Story = {
   args: {

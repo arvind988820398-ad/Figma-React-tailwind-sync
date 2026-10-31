@@ -23,7 +23,7 @@ AD Design Kit is a Tailwind-native design system in Figma (`TKsoawKvPxaNCff4q43M
 **Implementing a Figma link or frame**
 1. Parse `node-id` from the URL. Look it up in `references/components.json` (`node` or `parts`). If it is a known component set → use the React component; otherwise it is a composition of components.
 2. With the Figma MCP available, call `get_design_context` / `get_screenshot` for the node (load the `figma-design-to-code` guidance first). Treat its output as a reference: map every color/spacing/radius it reports to the semantic classes here. Never paste its hex values or arbitrary classes.
-3. Read the matching section of `references/components/<category>.md` for the class recipe, do's and don'ts.
+3. Read the matching section of `references/components/<category>.md` for the class recipe, the **Variants** table (when to use and when not to use each variant) and the do's and don'ts.
 4. Build with the existing project components (look for `components/ui/*` first). If AD Design Kit components are not in the project yet, scaffold them from `templates/` (see Setup).
 5. Finish by running the token linter from the review skill: `node ~/.claude/skills/ad-design-kit-review/scripts/lint-tokens.mjs <paths>` (or the project-local `.claude/skills/...` path).
 

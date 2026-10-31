@@ -43,7 +43,7 @@ export const WithIcon: Story = { args: { color: 'brand', children: 'Verified', r
 
 // Figma "Only text" / "Only icon": round counter or icon badge.
 export const Counter: Story = { args: { color: 'danger', circle: true, children: '8' } };
-export const IconOnly: Story = { args: { color: 'brand', circle: true, children: <CheckIcon />, 'aria-label': 'Verified' } };
+export const IconOnly: Story = { args: { color: 'brand', iconOnly: true, children: <CheckIcon />, 'aria-label': 'Verified' } };
 
 export const AllColors: Story = {
   render: (args) => (

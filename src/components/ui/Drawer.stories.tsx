@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
 import { useState } from 'react';
 import { expect, fn, waitFor, within } from 'storybook/test';
+import { InfoIcon, PlusIcon } from '../icons';
 import { Button } from './Button';
 import { Drawer, type DrawerPlacement, type DrawerProps } from './Drawer';
 import { Input, Label } from './Input';
@@ -55,8 +56,41 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {};
 export const End: Story = { args: { placement: 'end' } };
 
-// Bottom sheet: full width with a drag handle.
+// Figma Type "Bottom": a full-width sheet.
 export const Bottom: Story = { args: { placement: 'bottom' } };
+
+// Figma heading with "Show heading left icon" on (Type "Default").
+export const WithHeadingIcon: Story = {
+  args: { icon: <InfoIcon />, title: 'Drawer heading' },
+  play: async ({ canvas, canvasElement, userEvent }) => {
+    const body = within(canvasElement.ownerDocument.body);
+    await userEvent.click(canvas.getByRole('button', { name: 'Open drawer' }));
+    const drawer = await body.findByRole('dialog', { name: 'Drawer heading' });
+    await expect(within(drawer).getByRole('heading', { name: 'Drawer heading' }).querySelector('svg')).not.toBeNull();
+  },
+};
+
+// Figma Type "Swipeable": bottom sheet with a drag handle on its top edge.
+export const Swipeable: Story = {
+  args: { placement: 'bottom', swipeable: true, icon: <PlusIcon />, title: 'Add widget', footer: undefined },
+  play: async ({ canvas, canvasElement, userEvent }) => {
+    const body = within(canvasElement.ownerDocument.body);
+    await userEvent.click(canvas.getByRole('button', { name: 'Open drawer' }));
+    const drawer = await body.findByRole('dialog', { name: 'Add widget' });
+    await expect(drawer.querySelector('[aria-hidden].rounded-full')).not.toBeNull();
+  },
+};
+
+// Plain bottom sheets have no handle.
+export const BottomHasNoHandle: Story = {
+  args: { placement: 'bottom' },
+  play: async ({ canvas, canvasElement, userEvent }) => {
+    const body = within(canvasElement.ownerDocument.body);
+    await userEvent.click(canvas.getByRole('button', { name: 'Open drawer' }));
+    const drawer = await body.findByRole('dialog', { name: 'Drawer title' });
+    await expect(drawer.querySelector('[aria-hidden].rounded-full')).toBeNull();
+  },
+};
 
 // Figma 384px width (default / list content).
 export const MediumWidth: Story = { args: { size: 'md', placement: 'end' } };

@@ -945,6 +945,62 @@
    "role": "part",
    "description": "Avatar remove button.\n\nIn code: part of <Avatar>.\nDocs: https://ad-design-kit-storybook.netlify.app/?path=/docs/components-avatar--docs",
    "docUrl": "https://ad-design-kit-storybook.netlify.app/?path=/docs/components-avatar--docs"
+  },
+  {
+   "node": "19395:3990",
+   "figmaName": "Table header",
+   "react": "Table",
+   "role": "part",
+   "description": "Table header — toolbar above the table: search, filters, actions, tabs or stats (13 types × Desktop/Tablet/Mobile). Maps to the `toolbar` prop.\n\nIn code: part of <Table>.\nDocs: https://ad-design-kit-storybook.netlify.app/?path=/docs/components-table--docs",
+   "docUrl": "https://ad-design-kit-storybook.netlify.app/?path=/docs/components-table--docs"
+  },
+  {
+   "node": "19395:33",
+   "figmaName": "Table cell (header)",
+   "react": "Table",
+   "role": "part",
+   "description": "Table header cell — column heading (Text, Checkbox & icon, Only icon). Maps to <TableHeaderCell>.\n\nIn code: part of <Table>.\nDocs: https://ad-design-kit-storybook.netlify.app/?path=/docs/components-table--docs",
+   "docUrl": "https://ad-design-kit-storybook.netlify.app/?path=/docs/components-table--docs"
+  },
+  {
+   "node": "19395:796",
+   "figmaName": "Table cell (base)",
+   "react": "Table",
+   "role": "part",
+   "description": "Table cell — body cell content (text, badge, buttons, avatar, progress, form controls…) × Initial/Hover. Maps to <TableCell>.\n\nIn code: part of <Table>.\nDocs: https://ad-design-kit-storybook.netlify.app/?path=/docs/components-table--docs",
+   "docUrl": "https://ad-design-kit-storybook.netlify.app/?path=/docs/components-table--docs"
+  },
+  {
+   "node": "19395:5717",
+   "figmaName": "Table Footer",
+   "react": "Table",
+   "role": "part",
+   "description": "Table footer — row below the table: pagination, page-size select, counters and CTAs. Compose <Pagination> below the Table.\n\nIn code: part of <Table>.\nDocs: https://ad-design-kit-storybook.netlify.app/?path=/docs/components-table--docs",
+   "docUrl": "https://ad-design-kit-storybook.netlify.app/?path=/docs/components-table--docs"
+  },
+  {
+   "node": "19395:6553",
+   "figmaName": "Text Block",
+   "react": "Skeleton",
+   "role": "part",
+   "description": "Skeleton text block — placeholder lines (Small/Medium/Large × tone, light/dark). Maps to <SkeletonLine>.\n\nIn code: part of <Skeleton>.\nDocs: https://ad-design-kit-storybook.netlify.app/?path=/docs/components-skeleton--docs",
+   "docUrl": "https://ad-design-kit-storybook.netlify.app/?path=/docs/components-skeleton--docs"
+  },
+  {
+   "node": "19395:6581",
+   "figmaName": "Separator",
+   "react": "Modal",
+   "role": "part",
+   "description": "Separator — divider with centered text (Default, Gradient lines, Dashed), e.g. \"or\" between sign-in options.\n\nIn code: part of <Modal>.\nDocs: https://ad-design-kit-storybook.netlify.app/?path=/docs/components-modal--docs",
+   "docUrl": "https://ad-design-kit-storybook.netlify.app/?path=/docs/components-modal--docs"
+  },
+  {
+   "node": "19395:6462",
+   "figmaName": "Country flag",
+   "react": "Dropdown",
+   "role": "part",
+   "description": "Country flag — rounded flag artwork (12 countries × base/sm) for language and region pickers.\n\nIn code: part of <Dropdown>.\nDocs: https://ad-design-kit-storybook.netlify.app/?path=/docs/components-dropdown--docs",
+   "docUrl": "https://ad-design-kit-storybook.netlify.app/?path=/docs/components-dropdown--docs"
   }
  ]
 }
