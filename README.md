@@ -22,7 +22,7 @@ React + TypeScript + Vite + Tailwind CSS v4, wired to the AD Design Kit design s
 - `src/styles/ad-design-kit.css` — generated design tokens. Never edit by hand; sync from Figma with the `ad-design-kit-figma-sync` skill, then `npm run tokens:build`.
 - `src/styles/app.css` — Tailwind entry (`@import "tailwindcss"` + tokens).
 - `src/components/ui/` — all 56 AD Design Kit components (every Figma component set). Each file names its Figma node; the registry in `.claude/skills/ad-design-kit-design-system/references/components.json` maps Figma variants to props.
-- `src/lib/theme.ts` — `setTheme(theme, dark)`; themes `modern | minimal | enterprise | mono`, saved per browser.
+- `src/lib/theme.ts` — `setTheme(theme, dark)`; themes `modern | enterprise`, saved per browser.
 - `src/App.tsx` — a blank canvas; build new screens here from the components in `src/components/ui/`.
 - **Hosted Storybook:** https://ad-design-kit-storybook.netlify.app. Redeploy with `npm run storybook:deploy`.
 - `.storybook/` — Storybook config, the generated docs data (`generated/ad-design-kit-docs.ts`), the docs page template and blocks (`ad-design-kit/`), the guide pages (`docs/*.mdx`) and the generator (`scripts/build-docs.mjs`). Stories live next to each component as `*.stories.tsx`.

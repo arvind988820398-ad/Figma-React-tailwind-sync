@@ -63,9 +63,7 @@ export const adDesignKitDocs: ADDesignKitDocs = {
     "primitivesExportedAt": "2026-10-26T20:46:23.475Z",
     "themes": [
       "modern",
-      "minimal",
-      "enterprise",
-      "mono"
+      "enterprise"
     ],
     "modes": [
       {
@@ -79,16 +77,6 @@ export const adDesignKitDocs: ADDesignKitDocs = {
         "scheme": "dark"
       },
       {
-        "figma": "Minimal (light)",
-        "theme": "minimal",
-        "scheme": "light"
-      },
-      {
-        "figma": "Minimal (dark)",
-        "theme": "minimal",
-        "scheme": "dark"
-      },
-      {
         "figma": "Enterprise (light)",
         "theme": "enterprise",
         "scheme": "light"
@@ -96,16 +84,6 @@ export const adDesignKitDocs: ADDesignKitDocs = {
       {
         "figma": "Enterprise (dark)",
         "theme": "enterprise",
-        "scheme": "dark"
-      },
-      {
-        "figma": "Mono (light)",
-        "theme": "mono",
-        "scheme": "light"
-      },
-      {
-        "figma": "Mono (dark)",
-        "theme": "mono",
         "scheme": "dark"
       }
     ],
@@ -123,12 +101,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#ffffff (white)",
             "modern-dark": "#030712 (colors/gray/950)",
-            "minimal-light": "#ffffff (white)",
-            "minimal-dark": "#0c0a09 (colors/stone/950)",
             "enterprise-light": "#ffffff (white)",
-            "enterprise-dark": "#09090b (colors/zinc/950)",
-            "mono-light": "#ffffff (white)",
-            "mono-dark": "#0a0a0a (colors/neutral/950)"
+            "enterprise-dark": "#09090b (colors/zinc/950)"
           }
         },
         {
@@ -140,12 +114,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#f3f4f6 (colors/gray/100)",
             "modern-dark": "#030712 (colors/gray/950)",
-            "minimal-light": "#f5f5f4 (colors/stone/100)",
-            "minimal-dark": "#0c0a09 (colors/stone/950)",
             "enterprise-light": "#f4f4f5 (colors/zinc/100)",
-            "enterprise-dark": "#09090b (colors/zinc/950)",
-            "mono-light": "#f5f5f5 (colors/neutral/100)",
-            "mono-dark": "#0a0a0a (colors/neutral/950)"
+            "enterprise-dark": "#09090b (colors/zinc/950)"
           }
         },
         {
@@ -157,12 +127,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#ffffff (white)",
             "modern-dark": "#ffffff (white)",
-            "minimal-light": "#ffffff (white)",
-            "minimal-dark": "#ffffff (white)",
             "enterprise-light": "#ffffff (white)",
-            "enterprise-dark": "#ffffff (white)",
-            "mono-light": "#ffffff (white)",
-            "mono-dark": "#ffffff (white)"
+            "enterprise-dark": "#ffffff (white)"
           }
         },
         {
@@ -174,12 +140,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#ffffff (white)",
             "modern-dark": "#101828 (colors/gray/900)",
-            "minimal-light": "#ffffff (white)",
-            "minimal-dark": "#1c1917 (colors/stone/900)",
             "enterprise-light": "#ffffff (white)",
-            "enterprise-dark": "#18181b (colors/zinc/900)",
-            "mono-light": "#ffffff (white)",
-            "mono-dark": "#171717 (colors/neutral/900)"
+            "enterprise-dark": "#18181b (colors/zinc/900)"
           }
         },
         {
@@ -191,12 +153,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#ffffff (white)",
             "modern-dark": "#030712 (colors/gray/950)",
-            "minimal-light": "#ffffff (white)",
-            "minimal-dark": "#0c0a09 (colors/stone/950)",
             "enterprise-light": "#ffffff (white)",
-            "enterprise-dark": "#09090b (colors/zinc/950)",
-            "mono-light": "#ffffff (white)",
-            "mono-dark": "#0a0a0a (colors/neutral/950)"
+            "enterprise-dark": "#09090b (colors/zinc/950)"
           }
         },
         {
@@ -208,12 +166,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#ffffff (white)",
             "modern-dark": "#1e2939 (colors/gray/800)",
-            "minimal-light": "#ffffff (white)",
-            "minimal-dark": "#292524 (colors/stone/800)",
             "enterprise-light": "#ffffff (white)",
-            "enterprise-dark": "#27272a (colors/zinc/800)",
-            "mono-light": "#ffffff (white)",
-            "mono-dark": "#262626 (colors/neutral/800)"
+            "enterprise-dark": "#27272a (colors/zinc/800)"
           }
         },
         {
@@ -225,12 +179,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#ffffff (white)",
             "modern-dark": "#333e4f (colors/gray/700)",
-            "minimal-light": "#ffffff (white)",
-            "minimal-dark": "#44403b (colors/stone/700)",
             "enterprise-light": "#ffffff (white)",
-            "enterprise-dark": "#3f3f46 (colors/zinc/700)",
-            "mono-light": "#ffffff (white)",
-            "mono-dark": "#404040 (colors/neutral/700)"
+            "enterprise-dark": "#3f3f46 (colors/zinc/700)"
           }
         },
         {
@@ -242,12 +192,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#f9fafb (colors/gray/50)",
             "modern-dark": "#101828 (colors/gray/900)",
-            "minimal-light": "#f5f5f4 (colors/stone/100)",
-            "minimal-dark": "#1c1917 (colors/stone/900)",
             "enterprise-light": "#ffffff (white)",
-            "enterprise-dark": "#18181b (colors/zinc/900)",
-            "mono-light": "#fafafa (colors/neutral/50)",
-            "mono-dark": "#171717 (colors/neutral/900)"
+            "enterprise-dark": "#18181b (colors/zinc/900)"
           }
         },
         {
@@ -259,12 +205,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#f9fafb (colors/gray/50)",
             "modern-dark": "#030712 (colors/gray/950)",
-            "minimal-light": "#f5f5f4 (colors/stone/100)",
-            "minimal-dark": "#0c0a09 (colors/stone/950)",
             "enterprise-light": "#ffffff (white)",
-            "enterprise-dark": "#09090b (colors/zinc/950)",
-            "mono-light": "#fafafa (colors/neutral/50)",
-            "mono-dark": "#0a0a0a (colors/neutral/950)"
+            "enterprise-dark": "#09090b (colors/zinc/950)"
           }
         },
         {
@@ -276,12 +218,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#f9fafb (colors/gray/50)",
             "modern-dark": "#1e2939 (colors/gray/800)",
-            "minimal-light": "#f5f5f4 (colors/stone/100)",
-            "minimal-dark": "#292524 (colors/stone/800)",
             "enterprise-light": "#ffffff (white)",
-            "enterprise-dark": "#27272a (colors/zinc/800)",
-            "mono-light": "#fafafa (colors/neutral/50)",
-            "mono-dark": "#262626 (colors/neutral/800)"
+            "enterprise-dark": "#27272a (colors/zinc/800)"
           }
         },
         {
@@ -293,12 +231,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#f9fafb (colors/gray/50)",
             "modern-dark": "#333e4f (colors/gray/700)",
-            "minimal-light": "#f5f5f4 (colors/stone/100)",
-            "minimal-dark": "#44403b (colors/stone/700)",
             "enterprise-light": "#ffffff (white)",
-            "enterprise-dark": "#3f3f46 (colors/zinc/700)",
-            "mono-light": "#fafafa (colors/neutral/50)",
-            "mono-dark": "#404040 (colors/neutral/700)"
+            "enterprise-dark": "#3f3f46 (colors/zinc/700)"
           }
         },
         {
@@ -310,12 +244,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#f3f4f6 (colors/gray/100)",
             "modern-dark": "#101828 (colors/gray/900)",
-            "minimal-light": "#f5f5f4 (colors/stone/100)",
-            "minimal-dark": "#1c1917 (colors/stone/900)",
             "enterprise-light": "#f4f4f5 (colors/zinc/100)",
-            "enterprise-dark": "#18181b (colors/zinc/900)",
-            "mono-light": "#f5f5f5 (colors/neutral/100)",
-            "mono-dark": "#171717 (colors/neutral/900)"
+            "enterprise-dark": "#18181b (colors/zinc/900)"
           }
         },
         {
@@ -327,12 +257,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#f3f4f6 (colors/gray/100)",
             "modern-dark": "#1e2939 (colors/gray/800)",
-            "minimal-light": "#f5f5f4 (colors/stone/100)",
-            "minimal-dark": "#292524 (colors/stone/800)",
             "enterprise-light": "#f4f4f5 (colors/zinc/100)",
-            "enterprise-dark": "#27272a (colors/zinc/800)",
-            "mono-light": "#f5f5f5 (colors/neutral/100)",
-            "mono-dark": "#262626 (colors/neutral/800)"
+            "enterprise-dark": "#27272a (colors/zinc/800)"
           }
         },
         {
@@ -344,12 +270,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#f3f4f6 (colors/gray/100)",
             "modern-dark": "#333e4f (colors/gray/700)",
-            "minimal-light": "#f5f5f4 (colors/stone/100)",
-            "minimal-dark": "#44403b (colors/stone/700)",
             "enterprise-light": "#f4f4f5 (colors/zinc/100)",
-            "enterprise-dark": "#3f3f46 (colors/zinc/700)",
-            "mono-light": "#f5f5f5 (colors/neutral/100)",
-            "mono-dark": "#404040 (colors/neutral/700)"
+            "enterprise-dark": "#3f3f46 (colors/zinc/700)"
           }
         },
         {
@@ -361,12 +283,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#e5e7eb (colors/gray/200)",
             "modern-dark": "#333e4f (colors/gray/700)",
-            "minimal-light": "#e7e5e4 (colors/stone/200)",
-            "minimal-dark": "#44403b (colors/stone/700)",
             "enterprise-light": "#e4e4e7 (colors/zinc/200)",
-            "enterprise-dark": "#3f3f46 (colors/zinc/700)",
-            "mono-light": "#e5e5e5 (colors/neutral/200)",
-            "mono-dark": "#404040 (colors/neutral/700)"
+            "enterprise-dark": "#3f3f46 (colors/zinc/700)"
           }
         },
         {
@@ -378,12 +296,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#e5e7eb (colors/gray/200)",
             "modern-dark": "#4a5565 (colors/gray/600)",
-            "minimal-light": "#e7e5e4 (colors/stone/200)",
-            "minimal-dark": "#57534d (colors/stone/600)",
             "enterprise-light": "#e4e4e7 (colors/zinc/200)",
-            "enterprise-dark": "#52525c (colors/zinc/600)",
-            "mono-light": "#e5e5e5 (colors/neutral/200)",
-            "mono-dark": "#525252 (colors/neutral/600)"
+            "enterprise-dark": "#52525c (colors/zinc/600)"
           }
         },
         {
@@ -395,12 +309,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#d1d5dc (colors/gray/300)",
             "modern-dark": "#4a5565 (colors/gray/600)",
-            "minimal-light": "#d6d3d1 (colors/stone/300)",
-            "minimal-dark": "#57534d (colors/stone/600)",
             "enterprise-light": "#d4d4d8 (colors/zinc/300)",
-            "enterprise-dark": "#52525c (colors/zinc/600)",
-            "mono-light": "#d4d4d4 (colors/neutral/300)",
-            "mono-dark": "#525252 (colors/neutral/600)"
+            "enterprise-dark": "#52525c (colors/zinc/600)"
           }
         },
         {
@@ -412,12 +322,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#eef6ff (colors/brand/50)",
             "modern-dark": "#162455 (colors/brand/950)",
-            "minimal-light": "#fafaf9 (colors/stone/50)",
-            "minimal-dark": "#0c0a09 (colors/stone/950)",
             "enterprise-light": "#ecfeff (colors/cyan/50)",
-            "enterprise-dark": "#053345 (colors/cyan/950)",
-            "mono-light": "#eef2ff (colors/indigo/50)",
-            "mono-dark": "#1e1a4d (colors/indigo/950)"
+            "enterprise-dark": "#053345 (colors/cyan/950)"
           }
         },
         {
@@ -429,12 +335,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#dbeafe (colors/brand/100)",
             "modern-dark": "#1c398e (colors/brand/900)",
-            "minimal-light": "#f5f5f4 (colors/stone/100)",
-            "minimal-dark": "#1c1917 (colors/stone/900)",
             "enterprise-light": "#cefafe (colors/cyan/100)",
-            "enterprise-dark": "#104e64 (colors/cyan/900)",
-            "mono-light": "#e0e7ff (colors/indigo/100)",
-            "mono-dark": "#312c85 (colors/indigo/900)"
+            "enterprise-dark": "#104e64 (colors/cyan/900)"
           }
         },
         {
@@ -446,12 +348,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#1447e6 (colors/brand/700)",
             "modern-dark": "#155dfc (colors/brand/600)",
-            "minimal-light": "#1c1917 (colors/stone/900)",
-            "minimal-dark": "#57534d (colors/stone/600)",
             "enterprise-light": "#104e64 (colors/cyan/900)",
-            "enterprise-dark": "#007595 (colors/cyan/700)",
-            "mono-light": "#312c85 (colors/indigo/900)",
-            "mono-dark": "#4f39f6 (colors/indigo/600)"
+            "enterprise-dark": "#007595 (colors/cyan/700)"
           }
         },
         {
@@ -463,12 +361,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#bedbff (colors/brand/200)",
             "modern-dark": "#1c398e (colors/brand/900)",
-            "minimal-light": "#e7e5e4 (colors/stone/200)",
-            "minimal-dark": "#1c1917 (colors/stone/900)",
             "enterprise-light": "#a2f4fd (colors/cyan/200)",
-            "enterprise-dark": "#104e64 (colors/cyan/900)",
-            "mono-light": "#c6d2ff (colors/indigo/200)",
-            "mono-dark": "#312c85 (colors/indigo/900)"
+            "enterprise-dark": "#104e64 (colors/cyan/900)"
           }
         },
         {
@@ -480,12 +374,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#193cb8 (colors/brand/800)",
             "modern-dark": "#1447e6 (colors/brand/700)",
-            "minimal-light": "#292524 (colors/stone/800)",
-            "minimal-dark": "#44403b (colors/stone/700)",
             "enterprise-light": "#005f78 (colors/cyan/800)",
-            "enterprise-dark": "#005f78 (colors/cyan/800)",
-            "mono-light": "#372aac (colors/indigo/800)",
-            "mono-dark": "#432dd7 (colors/indigo/700)"
+            "enterprise-dark": "#005f78 (colors/cyan/800)"
           }
         },
         {
@@ -497,12 +387,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#ecfdf5 (colors/emerald/50)",
             "modern-dark": "#002c22 (colors/emerald/950)",
-            "minimal-light": "#f0fdf4 (colors/green/50)",
-            "minimal-dark": "#0d542b (colors/green/900)",
             "enterprise-light": "#f0fdf4 (colors/green/50)",
-            "enterprise-dark": "#032e15 (colors/green/950)",
-            "mono-light": "#f0fdf4 (colors/green/50)",
-            "mono-dark": "#032e15 (colors/green/950)"
+            "enterprise-dark": "#032e15 (colors/green/950)"
           }
         },
         {
@@ -514,12 +400,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#007a55 (colors/emerald/700)",
             "modern-dark": "#007a55 (colors/emerald/700)",
-            "minimal-light": "#008236 (colors/green/700)",
-            "minimal-dark": "#008236 (colors/green/700)",
             "enterprise-light": "#008236 (colors/green/700)",
-            "enterprise-dark": "#008236 (colors/green/700)",
-            "mono-light": "#008236 (colors/green/700)",
-            "mono-dark": "#008236 (colors/green/700)"
+            "enterprise-dark": "#008236 (colors/green/700)"
           }
         },
         {
@@ -531,12 +413,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#d0fae5 (colors/emerald/100)",
             "modern-dark": "#004f3b (colors/emerald/900)",
-            "minimal-light": "#dcfce7 (colors/green/100)",
-            "minimal-dark": "#0d542b (colors/green/900)",
             "enterprise-light": "#dcfce7 (colors/green/100)",
-            "enterprise-dark": "#0d542b (colors/green/900)",
-            "mono-light": "#dcfce7 (colors/green/100)",
-            "mono-dark": "#0d542b (colors/green/900)"
+            "enterprise-dark": "#0d542b (colors/green/900)"
           }
         },
         {
@@ -548,12 +426,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#006045 (colors/emerald/800)",
             "modern-dark": "#006045 (colors/emerald/800)",
-            "minimal-light": "#016630 (colors/green/800)",
-            "minimal-dark": "#016630 (colors/green/800)",
             "enterprise-light": "#016630 (colors/green/800)",
-            "enterprise-dark": "#016630 (colors/green/800)",
-            "mono-light": "#016630 (colors/green/800)",
-            "mono-dark": "#016630 (colors/green/800)"
+            "enterprise-dark": "#016630 (colors/green/800)"
           }
         },
         {
@@ -565,12 +439,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#fef0f2 (colors/rose/50)",
             "modern-dark": "#4d0218 (colors/rose/950)",
-            "minimal-light": "#fef2f2 (colors/red/50)",
-            "minimal-dark": "#460809 (colors/red/950)",
             "enterprise-light": "#fef2f2 (colors/red/50)",
-            "enterprise-dark": "#460809 (colors/red/950)",
-            "mono-light": "#fef2f2 (colors/red/50)",
-            "mono-dark": "#460809 (colors/red/950)"
+            "enterprise-dark": "#460809 (colors/red/950)"
           }
         },
         {
@@ -582,12 +452,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#c70036 (colors/rose/700)",
             "modern-dark": "#c70036 (colors/rose/700)",
-            "minimal-light": "#c10007 (colors/red/700)",
-            "minimal-dark": "#c10007 (colors/red/700)",
             "enterprise-light": "#c10007 (colors/red/700)",
-            "enterprise-dark": "#c10007 (colors/red/700)",
-            "mono-light": "#c10007 (colors/red/700)",
-            "mono-dark": "#c10007 (colors/red/700)"
+            "enterprise-dark": "#c10007 (colors/red/700)"
           }
         },
         {
@@ -599,12 +465,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#ffe4e6 (colors/rose/100)",
             "modern-dark": "#8b0836 (colors/rose/900)",
-            "minimal-light": "#ffe2e2 (colors/red/100)",
-            "minimal-dark": "#82181a (colors/red/900)",
             "enterprise-light": "#ffe2e2 (colors/red/100)",
-            "enterprise-dark": "#82181a (colors/red/900)",
-            "mono-light": "#ffe2e2 (colors/red/100)",
-            "mono-dark": "#82181a (colors/red/900)"
+            "enterprise-dark": "#82181a (colors/red/900)"
           }
         },
         {
@@ -616,12 +478,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#a50036 (colors/rose/800)",
             "modern-dark": "#a50036 (colors/rose/800)",
-            "minimal-light": "#9f0712 (colors/red/800)",
-            "minimal-dark": "#9f0712 (colors/red/800)",
             "enterprise-light": "#9f0712 (colors/red/800)",
-            "enterprise-dark": "#9f0712 (colors/red/800)",
-            "mono-light": "#9f0712 (colors/red/800)",
-            "mono-dark": "#9f0712 (colors/red/800)"
+            "enterprise-dark": "#9f0712 (colors/red/800)"
           }
         },
         {
@@ -633,12 +491,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#fff8f1 (colors/orange/50)",
             "modern-dark": "#441306 (colors/orange/950)",
-            "minimal-light": "#fff8f1 (colors/orange/50)",
-            "minimal-dark": "#441306 (colors/orange/950)",
             "enterprise-light": "#fff8f1 (colors/orange/50)",
-            "enterprise-dark": "#441306 (colors/orange/950)",
-            "mono-light": "#fff8f1 (colors/orange/50)",
-            "mono-dark": "#441306 (colors/orange/950)"
+            "enterprise-dark": "#441306 (colors/orange/950)"
           }
         },
         {
@@ -650,12 +504,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#d03801 (colors/orange/600)",
             "modern-dark": "#d03801 (colors/orange/600)",
-            "minimal-light": "#d03801 (colors/orange/600)",
-            "minimal-dark": "#d03801 (colors/orange/600)",
             "enterprise-light": "#d03801 (colors/orange/600)",
-            "enterprise-dark": "#d03801 (colors/orange/600)",
-            "mono-light": "#d03801 (colors/orange/600)",
-            "mono-dark": "#d03801 (colors/orange/600)"
+            "enterprise-dark": "#d03801 (colors/orange/600)"
           }
         },
         {
@@ -667,12 +517,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#feecdc (colors/orange/100)",
             "modern-dark": "#771d1d (colors/orange/900)",
-            "minimal-light": "#feecdc (colors/orange/100)",
-            "minimal-dark": "#771d1d (colors/orange/900)",
             "enterprise-light": "#feecdc (colors/orange/100)",
-            "enterprise-dark": "#771d1d (colors/orange/900)",
-            "mono-light": "#feecdc (colors/orange/100)",
-            "mono-dark": "#771d1d (colors/orange/900)"
+            "enterprise-dark": "#771d1d (colors/orange/900)"
           }
         },
         {
@@ -684,12 +530,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#b43403 (colors/orange/700)",
             "modern-dark": "#b43403 (colors/orange/700)",
-            "minimal-light": "#b43403 (colors/orange/700)",
-            "minimal-dark": "#b43403 (colors/orange/700)",
             "enterprise-light": "#b43403 (colors/orange/700)",
-            "enterprise-dark": "#b43403 (colors/orange/700)",
-            "mono-light": "#b43403 (colors/orange/700)",
-            "mono-dark": "#b43403 (colors/orange/700)"
+            "enterprise-dark": "#b43403 (colors/orange/700)"
           }
         },
         {
@@ -701,12 +543,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#1e2939 (colors/gray/800)",
             "modern-dark": "#1e2939 (colors/gray/800)",
-            "minimal-light": "#292524 (colors/stone/800)",
-            "minimal-dark": "#292524 (colors/stone/800)",
             "enterprise-light": "#27272a (colors/zinc/800)",
-            "enterprise-dark": "#27272a (colors/zinc/800)",
-            "mono-light": "#262626 (colors/neutral/800)",
-            "mono-dark": "#262626 (colors/neutral/800)"
+            "enterprise-dark": "#27272a (colors/zinc/800)"
           }
         },
         {
@@ -718,12 +556,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#101828 (colors/gray/900)",
             "modern-dark": "#333e4f (colors/gray/700)",
-            "minimal-light": "#1c1917 (colors/stone/900)",
-            "minimal-dark": "#44403b (colors/stone/700)",
             "enterprise-light": "#18181b (colors/zinc/900)",
-            "enterprise-dark": "#3f3f46 (colors/zinc/700)",
-            "mono-light": "#171717 (colors/neutral/900)",
-            "mono-dark": "#404040 (colors/neutral/700)"
+            "enterprise-dark": "#3f3f46 (colors/zinc/700)"
           }
         },
         {
@@ -735,12 +569,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#f3f4f6 (colors/gray/100)",
             "modern-dark": "#1e2939 (colors/gray/800)",
-            "minimal-light": "#f5f5f4 (colors/stone/100)",
-            "minimal-dark": "#292524 (colors/stone/800)",
             "enterprise-light": "#f4f4f5 (colors/zinc/100)",
-            "enterprise-dark": "#27272a (colors/zinc/800)",
-            "mono-light": "#f5f5f5 (colors/neutral/100)",
-            "mono-dark": "#262626 (colors/neutral/800)"
+            "enterprise-dark": "#27272a (colors/zinc/800)"
           }
         },
         {
@@ -752,12 +582,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#ad46ff (colors/purple/500)",
             "modern-dark": "#ad46ff (colors/purple/500)",
-            "minimal-light": "#ad46ff (colors/purple/500)",
-            "minimal-dark": "#ad46ff (colors/purple/500)",
             "enterprise-light": "#ad46ff (colors/purple/500)",
-            "enterprise-dark": "#ad46ff (colors/purple/500)",
-            "mono-light": "#ad46ff (colors/purple/500)",
-            "mono-dark": "#ad46ff (colors/purple/500)"
+            "enterprise-dark": "#ad46ff (colors/purple/500)"
           }
         },
         {
@@ -769,12 +595,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#00a6f4 (colors/sky/500)",
             "modern-dark": "#00a6f4 (colors/sky/500)",
-            "minimal-light": "#00a6f4 (colors/sky/500)",
-            "minimal-dark": "#00a6f4 (colors/sky/500)",
             "enterprise-light": "#00a6f4 (colors/sky/500)",
-            "enterprise-dark": "#00a6f4 (colors/sky/500)",
-            "mono-light": "#00a6f4 (colors/sky/500)",
-            "mono-dark": "#00a6f4 (colors/sky/500)"
+            "enterprise-dark": "#00a6f4 (colors/sky/500)"
           }
         },
         {
@@ -786,12 +608,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#009689 (colors/teal/600)",
             "modern-dark": "#00bba7 (colors/teal/500)",
-            "minimal-light": "#009689 (colors/teal/600)",
-            "minimal-dark": "#00bba7 (colors/teal/500)",
             "enterprise-light": "#009689 (colors/teal/600)",
-            "enterprise-dark": "#00bba7 (colors/teal/500)",
-            "mono-light": "#009689 (colors/teal/600)",
-            "mono-dark": "#00bba7 (colors/teal/500)"
+            "enterprise-dark": "#00bba7 (colors/teal/500)"
           }
         },
         {
@@ -803,12 +621,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#e60076 (colors/pink/600)",
             "modern-dark": "#f6339a (colors/pink/500)",
-            "minimal-light": "#e60076 (colors/pink/600)",
-            "minimal-dark": "#f6339a (colors/pink/500)",
             "enterprise-light": "#e60076 (colors/pink/600)",
-            "enterprise-dark": "#f6339a (colors/pink/500)",
-            "mono-light": "#e60076 (colors/pink/600)",
-            "mono-dark": "#f6339a (colors/pink/500)"
+            "enterprise-dark": "#f6339a (colors/pink/500)"
           }
         },
         {
@@ -820,12 +634,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#00b8db (colors/cyan/500)",
             "modern-dark": "#00b8db (colors/cyan/500)",
-            "minimal-light": "#00b8db (colors/cyan/500)",
-            "minimal-dark": "#00b8db (colors/cyan/500)",
             "enterprise-light": "#00b8db (colors/cyan/500)",
-            "enterprise-dark": "#00b8db (colors/cyan/500)",
-            "mono-light": "#00b8db (colors/cyan/500)",
-            "mono-dark": "#00b8db (colors/cyan/500)"
+            "enterprise-dark": "#00b8db (colors/cyan/500)"
           }
         },
         {
@@ -837,12 +647,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#c800de (colors/fuchsia/600)",
             "modern-dark": "#e12afb (colors/fuchsia/500)",
-            "minimal-light": "#c800de (colors/fuchsia/600)",
-            "minimal-dark": "#e12afb (colors/fuchsia/500)",
             "enterprise-light": "#c800de (colors/fuchsia/600)",
-            "enterprise-dark": "#e12afb (colors/fuchsia/500)",
-            "mono-light": "#c800de (colors/fuchsia/600)",
-            "mono-dark": "#e12afb (colors/fuchsia/500)"
+            "enterprise-dark": "#e12afb (colors/fuchsia/500)"
           }
         },
         {
@@ -854,12 +660,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#4f39f6 (colors/indigo/600)",
             "modern-dark": "#615fff (colors/indigo/500)",
-            "minimal-light": "#4f39f6 (colors/indigo/600)",
-            "minimal-dark": "#615fff (colors/indigo/500)",
             "enterprise-light": "#4f39f6 (colors/indigo/600)",
-            "enterprise-dark": "#615fff (colors/indigo/500)",
-            "mono-light": "#4f39f6 (colors/indigo/600)",
-            "mono-dark": "#615fff (colors/indigo/500)"
+            "enterprise-dark": "#615fff (colors/indigo/500)"
           }
         },
         {
@@ -871,12 +673,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#ff8a4c (colors/orange/400)",
             "modern-dark": "#ff8a4c (colors/orange/400)",
-            "minimal-light": "#ff8a4c (colors/orange/400)",
-            "minimal-dark": "#ff8a4c (colors/orange/400)",
             "enterprise-light": "#ff8a4c (colors/orange/400)",
-            "enterprise-dark": "#ff8a4c (colors/orange/400)",
-            "mono-light": "#ff8a4c (colors/orange/400)",
-            "mono-dark": "#ff8a4c (colors/orange/400)"
+            "enterprise-dark": "#ff8a4c (colors/orange/400)"
           }
         },
         {
@@ -888,12 +686,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#ffffff4d (colors/white-alpha/30)",
             "modern-dark": "#ffffff4d (colors/white-alpha/30)",
-            "minimal-light": "#ffffff4d (colors/white-alpha/30)",
-            "minimal-dark": "#ffffff4d (colors/white-alpha/30)",
             "enterprise-light": "#ffffff4d (colors/white-alpha/30)",
-            "enterprise-dark": "#ffffff4d (colors/white-alpha/30)",
-            "mono-light": "#ffffff4d (colors/white-alpha/30)",
-            "mono-dark": "#ffffff4d (colors/white-alpha/30)"
+            "enterprise-dark": "#ffffff4d (colors/white-alpha/30)"
           }
         },
         {
@@ -905,12 +699,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#101828e5 (colors/dark-alpha/90)",
             "modern-dark": "#101828e5 (colors/dark-alpha/90)",
-            "minimal-light": "#101828e5 (colors/dark-alpha/90)",
-            "minimal-dark": "#101828e5 (colors/dark-alpha/90)",
             "enterprise-light": "#101828e5 (colors/dark-alpha/90)",
-            "enterprise-dark": "#101828e5 (colors/dark-alpha/90)",
-            "mono-light": "#101828e5 (colors/dark-alpha/90)",
-            "mono-dark": "#101828e5 (colors/dark-alpha/90)"
+            "enterprise-dark": "#101828e5 (colors/dark-alpha/90)"
           }
         }
       ],
@@ -924,12 +714,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#ffffff (white)",
             "modern-dark": "#ffffff (white)",
-            "minimal-light": "#ffffff (white)",
-            "minimal-dark": "#ffffff (white)",
             "enterprise-light": "#ffffff (white)",
-            "enterprise-dark": "#ffffff (white)",
-            "mono-light": "#ffffff (white)",
-            "mono-dark": "#ffffff (white)"
+            "enterprise-dark": "#ffffff (white)"
           }
         },
         {
@@ -941,12 +727,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#101828 (colors/gray/900)",
             "modern-dark": "#101828 (colors/gray/900)",
-            "minimal-light": "#0c0a09 (colors/stone/950)",
-            "minimal-dark": "#0c0a09 (colors/stone/950)",
             "enterprise-light": "#18181b (colors/zinc/900)",
-            "enterprise-dark": "#18181b (colors/zinc/900)",
-            "mono-light": "#171717 (colors/neutral/900)",
-            "mono-dark": "#171717 (colors/neutral/900)"
+            "enterprise-dark": "#18181b (colors/zinc/900)"
           }
         },
         {
@@ -958,12 +740,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#101828 (colors/gray/900)",
             "modern-dark": "#ffffff (white)",
-            "minimal-light": "#1c1917 (colors/stone/900)",
-            "minimal-dark": "#ffffff (white)",
             "enterprise-light": "#18181b (colors/zinc/900)",
-            "enterprise-dark": "#ffffff (white)",
-            "mono-light": "#171717 (colors/neutral/900)",
-            "mono-dark": "#ffffff (white)"
+            "enterprise-dark": "#ffffff (white)"
           }
         },
         {
@@ -975,12 +753,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#4a5565 (colors/gray/600)",
             "modern-dark": "#99a1af (colors/gray/400)",
-            "minimal-light": "#57534d (colors/stone/600)",
-            "minimal-dark": "#a6a09b (colors/stone/400)",
             "enterprise-light": "#52525c (colors/zinc/600)",
-            "enterprise-dark": "#9f9fa9 (colors/zinc/400)",
-            "mono-light": "#525252 (colors/neutral/600)",
-            "mono-dark": "#a1a1a1 (colors/neutral/400)"
+            "enterprise-dark": "#9f9fa9 (colors/zinc/400)"
           }
         },
         {
@@ -992,12 +766,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#6a7282 (colors/gray/500)",
             "modern-dark": "#99a1af (colors/gray/400)",
-            "minimal-light": "#79716b (colors/stone/500)",
-            "minimal-dark": "#a6a09b (colors/stone/400)",
             "enterprise-light": "#71717b (colors/zinc/500)",
-            "enterprise-dark": "#9f9fa9 (colors/zinc/400)",
-            "mono-light": "#737373 (colors/neutral/500)",
-            "mono-dark": "#a1a1a1 (colors/neutral/400)"
+            "enterprise-dark": "#9f9fa9 (colors/zinc/400)"
           }
         },
         {
@@ -1009,12 +779,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#bedbff (colors/brand/200)",
             "modern-dark": "#bedbff (colors/brand/200)",
-            "minimal-light": "#e7e5e4 (colors/stone/200)",
-            "minimal-dark": "#e7e5e4 (colors/stone/200)",
             "enterprise-light": "#a2f4fd (colors/cyan/200)",
-            "enterprise-dark": "#a2f4fd (colors/cyan/200)",
-            "mono-light": "#c6d2ff (colors/indigo/200)",
-            "mono-dark": "#c6d2ff (colors/indigo/200)"
+            "enterprise-dark": "#a2f4fd (colors/cyan/200)"
           }
         },
         {
@@ -1026,12 +792,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#1447e6 (colors/brand/700)",
             "modern-dark": "#2b7fff (colors/brand/500)",
-            "minimal-light": "#44403b (colors/stone/700)",
-            "minimal-dark": "#79716b (colors/stone/500)",
             "enterprise-light": "#007595 (colors/cyan/700)",
-            "enterprise-dark": "#00b8db (colors/cyan/500)",
-            "mono-light": "#432dd7 (colors/indigo/700)",
-            "mono-dark": "#615fff (colors/indigo/500)"
+            "enterprise-dark": "#00b8db (colors/cyan/500)"
           }
         },
         {
@@ -1043,12 +805,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#1c398e (colors/brand/900)",
             "modern-dark": "#51a2ff (colors/brand/400)",
-            "minimal-light": "#1c1917 (colors/stone/900)",
-            "minimal-dark": "#a6a09b (colors/stone/400)",
             "enterprise-light": "#104e64 (colors/cyan/900)",
-            "enterprise-dark": "#00d3f2 (colors/cyan/400)",
-            "mono-light": "#312c85 (colors/indigo/900)",
-            "mono-dark": "#7c86ff (colors/indigo/400)"
+            "enterprise-dark": "#00d3f2 (colors/cyan/400)"
           }
         },
         {
@@ -1060,12 +818,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#007a55 (colors/emerald/700)",
             "modern-dark": "#009966 (colors/emerald/600)",
-            "minimal-light": "#008236 (colors/green/700)",
-            "minimal-dark": "#00a63e (colors/green/600)",
             "enterprise-light": "#008236 (colors/green/700)",
-            "enterprise-dark": "#00a63e (colors/green/600)",
-            "mono-light": "#008236 (colors/green/700)",
-            "mono-dark": "#00a63e (colors/green/600)"
+            "enterprise-dark": "#00a63e (colors/green/600)"
           }
         },
         {
@@ -1077,12 +831,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#004f3b (colors/emerald/900)",
             "modern-dark": "#5ee9b5 (colors/emerald/300)",
-            "minimal-light": "#0d542b (colors/green/900)",
-            "minimal-dark": "#7bf1a8 (colors/green/300)",
             "enterprise-light": "#0d542b (colors/green/900)",
-            "enterprise-dark": "#7bf1a8 (colors/green/300)",
-            "mono-light": "#0d542b (colors/green/900)",
-            "mono-dark": "#7bf1a8 (colors/green/300)"
+            "enterprise-dark": "#7bf1a8 (colors/green/300)"
           }
         },
         {
@@ -1094,12 +844,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#c70036 (colors/rose/700)",
             "modern-dark": "#ff2056 (colors/rose/500)",
-            "minimal-light": "#c10007 (colors/red/700)",
-            "minimal-dark": "#fb2c36 (colors/red/500)",
             "enterprise-light": "#c10007 (colors/red/700)",
-            "enterprise-dark": "#fb2c36 (colors/red/500)",
-            "mono-light": "#c10007 (colors/red/700)",
-            "mono-dark": "#fb2c36 (colors/red/500)"
+            "enterprise-dark": "#fb2c36 (colors/red/500)"
           }
         },
         {
@@ -1111,12 +857,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#8b0836 (colors/rose/900)",
             "modern-dark": "#ffa1ad (colors/rose/300)",
-            "minimal-light": "#82181a (colors/red/900)",
-            "minimal-dark": "#ffa2a2 (colors/red/300)",
             "enterprise-light": "#82181a (colors/red/900)",
-            "enterprise-dark": "#ffa2a2 (colors/red/300)",
-            "mono-light": "#82181a (colors/red/900)",
-            "mono-dark": "#ffa2a2 (colors/red/300)"
+            "enterprise-dark": "#ffa2a2 (colors/red/300)"
           }
         },
         {
@@ -1128,12 +870,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#d03801 (colors/orange/600)",
             "modern-dark": "#ff5a1f (colors/orange/500)",
-            "minimal-light": "#d03801 (colors/orange/600)",
-            "minimal-dark": "#ff5a1f (colors/orange/500)",
             "enterprise-light": "#d03801 (colors/orange/600)",
-            "enterprise-dark": "#ff5a1f (colors/orange/500)",
-            "mono-light": "#d03801 (colors/orange/600)",
-            "mono-dark": "#ff5a1f (colors/orange/500)"
+            "enterprise-dark": "#ff5a1f (colors/orange/500)"
           }
         },
         {
@@ -1145,12 +883,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#771d1d (colors/orange/900)",
             "modern-dark": "#fdba8c (colors/orange/300)",
-            "minimal-light": "#771d1d (colors/orange/900)",
-            "minimal-dark": "#fdba8c (colors/orange/300)",
             "enterprise-light": "#771d1d (colors/orange/900)",
-            "enterprise-dark": "#fdba8c (colors/orange/300)",
-            "mono-light": "#771d1d (colors/orange/900)",
-            "mono-dark": "#fdba8c (colors/orange/300)"
+            "enterprise-dark": "#fdba8c (colors/orange/300)"
           }
         },
         {
@@ -1162,12 +896,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#fdc700 (colors/yellow/400)",
             "modern-dark": "#fdc700 (colors/yellow/400)",
-            "minimal-light": "#fdc700 (colors/yellow/400)",
-            "minimal-dark": "#fdc700 (colors/yellow/400)",
             "enterprise-light": "#fdc700 (colors/yellow/400)",
-            "enterprise-dark": "#fdc700 (colors/yellow/400)",
-            "mono-light": "#fdc700 (colors/yellow/400)",
-            "mono-dark": "#fdc700 (colors/yellow/400)"
+            "enterprise-dark": "#fdc700 (colors/yellow/400)"
           }
         },
         {
@@ -1179,12 +909,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#1c398e (colors/brand/900)",
             "modern-dark": "#8ec5ff (colors/brand/300)",
-            "minimal-light": "#44403b (colors/stone/700)",
-            "minimal-dark": "#d6d3d1 (colors/stone/300)",
             "enterprise-light": "#104e64 (colors/cyan/900)",
-            "enterprise-dark": "#53eafd (colors/cyan/300)",
-            "mono-light": "#432dd7 (colors/indigo/700)",
-            "mono-dark": "#a3b3ff (colors/indigo/300)"
+            "enterprise-dark": "#53eafd (colors/cyan/300)"
           }
         },
         {
@@ -1196,12 +922,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#99a1af (colors/gray/400)",
             "modern-dark": "#4a5565 (colors/gray/600)",
-            "minimal-light": "#a6a09b (colors/stone/400)",
-            "minimal-dark": "#57534d (colors/stone/600)",
             "enterprise-light": "#9f9fa9 (colors/zinc/400)",
-            "enterprise-dark": "#52525c (colors/zinc/600)",
-            "mono-light": "#a1a1a1 (colors/neutral/400)",
-            "mono-dark": "#a1a1a1 (colors/neutral/400)"
+            "enterprise-dark": "#52525c (colors/zinc/600)"
           }
         },
         {
@@ -1213,12 +935,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#9810fa (colors/purple/600)",
             "modern-dark": "#ad46ff (colors/purple/500)",
-            "minimal-light": "#9810fa (colors/purple/600)",
-            "minimal-dark": "#ad46ff (colors/purple/500)",
             "enterprise-light": "#9810fa (colors/purple/600)",
-            "enterprise-dark": "#ad46ff (colors/purple/500)",
-            "mono-light": "#9810fa (colors/purple/600)",
-            "mono-dark": "#ad46ff (colors/purple/500)"
+            "enterprise-dark": "#ad46ff (colors/purple/500)"
           }
         },
         {
@@ -1230,12 +948,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#0092b8 (colors/cyan/600)",
             "modern-dark": "#00b8db (colors/cyan/500)",
-            "minimal-light": "#0092b8 (colors/cyan/600)",
-            "minimal-dark": "#00b8db (colors/cyan/500)",
             "enterprise-light": "#0092b8 (colors/cyan/600)",
-            "enterprise-dark": "#00b8db (colors/cyan/500)",
-            "mono-light": "#0092b8 (colors/cyan/600)",
-            "mono-dark": "#00b8db (colors/cyan/500)"
+            "enterprise-dark": "#00b8db (colors/cyan/500)"
           }
         },
         {
@@ -1247,12 +961,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#4f39f6 (colors/indigo/600)",
             "modern-dark": "#615fff (colors/indigo/500)",
-            "minimal-light": "#4f39f6 (colors/indigo/600)",
-            "minimal-dark": "#615fff (colors/indigo/500)",
             "enterprise-light": "#4f39f6 (colors/indigo/600)",
-            "enterprise-dark": "#615fff (colors/indigo/500)",
-            "mono-light": "#4f39f6 (colors/indigo/600)",
-            "mono-dark": "#615fff (colors/indigo/500)"
+            "enterprise-dark": "#615fff (colors/indigo/500)"
           }
         },
         {
@@ -1264,12 +974,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#e60076 (colors/pink/600)",
             "modern-dark": "#f6339a (colors/pink/500)",
-            "minimal-light": "#e60076 (colors/pink/600)",
-            "minimal-dark": "#f6339a (colors/pink/500)",
             "enterprise-light": "#e60076 (colors/pink/600)",
-            "enterprise-dark": "#f6339a (colors/pink/500)",
-            "mono-light": "#e60076 (colors/pink/600)",
-            "mono-dark": "#f6339a (colors/pink/500)"
+            "enterprise-dark": "#f6339a (colors/pink/500)"
           }
         },
         {
@@ -1281,12 +987,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#5ea500 (colors/lime/600)",
             "modern-dark": "#7ccf00 (colors/lime/500)",
-            "minimal-light": "#5ea500 (colors/lime/600)",
-            "minimal-dark": "#7ccf00 (colors/lime/500)",
             "enterprise-light": "#5ea500 (colors/lime/600)",
-            "enterprise-dark": "#7ccf00 (colors/lime/500)",
-            "mono-light": "#5ea500 (colors/lime/600)",
-            "mono-dark": "#7ccf00 (colors/lime/500)"
+            "enterprise-dark": "#7ccf00 (colors/lime/500)"
           }
         }
       ],
@@ -1300,12 +1002,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#1e2939 (colors/gray/800)",
             "modern-dark": "#4a5565 (colors/gray/600)",
-            "minimal-light": "#292524 (colors/stone/800)",
-            "minimal-dark": "#57534d (colors/stone/600)",
             "enterprise-light": "#27272a (colors/zinc/800)",
-            "enterprise-dark": "#52525c (colors/zinc/600)",
-            "mono-light": "#262626 (colors/neutral/800)",
-            "mono-dark": "#525252 (colors/neutral/600)"
+            "enterprise-dark": "#52525c (colors/zinc/600)"
           }
         },
         {
@@ -1317,12 +1015,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#ffffff (white)",
             "modern-dark": "#030712 (colors/gray/950)",
-            "minimal-light": "#ffffff (white)",
-            "minimal-dark": "#0c0a09 (colors/stone/950)",
             "enterprise-light": "#ffffff (white)",
-            "enterprise-dark": "#09090b (colors/zinc/950)",
-            "mono-light": "#ffffff (white)",
-            "mono-dark": "#0a0a0a (colors/neutral/950)"
+            "enterprise-dark": "#09090b (colors/zinc/950)"
           }
         },
         {
@@ -1334,12 +1028,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#ffffff (white)",
             "modern-dark": "#101828 (colors/gray/900)",
-            "minimal-light": "#ffffff (white)",
-            "minimal-dark": "#1c1917 (colors/stone/900)",
             "enterprise-light": "#ffffff (white)",
-            "enterprise-dark": "#18181b (colors/zinc/900)",
-            "mono-light": "#ffffff (white)",
-            "mono-dark": "#171717 (colors/neutral/900)"
+            "enterprise-dark": "#18181b (colors/zinc/900)"
           }
         },
         {
@@ -1351,12 +1041,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#ffffff (white)",
             "modern-dark": "#1e2939 (colors/gray/800)",
-            "minimal-light": "#ffffff (white)",
-            "minimal-dark": "#292524 (colors/stone/800)",
             "enterprise-light": "#ffffff (white)",
-            "enterprise-dark": "#27272a (colors/zinc/800)",
-            "mono-light": "#ffffff (white)",
-            "mono-dark": "#262626 (colors/neutral/800)"
+            "enterprise-dark": "#27272a (colors/zinc/800)"
           }
         },
         {
@@ -1368,12 +1054,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#f9fafb (colors/gray/50)",
             "modern-dark": "#101828 (colors/gray/900)",
-            "minimal-light": "#fafaf9 (colors/stone/50)",
-            "minimal-dark": "#1c1917 (colors/stone/900)",
             "enterprise-light": "#fafafa (colors/zinc/50)",
-            "enterprise-dark": "#18181b (colors/zinc/900)",
-            "mono-light": "#fafafa (colors/neutral/50)",
-            "mono-dark": "#171717 (colors/neutral/900)"
+            "enterprise-dark": "#18181b (colors/zinc/900)"
           }
         },
         {
@@ -1385,12 +1067,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#f3f4f6 (colors/gray/100)",
             "modern-dark": "#101828 (colors/gray/900)",
-            "minimal-light": "#f5f5f4 (colors/stone/100)",
-            "minimal-dark": "#1c1917 (colors/stone/900)",
             "enterprise-light": "#f4f4f5 (colors/zinc/100)",
-            "enterprise-dark": "#18181b (colors/zinc/900)",
-            "mono-light": "#f5f5f5 (colors/neutral/100)",
-            "mono-dark": "#171717 (colors/neutral/900)"
+            "enterprise-dark": "#18181b (colors/zinc/900)"
           }
         },
         {
@@ -1402,12 +1080,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#f3f4f6 (colors/gray/100)",
             "modern-dark": "#1e2939 (colors/gray/800)",
-            "minimal-light": "#f5f5f4 (colors/stone/100)",
-            "minimal-dark": "#292524 (colors/stone/800)",
             "enterprise-light": "#f4f4f5 (colors/zinc/100)",
-            "enterprise-dark": "#27272a (colors/zinc/800)",
-            "mono-light": "#f5f5f5 (colors/neutral/100)",
-            "mono-dark": "#262626 (colors/neutral/800)"
+            "enterprise-dark": "#27272a (colors/zinc/800)"
           }
         },
         {
@@ -1419,12 +1093,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#f3f4f6 (colors/gray/100)",
             "modern-dark": "#333e4f (colors/gray/700)",
-            "minimal-light": "#f5f5f4 (colors/stone/100)",
-            "minimal-dark": "#44403b (colors/stone/700)",
             "enterprise-light": "#f4f4f5 (colors/zinc/100)",
-            "enterprise-dark": "#3f3f46 (colors/zinc/700)",
-            "mono-light": "#f5f5f5 (colors/neutral/100)",
-            "mono-dark": "#404040 (colors/neutral/700)"
+            "enterprise-dark": "#3f3f46 (colors/zinc/700)"
           }
         },
         {
@@ -1436,12 +1106,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#e5e7eb (colors/gray/200)",
             "modern-dark": "#101828 (colors/gray/900)",
-            "minimal-light": "#e7e5e4 (colors/stone/200)",
-            "minimal-dark": "#1c1917 (colors/stone/900)",
             "enterprise-light": "#e4e4e7 (colors/zinc/200)",
-            "enterprise-dark": "#18181b (colors/zinc/900)",
-            "mono-light": "#e5e5e5 (colors/neutral/200)",
-            "mono-dark": "#171717 (colors/neutral/900)"
+            "enterprise-dark": "#18181b (colors/zinc/900)"
           }
         },
         {
@@ -1453,12 +1119,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#e5e7eb (colors/gray/200)",
             "modern-dark": "#1e2939 (colors/gray/800)",
-            "minimal-light": "#e7e5e4 (colors/stone/200)",
-            "minimal-dark": "#292524 (colors/stone/800)",
             "enterprise-light": "#e4e4e7 (colors/zinc/200)",
-            "enterprise-dark": "#27272a (colors/zinc/800)",
-            "mono-light": "#e5e5e5 (colors/neutral/200)",
-            "mono-dark": "#262626 (colors/neutral/800)"
+            "enterprise-dark": "#27272a (colors/zinc/800)"
           }
         },
         {
@@ -1470,12 +1132,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#e5e7eb (colors/gray/200)",
             "modern-dark": "#333e4f (colors/gray/700)",
-            "minimal-light": "#e7e5e4 (colors/stone/200)",
-            "minimal-dark": "#44403b (colors/stone/700)",
             "enterprise-light": "#e4e4e7 (colors/zinc/200)",
-            "enterprise-dark": "#3f3f46 (colors/zinc/700)",
-            "mono-light": "#e5e5e5 (colors/neutral/200)",
-            "mono-dark": "#404040 (colors/neutral/700)"
+            "enterprise-dark": "#3f3f46 (colors/zinc/700)"
           }
         },
         {
@@ -1487,12 +1145,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#e5e7eb (colors/gray/200)",
             "modern-dark": "#4a5565 (colors/gray/600)",
-            "minimal-light": "#e7e5e4 (colors/stone/200)",
-            "minimal-dark": "#57534d (colors/stone/600)",
             "enterprise-light": "#e4e4e7 (colors/zinc/200)",
-            "enterprise-dark": "#52525c (colors/zinc/600)",
-            "mono-light": "#e5e5e5 (colors/neutral/200)",
-            "mono-dark": "#525252 (colors/neutral/600)"
+            "enterprise-dark": "#52525c (colors/zinc/600)"
           }
         },
         {
@@ -1504,12 +1158,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#a4f4cf (colors/emerald/200)",
             "modern-dark": "#004f3b (colors/emerald/900)",
-            "minimal-light": "#b9f8cf (colors/green/200)",
-            "minimal-dark": "#0d542b (colors/green/900)",
             "enterprise-light": "#b9f8cf (colors/green/200)",
-            "enterprise-dark": "#0d542b (colors/green/900)",
-            "mono-light": "#b9f8cf (colors/green/200)",
-            "mono-dark": "#0d542b (colors/green/900)"
+            "enterprise-dark": "#0d542b (colors/green/900)"
           }
         },
         {
@@ -1521,12 +1171,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#007a55 (colors/emerald/700)",
             "modern-dark": "#009966 (colors/emerald/600)",
-            "minimal-light": "#008236 (colors/green/700)",
-            "minimal-dark": "#00a63e (colors/green/600)",
             "enterprise-light": "#008236 (colors/green/700)",
-            "enterprise-dark": "#00a63e (colors/green/600)",
-            "mono-light": "#008236 (colors/green/700)",
-            "mono-dark": "#00a63e (colors/green/600)"
+            "enterprise-dark": "#00a63e (colors/green/600)"
           }
         },
         {
@@ -1538,12 +1184,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#ffccd3 (colors/rose/200)",
             "modern-dark": "#8b0836 (colors/rose/900)",
-            "minimal-light": "#ffc9c9 (colors/red/200)",
-            "minimal-dark": "#82181a (colors/red/900)",
             "enterprise-light": "#ffc9c9 (colors/red/200)",
-            "enterprise-dark": "#82181a (colors/red/900)",
-            "mono-light": "#ffc9c9 (colors/red/200)",
-            "mono-dark": "#82181a (colors/red/900)"
+            "enterprise-dark": "#82181a (colors/red/900)"
           }
         },
         {
@@ -1555,12 +1197,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#c70036 (colors/rose/700)",
             "modern-dark": "#ec003f (colors/rose/600)",
-            "minimal-light": "#c10007 (colors/red/700)",
-            "minimal-dark": "#e7000b (colors/red/600)",
             "enterprise-light": "#c10007 (colors/red/700)",
-            "enterprise-dark": "#e7000b (colors/red/600)",
-            "mono-light": "#c10007 (colors/red/700)",
-            "mono-dark": "#e7000b (colors/red/600)"
+            "enterprise-dark": "#e7000b (colors/red/600)"
           }
         },
         {
@@ -1572,12 +1210,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#fcd9bd (colors/orange/200)",
             "modern-dark": "#771d1d (colors/orange/900)",
-            "minimal-light": "#fcd9bd (colors/orange/200)",
-            "minimal-dark": "#771d1d (colors/orange/900)",
             "enterprise-light": "#fcd9bd (colors/orange/200)",
-            "enterprise-dark": "#771d1d (colors/orange/900)",
-            "mono-light": "#fcd9bd (colors/orange/200)",
-            "mono-dark": "#771d1d (colors/orange/900)"
+            "enterprise-dark": "#771d1d (colors/orange/900)"
           }
         },
         {
@@ -1589,12 +1223,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#d03801 (colors/orange/600)",
             "modern-dark": "#ff5a1f (colors/orange/500)",
-            "minimal-light": "#d03801 (colors/orange/600)",
-            "minimal-dark": "#ff5a1f (colors/orange/500)",
             "enterprise-light": "#d03801 (colors/orange/600)",
-            "enterprise-dark": "#ff5a1f (colors/orange/500)",
-            "mono-light": "#d03801 (colors/orange/600)",
-            "mono-dark": "#ff5a1f (colors/orange/500)"
+            "enterprise-dark": "#ff5a1f (colors/orange/500)"
           }
         },
         {
@@ -1606,12 +1236,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#bedbff (colors/brand/200)",
             "modern-dark": "#1c398e (colors/brand/900)",
-            "minimal-light": "#e7e5e4 (colors/stone/200)",
-            "minimal-dark": "#1c1917 (colors/stone/900)",
             "enterprise-light": "#a2f4fd (colors/cyan/200)",
-            "enterprise-dark": "#104e64 (colors/cyan/900)",
-            "mono-light": "#c6d2ff (colors/indigo/200)",
-            "mono-dark": "#312c85 (colors/indigo/900)"
+            "enterprise-dark": "#104e64 (colors/cyan/900)"
           }
         },
         {
@@ -1623,12 +1249,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#155dfc (colors/brand/600)",
             "modern-dark": "#155dfc (colors/brand/600)",
-            "minimal-light": "#57534d (colors/stone/600)",
-            "minimal-dark": "#57534d (colors/stone/600)",
             "enterprise-light": "#0092b8 (colors/cyan/600)",
-            "enterprise-dark": "#0092b8 (colors/cyan/600)",
-            "mono-light": "#4f39f6 (colors/indigo/600)",
-            "mono-dark": "#4f39f6 (colors/indigo/600)"
+            "enterprise-dark": "#0092b8 (colors/cyan/600)"
           }
         },
         {
@@ -1640,12 +1262,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#1447e6 (colors/brand/700)",
             "modern-dark": "#2b7fff (colors/brand/500)",
-            "minimal-light": "#1c1917 (colors/stone/900)",
-            "minimal-dark": "#57534d (colors/stone/600)",
             "enterprise-light": "#007595 (colors/cyan/700)",
-            "enterprise-dark": "#00b8db (colors/cyan/500)",
-            "mono-light": "#312c85 (colors/indigo/900)",
-            "mono-dark": "#4f39f6 (colors/indigo/600)"
+            "enterprise-dark": "#00b8db (colors/cyan/500)"
           }
         },
         {
@@ -1657,12 +1275,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#1e2939 (colors/gray/800)",
             "modern-dark": "#333e4f (colors/gray/700)",
-            "minimal-light": "#292524 (colors/stone/800)",
-            "minimal-dark": "#44403b (colors/stone/700)",
             "enterprise-light": "#27272a (colors/zinc/800)",
-            "enterprise-dark": "#3f3f46 (colors/zinc/700)",
-            "mono-light": "#262626 (colors/neutral/800)",
-            "mono-dark": "#404040 (colors/neutral/700)"
+            "enterprise-dark": "#3f3f46 (colors/zinc/700)"
           }
         },
         {
@@ -1674,12 +1288,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#f9fafb80",
             "modern-dark": "#03071280",
-            "minimal-light": "#03071280",
-            "minimal-dark": "#03071280",
             "enterprise-light": "#03071280",
-            "enterprise-dark": "#03071280",
-            "mono-light": "#03071280",
-            "mono-dark": "#03071280"
+            "enterprise-dark": "#03071280"
           }
         },
         {
@@ -1691,12 +1301,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#ad46ff (colors/purple/500)",
             "modern-dark": "#ad46ff (colors/purple/500)",
-            "minimal-light": "#ad46ff (colors/purple/500)",
-            "minimal-dark": "#ad46ff (colors/purple/500)",
             "enterprise-light": "#ad46ff (colors/purple/500)",
-            "enterprise-dark": "#ad46ff (colors/purple/500)",
-            "mono-light": "#ad46ff (colors/purple/500)",
-            "mono-dark": "#ad46ff (colors/purple/500)"
+            "enterprise-dark": "#ad46ff (colors/purple/500)"
           }
         },
         {
@@ -1708,12 +1314,8 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "values": {
             "modern-light": "#ff8a4c (colors/orange/400)",
             "modern-dark": "#ff8a4c (colors/orange/400)",
-            "minimal-light": "#ff8a4c (colors/orange/400)",
-            "minimal-dark": "#ff8a4c (colors/orange/400)",
             "enterprise-light": "#ff8a4c (colors/orange/400)",
-            "enterprise-dark": "#ff8a4c (colors/orange/400)",
-            "mono-light": "#ff8a4c (colors/orange/400)",
-            "mono-dark": "#ff8a4c (colors/orange/400)"
+            "enterprise-dark": "#ff8a4c (colors/orange/400)"
           }
         }
       ]
@@ -1721,16 +1323,12 @@ export const adDesignKitDocs: ADDesignKitDocs = {
     "radius": {
       "themes": [
         "modern",
-        "minimal",
-        "enterprise",
-        "mono"
+        "enterprise"
       ],
       "rows": [
         {
           "cls": "rounded-0",
           "values": [
-            0,
-            0,
             0,
             0
           ]
@@ -1739,8 +1337,6 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "cls": "rounded-xxs",
           "values": [
             2,
-            2,
-            1,
             1
           ]
         },
@@ -1748,8 +1344,6 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "cls": "rounded-xs",
           "values": [
             4,
-            2,
-            1,
             1
           ]
         },
@@ -1757,8 +1351,6 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "cls": "rounded-sm",
           "values": [
             6,
-            4,
-            1,
             1
           ]
         },
@@ -1766,43 +1358,33 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "cls": "rounded",
           "values": [
             8,
-            6,
-            4,
-            1
+            4
           ]
         },
         {
           "cls": "rounded-base",
           "values": [
             12,
-            8,
-            4,
-            1
+            4
           ]
         },
         {
           "cls": "rounded-lg",
           "values": [
             16,
-            16,
-            4,
-            1
+            4
           ]
         },
         {
           "cls": "rounded-xl",
           "values": [
             24,
-            24,
-            4,
-            1
+            4
           ]
         },
         {
           "cls": "rounded-full",
           "values": [
-            9999,
-            9999,
             9999,
             9999
           ]
@@ -1892,13 +1474,11 @@ export const adDesignKitDocs: ADDesignKitDocs = {
     "typographyNote": "All Figma text styles use 150% line-height (built into the size classes). Text-style variants map to Tailwind modifiers: `leading-none` (100%), `leading-tight` (125%), `leading-relaxed` (162.5%), `leading-loose` (200%), `uppercase`, `underline`, `line-through`. Weights: `font-normal` (Regular), `font-medium`, `font-semibold`, `font-bold`, `font-extrabold`. Tracking: `tracking-tighter` (-0.8px), `tracking-tight` (-0.4px).\n\nCommon roles: page title `text-3xl/4xl font-bold text-heading`; section heading `text-xl/2xl font-semibold text-heading`; card title `text-2xl font-semibold text-heading`; body `text-base text-body` (dense UI `text-sm`); labels `text-sm font-medium text-heading`; helper `text-sm text-body`; caption `text-xs text-body-subtle`; buttons `text-sm font-medium` (xs: `text-xs`, lg/xl: `text-base`).",
     "fonts": {
       "modern": "Inter (font/family/font-sans)",
-      "minimal": "Open Sans",
-      "enterprise": "IBM Plex Serif",
-      "mono": "IBM Plex Mono"
+      "enterprise": "IBM Plex Serif"
     }
   },
   "guides": {
-    "rules": "1. **Only semantic token classes for color.** `bg-brand`, `text-heading`, `border-default-medium` — never `bg-blue-600`, `text-gray-500`, `#hex`, `rgb()`, `bg-[...]`, or inline `style={{color}}`. The class name *is* the Figma variable name (`colors/background/bg-brand` → `bg-brand`). The default Tailwind palette is deliberately removed in strict mode, so raw palette classes silently produce nothing.\n2. **No `dark:` color overrides.** Every semantic token already switches in dark mode and across the 4 themes. Writing `dark:bg-gray-800` breaks theming. (`dark:` is fine for non-color things like swapping an illustration.)\n3. **Spacing on the 4px scale only** (`p-2.5`, `gap-1.5`, `px-4`). No arbitrary values (`p-[13px]`). Figma spacing variables are `spacing/N` = N×4px, identical to Tailwind.\n4. **Radius from the themed scale:** `rounded-xxs`, `rounded-xs`, `rounded-sm`, `rounded`, `rounded-base`, `rounded-lg`, `rounded-xl`, `rounded-full`, `rounded-none`. These change per theme (Modern `rounded-base` = 12px, Enterprise = 4px, Mono = 1px). Never `rounded-md`/`rounded-2xl`/`rounded-[...]`.\n5. **Shadows from the effect styles:** `shadow-xs` (default for controls), `shadow`, and the overlay ladder `shadow-md` (Tooltip) → `shadow-lg` (Dropdown, Popover, Toast, menus) → `shadow-xl` (Modal, Drawer); `shadow-2xl` for marketing; focus rings `shadow-focus-brand|secondary|success|danger|warning|dark`.\n6. **Typography:** `text-xxs…text-6xl` with weights `font-normal|medium|semibold|bold|extrabold`. Body font comes from the theme (`font-sans` → Inter / Open Sans / IBM Plex Serif / IBM Plex Mono). Never set `font-[...]` families.\n7. **Use the AD Design Kit component before hand-rolling markup.** Check `references/components.json` → the component's doc section. If the needed variant does not exist in Figma, say so and propose adding it to Figma first rather than inventing a one-off in code.\n8. **Variants mirror Figma.** Props come from Figma variant properties via the registry's `propMap` (e.g. Figma `Color=Brand, Size=l` → `<Button color=\"brand\" size=\"lg\">`). Hover/Focus/Disabled/Active are CSS states, never props. Breakpoint variants are responsive classes, never props.",
+    "rules": "1. **Only semantic token classes for color.** `bg-brand`, `text-heading`, `border-default-medium` — never `bg-blue-600`, `text-gray-500`, `#hex`, `rgb()`, `bg-[...]`, or inline `style={{color}}`. The class name *is* the Figma variable name (`colors/background/bg-brand` → `bg-brand`). The default Tailwind palette is deliberately removed in strict mode, so raw palette classes silently produce nothing.\n2. **No `dark:` color overrides.** Every semantic token already switches in dark mode and across both themes. Writing `dark:bg-gray-800` breaks theming. (`dark:` is fine for non-color things like swapping an illustration.)\n3. **Spacing on the 4px scale only** (`p-2.5`, `gap-1.5`, `px-4`). No arbitrary values (`p-[13px]`). Figma spacing variables are `spacing/N` = N×4px, identical to Tailwind.\n4. **Radius from the themed scale:** `rounded-xxs`, `rounded-xs`, `rounded-sm`, `rounded`, `rounded-base`, `rounded-lg`, `rounded-xl`, `rounded-full`, `rounded-none`. These change per theme (Modern `rounded-base` = 12px, Enterprise = 4px, Mono = 1px). Never `rounded-md`/`rounded-2xl`/`rounded-[...]`.\n5. **Shadows from the effect styles:** `shadow-xs` (default for controls), `shadow`, and the overlay ladder `shadow-md` (Tooltip) → `shadow-lg` (Dropdown, Popover, Toast, menus) → `shadow-xl` (Modal, Drawer); `shadow-2xl` for marketing; focus rings `shadow-focus-brand|secondary|success|danger|warning|dark`.\n6. **Typography:** `text-xxs…text-6xl` with weights `font-normal|medium|semibold|bold|extrabold`. Body font comes from the theme (`font-sans` → Inter in Modern, IBM Plex Serif in Enterprise). Never set `font-[...]` families.\n7. **Use the AD Design Kit component before hand-rolling markup.** Check `references/components.json` → the component's doc section. If the needed variant does not exist in Figma, say so and propose adding it to Figma first rather than inventing a one-off in code.\n8. **Variants mirror Figma.** Props come from Figma variant properties via the registry's `propMap` (e.g. Figma `Color=Brand, Size=l` → `<Button color=\"brand\" size=\"lg\">`). Hover/Focus/Disabled/Active are CSS states, never props. Breakpoint variants are responsive classes, never props.",
     "cheatSheet": "| Need | Use |\n|---|---|\n| Page background | `bg-neutral-primary` |\n| Card / modal / popover surface | `bg-neutral-primary-soft` (+ `border border-default`) |\n| Input field & secondary button fill | `bg-neutral-secondary-medium` (+ `border-default-medium`) |\n| Subtle section / read-only / add-on | `bg-neutral-tertiary` |\n| Hover fill on neutral items (menu rows) | `bg-neutral-tertiary-medium` |\n| Track / divider fill (progress bg) | `bg-neutral-quaternary` |\n| Primary action | `bg-brand` → hover `bg-brand-strong`, focus `shadow-focus-brand` |\n| Tinted info surface | `bg-brand-softer` + `border-brand-subtle` + `text-fg-brand-strong` |\n| Status surfaces | `bg-{success,danger,warning}-soft` + `border-{…}-subtle` + `text-fg-{…}-strong` |\n| Solid status fill | `bg-success`, `bg-danger`, `bg-warning` (hover `-strong`) |\n| Headings / primary text | `text-heading` |\n| Body / secondary text | `text-body` |\n| Placeholder / meta text | `text-body-subtle` on `bg-neutral-primary` and `-primary-soft` only; on tinted or secondary surfaces use `text-body` (keeps 4.5:1) |\n| Links, active nav | `text-fg-brand` |\n| Disabled | `bg-disabled`, `text-fg-disabled`, `border-default-medium` |\n| Default border | `border-default`; controls `border-default-medium`; strong `border-default-strong` |\n| Text on solid fills | `text-white` |\n| Controls / scrims over images and media | `bg-overlay-light` (carousel arrows), `bg-overlay-dark` (image scrim) |\n| Charts / categorical | `bg-purple bg-sky bg-teal bg-pink bg-cyan bg-fuchsia bg-indigo bg-orange`, `text-fg-{purple,cyan,indigo,pink,lime,yellow}` |",
     "choosing": "| Situation | Use | Not |\n|---|---|---|\n| Trigger an action | `Button` | `Link`-styled text for primary actions; Badge |\n| Navigate to another page | `<a>` with `text-fg-brand` / `NavLink` / Ghost Button only for toolbar-style nav | Brand Button for every link |\n| Related actions side-by-side, one choice | `ButtonGroup` or `Tabs variant=\"segmented\"` | Separate buttons with gaps |\n| Persistent page-level message | `Alert` | Toast (auto-dismiss) |\n| Transient result of user action | `Toast` | Alert, Modal |\n| Requires decision before continuing | `Modal` | Drawer, Popover |\n| Secondary task alongside page (filters, details, forms) | `Drawer` | Modal for long forms |\n| Short hint on hover/focus, no interaction | `Tooltip` | Popover |\n| Rich content or interaction anchored to element | `Popover` | Tooltip |\n| List of actions/options from a trigger | `Dropdown` | Select for actions |\n| Choose 1 of many (form value) | `Select` (>5), `Radio`/`ChoiceCard` (≤5) | Dropdown |\n| Binary setting that applies immediately | `Toggle` | Checkbox |\n| Opt-in inside a form submitted later | `Checkbox` | Toggle |\n| Status/metadata label, count | `Badge` | Button, Alert |\n| Switch views within the same context | `Tabs` | Buttons, Pagination |\n| Multi-step flow | `Stepper` | Tabs |\n| Loading: unknown duration, small area | `Spinner`; layout-shaped content → `Skeleton`; known % → `Progress` | Skeleton for button loading |\n| Grouped content block | `Card` | Bare bordered div |\n| Collapsible Q&A / sections | `Accordion` | Tabs for >7 sections |\n| Tabular data to compare/sort | `Table` | List, Cards |\n| Simple vertical items | `List` | Table |",
     "auditOpen": "## Components\n\nNone open.\n\nCode mirrors Figma values exactly (the generated CSS is a faithful copy, so designers see exactly what ships).\n\n\n## Code ahead of Figma\n\nVariants that exist in code because a product needed them; add them to the Figma set, then re-run the sync so the registry lists them.\n\n| # | Component | Code | Proposed Figma addition |\n|---|---|---|---|\n| 48 | Sidebar item `1149:82699` | `meta` (second line, e.g. timestamp) and `actions` (per-item menu beside the link, shown on hover/focus) for chat or file history | Add `Type = With meta` (two-line label) and a `Show actions` boolean with a trailing ghost icon Button (visible in Hover/Active) to the Navigation list item set |\n\nClosed: Navbar `size=\"compact\"` and `fluid` (old rows 45 and 46) were added to Figma on 2026-10-31 as `Size = Default / Compact` and `Width = Contained / Fluid` (Desktop variants). Chat bubble `width=\"fluid\"` (old row 47) is Figma `Width = Fixed / Fluid` on the Chat bubble and Bubble sets, and DropdownItem `color=\"danger\"` (old row 49) is Figma `Color = Default / Danger` on the Dropdown list item set (Default type), both added on 2026-10-31.",

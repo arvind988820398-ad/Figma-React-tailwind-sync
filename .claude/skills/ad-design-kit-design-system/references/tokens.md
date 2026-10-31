@@ -119,17 +119,17 @@ Also available as `ring-*`, `outline-*`, `divide-*` (drop the `border-` prefix: 
 
 ## Radius (`border/border-radius/*`, themed)
 
-| Class | modern | minimal | enterprise | mono |
-|---|---|---|---|---|
-| `rounded-0` | 0 | 0 | 0 | 0 |
-| `rounded-xxs` | 2 | 2 | 1 | 1 |
-| `rounded-xs` | 4 | 2 | 1 | 1 |
-| `rounded-sm` | 6 | 4 | 1 | 1 |
-| `rounded` | 8 | 6 | 4 | 1 |
-| `rounded-base` | 12 | 8 | 4 | 1 |
-| `rounded-lg` | 16 | 16 | 4 | 1 |
-| `rounded-xl` | 24 | 24 | 4 | 1 |
-| `rounded-full` | 9999 | 9999 | 9999 | 9999 |
+| Class | modern | enterprise |
+|---|---|---|
+| `rounded-0` | 0 | 0 |
+| `rounded-xxs` | 2 | 1 |
+| `rounded-xs` | 4 | 1 |
+| `rounded-sm` | 6 | 1 |
+| `rounded` | 8 | 4 |
+| `rounded-base` | 12 | 4 |
+| `rounded-lg` | 16 | 4 |
+| `rounded-xl` | 24 | 4 |
+| `rounded-full` | 9999 | 9999 |
 
 Component defaults: buttons, inputs, cards, modals, alerts, menus, tooltips → `rounded-base`; badges → `rounded-sm`; checkbox → `rounded-xs`; dropdown rows, inner buttons → `rounded`; pills, avatars, toggles, radios, dots → `rounded-full`.
 

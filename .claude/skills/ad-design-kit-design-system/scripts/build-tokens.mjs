@@ -133,7 +133,7 @@ line('   AD Design Kit design tokens for Tailwind CSS v4 — GENERATED, DO NOT E
 line(`   Source: Figma ${stamp}`);
 line('   Regenerate: node .claude/skills/ad-design-kit-design-system/scripts/build-tokens.mjs');
 line('   Usage (main CSS):  @import "tailwindcss";  @import "./ad-design-kit.css";');
-line('   Theme switch:      <html data-theme="modern|minimal|enterprise|mono" class="dark?">');
+line('   Theme switch:      <html data-theme="modern|enterprise" class="dark?">');
 line('   ========================================================================== */');
 line();
 line('@custom-variant dark (&:where(.dark, .dark *));');

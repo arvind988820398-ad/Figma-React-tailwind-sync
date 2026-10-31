@@ -1,6 +1,6 @@
 // AD Design Kit themes map to the Figma "Themes" collection modes. Tokens switch automatically;
 // never branch color classes on the theme in TS.
-export const themes = ['modern', 'minimal', 'enterprise', 'mono'] as const;
+export const themes = ['modern', 'enterprise'] as const;
 export type ADDesignKitTheme = (typeof themes)[number];
 
 const STORAGE_KEY = 'ad-design-kit-theme';

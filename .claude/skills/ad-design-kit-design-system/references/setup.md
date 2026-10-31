@@ -33,12 +33,12 @@ Opacity modifiers (`bg-brand/50`) are not supported on semantic utilities — th
 
 ## 2. Fonts
 
-The base font switches by theme (`typography/font-family/font-base`). Load all four once in `index.html`:
+The base font switches by theme (`typography/font-family/font-base`). Load both once in `index.html`:
 
 ```html
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600;700;800&family=IBM+Plex+Serif:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Serif:wght@400;500;600;700&display=swap" rel="stylesheet">
 ```
 
 If the product ships a single theme, load only that theme's font.
@@ -46,22 +46,20 @@ If the product ships a single theme, load only that theme's font.
 | Theme | Font |
 |---|---|
 | modern | Inter |
-| minimal | Open Sans |
 | enterprise | IBM Plex Serif |
-| mono | IBM Plex Mono |
 
 ## 3. Themes & dark mode
 
 ```html
-<html data-theme="modern">            <!-- modern | minimal | enterprise | mono -->
+<html data-theme="modern">            <!-- modern | enterprise -->
 <html data-theme="modern" class="dark">
 ```
 
-- No `data-theme` → Modern. Themes can also be scoped: `<section data-theme="mono">` re-themes a subtree (works because the theme wiring uses `@theme inline`).
+- No `data-theme` → Modern. Themes can also be scoped: `<section data-theme="enterprise">` re-themes a subtree (works because the theme wiring uses `@theme inline`).
 - Theme switch helper:
 
 ```ts
-export type ADDesignKitTheme = 'modern' | 'minimal' | 'enterprise' | 'mono';
+export type ADDesignKitTheme = 'modern' | 'enterprise';
 export function setTheme(theme: ADDesignKitTheme, dark: boolean) {
   const el = document.documentElement;
   el.dataset.theme = theme;

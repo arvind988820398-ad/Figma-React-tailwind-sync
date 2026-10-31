@@ -63,7 +63,7 @@ export const BackgroundImage: Story = {
     variant: 'image',
     backgroundImage: 'https://picsum.photos/seed/aurora/1600/900',
     title: 'Built for every theme',
-    lead: 'Modern, Minimal, Enterprise and Mono — light and dark.',
+    lead: 'Modern and Enterprise — light and dark.',
     actions: (
       <>
         <Button size="lg">Get started</Button>

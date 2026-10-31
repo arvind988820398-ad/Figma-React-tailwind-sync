@@ -24,7 +24,7 @@ Not allowed, with no exceptions for "it's just this once":
 - Raw `<button>`, `<input>`, `<select>`, `<textarea>`, `<dialog>`, `<table>`/`<tr>`/`<td>`, `<details>`, `<progress>` — these are the signature of a hand-rolled control. Use Button, Input, Select, Textarea, Modal/Drawer, Table, Accordion, Progress.
 - Re-styling a component into something Figma does not have (a "pill" Button, a dark Alert, a 54px Sidebar), or a `Record<variant, classes>` map in feature code — that is a component in disguise.
 - The reference's hex colors, font families, pixel radii or shadows. The reference tells you *what* is on screen; AD Design Kit tokens decide *how it looks*.
-- **Any font decision at all.** The theme sets the family (Modern = Inter, Minimal = Open Sans, Enterprise = IBM Plex Serif, Mono = IBM Plex Mono, all loaded once in `index.html`); sizes are `text-xxs…text-6xl`, weights `font-normal…font-extrabold`. No `font-[…]`, no `style={{ fontFamily }}`, no Google Fonts link or `@font-face` in feature code, no `text-[13px]`. A mock in Roboto is still built in the theme font.
+- **Any font decision at all.** The theme sets the family (Modern = Inter, Enterprise = IBM Plex Serif, both loaded once in `index.html`); sizes are `text-xxs…text-6xl`, weights `font-normal…font-extrabold`. No `font-[…]`, no `style={{ fontFamily }}`, no Google Fonts link or `@font-face` in feature code, no `text-[13px]`. A mock in Roboto is still built in the theme font.
 
 `scripts/check-composition.mjs` enforces the mechanical parts of this; run it before you report.
 

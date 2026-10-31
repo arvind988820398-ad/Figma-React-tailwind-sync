@@ -5,8 +5,8 @@
 //
 // Opens the URL in headless Chromium (the project's Playwright), waits for webfonts, and for every element that renders
 // text compares the resolved font-family with the font the AD Design Kit theme in effect for that element defines
-// (data-theme on the nearest ancestor; Modern = Inter, Minimal = Open Sans, Enterprise = IBM Plex Serif, Mono =
-// IBM Plex Mono — read from the token manifest, never hardcoded). It also flags font sizes outside the text-xxs…6xl
+// (data-theme on the nearest ancestor; Modern = Inter, Enterprise = IBM Plex Serif —
+// read from the token manifest, never hardcoded). It also flags font sizes outside the text-xxs…6xl
 // scale and weights outside normal|medium|semibold|bold|extrabold, and reports whether each theme font really loaded.
 // Exit 1 on any mismatch. Use --selector to check one region (e.g. a drawer) instead of the whole page. Storybook story
 // URLs (iframe.html?viewMode=story&id=…) are scoped to the story root automatically; docs pages are Storybook chrome
