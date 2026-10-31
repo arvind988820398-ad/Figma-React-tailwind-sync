@@ -275,7 +275,7 @@ export const OpenAlignedEnd: Story = {
   },
 };
 
-// Destructive item: color="danger" (code ahead of Figma, audit row 49). Red text and icon, danger-soft hover.
+// Destructive item: color="danger" (Figma Color = Danger). Red text and icon, danger-soft hover.
 export const DangerItem: Story = {
   args: {
     label: 'Chat options',

@@ -108,8 +108,7 @@ export interface DropdownItemProps extends Omit<ButtonHTMLAttributes<HTMLButtonE
   /** Right side: Badge, shortcut, chevron… */
   trailing?: ReactNode;
   onSelect?: () => void;
-  /** danger = destructive action (Delete, Remove): fg-danger-strong text and icon, danger-soft hover.
-   *  Code ahead of Figma: see figma-audit.md "Code ahead of Figma". */
+  /** Figma Color = Danger: destructive action (Delete, Remove), fg-danger-strong text and icon, danger-soft hover. */
   color?: 'default' | 'danger';
 }
 

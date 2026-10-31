@@ -16,8 +16,8 @@ export interface ChatBubbleProps extends HTMLAttributes<HTMLDivElement> {
   /** Trailing actions (e.g. a ghost "more" icon button), size-5 icons. */
   menu?: ReactNode;
   clean?: boolean;
-  /** fixed = Figma's 320px bubble (default). fluid = the bubble fills 80% of the conversation width (full-page chat).
-   *  Code ahead of Figma: see figma-audit.md "Code ahead of Figma". */
+  /** Figma Width: Fixed = the 320px bubble (default). Fluid = the bubble fills the conversation up to 80% of its width
+   *  (full-page chat). */
   width?: 'fixed' | 'fluid';
 }
 

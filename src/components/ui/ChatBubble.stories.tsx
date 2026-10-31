@@ -121,7 +121,7 @@ export const Conversation: Story = {
   ),
 };
 
-// width="fluid": full-page chat, the bubble fills 80% of the conversation width (code ahead of Figma, audit row 47).
+// width="fluid": full-page chat, the bubble fills 80% of the conversation width (Figma Width = Fluid).
 export const FluidWidth: Story = {
   args: { width: 'fluid', children: 'In a full-page conversation the bubble takes 80% of the available width.' },
   render: (args) => (

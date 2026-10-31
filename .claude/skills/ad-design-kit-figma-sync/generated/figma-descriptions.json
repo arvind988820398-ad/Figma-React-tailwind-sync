@@ -135,7 +135,7 @@
    "figmaName": "Chat bubble",
    "react": "ChatBubble",
    "role": "main",
-   "description": "Chat bubble — conversational message row with avatar (Text, File, Audio, Calendar, Images, URL × received Left / sent Right).\n\nUse for conversational UIs.\nDon't for threaded comments/forums (List + Avatars) or notifications.\nAccessibility: sender and time are visible text; action buttons have aria-labels; decorative icons are aria-hidden.\n\nCode: <ChatBubble direction clean>\nDocs: https://ad-design-kit-storybook.netlify.app/?path=/docs/components-chatbubble--docs",
+   "description": "Chat bubble — conversational message row with avatar (Text, File, Audio, Calendar, Images, URL × received Left / sent Right).\n\nUse for conversational UIs.\nDon't for threaded comments/forums (List + Avatars) or notifications.\nAccessibility: sender and time are visible text; action buttons have aria-labels; decorative icons are aria-hidden.\n\nCode: <ChatBubble direction clean width>\nDocs: https://ad-design-kit-storybook.netlify.app/?path=/docs/components-chatbubble--docs",
    "docUrl": "https://ad-design-kit-storybook.netlify.app/?path=/docs/components-chatbubble--docs"
   },
   {

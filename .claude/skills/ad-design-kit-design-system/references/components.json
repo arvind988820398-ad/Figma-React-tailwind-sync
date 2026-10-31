@@ -2284,6 +2284,10 @@
     "Direction": [
      "Left",
      "Right"
+    ],
+    "Width": [
+     "Fixed",
+     "Fluid"
     ]
    },
    "parts": {
@@ -2312,6 +2316,13 @@
     },
     "Clean": {
      "prop": "clean"
+    },
+    "Width": {
+     "prop": "width",
+     "values": {
+      "Fixed": "fixed",
+      "Fluid": "fluid"
+     }
     }
    },
    "template": "templates/components/ChatBubble.tsx"
