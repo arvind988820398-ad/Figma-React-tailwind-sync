@@ -1,23 +1,30 @@
 {
-  "name": "ad-design-kit-app",
+  "name": "ad-design-kit",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
+  "description": "AD Design Kit: a Figma ⇄ React + Tailwind v4 design system kept in sync by Claude Code skills, documented in Storybook.",
   "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint": "oxlint",
     "preview": "vite preview",
+    "typecheck": "tsc -b",
+    "lint": "oxlint",
     "lint:tokens": "node .claude/skills/ad-design-kit-review/scripts/lint-tokens.mjs src",
-    "tokens:build": "node .claude/skills/ad-design-kit-design-system/scripts/build-tokens.mjs && cp .claude/skills/ad-design-kit-design-system/tokens/ad-design-kit.css src/styles/ad-design-kit.css && npm run docs:build",
+    "test": "vitest run --project storybook",
+    "test:coverage": "vitest run --project storybook --coverage",
+    "check": "npm run typecheck && npm run lint && npm run lint:tokens && npm run docs:check && npm run figma:descriptions -- --check && npm run figma:variants -- --check",
     "storybook": "npm run docs:build && NODE_OPTIONS=--max-old-space-size=8192 storybook dev -p 6006",
     "build-storybook": "npm run docs:build && storybook build",
     "storybook:deploy": "npm run build-storybook && npx -y netlify-cli deploy --prod --dir storybook-static --no-build --site 5c4cfb1c-721f-4500-aca8-f53b0d116efc",
-    "test": "vitest run --project storybook",
-    "test:coverage": "vitest run --project storybook --coverage",
+    "tokens:build": "node .claude/skills/ad-design-kit-design-system/scripts/build-tokens.mjs && cp .claude/skills/ad-design-kit-design-system/tokens/ad-design-kit.css src/styles/ad-design-kit.css && npm run docs:build",
     "docs:build": "node .storybook/scripts/build-docs.mjs",
     "docs:check": "node .storybook/scripts/build-docs.mjs --check",
-    "figma:descriptions": "node .claude/skills/ad-design-kit-figma-sync/scripts/build-figma-descriptions.mjs"
+    "figma:descriptions": "node .claude/skills/ad-design-kit-figma-sync/scripts/build-figma-descriptions.mjs",
+    "figma:variants": "node .claude/skills/ad-design-kit-figma-sync/scripts/build-variant-guidance.mjs"
   },
   "dependencies": {
     "clsx": "^2.1.1",
@@ -26,7 +33,7 @@
     "tailwind-merge": "^3.7.0"
   },
   "devDependencies": {
-    "@chromatic-com/storybook": "latest",
+    "@chromatic-com/storybook": "^5.6.0",
     "@storybook/addon-a11y": "^10.6.4",
     "@storybook/addon-designs": "^12.0.0",
     "@storybook/addon-docs": "^10.6.4",
@@ -38,14 +45,14 @@
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "@vitejs/plugin-react": "^6.1.2",
-    "@vitest/browser-playwright": "latest",
-    "@vitest/coverage-v8": "latest",
+    "@vitest/browser-playwright": "^5.0.5",
+    "@vitest/coverage-v8": "^5.0.5",
     "oxlint": "^1.88.0",
-    "playwright": "latest",
+    "playwright": "^1.64.1",
     "storybook": "^10.6.4",
     "tailwindcss": "^4.3.3",
     "typescript": "~6.0.3",
     "vite": "^8.3.4",
-    "vitest": "latest"
+    "vitest": "^5.0.5"
   }
 }

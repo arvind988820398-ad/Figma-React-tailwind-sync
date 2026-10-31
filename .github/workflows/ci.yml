@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    name: Typecheck, lint, docs drift, build and tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - run: npm ci
+
+      # Typecheck, oxlint, AD Design Kit token linter, generated Storybook docs, Figma descriptions and
+      # per-variant guidance must all be up to date with the registry and docs.
+      - run: npm run check
+
+      # The app's token CSS must equal a fresh build from the committed Figma snapshot.
+      - name: Token CSS matches the Figma snapshot
+        run: |
+          node .claude/skills/ad-design-kit-design-system/scripts/build-tokens.mjs --out /tmp/adk
+          diff -q /tmp/adk/ad-design-kit.css src/styles/ad-design-kit.css
+
+      - run: npm run build
+
+      - name: Install Chromium for the Storybook tests
+        run: npx playwright install --with-deps chromium
+
+      # Every story renders in Chromium with its interaction tests and axe accessibility checks.
+      - run: npm run test:coverage
