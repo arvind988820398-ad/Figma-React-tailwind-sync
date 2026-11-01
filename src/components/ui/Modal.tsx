@@ -56,8 +56,9 @@ export function Modal({ open, onOpenChange, title, icon, description, header = t
     <dialog
       ref={ref}
       aria-labelledby={titleId}
-      onClose={() => onOpenChange(false)}
-      onCancel={(e) => { if (!dismissible) e.preventDefault(); }}
+      // Only this dialog's own close/cancel: a dialog opened inside this one closes on its own.
+      onClose={(e) => { if (e.target === e.currentTarget) onOpenChange(false); }}
+      onCancel={(e) => { if (!dismissible && e.target === e.currentTarget) e.preventDefault(); }}
       onClick={(e) => { if (dismissible && e.target === e.currentTarget) onOpenChange(false); }}
       className={cn(
         'm-auto w-full rounded-base border border-default bg-neutral-primary-soft p-6 text-body shadow-xl backdrop:bg-black/50',

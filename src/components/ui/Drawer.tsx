@@ -47,7 +47,8 @@ export function Drawer({ open, onOpenChange, title, icon, children, footer, plac
     <dialog
       ref={ref}
       aria-labelledby={titleId}
-      onClose={() => onOpenChange(false)}
+      // Only this dialog's own close: a Modal opened inside the drawer closes without closing the drawer.
+      onClose={(e) => { if (e.target === e.currentTarget) onOpenChange(false); }}
       onClick={(e) => { if (e.target === e.currentTarget) onOpenChange(false); }}
       className={cn(
         'fixed m-0 bg-neutral-primary-soft text-body shadow-xl backdrop:bg-black/50',

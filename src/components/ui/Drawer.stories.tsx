@@ -29,6 +29,7 @@ import { Button } from './Button';
 import { Drawer, type DrawerPlacement, type DrawerProps } from './Drawer';
 import { IconShape } from './IconShape';
 import { HelperText, Input, Label } from './Input';
+import { Modal } from './Modal';
 import { Sidebar } from './Sidebar';
 import { TagInput } from './TagInput';
 import { Textarea } from './Textarea';
@@ -385,5 +386,50 @@ export const NavigationKeyboard: Story = {
     await waitFor(() => expect(within(drawer).getByRole('button', { name: 'Close' })).toHaveFocus());
     await userEvent.tab();
     await expect(within(nav).getByRole('link', { name: 'Overview' })).toHaveFocus();
+  },
+};
+
+function DrawerWithConfirm() {
+  const [open, setOpen] = useState(false);
+  const [confirm, setConfirm] = useState(false);
+  return (
+    <>
+      <Button onClick={() => setOpen(true)}>Open drawer</Button>
+      <Drawer open={open} onOpenChange={setOpen} placement="end" title="Order info">
+        <Button color="danger" onClick={() => setConfirm(true)}>Delete order</Button>
+        <Modal
+          open={confirm}
+          onOpenChange={setConfirm}
+          title="Delete order?"
+          size="sm"
+          footer={<Button color="danger" onClick={() => setConfirm(false)}>Delete</Button>}
+        >
+          <p className="text-sm">The order is removed from the list.</p>
+        </Modal>
+      </Drawer>
+    </>
+  );
+}
+
+// A Modal opened from inside the drawer closes on its own: the drawer stays open (regression: the modal's close
+// event used to reach the drawer and close it too).
+export const ModalInsideDrawer: Story = {
+  render: () => <DrawerWithConfirm />,
+  play: async ({ canvas, canvasElement, userEvent }) => {
+    const body = within(canvasElement.ownerDocument.body);
+    await userEvent.click(canvas.getByRole('button', { name: 'Open drawer' }));
+    const drawer = await body.findByRole('dialog', { name: 'Order info' });
+    await userEvent.click(within(drawer).getByRole('button', { name: 'Delete order' }));
+    const modal = await body.findByRole('dialog', { name: 'Delete order?' });
+    await userEvent.click(within(modal).getByRole('button', { name: 'Delete' }));
+    await waitFor(() => expect(modal).not.toHaveAttribute('open'));
+    await expect(drawer).toHaveAttribute('open');
+    // Esc in the modal closes only the modal too. user-event keys never reach the native <dialog> Escape handling, so
+    // close the modal the way the browser does: dialog.close(), whose close event is what used to reach the drawer.
+    await userEvent.click(within(drawer).getByRole('button', { name: 'Delete order' }));
+    await waitFor(() => expect(modal).toHaveAttribute('open'));
+    (modal as HTMLDialogElement).close();
+    await waitFor(() => expect(modal).not.toHaveAttribute('open'));
+    await expect(drawer).toHaveAttribute('open');
   },
 };
