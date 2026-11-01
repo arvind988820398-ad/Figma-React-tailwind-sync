@@ -12,7 +12,7 @@ A design system whose Figma file and React + Tailwind CSS v4 code stay in sync. 
 - **Tokens generated from Figma:** colors, radius, typography and shadows for 2 themes (Modern, Enterprise) × light and dark.
 - **Living docs in Storybook,** generated from the same registry and usage docs the Figma sync maintains: Figma property → React prop maps, recipes, when to use each variant, and a Figma embed.
 - **447 icons from Figma** as React components (`AngleDownIcon`, `CloseIcon`, …), used by every component and shown in Storybook → Foundations → Icons.
-- **A demo app:** the chat screen in `src/features/chat`, composed only from library components.
+- **A demo app:** a material management web app in `src/features/materials` (material list, indents with approval, purchase orders, GRN, site transfers, material issue, expenses, vendor payable), composed only from library components.
 
 ## Getting started
 
@@ -51,7 +51,7 @@ npm run storybook    # docs at http://localhost:6006
 ├── src/
 │   ├── components/ui/      # the 56 components + their *.stories.tsx
 │   ├── components/icons/   # all 447 Figma icons (generated) + createIcon
-│   ├── features/chat/      # demo app built only from library components
+│   ├── features/materials/ # demo app built only from library components
 │   ├── lib/                # cn() class merger, theme switcher
 │   └── styles/             # app.css (Tailwind entry) + ad-design-kit.css (generated tokens, never edit)
 ├── .storybook/

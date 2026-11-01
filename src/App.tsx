@@ -1,5 +1,5 @@
-import { ChatApp } from './features/chat/ChatApp';
+import { MaterialsApp } from './features/materials/MaterialsApp';
 
 export default function App() {
-  return <ChatApp />;
+  return <MaterialsApp />;
 }
