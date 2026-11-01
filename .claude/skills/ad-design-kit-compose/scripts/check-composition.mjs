@@ -3,9 +3,21 @@
 //
 //   node check-composition.mjs <file-or-dir>... [--json]
 //
+// Besides the findings it prints what each file is built from (the AD Design Kit components it renders and the gaps it
+// marks), so a report can show "components only" as a fact instead of a claim. --json returns the same as
+// { files, errors, warnings, inventory: { <file>: { components: { Button: 3, … }, gaps: ['tinted-summary'] } } };
+// Storybook → Guides → Figma sync renders it for every screen under src/features.
+//
 // Errors (exit 1):
-//   raw-control        <button>/<input>/<select>/<textarea>/<dialog>/<table…>/<details>/<progress> written by hand
-//                      → use Button, Input, Select, Textarea, Modal/Drawer, Table, Accordion, Progress
+//   raw-control        <button>/<input>/<select>/<textarea>/<dialog>/<table…>/<details>/<progress>/<datalist>/<svg>
+//                      written by hand → use Button, Input, Select, Textarea, Modal/Drawer, Table, Accordion, Progress,
+//                      Autocomplete, the Figma icons
+//   custom-surface     a plain element (div, section, dl, span, a…) styled to look like a component: a background
+//                      (bg-*), a shadow, or a rounded full border. That is a Card, Alert, Badge… drawn by hand. Use the
+//                      component, or record a gap (references/gaps.json) and mark the stand-in. Dividers (border-t…),
+//                      text colours, focus rings, the page background (bg-neutral-primary) and the dashed
+//                      "Needs AD Design Kit component" placeholder are fine.
+//   unknown-gap        `// ad-design-kit-gap: <id>` names a gap that is not in references/gaps.json
 //   new-ui-component   a file under src/components/ui that is not in the AD Design Kit registry
 //   style-override     className on an AD Design Kit component that changes its look (bg-, text colour/size, padding, height,
 //                      radius, shadow, font, hover:) — a component in disguise; only layout utilities may be passed
@@ -52,9 +64,29 @@ const walk = (p) => {
 for (const t of targets) walk(path.resolve(t));
 
 const findings = [];
+const inventory = {};
 const add = (level, rule, file, line, detail) => findings.push({ level, rule, file: path.relative(root, file), line, detail });
 
-const RAW = /<(button|input|select|textarea|dialog|table|thead|tbody|tfoot|tr|th|td|details|summary|progress|meter)\b/;
+const RAW = /<(button|input|select|textarea|dialog|table|thead|tbody|tfoot|tr|th|td|details|summary|progress|meter|datalist|svg)\b/;
+const gaps = JSON.parse(fs.readFileSync(path.join(here, '..', 'references', 'gaps.json'), 'utf8')).gaps;
+const gapIds = new Set(gaps.map((g) => g.id));
+const GAP = /ad-design-kit-gap:\s*([a-z0-9-]+)/g;
+const PLACEHOLDER = /Needs AD Design Kit component/;
+
+/** Classes on a plain element that draw a surface: fills, shadows (not focus rings) and rounded full borders. */
+function surfaceClasses(classes) {
+  const base = (c) => c.replace(/^(?:[a-z0-9-]+:)+/, '');
+  const bases = classes.map(base);
+  const rounded = bases.some((b) => /^rounded/.test(b));
+  const fullBorder = bases.some((b) => /^border(-[0-9])?$/.test(b));
+  return classes.filter((c, i) => {
+    const b = bases[i];
+    // bg-neutral-primary is the page background (cheat sheet), set once on the app or page root.
+    if (/^bg-/.test(b)) return b !== 'bg-neutral-primary' && !/^bg-(transparent|none|clip|origin|fixed|local|scroll|cover|contain|center|repeat|no-repeat)/.test(b);
+    if (/^shadow/.test(b)) return b !== 'shadow-none' && !/^shadow-focus/.test(b);
+    return rounded && fullBorder && (/^rounded/.test(b) || /^border(-[0-9])?$/.test(b));
+  });
+}
 // className tokens that only place or size a component in the layout. Everything else restyles it.
 const LAYOUT_OK =
   /^(-?)(w-|min-w-|max-w-|h-full$|h-dvh$|h-screen$|min-h-|max-h-|flex|grid|col-|row-|gap-|m[xytblrse]?-|self-|shrink|grow|basis-|justify-|items-|content-|order-|hidden$|block$|inline|sr-only$|overflow-|sticky$|relative$|absolute$|fixed$|inset-|top-|bottom-|start-|end-|z-|truncate$|text-(start|end|center|wrap|nowrap|ellipsis)$|whitespace-|border-[tbse]$|border-default|divide-|place-|aspect-|(sm|md|lg|xl|2xl):)/;
@@ -109,13 +141,13 @@ function topLevelProps(attrs) {
   return props;
 }
 
-/** Yields { name, line, classes } for every <UiComponent … className=…> in the file. */
-function* componentClassNames(src, names) {
+/** Yields { name, line, classes, index } for every tag accepted by `want` that has a className (or *ClassName) prop. */
+function* tagClassNames(src, want) {
   const consts = stringConsts(src);
-  const re = /<([A-Z][A-Za-z0-9]*)\b/g;
+  const re = /<([A-Za-z][A-Za-z0-9]*)\b/g;
   let m;
   while ((m = re.exec(src))) {
-    if (!names.has(m[1])) continue;
+    if (!want(m[1])) continue;
     // Walk to the end of the opening tag, honouring {…} and quotes.
     let i = re.lastIndex, depth = 0, quote = null;
     for (; i < src.length; i++) {
@@ -136,7 +168,7 @@ function* componentClassNames(src, names) {
       for (const id of value.matchAll(/\b([A-Za-z_$][\w$]*)\b/g)) if (consts.has(id[1])) literal += ' ' + consts.get(id[1]);
     }
     if (!literal.trim()) continue;
-    yield { name: m[1], line: src.slice(0, m.index).split('\n').length, classes: literal.split(/\s+/).filter(Boolean) };
+    yield { name: m[1], line: src.slice(0, m.index).split('\n').length, classes: literal.split(/\s+/).filter(Boolean), index: m.index };
   }
 }
 const ALLOW = /ad-design-kit-compose-allow:/;
@@ -178,10 +210,27 @@ for (const file of files) {
   });
 
   const names = uiComponents(src);
-  for (const { name, line, classes } of componentClassNames(src, names)) {
+  const lines = src.split('\n');
+  const allowed = (line) => ALLOW.test(lines[line - 1] || '') || ALLOW.test(lines[line - 2] || '');
+  for (const { name, line, classes } of tagClassNames(src, (n) => names.has(n))) {
     const bad = classes.filter((c) => !LAYOUT_OK.test(c));
     if (bad.length) add('error', 'style-override', file, line, `<${name} className="…${bad.join(' ')}…"> restyles a system component. Use a variant or prop, keep only layout utilities, or report a gap.`);
   }
+  for (const { name, line, classes, index } of tagClassNames(src, (n) => /^[a-z]/.test(n))) {
+    const bad = surfaceClasses(classes);
+    if (!bad.length || allowed(line) || PLACEHOLDER.test(src.slice(index, index + 400))) continue;
+    add('error', 'custom-surface', file, line, `<${name} className="…${bad.join(' ')}…"> draws its own surface — a component made by hand. Use Card / Alert / Badge / … or record a gap and mark the stand-in.`);
+  }
+
+  // What the file is built from: rendered AD Design Kit components and the gaps it marks.
+  const used = {};
+  for (const n of names) {
+    const count = (src.match(new RegExp(`<${n}\\b`, 'g')) || []).length;
+    if (count) used[n] = count;
+  }
+  const marked = [...new Set([...src.matchAll(GAP)].map((g) => g[1]))];
+  for (const id of marked) if (!gapIds.has(id)) add('error', 'unknown-gap', file, 1, `ad-design-kit-gap: ${id} is not in ad-design-kit-compose/references/gaps.json — record the gap there first.`);
+  if (!isStory) inventory[path.relative(root, file)] = { components: used, gaps: marked };
 
   for (const m of src.matchAll(IMPORT)) {
     const spec = m[1];
@@ -214,11 +263,19 @@ try {
 
 const errors = findings.filter((f) => f.level === 'error');
 const warnings = findings.filter((f) => f.level === 'warning');
-if (json) console.log(JSON.stringify({ files: files.length, errors, warnings }, null, 2));
+if (json) console.log(JSON.stringify({ files: files.length, errors, warnings, inventory }, null, 2));
 else {
   for (const f of findings) console.log(`${f.level === 'error' ? 'ERROR' : 'warn '}  ${f.rule.padEnd(17)} ${f.file}:${f.line}  ${f.detail}`);
+  // Built from: the evidence for "composed from AD Design Kit components only".
+  const totals = {};
+  for (const { components } of Object.values(inventory)) for (const [n, c] of Object.entries(components)) totals[n] = (totals[n] || 0) + c;
+  const marked = [...new Set(Object.values(inventory).flatMap((i) => i.gaps))];
+  const handMade = findings.filter((f) => ['raw-control', 'custom-surface', 'style-override', 'new-ui-component'].includes(f.rule)).length;
+  console.log(`\nBuilt from ${Object.keys(totals).length} AD Design Kit components: ${Object.entries(totals).sort((a, b) => b[1] - a[1]).map(([n, c]) => `${n} ×${c}`).join(', ') || 'none'}`);
+  console.log(`Hand-made controls or surfaces: ${handMade}`);
+  console.log(`Gaps marked in code: ${marked.length ? marked.map((id) => `${id} (${gaps.find((g) => g.id === id)?.status ?? 'unknown'})`).join(', ') : 'none'}`);
   console.log(`\n${files.length} file(s) · ${errors.length} error(s) · ${warnings.length} warning(s)${tokenCount ? ` · ${tokenCount} from the token linter` : ''}`);
-  if (!errors.length) console.log('Composition OK: no hand-rolled controls, no new components, tokens clean.');
+  if (!errors.length) console.log('Composition OK: no hand-rolled controls or surfaces, no new components, tokens clean.');
 }
 process.exit(errors.length ? 1 : 0);
 
@@ -231,5 +288,6 @@ function hint(tag) {
     dialog: 'Modal or Drawer',
     table: 'Table', thead: 'TableHead', tbody: 'TableBody', tfoot: 'TableBody', tr: 'TableRow', th: 'TableHeaderCell', td: 'TableCell',
     details: 'Accordion', summary: 'Accordion', progress: 'Progress', meter: 'Progress',
+    datalist: 'Autocomplete', svg: 'an icon from src/components/icons (a missing icon is a gap: add it to the Figma Icons page)',
   }[tag] || 'the matching AD Design Kit component';
 }

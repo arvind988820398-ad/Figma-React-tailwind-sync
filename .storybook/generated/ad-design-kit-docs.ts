@@ -3,6 +3,17 @@
 // Regenerate: npm run docs:build (runs automatically before `npm run storybook`).
 
 export interface ADDesignKitDrift { component?: string; kind: string; detail: string }
+export interface ADDesignKitScreen {
+  name: string;
+  path: string;
+  files: number;
+  /** docs = the Storybook component page that documents it (TableCell → Table). */
+  components: { name: string; count: number; docs: string | null }[];
+  handMade: number;
+  findings: { level: string; rule: string; file: string; line: number; detail: string }[];
+  gaps: string[];
+}
+export interface ADDesignKitGap { id: string; title: string; status: 'open' | 'in-figma' | 'done'; found: string; screen: string; reference: string; need: string; proposal: string; standIn: string; usedIn: string[] }
 export interface ADDesignKitColorToken { cls: string; use: string; light: string; dark: string; cssVar: string; values: Record<string, string> }
 export interface ADDesignKitExtraDoc { react: string; heading: string; figmaLine: string; doc: string; node?: string; figmaUrl?: string }
 export interface ADDesignKitComponentDoc {
@@ -57,6 +68,8 @@ export interface ADDesignKitDocs {
   categoryIntro: Record<string, string>;
   components: Record<string, ADDesignKitComponentDoc>;
   drift: ADDesignKitDrift[];
+  screens: ADDesignKitScreen[];
+  gaps: ADDesignKitGap[];
 }
 
 export const adDesignKitDocs: ADDesignKitDocs = {
@@ -1566,7 +1579,7 @@ export const adDesignKitDocs: ADDesignKitDocs = {
     }
   },
   "guides": {
-    "rules": "1. **Only semantic token classes for color.** `bg-brand`, `text-heading`, `border-default-medium` — never `bg-blue-600`, `text-gray-500`, `#hex`, `rgb()`, `bg-[...]`, or inline `style={{color}}`. The class name *is* the Figma variable name (`colors/background/bg-brand` → `bg-brand`). The default Tailwind palette is deliberately removed in strict mode, so raw palette classes silently produce nothing.\n2. **No `dark:` color overrides.** Every semantic token already switches in dark mode and across both themes. Writing `dark:bg-gray-800` breaks theming. (`dark:` is fine for non-color things like swapping an illustration.)\n3. **Spacing on the 4px scale only** (`p-2.5`, `gap-1.5`, `px-4`). No arbitrary values (`p-[13px]`). Figma spacing variables are `spacing/N` = N×4px, identical to Tailwind.\n4. **Radius from the themed scale:** `rounded-xxs`, `rounded-xs`, `rounded-sm`, `rounded`, `rounded-base`, `rounded-lg`, `rounded-xl`, `rounded-full`, `rounded-none`. These change per theme (Modern `rounded-base` = 12px, Enterprise = 4px, Mono = 1px). Never `rounded-md`/`rounded-2xl`/`rounded-[...]`.\n5. **Shadows from the effect styles:** `shadow-xs` (default for controls), `shadow`, and the overlay ladder `shadow-md` (Tooltip) → `shadow-lg` (Dropdown, Popover, Toast, menus) → `shadow-xl` (Modal, Drawer); `shadow-2xl` for marketing; focus rings `shadow-focus-brand|secondary|success|danger|warning|dark`.\n6. **Typography:** `text-xxs…text-6xl` with weights `font-normal|medium|semibold|bold|extrabold`. Body font comes from the theme (`font-sans` → Inter in Modern, IBM Plex Serif in Enterprise). Never set `font-[...]` families.\n7. **Icons come from Figma.** Import them from `components/icons` by Figma name in PascalCase (`angle-down` → `AngleDownIcon`); they are 1em, follow the text colour, and are hidden from screen readers unless given a `title`. Never draw an inline `<svg>` icon; add a missing one to the Figma Icons page and re-sync.\n8. **Use the AD Design Kit component before hand-rolling markup.** Check `references/components.json` → the component's doc section. If the needed variant does not exist in Figma, say so and propose adding it to Figma first rather than inventing a one-off in code.\n9. **Variants mirror Figma.** Props come from Figma variant properties via the registry's `propMap` (e.g. Figma `Color=Brand, Size=l` → `<Button color=\"brand\" size=\"lg\">`). Hover/Focus/Disabled/Active are CSS states, never props. Breakpoint variants are responsive classes, never props.",
+    "rules": "1. **Only semantic token classes for color.** `bg-brand`, `text-heading`, `border-default-medium` — never `bg-blue-600`, `text-gray-500`, `#hex`, `rgb()`, `bg-[...]`, or inline `style={{color}}`. The class name *is* the Figma variable name (`colors/background/bg-brand` → `bg-brand`). The default Tailwind palette is deliberately removed in strict mode, so raw palette classes silently produce nothing.\n2. **No `dark:` color overrides.** Every semantic token already switches in dark mode and across both themes. Writing `dark:bg-gray-800` breaks theming. (`dark:` is fine for non-color things like swapping an illustration.)\n3. **Spacing on the 4px scale only** (`p-2.5`, `gap-1.5`, `px-4`). No arbitrary values (`p-[13px]`). Figma spacing variables are `spacing/N` = N×4px, identical to Tailwind.\n4. **Radius from the themed scale:** `rounded-xxs`, `rounded-xs`, `rounded-sm`, `rounded`, `rounded-base`, `rounded-lg`, `rounded-xl`, `rounded-full`, `rounded-none`. These change per theme (Modern `rounded-base` = 12px, Enterprise = 4px, Mono = 1px). Never `rounded-md`/`rounded-2xl`/`rounded-[...]`.\n5. **Shadows from the effect styles:** `shadow-xs` (default for controls), `shadow`, and the overlay ladder `shadow-md` (Tooltip) → `shadow-lg` (Dropdown, Popover, Toast, menus) → `shadow-xl` (Modal, Drawer); `shadow-2xl` for marketing; focus rings `shadow-focus-brand|secondary|success|danger|warning|dark`.\n6. **Typography:** `text-xxs…text-6xl` with weights `font-normal|medium|semibold|bold|extrabold`. Body font comes from the theme (`font-sans` → Inter in Modern, IBM Plex Serif in Enterprise). Never set `font-[...]` families.\n7. **Icons come from Figma.** Import them from `components/icons` by Figma name in PascalCase (`angle-down` → `AngleDownIcon`); they are 1em, follow the text colour, and are hidden from screen readers unless given a `title`. Never draw an inline `<svg>` icon; add a missing one to the Figma Icons page and re-sync.\n8. **Use the AD Design Kit component before hand-rolling markup.** Check `references/components.json` → the component's doc section. If the needed variant does not exist in Figma, say so and propose adding it to Figma first rather than inventing a one-off in code. That includes surfaces: a `div` with a background, shadow or rounded border is a Card/Badge/Alert drawn by hand. Record anything Figma lacks in `ad-design-kit-compose/references/gaps.json` and mark the stand-in with `// ad-design-kit-gap: <id>`; `npm run check:screens` enforces this for `src/features`.\n9. **Variants mirror Figma.** Props come from Figma variant properties via the registry's `propMap` (e.g. Figma `Color=Brand, Size=l` → `<Button color=\"brand\" size=\"lg\">`). Hover/Focus/Disabled/Active are CSS states, never props. Breakpoint variants are responsive classes, never props.",
     "cheatSheet": "| Need | Use |\n|---|---|\n| Page background | `bg-neutral-primary` |\n| Card / modal / popover surface | `bg-neutral-primary-soft` (+ `border border-default`) |\n| Input field & secondary button fill | `bg-neutral-secondary-medium` (+ `border-default-medium`) |\n| Subtle section / read-only / add-on | `bg-neutral-tertiary` |\n| Hover fill on neutral items (menu rows) | `bg-neutral-tertiary-medium` |\n| Track / divider fill (progress bg) | `bg-neutral-quaternary` |\n| Primary action | `bg-brand` → hover `bg-brand-strong`, focus `shadow-focus-brand` |\n| Tinted info surface | `bg-brand-softer` + `border-brand-subtle` + `text-fg-brand-strong` |\n| Status surfaces | `bg-{success,danger,warning}-soft` + `border-{…}-subtle` + `text-fg-{…}-strong` |\n| Solid status fill | `bg-success`, `bg-danger`, `bg-warning` (hover `-strong`) |\n| Headings / primary text | `text-heading` |\n| Body / secondary text | `text-body` |\n| Placeholder / meta text | `text-body-subtle` on `bg-neutral-primary` and `-primary-soft` only; on tinted or secondary surfaces use `text-body` (keeps 4.5:1) |\n| Links, active nav | `text-fg-brand` |\n| Disabled | `bg-disabled`, `text-fg-disabled`, `border-default-medium` |\n| Default border | `border-default`; controls `border-default-medium`; strong `border-default-strong` |\n| Text on solid fills | `text-white` |\n| Controls / scrims over images and media | `bg-overlay-light` (carousel arrows), `bg-overlay-dark` (image scrim) |\n| Charts / categorical | `bg-purple bg-sky bg-teal bg-pink bg-cyan bg-fuchsia bg-indigo bg-orange`, `text-fg-{purple,cyan,indigo,pink,lime,yellow}` |",
     "choosing": "| Situation | Use | Not |\n|---|---|---|\n| Trigger an action | `Button` | `Link`-styled text for primary actions; Badge |\n| Navigate to another page | `<a>` with `text-fg-brand` / `NavLink` / Ghost Button only for toolbar-style nav | Brand Button for every link |\n| Related actions side-by-side, one choice | `ButtonGroup` or `Tabs variant=\"segmented\"` | Separate buttons with gaps |\n| Persistent page-level message | `Alert` | Toast (auto-dismiss) |\n| Transient result of user action | `Toast` | Alert, Modal |\n| Requires decision before continuing | `Modal` | Drawer, Popover |\n| Secondary task alongside page (filters, details, forms) | `Drawer` | Modal for long forms |\n| Short hint on hover/focus, no interaction | `Tooltip` | Popover |\n| Rich content or interaction anchored to element | `Popover` | Tooltip |\n| List of actions/options from a trigger | `Dropdown` | Select for actions |\n| Choose 1 of many (form value) | `Select` (>5), `Radio`/`ChoiceCard` (≤5) | Dropdown |\n| Binary setting that applies immediately | `Toggle` | Checkbox |\n| Opt-in inside a form submitted later | `Checkbox` | Toggle |\n| Status/metadata label, count | `Badge` | Button, Alert |\n| Switch views within the same context | `Tabs` | Buttons, Pagination |\n| Multi-step flow | `Stepper` | Tabs |\n| Loading: unknown duration, small area | `Spinner`; layout-shaped content → `Skeleton`; known % → `Progress` | Skeleton for button loading |\n| Grouped content block | `Card` | Bare bordered div |\n| Collapsible Q&A / sections | `Accordion` | Tabs for >7 sections |\n| Tabular data to compare/sort | `Table` | List, Cards |\n| Simple vertical items | `List` | Table |",
     "auditOpen": "## Components\n\nNone open.\n\nCode mirrors Figma values exactly (the generated CSS is a faithful copy, so designers see exactly what ships).\n\n\nNaming only (no code impact): the Checkbox input set's `Size` property has `base` on the checkbox variants and `Default` on the radio variants, and both are 16px. Suggest one value (or removing the property) in Figma; code has no size prop because there is no second size.\n\n## Code ahead of Figma\n\nVariants that exist in code because a product needed them; add them to the Figma set, then re-run the sync so the registry lists them.\n\n| # | Component | Code | Proposed Figma addition |\n|---|---|---|---|\n| 48 | Sidebar item `1149:82699` | `meta` (second line, e.g. timestamp) and `actions` (per-item menu beside the link, shown on hover/focus) for chat or file history | Add `Type = With meta` (two-line label) and a `Show actions` boolean with a trailing ghost icon Button (visible in Hover/Active) to the Navigation list item set |\n\nClosed: Navbar `size=\"compact\"` and `fluid` (old rows 45 and 46) were added to Figma on 2026-10-31 as `Size = Default / Compact` and `Width = Contained / Fluid` (Desktop variants). Chat bubble `width=\"fluid\"` (old row 47) is Figma `Width = Fixed / Fluid` on the Chat bubble and Bubble sets, and DropdownItem `color=\"danger\"` (old row 49) is Figma `Color = Default / Danger` on the Dropdown list item set (Default type), both added on 2026-10-31.",
@@ -4726,5 +4739,230 @@ export const adDesignKitDocs: ADDesignKitDocs = {
       "related": []
     }
   },
-  "drift": []
+  "drift": [],
+  "screens": [
+    {
+      "name": "materials",
+      "path": "src/features/materials",
+      "files": 10,
+      "components": [
+        {
+          "name": "TableCell",
+          "count": 134,
+          "docs": "Table"
+        },
+        {
+          "name": "TableHeaderCell",
+          "count": 115,
+          "docs": "Table"
+        },
+        {
+          "name": "Button",
+          "count": 80,
+          "docs": "Button"
+        },
+        {
+          "name": "TableRow",
+          "count": 43,
+          "docs": "Table"
+        },
+        {
+          "name": "Input",
+          "count": 35,
+          "docs": "Input"
+        },
+        {
+          "name": "Label",
+          "count": 34,
+          "docs": "Input"
+        },
+        {
+          "name": "Select",
+          "count": 19,
+          "docs": "Select"
+        },
+        {
+          "name": "TableBody",
+          "count": 17,
+          "docs": "Table"
+        },
+        {
+          "name": "TableHead",
+          "count": 17,
+          "docs": "Table"
+        },
+        {
+          "name": "Table",
+          "count": 16,
+          "docs": "Table"
+        },
+        {
+          "name": "DropdownItem",
+          "count": 12,
+          "docs": "Dropdown"
+        },
+        {
+          "name": "HelperText",
+          "count": 11,
+          "docs": "Input"
+        },
+        {
+          "name": "Badge",
+          "count": 9,
+          "docs": "Badge"
+        },
+        {
+          "name": "Drawer",
+          "count": 9,
+          "docs": "Drawer"
+        },
+        {
+          "name": "Dropdown",
+          "count": 8,
+          "docs": "Dropdown"
+        },
+        {
+          "name": "Modal",
+          "count": 8,
+          "docs": "Modal"
+        },
+        {
+          "name": "Textarea",
+          "count": 6,
+          "docs": "Textarea"
+        },
+        {
+          "name": "Checkbox",
+          "count": 5,
+          "docs": "Checkbox"
+        },
+        {
+          "name": "Avatar",
+          "count": 3,
+          "docs": "Avatar"
+        },
+        {
+          "name": "Datepicker",
+          "count": 3,
+          "docs": "Datepicker"
+        },
+        {
+          "name": "FileDropzone",
+          "count": 3,
+          "docs": "FileUpload"
+        },
+        {
+          "name": "Card",
+          "count": 2,
+          "docs": "Card"
+        },
+        {
+          "name": "DropdownCheckboxItem",
+          "count": 2,
+          "docs": "Dropdown"
+        },
+        {
+          "name": "IconShape",
+          "count": 2,
+          "docs": "IconShape"
+        },
+        {
+          "name": "Radio",
+          "count": 2,
+          "docs": "Checkbox"
+        },
+        {
+          "name": "Sidebar",
+          "count": 2,
+          "docs": "Sidebar"
+        },
+        {
+          "name": "Tabs",
+          "count": 2,
+          "docs": "Tabs"
+        },
+        {
+          "name": "Toggle",
+          "count": 2,
+          "docs": "Toggle"
+        },
+        {
+          "name": "Autocomplete",
+          "count": 1,
+          "docs": "Autocomplete"
+        },
+        {
+          "name": "DropdownHeader",
+          "count": 1,
+          "docs": "Dropdown"
+        },
+        {
+          "name": "DropdownRadioItem",
+          "count": 1,
+          "docs": "Dropdown"
+        },
+        {
+          "name": "DropdownSeparator",
+          "count": 1,
+          "docs": "Dropdown"
+        },
+        {
+          "name": "Navbar",
+          "count": 1,
+          "docs": "Navbar"
+        },
+        {
+          "name": "Pagination",
+          "count": 1,
+          "docs": "Pagination"
+        },
+        {
+          "name": "Progress",
+          "count": 1,
+          "docs": "Progress"
+        },
+        {
+          "name": "Stepper",
+          "count": 1,
+          "docs": "Stepper"
+        },
+        {
+          "name": "Toast",
+          "count": 1,
+          "docs": "Toast"
+        },
+        {
+          "name": "ToastViewport",
+          "count": 1,
+          "docs": "Toast"
+        },
+        {
+          "name": "Tooltip",
+          "count": 1,
+          "docs": "Tooltip"
+        }
+      ],
+      "handMade": 0,
+      "findings": [],
+      "gaps": [
+        "tinted-summary"
+      ]
+    }
+  ],
+  "gaps": [
+    {
+      "id": "tinted-summary",
+      "title": "Tinted summary band (description list)",
+      "status": "open",
+      "found": "2026-11-01",
+      "screen": "src/features/materials",
+      "reference": "Material - powerplay (VH1RUJ8Q0lqiNRfPgIAxRA): the key-facts band at the top of the Indent, PO and GRN drawers, e.g. node 27:17108",
+      "need": "Record facts (project, created by, dates, amounts) as label/value pairs in 2–4 columns on a light brand-tinted band.",
+      "proposal": "Figma component \"Description list\": Style = Plain | Tinted (bg-brand-softer), Columns = 2 | 3 | 4; item = label (text-xs text-body) over value (text-sm font-medium text-heading).",
+      "standIn": "Card with a <dl> grid (SummaryCard in src/features/materials/shared.tsx): same content, no tint.",
+      "usedIn": [
+        "src/features/materials"
+      ]
+    }
+  ]
 };

@@ -16,7 +16,7 @@
     "lint:tokens": "node .claude/skills/ad-design-kit-review/scripts/lint-tokens.mjs src",
     "test": "vitest run --project storybook",
     "test:coverage": "vitest run --project storybook --coverage",
-    "check": "npm run typecheck && npm run lint && npm run lint:tokens && npm run docs:check && npm run figma:descriptions -- --check && npm run figma:variants -- --check && npm run icons:build -- --check",
+    "check": "npm run typecheck && npm run lint && npm run lint:tokens && npm run check:screens && npm run docs:check && npm run figma:descriptions -- --check && npm run figma:variants -- --check && npm run icons:build -- --check",
     "storybook": "npm run docs:build && NODE_OPTIONS=--max-old-space-size=8192 storybook dev -p 6006",
     "build-storybook": "npm run docs:build && storybook build",
     "storybook:deploy": "npm run build-storybook && npx -y netlify-cli deploy --prod --dir storybook-static --no-build --site 5c4cfb1c-721f-4500-aca8-f53b0d116efc",
@@ -24,6 +24,7 @@
     "icons:build": "node .claude/skills/ad-design-kit-design-system/scripts/build-icons.mjs",
     "docs:build": "node .storybook/scripts/build-docs.mjs",
     "docs:check": "node .storybook/scripts/build-docs.mjs --check",
+    "check:screens": "node .claude/skills/ad-design-kit-compose/scripts/check-composition.mjs src/features",
     "figma:descriptions": "node .claude/skills/ad-design-kit-figma-sync/scripts/build-figma-descriptions.mjs",
     "figma:variants": "node .claude/skills/ad-design-kit-figma-sync/scripts/build-variant-guidance.mjs"
   },

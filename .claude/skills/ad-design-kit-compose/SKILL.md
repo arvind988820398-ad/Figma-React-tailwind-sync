@@ -1,6 +1,6 @@
 ---
 name: ad-design-kit-compose
-description: Turn any design reference — an uploaded screenshot, mockup, photo of a whiteboard, a Figma frame from another file, or a written description of a screen — into React + Tailwind code composed ONLY from the AD Design Kit components that already exist in Figma (TKsoawKvPxaNCff4q43Mli) and in `src/components/ui`. The skill never invents a component, never hand-rolls buttons, inputs, menus, tabs, tables or dialogs, and never copies the reference's colors or fonts; anything the system cannot express is reported as a gap for the designer instead of being built. Use it whenever someone shares a design image or reference and asks to build, implement, recreate, clone, "make this with our design system", "turn this into a page", or "use our components for this" — even if they do not say "AD Design Kit" — and for any new screen or feature page in this project.
+description: Turn any design reference — an uploaded screenshot, mockup, photo of a whiteboard, a Figma frame from another file, or a written description of a screen — into React + Tailwind code composed ONLY from the AD Design Kit components that already exist in Figma (TKsoawKvPxaNCff4q43Mli) and in `src/components/ui`. The skill never invents a component, never hand-rolls buttons, inputs, menus, tabs, tables or dialogs, and never copies the reference's colors or fonts; anything the system cannot express is reported as a gap for the designer instead of being built. Use it whenever someone shares a design image or reference and asks to build, implement, recreate, clone, "make this with our design system", "turn this into a page", or "use our components for this" — even if they do not say "AD Design Kit" — and for any new screen or feature page in this project. Every result comes with proof: the composition checker's "built from" list and hand-made count, and each gap recorded in references/gaps.json so Storybook → Guides → Figma sync shows it. Also use it whenever someone asks whether a screen really uses Figma/AD Design Kit components or contains anything made by hand.
 ---
 
 # AD Design Kit compose — build screens from a reference, components only
@@ -21,12 +21,13 @@ Not allowed, with no exceptions for "it's just this once":
 - **Restyling a component through `className`.** A component's colours, padding, height, radius, shadow, typography and hover states are its Figma spec. The only classes a screen may pass are layout ones: width (`w-*`, `min-w-*`), margins, flex/grid placement, visibility, and an edge divider the docs ask for (`border-e border-default` on a Sidebar). `text-fg-brand` on a tertiary Button, `bg-dark` on a table header, `shadow` on a Navbar, `size-6` on an icon button are all a second component hiding in a prop. If the reference needs a look the variant list does not have, that is a gap, not a className.
 - **Wrapping a component in a custom band.** Navbar, Tabs, Table, Sidebar and Pagination carry their own container, padding and dividers (`Navbar` renders `mx-auto max-w-screen-xl px-4 py-6`). Do not put them inside a `div` that adds padding, shadow or a background to "match the mock"; when two things must align, give both the same documented container instead.
 - **Using a component for what its doc says "Don't".** Every doc section ends with Use / Don't. The site's top-level navigation is `Navbar links` or `Sidebar` items with `current`; the row of section tabs under a header (Figma set "Nav tabs") is `Tabs variant="underline"`, placed directly below the `Navbar` in the Navbar's own container (`fluid` Navbar in an app shell → the tabs row is full width `px-4` too). An action is a `Button`, not a `Badge`. A menu of actions is `Dropdown`, not `Select`. Read the line before you choose, and when the reference breaks it, follow the doc and say so in the map.
-- Raw `<button>`, `<input>`, `<select>`, `<textarea>`, `<dialog>`, `<table>`/`<tr>`/`<td>`, `<details>`, `<progress>` — these are the signature of a hand-rolled control. Use Button, Input, Select, Textarea, Modal/Drawer, Table, Accordion, Progress.
+- Raw `<button>`, `<input>`, `<select>`, `<textarea>`, `<dialog>`, `<table>`/`<tr>`/`<td>`, `<details>`, `<progress>`, `<datalist>`, `<svg>` — these are the signature of a hand-rolled control. Use Button, Input, Select, Textarea, Modal/Drawer, Table, Accordion, Progress, Autocomplete, the Figma icons.
+- **Drawing your own surface.** A plain `div`/`section`/`dl`/`span`/`a` with a background (`bg-*`), a shadow, or a rounded full border is a Card, Alert, Badge or panel made by hand — it looks like the system but Figma has no such thing, so nobody can tell it apart from a real component. Use the component (a summary band → `Card`; a status pill → `Badge`; a notice → `Alert`); when none fits, it is a gap (below). Dividers (`border-t border-default`), text colours on headings and links, and the page background `bg-neutral-primary` on the app root are layout, not surfaces.
 - Re-styling a component into something Figma does not have (a "pill" Button, a dark Alert, a 54px Sidebar), or a `Record<variant, classes>` map in feature code — that is a component in disguise.
 - The reference's hex colors, font families, pixel radii or shadows. The reference tells you *what* is on screen; AD Design Kit tokens decide *how it looks*.
 - **Any font decision at all.** The theme sets the family (Modern = Inter, Enterprise = IBM Plex Serif, both loaded once in `index.html`); sizes are `text-xxs…text-6xl`, weights `font-normal…font-extrabold`. No `font-[…]`, no `style={{ fontFamily }}`, no Google Fonts link or `@font-face` in feature code, no `text-[13px]`. A mock in Roboto is still built in the theme font.
 
-`scripts/check-composition.mjs` enforces the mechanical parts of this; run it before you report.
+`scripts/check-composition.mjs` enforces the mechanical parts of this (rules `raw-control`, `custom-surface`, `style-override`, `new-ui-component`, `unknown-gap`, fonts and tokens) and prints what the screen is **built from**; run it before you report and paste its summary as proof.
 
 ## Workflow
 
@@ -52,7 +53,11 @@ Status meanings:
 - **match** — one component, one of its variants.
 - **composed** — several components plus layout glue, nothing new in behaviour or look.
 - **stand-in** — the closest existing component used honestly (reference has an outlined brand button → AD Design Kit `tertiary`). Only when the swap keeps the meaning; never when it changes what the control does.
-- **gap** — no component or variant expresses it. Do not build it. Leave a clearly labelled placeholder (`<div className="rounded-base border border-dashed border-default-medium p-4 text-sm text-body-subtle">Needs AD Design Kit component: Colour picker</div>`) and put it in the gap report. The fix is a Figma addition through the designer, then `ad-design-kit-figma-sync` section B; never a local component.
+- **gap** — no component or variant expresses it. Do not build it. Either leave a clearly labelled placeholder (`<div className="rounded-base border border-dashed border-default-medium p-4 text-sm text-body-subtle">Needs AD Design Kit component: Colour picker</div>`), or — when the screen cannot work without it — use the closest existing component as a stand-in. Either way, **record the gap the moment you find it**:
+  1. Add a row to `references/gaps.json`: `id` (kebab-case), `title`, `status: "open"`, `found` (today), `screen` (`src/features/<name>`), `reference` (file + node id or image), `need` (what the screen needs, one sentence), `proposal` (the Figma component or variant to add: name and properties), `standIn` (what code uses meanwhile).
+  2. Put `// ad-design-kit-gap: <id>` on the line above the placeholder or stand-in. The checker fails on an id that is not in `gaps.json`.
+  3. Storybook → Guides → Figma sync then lists the gap, its status and where it is used, so designers see it without reading chat.
+  The fix is a Figma addition through the designer, then `ad-design-kit-figma-sync` section B, then replacing the stand-in and setting the row to `done`; never a local component.
 
 If more than a third of the regions are gaps, stop after the map and ask whether to proceed with placeholders or wait for Figma — building a page that is mostly placeholders helps nobody.
 
@@ -68,7 +73,12 @@ If more than a third of the regions are gaps, stop after the map and ask whether
 node .claude/skills/ad-design-kit-compose/scripts/check-composition.mjs src/features/<name>
 npx tsc -p tsconfig.app.json --noEmit
 ```
-The checker fails on raw controls, new `components/ui` files, style overrides passed through `className` on a system component, inline typography styles and font imports in feature code, and token violations (it runs the token linter).
+The checker fails on raw controls, hand-drawn surfaces, new `components/ui` files, style overrides passed through `className` on a system component, inline typography styles and font imports in feature code, gap markers missing from `gaps.json`, and token violations (it runs the token linter). It ends with three lines — **Built from …**, **Hand-made controls or surfaces: N**, **Gaps marked in code: …** — that are the proof for the report. `npm run check:screens` runs it over every screen and is part of `npm run check` (CI).
+
+Then refresh Storybook so the screen and its gaps appear on Guides → Figma sync:
+```bash
+npm run docs:build
+```
 
 When the dev server or Storybook is running, also prove the rendered fonts:
 ```bash
@@ -79,14 +89,20 @@ node .claude/skills/ad-design-kit-compose/scripts/check-fonts.mjs "http://localh
 It opens the page in headless Chromium, waits for webfonts, and checks every text element: the family must be the font of the theme in effect for that element (it follows `data-theme` scopes, reading the families from the token manifest), the size must be on the text scale and the weight on the weight scale, and the theme font must actually be loaded. Any mismatch is a build error: a fallback font usually means the Google Fonts link is missing, and an off-scale size means a className or inline style slipped through. Fix every error; a `// ad-design-kit-compose-allow: <reason>` comment on the line is only for a genuine layout element the regex misreads, never for a control. If the app or Storybook is running, open the screen and compare it with the reference side by side: same regions, same order, same hierarchy — identical pixels are not the goal, identical structure through AD Design Kit's look is.
 
 ### 6. Report
+Never say "built only from AD Design Kit components" (or anything like it) unless the checker printed `Hand-made controls or surfaces: 0`. If it is not 0, fix the code first; if a finding is a genuine exception, say so first in the report with file and line — the user must never have to ask whether something was made by hand.
+
 End with this structure:
 
 ```
+## Proof
+<the checker's three summary lines, verbatim: Built from … · Hand-made controls or surfaces: N · Gaps marked in code: …>
+Storybook → Guides → Figma sync updated (npm run docs:build): yes/no
+
 ## Composition map
 <the table from step 3, with final statuses>
 
 ## Gaps for Figma
-- <Region>: what the reference shows, why no AD Design Kit component covers it, the proposed component or variant (name, properties) to add in Figma. "None" when there are no gaps.
+- <gap id> — <Region>: what the reference shows, why no AD Design Kit component covers it, the proposed component or variant (name, properties) to add in Figma, and the stand-in. Every gap here has a row in references/gaps.json. "None" when there are no gaps.
 
 ## Stand-ins
 - <Region>: reference → AD Design Kit choice, and why it keeps the meaning.
@@ -107,6 +123,10 @@ check-composition: pass/fail (counts) · check-fonts: pass/fail (elements checke
 | Raw `<button>` text links ("Add Specification") | Hand-rolled control | `Button color="ghost"` |
 | A mock set in Roboto reproduced with `font-['Roboto']` or an extra Google Fonts link | The theme owns the family; a second font breaks every other theme | Nothing: the theme font applies by itself; verify with `check-fonts.mjs` |
 | `TableRow className="bg-brand-soft"` for a selected row | The Table set has no selected-row variant; the tint is a state the component does not own | Let the `Checkbox` show selection, set `aria-selected`, and list "Table row: selected state" as a gap |
+| A `<dl className="rounded-base bg-brand-softer p-4">` key-facts band, repeated in three drawers | A hand-drawn surface: a component Figma does not have, reused like one, and invisible to the old checker | `Card` holding the `<dl>`, gap `tinted-summary` recorded with a "Description list" proposal |
+| A `<section className="rounded-base border p-4">` totals box | A Card drawn by hand | `Card` |
+| `<Input list>` + `<datalist>` for type-and-search | A browser control instead of the system's combobox | `Autocomplete`, with a footer action ("Add a new material") when free text must be allowed |
+| Reporting "composed only from components" from memory | The claim was wrong three times and the user had to ask | Paste the checker's Built from / Hand-made / Gaps lines; Storybook's Figma sync page shows the same |
 
 ## Examples
 

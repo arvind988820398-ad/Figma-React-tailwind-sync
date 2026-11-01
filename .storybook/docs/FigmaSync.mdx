@@ -1,6 +1,6 @@
 import { Markdown, Meta } from '@storybook/addon-docs/blocks';
 import { adDesignKitDocs } from '../generated/ad-design-kit-docs';
-import { SyncSummary, SyncTable } from '../ad-design-kit/blocks';
+import { GapsTable, ScreensTable, SyncSummary, SyncTable } from '../ad-design-kit/blocks';
 
 <Meta title="Guides/Figma sync" />
 
@@ -14,7 +14,7 @@ Figma is the source of truth for tokens and component variants; code is the sour
 
 1. **Tokens (Figma → code).** The `ad-design-kit-figma-sync` skill exports the Figma variable collections, diffs them against the committed snapshot, rebuilds `ad-design-kit.css` and the token manifest, and copies the CSS into the app (`npm run tokens:build`). The token linter (`npm run lint:tokens`) then flags any class that no longer exists.
 2. **Components (Figma → code).** The skill inventories every component page, diffs variant properties and values against the registry (`components.json`), and updates the React components, the prop maps and the usage docs.
-3. **Storybook docs.** `npm run docs:build` regenerates this Storybook's data from the registry, usage docs, token manifest and Figma audit. It runs automatically before `npm run storybook`; `npm run docs:check` fails in CI when the docs are stale or drift is found.
+3. **Storybook docs.** `npm run docs:build` regenerates this Storybook's data from the registry, usage docs, token manifest, Figma audit, the gap list and a check of every app screen. It runs automatically before `npm run storybook`; `npm run docs:check` fails in CI when the docs are stale or drift is found.
 4. **Code → Figma** (with explicit approval only): component usage descriptions and Code Connect mappings can be pushed back to the Figma file.
 
 ## Registry ↔ code status
@@ -22,6 +22,18 @@ Figma is the source of truth for tokens and component variants; code is the sour
 Every component set in the registry, its Figma node and whether the React source still matches the registry's prop map. A finding here means the registry, the component or Figma changed without the others following.
 
 <SyncTable />
+
+## App screens
+
+Every screen under `src/features`, checked by the compose skill's `check-composition.mjs`: the AD Design Kit components it is built from (each links to its docs) and anything drawn by hand instead — raw controls, restyled components, or plain elements styled to look like a component. A screen built only from Figma components shows a green badge; anything else is listed with its file and line.
+
+<ScreensTable />
+
+## Gaps for Figma
+
+What a screen needed that the design system cannot express yet. Code uses the stand-in and marks it with `// ad-design-kit-gap: <id>`; designers add the proposal to Figma, the sync brings it to code, and the row moves from open → in-figma → done. The list lives in `.claude/skills/ad-design-kit-compose/references/gaps.json`.
+
+<GapsTable />
 
 ## Open Figma inconsistencies
 

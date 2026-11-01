@@ -9,7 +9,7 @@ import { cn } from '../../src/lib/cn';
 import { adDesignKitDocs, type ADDesignKitColorToken, type ADDesignKitComponentDoc, type ADDesignKitDrift } from '../generated/ad-design-kit-docs';
 import { categoryLabels, docsId } from './figma';
 
-const { tokens, components, drift } = adDesignKitDocs;
+const { tokens, components, drift, screens, gaps } = adDesignKitDocs;
 
 // ---------- shared ----------
 const tableClass = 'w-full border-collapse text-left text-sm text-body';
@@ -425,6 +425,8 @@ export function SyncSummary() {
       {stat('Registry ↔ code', withDrift.length ? `${drift.length} finding(s) in ${withDrift.length} component(s)` : 'No drift', !withDrift.length)}
       {stat('Docs generated', adDesignKitDocs.generatedAt)}
       {stat('Stories', `${list.filter((c) => c.storyTitle).length} / ${list.length} components`)}
+      {stat('App screens', screens.length ? `${screens.length} · ${screens.reduce((n, sc) => n + sc.handMade, 0)} hand-made piece(s)` : 'None yet', screens.every((sc) => sc.handMade === 0))}
+      {stat('Gaps for Figma', `${gaps.filter((g) => g.status === 'open').length} open · ${gaps.filter((g) => g.status === 'in-figma').length} in Figma · ${gaps.filter((g) => g.status === 'done').length} done`)}
     </div>
   );
 }
@@ -457,6 +459,86 @@ export function SyncTable() {
                   <Badge color="success">in sync</Badge>
                 )}
               </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+const gapColor = { open: 'warning', 'in-figma': 'brand', done: 'success' } as const;
+
+/** Every screen under src/features: the AD Design Kit components it is built from, anything made by hand, its gaps. */
+export function ScreensTable() {
+  if (!screens.length) return <p className="my-4 text-sm text-body">No app screens under <Code>src/features</Code> yet.</p>;
+  return (
+    <div className="my-4 flex flex-col gap-6">
+      {screens.map((sc) => (
+        <section key={sc.path} className="rounded-base border border-default p-4">
+          <div className="flex flex-wrap items-center gap-3">
+            <h3 className="skip-toc m-0 text-base font-semibold text-heading">{sc.name}</h3>
+            <Code>{sc.path}</Code>
+            <span className="text-xs text-body-subtle">{sc.files} files</span>
+            <Badge color={sc.handMade ? 'danger' : 'success'}>{sc.handMade ? `${sc.handMade} made by hand` : 'Only AD Design Kit components'}</Badge>
+            {sc.gaps.map((id) => (
+              <Badge key={id} color="warning">gap: {id}</Badge>
+            ))}
+          </div>
+          <p className="mb-2 mt-3 text-xs font-semibold uppercase tracking-tight text-body-subtle">Built from {sc.components.length} components</p>
+          <p className="m-0 flex flex-wrap gap-x-3 gap-y-1 text-sm">
+            {sc.components.map((c) => (
+              <span key={c.name}>
+                {c.docs ? <DocsLink component={c.docs}>{c.name}</DocsLink> : <span className="font-medium text-fg-danger">{c.name}</span>}
+                <span className="text-body-subtle"> ×{c.count}</span>
+              </span>
+            ))}
+          </p>
+          {sc.findings.length > 0 && (
+            <>
+              <p className="mb-2 mt-4 text-xs font-semibold uppercase tracking-tight text-fg-danger">Not from the design system</p>
+              <ul className="m-0 list-disc space-y-1 ps-4 text-sm text-body">
+                {sc.findings.map((f, i) => (
+                  <li key={i}>
+                    <Code>{`${f.file}:${f.line}`}</Code> <b>{f.rule}</b> — {f.detail}
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
+        </section>
+      ))}
+    </div>
+  );
+}
+
+/** What screens needed that Figma does not have yet, with the stand-in code uses meanwhile. */
+export function GapsTable() {
+  if (!gaps.length) return <p className="my-4 text-sm text-body">No gaps: every screen is expressed with existing components.</p>;
+  return (
+    <div className="my-4 overflow-x-auto">
+      <table className={tableClass}>
+        <thead>
+          <tr>
+            <th className={thClass}>Gap</th>
+            <th className={thClass}>Status</th>
+            <th className={thClass}>What the screen needs</th>
+            <th className={thClass}>Proposed in Figma</th>
+            <th className={thClass}>Stand-in until then</th>
+          </tr>
+        </thead>
+        <tbody>
+          {gaps.map((g) => (
+            <tr key={g.id}>
+              <td className={tdClass}>
+                <p className="m-0 font-medium text-heading">{g.title}</p>
+                <Code>{g.id}</Code>
+                <p className="m-0 mt-1 text-xs text-body-subtle">Found {g.found} · {g.usedIn.length ? `marked in ${g.usedIn.join(', ')}` : 'not marked in code'}</p>
+              </td>
+              <td className={tdClass}><Badge color={gapColor[g.status]}>{g.status}</Badge></td>
+              <td className={tdClass}>{g.need}<p className="m-0 mt-1 text-xs text-body-subtle">{g.reference}</p></td>
+              <td className={tdClass}>{g.proposal}</td>
+              <td className={tdClass}>{g.standIn}</td>
             </tr>
           ))}
         </tbody>

@@ -38,6 +38,7 @@ Using the "When to use / When not to use" bullets in the component's doc section
 - Right component for the job (Toggle vs Checkbox, Toast vs Alert, Modal vs Drawer, Dropdown vs Select, Tabs vs Stepper, Badge vs Button).
 - Hierarchy rules: one `brand` Button per section, ≤2 CTAs in a hero, no nested cards, no modal-in-modal.
 - Layout: semantic surfaces (`bg-neutral-primary` page, `bg-neutral-primary-soft` cards), spacing on the 4px scale, containers `max-w-*`.
+- Screens and feature code (`src/features/**`): run `node .claude/skills/ad-design-kit-compose/scripts/check-composition.mjs <path>` (or `npm run check:screens`). Every `custom-surface` (a plain element with a background, shadow or rounded border: a Card/Badge/Alert drawn by hand), `raw-control` and `style-override` is an **error**; the fix is the component, or a gap row in `ad-design-kit-compose/references/gaps.json` with a `// ad-design-kit-gap: <id>` marker on the stand-in. Quote the checker's "Built from / Hand-made / Gaps" lines in the report.
 
 ## Step 5 — Accessibility essentials
 Labels for every control (`<Label htmlFor>` / `aria-label` on icon-only buttons), `aria-invalid` + described-by for errors, roles (`switch`, `dialog`, `tablist`, `menu`, `tooltip`, `progressbar`, `status`), keyboard access (focus-visible ring present, Esc closes overlays), color never the only signal. Token contrast is designed in Figma — flag only text placed on a surface it was not designed for (e.g. `text-body-subtle` on `bg-brand`).

@@ -1,0 +1,16 @@
+{
+  "about": "Things a screen needed that AD Design Kit cannot express yet. The compose skill adds a row for every gap it finds and marks the stand-in in code with `// ad-design-kit-gap: <id>`. Storybook → Guides → Figma sync lists the rows and where each stand-in is used. Status: open (waiting for Figma) · in-figma (designed, not synced to code yet) · done (synced; remove the stand-in markers, keep the row as history).",
+  "gaps": [
+    {
+      "id": "tinted-summary",
+      "title": "Tinted summary band (description list)",
+      "status": "open",
+      "found": "2026-11-01",
+      "screen": "src/features/materials",
+      "reference": "Material - powerplay (VH1RUJ8Q0lqiNRfPgIAxRA): the key-facts band at the top of the Indent, PO and GRN drawers, e.g. node 27:17108",
+      "need": "Record facts (project, created by, dates, amounts) as label/value pairs in 2–4 columns on a light brand-tinted band.",
+      "proposal": "Figma component \"Description list\": Style = Plain | Tinted (bg-brand-softer), Columns = 2 | 3 | 4; item = label (text-xs text-body) over value (text-sm font-medium text-heading).",
+      "standIn": "Card with a <dl> grid (SummaryCard in src/features/materials/shared.tsx): same content, no tint."
+    }
+  ]
+}

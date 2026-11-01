@@ -84,6 +84,8 @@ Every icon on the Figma Icons page is a React component in `src/components/icons
 
 The Storybook under `.storybook/` is generated from the bridge files above: `scripts/build-docs.mjs` turns `components.json`, `references/components/*.md`, `references/tokens.md`, `figma-audit.md` and `token-manifest.json` into `generated/ad-design-kit-docs.ts`, which the docs page template and the guide pages render. Nothing in Storybook is hand-written per component, so the only way to change what it says is to change those sources and rebuild. Whenever a sync touches them, finish with `npm run docs:build` (or `npm run docs:check` to verify).
 
+The Figma sync page also has **App screens** and **Gaps for Figma**. The builder runs `ad-design-kit-compose/scripts/check-composition.mjs` on every folder under `src/features` (which AD Design Kit components each screen uses, linked to their docs, and anything made by hand with file and line) and reads `ad-design-kit-compose/references/gaps.json` (what screens need that Figma lacks: proposal, stand-in, status, where it is marked). When a sync brings in a component that closes a gap: replace the stand-ins marked `// ad-design-kit-gap: <id>`, remove the markers, set the row's `status` to `done`, and rebuild the docs. A row the designer has drawn but not yet synced is `in-figma`.
+
 **Hosting.** Storybook is published on Netlify at https://ad-design-kit-storybook.netlify.app (site `ad-design-kit-storybook`, config in `netlify.toml`). Redeploy after any docs or component change with `npm run storybook:deploy` (needs `netlify login` once). Every Figma component set links to its page there; if a story file's title changes, re-run `npm run figma:descriptions` and apply the result to Figma.
 
 ## Drift check for CI (optional)
