@@ -232,8 +232,18 @@ const radiusRows = parseTable(sectionBody(tokensMd, 'Radius'));
 const radius = { themes: radiusRows[0].slice(1), rows: radiusRows.slice(1).map(([cls, ...v]) => ({ cls: code(cls), values: v.map(Number) })) };
 const radiusNote = sectionBody(tokensMd, 'Radius').split('\n').filter((l) => !l.trim().startsWith('|')).join('\n').trim();
 const shadows = parseTable(sectionBody(tokensMd, 'Shadows')).slice(1).map(([cls, use]) => ({ cls: cls.replace(/`/g, ''), use }));
-const typography = parseTable(sectionBody(tokensMd, 'Typography')).slice(1).map(([figma, cls, size]) => ({ figma, cls: cls.replace(/`/g, ''), size }));
-const typographyNote = sectionBody(tokensMd, 'Typography').split('\n').filter((l) => !l.trim().startsWith('|')).join('\n').trim();
+// Typography mirrors the Figma page "📖 Typography" → "Font variables": one ### subsection per table.
+const typographyMd = sectionBody(tokensMd, 'Typography');
+const subsection = (title) => { const m = new RegExp('^### ' + title + '\\n([\\s\\S]*?)(?=^### |(?![\\s\\S]))', 'm').exec(typographyMd); return m ? m[1].trim() : ''; };
+const rowsOf = (title) => parseTable(subsection(title)).slice(1);
+const typography = {
+  intro: typographyMd.split(/^### /m)[0].trim(),
+  family: rowsOf('Font family').map(([figma, cls, use]) => ({ figma, cls: code(cls), use })),
+  weights: rowsOf('Font weight').map(([figma, cls, use]) => ({ figma, cls: code(cls), use })),
+  tracking: rowsOf('Letter spacing').map(([figma, cls, value, use]) => ({ figma, cls: code(cls), value, use })),
+  sizes: rowsOf('Font size').map(([figma, cls, size, use]) => ({ figma, cls: code(cls), size, use })),
+};
+const typographyNote = subsection('Line height and text styles');
 const fonts = Object.fromEntries(manifest.themes.map((t) => [t, manifest.tokens['font-base']?.values[`${t}-light`] || '']));
 const pairingRule = (/^Pairing rule:(.+)$/m.exec(tokensMd) || [])[1]?.trim() || '';
 
@@ -324,7 +334,13 @@ export interface ADDesignKitDocs {
     radius: { themes: string[]; rows: { cls: string; values: number[] }[] };
     radiusNote: string;
     shadows: { cls: string; use: string }[];
-    typography: { figma: string; cls: string; size: string }[];
+    typography: {
+      intro: string;
+      family: { figma: string; cls: string; use: string }[];
+      weights: { figma: string; cls: string; use: string }[];
+      tracking: { figma: string; cls: string; value: string; use: string }[];
+      sizes: { figma: string; cls: string; size: string; use: string }[];
+    };
     typographyNote: string;
     fonts: Record<string, string>;
   };

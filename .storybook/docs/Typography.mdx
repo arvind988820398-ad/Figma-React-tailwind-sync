@@ -1,19 +1,32 @@
 import { Markdown, Meta } from '@storybook/addon-docs/blocks';
 import { adDesignKitDocs } from '../generated/ad-design-kit-docs';
-import { TypeScale } from '../ad-design-kit/blocks';
+import { TypeFamily, TypeScale, TypeTracking, TypeWeights } from '../ad-design-kit/blocks';
 
 <Meta title="Foundations/Typography" />
 
 # Typography
 
-The body font comes from the theme (`typography/font-family/font-base` → `font-sans`): switch the Theme toolbar menu to see the scale re-render in each face. Never set a `font-[...]` family in code.
+<Markdown>{adDesignKitDocs.tokens.typography.intro}</Markdown>
 
-| Theme | Font |
-|---|---|
-{Object.entries(adDesignKitDocs.tokens.fonts).map(([theme, font]) => `| ${theme} | ${font.split(' (')[0]} |`).join('\n')}
+Switch the **Theme** toolbar menu to see every example re-render in that theme's font.
 
-## Size scale
+## Font family
+
+<TypeFamily />
+
+
+## Font weight
+
+<TypeWeights />
+
+## Letter spacing
+
+<TypeTracking />
+
+## Font size
 
 <TypeScale />
+
+## Line height and text styles
 
 <Markdown>{adDesignKitDocs.tokens.typographyNote}</Markdown>

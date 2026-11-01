@@ -143,19 +143,52 @@ Figma `spacing/N` = N × 4px = Tailwind `p-N`, `gap-N`, `m-N`, `w-N`… (`spacin
 
 ## Typography
 
-| Figma | Class | Size |
+The AD Design Kit typography scale follows Tailwind CSS. The font family comes from a variable, so each theme can swap the font across the whole product without overrides. Mirrors the Figma page 📖 Typography → "Font variables".
+
+### Font family
+
+| Figma | Class | Use |
 |---|---|---|
-| text-xxs | `text-xxs` | 8px |
-| text-xs | `text-xs` | 12px |
-| text-sm | `text-sm` | 14px |
-| text-base | `text-base` | 16px |
-| text-lg | `text-lg` | 18px |
-| text-xl | `text-xl` | 20px |
-| text-2xl … 6xl | `text-2xl` … `text-6xl` | 24 / 30 / 36 / 48 / 60px |
+| typography/font-family/font-base | `font-sans` | The base font for all text: Inter in Modern, IBM Plex Serif in Enterprise. Change it in Figma (Primitives → `font/family/font-sans`) and re-sync; never set a `font-[…]` family in code. |
 
-All Figma text styles use 150% line-height (built into the size classes). Text-style variants map to Tailwind modifiers: `leading-none` (100%), `leading-tight` (125%), `leading-relaxed` (162.5%), `leading-loose` (200%), `uppercase`, `underline`, `line-through`. Weights: `font-normal` (Regular), `font-medium`, `font-semibold`, `font-bold`, `font-extrabold`. Tracking: `tracking-tighter` (-0.8px), `tracking-tight` (-0.4px).
+### Font weight
 
-Common roles: page title `text-3xl/4xl font-bold text-heading`; section heading `text-xl/2xl font-semibold text-heading`; card title `text-2xl font-semibold text-heading`; body `text-base text-body` (dense UI `text-sm`); labels `text-sm font-medium text-heading`; helper `text-sm text-body`; caption `text-xs text-body-subtle`; buttons `text-sm font-medium` (xs: `text-xs`, lg/xl: `text-base`).
+| Figma | Class | Use |
+|---|---|---|
+| normal | `font-normal` | Paragraphs, helper texts and articles. |
+| medium | `font-medium` | Button texts, labels, CTA texts and some headings. |
+| semibold | `font-semibold` | Main headings. |
+| bold | `font-bold` | H1 headings in hero sections. |
+| extrabold | `font-extrabold` | H1 headings in hero sections. |
+
+### Letter spacing
+
+| Figma | Class | Value | Use |
+|---|---|---|---|
+| tracking-tighter | `tracking-tighter` | -0.8px | Big H1 headings: tighter spacing improves how large headings look and read. |
+| tracking-tight | `tracking-tight` | -0.4px | Section and card headings. |
+
+### Font size
+
+| Figma | Class | Size | Use |
+|---|---|---|---|
+| text-xxs | `text-xxs` | 8px | Tiny labels inside very small elements, such as initials on an xs avatar. Never body text. |
+| text-xs | `text-xs` | 12px | Captions, helper text, badges and timestamps. |
+| text-sm | `text-sm` | 14px | Labels, buttons, table cells and dense UI text. |
+| text-base | `text-base` | 16px | Paragraphs and larger buttons. |
+| text-lg | `text-lg` | 18px | Lead text and drawer or modal titles. |
+| text-xl | `text-xl` | 20px | Section headings. |
+| text-2xl | `text-2xl` | 24px | Card titles and section headings. |
+| text-3xl | `text-3xl` | 30px | Page titles. |
+| text-4xl | `text-4xl` | 36px | Block headings. |
+| text-5xl | `text-5xl` | 48px | Large marketing headings. |
+| text-6xl | `text-6xl` | 60px | Larger headings like H1 in hero blocks. |
+
+### Line height and text styles
+
+Every Figma text style uses 150% line height, built into the size classes. The text-style variants map to Tailwind modifiers: `leading-none` (100%), `leading-tight` (125%), `leading-relaxed` (162.5%), `leading-loose` (200%), `uppercase`, `underline` and `line-through`. Figma also has text styles from text-7xl to text-9xl; they exist only as primitives, not theme tokens, so do not use them in product UI.
+
+Common roles: page title `text-3xl/4xl font-bold text-heading`; section heading `text-xl/2xl font-semibold text-heading`; card title `text-2xl font-semibold text-heading`; body `text-base text-body` (dense UI `text-sm`); labels `text-sm font-medium text-heading`; helper `text-xs leading-4 text-body`; caption `text-xs text-body-subtle`; buttons `text-sm font-medium` (xs: `text-xs`, lg/xl: `text-base`).
 
 ## Shadows (effect styles)
 

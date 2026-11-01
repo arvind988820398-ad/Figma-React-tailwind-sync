@@ -277,22 +277,78 @@ export function ShadowScale() {
   );
 }
 
-export function TypeScale() {
-  const sizes = Object.keys(textClass);
+// Mirrors the Figma page "📖 Typography" → "Font variables": token · live example · when to use it.
+// Class names are written out literally so Tailwind generates them.
+const weightClass: Record<string, string> = {
+  'font-normal': 'font-normal', 'font-medium': 'font-medium', 'font-semibold': 'font-semibold', 'font-bold': 'font-bold', 'font-extrabold': 'font-extrabold',
+};
+const trackingClass: Record<string, string> = { 'tracking-tighter': 'tracking-tighter', 'tracking-tight': 'tracking-tight' };
+
+/** Plain text with `code` spans, as written in the token docs. */
+function Prose({ text }: { text: string }) {
+  return <>{text.split(/(`[^`]+`)/).map((part, i) => (part.startsWith('`') ? <Code key={i}>{part.slice(1, -1)}</Code> : part))}</>;
+}
+
+function TypeTable({ rows, example, value }: {
+  rows: { figma: string; cls: string; use: string; value?: string; size?: string }[];
+  example: (cls: string) => string;
+  value?: 'value' | 'size';
+}) {
   return (
-    <div className="my-4 space-y-3">
-      {sizes.map((cls) => {
-        const row = tokens.typography.find((t) => t.cls === cls || t.cls.includes(cls));
-        return (
-          <div key={cls} className="flex items-baseline gap-4 border-b border-default-subtle pb-2">
-            <Code>{cls}</Code>
-            <span className={cn('truncate text-heading', textClass[cls])}>The quick brown fox jumps over the lazy dog</span>
-            {row?.size && !row.cls.includes('…') ? <span className="ms-auto whitespace-nowrap font-mono text-xs text-body-subtle">{row.size}</span> : null}
-          </div>
-        );
-      })}
+    <div className="my-4 overflow-x-auto">
+      <table className={tableClass}>
+        <thead>
+          <tr>
+            <th className={thClass}>Token</th>
+            <th className={thClass}>Example</th>
+            {value ? <th className={thClass}>{value === 'size' ? 'Size' : 'Value'}</th> : null}
+            <th className={thClass}>When to use</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((r) => (
+            <tr key={r.cls}>
+              <td className={cn(tdClass, 'whitespace-nowrap')}><Code>{r.cls}</Code></td>
+              <td className={cn(tdClass, 'max-w-96 truncate font-sans text-heading', example(r.cls))}>AD Design Kit</td>
+              {value ? <td className={cn(tdClass, 'whitespace-nowrap font-mono text-xs')}>{value === 'size' ? r.size : r.value}</td> : null}
+              <td className={tdClass}><Prose text={r.use} /></td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
+}
+
+export function TypeFamily() {
+  return (
+    <>
+      <TypeTable rows={tokens.typography.family} example={() => 'text-sm'} />
+      <div className="my-4 overflow-x-auto">
+        <table className={tableClass}>
+          <thead><tr><th className={thClass}>Theme</th><th className={thClass}>Font</th><th className={thClass}>Example</th></tr></thead>
+          <tbody>
+            {Object.entries(tokens.fonts).map(([theme, font]) => (
+              <tr key={theme}>
+                <td className={cn(tdClass, 'capitalize')}>{theme}</td>
+                <td className={tdClass}>{font.split(' (')[0]}</td>
+                <td data-theme={theme} className={cn(tdClass, 'font-sans text-base text-heading')}>AD Design Kit</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </>
+  );
+}
+export function TypeWeights() {
+  return <TypeTable rows={tokens.typography.weights} example={(cls) => cn('text-sm', weightClass[cls])} />;
+}
+export function TypeTracking() {
+  return <TypeTable rows={tokens.typography.tracking} value="value" example={(cls) => cn('text-sm font-semibold', trackingClass[cls])} />;
+}
+export function TypeScale() {
+  return <TypeTable rows={tokens.typography.sizes} value="size" example={(cls) => cn('font-semibold', textClass[cls])} />;
 }
 
 // ---------- themes ----------

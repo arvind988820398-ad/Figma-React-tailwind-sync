@@ -43,7 +43,13 @@ export interface ADDesignKitDocs {
     radius: { themes: string[]; rows: { cls: string; values: number[] }[] };
     radiusNote: string;
     shadows: { cls: string; use: string }[];
-    typography: { figma: string; cls: string; size: string }[];
+    typography: {
+      intro: string;
+      family: { figma: string; cls: string; use: string }[];
+      weights: { figma: string; cls: string; use: string }[];
+      tracking: { figma: string; cls: string; value: string; use: string }[];
+      sizes: { figma: string; cls: string; size: string; use: string }[];
+    };
     typographyNote: string;
     fonts: Record<string, string>;
   };
@@ -1434,44 +1440,126 @@ export const adDesignKitDocs: ADDesignKitDocs = {
         "use": "Focus ring for those button colors"
       }
     ],
-    "typography": [
-      {
-        "figma": "text-xxs",
-        "cls": "text-xxs",
-        "size": "8px"
-      },
-      {
-        "figma": "text-xs",
-        "cls": "text-xs",
-        "size": "12px"
-      },
-      {
-        "figma": "text-sm",
-        "cls": "text-sm",
-        "size": "14px"
-      },
-      {
-        "figma": "text-base",
-        "cls": "text-base",
-        "size": "16px"
-      },
-      {
-        "figma": "text-lg",
-        "cls": "text-lg",
-        "size": "18px"
-      },
-      {
-        "figma": "text-xl",
-        "cls": "text-xl",
-        "size": "20px"
-      },
-      {
-        "figma": "text-2xl … 6xl",
-        "cls": "text-2xl … text-6xl",
-        "size": "24 / 30 / 36 / 48 / 60px"
-      }
-    ],
-    "typographyNote": "All Figma text styles use 150% line-height (built into the size classes). Text-style variants map to Tailwind modifiers: `leading-none` (100%), `leading-tight` (125%), `leading-relaxed` (162.5%), `leading-loose` (200%), `uppercase`, `underline`, `line-through`. Weights: `font-normal` (Regular), `font-medium`, `font-semibold`, `font-bold`, `font-extrabold`. Tracking: `tracking-tighter` (-0.8px), `tracking-tight` (-0.4px).\n\nCommon roles: page title `text-3xl/4xl font-bold text-heading`; section heading `text-xl/2xl font-semibold text-heading`; card title `text-2xl font-semibold text-heading`; body `text-base text-body` (dense UI `text-sm`); labels `text-sm font-medium text-heading`; helper `text-sm text-body`; caption `text-xs text-body-subtle`; buttons `text-sm font-medium` (xs: `text-xs`, lg/xl: `text-base`).",
+    "typography": {
+      "intro": "The AD Design Kit typography scale follows Tailwind CSS. The font family comes from a variable, so each theme can swap the font across the whole product without overrides. Mirrors the Figma page 📖 Typography → \"Font variables\".",
+      "family": [
+        {
+          "figma": "typography/font-family/font-base",
+          "cls": "font-sans",
+          "use": "The base font for all text: Inter in Modern, IBM Plex Serif in Enterprise. Change it in Figma (Primitives → `font/family/font-sans`) and re-sync; never set a `font-[…]` family in code."
+        }
+      ],
+      "weights": [
+        {
+          "figma": "normal",
+          "cls": "font-normal",
+          "use": "Paragraphs, helper texts and articles."
+        },
+        {
+          "figma": "medium",
+          "cls": "font-medium",
+          "use": "Button texts, labels, CTA texts and some headings."
+        },
+        {
+          "figma": "semibold",
+          "cls": "font-semibold",
+          "use": "Main headings."
+        },
+        {
+          "figma": "bold",
+          "cls": "font-bold",
+          "use": "H1 headings in hero sections."
+        },
+        {
+          "figma": "extrabold",
+          "cls": "font-extrabold",
+          "use": "H1 headings in hero sections."
+        }
+      ],
+      "tracking": [
+        {
+          "figma": "tracking-tighter",
+          "cls": "tracking-tighter",
+          "value": "-0.8px",
+          "use": "Big H1 headings: tighter spacing improves how large headings look and read."
+        },
+        {
+          "figma": "tracking-tight",
+          "cls": "tracking-tight",
+          "value": "-0.4px",
+          "use": "Section and card headings."
+        }
+      ],
+      "sizes": [
+        {
+          "figma": "text-xxs",
+          "cls": "text-xxs",
+          "size": "8px",
+          "use": "Tiny labels inside very small elements, such as initials on an xs avatar. Never body text."
+        },
+        {
+          "figma": "text-xs",
+          "cls": "text-xs",
+          "size": "12px",
+          "use": "Captions, helper text, badges and timestamps."
+        },
+        {
+          "figma": "text-sm",
+          "cls": "text-sm",
+          "size": "14px",
+          "use": "Labels, buttons, table cells and dense UI text."
+        },
+        {
+          "figma": "text-base",
+          "cls": "text-base",
+          "size": "16px",
+          "use": "Paragraphs and larger buttons."
+        },
+        {
+          "figma": "text-lg",
+          "cls": "text-lg",
+          "size": "18px",
+          "use": "Lead text and drawer or modal titles."
+        },
+        {
+          "figma": "text-xl",
+          "cls": "text-xl",
+          "size": "20px",
+          "use": "Section headings."
+        },
+        {
+          "figma": "text-2xl",
+          "cls": "text-2xl",
+          "size": "24px",
+          "use": "Card titles and section headings."
+        },
+        {
+          "figma": "text-3xl",
+          "cls": "text-3xl",
+          "size": "30px",
+          "use": "Page titles."
+        },
+        {
+          "figma": "text-4xl",
+          "cls": "text-4xl",
+          "size": "36px",
+          "use": "Block headings."
+        },
+        {
+          "figma": "text-5xl",
+          "cls": "text-5xl",
+          "size": "48px",
+          "use": "Large marketing headings."
+        },
+        {
+          "figma": "text-6xl",
+          "cls": "text-6xl",
+          "size": "60px",
+          "use": "Larger headings like H1 in hero blocks."
+        }
+      ]
+    },
+    "typographyNote": "Every Figma text style uses 150% line height, built into the size classes. The text-style variants map to Tailwind modifiers: `leading-none` (100%), `leading-tight` (125%), `leading-relaxed` (162.5%), `leading-loose` (200%), `uppercase`, `underline` and `line-through`. Figma also has text styles from text-7xl to text-9xl; they exist only as primitives, not theme tokens, so do not use them in product UI.\n\nCommon roles: page title `text-3xl/4xl font-bold text-heading`; section heading `text-xl/2xl font-semibold text-heading`; card title `text-2xl font-semibold text-heading`; body `text-base text-body` (dense UI `text-sm`); labels `text-sm font-medium text-heading`; helper `text-xs leading-4 text-body`; caption `text-xs text-body-subtle`; buttons `text-sm font-medium` (xs: `text-xs`, lg/xl: `text-base`).",
     "fonts": {
       "modern": "Inter (font/family/font-sans)",
       "enterprise": "IBM Plex Serif"
