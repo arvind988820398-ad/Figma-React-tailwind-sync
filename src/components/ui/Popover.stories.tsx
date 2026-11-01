@@ -4,7 +4,7 @@ import { expect, waitFor, within } from 'storybook/test';
 import { Popover, PopoverItem, type PopoverPlacement } from './Popover';
 import { Avatar } from './Avatar';
 import { Button } from './Button';
-import { CogIcon, EnvelopeIcon, PlusIcon } from '../icons';
+import { CogIcon, EnvelopeIcon, FacebookIcon, InstagramIcon, LinkedinIcon, PlusIcon, XIcon, YoutubeIcon } from '../icons';
 
 // AD Design Kit Popover — mirrors the Figma "Popover" set (node 1149:81090), content 1149:81187.
 const placements = ['top', 'right', 'bottom', 'left'] as const satisfies readonly PopoverPlacement[];
@@ -14,7 +14,7 @@ const meta = {
   parameters: { design: figmaDesign('Popover') },
   component: Popover,
   // Room for the panel on every side; click the trigger to open it.
-  decorators: [(Story) => <div className="px-40 py-32">{Story()}</div>],
+  decorators: [(Story) => <div className="flex justify-center px-72 py-40">{Story()}</div>],
   args: {
     trigger: <Button color="secondary">Open popover</Button>,
     title: 'Popover title',
@@ -33,7 +33,28 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
 export const WithoutTitle: Story = { args: { title: undefined } };
-export const Bottom: Story = { args: { placement: 'bottom' } };
+
+// Figma Type "Default" × Position: shown open, the arrow pointing at the trigger.
+export const Top: Story = { args: { placement: 'top', defaultOpen: true } };
+export const Bottom: Story = { args: { placement: 'bottom', defaultOpen: true } };
+export const Left: Story = { args: { placement: 'left', defaultOpen: true } };
+export const Right: Story = { args: { placement: 'right', defaultOpen: true } };
+
+// Figma Type "Vertical items": social share rows divided by borders; the panel hugs its rows.
+const shareItems = (
+  <>
+    <PopoverItem icon={<XIcon />} href="#popover">Tweet</PopoverItem>
+    <PopoverItem icon={<FacebookIcon />} href="#popover">Share</PopoverItem>
+    <PopoverItem icon={<InstagramIcon />} href="#popover">Like</PopoverItem>
+    <PopoverItem icon={<LinkedinIcon />} href="#popover">Share</PopoverItem>
+    <PopoverItem icon={<YoutubeIcon />} href="#popover">Like</PopoverItem>
+  </>
+);
+const verticalItems = { padding: 'none', title: undefined, label: 'Share', defaultOpen: true, children: shareItems, trigger: <Button color="secondary">Share</Button> } as const;
+export const VerticalItemsTop: Story = { args: { ...verticalItems, placement: 'top' } };
+export const VerticalItemsBottom: Story = { args: { ...verticalItems, placement: 'bottom' } };
+export const VerticalItemsLeft: Story = { args: { ...verticalItems, placement: 'left' } };
+export const VerticalItemsRight: Story = { args: { ...verticalItems, placement: 'right' } };
 
 // Figma "Rich" content: profile card with avatar, text and a link.
 export const RichContent: Story = {
@@ -60,7 +81,7 @@ export const RichContent: Story = {
   },
 };
 
-// Figma "Vertical items": icon + text rows, no panel padding.
+// Vertical items with app actions instead of share links.
 export const VerticalItems: Story = {
   args: {
     placement: 'bottom',
@@ -77,11 +98,12 @@ export const VerticalItems: Story = {
   },
 };
 
+// All four Figma positions side by side, open.
 export const AllPlacements: Story = {
-  render: ({ placement: _placement, trigger: _trigger, ...args }) => (
-    <div className="flex flex-wrap items-center justify-center gap-10">
+  render: ({ placement: _placement, trigger: _trigger, defaultOpen: _open, ...args }) => (
+    <div className="grid grid-cols-2 place-items-center gap-x-96 gap-y-40">
       {placements.map((placement) => (
-        <Popover key={placement} {...args} placement={placement} trigger={<Button color="secondary">{placement}</Button>} />
+        <Popover key={placement} {...args} defaultOpen placement={placement} trigger={<Button color="secondary">{placement}</Button>} />
       ))}
     </div>
   ),
@@ -164,7 +186,13 @@ export const VerticalItemsOpen: Story = {
 
 // Opening each placement once; without a title the dialog has no aria-labelledby.
 export const OpenEachPlacement: Story = {
-  ...AllPlacements,
+  render: ({ placement: _placement, trigger: _trigger, ...args }) => (
+    <div className="flex flex-wrap items-center justify-center gap-10">
+      {placements.map((placement) => (
+        <Popover key={placement} {...args} placement={placement} trigger={<Button color="secondary">{placement}</Button>} />
+      ))}
+    </div>
+  ),
   play: async ({ canvas, userEvent }) => {
     for (const placement of placements) {
       await userEvent.click(canvas.getByRole('button', { name: placement }));

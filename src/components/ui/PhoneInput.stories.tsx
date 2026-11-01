@@ -1,9 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { expect } from 'storybook/test';
 import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
-import { useState, type ComponentProps } from 'react';
-import { HelperText, Label } from './Input';
+import { useState, type ComponentProps, type ReactNode } from 'react';
+import { Button } from './Button';
+import { Dropdown, DropdownItem } from './Dropdown';
+import { HelperText, Input, InputGroup, Label } from './Input';
 import { defaultCountries, PhoneInput } from './PhoneInput';
+import { Select } from './Select';
+import { AngleDownIcon, ClipboardIcon, PhoneIcon, QuestionCircleIcon } from '../icons';
 
 // AD Design Kit Phone input — mirrors the Figma "Phone form" set (node 1149:46719).
 const meta = {
@@ -17,7 +21,7 @@ const meta = {
   render: (args) => <PhoneDemo {...args} />,
   decorators: [
     (Story) => (
-      <div className="w-80">
+      <div className="w-max min-w-80 max-w-full">
         <Story />
       </div>
     ),
@@ -57,6 +61,124 @@ export const WithLabelAndHelperText: Story = {
       </div>
     </div>
   ),
+};
+
+// ---- Figma Type: each as in Figma, a Label (Required & icon) + the field + Helper ---------------------------------------
+
+const lastUpdate = 'Last update: 20:45 AM, November 20, 2023';
+function Field({ id, label, helper = lastUpdate, children }: { id: string; label: string; helper?: string; children: ReactNode }) {
+  return (
+    <div className="w-full">
+      <Label htmlFor={id} required icon={<QuestionCircleIcon />}>{label}</Label>
+      {children}
+      <HelperText>{helper}</HelperText>
+    </div>
+  );
+}
+function MenuButton({ label, children, items, size, color = 'secondary' }: { label: string; children: ReactNode; items: string[]; size?: 'xs'; color?: 'secondary' | 'tertiary' }) {
+  return (
+    <Dropdown label={label} trigger={<Button color={color} size={size} className="shrink-0" rightIcon={<AngleDownIcon />}>{children}</Button>}>
+      {items.map((i) => <DropdownItem key={i} onSelect={() => {}}>{i}</DropdownItem>)}
+    </Dropdown>
+  );
+}
+const country = <MenuButton label="Country code" items={['🇺🇸 +1', '🇬🇧 +44', '🇮🇳 +91']}><span aria-hidden>🇺🇸</span> +1</MenuButton>;
+const sendCode = <MenuButton label="Send code by" items={['SMS', 'Voice call', 'WhatsApp']}>Send code</MenuButton>;
+const width = (w: string) => [(Story: () => ReactNode) => <div className={w}><Story /></div>];
+
+export const FigmaDefault: Story = {
+  name: 'Default',
+  render: () => (
+    <Field id="ph-default" label="Phone number" helper="Select a phone number that matches the format.">
+      <Input id="ph-default" type="tel" autoComplete="tel" placeholder="123-456-7890" leftIcon={<PhoneIcon />} />
+    </Field>
+  ),
+  decorators: width('w-96 max-w-full'),
+};
+
+export const OneButton: Story = {
+  render: (args) => <Field id="ph-one" label="Phone number"><PhoneDemo {...args} id="ph-one" aria-label={undefined} /></Field>,
+  decorators: width('w-96 max-w-full'),
+};
+
+export const InnerButton: Story = {
+  render: () => (
+    <Field id="ph-inner" label="Phone number">
+      <Input id="ph-inner" type="tel" autoComplete="tel" placeholder="123-456-7890" leftIcon={<PhoneIcon />}
+        endAction={<MenuButton label="Send code by" items={['SMS', 'Voice call']} size="xs" color="tertiary">Send SMS</MenuButton>} />
+    </Field>
+  ),
+  decorators: width('w-96 max-w-full'),
+};
+
+export const ThreeButtons: Story = {
+  render: () => (
+    <Field id="ph-three" label="Phone number">
+      <InputGroup>
+        {country}
+        <Input id="ph-three" type="tel" autoComplete="tel-national" placeholder="123-456-7890" leftIcon={<PhoneIcon />} />
+        {sendCode}
+      </InputGroup>
+    </Field>
+  ),
+  decorators: width('w-96 max-w-full'),
+};
+
+export const StackedWithButton: Story = {
+  render: () => (
+    <Field id="ph-stacked" label="Phone number">
+      <div className="flex flex-col gap-2.5">
+        <InputGroup>
+          {country}
+          <Input id="ph-stacked" type="tel" autoComplete="tel-national" placeholder="123-456-7890" leftIcon={<PhoneIcon />} />
+          {sendCode}
+        </InputGroup>
+        <Button className="w-full">Activate account</Button>
+      </div>
+    </Field>
+  ),
+  decorators: width('w-96 max-w-full'),
+};
+
+export const SelectAndButton: Story = {
+  render: () => (
+    <Field id="ph-primary" label="Primary phone number" helper="Please set your primary phone number.">
+      <InputGroup>
+        <Select id="ph-primary" leftIcon={<PhoneIcon />} defaultValue="123-456-7890">
+          {['123-456-7890', '456-789-0123'].map((n) => <option key={n}>{n}</option>)}
+        </Select>
+        <Button color="secondary" iconOnly aria-label="Copy phone number" className="shrink-0 text-body"><ClipboardIcon /></Button>
+      </InputGroup>
+    </Field>
+  ),
+  decorators: width('w-80'),
+};
+
+export const WithSpacedButtons: Story = {
+  render: () => (
+    <Field id="ph-spaced" label="Phone number">
+      <div className="flex gap-4">
+        {country}
+        <Input id="ph-spaced" type="tel" autoComplete="tel-national" placeholder="123-456-7890" className="min-w-0 flex-1" />
+        <Button className="shrink-0">Send code</Button>
+      </div>
+    </Field>
+  ),
+  decorators: width('w-md max-w-full'),
+};
+
+export const Inline: Story = {
+  render: () => (
+    <div className="flex items-center gap-4">
+      <Label htmlFor="ph-inline" className="mb-0 shrink-0">Phone number</Label>
+      <div className="flex flex-1 gap-4">
+        {country}
+        <Input id="ph-inline" type="tel" autoComplete="tel-national" placeholder="123-456-7890" className="min-w-0 flex-1" />
+        <Button className="shrink-0">Send code</Button>
+      </div>
+    </div>
+  ),
+  decorators: width('w-xl max-w-full'),
 };
 
 // ---- Interaction tests -------------------------------------------------------------------------------------------

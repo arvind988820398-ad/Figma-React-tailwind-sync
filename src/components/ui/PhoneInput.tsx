@@ -1,11 +1,11 @@
 // AD Design Kit Phone input — Figma set "Phone form" (node 1149:46719, page 3279:34618).
-// Country selector = Secondary base Button (flag + dial code + chevron) joined to the Input field; it opens a Dropdown.
+// = Figma "One button": a country selector (Secondary base Button: flag + dial code + chevron, opening a Dropdown)
+// joined to an Input field with the "phone" icon. The other Figma types are compositions with <InputGroup>.
 import { useId } from 'react';
-import { cn } from '../../lib/cn';
-import { AngleDownIcon } from '../icons';
+import { AngleDownIcon, PhoneIcon } from '../icons';
 import { Button } from './Button';
 import { Dropdown, DropdownItem } from './Dropdown';
-import { inputVariants, type FieldStatus } from './Input';
+import { Input, InputGroup, type FieldStatus } from './Input';
 
 export interface Country {
   code: string; // ISO, e.g. "US"
@@ -53,7 +53,7 @@ export function PhoneInput({
   const autoId = useId();
   const current = countries.find((c) => c.code === country) ?? countries[0];
   return (
-    <div className={cn('flex rounded-base shadow-xs', className)}>
+    <InputGroup className={className}>
       <Dropdown
         label="Country code"
         trigger={
@@ -61,10 +61,8 @@ export function PhoneInput({
             color="secondary"
             disabled={disabled}
             aria-label={`Country code ${current.name} ${current.dial}`}
-            className="shrink-0 rounded-e-none shadow-none"
-            rightIcon={
-              <AngleDownIcon />
-            }
+            className="shrink-0"
+            rightIcon={<AngleDownIcon />}
           >
             <span aria-hidden>{current.flag}</span>
             {current.dial}
@@ -78,18 +76,18 @@ export function PhoneInput({
           </DropdownItem>
         ))}
       </Dropdown>
-      <input
+      <Input
         id={id ?? autoId}
         type="tel"
         autoComplete="tel-national"
         value={value}
         placeholder={placeholder}
         disabled={disabled}
+        status={status}
+        leftIcon={<PhoneIcon />}
         onChange={(e) => onChange(e.target.value)}
-        aria-invalid={status === 'danger' || undefined}
-        className={cn(inputVariants({ status }), '-ms-px rounded-s-none shadow-none')}
         {...aria}
       />
-    </div>
+    </InputGroup>
   );
 }

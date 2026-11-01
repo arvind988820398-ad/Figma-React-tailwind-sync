@@ -1,47 +1,92 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { expect, within } from 'storybook/test';
 import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
-import { CogIcon } from '../icons';
+import { AngleDownIcon, AngleLeftIcon, AngleRightIcon, CodeBranchIcon, DatabaseIcon, HomeIcon } from '../icons';
 import { Badge } from './Badge';
-import { Breadcrumb } from './Breadcrumb';
+import { Breadcrumb, type BreadcrumbItem } from './Breadcrumb';
 import { Button } from './Button';
 import { ButtonGroup, ButtonGroupItem } from './ButtonGroup';
 import { Dropdown, DropdownItem } from './Dropdown';
 
-// AD Design Kit Breadcrumb — mirrors the Figma "Breadcrumb" set (node 1148:31317). The last item is the current page.
+// AD Design Kit Breadcrumb — one story per Figma "Breadcrumb" Type (node 1148:31317), with Figma's content.
+// The last item is the current page.
+const trail: BreadcrumbItem[] = [
+  { label: 'Home', href: '#', icon: <HomeIcon /> },
+  { label: 'E-commerce', href: '#' },
+  { label: 'Users', href: '#' },
+  { label: 'All users' },
+];
+
 const meta = {
   title: 'Components/Breadcrumb',
   parameters: { design: figmaDesign('Breadcrumb') },
   component: Breadcrumb,
-  args: {
-    items: [{ label: 'Home', href: '#' }, { label: 'Projects', href: '#' }, { label: 'AD Design Kit' }],
-    variant: 'default',
-  },
+  args: { items: trail, variant: 'default' },
   argTypes: { variant: { control: 'select', options: ['default', 'background', 'buttons'] } },
 } satisfies Meta<typeof Breadcrumb>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+// Figma "Default": text crumbs with a home icon on the first.
 export const Default: Story = {};
 
-// Figma "Background": bordered neutral container.
+// Figma "Background": the same trail in a bordered neutral container.
 export const Background: Story = { args: { variant: 'background' } };
 
-const Arrow = ({ d }: { d: string }) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
-    <path d={d} strokeLinecap="round" strokeLinejoin="round" />
-  </svg>
-);
+// Figma "With dropdown": the last crumb is a Secondary xs Button opening a Dropdown.
+export const WithDropdown: Story = {
+  decorators: [(Story) => <div className="min-h-56"><Story /></div>],
+  args: {
+    items: [
+      { label: 'Home', href: '#', icon: <HomeIcon /> },
+      { label: 'Settings', href: '#' },
+      { label: 'Databases', href: '#' },
+      {
+        label: (
+          <Dropdown label="Databases" trigger={<Button size="xs" color="secondary" leftIcon={<DatabaseIcon />} rightIcon={<AngleDownIcon />}>AD Design Kit</Button>}>
+            <DropdownItem>AD Design Kit</DropdownItem>
+            <DropdownItem>Marketing site</DropdownItem>
+            <DropdownItem>Mobile app</DropdownItem>
+          </Dropdown>
+        ),
+      },
+    ],
+  },
+};
+
+// Figma "With badge": the current crumb carries a Badge and a branch picker.
+export const WithBadge: Story = {
+  decorators: [(Story) => <div className="min-h-56"><Story /></div>],
+  args: {
+    items: [
+      { label: 'addesignkit.com', href: '#' },
+      { label: 'develop', href: '#' },
+      {
+        label: (
+          <span className="inline-flex items-center gap-2.5">
+            Issue #312
+            <Badge color="brand" size="sm">docs</Badge>
+            <Dropdown label="Branches" trigger={<Button size="xs" color="secondary" leftIcon={<CodeBranchIcon />} rightIcon={<AngleDownIcon />}>Fix #6597</Button>}>
+              <DropdownItem>Fix #6597</DropdownItem>
+              <DropdownItem>develop</DropdownItem>
+              <DropdownItem>main</DropdownItem>
+            </Dropdown>
+          </span>
+        ),
+      },
+    ],
+  },
+};
 
 // Figma "With group buttons": back/forward controls before the trail.
 export const WithGroupButtons: Story = {
   args: {
-    items: [{ label: 'Home', href: '#' }, { label: 'Settings', href: '#' }, { label: 'User settings' }],
+    items: [{ label: 'Home', href: '#', icon: <HomeIcon /> }, { label: 'Settings', href: '#' }, { label: 'User settings' }],
     leading: (
       <ButtonGroup size="sm" color="white" label="History">
-        <ButtonGroupItem iconOnly aria-label="Back"><Arrow d="m15 6-6 6 6 6" /></ButtonGroupItem>
-        <ButtonGroupItem iconOnly aria-label="Forward"><Arrow d="m9 6 6 6-6 6" /></ButtonGroupItem>
+        <ButtonGroupItem iconOnly aria-label="Back"><AngleLeftIcon /></ButtonGroupItem>
+        <ButtonGroupItem iconOnly aria-label="Forward"><AngleRightIcon /></ButtonGroupItem>
       </ButtonGroup>
     ),
   },
@@ -56,41 +101,13 @@ export const WithGroupButtons: Story = {
 export const OnlyButtons: Story = {
   args: {
     variant: 'buttons',
-    items: [{ label: 'addesignkit.com', href: '#' }, { label: 'databaseName' }],
+    items: [
+      { label: <>addesignkit.com <AngleDownIcon /></>, href: '#', icon: <CodeBranchIcon /> },
+      { label: <>databaseName <AngleDownIcon /></>, icon: <DatabaseIcon /> },
+    ],
   },
   play: async ({ canvas }) => {
     await expect(canvas.getByRole('link', { name: 'addesignkit.com' })).toHaveClass('rounded-base');
-    await expect(canvas.getByText('databaseName')).toHaveAttribute('aria-current', 'page');
+    await expect(canvas.getByText('databaseName').closest('[aria-current]')).toHaveAttribute('aria-current', 'page');
   },
 };
-
-export const WithIcon: Story = {
-  args: { items: [{ label: 'Settings', href: '#', icon: <CogIcon /> }, { label: 'Team', href: '#' }, { label: 'Members' }] },
-};
-
-// Figma "With badge": a Badge as the last label.
-export const WithBadge: Story = {
-  args: { items: [{ label: 'Home', href: '#' }, { label: 'Releases', href: '#' }, { label: <Badge color="brand" size="sm">v2.0</Badge> }] },
-};
-
-// Figma "With dropdown": a Dropdown as the last label.
-export const WithDropdown: Story = {
-  decorators: [(Story) => <div className="min-h-48"><Story /></div>],
-  args: {
-    items: [
-      { label: 'Home', href: '#' },
-      { label: 'Projects', href: '#' },
-      {
-        label: (
-          <Dropdown label="Projects" trigger={<Button size="xs" color="secondary">AD Design Kit</Button>}>
-            <DropdownItem>AD Design Kit</DropdownItem>
-            <DropdownItem>Marketing site</DropdownItem>
-            <DropdownItem>Mobile app</DropdownItem>
-          </Dropdown>
-        ),
-      },
-    ],
-  },
-};
-
-export const SingleLevel: Story = { args: { items: [{ label: 'Home', href: '#' }, { label: 'Dashboard' }] } };

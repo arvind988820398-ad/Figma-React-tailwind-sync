@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
+import { expect } from 'storybook/test';
 import { useState, type ComponentProps } from 'react';
 import { Checkbox, Radio } from './Checkbox';
 
@@ -43,6 +44,34 @@ export const Disabled: Story = { args: { disabled: true } };
 export const DisabledChecked: Story = { args: { disabled: true, defaultChecked: true } };
 export const Controlled: Story = { render: (args) => <ControlledCheckbox {...args} /> };
 export const RadioGroup: Story = { render: () => <RadioGroupDemo /> };
+
+// The Figma set grid: Type (Checkbox, Radio) × Checked (False, True) × Status (Initial, Disabled); Focus below.
+export const States: Story = {
+  render: () => (
+    <div className="grid grid-cols-4 items-center gap-x-6 gap-y-4">
+      {[false, true].map((checked) =>
+        (['Initial', 'Disabled'] as const).flatMap((status) => [
+          <Checkbox key={`c-${status}-${checked}`} aria-label={`Checkbox, ${status}, ${checked ? 'checked' : 'unchecked'}`} defaultChecked={checked} disabled={status === 'Disabled'} />,
+          <Radio key={`r-${status}-${checked}`} name={`radio-${status}-${checked}`} aria-label={`Radio, ${status}, ${checked ? 'checked' : 'unchecked'}`} defaultChecked={checked} disabled={status === 'Disabled'} />,
+        ]),
+      )}
+    </div>
+  ),
+};
+
+// Figma Status = Focus: the focus ring on a checkbox and a radio.
+export const Focus: Story = {
+  render: (args) => (
+    <div className="flex gap-6">
+      <Checkbox {...args} label="Checkbox" />
+      <Radio {...args} label="Radio" />
+    </div>
+  ),
+  play: async ({ canvas, userEvent }) => {
+    await userEvent.tab();
+    await expect(canvas.getByRole('checkbox')).toHaveFocus();
+  },
+};
 
 export const AllStates: Story = {
   render: (args) => (

@@ -34,6 +34,37 @@ export const Disabled: Story = { args: { disabled: true } };
 export const DisabledChecked: Story = { args: { disabled: true, checked: true } };
 export const WithoutVisibleLabel: Story = { args: { children: undefined, 'aria-label': 'Enable notifications' } };
 
+// The Figma set grid: Size (base, lg) × Checked (False, True) × Status (Initial, Disabled); Focus below.
+export const States: Story = {
+  render: () => (
+    <div className="grid grid-cols-4 items-center gap-x-6 gap-y-4">
+      {(['Initial', 'Disabled'] as const).map((status) =>
+        (['base', 'lg'] as const).flatMap((size) =>
+          [false, true].map((checked) => (
+            <Toggle
+              key={`${status}-${size}-${checked}`}
+              size={size}
+              checked={checked}
+              disabled={status === 'Disabled'}
+              onCheckedChange={() => {}}
+              aria-label={`${status}, ${size}, ${checked ? 'on' : 'off'}`}
+            />
+          )),
+        ),
+      )}
+    </div>
+  ),
+};
+
+// Figma Status = Focus: the focus ring (keyboard focus).
+export const Focus: Story = {
+  args: { children: undefined, 'aria-label': 'Enable notifications', checked: true },
+  play: async ({ canvas, userEvent }) => {
+    await userEvent.tab();
+    await expect(canvas.getByRole('switch')).toHaveFocus();
+  },
+};
+
 export const AllSizes: Story = {
   render: (args) => (
     <div className="flex flex-col gap-4">

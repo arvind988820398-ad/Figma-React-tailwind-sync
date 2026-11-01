@@ -73,3 +73,18 @@ export const AllSizes: Story = {
     </div>
   ),
 };
+
+// The Figma set: Gray (Secondary items) then White (Tertiary items), each in xs, sm, base and lg.
+export const AllVariants: Story = {
+  render: (args) => (
+    <div className="flex flex-col gap-8">
+      {(['gray', 'white'] as const).map((color) => (
+        <div key={color} className="flex flex-col items-start gap-4">
+          {(['xs', 'sm', 'base', 'lg'] as ButtonGroupSize[]).map((size) => (
+            <ButtonGroup key={size} {...args} color={color} size={size} label={`${color} ${size} group`} />
+          ))}
+        </div>
+      ))}
+    </div>
+  ),
+};

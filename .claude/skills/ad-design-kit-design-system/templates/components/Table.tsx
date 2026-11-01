@@ -1,5 +1,6 @@
 // AD Design Kit Table — Figma set "Table (free-component)" (node 1149:87477, page 3284:22719).
-// Figma types: Striped rows / Striped columns = `striped`; With table caption = `caption`. Toolbar = `toolbar` slot.
+// Figma types: Striped rows / Striped columns = `striped`; With table caption = `caption` (title, description, actions).
+// Figma parts: Table header = `toolbar` slot, Table Footer = `footer` slot ("Showing 1-10 of 1000" + Pagination).
 // `stickyHeader` keeps the header row visible while the body scrolls inside the wrapper; bound the wrapper's height
 // with `containerClassName` (e.g. `max-h-96`, or `min-h-0 flex-1` in a flex column).
 import type { HTMLAttributes, ReactNode, TdHTMLAttributes, ThHTMLAttributes } from 'react';
@@ -14,10 +15,12 @@ const striping: Record<TableStriped, string> = {
 
 export interface TableProps extends HTMLAttributes<HTMLTableElement> {
   striped?: TableStriped;
-  /** Figma "With table caption": title + description block above the table. */
-  caption?: { title: ReactNode; description?: ReactNode };
+  /** Figma "With table caption": title + description block above the table, with an optional Brand sm action on the right. */
+  caption?: { title: ReactNode; description?: ReactNode; actions?: ReactNode };
   /** Row above the table: search Input, Secondary "Filters", Brand "Add …". */
   toolbar?: ReactNode;
+  /** Row below the table (Figma "Table Footer"): a "Showing 1-10 of 1000" summary and Pagination. */
+  footer?: ReactNode;
   /** Header row stays visible while the rows scroll; give the wrapper a height with `containerClassName`. */
   stickyHeader?: boolean;
   /** Layout classes for the scrolling wrapper (height, flex sizing). */
@@ -30,10 +33,10 @@ const stickyHead =
   '[&_thead_th]:after:pointer-events-none [&_thead_th]:after:absolute [&_thead_th]:after:inset-x-0 [&_thead_th]:after:bottom-0 ' +
   '[&_thead_th]:after:h-px [&_thead_th]:after:bg-neutral-quaternary';
 
-export function Table({ striped, caption, toolbar, stickyHeader, containerClassName, className, children, ...props }: TableProps) {
+export function Table({ striped, caption, toolbar, footer, stickyHeader, containerClassName, className, children, ...props }: TableProps) {
   return (
     <div className={cn('relative flex flex-col rounded-base border border-default bg-neutral-secondary-soft shadow-xs', containerClassName)}>
-      {toolbar && <div className="flex shrink-0 flex-wrap items-center justify-between gap-3 border-b border-default p-4">{toolbar}</div>}
+      {toolbar && <div className="flex shrink-0 flex-wrap items-center justify-between gap-3 border-b border-default p-5">{toolbar}</div>}
       <div
         // A scrolling region must be reachable by keyboard (axe scrollable-region-focusable).
         tabIndex={stickyHeader ? 0 : undefined}
@@ -44,13 +47,19 @@ export function Table({ striped, caption, toolbar, stickyHeader, containerClassN
         <table className={cn('w-full text-start text-sm', striped && striping[striped], stickyHeader && stickyHead, className)} {...props}>
           {caption && (
             <caption className="border-b border-default bg-neutral-secondary-soft p-5 text-start">
-              <span className="block text-lg font-medium leading-none text-heading">{caption.title}</span>
-              {caption.description && <span className="mt-2 block text-base font-normal text-body">{caption.description}</span>}
+              <span className="flex flex-wrap items-center justify-between gap-4">
+                <span className="flex flex-col gap-1">
+                  <span className="block text-lg font-medium leading-none text-heading">{caption.title}</span>
+                  {caption.description && <span className="block text-base font-normal text-body">{caption.description}</span>}
+                </span>
+                {caption.actions && <span className="flex shrink-0 items-center gap-3">{caption.actions}</span>}
+              </span>
             </caption>
           )}
           {children}
         </table>
       </div>
+      {footer && <div className="flex shrink-0 flex-wrap items-center justify-between gap-3 border-t border-default p-5 text-sm text-body">{footer}</div>}
     </div>
   );
 }

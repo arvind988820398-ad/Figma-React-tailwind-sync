@@ -1,11 +1,11 @@
 // AD Design Kit Datepicker — Figma "Datepicker (ready to use examples)" (node 1149:51284, page 1149:51144),
 // cell 1149:51147, controls 1149:51164, menu 1149:51169. Figma Type: Default = mode "single", Range = mode "range"
 // (two months). <Calendar> is the menu on its own; <Datepicker> adds the Input trigger and the popup.
-import { useEffect, useId, useLayoutEffect, useMemo, useRef, useState, type KeyboardEvent } from 'react';
+import { useEffect, useId, useLayoutEffect, useMemo, useRef, useState, type KeyboardEvent, type ReactNode } from 'react';
 import { cn } from '../../lib/cn';
-import { AngleLeftIcon, AngleRightIcon, CalendarMonthIcon } from '../icons';
+import { ArrowLeftIcon, ArrowRightIcon, CalendarMonthIcon, CalendarWeekIcon } from '../icons';
 import { Button } from './Button';
-import { inputVariants, type FieldSize } from './Input';
+import { inputVariants, Label, type FieldSize } from './Input';
 
 /** Split the month grid into weeks so each week is an ARIA row. */
 function chunk<T>(items: T[], size: number): T[][] {
@@ -27,10 +27,10 @@ function monthGrid(month: Date, weekStart: number) {
   return Array.from({ length: 42 }, (_, i) => addDays(first, i - offset));
 }
 
-const Chevron = ({ dir }: { dir: 'left' | 'right' }) => (dir === 'left' ? <AngleLeftIcon /> : <AngleRightIcon />);
+const Chevron = ({ dir }: { dir: 'left' | 'right' }) => (dir === 'left' ? <ArrowLeftIcon /> : <ArrowRightIcon />);
 
 const navButton =
-  'inline-flex size-8 items-center justify-center rounded-base text-heading hover:bg-neutral-tertiary-medium focus-visible:shadow-focus-secondary focus-visible:outline-none [&_svg]:size-4';
+  'inline-flex size-8 items-center justify-center rounded-base text-heading hover:bg-neutral-secondary-medium focus-visible:shadow-focus-secondary focus-visible:outline-none [&_svg]:size-4';
 
 interface CalendarBaseProps {
   min?: Date;
@@ -61,7 +61,7 @@ export function Calendar(props: CalendarProps) {
 
   const weekdays = useMemo(() => {
     const base = new Date(2024, 0, 7 + weekStart); // a Sunday (+1 for Monday)
-    return Array.from({ length: 7 }, (_, i) => addDays(base, i).toLocaleDateString(locale, { weekday: 'short' }).slice(0, 2));
+    return Array.from({ length: 7 }, (_, i) => addDays(base, i).toLocaleDateString(locale, { weekday: 'short' }));
   }, [weekStart, locale]);
 
   const disabled = (d: Date) => (min && d < startOfDay(min)) || (max && d > startOfDay(max)) || false;
@@ -86,7 +86,7 @@ export function Calendar(props: CalendarProps) {
   };
 
   // Layout effect: focus moves before the next key press is handled, so fast key repeat is never lost.
-  // Hidden outside-month cells share the same date, so only real cells are focused.
+  // Outside-month cells (shown disabled) share the same date, so only real cells are focused.
   const interacted = useRef(false);
   useLayoutEffect(() => {
     if (!interacted.current && !props.autoFocus) return;
@@ -94,8 +94,8 @@ export function Calendar(props: CalendarProps) {
   }, [focusDay, view, props.autoFocus]);
 
   const cellClass = (d: Date, inMonth: boolean) => {
-    if (!inMonth) return 'invisible';
-    if (disabled(d)) return 'rounded text-fg-disabled';
+    // Figma shows the neighbouring months' days in the Disabled cell style.
+    if (!inMonth || disabled(d)) return 'rounded text-fg-disabled';
     if (range) {
       const { start, end } = props.value;
       const isStart = sameDay(d, start);
@@ -113,7 +113,7 @@ export function Calendar(props: CalendarProps) {
     <div ref={gridRef} onKeyDown={onKeyDown} className={cn('flex flex-col gap-6 sm:flex-row', className)}>
       {months.map((m, mi) => (
         <div key={mi} className="flex flex-col gap-4">
-          <div className="flex items-center justify-between gap-2">
+          <div className="flex items-center justify-between gap-6">
             {mi === 0 ? (
               <button type="button" aria-label="Previous month" className={navButton} onClick={() => setView(addMonths(view, -1))}>
                 <Chevron dir="left" />
@@ -132,10 +132,10 @@ export function Calendar(props: CalendarProps) {
               <span className="size-8" />
             )}
           </div>
-          <div role="grid" aria-label={m.toLocaleDateString(locale, { month: 'long', year: 'numeric' })} className="grid grid-cols-7">
+          <div role="grid" aria-label={m.toLocaleDateString(locale, { month: 'long', year: 'numeric' })} className="grid grid-cols-7 gap-y-0">
             <div role="row" className="contents">
             {weekdays.map((w) => (
-              <span key={w} role="columnheader" className="flex h-6 items-center justify-center text-xs font-semibold leading-3 text-body">
+              <span key={w} role="columnheader" className="mb-2.5 flex h-3 items-center justify-center text-xs font-semibold leading-3 text-body">
                 {w}
               </span>
             ))}
@@ -155,6 +155,8 @@ export function Calendar(props: CalendarProps) {
                   role="gridcell"
                   data-day={d.toDateString()}
                   data-outside={inMonth ? undefined : ''}
+                  // Neighbouring-month days are shown (disabled) but left out of the accessibility tree.
+                  aria-hidden={inMonth ? undefined : true}
                   tabIndex={inMonth && sameDay(d, focusDay) ? 0 : -1}
                   aria-selected={selected}
                   aria-current={sameDay(d, today) ? 'date' : undefined}
@@ -188,16 +190,27 @@ export type DatepickerProps = CalendarBaseProps & {
   id?: string;
   'aria-label'?: string;
   'aria-describedby'?: string;
-} & ({ mode?: 'single'; value: Date | null; onChange: (d: Date | null) => void } | { mode: 'range'; value: DateRange; onChange: (r: DateRange) => void });
+} & (
+    | { mode?: 'single'; value: Date | null; onChange: (d: Date | null) => void }
+    | {
+        mode: 'range';
+        value: DateRange;
+        onChange: (r: DateRange) => void;
+        /** Figma Range: two fields ("From", "To") side by side, each with its own Label. */
+        labels?: { start: ReactNode; end: ReactNode; required?: boolean; hint?: ReactNode };
+        /** Placeholder of the end field (`placeholder` is the start field's). */
+        endPlaceholder?: string;
+      }
+  );
 
 /** Input + calendar popup with the Figma footer (Secondary "Clear" + Brand "Today" / "Apply"). */
 export function Datepicker(props: DatepickerProps) {
   const { size = 'base', placeholder = 'Select date', id, min, max, weekStart, locale, className } = props;
   const [open, setOpen] = useState(false);
   const autoId = useId();
+  const baseId = id ?? autoId;
   const rootRef = useRef<HTMLDivElement>(null);
-  const fmt = (d: Date | null) => (d ? d.toLocaleDateString(locale, { dateStyle: 'medium' }) : '');
-  const text = props.mode === 'range' ? [fmt(props.value.start), fmt(props.value.end)].filter(Boolean).join(' – ') : fmt(props.value);
+  const fmt = (d: Date | null) => (d ? d.toLocaleDateString(locale, { day: 'numeric', month: 'short', year: 'numeric' }) : '');
 
   useEffect(() => {
     if (!open) return;
@@ -220,23 +233,25 @@ export function Datepicker(props: DatepickerProps) {
 
   const iconPad = size === 'sm' ? 'ps-8.5' : size === 'base' ? 'ps-9' : size === 'lg' ? 'ps-11' : 'ps-12'; // ad-design-kit-lint-ignore: 10px pad + 16px icon + 8px gap = 34px
   const iconPos = size === 'sm' ? 'ps-2.5' : size === 'base' ? 'ps-3' : size === 'lg' ? 'ps-3.5' : 'ps-4';
+  const dialogId = `${baseId}-dialog`;
 
-  return (
-    <div ref={rootRef} className={cn('relative', className)}>
-      <span className={cn('pointer-events-none absolute inset-y-0 start-0 flex items-center text-body-subtle [&_svg]:size-4', iconPos)}>
+  // One trigger field: Input with the calendar icon (text-heading, text-fg-brand while focused).
+  const field = (fieldId: string, value: string, fieldPlaceholder: string, label?: string, describedBy?: string) => (
+    <div className="group relative">
+      <span className={cn('pointer-events-none absolute inset-y-0 start-0 flex items-center text-heading group-focus-within:text-fg-brand [&_svg]:size-4', iconPos)}>
         <CalendarMonthIcon />
       </span>
       <input
-        id={id ?? autoId}
+        id={fieldId}
         readOnly
-        value={text}
-        placeholder={placeholder}
+        value={value}
+        placeholder={fieldPlaceholder}
         role="combobox"
         aria-haspopup="dialog"
         aria-expanded={open}
-        aria-controls={open ? `${id ?? autoId}-dialog` : undefined}
-        aria-label={props['aria-label']}
-        aria-describedby={props['aria-describedby']}
+        aria-controls={open ? dialogId : undefined}
+        aria-label={label}
+        aria-describedby={describedBy}
         onClick={() => setOpen(true)}
         onKeyDown={(e) => {
           if (e.key === 'Enter' || e.key === 'ArrowDown') {
@@ -246,8 +261,39 @@ export function Datepicker(props: DatepickerProps) {
         }}
         className={cn(inputVariants({ size }), iconPad, 'cursor-pointer read-only:bg-neutral-secondary-medium read-only:text-heading')}
       />
+    </div>
+  );
+
+  return (
+    <div ref={rootRef} className={cn('relative', className)}>
+      {props.mode === 'range' ? (
+        <div className="flex gap-4">
+          {(['start', 'end'] as const).map((edge) => {
+            const fieldId = `${baseId}-${edge}`;
+            const fallback = edge === 'start' ? 'Start date' : 'End date';
+            return (
+              <div key={edge} className="min-w-0 flex-1">
+                {props.labels && (
+                  <Label htmlFor={fieldId} required={props.labels.required} hint={props.labels.hint} className="justify-start">
+                    {props.labels[edge]}
+                  </Label>
+                )}
+                {field(
+                  fieldId,
+                  fmt(props.value[edge]),
+                  edge === 'start' ? placeholder : (props.endPlaceholder ?? placeholder),
+                  props.labels ? undefined : (props['aria-label'] ? `${props['aria-label']}: ${fallback.toLowerCase()}` : fallback),
+                  props['aria-describedby'],
+                )}
+              </div>
+            );
+          })}
+        </div>
+      ) : (
+        field(baseId, fmt(props.value), placeholder, props['aria-label'], props['aria-describedby'])
+      )}
       {open && (
-        <div id={`${id ?? autoId}-dialog`} role="dialog" aria-label="Choose date" className="absolute start-0 top-full z-40 mt-2 flex flex-col gap-4 rounded-base border border-default-medium bg-neutral-primary-medium p-5 shadow-lg">
+        <div id={dialogId} role="dialog" aria-label="Choose date" className="absolute start-0 top-full z-40 mt-2 flex w-max flex-col gap-4 rounded-base border border-default-medium bg-neutral-primary-medium p-5 shadow-lg">
           {props.mode === 'range' ? (
             <Calendar autoFocus mode="range" value={props.value} onChange={props.onChange} min={min} max={max} weekStart={weekStart} locale={locale} />
           ) : (
@@ -277,6 +323,7 @@ export function Datepicker(props: DatepickerProps) {
             ) : (
               <Button
                 className="flex-1"
+                leftIcon={<CalendarWeekIcon />}
                 onClick={() => {
                   props.onChange(startOfDay(new Date()));
                   setOpen(false);

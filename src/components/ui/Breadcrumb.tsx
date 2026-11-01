@@ -39,13 +39,14 @@ export function Breadcrumb({ items, variant = 'default', leading, className, ...
       {...props}
     >
       {leading}
-      <ol className={cn('flex flex-wrap items-center', buttons ? 'gap-1' : 'gap-2.5')}>
+      {/* Figma item: text, 6px, a 14px chevron; items 10px apart ("Only buttons": 4px). */}
+      <ol className={cn('flex flex-wrap items-center', buttons ? 'gap-1' : 'gap-1.5')}>
         {items.map((item, i) => {
           const current = i === items.length - 1;
           return (
             <li key={i} className={cn('inline-flex items-center', buttons ? 'gap-1' : 'gap-2.5')}>
               {i > 0 && (
-                <AngleRightIcon className="size-4 text-body-subtle" />
+                <AngleRightIcon className="size-3.5 text-body-subtle" />
               )}
               {current || !item.href ? (
                 <span

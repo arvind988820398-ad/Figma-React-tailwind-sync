@@ -26,71 +26,112 @@ export interface DropdownProps {
   align?: 'start' | 'end';
   /** Accessible name for the menu. */
   label?: string;
+  /** Panel width and other layout classes (Figma widths: w-52 default, w-56, w-60, w-72, w-80). */
   className?: string;
+  /** Layout of the item list: `grid grid-cols-3` (Figma "Grid"), `max-h-72 overflow-y-auto` (Figma "With scroll"). */
+  menuClassName?: string;
+  /** Above the items, outside the menu role: a heading, a search Input (Figma "Form" header) or a CTA card. */
+  header?: ReactNode;
+  /** Below the items, outside the menu role: an action Button ("Add users", "Create new collection"). */
+  footer?: ReactNode;
+  /** Render a dialog panel instead of a menu, for Figma types that hold fields or an empty state
+   *  ("With forms", "With number inputs", "Text & illustration"). Children are free content; Esc and outside clicks close it. */
+  panel?: boolean;
+  /** Start open, e.g. to document the menu; focus stays where it is until the user opens it. */
+  defaultOpen?: boolean;
 }
 
 const ITEM_SELECTOR = '[role^="menuitem"]:not(:disabled)';
+const FOCUSABLE = 'button:not(:disabled), input:not(:disabled), select, textarea, a[href], [tabindex]:not([tabindex="-1"])';
 
-export function Dropdown({ trigger, children, align = 'start', label, className }: DropdownProps) {
-  const [open, setOpen] = useState(false);
+export function Dropdown({ trigger, children, align = 'start', label, className, menuClassName, header, footer, panel = false, defaultOpen = false }: DropdownProps) {
+  const [open, setOpen] = useState(defaultOpen);
   const id = useId();
   const rootRef = useRef<HTMLDivElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
+  // Move focus into the menu only when the user opened it, not when it starts open.
+  const [userOpened, setUserOpened] = useState(false);
 
   const close = (returnFocus = true) => {
     setOpen(false);
-    if (returnFocus) rootRef.current?.querySelector<HTMLElement>('[aria-haspopup="menu"]')?.focus();
+    if (returnFocus) rootRef.current?.querySelector<HTMLElement>('[aria-haspopup]')?.focus();
   };
 
   useEffect(() => {
     if (!open) return;
-    menuRef.current?.querySelector<HTMLElement>(ITEM_SELECTOR)?.focus();
+    if (userOpened) {
+      (menuRef.current?.querySelector<HTMLElement>(ITEM_SELECTOR) ?? panelRef.current?.querySelector<HTMLElement>(FOCUSABLE))?.focus();
+    }
     const onPointer = (e: PointerEvent) => {
       if (!rootRef.current?.contains(e.target as Node)) setOpen(false);
     };
     document.addEventListener('pointerdown', onPointer);
     return () => document.removeEventListener('pointerdown', onPointer);
-  }, [open]);
+  }, [open, userOpened]);
 
   const onKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
-    const items = [...(menuRef.current?.querySelectorAll<HTMLElement>(ITEM_SELECTOR) ?? [])];
-    const idx = items.indexOf(document.activeElement as HTMLElement);
     if (e.key === 'Escape') {
       e.preventDefault();
       close();
-    } else if (e.key === 'Tab') {
+      return;
+    }
+    if (panel) return;
+    const items = [...(menuRef.current?.querySelectorAll<HTMLElement>(ITEM_SELECTOR) ?? [])];
+    const idx = items.indexOf(document.activeElement as HTMLElement);
+    if (e.key === 'Tab' && idx >= 0) {
+      // Items are out of the tab order: Tab from an item leaves the menu (menu pattern).
       setOpen(false);
     } else if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
       e.preventDefault();
       items[(idx + (e.key === 'ArrowDown' ? 1 : -1) + items.length) % items.length]?.focus();
-    } else if (e.key === 'Home' || e.key === 'End') {
+    } else if ((e.key === 'Home' || e.key === 'End') && idx >= 0) {
       e.preventDefault();
       items[e.key === 'Home' ? 0 : items.length - 1]?.focus();
     }
   };
 
+  const toggle = () => {
+    setUserOpened(true);
+    setOpen((o) => !o);
+  };
+
   return (
     <div ref={rootRef} className="relative inline-flex">
       {cloneElement(trigger, {
-        onClick: () => setOpen((o) => !o),
-        'aria-haspopup': 'menu',
+        onClick: toggle,
+        'aria-haspopup': panel ? 'dialog' : 'menu',
         'aria-expanded': open,
         'aria-controls': open ? id : undefined,
       })}
       {open && (
         <div
-          ref={menuRef}
-          id={id}
-          role="menu"
-          aria-label={label}
+          ref={panelRef}
+          id={panel ? id : undefined}
+          role={panel ? 'dialog' : undefined}
+          aria-label={panel ? label : undefined}
           onKeyDown={onKeyDown}
+          // Tabbing out of a header field or footer button closes it; moving between them does not.
+          onBlur={(e) => {
+            if (e.relatedTarget && !rootRef.current?.contains(e.relatedTarget as Node)) setOpen(false);
+          }}
           className={cn(
             'absolute top-full z-40 mt-2 flex w-52 flex-col gap-1.5 rounded-base border border-default-medium bg-neutral-primary-medium p-2 shadow-lg',
             align === 'end' ? 'end-0' : 'start-0',
             className,
           )}
         >
-          <CloseContext.Provider value={() => close()}>{children}</CloseContext.Provider>
+          {panel ? (
+            children
+          ) : (
+            <>
+              {header}
+              <div ref={menuRef} id={id} role="menu" aria-label={label} className={cn('flex flex-col gap-1.5', menuClassName)}>
+                <CloseContext.Provider value={() => close()}>{children}</CloseContext.Provider>
+              </div>
+              {footer}
+            </>
+          )}
         </div>
       )}
     </div>
@@ -111,13 +152,17 @@ export interface DropdownItemProps extends Omit<ButtonHTMLAttributes<HTMLButtonE
   onSelect?: () => void;
   /** Figma Color = Danger: destructive action (Delete, Remove), fg-danger-strong text and icon, danger-soft hover. */
   color?: 'default' | 'danger';
+  /** Figma item Type "Boxed": a tile with a 24px icon over the label, for a `grid` menu (Figma "Grid"). */
+  boxed?: boolean;
 }
+
+const boxedClasses = 'flex-col justify-center bg-neutral-secondary-strong px-3 text-center [&_svg]:size-6';
 
 // fg-danger-strong keeps 4.5:1 on the menu and on the danger-soft hover in every theme (fg-danger drops to 3.9:1 in dark).
 const dangerClasses =
   'text-fg-danger-strong hover:bg-danger-soft hover:text-fg-danger-strong focus-visible:bg-danger-soft focus-visible:text-fg-danger-strong';
 
-export function DropdownItem({ icon, description, trailing, onSelect, color = 'default', className, children, ...props }: DropdownItemProps) {
+export function DropdownItem({ icon, description, trailing, onSelect, color = 'default', boxed, className, children, ...props }: DropdownItemProps) {
   const close = useContext(CloseContext);
   return (
     <button
@@ -128,12 +173,12 @@ export function DropdownItem({ icon, description, trailing, onSelect, color = 'd
         onSelect?.();
         close();
       }}
-      className={cn(itemClasses, color === 'danger' && dangerClasses, className)}
+      className={cn(itemClasses, color === 'danger' && dangerClasses, boxed && boxedClasses, className)}
       {...props}
     >
       {icon}
-      <span className="flex min-w-0 flex-1 flex-col gap-1">
-        <span>{children}</span>
+      <span className={cn('flex min-w-0 flex-col gap-1', !boxed && 'flex-1')}>
+        <span className={cn(description && 'text-heading')}>{children}</span>
         {description && <span className="text-xs font-normal leading-4 text-body">{description}</span>}
       </span>
       {trailing && <span className="ms-auto inline-flex shrink-0 items-center [&_svg]:size-3.5">{trailing}</span>}
@@ -144,10 +189,76 @@ export function DropdownItem({ icon, description, trailing, onSelect, color = 'd
 export interface DropdownCheckboxItemProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'onChange'> {
   checked: boolean;
   onCheckedChange: (checked: boolean) => void;
+  /** Figma "Left form" / "Only form" / "With avatar & form" = checkbox; "Right form" = toggle switch. */
+  indicator?: 'checkbox' | 'toggle';
+  /** Where the indicator sits: start (default) or end (avatar rows, the "Dark mode" toggle). */
+  indicatorPosition?: 'start' | 'end';
+  /** Leading icon or xs Avatar. */
+  icon?: ReactNode;
+  /** Helper line under the label (Figma "Only form" with helper). */
+  description?: ReactNode;
+  /** Secondary text on the right, e.g. a count. */
+  trailing?: ReactNode;
 }
 
-/** Figma "Checkbox" type: stays open on toggle. Box matches the Checkbox component. */
-export function DropdownCheckboxItem({ checked, onCheckedChange, className, children, ...props }: DropdownCheckboxItemProps) {
+/** Visual-only twins of Checkbox, Radio and Toggle: the menu item itself carries the checked state. */
+function Indicator({ kind, checked }: { kind: 'checkbox' | 'radio' | 'toggle'; checked: boolean }) {
+  if (kind === 'toggle') {
+    return (
+      <span
+        aria-hidden
+        className={cn(
+          'inline-flex h-5 w-9 shrink-0 items-center rounded-full border p-px transition-colors',
+          checked ? 'border-brand-light bg-brand' : 'border-default-strong bg-neutral-tertiary-medium',
+        )}
+      >
+        <span className={cn('size-4 rounded-full bg-white shadow-xs transition-transform', checked && 'translate-x-4 rtl:-translate-x-4')} />
+      </span>
+    );
+  }
+  return (
+    <span
+      aria-hidden
+      className={cn(
+        'inline-flex size-4 shrink-0 items-center justify-center border',
+        kind === 'radio' ? 'rounded-full' : 'rounded-xs',
+        checked
+          ? kind === 'radio' ? 'border-brand bg-neutral-secondary-strong' : 'border-brand bg-brand text-white'
+          : 'border-default-strong bg-neutral-secondary-strong',
+      )}
+    >
+      {checked && (kind === 'radio' ? <span className="size-2 rounded-full bg-brand" /> : <CheckIcon className="size-3" />)}
+    </span>
+  );
+}
+
+function ChoiceItemBody({ icon, description, trailing, children }: Pick<DropdownCheckboxItemProps, 'icon' | 'description' | 'trailing' | 'children'>) {
+  return (
+    <>
+      {icon}
+      <span className="flex min-w-0 flex-1 flex-col gap-0.5">
+        <span className={cn(description && 'text-heading')}>{children}</span>
+        {description && <span className="text-xs font-normal leading-4 text-body">{description}</span>}
+      </span>
+      {trailing && <span className="ms-auto shrink-0 text-xs font-normal leading-4">{trailing}</span>}
+    </>
+  );
+}
+
+/** Figma "Checkbox", "With toggle", "Users" types: stays open on toggle. */
+export function DropdownCheckboxItem({
+  checked,
+  onCheckedChange,
+  indicator = 'checkbox',
+  indicatorPosition = 'start',
+  icon,
+  description,
+  trailing,
+  className,
+  children,
+  ...props
+}: DropdownCheckboxItemProps) {
+  const mark = <Indicator kind={indicator} checked={checked} />;
   return (
     <button
       type="button"
@@ -155,21 +266,37 @@ export function DropdownCheckboxItem({ checked, onCheckedChange, className, chil
       aria-checked={checked}
       tabIndex={-1}
       onClick={() => onCheckedChange(!checked)}
-      className={cn(itemClasses, 'gap-2', className)}
+      className={cn(itemClasses, description ? 'items-start gap-2.5 px-2.5' : 'gap-2', className)}
       {...props}
     >
-      <span
-        aria-hidden
-        className={cn(
-          'inline-flex size-4 shrink-0 items-center justify-center rounded-xs border',
-          checked ? 'border-brand bg-brand text-white' : 'border-default-strong bg-neutral-secondary-strong',
-        )}
-      >
-        {checked && (
-          <CheckIcon className="size-3" />
-        )}
-      </span>
-      {children}
+      {indicatorPosition === 'start' && (description ? <span className="flex pt-0.5">{mark}</span> : mark)}
+      <ChoiceItemBody icon={icon} description={description} trailing={trailing}>{children}</ChoiceItemBody>
+      {indicatorPosition === 'end' && mark}
+    </button>
+  );
+}
+
+export interface DropdownRadioItemProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'onSelect'> {
+  checked: boolean;
+  onSelect: () => void;
+  /** Secondary text on the right, e.g. a count "(456)". */
+  trailing?: ReactNode;
+}
+
+/** Figma "With radio input" type: one choice applied in place; the menu stays open. */
+export function DropdownRadioItem({ checked, onSelect, trailing, className, children, ...props }: DropdownRadioItemProps) {
+  return (
+    <button
+      type="button"
+      role="menuitemradio"
+      aria-checked={checked}
+      tabIndex={-1}
+      onClick={onSelect}
+      className={cn(itemClasses, 'gap-2', checked && 'text-heading', className)}
+      {...props}
+    >
+      <Indicator kind="radio" checked={checked} />
+      <ChoiceItemBody trailing={trailing}>{children}</ChoiceItemBody>
     </button>
   );
 }
@@ -182,15 +309,16 @@ export function DropdownSeparator() {
   );
 }
 
-/** Figma "Dropdown header": user name + email (optionally a leading avatar). */
-export function DropdownHeader({ name, email, avatar }: { name: ReactNode; email?: ReactNode; avatar?: ReactNode }) {
+/** Figma "Dropdown header": user name + email (optionally a leading avatar and a trailing plan Badge). */
+export function DropdownHeader({ name, email, avatar, trailing }: { name: ReactNode; email?: ReactNode; avatar?: ReactNode; trailing?: ReactNode }) {
   return (
     <div className="flex items-center gap-1.5 rounded bg-neutral-secondary-strong px-2.5 py-2">
       {avatar}
-      <div className="flex min-w-0 flex-col gap-0.5">
+      <div className="flex min-w-0 flex-1 flex-col gap-0.5">
         <span className="truncate text-sm font-medium leading-5 text-heading">{name}</span>
         {email && <span className="truncate text-sm text-body">{email}</span>}
       </div>
+      {trailing && <span className="ms-auto inline-flex shrink-0">{trailing}</span>}
     </div>
   );
 }

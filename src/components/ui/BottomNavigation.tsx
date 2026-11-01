@@ -1,5 +1,6 @@
 // AD Design Kit Bottom navigation — Figma set "Bottom navigation" (node 1146:27386, page 208:15901), item 1146:27379.
-// Figma Style → variant: Default=default · Bordered=bordered · Action button=action (center Brand icon button).
+// Figma Style → variant: Default=default · Bordered=bordered (dividers between items) · Action button=action (rounded bar
+// of icon-only items with dividers; the center action is a brand-coloured icon).
 // Style "Pagination" = `pager` (icon-only items around a "‹ 1 of N ›" pill) · "Segment controls" = `segments` (a segmented
 // control above icon-only items).
 import type { ReactNode } from 'react';
@@ -37,7 +38,7 @@ function Item({ item, iconOnly }: { item: BottomNavigationItem; iconOnly?: boole
       href={item.href}
       aria-current={item.current ? 'page' : undefined}
       className={cn(
-        'flex flex-col items-center justify-center gap-1 py-2 text-sm font-medium transition-colors focus-visible:shadow-focus-brand focus-visible:outline-none [&_svg]:size-6',
+        'flex flex-col items-center justify-center py-2 text-sm font-medium transition-colors focus-visible:shadow-focus-brand focus-visible:outline-none [&_svg]:size-6',
         item.current ? 'text-fg-brand' : 'text-body hover:text-fg-brand',
       )}
     >
@@ -48,7 +49,7 @@ function Item({ item, iconOnly }: { item: BottomNavigationItem; iconOnly?: boole
 }
 
 export function BottomNavigation({ items, variant = 'default', action, pager, segments, fixed, label = 'Bottom navigation', className }: BottomNavigationProps) {
-  const shell = cn('w-full bg-neutral-primary-soft', variant === 'bordered' && 'border-t border-default', fixed && 'fixed inset-x-0 bottom-0 z-40', className);
+  const shell = cn('w-full bg-neutral-primary-soft', fixed && 'fixed inset-x-0 bottom-0 z-40', className);
   if (pager) {
     const half = Math.ceil(items.length / 2);
     const step = cn(buttonVariants({ color: 'ghost', size: 'xs', iconOnly: true }), 'size-6 text-body');
@@ -84,14 +85,17 @@ export function BottomNavigation({ items, variant = 'default', action, pager, se
     const half = Math.ceil(items.length / 2);
     return (
       <nav aria-label={label} className={cn('w-full max-w-lg', fixed && 'fixed inset-x-0 bottom-4 z-40 mx-auto', className)}>
-        <div className="grid h-16 grid-cols-5 items-center rounded-full border border-default bg-neutral-primary-soft px-2 shadow-xs">
-          {items.slice(0, half).map((i) => <Item key={i.label} item={i} />)}
-          <div className="flex justify-center">
-            <button type="button" aria-label={action.label} onClick={action.onClick} className={cn(buttonVariants({ size: 'base', iconOnly: true }), 'rounded-full')}>
-              {action.icon}
-            </button>
-          </div>
-          {items.slice(half).map((i) => <Item key={i.label} item={i} />)}
+        <div className="grid h-16 grid-cols-5 divide-x divide-default overflow-hidden rounded-full border border-default bg-neutral-primary-soft">
+          {items.slice(0, half).map((i) => <Item key={i.label} item={i} iconOnly />)}
+          <button
+            type="button"
+            aria-label={action.label}
+            onClick={action.onClick}
+            className="flex items-center justify-center text-fg-brand hover:text-fg-brand-strong focus-visible:shadow-focus-brand focus-visible:outline-none [&_svg]:size-6"
+          >
+            {action.icon}
+          </button>
+          {items.slice(half).map((i) => <Item key={i.label} item={i} iconOnly />)}
         </div>
       </nav>
     );
@@ -102,7 +106,7 @@ export function BottomNavigation({ items, variant = 'default', action, pager, se
       className={cn(
         'grid h-16 w-full bg-neutral-primary-soft',
         items.length >= 5 ? 'grid-cols-5' : 'grid-cols-4',
-        variant === 'bordered' && 'border-t border-default',
+        variant === 'bordered' && 'divide-x divide-default',
         fixed && 'fixed inset-x-0 bottom-0 z-40',
         className,
       )}

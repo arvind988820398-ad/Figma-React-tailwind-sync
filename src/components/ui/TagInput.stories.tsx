@@ -19,7 +19,7 @@ const meta = {
   render: (args) => <TagDemo {...args} />,
   decorators: [
     (Story) => (
-      <div className="w-80">
+      <div className="w-96 max-w-full">
         <Story />
       </div>
     ),
@@ -67,6 +67,48 @@ export const AllSizes: Story = {
       ))}
     </div>
   ),
+};
+
+// ---- Figma "Tag input": people chips (Badge white sm + xs Avatar) × State and Size --------------------------------------
+
+const people = ['Roberta', 'Michael', 'Neil'];
+const figma = { placeholder: 'Add tags (press Enter to add)', 'aria-label': 'People', renderLeading: (tag: string) => <Avatar name={tag} size="xs" /> };
+
+export const FigmaInitial: Story = { name: 'Initial', args: { ...figma, value: [] } };
+export const FigmaFilled: Story = { name: 'Filled', args: { ...figma, value: people } };
+
+export const States: Story = {
+  render: (args) => (
+    <div className="flex flex-col gap-4">
+      <TagDemo {...args} {...figma} value={[]} aria-label="Initial" />
+      <TagDemo {...args} {...figma} value={people} aria-label="Filled" />
+      <TagDemo {...args} {...figma} value={people} disabled aria-label="Disabled" />
+      <TagDemo {...args} {...figma} value={people.slice(0, 2)} status="success" aria-label="Success" />
+      <TagDemo {...args} {...figma} value={people.slice(0, 2)} status="danger" aria-label="Danger" />
+    </div>
+  ),
+};
+
+export const FigmaSizes: Story = {
+  name: 'All sizes (Figma)',
+  render: (args) => (
+    <div className="flex flex-col gap-4">
+      {(['sm', 'base', 'lg', 'xl'] as const).map((size) => (
+        <TagDemo key={size} {...args} {...figma} value={people.slice(0, 2)} size={size} aria-label={`People (${size})`} />
+      ))}
+    </div>
+  ),
+};
+
+// The trailing × clears every tag.
+export const ClearAll: Story = {
+  args: { ...figma, value: people },
+  play: async ({ canvas, userEvent }) => {
+    await expect(chips(canvas)).toEqual(people);
+    await userEvent.click(canvas.getByRole('button', { name: 'Clear all tags' }));
+    await expect(chips(canvas)).toEqual([]);
+    await expect(canvas.queryByRole('button', { name: 'Clear all tags' })).toBeNull();
+  },
 };
 
 // ---- Interaction tests -------------------------------------------------------------------------------------------

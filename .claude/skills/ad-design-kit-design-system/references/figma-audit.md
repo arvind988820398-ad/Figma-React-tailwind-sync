@@ -45,6 +45,8 @@ None open.
 
 Code mirrors Figma values exactly (the generated CSS is a faithful copy, so designers see exactly what ships).
 
+
+Naming only (no code impact): the Checkbox input set's `Size` property has `base` on the checkbox variants and `Default` on the radio variants, and both are 16px. Suggest one value (or removing the property) in Figma; code has no size prop because there is no second size.
 ## Code ahead of Figma
 
 Variants that exist in code because a product needed them; add them to the Figma set, then re-run the sync so the registry lists them.

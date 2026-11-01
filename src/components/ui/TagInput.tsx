@@ -1,6 +1,6 @@
 // AD Design Kit Tag input — Figma set "Tag input" (node 1149:49173, page 3279:34618).
-// Input field shell (same size scale and states) holding Badge white sm chips. Enter or comma adds a tag,
-// Backspace in an empty field removes the last one.
+// Input field shell (same size scale and states) holding Badge white sm chips (Figma: an xs Avatar via `renderLeading`).
+// Enter or comma adds a tag, Backspace in an empty field removes the last one; the trailing "close" icon clears all tags.
 import { useId, useState, type KeyboardEvent, type ReactNode } from 'react';
 import { cn } from '../../lib/cn';
 import { CloseIcon } from '../icons';
@@ -56,46 +56,60 @@ export function TagInput({ value, onChange, size = 'base', status, disabled, pla
   return (
     <div
       className={cn(
-        'flex w-full flex-wrap items-center gap-2 rounded-base border shadow-xs transition-colors focus-within:shadow-focus-brand',
+        'flex w-full items-center gap-2 rounded-base border shadow-xs transition-colors focus-within:shadow-focus-brand',
         sizes[size],
         shells[status ?? 'default'],
         disabled && 'cursor-not-allowed text-fg-disabled',
         className,
       )}
     >
-      {value.map((tag) => (
-        <Badge
-          key={tag}
-          color="white"
-          size="sm"
-          leading={renderLeading?.(tag)}
-          rightIcon={
-            !disabled && (
-              <button type="button" aria-label={`Remove ${tag}`} onClick={() => onChange(value.filter((t) => t !== tag))} className="inline-flex rounded-xs text-body-subtle hover:text-heading focus-visible:shadow-focus-brand focus-visible:outline-none">
-                <CloseIcon />
-              </button>
-            )
-          }
+      <div className="flex min-w-0 flex-1 flex-wrap items-center gap-2">
+        {value.map((tag) => (
+          <Badge
+            key={tag}
+            color="white"
+            size="sm"
+            leading={renderLeading?.(tag)}
+            rightIcon={
+              !disabled && (
+                <button type="button" aria-label={`Remove ${tag}`} onClick={() => onChange(value.filter((t) => t !== tag))} className="inline-flex rounded-xs text-body-subtle hover:text-heading focus-visible:shadow-focus-brand focus-visible:outline-none">
+                  <CloseIcon />
+                </button>
+              )
+            }
+          >
+            {tag}
+          </Badge>
+        ))}
+        <input
+          id={id ?? autoId}
+          value={draft}
+          disabled={disabled}
+          placeholder={value.length ? '' : placeholder}
+          onChange={(e) => setDraft(e.target.value)}
+          onKeyDown={onKeyDown}
+          onBlur={add}
+          aria-invalid={status === 'danger' || undefined}
+          className={cn(
+            'flex-1 bg-transparent focus:outline-none disabled:cursor-not-allowed',
+            value.length ? 'min-w-8' : 'min-w-24',
+            status === 'success' ? 'text-fg-success-strong placeholder:text-fg-success-strong' : status === 'danger' ? 'text-fg-danger-strong placeholder:text-fg-danger-strong' : 'text-heading placeholder:text-body-subtle',
+            disabled && 'placeholder:text-fg-disabled',
+          )}
+          {...aria}
+        />
+      </div>
+      {value.length > 0 && (
+        <button
+          type="button"
+          aria-label="Clear all tags"
+          disabled={disabled}
+          onClick={() => onChange([])}
+          className="inline-flex shrink-0 rounded-xs text-body hover:text-heading focus-visible:shadow-focus-brand focus-visible:outline-none disabled:pointer-events-none disabled:text-fg-disabled [&_svg]:size-4"
         >
-          {tag}
-        </Badge>
-      ))}
-      <input
-        id={id ?? autoId}
-        value={draft}
-        disabled={disabled}
-        placeholder={value.length ? '' : placeholder}
-        onChange={(e) => setDraft(e.target.value)}
-        onKeyDown={onKeyDown}
-        onBlur={add}
-        aria-invalid={status === 'danger' || undefined}
-        className={cn(
-          'min-w-24 flex-1 bg-transparent focus:outline-none disabled:cursor-not-allowed',
-          status === 'success' ? 'text-fg-success-strong placeholder:text-fg-success-strong' : status === 'danger' ? 'text-fg-danger-strong placeholder:text-fg-danger-strong' : 'text-heading placeholder:text-body-subtle',
-          disabled && 'placeholder:text-fg-disabled',
-        )}
-        {...aria}
-      />
+          <CloseIcon />
+        </button>
+      )}
     </div>
   );
 }

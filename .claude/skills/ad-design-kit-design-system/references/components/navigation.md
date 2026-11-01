@@ -4,25 +4,25 @@ All components here are **spec verified** (2026-10-26). Navigation items are lin
 
 ## Navbar
 Figma: page `3279:21067` · navbar `1149:74216` (Default, With icons, With search input, With links, Centered logo × Mobile/Tablet/Desktop) · content `1149:74308` (9 types) · nav link `1149:74002` (13 types × Initial/Hover/Active/Disabled) · mega menus `1149:74737` (full width), `1149:75228` (fixed width: Icon shape, Categories, Default, Icons & CTA) · mobile menu `1149:75488` (Default, Bordered links) · template `templates/components/Navbar.tsx`
-API: `<Navbar logo links actions search centered fluid sticky size="base|compact">`; `NavLink` for custom layouts. `compact` (`py-1`, 44px with `sm` controls; Figma `Size = Compact`) is for dense app shells; `fluid` drops the centered `max-w-screen-xl` container so the bar spans an app shell's full width (Figma `Width = Fluid`). `centered` (Figma `Type = Centered logo`): from `md` a 3-column grid, links on the left (`gap-6`), logo in the middle, actions on the right; below `md` it collapses like Default.
+API: `<Navbar logo links={[{label,href,current,disabled,icon,rightIcon}]} actions mobileActions search centered linksFrom="md|lg" tabletLinks fluid sticky size="base|compact">`; `NavLink` (`icon`, `rightIcon`) for custom layouts. `compact` (`py-1`, 44px with `sm` controls; Figma `Size = Compact`) is for dense app shells; `fluid` drops the centered `max-w-screen-xl` container so the bar spans an app shell's full width (Figma `Width = Fluid`). `centered` (Figma `Type = Centered logo`): from `lg` a 3-column grid, links on the left, logo in the middle, actions on the right. `search` (Figma `Type = With search input`) sits beside the logo from `md`; the links move to the right. Breakpoints (Figma Desktop = `lg`, Tablet = `md`, Mobile = below `md`): links show from `linksFrom` (default `md`; `lg` with `centered` or `search`), the menu button below it; `tabletLinks={2}` keeps two links between `md` and `lg` and moves the rest into a "More" Dropdown (Figma Tablet); `actions` show from `md`; `mobileActions` stay beside the menu button on Mobile (Figma keeps Login or the icon buttons).
 
 - Bar: `sticky top-0 z-40 w-full border-b border-default bg-neutral-primary-soft py-6` → content `mx-auto flex max-w-screen-xl items-center justify-between gap-8 px-4` (height of the content row 30–40px).
-- Logo (`Logo sm`) · links `flex gap-8` (Only links `gap-6`) · actions Secondary `base` + Brand `base` (icons type: Ghost `sm` icon buttons, 36px avatar).
+- Logo (`Logo sm`: 30px mark + `text-2xl font-semibold` wordmark, `gap-3`) · links `flex gap-6` · actions Secondary `base` "Login" + Brand `base` "Upgrade to PRO" (With icons: Ghost `sm` moon/bell icon buttons, a 32px Avatar and a Ghost `sm` "Logout"; With search input: `Input sm w-64` with a search icon, Ghost `sm` bell/moon, Secondary `sm` "Login"; With links: a "Search" Nav link, a divider and a flag + "English (US)" Nav link; Centered logo: "Talk to sales" Nav link with a phone icon, Login, Upgrade to PRO).
 - Nav link Default: `text-sm font-medium leading-5 text-body hover:text-fg-brand`; active `text-fg-brand`; disabled `text-fg-disabled`; with chevron/right icon `gap-1.5`, icon `size-4.5`. Other link types: Two icons/Flag & icon (`gap-1.5`), Icon top (icon `size-5` above text), Double text (secondary `text-base font-medium text-body-subtle`), Bordered (`rounded-base border border-default px-2 py-1.5 text-heading`).
 - Mega-menu links (Heading & helper, With icon shape, Big Icons, Top icon & CTA): `rounded-base p-2` (CTA `p-3`), title `text-base font-semibold leading-4.5` (18px), helper `text-sm text-body`, icon `size-6`/`size-9` `text-body`; hover `bg-neutral-secondary-medium` (via Hover variant).
 - Mega menu full width: `w-full border-y border-light bg-neutral-primary-soft py-12 shadow-lg`, grid `gap-8`, column titles `text-base font-semibold text-heading`, "view all" `text-sm font-medium text-fg-brand`.
 - Mega menu fixed width: `rounded-base border border-light bg-neutral-primary-soft p-6 gap-6 shadow-lg`; Categories type has a side column `bg-neutral-secondary-medium p-6` divided by `border-light-medium`; headings `text-sm font-semibold text-heading`.
 - Mobile menu: `bg-neutral-primary-soft p-4 flex flex-col gap-4` with `Input sm` search, link list (Bordered links: rows `pb-3 border-b border-light text-sm font-medium text-body`), user block `rounded-base border border-light-medium bg-neutral-secondary-medium px-3 py-2.5 gap-2.5`, Secondary + Brand `sm`/`xs` buttons.
-- Breakpoint variants = responsive classes (`md:flex` links, `md:hidden` menu button).
+- Breakpoint variants = responsive classes (`md:flex`/`lg:flex` links, `md:hidden`/`lg:hidden` menu button, `tabletLinks` "More" menu between `md` and `lg`).
 
 **Variants**
 
 | Variant | Code | Use when | Don't use when |
 |---|---|---|---|
-| Type = Default | `links={…} actions={…}` | Site header with top-level links plus sign-in or CTA buttons. | App headers that need notifications and an avatar (With icons). |
-| Type = With icons | `actions={…}` | App header with icon buttons (notifications, settings) and a 36px avatar. | Marketing pages that need visible text CTAs (Default). |
-| Type = With search input | `search={<Input size="sm" />}` | Global search is a primary task across the whole product. | Search only filters the current page; put the Input in the page toolbar. |
-| Type = With links | `links={…}` | Simple sites with top-level links and no account actions. | Sign-in or a primary CTA is needed in the header (Default). |
+| Type = Default | `links={…} tabletLinks={2} actions={…} mobileActions={…}` | Site header with top-level links plus sign-in or CTA buttons. | App headers that need notifications and an avatar (With icons). |
+| Type = With icons | `actions={icon buttons + Avatar + Logout} mobileActions={icon buttons}` | App header with icon buttons (notifications, settings) and a 36px avatar. | Marketing pages that need visible text CTAs (Default). |
+| Type = With search input | `search={<Input size="sm" />}` (links from `lg`) | Global search is a primary task across the whole product. | Search only filters the current page; put the Input in the page toolbar. |
+| Type = With links | `links={…} linksFrom="lg" actions={NavLinks}` | Simple sites with top-level links and no account actions. | Sign-in or a primary CTA is needed in the header (Default). |
 | Type = Centered logo | `centered` | Brand-led sites with few links placed around a centered logo. | App shells or headers with many links and actions (Default). |
 | Size = Default | `size="base"` | Marketing sites and standalone pages with `base` buttons. | Dense app shells where vertical space matters (Compact). |
 | Size = Compact | `size="compact"` | Dense app shells; a 44px bar with `sm` controls. | Marketing headers with `base` buttons (Default). |
@@ -34,20 +34,20 @@ A11y: links sit in a `<nav>` with an `aria-label`; the current page has `aria-cu
 
 ## Sidebar
 Figma: page `3279:34616` · sidebar `1149:82628` (Default, With alert, Double sidebar × Contracted) · item `1149:82699` (With icon, With badge × Initial/Hover-Active/Disabled/Collapsed) · header `1149:82737` (Heading, Logo, User select) · template `templates/components/Sidebar.tsx`
-API: `<Sidebar header sections={[[{label,href,icon,current,disabled,badge,meta,actions}]]} footer collapsed label rail>`. `rail` (Figma `Type = Double sidebar`) = `{ sections, header, label }`: a collapsed icon rail rendered before the panel, `border-e border-default`. `meta` = second line under the label (`text-xs leading-4 text-body`, e.g. a timestamp); `actions` = per-item menu (a `Dropdown` with a ghost `xs` icon Button) rendered beside the link, shown on hover, keyboard focus and always on touch screens; the item reserves `pe-10` for it. Both are code ahead of Figma (figma-audit.md row 48).
+API: `<Sidebar header headerDivider sections={[[{label,href,icon,current,disabled,badge,meta,actions,items,defaultOpen}]]} footer collapsed label rail>` and `<SidebarUser name email src>`. `items` = sub-pages: the item becomes the Figma expandable Navigation list item (a button with `aria-expanded` and an angle-down/up chevron) listing them indented to the label; it opens by default when a sub-page is current (`defaultOpen` overrides) and is styled current when one of its pages is. `SidebarUser` = Figma Sidebar header `Type = User select` (avatar, name, email, chevron-sort), used as the `header` with `headerDivider={false}` or as the `footer`. `rail` (Figma `Type = Double sidebar`) = `{ sections, header, label }`: a collapsed icon rail rendered before the panel, `border-e border-default`. `meta` = second line under the label (`text-xs leading-4 text-body`, e.g. a timestamp); `actions` = per-item menu (a `Dropdown` with a ghost `xs` icon Button) rendered beside the link, shown on hover, keyboard focus and always on touch screens; the item reserves `pe-10` for it. Both are code ahead of Figma (figma-audit.md row 48).
 
 - Panel: `h-screen w-72 bg-neutral-primary-soft p-5 flex flex-col gap-5` (add `border-e border-default` when the page is the same color); collapsed `w-16 px-0 py-5 gap-4 items-center`: icons only, each a 36px item (`size-9`, Figma Ghost `sm` icon Button) with a Tooltip.
-- Header: Logo/Heading `pb-4 border-b border-default` (heading `text-lg font-medium leading-6 text-heading`); User select `p-2` with `AvatarGroupLabel base` + chevron.
-- Item: `flex items-center gap-1.5 rounded-base px-2 py-1.5 text-base font-medium text-body` + icon `size-5 text-body`; hover/active `bg-neutral-secondary-medium text-fg-brand` (icon too); disabled `text-fg-disabled`; trailing count `Badge color="danger" size="sm"`; expandable group = Collapsed item with nested items `ps-8`.
-- Sections: the lists sit in one group (Figma "Content", `flex flex-col gap-4`); each list `flex flex-col gap-2`, lists after the first `border-t border-default pt-4`. With alert: `Alert variant="complex" color="info"` at the bottom.
-- Double sidebar: icon rail (`py-5 gap-2`) + panel (`p-5 gap-5`) separated by `border-e border-default`; panel title `text-base font-semibold text-heading`, search `Input sm`.
+- Header: Logo/Heading `pb-5 border-b border-default` (collapsed `pb-4`; Logo xs = 24px mark + `text-lg font-semibold` wordmark); User select `SidebarUser`: `rounded-base p-2 gap-2`, `Avatar base`, name `text-base font-medium text-heading`, email `text-sm text-body`, chevron-sort `size-5`, no divider.
+- Item: `flex items-center gap-1.5 rounded-base px-2 py-1.5 text-base font-medium text-body` + icon `size-5 text-body`; hover/active `bg-neutral-secondary-medium text-fg-brand` (icon too); disabled `text-fg-disabled`; trailing count `Badge color="danger" size="sm"`; expandable group = item with `items`: chevron `size-4`, sub-pages `ps-7` (text in line with the parent label), `gap-2`.
+- Sections: the lists sit in one group (Figma "Content", `flex flex-col gap-4`); each list `flex flex-col gap-2`, lists after the first `border-t border-default pt-4`. Figma `Type = Default` ends with an `Alert variant="complex" color="info"` ("New dashboard!" + Brand `xs` "Check it out"); Figma `Type = With alert` has a User select header and Ghost `sm` icon buttons (settings, language, preferences) at the bottom — the two Figma names look swapped (figma-audit).
+- Double sidebar: icon rail (`py-5 gap-2`) + panel (`p-5 gap-5`) separated by `border-e border-default`; panel title `text-base font-semibold text-heading`, search `Input sm` with a search icon, `SidebarUser` at the bottom.
 
 **Variants**
 
 | Variant | Code | Use when | Don't use when |
 |---|---|---|---|
 | Type = Default | `sections={…}` | App navigation with many destinations grouped into sections. | Marketing sites (Navbar) or page-local filters. |
-| Type = With alert | `footer={<Alert variant="complex" color="info" />}` | A persistent notice such as a trial or upgrade prompt at the panel bottom. | Urgent messages; the footer hides when collapsed, so use a page Alert or Toast. |
+| Type = With alert | `footer={<Alert variant="complex" color="info" />}` (Figma draws this on Type = Default) | A persistent notice such as a trial or upgrade prompt at the panel bottom. | Urgent messages; the footer hides when collapsed, so use a page Alert or Toast. |
 | Type = Double sidebar | `rail={{ sections, header }}` | Two-level apps: an icon rail for areas, a panel for pages within the area. | Destinations fit one level of sections (Default). |
 | Contracted = False | `collapsed={false}` | Default desktop layout where labels help users find destinations. | Mobile screens; use a Drawer instead of a permanent column. |
 | Contracted = True | `collapsed` | Dense workspaces needing width; 36px icon items with Tooltip labels. | Icons are ambiguous or users are new to the app (False). |
@@ -58,7 +58,7 @@ A11y: a `<nav>` with an `aria-label`; the current item has `aria-current="page"`
 ## Breadcrumb
 Figma: page `3284:24206` · set `1148:31317` (Default, Background, With dropdown, With group buttons, Only buttons, With badge) · item `1148:31348` (Initial/Hover/Active) · template `templates/components/Breadcrumb.tsx`
 API: `<Breadcrumb items={[{label, href, icon}]} variant="default|background|buttons" leading>`; last item is the current page. `leading` = Figma "With group buttons" (a back/forward `ButtonGroup size="sm" color="white"` before the trail); `variant="buttons"` = Figma "Only buttons".
-`<nav aria-label="Breadcrumb"><ol class="flex items-center gap-2.5">`; item `inline-flex items-center gap-1.5 text-sm font-medium leading-5 text-body hover:text-fg-brand` (leading home icon `size-4`), separator chevron `size-4 text-body-subtle` `aria-hidden`; current page `text-body-subtle` + `aria-current="page"`. Background type: `rounded-base border border-default-medium bg-neutral-secondary-medium p-2.5 shadow-xs`. With dropdown / With badge: last crumb is a Secondary `xs` Button with chevron (badge: `Badge brand sm`). With group buttons: `ButtonGroup` (2 buttons). Only buttons: Ghost `xs` Buttons, `gap-1`.
+`<nav aria-label="Breadcrumb"><ol class="flex items-center gap-1.5">`, each later `<li>` = chevron then crumb `gap-2.5` (Figma: text, 6px, chevron, 10px, next text); item `inline-flex items-center gap-1.5 text-sm font-medium leading-5 text-body hover:text-fg-brand` (leading home icon `size-4`), separator chevron `size-3.5 text-body-subtle` `aria-hidden`; current page `text-body-subtle` + `aria-current="page"`. Background type: `rounded-base border border-default-medium bg-neutral-secondary-medium p-2.5 shadow-xs`. With dropdown: last crumb is a Secondary `xs` Button (database icon, chevron) opening a Dropdown. With badge: the current crumb is followed by a `Badge brand sm` and a Secondary `xs` branch picker (code-branch icon, chevron). With group buttons: `ButtonGroup` (2 buttons). Only buttons: Ghost `xs` Buttons with a leading icon (code-branch, database) and a trailing chevron, `gap-1`.
 
 **Variants**
 
@@ -76,17 +76,19 @@ A11y: a `<nav>` with an `aria-label` around an ordered list; the last item has `
 
 ## Tabs
 Figma: page `3283:24214` · tabs `1149:80530` (7 types × Mobile) · tab `1149:80596` (Default, Pill, Border bottom, User select × Initial/Hover-Active) · template `templates/components/Tabs.tsx`
-API: `<Tabs items={[{value,label,icon,disabled,content}]} value onValueChange variant>`.
+API: `<Tabs items={[{value,label,icon,disabled,content}]} value onValueChange variant mobile>`. `mobile` = Figma `Mobile = True`: below `sm`, Default / Pills / Border bottom become a `Select` of the tabs, Button and Button group stack their items full width; without it the row scrolls sideways.
 
 | Figma Type | `variant` | List | Tab | Active tab |
 |---|---|---|---|---|
 | Default | `text` | `flex gap-6` | `text-sm font-medium text-body hover:text-fg-brand` | `text-fg-brand` |
 | Border bottom | `underline` | `flex gap-6 border-b border-default` | `pb-4 text-sm font-medium text-body border-b border-transparent -mb-px` | `text-fg-brand border-brand` |
 | Pills | `pills` | `flex gap-6` | `rounded-base px-4 py-2.5 text-sm font-medium text-body` | `bg-brand text-white` |
-| Button / Button group | `button` / `segmented` | ButtonGroup | Tertiary item | Tertiary Hover style (`bg-neutral-secondary-medium text-heading`) |
-| Vertical pills / list | `vertical-pills` / `vertical-list` | `flex flex-col gap-2` | as pills / list item | as pills |
+| Button | `button` | card `inline-flex gap-1 rounded-base border border-default bg-neutral-primary-soft p-3` | Ghost `base` Button | Ghost Hover style (`bg-neutral-secondary-medium text-heading`) |
+| Button group | `segmented` | `inline-flex overflow-hidden rounded-base border border-default bg-neutral-primary-soft` | Ghost `base` Button, `border-e border-default` dividers | Ghost Hover style |
+| Vertical pills | `vertical-pills` | `flex flex-col gap-3`, `md:w-40` | as pills | as pills |
+| Vertical with list item | `vertical-list` | card `flex flex-col gap-3 rounded-base border border-default bg-neutral-primary-soft p-3`, `md:w-64` | Navigation list item: `rounded-base px-2 py-1.5 text-base font-medium text-body`, icon `size-5` | `bg-neutral-secondary-medium text-fg-brand` |
 | User select tab | — | | `rounded-base px-4 py-2.5`, name `text-xs font-medium text-heading`, meta `text-xs text-body` | `bg-neutral-tertiary` |
-Icons `size-4`, `gap-1.5`. Mobile: horizontal scroll or a `Select`.
+Icons `size-4`, `gap-1.5`. Mobile: horizontal scroll, or `mobile` for Figma's Mobile layouts (`Select`, stacked buttons).
 
 **Variants**
 
@@ -105,8 +107,8 @@ A11y: `tablist`/`tab`/`tabpanel`, roving focus, `aria-selected`.
 
 ## Pagination
 Figma: page `3284:22482` · set `1149:81850` (Two buttons, Default, Text buttons, Buttons & helper text, With dropdown, With input, Simple with input, Arrows, Dropdown & buttons) · template `templates/components/Pagination.tsx`
-API: `<Pagination page pageCount onPageChange variant="default|labeled|arrows|two-buttons|jump|select" helper pageSize jumpTo>`. `labeled` = Figma "Text buttons" (Previous / Next as text in the joined row); `pageSize={{ value, options, onChange }}` = "With dropdown" (`Select sm`, "10 per page"); `jumpTo` = "With input" ("Go to [n] Page", Enter jumps); `jump` = "Simple with input" ("Go to page [n]" + Brand `sm` Go); `select` = "Dropdown & buttons" (page `Select sm` + "of N pages" + joined arrows). Typed page numbers are clamped to `1…pageCount`.
-Built entirely from Buttons: a joined row of **Tertiary `sm`** buttons (`-space-x-px`, outer ends `rounded-base`, inner `rounded-none`, group `shadow-xs`); page numbers are 36px squares; the **current page uses the selected style** (`bg-brand-softer border-brand-subtle text-fg-brand`, unchanged on hover) + `aria-current="page"`, so it never looks like a hovered page; prev/next icon buttons (`text-heading`/`text-body`). Two buttons: separate Tertiary `sm` buttons `gap-3`. With dropdown / Dropdown & buttons: Secondary `sm` "Rows per page" select. With input / Simple with input: `Input sm` + `text-sm font-medium leading-none text-body` ("of 20") + Brand `sm` "Go". Helper text: "Showing **1–10** of **100**" `text-sm text-body`, numbers `font-semibold text-heading`.
+API: `<Pagination page pageCount onPageChange variant="default|labeled|arrows|two-buttons|prev-next|jump|select" helper pageSize jumpTo siblings>`. `labeled` = Figma "Text buttons" (Previous / Next as text in the joined row); `arrows` = "Arrows" (icon arrows around a "1 of 99" segment); `prev-next` + `helper` = "Buttons & helper text" ("Showing 1 to 10 of 100 Entries" above joined "Prev" / "Next"); `siblings` = page numbers kept on each side of the current one (Figma Text buttons ≈ `siblings={5}`: 1–8 … 99); `pageSize={{ value, options, onChange }}` = "With dropdown" (`Select sm`, "10 per page"); `jumpTo` = "With input" ("Go to [n] Page", Enter jumps); `jump` = "Simple with input" ("Go to page [n]" + Brand `sm` Go); `select` = "Dropdown & buttons" (page `Select sm` + "of N pages" + joined arrows). Typed page numbers are clamped to `1…pageCount`.
+Built entirely from Buttons: a joined row of **Tertiary `sm`** buttons (`-space-x-px`, outer ends `rounded-base`, inner `rounded-none`, group `shadow-xs`); page numbers are 36px squares; the **current page uses the selected style** (`bg-brand-softer border-brand-subtle text-fg-brand`, unchanged on hover) + `aria-current="page"`, so it never looks like a hovered page; prev/next icon buttons (`text-heading`/`text-body`). The ellipsis is a dots-horizontal icon in a page-sized box. Two buttons: separate Tertiary `sm` buttons `gap-3` with arrow-left / arrow-right icons. With dropdown / Dropdown & buttons: Secondary `sm` "Rows per page" select; Dropdown & buttons shows "of N pages" in a disabled Tertiary `sm` box (`bg-disabled border-default-medium text-fg-disabled`). With input / Simple with input: `Input sm` + `text-sm font-medium text-body` labels + Brand `sm` "Go". Helper text: "Showing 1 to 10 of 100 Entries" `text-base text-body`, numbers `text-heading`, stacked `gap-4` and centred above the buttons.
 
 **Variants**
 
@@ -115,11 +117,11 @@ Built entirely from Buttons: a joined row of **Tertiary `sm`** buttons (`-space-
 | Type = Two buttons | `variant="two-buttons"` | The total is unknown; separate Previous and Next buttons. | Users need to jump to a specific page (Default). |
 | Type = Default | `variant="default"` | The page count is known and users jump to nearby pages. | The total is unknown (Arrows or Two buttons). |
 | Type = Text buttons | `variant="labeled"` | Previous and Next need text labels beside the page numbers. | Space is tight (Arrows). |
-| Type = Buttons & helper text | `helper={{ from, to, total }}` | Tables where users need the visible range, such as Showing 1–10 of 100. | The total is unknown or costly to count (Arrows). |
+| Type = Buttons & helper text | `variant="prev-next" helper={{ from, to, total }}` | Tables where users need the visible range, such as Showing 1–10 of 100. | The total is unknown or costly to count (Arrows). |
 | Type = With dropdown | `variant="labeled" pageSize={…}` | Users choose the page size with a Rows per page select. | The page size is fixed (Default). |
 | Type = With input | `variant="labeled" jumpTo` | Many pages where users jump straight to a page number. | Few pages that fit as numbered buttons (Default). |
 | Type = Simple with input | `variant="jump"` | Narrow toolbars needing jump-to-page without numbered buttons. | Few pages, where numbered buttons are faster (Default). |
-| Type = Arrows | `variant="arrows"` | The total is unknown or space is tight; icon-only previous and next. | Users need page numbers (Default) or text labels (Two buttons). |
+| Type = Arrows | `variant="arrows"` | Space is tight; icon arrows around "1 of 99". | Users need page numbers (Default) or text labels (Two buttons). |
 | Type = Dropdown & buttons | `variant="select"` | Data tables needing both a page-size select and previous and next buttons. | The page size is fixed (Two buttons or Default). |
 
 **Use** for large ordered datasets. **Don't** for feeds (infinite scroll / Load more) or a single page. Use Arrows/Two buttons when the total is unknown.
@@ -128,9 +130,9 @@ A11y: a `<nav>` with an `aria-label`; the current page has `aria-current="page"`
 ## BottomNavigation
 Figma: page `208:15901` · bar `1146:27386` (Bordered, Default, Action button, Pagination, Segment controls) · item `1146:27379` (Initial/Hover) · desktop `1146:27418` (Call, Media Player) · template `templates/components/BottomNavigation.tsx`
 API: `<BottomNavigation items={[{label,href,icon,current}]} variant="default|bordered|action" action pager segments fixed>`. `pager={{ page, pageCount, onPageChange }}` = Figma "Pagination" (icon-only items around a Secondary `xs` "‹ 1 of N ›" pill); `segments` = Figma "Segment controls" (e.g. `<Tabs variant="segmented">` above icon-only items, `pt-4 pb-2 gap-4`, items `h-10`). Icon-only items keep their label as `sr-only` text.
-- Bar: `fixed inset-x-0 bottom-0 z-40 h-16 bg-neutral-primary-soft grid grid-cols-4|5` (Bordered: `border-t border-default`).
+- Bar: `fixed inset-x-0 bottom-0 z-40 h-16 bg-neutral-primary-soft grid grid-cols-4|5` (Bordered: `divide-x divide-default` between items).
 - Item: `flex flex-col items-center justify-center py-2 text-sm font-medium text-body` + icon `size-6`; hover/active `text-fg-brand`.
-- Action button: floating bar `rounded-full border border-default shadow-xs` with a centered Brand icon button.
+- Action button: floating bar `rounded-full border border-default` of icon-only items with `divide-x divide-default`; the center action is a brand-coloured icon (`text-fg-brand`, e.g. circle-plus), not a filled button.
 - Pagination: items + Secondary `xs` page buttons. Segment controls: segmented Toggle input (`Toggle inputs` Advanced) above items, `pt-4 pb-2`.
 - Desktop (Call / Media Player): `bg-neutral-primary-soft px-8 py-3 gap-8`, `text-sm text-body`, round 36px controls (danger "end call" `bg-danger text-white`), progress `Progress labelPosition="side"`.
 
@@ -139,7 +141,7 @@ API: `<BottomNavigation items={[{label,href,icon,current}]} variant="default|bor
 | Variant | Code | Use when | Don't use when |
 |---|---|---|---|
 | Style = Default | `variant="default"` | Mobile bar whose background already contrasts with the page. | The page is the same color as the bar (Bordered). |
-| Style = Bordered | `variant="bordered"` | The bar sits on content of the same color and needs a top border. | The bar already contrasts with the page (Default). |
+| Style = Bordered | `variant="bordered"` | The items need dividers to read as separate targets. | The bar already contrasts with the page (Default). |
 | Style = Action button | `variant="action" action={…}` | One primary action, such as New post, sits in the center of the bar. | There is no single primary action, or more than one. |
 | Style = Pagination | `pager={{ page, pageCount, onPageChange }}` | Mobile paged viewers, such as a reader, need page controls with the items. | Paging data tables (Pagination). |
 | Style = Segment controls | `segments={<Tabs variant="segmented">}` | A segmented switch between peer views sits above the destinations. | Switching top-level destinations; use the bar items. |
@@ -149,18 +151,18 @@ A11y: a `<nav>` with an `aria-label`; the active item has `aria-current`; every 
 
 ## Stepper
 Figma: page `110:14549` · navigation `1149:84064` (Default, Only icons, Vertical, Icons & text, With dots, Cards × Mobile/Desktop) · step `1149:84155` (7 types × Initial/Active/Completed/Error/Disabled) · examples `1149:83977` · template `templates/components/Stepper.tsx`
-API: `<Stepper steps={[{title,description,icon,status}]} current variant>`.
+API: `<Stepper steps={[{title,description,icon,status}]} current variant>`. Navigation types use these steps: Default → Default step; With dots → Dot (label above the dot, one 2px line behind all dots); Only icons → Icon shape `lg`; Icons & text and Vertical → Icon shape & text (`IconShape base` + title + helper text in the step colour); Cards → Card alert (stacked, `max-w-md`, number + title, check when done, arrow-right when current). Completed and error steps add "(completed)"/"(error)" as screen-reader text.
 
 | Step type | Initial | Active | Completed | Error | Disabled |
 |---|---|---|---|---|---|
 | Default (number + label): circle `size-5 rounded-full border text-xs font-semibold leading-3`, label `text-base font-medium leading-4`, `gap-2` | `border-default-strong text-body` | `border-brand text-fg-brand` | check icon `size-3.5 text-fg-brand`, label `text-fg-brand` | `border-danger text-fg-danger` + icon | `border-default text-fg-disabled` |
-| Dot: dot `size-3 rounded-full border`, label `text-base font-medium`, `gap-3` | `bg-neutral-primary border-default-medium text-body` | `border-brand-light text-fg-brand` | `bg-brand text-fg-brand` | `bg-danger text-fg-danger` | `text-fg-disabled` |
-| Icon shape (& text) | `IconShape lg circle gray`, text `text-body` | `IconShape brand`, `text-fg-brand` | `IconShape success`, `text-fg-brand` | `IconShape danger`, `text-fg-danger` | gray, `text-fg-disabled` |
+| Dot: dot `size-4 rounded-full border` under the label, `gap-3`; label `text-base font-medium` (`text-sm` on Mobile) | `bg-neutral-primary border-default-medium text-body` | `border-brand-light text-fg-brand` | `bg-brand text-fg-brand` | `bg-danger text-fg-danger` | `text-fg-disabled` |
+| Icon shape (`lg`) / Icon shape & text (`base`, title `text-base font-medium`, helper `text-sm`, `gap-3`) | `IconShape circle gray`, text `text-body` | `IconShape brand`, `text-fg-brand` | `IconShape brand` with a check, `text-fg-brand` | `IconShape danger`, `text-fg-danger` | gray, `text-fg-disabled` |
 | Number & text: circle `size-9 rounded-full text-base font-semibold`, title `text-base font-medium`, helper `text-sm` | `bg-neutral-tertiary text-body` | `bg-brand-softer text-fg-brand-strong`, labels `text-fg-brand` | icon `text-fg-brand` | `text-fg-danger` | `bg-neutral-tertiary text-fg-disabled` |
 | Icon & text: icon `size-5`, `gap-2` | `text-body` | `text-fg-brand` | `text-fg-brand` | `text-fg-danger` | `text-fg-disabled` |
-| Card alert: `rounded-base border p-4 gap-2 text-base font-medium` | `bg-neutral-secondary-medium border-default-medium text-body` | `bg-brand-softer border-brand-subtle text-fg-brand-strong` | same as active | `bg-danger-soft border-danger-subtle text-fg-danger-strong` | `bg-neutral-secondary-soft border-default text-fg-disabled` |
+| Card alert: `rounded-base border p-4 gap-2 text-base font-medium`, number + title, trailing check (completed) / arrow-right (active) `size-5` | `bg-neutral-secondary-medium border-default-medium text-body` | `bg-brand-softer border-brand-subtle text-fg-brand-strong` | same as active | `bg-danger-soft border-danger-subtle text-fg-danger-strong` | `bg-neutral-secondary-soft border-default text-fg-disabled` |
 
-Connectors: `h-px flex-1 bg-…` drawn as borders in Figma — Default `border-t border-default`, With dots `border-t-2`, Only icons / Icons & text `border-t-4`; spacing between steps `gap-4`–`gap-5`. Vertical: `flex-col` with `border-s border-default`. Examples place the stepper in a `rounded-base border border-default bg-neutral-secondary-soft` card with a step title `text-lg font-medium leading-none text-body` and Secondary + Brand `base` actions (`gap-8`/`gap-12`).
+Connectors drawn as borders in Figma: Default `border-t border-default` (Mobile: a 16px vertical divider `h-4 border-s`, and the steps wrap); With dots one `border-t-2` line behind the dots; Only icons `border-t-4`, `gap-5` (Mobile `gap-3`); Icons & text `border-t-4` (Mobile stacks vertically with 24px `border-s-4` connectors); Vertical a 56px `border-s` line centred under each icon shape. Examples place the stepper in a `rounded-base border border-default bg-neutral-secondary-soft` card with a step title `text-lg font-medium leading-none text-body` and Secondary + Brand `base` actions (`gap-8`/`gap-12`).
 
 **Variants**
 
@@ -171,7 +173,7 @@ Connectors: `h-px flex-1 bg-…` drawn as borders in Figma — Default `border-t
 | Type = Vertical | `variant="vertical"` | Steps with helper text, long labels or narrow side columns. | Short labels across a wide page header (Default). |
 | Type = Icons & text | `variant="icons"` | Each step has a recognizable icon, such as Cart, Shipping, Payment. | Steps without distinct icons (Default). |
 | Type = With dots | `variant="dots"` | A light progress indicator, such as onboarding screens. | Users need step numbers to see how far they are (Default). |
-| Type = Cards | `variant="cards"` | Steps shown as prominent status blocks at the top of a wizard. | More than four steps or tight width (Default). |
+| Type = Cards | `variant="cards"` | Steps shown as a stacked list of status cards beside or above a wizard. | More than four steps or tight width (Default). |
 
 **Use** for linear multi-step processes. **Don't** for non-linear navigation (Tabs) or >6 steps. Current step `aria-current="step"`.
 A11y: an ordered list; the current step has `aria-current`; completed steps are also stated in screen-reader text, not only with a check icon.

@@ -10,6 +10,7 @@ Figma: page `2542:21012` · set `1146:24616` "Button" (8 colors × 5 sizes × 4 
 <Button color="brand" size="base" leftIcon={<PlusIcon />}>Create project</Button>
 <Button color="secondary" iconOnly aria-label="Settings"><CogIcon /></Button>
 <Button color="danger" outline>Delete</Button>
+<Button color="secondary" logo={<GithubLogo />} aria-label="Sign in with GitHub" />
 ```
 | Figma property | Prop | Values |
 |---|---|---|
@@ -18,7 +19,7 @@ Figma: page `2542:21012` · set `1146:24616` "Button" (8 colors × 5 sizes × 4 
 | Outline | `outline` | boolean — **only** with `success`, `danger`, `warning` (enforced by the TypeScript types) |
 | Icon only | `iconOnly` | boolean — square, requires `aria-label` |
 | Show left/right icon | `leftIcon`, `rightIcon` | ReactNode |
-| Logo inside | `logo` | ReactNode (brand/social logo button) |
+| Logo inside | `logo` | ReactNode — a brand logo in a square button (Secondary, Tertiary or Ghost in Figma); needs `aria-label` |
 | State | — | CSS: `:hover`, `:focus-visible`, `:disabled` |
 
 ### Recipe
@@ -31,7 +32,8 @@ Base: `inline-flex items-center justify-center gap-1.5 rounded-base font-medium 
 | base | `px-4 py-2.5 text-sm leading-5` | 40 | `size-4` |
 | lg | `px-5 py-3 text-base leading-6` | 48 | `size-4` |
 | xl | `px-6 py-3.5 text-base leading-6` | 52 | `size-5` |
-| iconOnly | `p-0 size-8/9/10/12/13`, icon `size-4`–`size-5` | square | |
+| iconOnly | `p-0 size-8/9/10/11/12` | square 32/36/40/44/48 | `size-3.5` (xs) · `size-4` (sm) · `size-5` (base–xl) |
+| logo | `p-0 size-8/9/10/11/12`, logo `size-5` (xs, sm) · `size-7` (base, lg) · `size-8` (xl), disabled logo `opacity-35` | square | |
 
 | Color | Initial | Hover | Focus-visible |
 |---|---|---|---|
@@ -92,12 +94,13 @@ A11y: the wrapper is `role="group"` with an `aria-label`; toggle groups set `ari
 
 ## Speed dial
 Figma: page `14231:74723` · examples `1149:84847` (Default, Rounded, Menu, Article dropdown menu × Top/Bottom/Right/Left) · item `1149:84896` (4 types × Initial/Hover/Disabled × Rounded × Horizontal) · menus `1149:84972` (Vertical, Horizontal, Dropdown menu) · template `templates/components/SpeedDial.tsx`
-API: `<SpeedDial actions={[{label,icon,onSelect,disabled}]} variant="default|rounded|menu|dropdown" direction fixed>`.
-- Trigger: Brand `xl` icon-only Button (52px, `rounded-base`); "Rounded" examples use round items.
-- Menu: `flex flex-col gap-2` (Horizontal `flex-row`), opening toward the Position; container `p-1 gap-3` with the trigger.
-- Item (Default): `size-12 rounded-base` (Rounded: `rounded-full`) `border border-default bg-neutral-primary shadow-xs` + icon `size-6 text-body`; hover `bg-neutral-tertiary text-heading` (+ Tooltip label to the side); disabled icon `text-fg-disabled`.
-- Text & icon item: `size-14` with label `text-xs font-medium leading-3 text-body` under the icon. Outside text: item + label beside it `gap-2.5`.
-- Dropdown menu type: Dropdown shell (`p-2 gap-1.5 shadow-lg`) with "Icon & text" rows `rounded p-2 gap-1.5 text-sm font-medium leading-none text-body`, icon `size-4`.
+API: `<SpeedDial actions={[{label,icon,onSelect,disabled}]} variant="default|rounded|menu|dropdown" direction fixed defaultOpen>`.
+- Trigger: Brand `xl` icon-only Button (48px, `rounded-base`; Rounded `rounded-full`) with the plus icon; open = `bg-brand-strong` (Figma State=Focus).
+- Layout: container `inline-flex gap-3 p-1`, menu opening toward the Position and lined up with the trigger's end edge (`items-end`).
+- Default / Rounded: `flex flex-col gap-2` (Left/Right `flex-row`) of items `size-12 rounded-base` (Rounded: `rounded-full`) `border border-default bg-neutral-primary shadow-xs` + icon `size-6 text-body`; hover `bg-neutral-tertiary text-heading` + Tooltip label to the side; disabled icon `text-fg-disabled`.
+- Menu / Article dropdown menu: Dropdown shell `w-32` (Menu) or `w-44` (Article) `rounded-base border border-default-medium bg-neutral-primary-medium p-2 gap-1.5 shadow-lg` with "Icon & text" rows `rounded p-2 gap-1.5 text-sm font-medium leading-none text-body`, icon `size-4`, hover `bg-neutral-tertiary-medium text-heading`.
+- The item part's "Text & icon" and "Outside text" types are not used by the Figma examples; code does not render them.
+- `defaultOpen` starts the dial open (docs and previews, as Figma draws it).
 - Place `fixed end-6 bottom-6 z-40`.
 
 **Variants**
@@ -106,7 +109,7 @@ API: `<SpeedDial actions={[{label,icon,onSelect,disabled}]} variant="default|rou
 |---|---|---|---|
 | Type = Default | `variant="default"` | Square icon actions with tooltip labels, matching rectangular Buttons | Interfaces with round controls — use Rounded |
 | Type = Rounded | `variant="rounded"` | Round trigger and items on mobile or playful interfaces | Screens where controls are rectangular — use Default |
-| Type = Menu | `variant="menu"` | Actions whose icons are not self-explanatory; label shown under each icon | More than 4–5 actions or long labels — use Article dropdown menu |
+| Type = Menu | `variant="menu"` | Actions whose icons are not self-explanatory; a compact menu with an icon and label per row | Long labels — use Article dropdown menu |
 | Type = Article dropdown menu | `variant="dropdown"` | Longer action lists with text labels, such as article share or edit actions | Three or fewer universal icon actions — use Default |
 | Position = Top | `direction="top"` | Trigger fixed at the bottom of the screen; actions open upward | Trigger near the top edge — use Bottom |
 | Position = Bottom | `direction="bottom"` | Trigger near the top of the viewport; actions open downward | Bottom-anchored triggers — use Top |
@@ -117,7 +120,7 @@ API: `<SpeedDial actions={[{label,icon,onSelect,disabled}]} variant="default|rou
 A11y: the trigger has an `aria-label`, `aria-expanded` and `aria-controls`; opening moves focus to the first available action, arrow keys and Home/End move between actions, Esc closes and returns focus; every action needs a visible label, tooltip or `aria-label`.
 
 ## Download app button
-Figma: set `1146:24595` (Google Play / AppStore × Light / Dark). Store badge link: `inline-flex items-center gap-3 rounded-base px-4 py-2.5` — Dark `bg-dark text-white hover:bg-dark-strong`; Light `bg-neutral-primary-soft border border-default text-heading hover:bg-neutral-secondary-medium`. Only for store links (`<a>`). · template `templates/components/DownloadAppButton.tsx`
+Figma: set `1146:24595` (Google Play / AppStore × Light / Dark). Store badge link: `inline-flex items-center gap-2 rounded-base border px-4 py-3`, glyph `size-7`, `text-xs leading-3` line over a `text-sm font-bold` store name — Dark `bg-dark border-dark-subtle text-white hover:bg-dark-strong`; Light `bg-neutral-primary-medium border-default-medium text-body hover:bg-neutral-secondary-medium`. Only for store links (`<a>`). · template `templates/components/DownloadAppButton.tsx`
 API: `<DownloadAppButton store="app-store|google-play" tone="dark|light" href>`.
 **Variants**
 

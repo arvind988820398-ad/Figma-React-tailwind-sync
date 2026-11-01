@@ -1,8 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
 import { expect, fn, waitFor } from 'storybook/test';
+import type { ComponentProps } from 'react';
 import { FileDropzone, FileInput } from './FileUpload';
+import { IconShape } from './IconShape';
 import { HelperText, Label } from './Input';
+import { DesktopPcIcon, FolderOpenIcon, LinkIcon } from '../icons';
 
 // AD Design Kit File upload — mirrors the Figma "File upload input" examples (node 1149:48972) and dropzone (1149:48981).
 // FileInput = Figma "Default"; FileDropzone = Figma "Advanced" / "With CTAs".
@@ -12,8 +15,8 @@ const meta = {
   component: FileInput,
   args: { onFiles: () => {}, multiple: false, disabled: false },
   decorators: [
-    (Story) => (
-      <div className="w-96">
+    (Story, { parameters }) => (
+      <div className={parameters.wide ? 'w-full max-w-5xl' : 'w-full max-w-xl'}>
         <Story />
       </div>
     ),
@@ -37,39 +40,41 @@ export const WithLabelAndHelperText: Story = {
   ),
 };
 
-export const Dropzone: Story = {
-  render: ({ onFiles, accept, multiple, disabled }) => (
-    <FileDropzone onFiles={onFiles} accept={accept} multiple={multiple} disabled={disabled} hint="SVG, PNG, JPG or GIF (max. 800×400px)" />
-  ),
-};
+// ---- Figma "File upload input": Type Advanced / With cta's × State Initial, Hover (CSS), Disabled, Success, Danger ------
 
-export const DropzoneWithCtas: Story = {
-  render: ({ onFiles, accept, multiple, disabled }) => (
-    <FileDropzone
-      variant="ctas"
-      onFiles={onFiles}
-      accept={accept}
-      multiple={multiple}
-      disabled={disabled}
-      actions={
-        <>
-          <span className="text-sm font-medium text-fg-brand">Browse files</span>
-          <span className="text-sm font-medium text-fg-brand">Import from URL</span>
-        </>
-      }
-    />
-  ),
-};
+// Figma "With cta's" sources: white circle IconShapes with a caption.
+const sources = (
+  <>
+    {[
+      { icon: <DesktopPcIcon />, label: 'Browse' },
+      { icon: <FolderOpenIcon />, label: 'Library' },
+      { icon: <LinkIcon />, label: 'Link' },
+    ].map((s) => (
+      <span key={s.label} className="flex flex-col items-center gap-1.5 text-xs font-medium">
+        <IconShape size="base" color="white" shape="circle">{s.icon}</IconShape>
+        {s.label}
+      </span>
+    ))}
+  </>
+);
+const hint = 'Max. File Size: 30MB';
+type ZoneProps = Partial<ComponentProps<typeof FileDropzone>>;
+const zone = (onFiles: (f: File[]) => void, props: ZoneProps) =>
+  props.variant === 'ctas' ? <FileDropzone onFiles={onFiles} actions={sources} {...props} /> : <FileDropzone onFiles={onFiles} hint={hint} {...props} />;
 
-export const DropzoneDisabled: Story = {
-  render: ({ onFiles }) => <FileDropzone onFiles={onFiles} disabled hint="Uploads are paused" />,
-};
+export const Dropzone: Story = { render: ({ onFiles }) => zone(onFiles, {}) };
+export const DropzoneWithCtas: Story = { render: ({ onFiles }) => zone(onFiles, { variant: 'ctas' }) };
+export const DropzoneDisabled: Story = { render: ({ onFiles }) => zone(onFiles, { disabled: true }) };
 
-export const DropzoneStatuses: Story = {
+export const DropzoneStates: Story = {
+  parameters: { wide: true },
   render: ({ onFiles }) => (
-    <div className="flex flex-col gap-4">
-      <FileDropzone onFiles={onFiles} status="success" hint="3 files uploaded" />
-      <FileDropzone onFiles={onFiles} status="danger" hint="File is larger than 5 MB" />
+    <div className="grid gap-4 sm:grid-cols-2">
+      {(['advanced', 'ctas'] as const).flatMap((variant) =>
+        [{}, { disabled: true }, { status: 'success' as const }, { status: 'danger' as const }].map((p, i) => (
+          <div key={`${variant}-${i}`}>{zone(onFiles, { variant, ...p })}</div>
+        )),
+      )}
     </div>
   ),
 };
@@ -132,7 +137,7 @@ export const DropzoneDragAndDrop: Story = {
   args: { onFiles: fn() },
   render: ({ onFiles }) => <FileDropzone onFiles={onFiles} hint="SVG, PNG, JPG or GIF (max. 800×400px)" />,
   play: async ({ canvas, args }) => {
-    const zone = canvas.getByText('Click to upload').closest('label')!;
+    const zone = canvas.getByText('Click to upload or drag and drop').closest('label')!;
     await waitFor(() => expect(zone).not.toHaveClass('bg-neutral-tertiary'));
 
     // Dragging files over highlights the zone; leaving removes the highlight.
@@ -157,7 +162,7 @@ export const DropzoneDisabledIgnoresDrop: Story = {
   args: { onFiles: fn() },
   render: ({ onFiles }) => <FileDropzone onFiles={onFiles} disabled hint="Uploads are paused" />,
   play: async ({ canvas, args }) => {
-    const zone = canvas.getByText('Click to upload').closest('label')!;
+    const zone = canvas.getByText('Click to upload or drag and drop').closest('label')!;
     await expect(canvas.getByLabelText(/click to upload/i)).toBeDisabled();
     drag(zone, 'dragover');
     await waitFor(() => expect(zone).not.toHaveClass('bg-neutral-tertiary'));

@@ -1,8 +1,12 @@
 // AD Design Kit Sidebar — Figma set "Sidebar (Free component)" (node 1149:82628, page 3279:34616),
 // item 1149:82699, header 1149:82737. Figma "Contracted" → `collapsed` (icons only, labels in tooltips).
 // Figma Type "Double sidebar" → `rail`: a collapsed icon rail for the app's areas beside the panel for the current area.
-import type { ReactNode } from 'react';
+// Items with `items` are the Figma expandable Navigation list items (chevron, indented sub-pages). The Figma
+// "Sidebar header" Type=User select is `SidebarUser` (pass it as `header` with `headerDivider={false}`, or as `footer`).
+import { useId, useState, type ButtonHTMLAttributes, type ReactNode } from 'react';
 import { cn } from '../../lib/cn';
+import { AngleDownIcon, AngleUpIcon, ChevronSortIcon } from '../icons';
+import { Avatar } from './Avatar';
 import { Tooltip } from './Tooltip';
 
 export interface SidebarItem {
@@ -18,11 +22,17 @@ export interface SidebarItem {
   /** Item actions, e.g. a <Dropdown> with a ghost xs kebab Button. Rendered beside the link (never inside it),
    *  shown on hover and keyboard focus, always on touch screens. Code ahead of Figma: see figma-audit.md. */
   actions?: ReactNode;
+  /** Sub-pages: the item becomes an expandable group (button with a chevron) listing them indented. */
+  items?: SidebarItem[];
+  /** Start expanded. Default: expanded when a sub-page is current. */
+  defaultOpen?: boolean;
 }
 
 export interface SidebarProps {
-  /** Header: logo or heading (gets the bottom divider). */
+  /** Header: logo or heading (gets the bottom divider), or a SidebarUser. */
   header?: ReactNode;
+  /** Bottom divider under the header (Figma Sidebar header Type=Logo). Off for a User select header. */
+  headerDivider?: boolean;
   /** Sections after the first are separated by a top border. */
   sections: SidebarItem[][];
   /** Bottom slot, e.g. Figma "With alert": <Alert variant="complex" color="info">. Hidden when collapsed. */
@@ -36,7 +46,48 @@ export interface SidebarProps {
   className?: string;
 }
 
+const itemBase = 'flex items-center gap-1.5 rounded-base text-base font-medium transition-colors focus-visible:shadow-focus-brand focus-visible:outline-none [&_svg]:size-5 [&_svg]:shrink-0';
+const itemState = (current?: boolean, disabled?: boolean) =>
+  disabled
+    ? 'pointer-events-none text-fg-disabled'
+    : current
+      ? 'bg-neutral-secondary-medium text-fg-brand'
+      : 'text-body hover:bg-neutral-secondary-medium hover:text-fg-brand';
+
+/** Figma expandable Navigation list item: icon, label and chevron; sub-pages indented to the label. */
+function Group({ item }: { item: SidebarItem }) {
+  const childCurrent = item.items!.some((i) => i.current);
+  const [open, setOpen] = useState(item.defaultOpen ?? childCurrent);
+  const id = useId();
+  const Chevron = open ? AngleUpIcon : AngleDownIcon;
+  return (
+    <li className="flex flex-col gap-2">
+      <button
+        type="button"
+        aria-expanded={open}
+        aria-controls={id}
+        disabled={item.disabled}
+        onClick={() => setOpen((o) => !o)}
+        className={cn(itemBase, 'w-full px-2 py-1.5 text-start', itemState(item.current || childCurrent, item.disabled))}
+      >
+        {item.icon}
+        <span className="flex-1 truncate">{item.label}</span>
+        {item.badge}
+        <Chevron className="size-4!" />
+      </button>
+      {open && (
+        <ul id={id} className="flex flex-col gap-2 ps-7">
+          {item.items!.map((sub) => (
+            <Item key={sub.label} item={sub} />
+          ))}
+        </ul>
+      )}
+    </li>
+  );
+}
+
 function Item({ item, collapsed }: { item: SidebarItem; collapsed?: boolean }) {
+  if (item.items && !collapsed) return <Group item={item} />;
   const link = (
     <a
       href={item.href}
@@ -45,14 +96,10 @@ function Item({ item, collapsed }: { item: SidebarItem; collapsed?: boolean }) {
       aria-label={collapsed ? item.label : undefined}
       tabIndex={item.disabled ? -1 : undefined}
       className={cn(
-        'flex items-center gap-1.5 rounded-base text-base font-medium transition-colors focus-visible:shadow-focus-brand focus-visible:outline-none [&_svg]:size-5 [&_svg]:shrink-0',
+        itemBase,
         collapsed ? 'size-9 justify-center' : 'px-2 py-1.5',
         !collapsed && item.actions && 'pe-10',
-        item.disabled
-          ? 'pointer-events-none text-fg-disabled'
-          : item.current
-            ? 'bg-neutral-secondary-medium text-fg-brand'
-            : 'text-body hover:bg-neutral-secondary-medium hover:text-fg-brand',
+        itemState(item.current || item.items?.some((i) => i.current), item.disabled),
       )}
     >
       {item.icon}
@@ -80,12 +127,40 @@ function Item({ item, collapsed }: { item: SidebarItem; collapsed?: boolean }) {
   );
 }
 
-export function Sidebar({ header, sections, footer, collapsed = false, label = 'Sidebar', rail, className }: SidebarProps) {
+export interface SidebarUserProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  name: string;
+  email: string;
+  /** Avatar photo; initials when missing. */
+  src?: string;
+}
+
+/** Figma "Sidebar header" Type=User select: avatar, name and email with a sort chevron, e.g. an account switcher trigger. */
+export function SidebarUser({ name, email, src, className, ...props }: SidebarUserProps) {
+  return (
+    <button // ad-design-kit-lint-ignore: Figma Sidebar header "User select" part, not a Button variant
+      type="button"
+      className={cn(
+        'flex w-full items-center gap-2 rounded-base p-2 text-start transition-colors hover:bg-neutral-secondary-medium focus-visible:shadow-focus-brand focus-visible:outline-none',
+        className,
+      )}
+      {...props}
+    >
+      <Avatar src={src} name={name} size="base" />
+      <span className="flex min-w-0 flex-1 flex-col gap-1.5">
+        <span className="truncate text-base font-medium leading-4 text-heading">{name}</span>
+        <span className="truncate text-sm leading-4 text-body">{email}</span>
+      </span>
+      <ChevronSortIcon className="size-5 shrink-0 text-body" />
+    </button>
+  );
+}
+
+export function Sidebar({ header, headerDivider = true, sections, footer, collapsed = false, label = 'Sidebar', rail, className }: SidebarProps) {
   if (rail) {
     return (
       <div className={cn('flex h-full', className)}>
         <Sidebar collapsed header={rail.header} sections={rail.sections} label={rail.label ?? 'Areas'} className="border-e border-default" />
-        <Sidebar header={header} sections={sections} footer={footer} label={label} />
+        <Sidebar header={header} headerDivider={headerDivider} sections={sections} footer={footer} label={label} />
       </div>
     );
   }
@@ -98,7 +173,9 @@ export function Sidebar({ header, sections, footer, collapsed = false, label = '
         className,
       )}
     >
-      {header && <div className={cn('border-b border-default pb-4', collapsed && 'flex w-full justify-center')}>{header}</div>}
+      {header && (
+        <div className={cn(headerDivider && cn('border-b border-default', collapsed ? 'pb-4' : 'pb-5'), collapsed && 'flex w-full justify-center')}>{header}</div>
+      )}
       {/* Figma "Content": the item lists, 16px apart. */}
       <div className={cn('flex flex-col gap-4', collapsed && 'w-full items-center')}>
         {sections.map((items, i) => (

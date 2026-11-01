@@ -1,5 +1,7 @@
 // AD Design Kit Textarea — Figma set "Textarea input" (node 1149:49679, page 3279:34618), examples 1149:50131.
-// Default = Input shell with p-3.5. "Buttons inside" = pass `footer` (toolbar icons + Brand sm submit).
+// Default = Input shell with p-3.5. "Buttons inside" = pass `footer` (Brand sm submit + toolbar icons).
+// "Buttons outside" = Textarea then a Brand sm button. "Chatroom" = a bg-neutral-secondary-soft bar with tool buttons,
+// an Input sm and a `brand` send button (see the stories).
 import { forwardRef, useId, type ButtonHTMLAttributes, type ReactNode, type TextareaHTMLAttributes } from 'react';
 import { cn } from '../../lib/cn';
 import type { FieldStatus } from './Input';
@@ -57,18 +59,29 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(function 
         className="block w-full resize-none bg-transparent p-3.5 text-sm leading-5 text-heading placeholder:text-body-subtle focus:outline-none"
         {...props}
       />
-      <div className="flex items-center justify-between gap-4 border-t border-default-medium bg-neutral-tertiary-medium px-2.5 py-2.5">{footer}</div>
+      <div className="flex items-center justify-between gap-4 border-t border-default-medium bg-neutral-secondary-medium px-2.5 py-2.5">{footer}</div>
     </div>
   );
 });
 
-/** Icon button for the Textarea toolbar ("Buttons inside"): size-5 icons, text-body → hover text-heading. */
-export function TextareaToolButton({ label, children, ...props }: { label: string; children: ReactNode } & ButtonHTMLAttributes<HTMLButtonElement>) {
+export interface TextareaToolButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  label: string;
+  children: ReactNode;
+  /** Figma Chatroom send button: brand icon. */
+  brand?: boolean;
+}
+
+/** Icon button for the Textarea toolbar ("Buttons inside", "Chatroom"): size-5 icons, text-body → hover text-heading. */
+export function TextareaToolButton({ label, brand, children, className, ...props }: TextareaToolButtonProps) {
   return (
     <button
       type="button"
       aria-label={label}
-      className="inline-flex size-8 items-center justify-center rounded-base text-body hover:bg-neutral-quaternary hover:text-heading focus-visible:shadow-focus-secondary focus-visible:outline-none [&_svg]:size-5"
+      className={cn(
+        'inline-flex size-8 shrink-0 items-center justify-center rounded-base hover:bg-neutral-quaternary focus-visible:shadow-focus-secondary focus-visible:outline-none [&_svg]:size-5',
+        brand ? 'text-fg-brand hover:text-fg-brand-strong' : 'text-body hover:text-heading',
+        className,
+      )}
       {...props}
     >
       {children}

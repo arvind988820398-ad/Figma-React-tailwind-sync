@@ -1,11 +1,12 @@
 // AD Design Kit Number input — Figma set "Number form" (node 1149:46630, page 3279:34618).
 // Figma types → variant: Default=default (plain field) · With buttons=buttons (−/+ joined to a centered field) ·
 // With spaced buttons=spaced · Ghost input=ghost (borderless sm field with 32px buttons).
-import { useId, useState } from 'react';
+// Stacked placeholder = `stackedLabel` (+ `leftIcon` beside it); Default's leading "cash" icon = `leftIcon`.
+import { useId, useState, type ReactNode } from 'react';
 import { cn } from '../../lib/cn';
 import { MinusIcon, PlusIcon } from '../icons';
 import { buttonVariants } from './Button';
-import { inputVariants, type FieldSize } from './Input';
+import { Input, type FieldSize } from './Input';
 
 export type NumberInputVariant = 'default' | 'buttons' | 'spaced' | 'ghost';
 
@@ -18,13 +19,33 @@ export interface NumberInputProps {
   variant?: NumberInputVariant;
   size?: Extract<FieldSize, 'sm' | 'base'>;
   disabled?: boolean;
+  placeholder?: string;
+  /** Leading icon (Figma "cash"); with `stackedLabel` it sits beside the label. */
+  leftIcon?: ReactNode;
+  /** Figma "Stacked placeholder": a small label under the centred value (e.g. "Bedrooms"). */
+  stackedLabel?: ReactNode;
   /** Accessible name (or use <Label htmlFor={id}>). */
   'aria-label'?: string;
   id?: string;
   className?: string;
 }
 
-export function NumberInput({ value, onChange, min = -Infinity, max = Infinity, step = 1, variant = 'buttons', size = 'base', disabled, id, className, ...aria }: NumberInputProps) {
+export function NumberInput({
+  value,
+  onChange,
+  min = -Infinity,
+  max = Infinity,
+  step = 1,
+  variant = 'buttons',
+  size = 'base',
+  disabled,
+  placeholder,
+  leftIcon,
+  stackedLabel,
+  id,
+  className,
+  ...aria
+}: NumberInputProps) {
   const autoId = useId();
   const inputId = id ?? autoId;
   const clamp = (n: number) => Math.min(max, Math.max(min, n));
@@ -47,8 +68,12 @@ export function NumberInput({ value, onChange, min = -Infinity, max = Infinity, 
   };
 
   const field = (extra?: string) => (
-    <input
+    <Input
       id={inputId}
+      size={size}
+      placeholder={placeholder}
+      leftIcon={leftIcon}
+      stackedLabel={stackedLabel}
       type="number"
       inputMode="numeric"
       value={draft ?? (Number.isFinite(value) ? value : '')}
@@ -58,7 +83,10 @@ export function NumberInput({ value, onChange, min = -Infinity, max = Infinity, 
       disabled={disabled}
       onChange={(e) => onType(e.target.value)}
       onBlur={commit}
-      className={cn(inputVariants({ size }), '[appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none', extra)}
+      className={cn(
+        '[appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&_input]:[appearance:textfield] [&_input::-webkit-inner-spin-button]:appearance-none',
+        extra,
+      )}
       {...aria}
     />
   );

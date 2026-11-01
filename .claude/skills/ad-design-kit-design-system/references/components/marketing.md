@@ -4,22 +4,23 @@ All sections here are **spec verified** (2026-10-26). They are composed from ato
 
 ## Banner
 Figma: page `248:16106` · set `1146:21254` (Default, Logo + Button, Newsletter, Icon & link, Heading & description × Mobile/Tablet/Desktop) · template `templates/components/Banner.tsx`
-API: `<Banner title icon actions logo floating sticky onDismiss>`.
-- Strip: `w-full border-b border-default bg-neutral-primary-soft p-4 flex items-center justify-between` (sticky/fixed `top-0 z-50`), dismiss 32px Ghost icon button `text-heading`.
-- Default: text `text-sm text-body` with inline link.
-- Icon & link: text `text-sm text-body`, link `text-sm font-medium text-fg-brand` + arrow `size-4`.
+API: `<Banner title icon actions logo floating centered sticky onDismiss>`.
+- Strip: `w-full border-b border-default bg-neutral-primary-soft p-4 flex items-center justify-between` (sticky/fixed `top-0 z-50`), dismiss 32px Ghost icon button `text-heading` on every type.
+- Default (`centered`): IconShape `sm` gray circle (bullhorn), text `text-sm text-body` with an underlined inline link.
+- Icon & link (`centered`): IconShape `xs` brand square, text `text-sm text-body`, link `text-sm font-medium text-fg-brand` underlined + arrow `size-4`.
 - Heading & description: title `text-lg font-medium leading-6 text-heading`, text `text-sm text-body`, Tertiary `xs` + Brand `xs` actions.
-- Newsletter: `Input form` Inline + Brand `sm`.
-- Logo + Button (floating): `max-w-5xl rounded-base border border-default shadow-xs`, logo divided by `border-e border-default ps-4`, text `text-base text-body`, Brand `sm`.
+- Newsletter (`centered`): `Input form` Inline (Label with info icon + Input `sm` with envelope icon) + Brand `sm`.
+- Logo + Button (floating): `max-w-5xl rounded-base border border-default shadow-xs`, logo divided by `border-e border-default pe-4`, text `text-base text-body`, Brand `sm`.
+- Breakpoints: Mobile stacks the content with the dismiss button top-right; Heading & description keeps its buttons under the text until Desktop (`lg`); Tablet and Mobile show the logo mark only; on Mobile the floating card replaces the dismiss icon with full-width Brand + Tertiary "Close" buttons, and Newsletter shows a "Sign up to our newsletter" heading with a full-width field and button.
 
 **Variants**
 
 | Variant | Code | Use when | Don't use when |
 |---|---|---|---|
-| Type = Default | `<Banner>{text + link}</Banner>` | One short announcement sentence with an inline link. | The message needs a heading or buttons; use Heading & description. |
+| Type = Default | `centered icon` + text and link in children | One short announcement sentence with an inline link. | The message needs a heading or buttons; use Heading & description. |
 | Type = Logo + Button | `logo floating actions` | A floating promo card pairing the brand logo with one Brand CTA. | You need a full-width strip or two actions; use Heading & description. |
-| Type = Newsletter | `actions={<form>…</form>}` | Collecting an email for a newsletter or waitlist from a dismissible strip. | Signup is the page's main goal; put the form in the Jumbotron or a form section. |
-| Type = Icon & link | `icon` + link in children | A short announcement with a leading icon and one "learn more" link. | The message needs a title or buttons; use Heading & description. |
+| Type = Newsletter | `centered actions={<form>…</form>}` | Collecting an email for a newsletter or waitlist from a dismissible strip. | Signup is the page's main goal; put the form in the Jumbotron or a form section. |
+| Type = Icon & link | `centered icon` + link in children | A short announcement with a leading icon and one "learn more" link. | The message needs a title or buttons; use Heading & description. |
 | Type = Heading & description | `title actions` | The announcement needs a title, a supporting sentence and up to two actions. | One line is enough; use Default or Icon & link. |
 
 **Use** for site-wide, dismissible announcements. **Don't** for contextual errors (Alert), action feedback (Toast), or more than one banner at a time. Persist dismissal.
@@ -27,15 +28,15 @@ A11y: a `role="region"` landmark with a label; the dismiss button has an `aria-l
 
 ## Jumbotron (hero)
 Figma: page `267:16342` · set `1149:67227` (Heading + CTA, Bg-image, Text + Illustration, Link + Forms, Bg gradient, With navbar, Bento cards × Mobile/Tablet/Desktop) · template `templates/components/Jumbotron.tsx`
-API: `<Jumbotron title lead actions eyebrow variant="centered|split|image" media backgroundImage surface>`.
-- Section: `bg-neutral-primary py-24` → `mx-auto max-w-screen-xl px-4 flex flex-col gap-6` (centered or split).
-- Heading: `text-6xl font-semibold leading-none text-heading` (mobile `text-4xl`). Lead: `text-xl leading-7 text-body`. CTAs: Brand `lg` + Secondary `lg`, `gap-4`.
-- Bg-image: image + `bg-black/60` overlay, heading `text-white`, lead `text-fg-disabled` (as in Figma), CTAs Brand `lg` + Tertiary `lg`, `py-56`.
-- Text + Illustration: split layout, media `rounded-xl shadow-md`.
-- Link + Forms: `bg-neutral-secondary`, link `text-lg font-medium text-fg-brand`, `Card` "Login form" on the side.
-- Bg gradient: announcement `Alert variant="pill" color="info"`, heading `text-black`, `Input` with inner button (the gradient is illustration art and stays unbound in Figma).
+API: `<Jumbotron title lead actions eyebrow variant="centered|split|image" media backgroundImage surface="primary|secondary|gradient">`.
+- Section: `bg-neutral-primary py-8 md:py-16 lg:py-24` → `mx-auto max-w-screen-xl px-4 flex flex-col gap-6` (centered or split).
+- Heading: `text-3xl md:text-5xl lg:text-6xl font-semibold leading-none text-heading` (Figma 30 / 48 / 60px). Lead: `text-base md:text-xl text-body` (16 / 20px). CTAs: Brand `lg` + Secondary `lg`, `flex-wrap gap-4`.
+- Bg-image: image + `bg-black/60` overlay, heading `text-white`, lead `text-fg-disabled` (as in Figma), CTAs Brand `lg` + Tertiary `lg`, `py-16 md:py-24 lg:py-56`.
+- Text + Illustration: split layout (stacks below `lg`), media `rounded-xl` (Figma: a video thumbnail with a play logo).
+- Link + Forms: `bg-neutral-secondary`, link `text-lg font-medium text-fg-brand` + arrow `size-6`, `Card` "Login form" on the side.
+- Bg gradient: `surface="gradient"` (brand tint `--adk-bg-brand-soft` fading into `--adk-bg-neutral-primary`, set through the token CSS variables), announcement `Alert variant="pill" color="info" badge="New"`, an `Input` with an envelope icon and an inner Brand `xs` "Sign up" button (`max-w-sm`). Figma's faint square pattern behind it is decorative and not built.
 - With navbar: `Navbar` + hero `py-24 gap-6`.
-- Bento cards: grid of cards (`rounded-base`/`rounded-xl`, `bg-neutral-secondary`, `bg-neutral-primary-soft`, `bg-neutral-tertiary`), `shadow-xl`/`shadow-2xl` showcase images; many values unbound in Figma — build with scale values `p-7 gap-8`.
+- Bento cards: `lg:grid-cols-5` grid (`col-span-3` + `col-span-2`, then `2` + `3`) of `h-120 rounded-base border border-default bg-neutral-secondary` cards with a `text-xl font-medium` title, `text-sm text-body` text and a product mock-up (`rounded-xl bg-neutral-primary-soft shadow-lg` panels with Skeleton lines); cards stack below `lg`. Figma's oblique-line pattern is not built.
 
 **Variants**
 
@@ -45,7 +46,7 @@ API: `<Jumbotron title lead actions eyebrow variant="centered|split|image" media
 | Type = Bg-image | `variant="image" backgroundImage` | A meaningful photo sets the scene and text keeps 4.5:1 over the overlay. | The photo is decorative filler or busy behind text; use Heading + CTA. |
 | Type = Text + Illustration | `variant="split" media` | Copy should sit beside a product screenshot or illustration. | No real visual exists; use Heading + CTA instead of stock art. |
 | Type = Link + Forms | `variant="split" surface="secondary" media={<Card>}` | Visitors should sign in or sign up directly from the hero. | The form needs more than a few fields; link to a dedicated sign-up page. |
-| Type = Bg gradient | `variant="centered" eyebrow={<Alert variant="pill">}` | Launch pages pairing an announcement pill with an inline email input. | There is nothing new to announce; use Heading + CTA. |
+| Type = Bg gradient | `variant="centered" surface="gradient" eyebrow={<Alert variant="pill">}` + email `Input` in `actions` | Launch pages pairing an announcement pill with an inline email input. | There is nothing new to announce; use Heading + CTA. |
 | Type = With navbar | `<Navbar>` + `<Jumbotron>` | The landing page has no app shell and the hero sits under its own Navbar. | The layout already renders a Navbar; use the hero alone to avoid two. |
 | Type = Bento cards | `<Jumbotron>` + Card grid | Showcasing several features or screenshots at once below the headline. | There is one message or one visual; use Heading + CTA or Text + Illustration. |
 
@@ -54,8 +55,8 @@ A11y: its headline is the page's single `h1`; decorative art is `aria-hidden`; t
 
 ## Gallery
 Figma: page `320:17990` · set `1149:56037` "Gallery" (Grid 3 columns, Grid 2 columns, Featured image, Carousel, With filters, Masonry × Mobile/Tablet/Desktop) · template `templates/components/Gallery.tsx`
-API: `<Gallery images={[{src, alt, tags?}]} variant="grid-3|grid-2|masonry|featured|carousel|filters" label allLabel>`.
-Grid `grid grid-cols-2 md:grid-cols-3 gap-4` (or 2 columns); images `h-auto max-w-full rounded-base`; Masonry `columns-2 md:columns-4 gap-4` with `mb-4` items; Featured image: one large image above a row of thumbnails `gap-4`; With filters (`variant="filters"`): `Tabs variant="pills"` built from the images' `tags` above a 3-column grid, first pill `allLabel`; Carousel (`variant="carousel"`): the `Carousel` component with controls and no indicators.
+API: `<Gallery images={[{src, alt, tags?}]} variant="grid-3|grid-2|masonry|featured|carousel|filters" label allLabel filterIcons>`.
+Images `h-auto max-w-full rounded-base bg-neutral-tertiary` (the Figma placeholder fill shows while a photo loads). Grid 3 columns: `grid grid-cols-2 md:grid-cols-3 gap-4`, images `aspect-13/12` (Figma 416 × 384); Grid 2 columns: `grid-cols-2`, images `aspect-5/3` (632 × 384); Masonry `columns-2 lg:columns-3 gap-4` with `mb-4` items (Figma: 384 and 784px tall images); Featured image: one `aspect-video` image above thumbnails `grid grid-cols-2 md:grid-cols-3 gap-4`; Carousel (`variant="carousel"`): one `aspect-video` image with 44px arrow controls centred below, `gap-4`; With filters (`variant="filters"`): `Tabs variant="button"` built from the images' `tags` (first tab `allLabel`, icons from `filterIcons`) above the 3-column grid, `gap-8`.
 
 **Variants**
 

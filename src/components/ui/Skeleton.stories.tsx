@@ -2,14 +2,13 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
 import { Skeleton, SkeletonLine, SkeletonMedia, type SkeletonType } from './Skeleton';
 
-// AD Design Kit Skeleton — mirrors the Figma "Skeleton" set (node 1149:85600).
+// AD Design Kit Skeleton — one story per Figma "Skeleton" Type (node 1149:85600), at the Figma width.
 const types = ['text', 'simple-text', 'image', 'card', 'list', 'widget'] as const satisfies readonly SkeletonType[];
 
 const meta = {
   title: 'Components/Skeleton',
   component: Skeleton,
   parameters: { design: figmaDesign('Skeleton'), layout: 'padded' },
-  decorators: [(Story) => <div className="w-full max-w-md">{Story()}</div>],
   args: { type: 'text', label: 'Loading…' },
   argTypes: {
     type: { control: 'select', options: types },
@@ -19,26 +18,18 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Text: Story = {};
-export const SimpleText: Story = { args: { type: 'simple-text' } };
-export const ImageAndText: Story = { args: { type: 'image' } };
-export const CardWithImage: Story = { args: { type: 'card' } };
-export const List: Story = { args: { type: 'list' } };
-export const Widget: Story = { args: { type: 'widget' } };
-
-export const AllTypes: Story = {
-  decorators: [(Story) => <div className="w-full max-w-4xl">{Story()}</div>],
-  render: (args) => (
-    <div className="grid gap-8 md:grid-cols-2">
-      {types.map((type) => (
-        <div key={type} className="flex flex-col gap-2">
-          <span className="text-xs font-medium text-body">type="{type}"</span>
-          <Skeleton {...args} type={type} />
-        </div>
-      ))}
-    </div>
-  ),
-};
+// Figma "Text": centred two-line heading and an author row.
+export const Text: Story = { args: { className: 'w-160 max-w-full' } };
+// Figma "Simple text": paragraph rows.
+export const SimpleText: Story = { args: { type: 'simple-text', className: 'w-160 max-w-full' } };
+// Figma "Image + Text".
+export const ImageAndText: Story = { args: { type: 'image', className: 'w-150 max-w-full' } };
+// Figma "Card + Image".
+export const CardWithImage: Story = { args: { type: 'card', className: 'w-96 max-w-full' } };
+// Figma "List": five divided rows.
+export const List: Story = { args: { type: 'list', className: 'w-75 max-w-full' } };
+// Figma "Widget": title and a bar chart.
+export const Widget: Story = { args: { type: 'widget', className: 'w-75 max-w-full' } };
 
 // Build custom placeholders from the primitives.
 export const Primitives: Story = {

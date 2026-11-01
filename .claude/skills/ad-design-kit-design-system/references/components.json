@@ -334,6 +334,14 @@
     },
     "Helper text": {
      "prop": "hint"
+    },
+    "Type": {
+     "prop": null,
+     "values": {
+      "Default": "<Label>",
+      "Required & icon": "<Label required>",
+      "Two texts": "<Label hint=\"…\">"
+     }
     }
    },
    "template": "templates/components/Input.tsx"
@@ -354,7 +362,19 @@
      "Features"
     ]
    },
-   "template": "templates/components/Input.tsx"
+   "template": "templates/components/Input.tsx",
+   "propMap": {
+    "Type": {
+     "prop": null,
+     "values": {
+      "Default": "<HelperText>",
+      "Tags": "compose: <HelperText> + <Badge>",
+      "Left & Right text": "compose: <HelperText> + two spans",
+      "Progress bar": "compose: <HelperText> + <Progress>",
+      "Features": "compose: <HelperText> + checklist"
+     }
+    }
+   }
   },
   {
    "react": "Select",
@@ -380,7 +400,11 @@
      "values": {
       "Default": "<Select> in a Label/HelperText field",
       "Inline": "Label beside <Select size=\"sm\">",
-      "Left button": "composition"
+      "Left button": "composition",
+      "With Buttons": "compose: <Select> + <Button>",
+      "2 inputs": "compose: 2 × <Select>",
+      "Range inputs": "compose: <Select> – <Select>",
+      "3 inputs": "compose: 3 × <Select>"
      }
     },
     "Size": {
@@ -475,13 +499,13 @@
       "Default": "default",
       "With buttons": "buttons",
       "With spaced buttons": "spaced",
-      "Ghost input": "ghost"
+      "Ghost input": "ghost",
+      "Stacked placeholder": "buttons"
      },
      "compositions": [
       "Inline",
       "Inner button",
       "Three buttons",
-      "Stacked placeholder",
       "With progress bar",
       "Stacked inputs",
       "Stacked full",
@@ -515,16 +539,16 @@
     "Type": {
      "prop": null,
      "values": {
-      "Default": "<PhoneInput>"
+      "One button": "<PhoneInput>"
      },
      "compositions": [
+      "Default",
       "Inline",
       "With spaced buttons",
       "Inner button",
       "Three buttons",
       "Stacked with button",
-      "Select & Button",
-      "One button"
+      "Select & Button"
      ]
     }
    },
@@ -555,10 +579,10 @@
     "Type": {
      "prop": "variant",
      "values": {
-      "Default with button": "joined",
+      "Default": "icon",
+      "Default with button": "button",
       "Inner button": "inner",
-      "Large input": "inner",
-      "Default": "icon"
+      "Large input": "large"
      },
      "compositions": [
       "Inline",
@@ -741,7 +765,7 @@
       "Default": "<Textarea>",
       "Buttons inside": "footer",
       "Buttons outside": "composition",
-      "Chatroom": "composition"
+      "Chatroom": "composition (TextareaToolButton brand)"
      }
     },
     "State": {
@@ -857,7 +881,7 @@
      "prop": "mode",
      "values": {
       "Default": "single",
-      "Range": "range"
+      "Range": "range (labels: From / To)"
      }
     },
     "parts": {
@@ -892,14 +916,12 @@
      "prop": null,
      "values": {
       "Default": "<TimeInput>",
-      "Inline": "Label beside <TimeInput>",
-      "With Dropdown": "<TimeSlots> in a Popover",
-      "Range": "two <TimeInput>s"
-     },
-     "compositions": [
-      "With button",
-      "With select"
-     ]
+      "Inline": "Label beside <TimeInput size=sm addon=end>",
+      "With Dropdown": "<TimeInput icon=angle-down> + Secondary Dropdown",
+      "With button": "<TimeInput icon=angle-down> + Brand Dropdown",
+      "With select": "<TimeInput> + <Select>",
+      "Range": "two <TimeInput clearable>"
+     }
     },
     "TimepickerInput": {
      "Type": {
@@ -955,12 +977,12 @@
     "Type": {
      "prop": null,
      "values": {
-      "Default": "options",
+      "Default": "options with group + onRemove",
       "User": "options with icon=<Avatar>",
       "Highlighted text": "built in",
-      "Categories": "options with group",
-      "Advanced with save": "footer",
-      "Advanced": "options with description"
+      "Categories": "header + options with group/meta",
+      "Advanced with save": "onSave + onRemove",
+      "Advanced": "options with description + groupStyle=filled"
      }
     }
    },
@@ -1081,6 +1103,13 @@
     },
     "Status": {
      "css": true
+    },
+    "Size": {
+     "prop": null,
+     "values": {
+      "base": "— (Figma naming: the checkbox is 16px)",
+      "Default": "— (Figma naming: the radio is 16px)"
+     }
     }
    },
    "parts": {
@@ -1131,22 +1160,22 @@
      "prop": "variant",
      "values": {
       "Left checkbox card": "card",
-      "Icon & text": "card + icon",
-      "Advanced": "card",
-      "Advanced (Radio inputs)": "card type=radio",
+      "Icon & text": "card + iconPlacement=top control=end",
+      "With side icon & text": "card + control=end",
+      "Box icon & logo": "card + iconPlacement=top control=none",
+      "Advanced": "card + details",
+      "Advanced (Radio inputs)": "card type=radio control=end footer",
+      "Icons & text": "card + control=none trailing",
       "Bordered left input": "bordered",
       "Simple": "chip",
       "Only text": "circle",
-      "Only Icon": "circle",
-      "Rating": "circle"
+      "Only Icon": "circle"
      },
      "compositions": [
       "Default",
-      "With side icon & text",
-      "Box icon & logo",
       "With helper",
-      "Icons & text",
       "Color",
+      "Rating",
       "Dots & text",
       "Payment",
       "Icon & toggle"
@@ -1245,9 +1274,9 @@
       "Icon shape & text": "icon=<IconShape>",
       "Icon shape & buttons": "title + actions",
       "Avatar & button": "icon=<Avatar> + title + actions",
-      "With header": "header",
-      "With progress bar": "children=<Progress>",
-      "With illustration": "children",
+      "With header": "header + actions",
+      "With progress bar": "stacked + children=<Progress>",
+      "With illustration": "icon=<img> + title + actions",
       "Warning": {
        "prop": "color",
        "value": "warning"
@@ -1323,7 +1352,9 @@
       "With avatar": "<Avatar size=\"xs\">",
       "With dot": "<span> dot",
       "With loader": "<Spinner size=\"xs\">",
-      "With secondary text": null
+      "With secondary text": {
+       "prop": "secondary"
+      }
      }
     },
     "Only icon": {
@@ -1484,7 +1515,7 @@
      "values": {
       "Default": "<Rating>",
       "With badge": "<Rating badge>",
-      "Radio input": "<RatingInput>"
+      "Radio input": "<RatingInput min={0} startLabel endLabel>"
      }
     }
    },
@@ -1515,7 +1546,24 @@
     "ModalHeader": "1149:71403",
     "ModalFooter": "1149:71444"
    },
-   "template": "templates/components/Modal.tsx"
+   "template": "templates/components/Modal.tsx",
+   "propMap": {
+    "Type": {
+     "prop": null,
+     "values": {
+      "Info": "size=\"lg\" + text children + footer",
+      "Popup": "size=\"sm\" header={false} dismissible={false} + icon, question, buttons",
+      "Sign In": "size=\"sm\" icon={logo} description + social buttons + <Input> fields + Brand button",
+      "Create product": "size=\"sm\" + <Input>/<Select>/<Textarea> + footer",
+      "With radio inputs": "size=\"sm\" + <ChoiceCard> group + Next button",
+      "With timeline": "size=\"md\" + <Timeline> children",
+      "With progress bar": "size=\"sm\" header={false} + <Progress color=\"danger\"> + buttons",
+      "With list": "size=\"md\" + <List variant=\"cta\"> rows",
+      "OTP": "size=\"sm\" icon={<IconShape>} description + <OtpInput> + Brand button",
+      "Share": "size=\"md\" + link <Input> + Create link + social buttons"
+     }
+    }
+   }
   },
   {
    "react": "Drawer",
@@ -1601,7 +1649,25 @@
    "propMap": {
     "Type": {
      "prop": null,
-     "note": "Menu types are compositions of DropdownItem / DropdownCheckboxItem / DropdownHeader / DropdownSeparator"
+     "note": "Menu types are compositions of DropdownItem / DropdownCheckboxItem / DropdownHeader / DropdownSeparator",
+     "values": {
+      "Default": "<DropdownItem> rows",
+      "User profile": "header={<DropdownHeader avatar name email trailing>} + rows + toggle row",
+      "with separator": "<DropdownSeparator> between item groups",
+      "With radio input": "<DropdownRadioItem trailing> rows",
+      "With toggle": "<DropdownCheckboxItem indicator=\"toggle\" description> rows",
+      "Checkbox": "<DropdownCheckboxItem description> rows",
+      "Users": "header={<Input sm>} + <DropdownCheckboxItem icon={<Avatar xs>} indicatorPosition=\"end\"> + footer button",
+      "With scroll": "className=\"p-0 gap-0\" menuClassName=\"max-h-72 overflow-y-auto p-2\" + header search + footer button",
+      "Heading & Button": "header heading + <DropdownItem> rows + footer button",
+      "User selection": "<DropdownItem icon={<Avatar sm>} description trailing={<Badge>}> rows",
+      "Text & illustration": "panel + illustration, title, text",
+      "With forms": "panel + two date <Input sm>",
+      "Grid": "menuClassName=\"grid grid-cols-3\" + <DropdownItem boxed>",
+      "Language select": "<DropdownItem> rows with flags",
+      "Menu": "CTA header + rows with icon Badges + footer \"Show all\"",
+      "With number inputs": "panel + <NumberInput variant=\"ghost\" size=\"sm\"> rows"
+     }
     }
    },
    "template": "templates/components/Dropdown.tsx"
@@ -1632,6 +1698,13 @@
       "Right": "right",
       "Top": "top",
       "Bottom": "bottom"
+     }
+    },
+    "Type": {
+     "prop": null,
+     "values": {
+      "Default": "padding=\"text\" or padding=\"rich\", optional title",
+      "Vertical items": "padding=\"none\" + <PopoverItem> rows"
      }
     }
    },
@@ -1860,6 +1933,9 @@
       "Vertical with list item": "vertical-list",
       "Vertical pills": "vertical-pills"
      }
+    },
+    "Mobile": {
+     "prop": "mobile"
     }
    },
    "parts": {
@@ -1894,9 +1970,7 @@
       "Default": "default",
       "Arrows": "arrows",
       "Two buttons": "two-buttons",
-      "Buttons & helper text": {
-       "prop": "helper"
-      },
+      "Buttons & helper text": "prev-next",
       "Text buttons": "labeled",
       "With dropdown": {
        "prop": "pageSize"
@@ -2033,7 +2107,29 @@
      "True"
     ]
    },
-   "template": "templates/components/Card.tsx"
+   "template": "templates/components/Card.tsx",
+   "propMap": {
+    "Type": {
+     "prop": null,
+     "values": {
+      "Default": "<Card padding=\"roomy\">",
+      "With Image": "<Card media={img}>",
+      "Split": "<Card media className=\"flex-row\">",
+      "Centered with full image": "<Card padding=\"none\" media>",
+      "User profile": "<Card> + Avatar size=\"2xl\"",
+      "Login form": "<Card> + Input + Checkbox",
+      "E-commerce": "<Card media> + Rating",
+      "CTA card": "<Card> + DownloadAppButton",
+      "With full width tabs": "<Card padding=\"none\"> + Tabs variant=\"text\"",
+      "With nav tabs": "<Card> + Tabs variant=\"button\"",
+      "Pricing card": "<Card> + List",
+      "Testimonial card": "<Card padding=\"roomy\"> + AvatarGroupLabel (stacked)",
+      "Card with list": "<Card> + List variant=\"card\"",
+      "Crypto": "<Card> + asset rows",
+      "Grid card": "<Card padding=\"roomy\"> + 2×2 testimonial grid"
+     }
+    }
+   }
   },
   {
    "react": "Accordion",
@@ -2215,7 +2311,7 @@
       "Default": "default",
       "Divider": "divider",
       "CTA": "cta",
-      "Card": "<Card> + variant=\"divider\""
+      "Card": "card"
      }
     }
    },
@@ -2296,9 +2392,9 @@
       "Default": "default",
       "Icons & Card": "icons",
       "User actions": "cards",
-      "Stacked cards": "cards",
+      "Stacked cards": "stacked",
       "Horizontal": "horizontal",
-      "Horizontal advanced": "horizontal"
+      "Horizontal advanced": "horizontal-advanced"
      }
     },
     "Breakpoint": {
@@ -2393,7 +2489,7 @@
      "values": {
       "Default": "slides controls={false} indicators={false}",
       "Default with controls & indicators": "slides",
-      "With cards": "cards",
+      "With cards": "cards indicators={false}",
       "Cards & bottom controls": "cards"
      }
     }
@@ -2447,10 +2543,10 @@
     "Type": {
      "prop": null,
      "values": {
-      "Default": "children",
-      "Icon & link": "icon",
+      "Default": "centered + icon + children",
+      "Icon & link": "centered + icon + link in children",
       "Heading & description": "title + actions",
-      "Newsletter": "actions=<form>",
+      "Newsletter": "centered + actions=<form>",
       "Logo + Button": "logo + floating"
      }
     },
@@ -2491,7 +2587,7 @@
       "Text + Illustration": "split",
       "Link + Forms": "split surface=secondary",
       "Bg-image": "image",
-      "Bg gradient": "centered + eyebrow"
+      "Bg gradient": "centered + surface=gradient + eyebrow"
      },
      "compositions": [
       "With navbar",

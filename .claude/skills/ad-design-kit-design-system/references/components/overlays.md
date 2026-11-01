@@ -16,27 +16,29 @@ Elevation ladder: Tooltip `shadow-md` → Dropdown, Popover, Toast, menus `shado
 
 ## Modal
 Figma: page `3284:23179` · set `1149:71305` (Info, Popup, Sign In, Create product, With radio inputs, With timeline, With progress bar, With list, OTP, Share) · header `1149:71403` (7 types) · footer `1149:71444` (4 types) · template `templates/components/Modal.tsx`
+API: `<Modal open onOpenChange title icon description header footer size="sm|md|lg|xl" dismissible>`.
 
 - Panel: `w-full rounded-base border border-default bg-neutral-primary-soft p-6 flex flex-col gap-6`; widths from Figma: `max-w-sm` (384: Sign In, Popup, OTP, Create product), `max-w-md` (448: Share, With list, With timeline), `max-w-xl` (576: Info).
-- Header: `flex items-center justify-between gap-6 border-b border-default pb-5`; title `text-lg font-medium leading-7 text-heading`; supporting text `text-base text-body` (or `text-fg-brand` link); close = 36px Ghost icon button `text-heading`. Header types add `IconShape size="lg" color="white"`, logo, `AvatarGroup size="lg"` or `Breadcrumb`.
+- Header: `flex items-center justify-between gap-6 border-b border-default pb-5`; title `text-lg font-medium leading-7 text-heading`; supporting text `text-base text-body` (or `text-fg-brand` link); close = 36px Ghost icon button `text-heading`. Header types: "With Logo" = `icon` (24px logo) + `description`; "Icon + Heading & helper text" = `icon={<IconShape size="lg" color="white">}` + `description`; Avatar group and Breadcrumb headers are composed in children.
+- No header (Popup, With progress bar): `header={false}`; the close button sits `absolute end-1.5 top-1.5` and the title only names the dialog for screen readers.
 - Body: `flex flex-col gap-4 text-base text-body`; emphasized `font-medium text-heading`; links `font-medium text-fg-brand`.
 - Footer: `flex items-center gap-4 border-t border-default pt-6`; Brand `base` + Secondary `base`; "3 buttons" `gap-3`; "Buttons & links" adds a `text-base font-medium text-body` link and a `bg-neutral-quaternary` divider; "Pagination" footer uses Pagination.
-- Popup (confirm): centered 36px icon `text-heading`, text `text-base text-body`, footer buttons. With progress bar: title `text-lg font-semibold leading-7`.
+- Popup (confirm): `header={false}`, centred 48px icon `text-body-subtle`, text `text-base text-body`, centred Brand + Secondary buttons in the body (no footer divider). With progress bar: `header={false}`, 40px icon, buttons in the body. With progress bar: title `text-lg font-semibold leading-7`.
 
 **Variants**
 
 | Variant | Code | Use when | Don't use when |
 |---|---|---|---|
-| Type = Info | `size="lg"` + text children + `footer` | Explanatory text with links that the user reads and acknowledges before continuing. | The content is long or needs scrolling across sections — use a page or a Drawer. |
-| Type = Popup | `size="sm" dismissible={false}` + icon, question, `footer` | Confirming one destructive or irreversible action, such as deleting a product. | The action is easy to undo — act directly and offer undo in a Toast. |
-| Type = Sign In | `size="sm"` + `<Input>` fields + Brand button | Signing in or re-authenticating without leaving the current page. | It is the app's main sign-in entry point — use a dedicated page. |
+| Type = Info | `size="lg"` + text children + `footer` (Confirm + Close) | Explanatory text with links that the user reads and acknowledges before continuing. | The content is long or needs scrolling across sections — use a page or a Drawer. |
+| Type = Popup | `size="sm" header={false} dismissible={false}` + icon, question, buttons | Confirming one destructive or irreversible action, such as deleting a product. | The action is easy to undo — act directly and offer undo in a Toast. |
+| Type = Sign In | `size="sm" icon={logo} description` + social buttons + `<Input>` fields + Brand button | Signing in or re-authenticating without leaving the current page. | It is the app's main sign-in entry point — use a dedicated page. |
 | Type = Create product | `size="sm"` + `<Input>`/`<Select>`/`<Textarea>` + `footer` | Creating an item with up to about six fields in one focused step. | The form is longer or needs page context — use a Drawer or a page. |
 | Type = With radio inputs | `size="sm"` + `<ChoiceCard>`/`<Radio>` group + Next button | Picking one option before a flow continues, such as a role or a plan. | The choice is one field of a larger form — put Radio or ChoiceCard inline. |
 | Type = With timeline | `size="md"` + `<Timeline>` children | A changelog or record history the user opens on demand. | The history is the main content — show it on a page or in a Drawer. |
-| Type = With progress bar | `size="sm"` + `<Progress>` + `footer` | Warning about a usage limit that needs a decision, such as storage nearly full. | The usage is passive information — show Progress inline on the page. |
-| Type = With list | `size="md"` + list of selectable rows | Choosing one provider or account from a short list, such as connecting a wallet. | The list is long or needs filtering — use a Select, Autocomplete or a page. |
-| Type = OTP | `size="sm"` + `<OtpInput>` + Brand button | Verifying a one-time code before a sensitive action. | The code step belongs to a sign-up page flow — put OtpInput on the page. |
-| Type = Share | `size="md"` + `<CopyInput>` + social buttons | Sharing a link to the current item with copy and social options. | Only a copy action is needed — use a CopyInput or a button with a Toast. |
+| Type = With progress bar | `size="sm" header={false}` + title, `<Progress color="danger">`, buttons | Warning about a usage limit that needs a decision, such as storage nearly full. | The usage is passive information — show Progress inline on the page. |
+| Type = With list | `size="md"` + `<List variant="cta">` rows | Choosing one provider or account from a short list, such as connecting a wallet. | The list is long or needs filtering — use a Select, Autocomplete or a page. |
+| Type = OTP | `size="sm" icon={<IconShape>} description` + `<OtpInput>` + Brand button | Verifying a one-time code before a sensitive action. | The code step belongs to a sign-up page flow — put OtpInput on the page. |
+| Type = Share | `size="md"` + link `<Input>` + Brand "Create link" + social buttons | Sharing a link to the current item with copy and social options. | Only a copy action is needed — use a CopyInput or a button with a Toast. |
 
 **Use** for decisions or short focused tasks that block the page (confirm destructive actions, ≤ ~6 fields, acknowledgements). **Don't** for long forms or content needing page context (Drawer/page), non-blocking info, modal-in-modal, or auto-open on load.
 A11y: `role="dialog" aria-modal aria-labelledby`, focus trap, Esc/backdrop close (except destructive), return focus.
@@ -55,10 +57,10 @@ API: `<Drawer open onOpenChange title icon footer placement="start|end|bottom" s
 
 | Variant | Code | Use when | Don't use when |
 |---|---|---|---|
-| Type = Default | `size="md" icon={…}` + text children + `footer` | Supporting details or explanatory text about an item, with an optional heading icon. | A quick yes/no confirmation is needed — use a Modal. |
-| Type = Navigation | `placement="start"` + Sidebar items, no `footer` | App navigation on mobile or in collapsed layouts. | It is the primary navigation on desktop — use a Sidebar. |
+| Type = Default | `size="md" icon={…}` + text children with the buttons under it, no `footer` | Supporting details or explanatory text about an item, with an optional heading icon. | A quick yes/no confirmation is needed — use a Modal. |
+| Type = Navigation | `placement="start" icon={logo}` + `<Sidebar>` items, no `footer` | App navigation on mobile or in collapsed layouts. | It is the primary navigation on desktop — use a Sidebar. |
 | Type = With forms | `size="sm"` + `<Input>` fields + submit button | A short form of two to four fields with one submit, such as contact or feedback. | The form needs several field types and Cancel/Save actions — use Advanced. |
-| Type = Advanced | `size="sm"` + mixed fields + `footer` with Close and Brand | Create/edit forms with textarea, date or tag fields that keep the page visible. | The form is multi-step or very long — use a dedicated page. |
+| Type = Advanced | `size="sm"` + mixed fields + Close and Brand buttons pinned to the bottom (`mt-auto`, no divider) | Create/edit forms with textarea, date or tag fields that keep the page visible. | The form is multi-step or very long — use a dedicated page. |
 | Type = With alert | `<Alert variant="complex" color="info">` in children | A notice or announcement with a link that needs more room than a Toast. | The notice applies to the whole page — use a Banner or an inline Alert. |
 | Type = With list | `size="md"` + key-value list tile | Read-only record details, such as order info opened from a table row. | The details need their own URL or are the main content — use a page. |
 | Type = Bottom | `placement="bottom"` | A full-width sheet for short content or actions, especially on mobile. | The content is tall or a long form — use a start or end drawer. |
@@ -69,7 +71,8 @@ A11y: a native `<dialog>` labelled by its title (`aria-labelledby`), so focus st
 
 ## Dropdown
 Figma: page `3282:18862` · menu `1149:39895` (16 types) · item `1149:39651` (16 types × Initial/Hover/Disabled) · header `1149:39866` (5 types) · triggers `1149:40204` (6 types) · template `templates/components/Dropdown.tsx`
-API: `<Dropdown trigger align label>` with `DropdownItem` (icon, description, trailing, onSelect), `DropdownCheckboxItem`, `DropdownHeader`, `DropdownSeparator`.
+API: `<Dropdown trigger align label header footer menuClassName panel defaultOpen>` with `DropdownItem` (icon, description, trailing, onSelect, color, boxed), `DropdownCheckboxItem` (indicator="checkbox|toggle", indicatorPosition, icon, description, trailing), `DropdownRadioItem` (checked, onSelect, trailing), `DropdownHeader` (name, email, avatar, trailing), `DropdownSeparator`.
+- `header` / `footer` sit in the panel outside the `role="menu"` list: search fields, headings, CTA cards and action buttons. `panel` renders a `role="dialog"` panel for types that hold fields or an empty state (With forms, With number inputs, Text & illustration).
 
 - Menu: `z-40 w-52 rounded-base border border-default-medium bg-neutral-primary-medium p-2 flex flex-col gap-1.5 shadow-lg` (widths in Figma: 208 default, 224–320 for richer types). "With scroll": `p-0`, scroll area `max-h-*` with `p-2`, sticky search (`Input sm`) with `shadow-bottom-dropdown` and footer with `shadow-top` (edge shadows over the scrolled list).
 - Item: `flex items-center gap-1.5 rounded px-2 py-1.5 text-sm font-medium leading-5 text-body` (32px row; text-sm always uses its 20px line height) · icons `size-4 text-body` · hover `bg-neutral-tertiary-medium text-heading` · disabled `text-fg-disabled`. Secondary text `text-xs leading-4 text-body` (subtle text drops below 4.5:1 on the hover fill). Destructive item (`DropdownItem color="danger"`, e.g. Delete): `text-fg-danger-strong` text and icon, hover/focus `bg-danger-soft`; put it last, after a separator when the menu has several groups, and confirm the action in a Modal. Figma: Dropdown list item `Color = Danger`. Item types: Two icons (trailing `size-3.5`), Left/Right form (Checkbox/Radio/Toggle), With avatar & form, With badge (`Badge color="white" size="sm"`), User select (`AvatarGroupLabel sm`), Icon shapes (24px), With flag, Form & dot (`size-2 rounded-full bg-purple` etc.), Boxed grid tile (`rounded bg-neutral-secondary-strong p-3 gap-1.5`, icon `size-6`; hover `bg-neutral-quaternary text-heading`).
@@ -82,33 +85,33 @@ API: `<Dropdown trigger align label>` with `DropdownItem` (icon, description, tr
 | Variant | Code | Use when | Don't use when |
 |---|---|---|---|
 | Type = Default | `<DropdownItem>` rows | A short list of actions from a trigger, such as row actions or "More". | The choice is a form value — use a Select. |
-| Type = User profile | `<DropdownHeader name email>` + `<DropdownItem>` rows | The account menu behind a navbar avatar. | You only show a profile card with no actions — use a Popover. |
+| Type = User profile | `header={<DropdownHeader avatar name email trailing={<Badge>}>}` + rows, a toggle row, separator | The account menu behind a navbar avatar. | You only show a profile card with no actions — use a Popover. |
 | Type = with separator | `<DropdownSeparator>` between item groups | More than about five actions that fall into groups, with the destructive item last. | There are only a few related actions — use Default. |
-| Type = With radio input | compose: Radio rows in children | Switching one view setting in place, such as sort order or density. | The choice is a form value to submit — use a Select or Radio group. |
-| Type = With toggle | compose: Toggle rows with descriptions | On/off preferences that apply immediately, such as notification settings. | The settings are saved with a form submit — use Checkbox in the form. |
-| Type = Checkbox | `<DropdownCheckboxItem>` rows | Multi-select filters or column visibility, with the menu staying open. | There are more than about twelve options — use Users with search or an Autocomplete. |
-| Type = Users | compose: search `<Input sm>` + checkbox user rows + action button | Selecting several people from a long list to act on, such as removing members. | People are a form field value — use an Autocomplete or TagInput. |
-| Type = With scroll | `p-0` scroll area + sticky search and footer | Lists longer than about twelve items that need search and a sticky action. | The list is short — use Default; for form values use an Autocomplete. |
-| Type = Heading & Button | compose: heading + `<DropdownItem>` rows + footer button | Picking a destination with a create-new option, such as "Save to collection". | There is no heading or create action — use Default. |
-| Type = User selection | compose: `<AvatarGroupLabel sm>` rows + `<Badge>` | Switching account or picking one person, with a status badge on the current one. | Several people must be selected — use Users. |
-| Type = Text & illustration | compose: illustration + title + text | An empty state inside a menu, such as "No notifications yet". | The empty state belongs to a page or section — show it there. |
-| Type = With forms | compose: two date `<Input>` fields | A quick inline input inside a menu, such as a date range filter. | The input is a longer form — use a Drawer or a Modal. |
-| Type = Grid | compose: boxed grid tiles with icons | An app or section launcher with six to nine icon tiles. | The actions are text-only or many — use Default. |
+| Type = With radio input | `<DropdownRadioItem trailing="(456)">` rows | Switching one view setting in place, such as sort order or density. | The choice is a form value to submit — use a Select or Radio group. |
+| Type = With toggle | `<DropdownCheckboxItem indicator="toggle" description>` rows | On/off preferences that apply immediately, such as notification settings. | The settings are saved with a form submit — use Checkbox in the form. |
+| Type = Checkbox | `<DropdownCheckboxItem description>` rows | Multi-select filters or column visibility, with the menu staying open. | There are more than about twelve options — use Users with search or an Autocomplete. |
+| Type = Users | `header={<Input sm>}` + `<DropdownCheckboxItem icon={<Avatar xs>} indicatorPosition="end">` rows + `footer` button | Selecting several people from a long list to act on, such as removing members. | People are a form field value — use an Autocomplete or TagInput. |
+| Type = With scroll | `className="p-0 gap-0" menuClassName="max-h-72 overflow-y-auto p-2"` + search `header` and button `footer` | Lists longer than about twelve items that need search and a sticky action. | The list is short — use Default; for form values use an Autocomplete. |
+| Type = Heading & Button | heading in `header` + `<DropdownItem>` rows + Secondary xs `footer` button | Picking a destination with a create-new option, such as "Save to collection". | There is no heading or create action — use Default. |
+| Type = User selection | `<DropdownItem icon={<Avatar sm>} description trailing={<Badge>}>` rows | Switching account or picking one person, with a status badge on the current one. | Several people must be selected — use Users. |
+| Type = Text & illustration | `panel` + illustration, title and text | An empty state inside a menu, such as "No notifications yet". | The empty state belongs to a page or section — show it there. |
+| Type = With forms | `panel` + two date `<Input sm>` fields | A quick inline input inside a menu, such as a date range filter. | The input is a longer form — use a Drawer or a Modal. |
+| Type = Grid | `menuClassName="grid grid-cols-3"` + `<DropdownItem boxed>` tiles | An app or section launcher with six to nine icon tiles. | The actions are text-only or many — use Default. |
 | Type = Language select | compose: `<DropdownItem>` rows with flags | Switching interface language or region from a trigger. | Language is a form field — use a Select. |
-| Type = Menu | compose: CTA header + rows with trailing icon buttons + "Show all" | Rich pickers, such as a model selector, where each row has quick actions. | Plain actions are enough — use Default; never nest submenus deeper than one level. |
-| Type = With number inputs | compose: `<NumberInput>` rows | Adjusting several counts in place, such as guests or passengers. | Only one count is needed — use a NumberInput directly in the form. |
+| Type = Menu | CTA card `header` + rows with trailing icon Badges + "Show all" `footer` | Rich pickers, such as a model selector, where each row has quick actions. | Plain actions are enough — use Default; never nest submenus deeper than one level. |
+| Type = With number inputs | `panel` + `<NumberInput variant="ghost" size="sm">` rows | Adjusting several counts in place, such as guests or passengers. | Only one count is needed — use a NumberInput directly in the form. |
 
 **Use** for actions or navigation options revealed from a trigger (row actions, user menu, "More"); checkbox/radio/toggle variants for in-menu filters and settings. **Don't** for form values (Select/Autocomplete), >12 items without search, always-needed actions, or nested submenus deeper than one level.
 A11y: `role="menu"`/`menuitem` (or `menuitemcheckbox`/`menuitemradio`), arrow keys, Esc returns focus.
 
 ## Popover
 Figma: page `3303:16685` · set `1149:81090` (Default, Vertical items × Top/Right/Bottom/Left) · content `1149:81187` (9 types) · template `templates/components/Popover.tsx`
-API: `<Popover trigger title placement padding="text|rich|none">`; `PopoverItem` for Vertical items.
+API: `<Popover trigger title placement padding="text|rich|none" label defaultOpen>`; `PopoverItem` for Vertical items.
 
 - Panel: `w-64 rounded-base border border-default-medium bg-neutral-primary-medium shadow-lg overflow-hidden` with an arrow in the same fill/border.
 - Header (optional): `border-b border-default-medium bg-neutral-tertiary-medium px-3 py-1.5 text-sm font-medium leading-5 text-heading`.
 - Content "Text": `px-3 py-2 text-sm text-body`. Rich content (User/Company profile, Description & image, Progress, Password strength, Paragraphs, Illustration & CTA): `p-3 flex flex-col gap-2.5`–`gap-4`; titles `text-sm font-semibold leading-none text-heading`; text `text-sm text-body`; links `text-sm font-medium text-fg-brand`; small CTAs Brand `xs` / Secondary `sm`. Password strength bars `h-1 flex-1 rounded-full bg-warning` / `bg-neutral-quaternary`.
-- Vertical items: list of `px-3 py-2 gap-1.5 text-sm leading-none text-body` rows with `size-4` icons.
+- Vertical items (`padding="none"`): the panel hugs its rows (`w-max`), rows `px-3 py-2 gap-1.5 text-sm leading-none text-body` with `size-4` icons, divided by `divide-y divide-default-medium`.
 
 **Variants**
 
@@ -126,6 +129,7 @@ A11y: the trigger has `aria-haspopup`, `aria-expanded` and `aria-controls`; the 
 
 ## Tooltip
 Figma: page `3283:24170` · set `1149:93859` (Top/Bottom/Left/Right) · template `templates/components/Tooltip.tsx`
+API: `<Tooltip content placement defaultOpen>{trigger}</Tooltip>`.
 Bubble `rounded-base bg-dark px-3 py-2 text-sm font-medium leading-4 text-white shadow-md` + 8px arrow `bg-dark`; `max-w-xs`.
 
 **Variants**

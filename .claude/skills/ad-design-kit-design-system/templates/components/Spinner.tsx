@@ -19,11 +19,13 @@ export function Spinner({ size = 'sm', track = true, label = 'Loading…', class
       <svg viewBox="0 0 100 101" className={cn('animate-spin', sizes[size], className)} aria-hidden {...props}>
         {track && (
           <path
+            data-spinner="track"
             className="fill-neutral-quaternary"
             d="M100 50.59c0 27.615-22.386 50.001-50 50.001S0 78.205 0 50.59 22.386.59 50 .59s50 22.386 50 50zm-90.919 0c0 22.6 18.32 40.92 40.919 40.92s40.919-18.32 40.919-40.92C90.919 27.99 72.599 9.67 50 9.67S9.081 27.99 9.081 50.59z"
           />
         )}
         <path
+          data-spinner="indicator"
           className="fill-brand"
           d="M93.968 39.04c2.425-.636 3.894-3.128 3.04-5.486A50 50 0 0 0 41.735 1.279c-2.474.414-3.922 2.919-3.285 5.344.637 2.426 3.12 3.852 5.6 3.484a40.916 40.916 0 0 1 44.131 25.769c.902 2.34 3.361 3.802 5.787 3.165z"
         />

@@ -26,28 +26,43 @@ const meta = {
   component: Pagination,
   parameters: { design: figmaDesign('Pagination'), layout: 'padded' },
   args: { page: 3, pageCount: 10, onPageChange: () => {}, variant: 'default', siblings: 1 },
-  argTypes: { variant: { control: 'select', options: ['default', 'labeled', 'arrows', 'two-buttons', 'jump', 'select'] } },
+  argTypes: { variant: { control: 'select', options: ['default', 'labeled', 'arrows', 'two-buttons', 'prev-next', 'jump', 'select'] } },
   render: (args) => <PaginationDemo {...args} />,
 } satisfies Meta<typeof Pagination>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+// One story per Figma "Pagination" Type, with Figma's content.
 
-// Figma "Buttons & helper text": "Showing 21–30 of 100".
-export const WithHelperText: Story = { args: { helper: { from: 21, to: 30, total: 100 } } };
+// Figma "Default": icon arrows around every page number (10 pages, all shown).
+export const Default: Story = { args: { siblings: 9 } };
 
-export const Arrows: Story = { args: { variant: 'arrows', helper: { from: 21, to: 30, total: 100 } } };
+// Figma "Text buttons": Previous / Next as text; 99 pages, the first eight then an ellipsis.
+export const TextButtons: Story = { args: { variant: 'labeled', pageCount: 99, siblings: 5 } };
 
+// Figma "Two buttons": separate Previous / Next with arrows.
 export const TwoButtons: Story = { args: { variant: 'two-buttons' } };
 
-// Figma "Text buttons": numbered pages with text Previous / Next.
-export const TextButtons: Story = { args: { variant: 'labeled' } };
+// Figma "Buttons & helper text": "Showing 1 to 10 of 100 Entries" above joined Prev / Next.
+export const ButtonsAndHelperText: Story = { args: { variant: 'prev-next', page: 1, helper: { from: 1, to: 10, total: 100 } } };
+
+// Interaction: Prev / Next step one page and the helper text follows.
+export const ButtonsAndHelperTextInteraction: Story = {
+  args: { ...ButtonsAndHelperText.args, onPageChange: fn() },
+  play: async ({ canvas, userEvent, args }) => {
+    const nav = canvas.getByRole('navigation', { name: 'Pagination' });
+    await expect(nav).toHaveTextContent('Showing 1 to 10 of 100 Entries');
+    await expect(canvas.getByRole('button', { name: 'Prev' })).toBeDisabled();
+    await userEvent.click(canvas.getByRole('button', { name: 'Next' }));
+    await expect(args.onPageChange).toHaveBeenLastCalledWith(2);
+    await expect(nav).toHaveTextContent('Showing 11 to 20 of 100 Entries');
+  },
+};
 
 // Figma "With dropdown": text buttons plus a rows-per-page select.
-export const WithPageSize: Story = {
-  args: { variant: 'labeled' },
+export const WithDropdown: Story = {
+  args: { variant: 'labeled', pageCount: 99, siblings: 5 },
   render: function Render(args) {
     const [size, setSize] = useState(10);
     return <PaginationDemo {...args} pageSize={{ value: size, options: [10, 25, 50], onChange: setSize }} />;
@@ -55,13 +70,16 @@ export const WithPageSize: Story = {
 };
 
 // Figma "With input": text buttons plus a "Go to [n] Page" field.
-export const WithJumpField: Story = { args: { variant: 'labeled', jumpTo: true, pageCount: 99 } };
+export const WithInput: Story = { args: { variant: 'labeled', jumpTo: true, pageCount: 99, siblings: 5 } };
 
 // Figma "Simple with input": only the "Go to page" field and a Go button.
 export const SimpleWithInput: Story = { args: { variant: 'jump', pageCount: 20 } };
 
-// Figma "Dropdown & buttons": page select, "of N pages" and arrows.
-export const SelectAndArrows: Story = { args: { variant: 'select', pageCount: 99 } };
+// Figma "Arrows": icon arrows around "1 of 99".
+export const Arrows: Story = { args: { variant: 'arrows', page: 1, pageCount: 99 } };
+
+// Figma "Dropdown & buttons": page select, "of 99 pages" and arrows.
+export const DropdownAndButtons: Story = { args: { variant: 'select', pageCount: 99 } };
 
 // Ellipses on both sides; `siblings` controls how many neighbours stay visible.
 export const ManyPages: Story = { args: { page: 25, pageCount: 50, siblings: 2 } };
@@ -122,17 +140,19 @@ export const PreviousNext: Story = {
   },
 };
 
-// Interaction: arrows variant has no page numbers; helper text follows the page.
+// Interaction: arrows variant has no page buttons, only "N of M"; helper text follows the page.
 export const ArrowsInteraction: Story = {
   args: { variant: 'arrows', page: 1, pageCount: 3, helper: { from: 1, to: 10, total: 30 }, onPageChange: fn() },
   play: async ({ canvas, userEvent, args }) => {
     await expect(canvas.queryByRole('button', { name: /^Page / })).not.toBeInTheDocument();
-    await expect(canvas.getByRole('navigation')).toHaveTextContent('Showing 1–10 of 30');
+    await expect(canvas.getByRole('navigation')).toHaveTextContent('Showing 1 to 10 of 30 Entries');
+    await expect(canvas.getByRole('navigation')).toHaveTextContent('1 of 3');
     await expect(canvas.getByRole('button', { name: 'Previous page' })).toBeDisabled();
 
     await userEvent.click(canvas.getByRole('button', { name: 'Next page' }));
     await expect(args.onPageChange).toHaveBeenLastCalledWith(2);
-    await expect(canvas.getByRole('navigation')).toHaveTextContent('Showing 11–20 of 30');
+    await expect(canvas.getByRole('navigation')).toHaveTextContent('Showing 11 to 20 of 30 Entries');
+    await expect(canvas.getByRole('navigation')).toHaveTextContent('2 of 3');
   },
 };
 

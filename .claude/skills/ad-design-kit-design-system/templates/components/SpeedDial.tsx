@@ -1,6 +1,7 @@
 // AD Design Kit Speed dial — Figma "Speed dial (ready to use examples)" (node 1149:84847, page 14231:74723),
-// item 1149:84896, menus 1149:84972. Figma Type → variant: Default=default · Rounded=rounded · Menu=menu (icon + label
-// inside the item) · Article dropdown menu=dropdown. Figma Position → direction.
+// item 1149:84896, menus 1149:84972. Figma Type → variant: Default=default · Rounded=rounded (icon-only items with a
+// tooltip) · Menu=menu (compact "Dropdown menu" list, w-32) · Article dropdown menu=dropdown (same list, w-44).
+// Figma Position → direction; the menu lines up with the trigger's end edge (Figma align MAX).
 import { useEffect, useId, useRef, useState, type KeyboardEvent as ReactKeyboardEvent, type ReactNode } from 'react';
 import { cn } from '../../lib/cn';
 import { PlusIcon } from '../icons';
@@ -23,23 +24,27 @@ export interface SpeedDialProps {
   direction?: SpeedDialDirection;
   /** Pin to the bottom-end corner of the viewport (fixed end-6 bottom-6). */
   fixed?: boolean;
+  /** Start open, as the Figma examples are drawn (docs and previews). */
+  defaultOpen?: boolean;
   label?: string;
   className?: string;
 }
 
 const layout: Record<SpeedDialDirection, { root: string; menu: string }> = {
   // DOM order is [menu, trigger]; reverse it when the menu opens below / to the right.
-  top: { root: 'flex-col items-center', menu: 'flex-col' },
-  bottom: { root: 'flex-col-reverse items-center', menu: 'flex-col' },
-  left: { root: 'flex-row items-center', menu: 'flex-row' },
-  right: { root: 'flex-row-reverse items-center', menu: 'flex-row' },
+  top: { root: 'flex-col items-end', menu: 'flex-col' },
+  bottom: { root: 'flex-col-reverse items-end', menu: 'flex-col' },
+  left: { root: 'flex-row items-end', menu: 'flex-row' },
+  right: { root: 'flex-row-reverse items-end', menu: 'flex-row' },
 };
 const tooltipSide: Record<SpeedDialDirection, 'left' | 'right' | 'top' | 'bottom'> = { top: 'left', bottom: 'left', left: 'top', right: 'top' };
 
-export function SpeedDial({ actions, variant = 'default', direction = 'top', fixed, label = 'Quick actions', className }: SpeedDialProps) {
-  const [open, setOpen] = useState(false);
+export function SpeedDial({ actions, variant = 'default', direction = 'top', fixed, defaultOpen = false, label = 'Quick actions', className }: SpeedDialProps) {
+  const [open, setOpen] = useState(defaultOpen);
   const id = useId();
   const rootRef = useRef<HTMLDivElement>(null);
+  // Focus moves into the menu only when the user opens it, not when it starts open.
+  const userOpened = useRef(false);
 
   useEffect(() => {
     if (!open) return;
@@ -62,7 +67,7 @@ export function SpeedDial({ actions, variant = 'default', direction = 'top', fix
 
   const actionButtons = () => [...(document.getElementById(id)?.querySelectorAll<HTMLButtonElement>('button:not([disabled])') ?? [])];
   useEffect(() => {
-    if (open) document.getElementById(id)?.querySelector<HTMLButtonElement>('button:not([disabled])')?.focus();
+    if (open && userOpened.current) document.getElementById(id)?.querySelector<HTMLButtonElement>('button:not([disabled])')?.focus();
   }, [open, id]);
   const onListKey = (e: ReactKeyboardEvent<HTMLUListElement>) => {
     const items = actionButtons();
@@ -85,15 +90,20 @@ export function SpeedDial({ actions, variant = 'default', direction = 'top', fix
   return (
     <div ref={rootRef} className={cn('inline-flex gap-3 p-1', l.root, fixed && 'fixed end-6 bottom-6 z-40', className)}>
       {open &&
-        (variant === 'dropdown' ? (
-          <ul id={id} aria-label={label} onKeyDown={onListKey} className="flex w-44 flex-col gap-1.5 rounded-base border border-default-medium bg-neutral-primary-medium p-2 shadow-lg">
+        (variant === 'menu' || variant === 'dropdown' ? (
+          <ul
+            id={id}
+            aria-label={label}
+            onKeyDown={onListKey}
+            className={cn('flex flex-col gap-1.5 rounded-base border border-default-medium bg-neutral-primary-medium p-2 shadow-lg', variant === 'menu' ? 'w-32' : 'w-44')}
+          >
             {actions.map((a) => (
               <li key={a.label}>
                 <button
                   type="button"
                   disabled={a.disabled}
                   onClick={() => select(a)}
-                  className="flex w-full items-center gap-1.5 rounded px-2 py-1.5 text-sm font-medium leading-5 text-body hover:bg-neutral-tertiary-medium hover:text-heading focus-visible:bg-neutral-tertiary-medium focus-visible:outline-none disabled:pointer-events-none disabled:text-fg-disabled [&_svg]:size-4"
+                  className="flex w-full items-center gap-1.5 rounded p-2 text-sm font-medium leading-none text-body hover:bg-neutral-tertiary-medium hover:text-heading focus-visible:bg-neutral-tertiary-medium focus-visible:outline-none disabled:pointer-events-none disabled:text-fg-disabled [&_svg]:size-4"
                 >
                   {a.icon}
                   {a.label}
@@ -108,21 +118,23 @@ export function SpeedDial({ actions, variant = 'default', direction = 'top', fix
                 <button
                   type="button"
                   disabled={a.disabled}
-                  aria-label={variant === 'menu' ? undefined : a.label}
+                  aria-label={a.label}
                   onClick={() => select(a)}
                   className={cn(
-                    'flex flex-col items-center justify-center border border-default bg-neutral-primary text-body shadow-xs transition-colors',
+                    'flex size-12 items-center justify-center border border-default bg-neutral-primary text-body shadow-xs transition-colors [&_svg]:size-6',
                     'hover:bg-neutral-tertiary hover:text-heading focus-visible:shadow-focus-secondary focus-visible:outline-none',
                     'disabled:pointer-events-none disabled:text-fg-disabled',
-                    variant === 'menu' ? 'size-14 gap-1 rounded-base [&_svg]:size-5' : 'size-12 [&_svg]:size-6',
                     variant === 'rounded' ? 'rounded-full' : 'rounded-base',
                   )}
                 >
                   {a.icon}
-                  {variant === 'menu' && <span className="text-xs font-medium leading-3">{a.label}</span>}
                 </button>
               );
-              return <li key={a.label}>{variant === 'menu' ? item : <Tooltip content={a.label} placement={tooltipSide[direction]}>{item}</Tooltip>}</li>;
+              return (
+                <li key={a.label}>
+                  <Tooltip content={a.label} placement={tooltipSide[direction]}>{item}</Tooltip>
+                </li>
+              );
             })}
           </ul>
         ))}
@@ -131,10 +143,13 @@ export function SpeedDial({ actions, variant = 'default', direction = 'top', fix
         aria-label={label}
         aria-expanded={open}
         aria-controls={id}
-        onClick={() => setOpen((o) => !o)}
-        className={cn(buttonVariants({ size: 'xl', iconOnly: true }), variant === 'rounded' && 'rounded-full')}
+        onClick={() => {
+          userOpened.current = true;
+          setOpen((o) => !o);
+        }}
+        className={cn(buttonVariants({ size: 'xl', iconOnly: true }), open && 'bg-brand-strong', variant === 'rounded' && 'rounded-full')}
       >
-        <PlusIcon className={cn('transition-transform', open && 'rotate-45')} />
+        <PlusIcon />
       </button>
     </div>
   );

@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
-import { Spinner, type SpinnerSize } from './Spinner';
+import { Spinner, type SpinnerProps, type SpinnerSize } from './Spinner';
 import { Button } from './Button';
 import { Badge } from './Badge';
 
-// AD Design Kit Spinner — mirrors the Figma "Spinner" set (node 1149:83311).
+// AD Design Kit Spinner — mirrors the Figma "Spinner" set (node 1149:83311): Size × Track.
 const sizes = ['xs', 'sm', 'md', 'lg', 'xl'] as const satisfies readonly SpinnerSize[];
 
 const meta = {
@@ -21,32 +21,20 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
-export const NoTrack: Story = { args: { track: false } };
-export const Large: Story = { args: { size: 'lg' } };
 
-export const AllSizes: Story = {
-  render: (args) => (
-    <div className="flex flex-wrap items-center gap-6">
-      {sizes.map((size) => (
-        <Spinner key={size} {...args} size={size} />
-      ))}
-    </div>
-  ),
-};
+const AllSizes = (args: SpinnerProps) => (
+  <div className="flex flex-wrap items-center gap-6">
+    {sizes.map((size) => (
+      <Spinner key={size} {...args} size={size} />
+    ))}
+  </div>
+);
 
-export const TrackAndNoTrack: Story = {
-  render: ({ track: _track, ...args }) => (
-    <div className="flex flex-col gap-4">
-      {[true, false].map((track) => (
-        <div key={String(track)} className="flex items-center gap-6">
-          {sizes.map((size) => (
-            <Spinner key={size} {...args} size={size} track={track} />
-          ))}
-        </div>
-      ))}
-    </div>
-  ),
-};
+// Figma Track = True: the five sizes (xs 12 · sm 24 · md 50 · lg 75 · xl 100) on a gray track.
+export const WithTrack: Story = { render: AllSizes };
+
+// Figma Track = False: the indicator arc only.
+export const WithoutTrack: Story = { args: { track: false }, render: AllSizes };
 
 // Inline usage: loading button and syncing badge.
 export const Inline: Story = {

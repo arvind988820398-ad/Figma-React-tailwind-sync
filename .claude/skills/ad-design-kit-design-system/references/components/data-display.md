@@ -5,26 +5,26 @@ All components here are **spec verified** (2026-10-26).
 ## Card
 Figma: page `13559:76418` · set `1149:34153` (15 types × Mobile Version) · template `templates/components/Card.tsx`
 
-Shell for every type: `rounded-base border border-default bg-neutral-primary-soft shadow-xs flex flex-col gap-6` with `p-6` (most types) or `p-7` (Default, Grid card). Image cards clip media with `overflow-hidden`; media placeholders `bg-neutral-tertiary`.
+Shell for every type: `rounded-base border border-default bg-neutral-primary-soft shadow-xs flex flex-col` with `p-6 gap-6` (most types) or `p-7` (Default, Grid card); below `sm` both are `p-5 gap-5` (Figma Mobile Version, 20px). Image cards clip media with `overflow-hidden`; media placeholders `bg-neutral-tertiary`.
 
 Image placeholder (any component, until a real image loads): surface `bg-neutral-tertiary`, centred glyph `text-body-subtle`; the glyph is decorative (`aria-hidden`) and the real image needs `alt` text.
 
 | Figma Type | Content recipe |
 |---|---|
-| Default | title `text-2xl font-semibold leading-8 text-heading`, text `text-base text-body`, Brand `base` CTA |
-| With Image | image on top, title `text-2xl font-semibold leading-8`, text, Secondary `base` CTA |
-| Split | horizontal (`w-160`), image `rounded`, same text styles, Secondary CTA |
+| Default | title (`CardTitle`: `text-2xl font-semibold leading-8 text-heading`) and text `text-base text-body` in a `gap-3` stack, Brand `base` CTA |
+| With Image | `h-48 rounded-base` image inside the padding (not full-bleed), title + text (`gap-3`), Secondary `base` CTA |
+| Split | horizontal (`max-w-160`), `w-48` image `rounded-sm`, same text styles, Secondary CTA; stacks image-on-top below `sm` (Mobile Version) |
 | Centered with full image | `p-0` shell (Figma `shadow`), full-bleed image, content `p-6 gap-6` centered, `Badge brand sm`, Brand CTA |
 | User profile | `Avatar 2xl`, name `text-xl font-semibold leading-8`, role `text-base text-body`, `Badge brand sm`, Brand + Secondary buttons, menu icon button `text-heading` |
 | Login form | title `text-xl font-semibold leading-7`, `Input form`, remember `Checkbox`, link `text-sm font-medium text-fg-brand`, Brand full-width button |
 | E-commerce | image, title `text-xl font-semibold`, `Rating` with badge, price `text-3xl font-extrabold leading-none text-heading`, Brand CTA |
-| CTA card | `w-160`, title + text, `DownloadAppButton` ×2 |
-| With full width tabs | `p-0`; tab bar `bg-neutral-secondary-medium px-6 py-3.5` (`Tabs variant="text"`), body `p-6 gap-4`, stat `text-2xl font-semibold leading-9`, link `text-base font-medium text-fg-brand` |
-| With nav tabs | `gap-8`, `Tabs variant="button"`, title `text-2xl font-bold leading-none` |
+| CTA card | `max-w-160`, centred title + text, dark `DownloadAppButton` ×2 (wrap on mobile) |
+| With full width tabs | `p-0`; tab bar `bg-neutral-secondary-medium px-6 py-3.5` (`Tabs variant="text"`), body `p-6 gap-4`, title `text-2xl font-semibold leading-9`, link `text-base font-medium text-fg-brand` + arrow |
+| With nav tabs | `gap-8`, `Tabs variant="button"` spread full width (a `Select` below `sm`), stats grid 3 columns (2 on mobile): value `text-2xl font-bold leading-6 text-heading`, label `text-base text-body` |
 | Pricing card | plan `text-xl font-medium leading-7 text-body`, price `text-5xl font-bold leading-none text-heading`, feature list (List items; unavailable = disabled `text-fg-disabled`), Brand CTA |
-| Testimonial card | quote `text-base text-body`, `AvatarGroupLabel`, divided grid cells |
-| Grid card | `p-7 gap-0`, 2×2 cells `p-6 gap-4` divided by `border-default`, title `text-lg font-semibold leading-8`, text `text-base text-body` |
-| Card with list | title `text-xl font-semibold`, link `text-base font-medium text-fg-brand`, `List` of "Image & number" items |
+| Testimonial card | Figma only has it as Mobile Version: the Grid card's four testimonials stacked, divided by `border-default` |
+| Grid card | `p-7`, 2×2 testimonial cells divided by `border-default` (`gap-4`, centred): title `text-lg font-semibold leading-8`, quote `text-base text-body`, `AvatarGroupLabel` base with role |
+| Card with list | title `text-xl font-semibold`, link `text-base font-medium text-fg-brand`, `List variant="card"` of "Image & number" items |
 | Crypto | title `text-xl font-semibold`, text, rows `rounded-base bg-neutral-secondary-medium p-3 gap-2` with brand logos, `Badge white sm`, `text-lg font-semibold` values |
 
 Mobile Version = the same content stacked at mobile width (responsive classes, not a prop).
@@ -44,9 +44,9 @@ Mobile Version = the same content stacked at mobile width (responsive classes, n
 | Type = With full width tabs | `<Card padding="none">` + `Tabs variant="text"` | One card shows alternative views of the same data, such as stats by period. | Tabs that switch whole pages; use page-level Tabs. |
 | Type = With nav tabs | `<Card>` + `Tabs variant="button"` | A compact panel switching between a few related contents. | More than about five tabs; use page-level Tabs or separate cards. |
 | Type = Pricing card | `<Card>` + `List` | Presenting one plan with price, features and a sign-up action. | Comparing many features across plans; use Table. |
-| Type = Testimonial card | `<Card>` + `AvatarGroupLabel` | Customer quotes with a named author, shown in a grid. | Rotating quotes in limited space; use Carousel with cards. |
-| Type = Grid card | `<Card padding="roomy">` + 2×2 grid | Four short related items, such as features or stats, as one divided block. | Each item needs its own link or action; use separate cards. |
-| Type = Card with list | `<Card>` + `List variant="divider"` | A titled short list, such as top customers, with a view-all link. | Data with many attributes to compare; use Table. |
+| Type = Testimonial card | `<Card padding="roomy">` + `AvatarGroupLabel` (stacked) | Customer quotes with a named author, shown in a grid. | Rotating quotes in limited space; use Carousel with cards. |
+| Type = Grid card | `<Card padding="roomy">` + 2×2 testimonial grid | Four short related items, such as features or stats, as one divided block. | Each item needs its own link or action; use separate cards. |
+| Type = Card with list | `<Card>` + `List variant="card"` | A titled short list, such as top customers, with a view-all link. | Data with many attributes to compare; use Table. |
 | Type = Crypto | `<Card>` + asset rows | Choosing or showing a few wallets or assets with logos and values. | Long or sortable asset lists; use Table. |
 
 **Use** to group information about one entity (products, posts, profiles, plans, KPIs). **Don't** wrap every section in a card, nest cards, or put cards inside a Modal. Whole-card links: one stretched `<a>`, no nested interactive elements.
@@ -54,14 +54,14 @@ A11y: a plain container, so give its title a real heading; if the whole card is 
 
 ## Accordion
 Figma: page `3282:18777` · set `1146:19028` (Default, Flush, Separate Cards, Multi-level, With sub-header × Desktop/Mobile) · template `templates/components/Accordion.tsx`
-API: `<Accordion items={[{value,title,content,icon,subtitle,items}]} variant multiple defaultValue>`.
+API: `<Accordion items={[{value,title,content,icon,subtitle,items}]} variant multiple defaultValue>` (`defaultValue` may name Multi-level child items).
 - Default: `rounded-base border border-default shadow-xs overflow-hidden divide-y divide-default`.
-- Trigger: `flex w-full items-center justify-between gap-3 px-6 py-5 text-start text-base font-medium text-body` + chevron `size-5`; open: `bg-neutral-tertiary text-heading` (chevron `text-heading`, rotated).
-- Panel: `bg-neutral-primary-soft px-6 py-5 text-base text-body` (links `text-fg-brand`).
-- Flush: no outer border/radius/shadow, `px-0`, items divided by `border-b border-default`.
+- Trigger: `flex w-full items-center justify-between gap-6 px-6 py-5 text-start text-base font-medium text-body bg-neutral-primary-soft` (Mobile `px-4 py-3.5`) + chevron `size-5`; open: `bg-neutral-tertiary text-heading` (chevron rotated). Figma Icon=True: a 20px leading icon (`question-circle`) `gap-2` before the title.
+- Panel: `bg-neutral-primary-soft px-6 py-5 space-y-3 text-base text-body` (Mobile `p-4`), divided from its header by `border-t`; links `text-fg-brand` underlined.
+- Flush: no outer border/radius/shadow and no fills, `px-0`, headers and panels divided by `border-default`.
 - Separate cards: `flex flex-col gap-4`, each item `rounded-base border border-default shadow-xs overflow-hidden`.
-- Multi-level: nested items indent `ps-12`, nested header `bg-neutral-secondary-medium`, nested divider `border-default-medium`.
-- With sub-header: 36px leading icon, sub-text `text-sm text-body`.
+- Multi-level: the open parent lists its child rows directly under its header: chevron first (`gap-2`), `bg-neutral-secondary-medium sm:ps-12`, dividers `border-default-medium`; a child's panel is `bg-neutral-secondary-medium`.
+- With sub-header: `IconShape size="base" color="white" shape="circle"` (36px) `gap-2.5`, title always `text-heading`, sub-text `text-sm text-body` (`gap-px`).
 
 **Variants**
 
@@ -83,11 +83,11 @@ Figma: page `3197:21106` · avatar `1146:5178` (4 types × 13 users × 6 sizes) 
 |---|---|---|---|---|---|---|
 | Box | `size-4.5` | `size-6` | `size-8` | `size-11` | `size-14` | `size-16` |
 | Initials | — | `text-xs` | `text-sm` | `text-lg` | `text-2xl` | `text-2xl` |
-| Status dot | `size-1.5` | `size-2.5` | `size-2` | `size-3` | `size-4` | `size-4` |
+| Status dot | `size-1.5` | `size-2` | `size-2.5` | `size-3` | `size-4` | `size-4` |
 | Remove button | `size-3` | `size-3.5` | `size-4` | `size-4` | `size-5` | `size-5` |
-Image `rounded-full object-cover`; placeholder `bg-neutral-tertiary text-body font-semibold`; status dot `absolute bottom-0 end-0 rounded-full border-2 border-buffer` + online `bg-success`, offline `bg-danger`, away `bg-gray`; remove button (`onRemove`, Figma "With remove button"): `absolute -end-1 -top-0.5 rounded-full bg-neutral-tertiary-medium`, x icon `text-body`, named "Remove <name>" (`removeLabel`), hit area enlarged with `before:-inset-1.5`.
+Image `rounded-full object-cover`; placeholder `bg-neutral-tertiary text-body font-semibold`; status dot (Figma "Avatar dot") `absolute rounded-full` on the top-right edge with no ring (`top-0…top-1`, `end-0…-end-0.5` per size) + online `bg-success`, offline `bg-danger`, away (Figma "Alternative") `bg-gray`; remove button (`onRemove`, Figma "With remove button"): `absolute -end-1.5 rounded-full bg-neutral-tertiary-medium` (`-top-0.5…top-0.5` per size), x icon `text-body`, named "Remove <name>" (`removeLabel`), hit area enlarged with `before:-inset-1.5`.
 Group: overlap `-space-x-4` (lg) / `-space-x-3.5` (base) / `-space-x-2` (sm); ring `border-2 border-buffer` (sm: `border`); counter `bg-neutral-quaternary text-body font-medium` (`text-sm` lg, `text-xs` base, `text-xxs` sm).
-Group label (name + helper): sm `text-xs font-medium leading-4 text-heading` / `text-xs text-body`, `gap-1.5`; base `text-base font-medium leading-none` / `text-sm leading-none text-body`, `gap-2`; lg `text-base` / `text-base`, `gap-2.5`; xl `text-xl` / `text-lg`, `gap-2.5`.
+Group label `<AvatarGroupLabel name src helper size="sm|base|lg|xl">` (Figma Type "Heading & helper text" with `helper`; without it Type "Text", one avatar size smaller): sm `text-xs font-medium leading-4 text-heading` / `text-xs text-body`, `gap-1.5`; base `text-base font-medium leading-none` / `text-sm leading-none text-body`, `gap-2`; lg `text-base` / `text-base`, `gap-2.5`; xl `text-xl` / `text-lg`, `gap-2.5`.
 
 **Variants**
 
@@ -141,12 +141,12 @@ A11y: decorative (`aria-hidden`), so its meaning must also be in nearby text.
 
 ## List
 Figma: page `3284:24113` · list `1149:70444` (Divider, Card, Default, CTA) · item `1149:70209` (11 types × Initial/Hover-Active/Disabled) · template `templates/components/List.tsx`
-API: `<List variant="default|divider|cta">` + `<ListItem icon media description trailing href disabled cta>`.
-- Default list: `flex flex-col gap-4`; item `flex items-center gap-1.5 text-base text-body` with icon `size-5 text-body-subtle`; hover/active `text-heading` (icon too); disabled `text-fg-disabled`.
-- Divider list: `divide-y divide-default` with `py-3` rows (Figma gap 12px).
-- Card list: Card shell `p-6 gap-6` (`shadow`), title `text-xl font-semibold`, link `text-base font-medium text-fg-brand`.
-- Rich items (Image & number, Image & buttons, Image & checkbox, Avatar & text + badge, Transaction): 32px avatar/image, title `text-base font-medium leading-4 text-heading`, helper `text-sm text-body`, trailing value `text-base font-medium text-heading` / `Badge sm` / Secondary `xs` Button, `gap-1.5`–`gap-2`.
-- Card item (CTA list): `rounded-base border border-default bg-neutral-secondary-soft p-4 gap-6`, title `text-base font-semibold leading-4 text-heading`, helper `text-sm text-body`, trailing chevron `text-body-subtle`.
+API: `<List variant="default|divider|card|cta">` + `<ListItem icon media description trailing href disabled cta>`.
+- Default list: `flex flex-col gap-4`; item `flex items-center gap-1.5 text-base text-body` with icon `size-5 text-body-subtle`; hover/active `text-heading` (icon too); disabled `text-fg-disabled` and struck through (`line-through`).
+- Divider list: `divide-y divide-default` with `py-3` rows (Figma gap 12px); icon rows ("With number") take a trailing value `text-sm font-medium text-body`.
+- Card list (`variant="card"`, inside a `Card`): the divider list with `py-4` rows; Card title `text-xl font-semibold`, link `text-base font-medium text-fg-brand`.
+- Rich items (Image & number, Image & buttons, Image & checkbox, Avatar & text + badge, Transaction): 32px avatar/image `gap-2`, title `text-base font-medium leading-4 text-heading`, helper `text-sm text-body` (`gap-px`), trailing value `text-base font-medium text-body` / `Badge sm` / Secondary `xs` Button.
+- Card item (CTA list, `gap-4`): `rounded-base border border-default bg-neutral-secondary-soft p-4`, 36px logo, text `ps-3.5` (22px from the logo), title `text-base font-semibold leading-4 text-heading`, helper `text-sm text-body` (`gap-0.5`), trailing `arrow-right` `size-6 text-body-subtle`; Hover/Active `bg-brand-softer border-brand-subtle`, texts and arrow `text-fg-brand-strong`; Disabled all `text-fg-disabled`.
 
 **Variants**
 
@@ -154,7 +154,7 @@ API: `<List variant="default|divider|cta">` + `<ListItem icon media description 
 |---|---|---|---|
 | Type = Default | `variant="default"` | Short icon lists with one attribute per item, such as feature checklists. | Rows with meta, values or actions; use Divider. |
 | Type = Divider | `variant="divider"` | Rich rows with avatar or image, helper text and a trailing value or button. | Simple bullet-style feature lists; use Default. |
-| Type = Card | `<Card>` + `variant="divider"` | A titled list block on a dashboard, with a view-all link. | The list is the main page content; use Divider without a card. |
+| Type = Card | `<Card>` + `variant="card"` | A titled list block on a dashboard, with a view-all link. | The list is the main page content; use Divider without a card. |
 | Type = CTA | `variant="cta"` + `ListItem cta` | Each row opens a detail page or next step, such as settings entries. | Rows with several actions; use Divider with trailing buttons. |
 
 **Use** for stacked items with 1–3 attributes. **Don't** for comparable multi-column data (Table) or media-rich blocks (Card grid). Use `<ul>/<li>`.
@@ -162,13 +162,16 @@ A11y: a semantic `<ul>`; interactive rows are focusable and disabled rows set `a
 
 ## Table
 Figma: page `3284:22719` · set `1149:87477` (Striped columns, Striped rows, With table caption) · template `templates/components/Table.tsx`
-API: `<Table striped="rows|columns" caption toolbar stickyHeader containerClassName>` + `TableHead/TableBody/TableRow/TableHeaderCell/TableCell`.
+API: `<Table striped="rows|columns" caption={{ title, description, actions }} toolbar footer stickyHeader containerClassName>` + `TableHead/TableBody/TableRow/TableHeaderCell/TableCell`.
 - Wrapper: `relative flex flex-col rounded-base border border-default bg-neutral-secondary-soft shadow-xs`; the toolbar stays put and an inner `overflow-auto` region holds the table. `stickyHeader` pins the header cells (`sticky top-0`) while rows scroll; bound the height with `containerClassName` (layout only: `max-h-96`, or `min-h-0 flex-1` inside a flex column).
-- Toolbar row: search `Input` (36px, `text-sm`), Secondary `sm` "Filters", Brand `sm` "Add …".
-- Caption block (With table caption): `p-5 bg-neutral-secondary-soft border-b border-default`; title `text-lg font-medium leading-none text-heading`, description `text-base text-body`.
+- Toolbar row (Figma "Table header"): `p-5 border-b border-default`; search `Input sm` with a search icon, Secondary `sm` "Filters" (filter + angle-down) and "Actions" (angle-down), Brand `sm` "Add …" (plus).
+- Caption block (With table caption): `p-5 bg-neutral-secondary-soft border-b border-default`; title `text-lg font-medium leading-none text-heading`, description `text-base text-body` (`gap-1`), optional Brand `sm` action on the right (`caption.actions`).
+- Footer (Figma "Table Footer", `footer` slot): `p-5 border-t border-default text-sm text-body`, "Showing 1-10 of 1000" + `Pagination`.
+- Columns in the Figma example: checkbox column `w-14`, sortable headers with a `chevron-sort` icon (`aria-sort`), dates with a `calendar-month` icon, row actions Tertiary `xs` "Actions" (angle-down) + Danger `xs` "Delete" (trash-bin).
 - Header cells: `h-11 px-5 bg-neutral-secondary-medium border-b border-default text-sm font-medium leading-none text-body text-start`.
 - Body cells: `h-14 px-5 border-b border-default text-sm font-medium leading-none text-heading` (primary column may mix `font-semibold` name + `text-body` meta).
 - Striped rows: `even:bg-neutral-secondary-medium`; striped columns: alternate cells `bg-neutral-secondary-medium`.
+- Striping matches Figma: even rows / even columns (2, 4, 6) tinted.
 - Status: `Badge size="sm"` success/warning/danger. Row actions: Tertiary `xs` + Danger `xs` Buttons.
 
 **Variants**
@@ -177,41 +180,44 @@ API: `<Table striped="rows|columns" caption toolbar stickyHeader containerClassN
 |---|---|---|---|
 | Type = Striped columns | `striped="columns"` | Users compare values down columns, such as plans or features side by side. | Users read records row by row; use Striped rows. |
 | Type = Striped rows | `striped="rows"` | Many wide rows where the eye must track across. | Short tables of a few rows; plain row borders are enough. |
-| Type = With table caption | `caption={{ title, description }}` | The table needs a visible title and short context. | A heading right above already names it; use `aria-label`. |
+| Type = With table caption | `caption={{ title, description, actions }}` | The table needs a visible title and short context. | A heading right above already names it; use `aria-label`. |
 
 **Use** for data users compare, sort or act on across rows. **Don't** for layout, ≤2 attributes (List), or narrow screens without a responsive strategy. `<th scope>`; sortable headers are buttons with `aria-sort`.
 A11y: a real `<table>` with `<th>` headers; give it a caption or `aria-label`; row-selection checkboxes need labels naming the row; sortable headers should set `aria-sort`.
 
 ## Timeline
 Figma: page `1149:91247` · timeline `1149:91254` (Default, Icons & Card, User actions, Stacked cards, Horizontal, Horizontal advanced × Desktop/Mobile) · item `1149:91357` (6 types) · dot `1149:91248` (Ellipse, Icon, Avatar) · template `templates/components/Timeline.tsx`
-API: `<Timeline items={[{date,title,description,icon,avatar,actions}]} variant="default|icons|cards|horizontal">`.
+API: `<Timeline items={[{date,title,description,icon,avatar,actions,entries}]} variant="default|icons|cards|stacked|horizontal|horizontal-advanced">`.
 - Vertical: `<ol class="relative border-s border-default ps-4 flex flex-col gap-11">` (icon/card variants `ps-6`).
-- Dots (absolutely on the line): Ellipse `size-3 rounded-full border border-buffer bg-neutral-tertiary`; Icon `size-5 rounded-full border-2 border-buffer bg-brand-softer` with `size-2.5 text-fg-brand` icon; Avatar `size-5 rounded-full border-2 border-buffer`.
-- Item: date `Badge color="gray" size="sm"`, title `text-lg font-semibold leading-7 text-heading`, text `text-base text-body`, `gap-2`; actions Secondary `sm` + Brand `sm`, item `gap-5`.
-- As card / User actions: Card shell `p-6 gap-5`; quoted comment `rounded border border-default-medium bg-neutral-secondary-medium p-3 text-sm italic text-body`.
-- Stacked cards: `rounded-base border border-default bg-neutral-secondary-soft p-5 gap-4`, rows with `Avatar xl`, meta `text-sm text-body-subtle`, `Badge white sm`.
-- Horizontal: `border-t border-default pt-5 flex gap-11`; small items: title `text-lg font-semibold`, link `text-sm font-medium text-fg-brand`.
+- Dots (absolutely on the line): Ellipse `size-3 rounded-full border border-buffer bg-neutral-tertiary`, level with the title; Icon `size-5 rounded-full border-2 border-buffer bg-brand-softer` with `size-2.5 text-fg-brand` icon and Avatar `size-5 rounded-full border-2 border-buffer`, level with the top of the card.
+- Item (Default): date `Badge color="gray" size="sm"` with a `calendar-month` icon, title `text-lg font-semibold leading-7 text-heading`, text `text-base text-body`, `gap-2`; actions Secondary `sm` + Brand `sm`, item `gap-5`.
+- Icons & Card: each item is a card (`rounded-base border border-default bg-neutral-primary-soft p-6 gap-5 shadow-xs`); title with a Brand `sm` date badge beside it (`gap-3`; above it on mobile).
+- User actions (`cards`): same card shell; "who did what" sentence `text-base text-body` with underlined `font-medium text-heading` links, Brand `sm` badge with a `clock` icon on the right (above on mobile); quoted comment `rounded border border-default-medium bg-neutral-secondary-medium p-3 text-sm italic text-body`; actions Secondary `sm` "View comment" (eye) + Brand `sm` "Reply".
+- Stacked cards (`stacked`, rows in `entries`): one card per date `rounded-base border border-default bg-neutral-secondary-soft p-5 gap-4`, date heading `text-lg font-semibold`; rows `Avatar xl` + text `text-base text-heading` (links underlined), quote `text-sm text-body-subtle`, `Badge white sm` (eye-slash Private / globe Public), rows divided by `border-b border-default pb-4`. No line or dots.
+- Horizontal: one continuous `border-t border-default` across the items (`pt-5`, `pe-11` between items), dot on the line; gray date badge, title, text, Secondary `sm` "Read more" (arrow-right). Two items per row below `sm`.
+- Horizontal advanced (`horizontal-advanced`): centred items (`gap-4`), gray date badge above the line, dot on the line, title `text-lg font-semibold` + description `text-base text-body`, link `text-sm font-medium text-fg-brand` with an arrow. Two items per row below `sm`.
 
 **Variants**
 
 | Variant | Code | Use when | Don't use when |
 |---|---|---|---|
 | Type = Default | `variant="default"` | A simple chronological history or changelog. | Steps the user must complete; use Stepper. |
-| Type = Icons & Card | `variant="icons"` | Events of different kinds where an icon helps scanning. | All events are the same kind; use Default. |
+| Type = Icons & Card | `variant="icons"` + `icon` | Events of different kinds where an icon helps scanning. | All events are the same kind; use Default. |
 | Type = User actions | `variant="cards"` + `avatar` | An activity feed of who did what, with quoted comments. | Threaded discussions; use List with Avatars. |
-| Type = Stacked cards | `variant="cards"` | Many events grouped under one date in a compact card. | A few events; use Default. |
+| Type = Stacked cards | `variant="stacked"` + `entries` | Many events grouped under one date in a compact card. | A few events; use Default. |
 | Type = Horizontal | `variant="horizontal"` | Three to five milestones across a wide layout, such as a roadmap. | Narrow screens or many events; use a vertical type. |
-| Type = Horizontal advanced | `variant="horizontal"` + `actions` | Wide-screen milestones that need a description and a link. | Short labels only; use Horizontal. |
+| Type = Horizontal advanced | `variant="horizontal-advanced"` | Wide-screen milestones that need a description and a link. | Short labels only; use Horizontal. |
 
 **Use** for chronological events or activity history. **Don't** for steps the user must complete (Stepper) or unordered lists.
 A11y: an ordered list in time order; dots and icons are `aria-hidden`, so dates and events must be in text.
 
 ## ChatBubble
 Figma: page `380:18014` · chat bubble `1149:35720` (Text, File, Audio, Calendar, Images, URL × Left/Right) · bubble `1149:35687` (Left/Right × Clean) · content `1149:35600` (7 types) · template `templates/components/ChatBubble.tsx`
-API: `<ChatBubble direction="received|sent" name time avatar status menu clean width="fixed|fluid">` + `ChatFile` / `ChatAudio` / `ChatImages` / `ChatLinkPreview`.
+API: `<ChatBubble direction="received|sent" name time avatar status menu clean width="fixed|fluid">` + `ChatFile` (+ `ChatFileDownload`) / `ChatAudio` / `ChatImages` / `ChatLinkPreview`. Put text before a content part in a `<p>`; parts after another element get the Figma `mt-2.5` gap.
 - Row: `flex items-start gap-2.5` with `Avatar base` (32px).
-- Bubble: `flex flex-col gap-1.5 max-w-80 rounded-base p-4` (Figma `Width = Fluid` → `width="fluid"`: `w-full max-w-4/5`, the bubble fills the conversation up to 80%, for full-page chat) — received (Direction=Left) `bg-neutral-tertiary`, sent (Direction=Right, bubble Orientation=Left) `bg-brand-softer` — header `text-sm font-semibold text-heading` + time `text-sm text-body`, body `text-sm text-body`, footer status `text-sm text-body` (subtle text fails 4.5:1 on the tinted bubbles); menu icon `size-5 text-body`. "Clean" variant: no fill, `p-0`. Mirror the row (`flex-row-reverse`) for the sender.
-- Content types: File (`text-sm font-medium text-heading` + `text-xs text-body`, file icon `text-heading`), Audio (play button, waveform bars `rounded-full bg-gray`, active `bg-brand`), Calendar (event card `rounded-base border border-default bg-neutral-primary-soft p-2`, highlighted `bg-warning-soft text-fg-warning`), Images (`rounded-base`, overflow tile `bg-overlay-dark` + `text-xl font-medium text-white`), Link preview (`rounded-base bg-neutral-secondary-strong p-4`, title `text-heading`, url `text-xs text-body`, link `text-fg-brand`).
+- Bubble: `flex flex-col gap-3 max-w-80 rounded-base p-4` (Figma `Width = Fluid` → `width="fluid"`: `w-full max-w-4/5`, the bubble fills the conversation up to 80%, for full-page chat) — received (Direction=Left) `bg-neutral-tertiary`, sent (Direction=Right, bubble Orientation=Left) `bg-brand-softer` — header `text-sm font-medium text-heading` + time `text-sm text-body`, body `text-sm text-body`, footer status `text-sm text-body` (subtle text fails 4.5:1 on the tinted bubbles); menu icon `size-5 text-body`. "Clean" variant: no fill, `p-0`. Mirror the row (`flex-row-reverse`) for the sender.
+- Content types: File (no box: `size-5` icon + name `text-sm font-medium text-heading`, meta `text-xs text-body` separated by dots, `ChatFileDownload` 20px download icon on the right), Audio (play / pause button, 28 waveform bars `w-1 gap-1 rounded-full bg-gray`, played part `bg-brand`, duration `text-sm font-medium text-heading`), Calendar ("Google calendar:" `font-medium`, event card `rounded-base border border-default bg-neutral-primary-soft p-2`, hours column `border-e border-light`, slot `border-s border-warning bg-warning-soft text-fg-warning`, expand Ghost icon button), Images (2×2 `gap-2`, `rounded-base` tiles; more than 4 images → 3 photos + a "+N" tile on `bg-overlay-dark` + `text-xl font-medium text-white`), Link preview (link `text-sm font-medium text-fg-brand underline`, card `rounded-base bg-neutral-secondary-strong p-4 gap-2`, title `text-sm font-medium text-heading`, domain `text-xs text-body`).
+- Every Figma bubble has the menu: a Ghost `xs` icon button with `dots-vertical`, beside the bubble.
 
 **Variants**
 
@@ -233,17 +239,18 @@ A11y: sender and time are visible text; action buttons have `aria-label`s; decor
 
 ## Carousel
 Figma: page `3284:23924` · carousel `1149:41738` (Default, Default with controls & indicators, With cards, Cards & bottom controls) · control `1149:41774` · indicator `1149:41777` · template `templates/components/Carousel.tsx`
-API: `<Carousel label variant="slides|cards" controls indicators>{slides}</Carousel>`.
-Viewport `relative overflow-hidden rounded-base` (placeholder `bg-gray`); controls `size-11 rounded-full bg-overlay-light text-white` with `size-7` icons, `px-8` from the edges; indicators `size-3.5 rounded-full bg-overlay-light`, active `bg-white`. Card carousels: Cards `gap-8`, bottom controls as 40px white-icon buttons.
+API: `<Carousel label variant="slides|cards" controls indicators perView>{slides}</Carousel>`.
+Viewport `relative overflow-hidden rounded-base` (placeholder `bg-gray`); controls `size-11 rounded-full bg-overlay-light text-white` with `size-7` icons, `px-8` from the edges; indicators `size-3.5 rounded-full bg-overlay-light gap-4 bottom-8`, active `bg-white`.
+Card carousels: dark round controls `rounded-full bg-dark-strong text-white` (`size-7` angle icons), `bg-gray` when there is nothing more to scroll (disabled). With cards (`indicators={false}`): controls at the sides (`gap-8`), 3 cards per view, cards `gap-6`. Cards & bottom controls: 4 cards per view, cards `gap-4`, under the row (`gap-8`) the 40px controls around dots `size-3.5 bg-quaternary-medium`, active `bg-dark-strong`, `gap-3`. Cards per view: 1 below `sm`, 2 from `sm`, `perView` from `lg`.
 
 **Variants**
 
 | Variant | Code | Use when | Don't use when |
 |---|---|---|---|
-| Type = Default | `variant="slides" controls={false} indicators={false}` | A single image frame, or slides driven by controls elsewhere on the page. | Users must browse several slides; use Default with controls & indicators. |
+| Type = Default | `variant="slides" indicators={false}` | A few images users step through with previous and next, without position dots. | Users need to know how many slides there are; use Default with controls & indicators. |
 | Type = Default with controls & indicators | `variant="slides"` | A gallery of equivalent images users browse one at a time. | Users need to see several items at once; use With cards. |
-| Type = With cards | `variant="cards" controls={false}` | A swipeable row of cards on touch screens where scrolling is natural. | Pointer users need visible controls; use Cards & bottom controls. |
-| Type = Cards & bottom controls | `variant="cards"` | A row of equivalent cards, such as testimonials, with previous and next buttons. | Few cards that fit the width; use a grid of Cards. |
+| Type = With cards | `variant="cards" indicators={false}` | A row of product cards with previous and next at the sides. | Users need to see their position in a long row; use Cards & bottom controls. |
+| Type = Cards & bottom controls | `variant="cards"` | A row of equivalent cards, such as articles or testimonials, with controls and position dots below. | Few cards that fit the width; use a grid of Cards. |
 
 **Use** sparingly for galleries of equivalent visual items or testimonials. **Don't** hide important content in later slides, auto-advance without pause, or use as the key hero message.
 A11y: a group with `aria-roledescription="carousel"`; previous, next and indicator buttons have `aria-label`s and the active indicator has `aria-current`; slide changes are announced through `aria-live`; never autoplay without a pause control.
@@ -251,7 +258,7 @@ A11y: a group with `aria-roledescription="carousel"`; previous, next and indicat
 ## Kbd
 Figma: page `13693:81938` · set `1149:92754` (49 keys) · template `templates/components/Kbd.tsx`
 API: `<Kbd>⌘</Kbd>`.
-`<kbd class="inline-flex items-center gap-2.5 rounded-base border border-default-medium bg-neutral-tertiary px-2 py-1.5 text-xs font-semibold leading-4 text-heading">` (arrow keys: icon `size-4`).
+`<kbd class="inline-flex items-center gap-2.5 rounded-base border border-default-medium bg-neutral-tertiary px-2 py-1.5 text-xs font-semibold leading-4 text-heading">` (arrow keys: `caret-*` icon `size-4` + `aria-label`). The Figma set has 49 keys: Shift, Ctrl, Tab, Caps Lock, Esc, Spacebar, Enter, the letters, F1–F12 and the four arrows.
 
 **Variants**
 

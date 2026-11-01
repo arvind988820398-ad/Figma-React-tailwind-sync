@@ -40,9 +40,19 @@ export function Progress({ value, color = 'brand', size = 'base', label, labelPo
       {showValue && <span>{pct}%</span>}
     </div>
   );
+  // Figma "Side label": label left of the bar, value right of it.
+  if (labelPosition === 'side') {
+    return (
+      <div className={cn('flex items-center gap-1.5 text-xs font-medium leading-4 text-body', className)} {...props}>
+        {label && <span id={labelId} className="shrink-0">{label}</span>}
+        {bar}
+        {showValue && <span className="shrink-0">{pct}%</span>}
+      </div>
+    );
+  }
   return (
-    <div className={cn(labelPosition === 'side' ? 'flex items-center gap-1.5' : 'flex flex-col gap-1.5', className)} {...props}>
-      {labelPosition !== 'bottom' && meta}
+    <div className={cn('flex flex-col gap-1.5', className)} {...props}>
+      {labelPosition === 'top' && meta}
       {bar}
       {labelPosition === 'bottom' && meta}
     </div>

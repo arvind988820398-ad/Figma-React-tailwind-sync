@@ -1,9 +1,12 @@
 // AD Design Kit Tabs — Figma set "Nav tabs" (node 1149:80530, page 3283:24214), tab 1149:80596.
-// Figma Type → variant: Default=text · Border bottom=underline · Pills=pills · Button=button · Button group=segmented ·
-// Vertical pills=vertical-pills · Vertical with list item=vertical-list. Mobile = horizontal scroll (overflow-x-auto).
+// Figma Type → variant: Default=text · Border bottom=underline · Pills=pills · Button=button (Ghost buttons in a card) ·
+// Button group=segmented (joined Ghost buttons) · Vertical pills=vertical-pills · Vertical with list item=vertical-list
+// (Navigation list items in a card). Figma Mobile=True = `mobile`: below sm, Default/Pills/Border bottom become a Select
+// and Button/Button group stack vertically. Without `mobile` the row scrolls sideways (overflow-x-auto).
 import { useId, useRef, type KeyboardEvent, type ReactNode } from 'react';
 import { cn } from '../../lib/cn';
 import { buttonVariants } from './Button';
+import { Select } from './Select';
 
 export type TabsVariant = 'text' | 'underline' | 'pills' | 'button' | 'segmented' | 'vertical-pills' | 'vertical-list';
 
@@ -22,6 +25,8 @@ export interface TabsProps {
   variant?: TabsVariant;
   /** Accessible name for the tab list. */
   label?: string;
+  /** Figma "Mobile": below sm, text/pills/underline switch to a Select; button/segmented stack vertically. */
+  mobile?: boolean;
   className?: string;
 }
 
@@ -30,8 +35,9 @@ const tabBase = `inline-flex shrink-0 items-center gap-1.5 text-sm font-medium t
 const pill = 'rounded-base px-4 py-2.5';
 const pillActive = 'bg-brand text-white';
 const pillIdle = 'text-body hover:bg-neutral-secondary-medium hover:text-heading';
-// Button / Button group: Tertiary items; the selected one uses the Tertiary Hover style.
-const tertiaryActive = 'bg-neutral-secondary-medium text-heading';
+// Button / Button group: Ghost base items; the selected one uses the Ghost Hover style.
+const ghost = buttonVariants({ color: 'ghost', size: 'base' });
+const ghostActive = 'bg-neutral-secondary-medium text-heading';
 
 const styles: Record<TabsVariant, { list: string; tab: (active: boolean) => string }> = {
   text: { list: 'flex gap-6', tab: (a) => cn(tabBase, 'rounded', a ? 'text-fg-brand' : 'text-body hover:text-fg-brand') },
@@ -40,24 +46,43 @@ const styles: Record<TabsVariant, { list: string; tab: (active: boolean) => stri
     tab: (a) => cn(tabBase, '-mb-px border-b pb-4', a ? 'border-brand text-fg-brand' : 'border-transparent text-body hover:text-fg-brand'),
   },
   pills: { list: 'flex gap-6', tab: (a) => cn(tabBase, pill, a ? pillActive : pillIdle) },
-  button: { list: 'flex gap-3', tab: (a) => cn(buttonVariants({ color: 'tertiary', size: 'sm' }), a && tertiaryActive) },
-  segmented: {
-    list: 'inline-flex -space-x-px rounded-base shadow-xs',
-    tab: (a) => cn(buttonVariants({ color: 'tertiary', size: 'sm' }), 'rounded-none shadow-none first:rounded-s-base last:rounded-e-base', a && tertiaryActive),
+  button: {
+    list: 'inline-flex gap-1 rounded-base border border-default bg-neutral-primary-soft p-3',
+    tab: (a) => cn(ghost, a && ghostActive),
   },
-  'vertical-pills': { list: 'flex flex-col gap-2', tab: (a) => cn(tabBase, pill, 'w-full', a ? pillActive : pillIdle) },
+  segmented: {
+    list: 'inline-flex overflow-hidden rounded-base border border-default bg-neutral-primary-soft',
+    tab: (a) => cn(ghost, 'rounded-none border-e border-default last:border-e-0', a && ghostActive),
+  },
+  'vertical-pills': { list: 'flex flex-col gap-3', tab: (a) => cn(tabBase, pill, 'w-full', a ? pillActive : pillIdle) },
   'vertical-list': {
-    list: 'flex flex-col gap-2',
-    tab: (a) => cn(tabBase, pill, 'w-full border', a ? cn(pillActive, 'border-brand') : cn(pillIdle, 'border-default bg-neutral-primary-soft')),
+    list: 'flex flex-col gap-3 rounded-base border border-default bg-neutral-primary-soft p-3',
+    tab: (a) =>
+      cn(
+        tabBase,
+        'w-full rounded-base px-2 py-1.5 text-base [&_svg]:size-5',
+        a ? 'bg-neutral-secondary-medium text-fg-brand' : 'text-body hover:bg-neutral-secondary-medium hover:text-fg-brand',
+      ),
   },
 };
 
-export function Tabs({ items, value, onValueChange, variant = 'text', label, className }: TabsProps) {
+// Figma Mobile=True layouts of Button / Button group: full-width items stacked in the card.
+const mobileStack: Partial<Record<TabsVariant, string>> = {
+  button: 'max-sm:flex max-sm:w-full max-sm:flex-col',
+  segmented: 'max-sm:flex max-sm:w-full max-sm:flex-col',
+};
+const mobileTab: Partial<Record<TabsVariant, string>> = {
+  button: 'max-sm:w-full',
+  segmented: 'max-sm:w-full max-sm:border-e-0 max-sm:border-b max-sm:last:border-b-0',
+};
+
+export function Tabs({ items, value, onValueChange, variant = 'text', label, mobile, className }: TabsProps) {
   const id = useId();
   const listRef = useRef<HTMLDivElement>(null);
   const vertical = variant.startsWith('vertical');
   const s = styles[variant];
   const hasPanels = items.some((i) => i.content !== undefined);
+  const asSelect = mobile && (variant === 'text' || variant === 'pills' || variant === 'underline');
 
   const onKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
     const keys = vertical ? ['ArrowUp', 'ArrowDown'] : ['ArrowLeft', 'ArrowRight'];
@@ -74,13 +99,30 @@ export function Tabs({ items, value, onValueChange, variant = 'text', label, cla
 
   return (
     <div className={cn(vertical ? 'flex flex-col gap-6 md:flex-row' : 'flex flex-col gap-6', className)}>
+      {asSelect && (
+        <Select className="sm:hidden" aria-label={label} value={value} onChange={(e) => onValueChange(e.target.value)}>
+          {items.map((item) => (
+            <option key={item.value} value={item.value} disabled={item.disabled}>
+              {typeof item.label === 'string' ? item.label : item.value}
+            </option>
+          ))}
+        </Select>
+      )}
       <div
         ref={listRef}
         role="tablist"
         aria-label={label}
         aria-orientation={vertical ? 'vertical' : 'horizontal'}
         onKeyDown={onKeyDown}
-        className={cn(s.list, !vertical && 'max-w-full overflow-x-auto', vertical && 'md:w-56 md:shrink-0')}
+        className={cn(
+          s.list,
+          // Text rows scroll sideways when they do not fit; Button / Button group keep their card clipped.
+          !vertical && (variant === 'button' || variant === 'segmented' ? 'max-w-full' : 'max-w-full overflow-x-auto'),
+          variant === 'vertical-pills' && 'md:w-40 md:shrink-0',
+          variant === 'vertical-list' && 'md:w-64 md:shrink-0',
+          asSelect && 'max-sm:hidden',
+          mobile && mobileStack[variant],
+        )}
       >
         {items.map((item) => {
           const active = item.value === value;
@@ -96,7 +138,7 @@ export function Tabs({ items, value, onValueChange, variant = 'text', label, cla
               tabIndex={active ? 0 : -1}
               disabled={item.disabled}
               onClick={() => onValueChange(item.value)}
-              className={s.tab(active)}
+              className={cn(s.tab(active), mobile && mobileTab[variant])}
             >
               {item.icon}
               {item.label}

@@ -1,8 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { expect } from 'storybook/test';
 import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
-import { useState, type ComponentProps } from 'react';
+import { useState, type ComponentProps, type FormEvent, type ReactNode } from 'react';
+import { Button } from './Button';
+import { Dropdown, DropdownItem } from './Dropdown';
+import { HelperText, Input, InputGroup, Label } from './Input';
 import { SearchInput } from './SearchInput';
+import { AngleDownIcon, GridIcon, QuestionCircleIcon, SearchIcon } from '../icons';
 
 // AD Design Kit Search input — mirrors the Figma "Search form" set (node 1149:46581).
 const meta = {
@@ -34,11 +38,111 @@ function SearchDemo(args: ComponentProps<typeof SearchInput>) {
 }
 
 export const Default: Story = {};
-export const WithButton: Story = { args: { variant: 'button' } };
-export const Joined: Story = { args: { variant: 'joined' } };
-export const InnerButton: Story = { args: { variant: 'inner' } };
-export const Small: Story = { args: { size: 'sm', variant: 'joined' } };
 export const WithDefaultValue: Story = { args: { defaultValue: 'Button' } };
+export const Small: Story = { args: { size: 'sm', variant: 'joined' } };
+
+// ---- Figma Type: each as in Figma, a Label (Required & icon) + the form + Helper ---------------------------------------
+
+function Field({ id, label, children, helper = 'Search the docs, components and examples.' }: { id: string; label: string; children: ReactNode; helper?: string }) {
+  return (
+    <div className="w-full">
+      <Label htmlFor={id} required icon={<QuestionCircleIcon />}>{label}</Label>
+      {children}
+      <HelperText>{helper}</HelperText>
+    </div>
+  );
+}
+
+function MenuButton({ label, children, items, leftIcon }: { label: string; children: ReactNode; items: string[]; leftIcon?: ReactNode }) {
+  return (
+    <Dropdown label={label} trigger={<Button color="secondary" className="shrink-0" leftIcon={leftIcon} rightIcon={<AngleDownIcon />}>{children}</Button>}>
+      {items.map((i) => <DropdownItem key={i} onSelect={() => {}}>{i}</DropdownItem>)}
+    </Dropdown>
+  );
+}
+const categories = <MenuButton label="Category" items={['All categories', 'Mockups', 'Logos', 'Templates']} leftIcon={<GridIcon />}>All categories</MenuButton>;
+const noSubmit = (e: FormEvent) => e.preventDefault();
+
+export const FigmaDefault: Story = {
+  name: 'Default (with label)',
+  render: (args) => <Field id="search-default" label="Search"><SearchInput {...args} id="search-default" /></Field>,
+  decorators: [(Story) => <div className="w-96 max-w-full"><Story /></div>],
+};
+export const InnerButton: Story = {
+  args: { variant: 'inner', placeholder: 'E.g. ad-design-kit, react, vue' },
+  render: (args) => <Field id="search-inner" label="Search"><SearchInput {...args} id="search-inner" /></Field>,
+  decorators: [(Story) => <div className="w-96 max-w-full"><Story /></div>],
+};
+export const WithButtonSpaced: Story = {
+  name: 'With button (spaced)',
+  args: { variant: 'button' },
+  render: (args) => <Field id="search-spaced" label="Search"><SearchInput {...args} id="search-spaced" /></Field>,
+  decorators: [(Story) => <div className="w-96 max-w-full"><Story /></div>],
+};
+export const WithButtonNoSpace: Story = {
+  name: 'With button (no-space)',
+  args: { variant: 'joined' },
+  render: (args) => <Field id="search-joined" label="Search"><SearchInput {...args} id="search-joined" /></Field>,
+  decorators: [(Story) => <div className="w-96 max-w-full"><Story /></div>],
+};
+
+export const WithButtons: Story = {
+  render: () => (
+    <Field id="search-cat" label="Search products">
+      <form role="search" aria-label="Search products" onSubmit={noSubmit}>
+        <InputGroup>
+          {categories}
+          <Input id="search-cat" type="search" placeholder="Search mockups, logos" />
+          <Button type="submit" leftIcon={<SearchIcon />}>Search</Button>
+        </InputGroup>
+      </form>
+    </Field>
+  ),
+  decorators: [(Story) => <div className="w-lg max-w-full"><Story /></div>],
+};
+
+export const WithSpacedButtons: Story = {
+  render: () => (
+    <Field id="search-cat-spaced" label="Search products">
+      <form role="search" aria-label="Search products" onSubmit={noSubmit} className="flex gap-4">
+        {categories}
+        <Input id="search-cat-spaced" type="search" placeholder="Search mockups, logos" leftIcon={<SearchIcon />} className="min-w-0 flex-1" />
+        <Button type="submit" className="shrink-0">Search</Button>
+      </form>
+    </Field>
+  ),
+  decorators: [(Story) => <div className="w-xl max-w-full"><Story /></div>],
+};
+
+export const ThreeButtons: Story = {
+  render: () => (
+    <Field id="search-domain" label="Search domains">
+      <form role="search" aria-label="Search domains" onSubmit={noSubmit}>
+        <InputGroup>
+          <MenuButton label="Protocol" items={['http + https', 'https only']}>http + https</MenuButton>
+          <Input id="search-domain" type="search" placeholder="Search for domain or URL" />
+          <MenuButton label="Scope" items={['Subdomains', 'Exact domain']}>Subdomains</MenuButton>
+          <Button type="submit" iconOnly aria-label="Search"><SearchIcon /></Button>
+        </InputGroup>
+      </form>
+    </Field>
+  ),
+  decorators: [(Story) => <div className="w-xl max-w-full"><Story /></div>],
+};
+
+export const Inline: Story = {
+  render: () => (
+    <form role="search" aria-label="Search products" onSubmit={noSubmit} className="flex items-center gap-4">
+      <Label htmlFor="search-inline" className="mb-0 shrink-0">Search</Label>
+      <InputGroup>
+        {categories}
+        <Input id="search-inline" type="search" placeholder="Search mockups, logos" />
+        <Button type="submit" leftIcon={<SearchIcon />}>Search</Button>
+      </InputGroup>
+    </form>
+  ),
+  decorators: [(Story) => <div className="w-xl max-w-full"><Story /></div>],
+};
 
 export const AllVariants: Story = {
   render: (args) => (

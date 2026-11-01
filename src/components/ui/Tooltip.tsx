@@ -17,11 +17,13 @@ export interface TooltipProps {
   content: ReactNode;
   placement?: TooltipPlacement;
   children: ReactElement<{ 'aria-describedby'?: string }>;
+  /** Start shown, e.g. to document the bubble; hover, focus and Escape still control it afterwards. */
+  defaultOpen?: boolean;
 }
 
-export function Tooltip({ content, placement = 'top', children }: TooltipProps) {
+export function Tooltip({ content, placement = 'top', children, defaultOpen = false }: TooltipProps) {
   const id = useId();
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(defaultOpen);
   const p = placements[placement];
   return (
     <span

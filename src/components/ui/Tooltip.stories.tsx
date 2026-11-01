@@ -13,7 +13,7 @@ const meta = {
   parameters: { design: figmaDesign('Tooltip') },
   component: Tooltip,
   // Room for the bubble on every side; hover or focus the trigger to show it.
-  decorators: [(Story) => <div className="p-16">{Story()}</div>],
+  decorators: [(Story) => <div className="flex justify-center px-40 py-16">{Story()}</div>],
   args: {
     content: 'Tooltip content',
     placement: 'top',
@@ -28,7 +28,13 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
-export const Bottom: Story = { args: { placement: 'bottom' } };
+
+// Figma Position variants: the bubble shown open with Figma's text, the arrow pointing at the trigger.
+const figmaArgs = { content: 'Tooltip text here', defaultOpen: true } as const;
+export const Top: Story = { args: { ...figmaArgs, placement: 'top' } };
+export const Bottom: Story = { args: { ...figmaArgs, placement: 'bottom' } };
+export const Left: Story = { args: { ...figmaArgs, placement: 'left' } };
+export const Right: Story = { args: { ...figmaArgs, placement: 'right' } };
 
 // Icon-only buttons need a tooltip and an aria-label.
 export const OnIconButton: Story = {
@@ -46,11 +52,12 @@ export const LongContent: Story = {
   args: { content: 'Tooltips wrap at max-w-xs, so longer hints stay readable without spanning the whole screen.' },
 };
 
+// All four Figma positions side by side, open.
 export const AllPlacements: Story = {
   render: ({ placement: _placement, children: _children, ...args }) => (
-    <div className="flex flex-wrap items-center justify-center gap-10">
+    <div className="flex flex-wrap items-center justify-center gap-x-64 gap-y-24">
       {placements.map((placement) => (
-        <Tooltip key={placement} {...args} content={`placement="${placement}"`} placement={placement}>
+        <Tooltip key={placement} {...args} content="Tooltip text here" placement={placement} defaultOpen>
           <Button color="secondary">{placement}</Button>
         </Tooltip>
       ))}

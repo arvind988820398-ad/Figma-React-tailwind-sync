@@ -1,11 +1,12 @@
 // AD Design Kit Search input — Figma set "Search form" (node 1149:46581, page 3279:34618).
 // Input field with a leading search icon inside <form role="search">. Figma types → variant:
-// Default=default · With button (spaced)=button · With button (no-space)=joined · Inner button=inner.
+// Default=default · With button (spaced)=button (Brand, 16px gap) · With button (no-space)=joined · Inner button=inner
+// (Brand xs inside the field). With buttons / With spaced buttons / Three buttons / Inline are compositions.
 import { useState, type FormEvent } from 'react';
 import { cn } from '../../lib/cn';
 import { SearchIcon } from '../icons';
-import { buttonVariants } from './Button';
-import { inputVariants, type FieldSize } from './Input';
+import { Button } from './Button';
+import { Input, InputGroup, type FieldSize } from './Input';
 
 export type SearchInputVariant = 'default' | 'button' | 'joined' | 'inner';
 
@@ -18,6 +19,8 @@ export interface SearchInputProps {
   label?: string;
   defaultValue?: string;
   buttonLabel?: string;
+  /** Field id, for a visible <Label htmlFor>. */
+  id?: string;
   className?: string;
 }
 
@@ -29,6 +32,7 @@ export function SearchInput({
   label = 'Search',
   defaultValue = '',
   buttonLabel = 'Search',
+  id,
   className,
 }: SearchInputProps) {
   const [query, setQuery] = useState(defaultValue);
@@ -36,43 +40,38 @@ export function SearchInput({
     e.preventDefault();
     onSearch(query.trim());
   };
-  const iconPad = size === 'sm' ? 'ps-8.5' : 'ps-9'; // ad-design-kit-lint-ignore: 10px pad + 16px icon + 8px gap = 34px
-  const iconPos = size === 'sm' ? 'ps-2.5' : 'ps-3';
+  const button = (
+    <Button type="submit" size={variant === 'inner' ? 'xs' : size} className="shrink-0">
+      {buttonLabel}
+    </Button>
+  );
+  const field = (
+    <Input
+      id={id}
+      type="search"
+      size={size}
+      aria-label={label}
+      placeholder={placeholder}
+      value={query}
+      onChange={(e) => setQuery(e.target.value)}
+      leftIcon={<SearchIcon />}
+      endAction={variant === 'inner' ? button : undefined}
+      className="min-w-0 flex-1"
+    />
+  );
 
   return (
-    <form role="search" aria-label={label} onSubmit={submit} className={cn('flex w-full', variant === 'button' && 'gap-2', className)}>
-      <div className="relative min-w-0 flex-1">
-        <span className={cn('pointer-events-none absolute inset-y-0 start-0 flex items-center text-body-subtle [&_svg]:size-4', iconPos)}>
-          <SearchIcon />
-        </span>
-        <input
-          type="search"
-          aria-label={label}
-          placeholder={placeholder}
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          className={cn(
-            inputVariants({ size }),
-            iconPad,
-            variant === 'joined' && 'rounded-e-none',
-            variant === 'inner' && (size === 'sm' ? 'pe-20' : 'pe-24'),
-          )}
-        />
-        {variant === 'inner' && (
-          <span className="absolute inset-y-0 end-0 flex items-center pe-1.5">
-            <button type="submit" className={cn(buttonVariants({ color: 'tertiary', size: 'xs' }), 'rounded')}>
-              {buttonLabel}
-            </button>
-          </span>
-        )}
-      </div>
-      {(variant === 'button' || variant === 'joined') && (
-        <button
-          type="submit"
-          className={cn(buttonVariants({ size: size === 'sm' ? 'sm' : 'base' }), variant === 'joined' && '-ms-px rounded-s-none')}
-        >
-          {buttonLabel}
-        </button>
+    <form role="search" aria-label={label} onSubmit={submit} className={cn('flex w-full', variant === 'button' && 'gap-4', className)}>
+      {variant === 'joined' ? (
+        <InputGroup>
+          {field}
+          {button}
+        </InputGroup>
+      ) : (
+        <>
+          {field}
+          {variant === 'button' && button}
+        </>
       )}
     </form>
   );

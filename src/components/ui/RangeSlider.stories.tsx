@@ -3,8 +3,10 @@ import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
 import { expect, fn } from 'storybook/test';
 import { useState, type ComponentProps } from 'react';
 import { RangeSlider } from './RangeSlider';
+import { VolumeDownIcon, VolumeUpIcon } from '../icons';
 
 // AD Design Kit Range slider — mirrors the Figma "Range Slider examples" (node 1149:54340), bar 1149:54365, thumb 1149:54373.
+// The Figma stories (Default, Range) show the volume icons, inline min/max, the value tooltip and the scale helper.
 const meta = {
   title: 'Components/RangeSlider',
   parameters: { design: figmaDesign('RangeSlider') },
@@ -12,8 +14,9 @@ const meta = {
   args: { value: 40, onChange: () => {}, label: 'Volume', min: 0, max: 100, step: 1, showMinMax: false, disabled: false },
   render: (args) => <SingleDemo {...args} />,
   decorators: [
-    (Story) => (
-      <div className="w-80 pt-8">
+    // The Figma examples are 720px wide with room for the tooltip; the other stories use a 320px column.
+    (Story, { parameters }) => (
+      <div className={parameters.figmaWidth ? 'w-180 max-w-full pt-14' : 'w-80 pt-8'}>
         <Story />
       </div>
     ),
@@ -37,12 +40,34 @@ function RangeDemo({ value: initial, onChange: _onChange, label, ...args }: Slid
   return <RangeSlider<[number, number]> {...args} label={Array.isArray(label) ? label : [`Minimum ${label}`, `Maximum ${label}`]} value={value} onChange={setValue} />;
 }
 
-export const Default: Story = {};
+const figmaLayout = {
+  startIcon: <VolumeDownIcon />,
+  endIcon: <VolumeUpIcon />,
+  showMinMax: true,
+  minMaxPosition: 'inline',
+  tooltip: 'always',
+} as const;
+
+// Figma Type = Default: one value with the scale helper underneath.
+export const Default: Story = {
+  parameters: { figmaWidth: true },
+  args: { ...figmaLayout, value: 40, formatValue: (n) => `${n}%`, marks: [0, 25, 50, 75, 100] },
+};
+
+// Figma Type = Range: two thumbs, a tooltip on each.
+export const Range: Story = {
+  parameters: { figmaWidth: true },
+  args: { ...figmaLayout, value: [300, 2500], label: ['Minimum price', 'Maximum price'], min: 0, max: 4000, step: 50, formatValue: (n) => `$${n}` },
+  render: (args) => <RangeDemo {...args} />,
+};
+
+// Code-ahead layouts.
+export const Plain: Story = {};
 export const WithMinMax: Story = { args: { showMinMax: true, formatValue: (n) => `${n}%` } };
 export const Stepped: Story = { args: { value: 250, min: 0, max: 1000, step: 50, showMinMax: true, label: 'Budget', formatValue: (n) => `$${n}` } };
 export const Disabled: Story = { args: { value: 60, disabled: true } };
 
-export const Range: Story = {
+export const RangeMinMaxBelow: Story = {
   args: { value: [200, 800], label: ['Minimum price', 'Maximum price'], min: 0, max: 1000, step: 10, showMinMax: true, formatValue: (n) => `$${n}` },
   render: (args) => <RangeDemo {...args} />,
 };

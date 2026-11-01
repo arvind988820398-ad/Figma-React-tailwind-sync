@@ -31,10 +31,11 @@ export const StorePair: Story = {
   ),
 };
 
+// Figma set order: Light row, then Dark.
 export const AllVariants: Story = {
   render: (args) => (
     <div className="grid grid-cols-2 gap-3">
-      {(['dark', 'light'] as const).map((tone) =>
+      {(['light', 'dark'] as const).map((tone) =>
         (['app-store', 'google-play'] as const).map((store) => <DownloadAppButton key={`${tone}-${store}`} {...args} tone={tone} store={store} />),
       )}
     </div>

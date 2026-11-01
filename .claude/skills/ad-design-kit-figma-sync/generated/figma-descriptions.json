@@ -303,7 +303,7 @@
    "figmaName": "Tag input",
    "react": "TagInput",
    "role": "main",
-   "description": "Tag input — free-form multiple values as chips (emails, keywords).\n\nUse for free-form multiple values (emails, keywords).\nDon't when values come from a fixed list (multi-select Autocomplete or Checkbox group).\nAccessibility: Enter adds a tag and Backspace removes the last one; each tag's remove button has an aria-label naming the tag; errors set aria-invalid.\n\nCode: <TagInput size>\nDocs: https://ad-design-kit-storybook.netlify.app/?path=/docs/components-taginput--docs",
+   "description": "Tag input — free-form multiple values as chips (emails, keywords).\n\nUse for free-form multiple values (emails, keywords).\nDon't when values come from a fixed list (multi-select Autocomplete or Checkbox group).\nAccessibility: Enter adds a tag and Backspace removes the last one; each tag's remove button has an aria-label naming the tag; the clear button is labelled \"Clear all tags\"; errors set aria-invalid.\n\nCode: <TagInput size>\nDocs: https://ad-design-kit-storybook.netlify.app/?path=/docs/components-taginput--docs",
    "docUrl": "https://ad-design-kit-storybook.netlify.app/?path=/docs/components-taginput--docs"
   },
   {
@@ -679,7 +679,7 @@
    "figmaName": "Nav tabs",
    "react": "Tabs",
    "role": "main",
-   "description": "Nav tabs — switch between peer views of the same context (Default, Pills, Button, Button group, Border bottom, Vertical).\n\nUse to switch peer views of the same context.\nDon't for sequential steps (Stepper), navigating to pages (links + aria-current), >7 tabs, or list filtering.\nAccessibility: tablist/tab/tabpanel, roving focus, aria-selected.\n\nCode: <Tabs variant>\nDocs: https://ad-design-kit-storybook.netlify.app/?path=/docs/components-tabs--docs",
+   "description": "Nav tabs — switch between peer views of the same context (Default, Pills, Button, Button group, Border bottom, Vertical).\n\nUse to switch peer views of the same context.\nDon't for sequential steps (Stepper), navigating to pages (links + aria-current), >7 tabs, or list filtering.\nAccessibility: tablist/tab/tabpanel, roving focus, aria-selected.\n\nCode: <Tabs variant mobile>\nDocs: https://ad-design-kit-storybook.netlify.app/?path=/docs/components-tabs--docs",
    "docUrl": "https://ad-design-kit-storybook.netlify.app/?path=/docs/components-tabs--docs"
   },
   {

@@ -1,21 +1,34 @@
 import { useState } from 'react';
 import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { expect, fn } from 'storybook/test';
+import walletIllustration from '../../../.storybook/assets/toast-wallet-illustration.svg';
 import { Toast, ToastViewport, type ToastColor, type ToastProps } from './Toast';
 import { Avatar } from './Avatar';
 import { Button } from './Button';
 import { IconShape } from './IconShape';
 import { Progress } from './Progress';
-import { CheckIcon, InfoCircleIcon } from '../icons';
+import {
+  CheckIcon,
+  CloudArrowUpIcon,
+  DownloadIcon,
+  ExclamationCircleIcon,
+  FingerprintIcon,
+  InfoCircleIcon,
+  PaperPlaneHorizontalIcon,
+  RefreshIcon,
+  ReplyIcon,
+  UploadIcon,
+} from '../icons';
 
-// AD Design Kit Toast — mirrors the Figma "Toast" set (node 1149:93975).
+// AD Design Kit Toast — one story per Figma "Toast" Type (node 1149:93975), with Figma's content.
 const colors = ['neutral', 'warning', 'danger'] as const satisfies readonly ToastColor[];
 
 const meta = {
   title: 'Components/Toast',
   parameters: { design: figmaDesign('Toast') },
   component: Toast,
-  args: { color: 'neutral', icon: <InfoCircleIcon />, children: 'Item moved successfully.', onDismiss: () => {} },
+  args: { color: 'neutral', onDismiss: fn() },
   argTypes: {
     color: { control: 'select', options: colors },
   },
@@ -24,24 +37,32 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// Figma "Icon & text".
-export const Default: Story = {};
+// Figma "Icon & text": brand icon, then the message after a divider.
+export const Default: Story = {
+  args: {
+    icon: <PaperPlaneHorizontalIcon />,
+    children: <span className="block border-s border-default ps-4">Message sent successfully.</span>,
+  },
+};
 
 // Figma "Icon shape & text".
 export const WithIconShape: Story = {
-  args: { icon: <IconShape color="success" size="sm"><CheckIcon /></IconShape> },
+  args: {
+    icon: <IconShape color="success"><CheckIcon /></IconShape>,
+    children: 'Notification message here!',
+  },
 };
 
 // Figma "Icon shape & buttons".
 export const WithActions: Story = {
   args: {
-    icon: <IconShape color="brand" size="sm"><InfoCircleIcon /></IconShape>,
+    icon: <IconShape color="brand"><RefreshIcon /></IconShape>,
     title: 'Update available',
-    children: 'A new version is ready to install.',
+    children: 'The latest software version is now accessible for download.',
     actions: (
       <>
-        <Button size="xs">Update</Button>
-        <Button size="xs" color="secondary">Not now</Button>
+        <Button size="xs" color="secondary" className="flex-1">Not now</Button>
+        <Button size="xs" leftIcon={<DownloadIcon />} className="flex-1">Update</Button>
       </>
     ),
   },
@@ -50,64 +71,114 @@ export const WithActions: Story = {
 // Figma "Avatar & button".
 export const AvatarAndButton: Story = {
   args: {
-    icon: <Avatar name="Grace Hopper" size="base" />,
-    title: 'Grace Hopper',
-    children: 'Hi, can we sync on the design review?',
-    actions: <Button size="xs">Reply</Button>,
+    className: 'w-95',
+    icon: <Avatar name="Bonnie Green" />,
+    title: 'Bonnie Green',
+    children: '“Hi Bonnie, I appreciate you sharing your insights on AD Design Kit.”',
+    actions: <Button size="xs" leftIcon={<ReplyIcon />}>Reply</Button>,
   },
 };
 
-// Figma "With header": small header row with a timestamp.
+// Figma "With header": header bar, a person, a timestamp and full-width Close + Reply buttons (no dismiss icon).
 export const WithHeader: Story = {
   args: {
+    onDismiss: undefined,
     header: { title: 'New notification', time: 'a few seconds ago' },
-    icon: <Avatar name="Alan Turing" size="lg" />,
-    title: 'Alan Turing',
-    children: 'Commented on your pull request.',
+    icon: <Avatar name="Bonnie Green" />,
+    title: 'Bonnie Green',
+    children: 'commented on your photo',
+    actions: (
+      <>
+        <Button size="xs" color="secondary" className="flex-1">Close</Button>
+        <Button size="xs" leftIcon={<ReplyIcon />} className="flex-1">Reply</Button>
+      </>
+    ),
   },
 };
 
-// Figma "With progress bar".
+// Figma "With progress bar": icon shape above the text, side-label progress and two buttons.
 export const WithProgress: Story = {
   args: {
-    icon: <IconShape color="brand" size="sm"><InfoCircleIcon /></IconShape>,
-    title: 'Uploading files',
-    children: <Progress className="mt-2" value={60} labelPosition="side" />,
+    stacked: true,
+    icon: <IconShape color="brand"><CloudArrowUpIcon /></IconShape>,
+    title: 'Uploading in progress',
+    children: (
+      <>
+        Please wait while your file is being uploaded. This may take a moment.
+        <Progress className="mt-3.5" value={75} labelPosition="side" aria-label="Upload progress" />
+      </>
+    ),
+    actions: (
+      <>
+        <Button size="xs" color="secondary" className="flex-1">Cancel</Button>
+        <Button size="xs" className="flex-1">Go to uploads</Button>
+      </>
+    ),
   },
 };
 
-export const AllColors: Story = {
-  render: (args) => (
-    <div className="flex flex-col gap-4">
-      <Toast {...args} color="neutral" title="Changes saved">Your profile has been updated.</Toast>
-      <Toast
-        {...args}
-        color="warning"
-        title="Storage almost full"
-        actions={
-          <>
-            <Button size="xs" color="warning">Upgrade</Button>
-            <Button size="xs" color="warning" outline>Dismiss</Button>
-          </>
-        }
-      >
-        You’ve used 90% of your storage.
-      </Toast>
-      <Toast
-        {...args}
-        color="danger"
-        title="Payment failed"
-        actions={
-          <>
-            <Button size="xs" color="danger">Retry</Button>
-            <Button size="xs" color="danger" outline>Cancel</Button>
-          </>
-        }
-      >
-        We couldn’t charge your card.
-      </Toast>
-    </div>
-  ),
+// Figma "With illustration".
+export const WithIllustration: Story = {
+  args: {
+    className: 'w-96',
+    onDismiss: undefined,
+    icon: <img src={walletIllustration} alt="" className="h-24 w-21" />,
+    title: 'Connect your wallet',
+    children: 'Connect your wallet by clicking the bottom-right blue button.',
+    actions: (
+      <>
+        <Button size="xs" color="secondary" className="flex-1">Close</Button>
+        <Button size="xs" leftIcon={<FingerprintIcon />} className="flex-1">Connect</Button>
+      </>
+    ),
+  },
+};
+
+// Figma "Warning": no dismiss icon; Warning xs outline + solid actions.
+export const Warning: Story = {
+  args: {
+    color: 'warning',
+    className: 'w-160',
+    onDismiss: undefined,
+    icon: <ExclamationCircleIcon />,
+    title: 'Upload your invoice',
+    children:
+      'Upload your invoice in one of the supported formats (PDF, JPG, PNG) with a maximum file size of 5MB. Ensure that all relevant details are visible for verification.',
+    actions: (
+      <>
+        <Button size="xs" color="warning" outline>Remind me later</Button>
+        <Button size="xs" color="warning" leftIcon={<UploadIcon />}>Upload invoice</Button>
+      </>
+    ),
+  },
+};
+
+// Figma "Error": no dismiss icon; Danger xs outline + solid actions.
+export const ErrorToast: Story = {
+  name: 'Error',
+  args: {
+    color: 'danger',
+    className: 'w-96',
+    onDismiss: undefined,
+    icon: <InfoCircleIcon />,
+    title: 'Whoops! Something went wrong',
+    children: 'The file format is not supported. Please upload a valid file type (PDF, JPG, PNG).',
+    actions: (
+      <>
+        <Button size="xs" color="danger" outline>Close</Button>
+        <Button size="xs" color="danger" leftIcon={<UploadIcon />}>Try again</Button>
+      </>
+    ),
+  },
+};
+
+// Interaction: the dismiss icon button closes the toast.
+export const Dismiss: Story = {
+  ...WithActions,
+  play: async ({ canvas, userEvent, args }) => {
+    await userEvent.click(canvas.getByRole('button', { name: 'Close' }));
+    await expect(args.onDismiss).toHaveBeenCalledTimes(1);
+  },
 };
 
 type LiveToast = { id: number; color: ToastColor };

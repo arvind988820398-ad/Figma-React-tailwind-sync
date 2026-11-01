@@ -19,15 +19,18 @@ export interface PopoverProps {
   title?: ReactNode;
   children: ReactNode;
   placement?: PopoverPlacement;
-  /** Content padding: `text` = px-3 py-2 (Figma "Text"); `rich` = p-3 stack; `none` for vertical item lists. */
+  /** Content padding: `text` = px-3 py-2 (Figma "Text"); `rich` = p-3 stack; `none` for Figma "Vertical items":
+   *  the panel hugs its rows and divides them with a border. */
   padding?: 'text' | 'rich' | 'none';
   className?: string;
   /** Accessible name when there is no title (a dialog must be named). */
   label?: string;
+  /** Start open, e.g. to document the panel; the trigger, Esc and outside clicks still control it afterwards. */
+  defaultOpen?: boolean;
 }
 
-export function Popover({ trigger, title, children, placement = 'top', padding = 'text', className, label = 'More information' }: PopoverProps) {
-  const [open, setOpen] = useState(false);
+export function Popover({ trigger, title, children, placement = 'top', padding = 'text', className, label = 'More information', defaultOpen = false }: PopoverProps) {
+  const [open, setOpen] = useState(defaultOpen);
   const id = useId();
   const rootRef = useRef<HTMLSpanElement>(null);
   const p = placements[placement];
@@ -65,7 +68,12 @@ export function Popover({ trigger, title, children, placement = 'top', padding =
           role="dialog"
           aria-labelledby={title ? `${id}-title` : undefined}
           aria-label={title ? undefined : label}
-          className={cn('absolute z-40 w-64 rounded-base border border-default-medium bg-neutral-primary-medium text-sm text-body shadow-lg', p.panel, className)}
+          className={cn(
+            'absolute z-40 rounded-base border border-default-medium bg-neutral-primary-medium text-sm text-body shadow-lg',
+            padding === 'none' ? 'w-max' : 'w-64',
+            p.panel,
+            className,
+          )}
         >
           <span aria-hidden className={cn('absolute size-3 rotate-45 border border-default-medium bg-neutral-primary-medium', p.arrow)} />
           <div className="relative overflow-hidden rounded-base">
@@ -74,7 +82,15 @@ export function Popover({ trigger, title, children, placement = 'top', padding =
                 {title}
               </div>
             )}
-            <div className={cn(padding === 'text' && 'px-3 py-2', padding === 'rich' && 'flex flex-col gap-2.5 p-3')}>{children}</div>
+            <div
+              className={cn(
+                padding === 'text' && 'px-3 py-2',
+                padding === 'rich' && 'flex flex-col gap-2.5 p-3',
+                padding === 'none' && 'flex flex-col divide-y divide-default-medium',
+              )}
+            >
+              {children}
+            </div>
           </div>
         </div>
       )}

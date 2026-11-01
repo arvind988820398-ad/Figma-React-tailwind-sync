@@ -1,9 +1,10 @@
 // AD Design Kit Gallery — Figma set "Gallery" (node 1149:56037, page 320:17990).
 // Figma Type → variant: Grid 3 columns=grid-3 · Grid 2 columns=grid-2 · Masonry=masonry · Featured image=featured ·
-// Carousel=carousel (one image at a time with prev/next) · With filters=filters (pill Tabs above a 3-column grid).
-import { useMemo, useState } from 'react';
+// Carousel=carousel (one image at a time, arrow controls centred below) · With filters=filters (Button-type Tabs with
+// icons above a 3-column grid). Breakpoints: grid-3 is 2 columns on Mobile and 3 from md; masonry 2 columns, 3 from lg.
+import { useMemo, useState, type ReactNode } from 'react';
 import { cn } from '../../lib/cn';
-import { Carousel } from './Carousel';
+import { ArrowLeftIcon, ArrowRightIcon } from '../icons';
 import { Tabs } from './Tabs';
 
 export type GalleryVariant = 'grid-3' | 'grid-2' | 'masonry' | 'featured' | 'carousel' | 'filters';
@@ -20,31 +21,35 @@ export interface GalleryProps {
   variant?: GalleryVariant;
   /** Accessible name of the carousel variant. */
   label?: string;
-  /** "filters": label of the pill that shows every image. */
+  /** "filters": label of the tab that shows every image. */
   allLabel?: string;
+  /** "filters": an icon per tag, plus `all` for the "All categories" tab (Figma shows one on every tab). */
+  filterIcons?: Partial<Record<string, ReactNode>>;
   className?: string;
 }
 
-const img = 'h-auto w-full max-w-full rounded-base';
+// Figma image frames: rounded-base on bg-neutral-tertiary (shown while the photo loads).
+const img = 'h-auto w-full max-w-full rounded-base bg-neutral-tertiary';
 
 function Grid({ images, cols, className }: { images: GalleryImage[]; cols: 2 | 3; className?: string }) {
   return (
     <div className={cn('grid grid-cols-2 gap-4', cols === 3 && 'md:grid-cols-3', className)}>
       {images.map((im, i) => (
-        <img key={i} src={im.src} alt={im.alt} loading="lazy" className={cn(img, 'aspect-square object-cover')} />
+        <img key={i} src={im.src} alt={im.alt} loading="lazy" className={cn(img, 'object-cover', cols === 3 ? 'aspect-13/12' : 'aspect-5/3')} />
       ))}
     </div>
   );
 }
 
-export function Gallery({ images, variant = 'grid-3', label = 'Gallery', allLabel = 'All categories', className }: GalleryProps) {
+export function Gallery({ images, variant = 'grid-3', label = 'Gallery', allLabel = 'All categories', filterIcons = {}, className }: GalleryProps) {
   const [featured, setFeatured] = useState(0);
+  const [slide, setSlide] = useState(0);
   const [filter, setFilter] = useState('all');
   const tags = useMemo(() => [...new Set(images.flatMap((im) => im.tags ?? []))], [images]);
 
   if (variant === 'masonry') {
     return (
-      <div className={cn('columns-2 gap-4 md:columns-4', className)}>
+      <div className={cn('columns-2 gap-4 lg:columns-3', className)}>
         {images.map((im, i) => (
           <img key={i} src={im.src} alt={im.alt} loading="lazy" className={cn(img, 'mb-4 break-inside-avoid')} />
         ))}
@@ -57,7 +62,7 @@ export function Gallery({ images, variant = 'grid-3', label = 'Gallery', allLabe
     return (
       <div className={cn('flex flex-col gap-4', className)}>
         {main && <img src={main.src} alt={main.alt} className={cn(img, 'aspect-video object-cover')} />}
-        <div className="grid grid-cols-5 gap-4">
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
           {images.map((im, i) => (
             <button
               key={i}
@@ -79,23 +84,36 @@ export function Gallery({ images, variant = 'grid-3', label = 'Gallery', allLabe
   }
 
   if (variant === 'carousel') {
+    const current = images[slide];
+    const go = (step: number) => setSlide((i) => (i + step + images.length) % images.length);
+    // Figma draws the controls as bare 44px arrow icons.
+    const arrow =
+      'inline-flex size-11 items-center justify-center rounded-base text-heading hover:bg-neutral-secondary-medium focus-visible:shadow-focus-secondary focus-visible:outline-none [&_svg]:size-8';
     return (
-      <Carousel label={label} indicators={false} className={className}>
-        {images.map((im, i) => (
-          <img key={i} src={im.src} alt={im.alt} className={cn(img, 'aspect-video object-cover')} />
-        ))}
-      </Carousel>
+      <section aria-roledescription="carousel" aria-label={label} className={cn('flex flex-col items-center gap-4', className)}>
+        {current && (
+          <img key={slide} src={current.src} alt={current.alt} className={cn(img, 'aspect-video object-cover')} />
+        )}
+        <div className="flex items-center gap-4">
+          <button type="button" aria-label="Previous image" onClick={() => go(-1)} className={arrow}>
+            <ArrowLeftIcon />
+          </button>
+          <button type="button" aria-label="Next image" onClick={() => go(1)} className={arrow}>
+            <ArrowRightIcon />
+          </button>
+        </div>
+      </section>
     );
   }
 
   if (variant === 'filters') {
     const shown = filter === 'all' ? images : images.filter((im) => im.tags?.includes(filter));
     return (
-      <div className={cn('flex flex-col items-center gap-6', className)}>
+      <div className={cn('flex flex-col items-center gap-8', className)}>
         <Tabs
-          variant="pills"
+          variant="button"
           label={`${label} filters`}
-          items={[{ value: 'all', label: allLabel }, ...tags.map((t) => ({ value: t, label: t }))]}
+          items={[{ value: 'all', label: allLabel, icon: filterIcons.all }, ...tags.map((t) => ({ value: t, label: t, icon: filterIcons[t] }))]}
           value={filter}
           onValueChange={setFilter}
         />

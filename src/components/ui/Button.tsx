@@ -10,12 +10,12 @@ const base =
   'inline-flex shrink-0 items-center justify-center gap-1.5 rounded-base font-medium shadow-xs transition-colors ' +
   'focus-visible:outline-none disabled:pointer-events-none';
 
-const sizes: Record<ButtonSize, { text: string; icon: string; square: string; iconSvg: string }> = {
-  xs: { text: 'px-3 py-1.5 text-xs leading-5', icon: '[&_svg]:size-3.5', square: 'size-8', iconSvg: '[&_svg]:size-4' },
-  sm: { text: 'px-3 py-2 text-sm leading-5', icon: '[&_svg]:size-4', square: 'size-9', iconSvg: '[&_svg]:size-4' },
-  base: { text: 'px-4 py-2.5 text-sm leading-5', icon: '[&_svg]:size-4', square: 'size-10', iconSvg: '[&_svg]:size-5' },
-  lg: { text: 'px-5 py-3 text-base leading-6', icon: '[&_svg]:size-4', square: 'size-12', iconSvg: '[&_svg]:size-5' },
-  xl: { text: 'px-6 py-3.5 text-base leading-6', icon: '[&_svg]:size-5', square: 'size-13', iconSvg: '[&_svg]:size-5' },
+const sizes: Record<ButtonSize, { text: string; icon: string; square: string; iconSvg: string; logoSvg: string }> = {
+  xs: { text: 'px-3 py-1.5 text-xs leading-5', icon: '[&_svg]:size-3.5', square: 'size-8', iconSvg: '[&_svg]:size-3.5', logoSvg: '[&_svg]:size-5' },
+  sm: { text: 'px-3 py-2 text-sm leading-5', icon: '[&_svg]:size-4', square: 'size-9', iconSvg: '[&_svg]:size-4', logoSvg: '[&_svg]:size-5' },
+  base: { text: 'px-4 py-2.5 text-sm leading-5', icon: '[&_svg]:size-4', square: 'size-10', iconSvg: '[&_svg]:size-5', logoSvg: '[&_svg]:size-7' },
+  lg: { text: 'px-5 py-3 text-base leading-6', icon: '[&_svg]:size-4', square: 'size-11', iconSvg: '[&_svg]:size-5', logoSvg: '[&_svg]:size-7' },
+  xl: { text: 'px-6 py-3.5 text-base leading-6', icon: '[&_svg]:size-5', square: 'size-12', iconSvg: '[&_svg]:size-5', logoSvg: '[&_svg]:size-8' },
 };
 
 const solidDisabled = 'disabled:border disabled:border-default-medium disabled:bg-disabled disabled:text-fg-disabled';
@@ -51,14 +51,16 @@ type ColorOptions = { color: OutlineColor; outline: true } | { color?: ButtonCol
 export type ButtonVariantOptions = ColorOptions & {
   size?: ButtonSize;
   iconOnly?: boolean;
+  /** Figma "Logo inside": a square button holding a brand logo (larger than an icon). */
+  logo?: boolean;
   className?: string;
 };
 
-export function buttonVariants({ color = 'brand', size = 'base', outline = false, iconOnly = false, className }: ButtonVariantOptions = {}) {
+export function buttonVariants({ color = 'brand', size = 'base', outline = false, iconOnly = false, logo = false, className }: ButtonVariantOptions = {}) {
   const s = sizes[size];
   return cn(
     base,
-    iconOnly ? cn(s.square, 'p-0', s.iconSvg) : cn(s.text, s.icon),
+    logo ? cn(s.square, 'p-0 disabled:[&_svg]:opacity-35', s.logoSvg) : iconOnly ? cn(s.square, 'p-0', s.iconSvg) : cn(s.text, s.icon),
     outline ? outlineColors[color as OutlineColor] : colors[color],
     className,
   );
@@ -68,20 +70,26 @@ export function buttonVariants({ color = 'brand', size = 'base', outline = false
 type DistributiveOmit<T, K extends PropertyKey> = T extends unknown ? Omit<T, K> : never;
 
 export type ButtonProps = Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'color'> &
-  DistributiveOmit<ButtonVariantOptions, 'className'> & {
+  DistributiveOmit<ButtonVariantOptions, 'className' | 'logo'> & {
     leftIcon?: ReactNode;
     rightIcon?: ReactNode;
+    /** Figma "Logo inside": renders this logo in a square button instead of icons and text; needs `aria-label`. */
+    logo?: ReactNode;
   };
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
-  { color, size, outline, iconOnly, leftIcon, rightIcon, className, type = 'button', children, ...props },
+  { color, size, outline, iconOnly, logo, leftIcon, rightIcon, className, type = 'button', children, ...props },
   ref,
 ) {
   return (
-    <button ref={ref} type={type} className={buttonVariants({ color, size, outline, iconOnly, className } as ButtonVariantOptions)} {...props}>
-      {leftIcon}
-      {children}
-      {rightIcon}
+    <button ref={ref} type={type} className={buttonVariants({ color, size, outline, iconOnly, logo: logo != null, className } as ButtonVariantOptions)} {...props}>
+      {logo ?? (
+        <>
+          {leftIcon}
+          {children}
+          {rightIcon}
+        </>
+      )}
     </button>
   );
 });

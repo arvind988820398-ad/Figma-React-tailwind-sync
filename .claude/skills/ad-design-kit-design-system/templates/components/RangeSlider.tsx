@@ -14,8 +14,13 @@ export interface RangeSliderProps<V extends Value> {
   step?: number;
   /** Accessible name(s): one label, or [low, high] for a range. */
   label: V extends number ? string : [string, string];
-  /** Show min/max under the track (Figma helper "Left & Right text"). */
+  /** Show min/max labels (Figma "0%" / "100%"): beside the track (`inline`, Figma) or under it (`below`). */
   showMinMax?: boolean;
+  minMaxPosition?: 'inline' | 'below';
+  /** Scale labels under the slider (Figma "Range Slider helper"), e.g. [0, 25, 50, 75, 100]. */
+  marks?: number[];
+  /** Value tooltip: shown while focused or dragging (`active`), or always (`always`, as in the Figma examples). */
+  tooltip?: 'active' | 'always';
   /** Optional icons beside the track (size-6 text-body). */
   startIcon?: ReactNode;
   endIcon?: ReactNode;
@@ -32,6 +37,9 @@ export function RangeSlider<V extends Value>({
   step = 1,
   label,
   showMinMax,
+  minMaxPosition = 'below',
+  marks,
+  tooltip = 'active',
   startIcon,
   endIcon,
   formatValue = String,
@@ -91,6 +99,7 @@ export function RangeSlider<V extends Value>({
     <div className={cn('flex flex-col gap-2', className)}>
       <div className="flex items-center gap-4">
         {startIcon && <span className="inline-flex shrink-0 text-body [&_svg]:size-6" aria-hidden>{startIcon}</span>}
+        {showMinMax && minMaxPosition === 'inline' && <span className="shrink-0 text-sm font-medium text-body">{formatValue(min)}</span>}
         <div
           ref={trackRef}
           onPointerDown={onTrackDown}
@@ -123,20 +132,31 @@ export function RangeSlider<V extends Value>({
               )}
               style={{ insetInlineStart: `${pct(v)}%` }}
             >
+              {/* Figma Tooltip (Position=Top): bg-dark, text-sm, arrow under it. */}
               <span
                 className={cn(
-                  'pointer-events-none absolute bottom-full left-1/2 mb-2 -translate-x-1/2 rounded-base bg-dark px-2 py-1 text-xs font-medium text-white shadow-md',
-                  dragging === i ? 'block' : 'hidden group-focus-visible:block',
+                  'pointer-events-none absolute bottom-full left-1/2 mb-3 -translate-x-1/2 whitespace-nowrap rounded-base bg-dark px-3 py-2 text-sm font-medium leading-4 text-white shadow-md',
+                  tooltip === 'always' || dragging === i ? 'block' : 'hidden group-focus-visible:block',
                 )}
+                aria-hidden
               >
                 {formatValue(v)}
+                <span className="absolute left-1/2 top-full size-2 -translate-x-1/2 -translate-y-1/2 rotate-45 bg-dark" />
               </span>
             </span>
           ))}
         </div>
+        {showMinMax && minMaxPosition === 'inline' && <span className="shrink-0 text-sm font-medium text-body">{formatValue(max)}</span>}
         {endIcon && <span className="inline-flex shrink-0 text-body [&_svg]:size-6" aria-hidden>{endIcon}</span>}
       </div>
-      {showMinMax && (
+      {marks && (
+        <div className="flex justify-between text-sm font-medium text-body" aria-hidden>
+          {marks.map((m) => (
+            <span key={m}>{formatValue(m)}</span>
+          ))}
+        </div>
+      )}
+      {showMinMax && minMaxPosition === 'below' && (
         <div className="flex justify-between text-sm font-medium text-body">
           <span>{formatValue(min)}</span>
           <span>{formatValue(max)}</span>

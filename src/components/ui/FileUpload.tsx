@@ -3,7 +3,7 @@
 // "With CTAs" × Initial/Hover/Disabled/Success/Danger. The real <input type="file"> stays in the accessibility tree.
 import { useId, useState, type DragEvent, type ReactNode } from 'react';
 import { cn } from '../../lib/cn';
-import { UploadIcon } from '../icons';
+import { SearchIcon, UploadIcon } from '../icons';
 import { buttonVariants } from './Button';
 import type { FieldStatus } from './Input';
 
@@ -65,7 +65,7 @@ export interface FileDropzoneProps {
   status?: FieldStatus;
   /** e.g. "SVG, PNG, JPG or GIF (max. 800×400px)". */
   hint?: ReactNode;
-  /** "With CTAs": extra buttons under the text (gap-6). */
+  /** "With CTAs": the upload sources under "Drag and drop a file here, or:" (Figma: white circle IconShapes with a caption, gap-6). */
   actions?: ReactNode;
   className?: string;
 }
@@ -80,7 +80,7 @@ export function FileDropzone({ onFiles, variant = 'advanced', accept, multiple, 
   const id = useId();
   const [dragging, setDragging] = useState(false);
   const ctas = variant === 'ctas';
-  const tone = disabled ? 'text-fg-disabled' : status ? '' : ctas ? 'text-body' : 'text-body-subtle';
+  const tone = disabled ? 'text-fg-disabled' : status ? '' : 'text-body';
 
   const onDrop = (e: DragEvent<HTMLLabelElement>) => {
     e.preventDefault();
@@ -98,7 +98,7 @@ export function FileDropzone({ onFiles, variant = 'advanced', accept, multiple, 
       onDragLeave={() => setDragging(false)}
       onDrop={onDrop}
       className={cn(
-        'flex w-full flex-col items-center justify-center gap-2 rounded-base border px-6 py-8 text-center transition-colors',
+        'flex w-full flex-col items-center justify-center gap-2 rounded-base border border-dashed px-6 py-8 text-center transition-colors',
         'focus-within:shadow-focus-brand',
         statusShell[status ?? 'default'],
         disabled ? 'cursor-not-allowed' : cn('cursor-pointer', !status && 'hover:bg-neutral-tertiary', dragging && !status && 'bg-neutral-tertiary'),
@@ -114,19 +114,26 @@ export function FileDropzone({ onFiles, variant = 'advanced', accept, multiple, 
         className="sr-only"
         onChange={(e) => onFiles([...(e.target.files ?? [])])}
       />
-      <span className={cn(ctas ? '[&_svg]:size-9' : '[&_svg]:size-6', tone)}>
-        <UploadIcon />
-      </span>
-      <span className={cn('text-sm', tone)}>
-        <span className="font-semibold">Click to upload</span> or drag and drop
-      </span>
-      {hint && <span className={cn('text-xs font-medium', tone)}>{hint}</span>}
       {ctas ? (
-        actions && <span className="mt-2 flex flex-wrap items-center justify-center gap-6">{actions}</span>
+        <>
+          <span className={cn('text-sm', tone)}>Drag and drop a file here, or:</span>
+          {actions && <span className={cn('mt-2 flex flex-wrap items-center justify-center gap-6', tone)}>{actions}</span>}
+        </>
       ) : (
-        <span className={cn(buttonVariants({ size: 'xs' }), 'mt-2', disabled && 'pointer-events-none border border-default-medium bg-disabled text-fg-disabled')} aria-hidden>
-          Browse
-        </span>
+        <>
+          <span className={cn('[&_svg]:size-5', tone)}>
+            <UploadIcon />
+          </span>
+          <span className={cn('text-sm', tone)}>Click to upload or drag and drop</span>
+          {hint && <span className={cn('text-xs font-medium', tone)}>{hint}</span>}
+          <span
+            className={cn(buttonVariants({ size: 'xs' }), 'mt-2', disabled && 'pointer-events-none border border-default-medium bg-disabled text-fg-disabled')}
+            aria-hidden
+          >
+            <SearchIcon />
+            Browse file
+          </span>
+        </>
       )}
     </label>
   );

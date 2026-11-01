@@ -1,6 +1,7 @@
 // AD Design Kit Toast — Figma set "Toast" (node 1149:93975, page 3337:16705).
-// Figma types map to props: Icon & text / Icon shape & text = icon + children; Icon shape & buttons / With progress bar /
-// With illustration / Avatar & button = title + actions (+ children); With header = header; Warning / Error = color.
+// Figma types map to props: Icon & text / Icon shape & text = icon + children; Icon shape & buttons / With illustration /
+// Avatar & button = title + actions (+ children); With progress bar = `stacked` (icon above the text); With header = header;
+// Warning / Error = color (no dismiss button in Figma).
 import { useEffect, useRef, type HTMLAttributes, type ReactNode } from 'react';
 import { cn } from '../../lib/cn';
 import { CloseIcon } from '../icons';
@@ -18,15 +19,17 @@ export interface ToastProps extends Omit<HTMLAttributes<HTMLDivElement>, 'title'
   /** Leading icon, IconShape or Avatar. */
   icon?: ReactNode;
   title?: ReactNode;
-  /** Figma "With header": small header row with a timestamp. */
+  /** Figma "With header": a filled header bar; `time` shows under the message. */
   header?: { title: ReactNode; time?: ReactNode };
+  /** Figma "With progress bar": icon above the text instead of beside it. */
+  stacked?: boolean;
   actions?: ReactNode;
   onDismiss?: () => void;
   /** Auto-dismiss after this many ms (paused while hovered). Needs onDismiss. */
   duration?: number;
 }
 
-export function Toast({ color = 'neutral', icon, title, header, actions, onDismiss, duration, className, children, ...props }: ToastProps) {
+export function Toast({ color = 'neutral', icon, title, header, stacked, actions, onDismiss, duration, className, children, ...props }: ToastProps) {
   const c = colors[color];
   const timer = useRef<number | undefined>(undefined);
   const start = () => {
@@ -58,27 +61,26 @@ export function Toast({ color = 'neutral', icon, title, header, actions, onDismi
       role={color === 'danger' ? 'alert' : 'status'}
       onMouseEnter={stop}
       onMouseLeave={start}
-      className={cn('w-80 max-w-full rounded-base border shadow-lg', header ? 'p-3' : 'p-4', c.box, className)}
+      className={cn('relative w-80 max-w-full rounded-base border shadow-lg', header ? 'p-3' : 'p-4', c.box, className)}
       {...props}
     >
       {header && (
-        <div className="mb-4 flex items-center justify-between gap-4">
-          <span className="text-sm font-medium text-heading">{header.title}</span>
-          <span className="flex items-center gap-3">
-            {header.time && <span className="text-xs text-fg-brand">{header.time}</span>}
-            {dismiss}
-          </span>
+        <div className="mb-4 flex items-center justify-between gap-4 rounded-sm bg-neutral-secondary-strong px-2.5 py-2">
+          <span className="text-sm font-medium leading-4 text-heading">{header.title}</span>
+          {dismiss}
         </div>
       )}
-      <div className={cn('flex gap-3', rich ? 'items-start' : 'items-center gap-2.5')}>
+      <div className={cn('flex', stacked ? 'flex-col gap-3.5' : rich ? 'items-start gap-3' : 'items-center gap-2.5')}>
         {icon && <span className={cn('inline-flex shrink-0 [&>svg]:size-5', c.icon)} aria-hidden>{icon}</span>}
         <div className={cn('min-w-0 flex-1 text-sm', c.body)}>
-          {title && <p className={cn('mb-1.5 text-base font-semibold leading-6', c.title)}>{title}</p>}
+          {title && <p className={cn('mb-2 text-base font-semibold leading-4', c.title)}>{title}</p>}
           {children}
-          {actions && <div className="mt-3 flex flex-wrap gap-2">{actions}</div>}
+          {header?.time && <p className="mt-1 text-xs text-fg-brand">{header.time}</p>}
+          {actions && <div className={cn('flex flex-wrap gap-3', header ? 'mt-4' : stacked ? 'mt-3.5' : 'mt-3')}>{actions}</div>}
         </div>
-        {!header && dismiss}
+        {!header && !stacked && dismiss}
       </div>
+      {stacked && dismiss && <span className="absolute end-4 top-4 inline-flex">{dismiss}</span>}
     </div>
   );
 }

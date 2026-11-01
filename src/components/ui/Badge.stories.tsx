@@ -1,18 +1,20 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { expect, fn } from 'storybook/test';
 import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
-import { Badge, type BadgeColor } from './Badge';
+import { Badge, type BadgeColor, type BadgeProps } from './Badge';
 import { Avatar } from './Avatar';
 import { Spinner } from './Spinner';
-import { CheckIcon } from '../icons';
+import { ClockIcon } from '../icons';
 
-// AD Design Kit Badge — mirrors the Figma "Badge" set (node 1146:22250).
-const colors = ['gray', 'white', 'brand', 'success', 'warning', 'danger'] as const satisfies readonly BadgeColor[];
+// AD Design Kit Badge — one story per Figma "Badge" Type (node 1146:22250), each in the six Figma themes
+// (Gray, White, Brand, Danger, Warning, Success) and both sizes (sm row, lg row). Every Figma badge has the close icon.
+const colors = ['gray', 'white', 'brand', 'danger', 'warning', 'success'] as const satisfies readonly BadgeColor[];
 
 const meta = {
   title: 'Components/Badge',
   parameters: { design: figmaDesign('Badge') },
   component: Badge,
-  args: { children: 'Badge', color: 'gray', size: 'sm', circle: false },
+  args: { children: 'Badge text', color: 'gray', size: 'sm', onRemove: fn() },
   argTypes: {
     color: { control: 'select', options: colors },
     size: { control: 'select', options: ['sm', 'lg'] },
@@ -22,49 +24,50 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+const grid = (leading?: (size: 'sm' | 'lg') => BadgeProps['leading']) =>
+  function Grid(args: BadgeProps) {
+    return (
+      <div className="flex flex-col gap-4">
+        {(['sm', 'lg'] as const).map((size) => (
+          <div key={size} className="flex flex-wrap items-center gap-3">
+            {colors.map((color) => (
+              <Badge key={color} {...args} size={size} color={color} leading={leading?.(size) ?? args.leading} />
+            ))}
+          </div>
+        ))}
+      </div>
+    );
+  };
 
-// Figma Type "With dot".
-export const WithDot: Story = {
-  args: { color: 'success', children: 'Online', leading: <span className="size-1.5 rounded-full bg-success" /> },
+// Figma "Default": clock icon, text and the close icon.
+export const Default: Story = { args: { leading: <ClockIcon /> }, render: grid() };
+
+// Figma "With avatar": a 14px avatar before the text.
+export const WithAvatar: Story = { render: grid(() => <Avatar name="Bonnie Green" size="xs" className="size-3.5" />) };
+
+// Figma "With dot": a 6px dot in the text color.
+export const WithDot: Story = { render: grid(() => <span className="size-1.5 rounded-full bg-current" />) };
+
+// Figma "With loader": an xs Spinner.
+export const WithLoader: Story = { render: grid(() => <Spinner size="xs" label="Loading" />) };
+
+// Figma "With secondary text": a value after a divider.
+export const WithSecondaryText: Story = { args: { leading: <ClockIcon />, secondary: 'Secondary text' }, render: grid() };
+
+// Figma "Only icon": round icon-only badge with an aria-label.
+export const OnlyIcon: Story = {
+  args: { iconOnly: true, children: <ClockIcon />, 'aria-label': 'Pending', onRemove: undefined },
+  render: grid(),
 };
 
-// Figma Type "With loader".
-export const WithLoader: Story = {
-  args: { color: 'brand', children: 'Syncing', leading: <Spinner size="xs" label="Syncing" /> },
-};
+// Figma "Only text": round counter of 1–2 characters.
+export const OnlyText: Story = { args: { circle: true, children: '1', onRemove: undefined }, render: grid() };
 
-// Figma Type "With avatar".
-export const WithAvatar: Story = {
-  args: { children: 'Ada', leading: <Avatar name="Ada Lovelace" size="xs" /> },
-};
-
-export const WithIcon: Story = { args: { color: 'brand', children: 'Verified', rightIcon: <CheckIcon /> } };
-
-// Figma "Only text" / "Only icon": round counter or icon badge.
-export const Counter: Story = { args: { color: 'danger', circle: true, children: '8' } };
-export const IconOnly: Story = { args: { color: 'brand', iconOnly: true, children: <CheckIcon />, 'aria-label': 'Verified' } };
-
-export const AllColors: Story = {
-  render: (args) => (
-    <div className="flex flex-wrap items-center gap-3">
-      {colors.map((color) => (
-        <Badge key={color} {...args} color={color}>
-          {color}
-        </Badge>
-      ))}
-    </div>
-  ),
-};
-
-export const AllSizes: Story = {
-  render: (args) => (
-    <div className="flex flex-wrap items-center gap-3">
-      {(['sm', 'lg'] as const).map((size) => (
-        <Badge key={size} {...args} size={size}>
-          {size}
-        </Badge>
-      ))}
-    </div>
-  ),
+// Interaction: the close icon is a labelled remove button.
+export const Remove: Story = {
+  args: { color: 'brand', leading: <ClockIcon />, removeLabel: 'Remove Badge text' },
+  play: async ({ canvas, userEvent, args }) => {
+    await userEvent.click(canvas.getByRole('button', { name: 'Remove Badge text' }));
+    await expect(args.onRemove).toHaveBeenCalledTimes(1);
+  },
 };

@@ -2,7 +2,9 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { expect } from 'storybook/test';
 import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
 import { useState, type ComponentProps } from 'react';
+import { HelperText, Label } from './Input';
 import { OtpInput } from './OtpInput';
+import { QuestionCircleIcon } from '../icons';
 
 // AD Design Kit OTP input — mirrors the Figma "OTP Inputs" boxes (node 1149:49523) and examples (1149:49576).
 const meta = {
@@ -55,6 +57,40 @@ export const AllSizes: Story = {
         <div key={size} className="flex flex-col gap-1.5">
           <span className="text-xs font-medium text-body-subtle">{`size="${size}"`}</span>
           <OtpDemo {...args} size={size} length={4} value="1234" label={`Verification code (${size})`} />
+        </div>
+      ))}
+    </div>
+  ),
+};
+
+// ---- Figma "OTP form examples" (1149:49576): Label + boxes + Helper; Separator types hold 9 boxes in groups of three ---
+
+function Example(args: ComponentProps<typeof OtpInput>) {
+  return (
+    <div>
+      <Label required icon={<QuestionCircleIcon />}>Enter verification code</Label>
+      <OtpDemo {...args} />
+      <HelperText>Please enter the one-time code sent to your phone.</HelperText>
+    </div>
+  );
+}
+export const ExampleDefault: Story = { args: { value: '357' }, render: (args) => <Example {...args} /> };
+export const ExampleSpaced: Story = { args: { value: '357', variant: 'spaced' }, render: (args) => <Example {...args} /> };
+export const ExampleSeparator: Story = { args: { value: '357', variant: 'separator', length: 9 }, render: (args) => <Example {...args} /> };
+export const ExampleSeparatorSpaced: Story = { args: { value: '357', variant: 'separator-spaced', length: 9 }, render: (args) => <Example {...args} /> };
+
+// Figma "OTP Inputs" box: State × Size (Focus is the CSS :focus state).
+export const States: Story = {
+  render: (args) => (
+    <div className="flex flex-col gap-4">
+      {(['sm', 'base', 'lg', 'xl'] as const).map((size) => (
+        <div key={size} className="flex flex-wrap gap-4">
+          <OtpDemo {...args} size={size} length={1} value="" label={`Initial ${size}`} />
+          <OtpDemo {...args} size={size} length={1} value="3" label={`Filled ${size}`} />
+          <OtpDemo {...args} size={size} length={1} value="3" disabled label={`Disabled ${size}`} />
+          <OtpDemo {...args} size={size} length={1} value="3" readOnly label={`Read-only ${size}`} />
+          <OtpDemo {...args} size={size} length={1} value="3" status="success" label={`Success ${size}`} />
+          <OtpDemo {...args} size={size} length={1} value="3" status="danger" label={`Danger ${size}`} />
         </div>
       ))}
     </div>

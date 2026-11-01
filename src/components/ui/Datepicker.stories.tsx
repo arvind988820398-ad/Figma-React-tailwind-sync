@@ -4,8 +4,10 @@ import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
 import { useState } from 'react';
 import { Calendar, Datepicker, type DatepickerProps, type DateRange } from './Datepicker';
 import { HelperText, Label } from './Input';
+import { QuestionCircleIcon } from '../icons';
 
-// AD Design Kit Datepicker — mirrors the Figma "Datepicker (ready to use examples)" (node 1149:51284).
+// AD Design Kit Datepicker — mirrors the Figma "Datepicker (ready to use examples)" (node 1149:51284):
+// Type = Default (one field) and Range (From and To fields), each shown closed and open as in Figma (June 2025).
 // DatepickerProps is a discriminated union (single | range), which collapses `StoryObj<typeof meta>` to `never`.
 // Stories are therefore typed by the props shared by both modes; the demos below own `mode`, `value` and `onChange`.
 type DemoArgs = Omit<DatepickerProps, 'mode' | 'value' | 'onChange'>;
@@ -22,7 +24,7 @@ const meta = {
   decorators: [
     // Room for the popup below the field.
     (Story) => (
-      <div className="flex min-h-96 w-80 flex-col gap-2.5">
+      <div className="flex min-h-112 w-80 flex-col gap-2.5">
         <Story />
       </div>
     ),
@@ -47,12 +49,47 @@ function RangeDemo(args: DemoArgs) {
   const [value, setValue] = useState<DateRange>({ start: null, end: null });
   return (
     <>
-      <Label htmlFor="sb-range">Stay</Label>
-      <Datepicker {...args} id="sb-range" mode="range" value={value} onChange={setValue} />
+      <Datepicker {...args} id="sb-range" mode="range" value={value} onChange={setValue} labels={{ start: 'Check-in', end: 'Check-out' }} />
       <HelperText>Two months; pick a start and an end date.</HelperText>
     </>
   );
 }
+
+// The Figma examples: a required Label with an info icon, the en-GB date format and June 2025.
+const hint = <QuestionCircleIcon className="size-3.5" />;
+const june10 = new Date(2025, 5, 10);
+
+function FigmaDefaultDemo(args: DemoArgs & { initial?: Date | null }) {
+  const [value, setValue] = useState<Date | null>(args.initial ?? null);
+  return (
+    <div>
+      <Label htmlFor="sb-dob" required hint={hint} className="justify-start">Date of birth</Label>
+      <Datepicker {...args} id="sb-dob" locale="en-GB" value={value} onChange={setValue} />
+    </div>
+  );
+}
+
+function FigmaRangeDemo(args: DemoArgs & { initial?: DateRange }) {
+  const [value, setValue] = useState<DateRange>(args.initial ?? { start: null, end: null });
+  return (
+    <Datepicker
+      {...args}
+      id="sb-from-to"
+      mode="range"
+      locale="en-GB"
+      placeholder="Select date"
+      endPlaceholder="12 Jan 2025"
+      labels={{ start: 'From', end: 'To', required: true, hint }}
+      value={value}
+      onChange={setValue}
+    />
+  );
+}
+
+const openPicker: Story['play'] = async ({ canvas, userEvent }) => {
+  await userEvent.click(canvas.getAllByRole('combobox')[0]);
+  await expect(canvas.getByRole('dialog', { name: 'Choose date' })).toBeVisible();
+};
 
 function InlineCalendarDemo(args: DemoArgs) {
   const [value, setValue] = useState<Date | null>(() => new Date());
@@ -75,12 +112,19 @@ function InlineRangeCalendarDemo(args: DemoArgs) {
 const today = new Date();
 const inThirtyDays = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 30);
 
-export const Single: Story = { render: (args) => <SingleDemo {...args} /> };
+// Type = Default
+export const Default: Story = { render: (args) => <FigmaDefaultDemo {...args} /> };
+export const DefaultOpen: Story = { render: (args) => <FigmaDefaultDemo {...args} initial={june10} />, play: openPicker };
 
-export const Range: Story = {
-  args: { placeholder: 'Check-in – check-out' },
-  render: (args) => <RangeDemo {...args} />,
+// Type = Range: From and To fields share one two-month calendar.
+export const Range: Story = { decorators: [(Story) => <div className="w-96"><Story /></div>], render: (args) => <FigmaRangeDemo {...args} /> };
+export const RangeOpen: Story = {
+  decorators: [(Story) => <div className="min-h-112 w-96"><Story /></div>],
+  render: (args) => <FigmaRangeDemo {...args} initial={{ start: new Date(2025, 5, 26), end: new Date(2025, 6, 4) }} />,
+  play: openPicker,
 };
+
+export const Single: Story = { render: (args) => <SingleDemo {...args} /> };
 
 // Past dates and anything after 30 days from now are disabled.
 export const MinMax: Story = {
@@ -199,7 +243,6 @@ export const MinMaxNavigation: Story = {
 
 // Range: first click sets the start, second the end; a click before the start restarts; Apply closes; Clear empties.
 export const RangeSelection: Story = {
-  args: { placeholder: 'Check-in – check-out' },
   render: (args) => <RangeDemo {...args} />,
   play: async ({ canvas, userEvent }) => {
     const t = day(new Date());
@@ -207,15 +250,17 @@ export const RangeSelection: Story = {
     const end = new Date(t.getFullYear(), t.getMonth() + 1, 5);
     const between = new Date(t.getFullYear(), t.getMonth(), 20);
     const earlier = new Date(t.getFullYear(), t.getMonth(), 3);
-    const input = canvas.getByRole('combobox', { name: 'Stay' });
+    const input = canvas.getByRole('combobox', { name: 'Check-in' });
+    const endInput = canvas.getByRole('combobox', { name: 'Check-out' });
 
     await userEvent.click(input);
+    await expect(endInput).toHaveAttribute('aria-expanded', 'true');
     await expect(canvas.getAllByRole('grid')).toHaveLength(2);
 
     await userEvent.click(canvas.getByRole('gridcell', { name: fullLabel(start) }));
     await expect(input).toHaveValue(medium(start));
     await userEvent.click(canvas.getByRole('gridcell', { name: fullLabel(end) }));
-    await expect(input).toHaveValue(`${medium(start)} – ${medium(end)}`);
+    await expect(endInput).toHaveValue(medium(end));
     await expect(canvas.getByRole('gridcell', { name: fullLabel(start) })).toHaveAttribute('aria-selected', 'true');
     await expect(canvas.getByRole('gridcell', { name: fullLabel(end) })).toHaveAttribute('aria-selected', 'true');
     await expect(canvas.getByRole('gridcell', { name: fullLabel(between) })).toHaveAttribute('aria-selected', 'false');
@@ -225,10 +270,11 @@ export const RangeSelection: Story = {
     // A third click starts a new range; a click before the start restarts it; the same day twice is a one-day range.
     await userEvent.click(canvas.getByRole('gridcell', { name: fullLabel(between) }));
     await expect(input).toHaveValue(medium(between));
+    await expect(endInput).toHaveValue('');
     await userEvent.click(canvas.getByRole('gridcell', { name: fullLabel(earlier) }));
     await expect(input).toHaveValue(medium(earlier));
     await userEvent.click(canvas.getByRole('gridcell', { name: fullLabel(earlier) }));
-    await expect(input).toHaveValue(`${medium(earlier)} – ${medium(earlier)}`);
+    await expect(endInput).toHaveValue(medium(earlier));
 
     await userEvent.click(canvas.getByRole('button', { name: 'Apply' }));
     await expect(input).toHaveAttribute('aria-expanded', 'false');
@@ -236,6 +282,7 @@ export const RangeSelection: Story = {
     await userEvent.click(input);
     await userEvent.click(canvas.getByRole('button', { name: 'Clear' }));
     await expect(input).toHaveValue('');
+    await expect(endInput).toHaveValue('');
   },
 };
 
@@ -275,7 +322,7 @@ export const InlineCalendarSelect: Story = {
   play: async ({ canvas, userEvent }) => {
     const t = day(new Date());
     const target = new Date(t.getFullYear(), t.getMonth(), t.getDate() === 15 ? 16 : 15);
-    await expect(canvas.getAllByRole('columnheader')[0]).toHaveTextContent(new Date(2024, 0, 8).toLocaleDateString(undefined, { weekday: 'short' }).slice(0, 2));
+    await expect(canvas.getAllByRole('columnheader')[0]).toHaveTextContent(new Date(2024, 0, 8).toLocaleDateString(undefined, { weekday: 'short' }));
     await userEvent.click(canvas.getByRole('gridcell', { name: fullLabel(target) }));
     await expect(canvas.getByRole('gridcell', { name: fullLabel(target) })).toHaveAttribute('aria-selected', 'true');
     await expect(canvas.getByRole('gridcell', { name: fullLabel(t) })).toHaveAttribute('aria-selected', 'false');
