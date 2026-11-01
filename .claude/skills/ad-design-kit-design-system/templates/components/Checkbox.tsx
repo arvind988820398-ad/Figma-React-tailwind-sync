@@ -1,6 +1,7 @@
 // AD Design Kit Checkbox & Radio — Figma set "Checkbox input" (node 1149:54707, page 1149:54696).
 import { forwardRef, useId, type InputHTMLAttributes, type ReactNode } from 'react';
 import { cn } from '../../lib/cn';
+import { CheckIcon } from '../icons';
 
 const box =
   'peer size-4 shrink-0 appearance-none border border-default-strong bg-neutral-secondary-strong ' +
@@ -36,15 +37,7 @@ export const Checkbox = forwardRef<HTMLInputElement, ChoiceProps>(function Check
         className={cn(box, 'rounded-xs checked:border-brand checked:bg-brand disabled:checked:border-light disabled:checked:bg-neutral-secondary-strong', className)}
         {...props}
       />
-      <svg
-        viewBox="0 0 16 16"
-        className="pointer-events-none absolute inset-0 hidden size-4 stroke-white peer-checked:block peer-disabled:stroke-fg-disabled"
-        fill="none"
-        strokeWidth="2"
-        aria-hidden
-      >
-        <path d="M4 8.5l2.5 2.5L12 5.5" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
+      <CheckIcon className="pointer-events-none absolute inset-0 hidden size-4 text-white peer-checked:block peer-disabled:text-fg-disabled" />
     </span>
   );
   return <ChoiceLayout id={inputId} label={label} description={description} control={control} />;

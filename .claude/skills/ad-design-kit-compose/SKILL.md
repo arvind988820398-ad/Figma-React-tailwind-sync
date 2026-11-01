@@ -14,7 +14,7 @@ Depends on the `ad-design-kit-design-system` skill (registry, docs, tokens) and 
 Allowed:
 - Any component listed in `ad-design-kit-design-system/references/components.json` (56 React components, 58 Figma sets), in the props and variants its doc section describes.
 - Layout glue: `div`/`section`/`main`/`aside`/`header`/`footer`/`nav`/`ul`/`li`/`form` with flex/grid/gap/padding utilities and AD Design Kit surface tokens; headings and paragraphs with the typography tokens; `img`; `<a>` for navigation, styled as a link (`text-fg-brand`) or with `buttonVariants()`.
-- Icons: the project's `src/components/icons.tsx` (icons are not components; a missing icon can be added there as an inline SVG, say so in the report).
+- Icons: `src/components/icons`, every icon on the Figma Icons page as a component (Figma "angle-down" → `AngleDownIcon`; browse them in Storybook → Foundations → Icons). Never draw an inline `<svg>` icon: a missing icon is a gap, added to the Figma Icons page and synced (figma-sync skill, "Icon sync").
 
 Not allowed, with no exceptions for "it's just this once":
 - New files or exports under `src/components/ui`.

@@ -2,6 +2,7 @@
 // remove button 1146:5641 (Figma Type "With remove button" = `onRemove`).
 import type { HTMLAttributes } from 'react';
 import { cn } from '../../lib/cn';
+import { CloseIcon } from '../icons';
 
 export type AvatarSize = 'xs' | 'sm' | 'base' | 'lg' | 'xl' | '2xl';
 export type AvatarStatus = 'online' | 'offline' | 'away';
@@ -58,9 +59,7 @@ export function Avatar({ src, name, size = 'base', status, bordered, onRemove, r
             s.remove,
           )}
         >
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
-            <path d="M4 4l8 8M12 4l-8 8" strokeLinecap="round" />
-          </svg>
+          <CloseIcon />
         </button>
       )}
       {status && (

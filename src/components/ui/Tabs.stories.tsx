@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
 import { useState } from 'react';
 import { expect, fn, within } from 'storybook/test';
-import { CogIcon, InfoIcon, MailIcon } from '../icons';
+import { CogIcon, InfoCircleIcon, EnvelopeIcon } from '../icons';
 import { Tabs, type TabsProps, type TabsVariant } from './Tabs';
 
 // AD Design Kit Tabs — mirrors the Figma "Nav tabs" set (node 1149:80530).
@@ -76,8 +76,8 @@ export const WithIcons: Story = {
   args: {
     variant: 'underline',
     items: [
-      { value: 'profile', label: 'Profile', icon: <InfoIcon /> },
-      { value: 'inbox', label: 'Inbox', icon: <MailIcon /> },
+      { value: 'profile', label: 'Profile', icon: <InfoCircleIcon /> },
+      { value: 'inbox', label: 'Inbox', icon: <EnvelopeIcon /> },
       { value: 'settings', label: 'Settings', icon: <CogIcon /> },
     ],
   },

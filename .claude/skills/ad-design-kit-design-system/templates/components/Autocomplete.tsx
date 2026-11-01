@@ -3,6 +3,7 @@
 // active option (aria-activedescendant), Enter selects, Esc closes. Matching text is highlighted (Figma "Highlighted text").
 import { useId, useMemo, useRef, useState, type KeyboardEvent, type ReactNode } from 'react';
 import { cn } from '../../lib/cn';
+import { CheckIcon, SearchIcon } from '../icons';
 import { inputVariants, type FieldSize } from './Input';
 
 export interface AutocompleteOption {
@@ -43,13 +44,6 @@ function Highlight({ text, query }: { text: string; query: string }) {
     </>
   );
 }
-
-const SearchIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
-    <circle cx="11" cy="11" r="7" />
-    <path d="m20 20-3.5-3.5" strokeLinecap="round" />
-  </svg>
-);
 
 export function Autocomplete({ options, value, onChange, size = 'base', placeholder = 'Search', emptyText = 'No results', footer, id, className, ...aria }: AutocompleteProps) {
   const autoId = useId();
@@ -146,9 +140,7 @@ export function Autocomplete({ options, value, onChange, size = 'base', placehol
                       {o.description && <span className="text-xs font-normal text-body">{o.description}</span>}
                     </span>
                     {o.value === value && (
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-fg-brand" aria-hidden>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="m5 12 5 5 9-10" />
-                      </svg>
+                      <CheckIcon className="text-fg-brand" />
                     )}
                   </div>
                 </li>

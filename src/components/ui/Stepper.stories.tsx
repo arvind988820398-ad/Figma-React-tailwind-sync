@@ -1,14 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
 import { useState } from 'react';
-import { CheckIcon, CogIcon, InfoIcon, MailIcon } from '../icons';
+import { CheckIcon, CogIcon, InfoCircleIcon, EnvelopeIcon } from '../icons';
 import { Button } from './Button';
 import { Stepper, type Step, type StepperProps, type StepperVariant } from './Stepper';
 
 // AD Design Kit Stepper — mirrors the Figma "Stepper navigation" set (node 1149:84064), step 1149:84155.
 const steps: Step[] = [
-  { title: 'Account', icon: <MailIcon /> },
-  { title: 'Profile', icon: <InfoIcon /> },
+  { title: 'Account', icon: <EnvelopeIcon /> },
+  { title: 'Profile', icon: <InfoCircleIcon /> },
   { title: 'Payment', icon: <CogIcon /> },
   { title: 'Confirm', icon: <CheckIcon /> },
 ];

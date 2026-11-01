@@ -4,6 +4,7 @@
 // "Copied" is announced through an aria-live region.
 import { useEffect, useId, useState } from 'react';
 import { cn } from '../../lib/cn';
+import { CheckIcon, FileCopyIcon } from '../icons';
 import { buttonVariants } from './Button';
 import { inputVariants } from './Input';
 
@@ -17,18 +18,6 @@ export interface CopyInputProps {
   id?: string;
   className?: string;
 }
-
-const CopyIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
-    <rect x="8" y="8" width="12" height="12" rx="2" />
-    <path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" />
-  </svg>
-);
-const CheckIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
-    <path strokeLinecap="round" strokeLinejoin="round" d="m5 12 5 5 9-10" />
-  </svg>
-);
 
 export function CopyInput({ value, variant = 'joined', id, className, ...aria }: CopyInputProps) {
   const autoId = useId();
@@ -68,7 +57,7 @@ export function CopyInput({ value, variant = 'joined', id, className, ...aria }:
         {input('pe-24')}
         <span className="absolute inset-y-0 end-0 flex items-center pe-1.5">
           <button type="button" onClick={copy} className={cn(buttonVariants({ color: 'tertiary', size: 'xs' }), 'rounded')}>
-            {copied ? <CheckIcon /> : <CopyIcon />}
+            {copied ? <CheckIcon /> : <FileCopyIcon />}
             {copied ? 'Copied' : 'Copy'}
           </button>
         </span>
@@ -90,7 +79,7 @@ export function CopyInput({ value, variant = 'joined', id, className, ...aria }:
           variant === 'icon' && 'text-body',
         )}
       >
-        {copied ? <CheckIcon /> : <CopyIcon />}
+        {copied ? <CheckIcon /> : <FileCopyIcon />}
         {variant === 'joined' && (copied ? 'Copied' : 'Copy')}
       </button>
       {status}

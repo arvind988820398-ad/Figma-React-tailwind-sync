@@ -4,6 +4,7 @@
 // control above icon-only items).
 import type { ReactNode } from 'react';
 import { cn } from '../../lib/cn';
+import { AngleLeftIcon, AngleRightIcon } from '../icons';
 import { buttonVariants } from './Button';
 
 export type BottomNavigationVariant = 'default' | 'bordered' | 'action';
@@ -46,12 +47,6 @@ function Item({ item, iconOnly }: { item: BottomNavigationItem; iconOnly?: boole
   );
 }
 
-const Chevron = ({ d }: { d: string }) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
-    <path d={d} strokeLinecap="round" strokeLinejoin="round" />
-  </svg>
-);
-
 export function BottomNavigation({ items, variant = 'default', action, pager, segments, fixed, label = 'Bottom navigation', className }: BottomNavigationProps) {
   const shell = cn('w-full bg-neutral-primary-soft', variant === 'bordered' && 'border-t border-default', fixed && 'fixed inset-x-0 bottom-0 z-40', className);
   if (pager) {
@@ -62,13 +57,13 @@ export function BottomNavigation({ items, variant = 'default', action, pager, se
         {items.slice(0, half).map((i) => <Item key={i.label} item={i} iconOnly />)}
         <div className={cn(buttonVariants({ color: 'secondary', size: 'xs' }), 'gap-1 px-1 hover:bg-neutral-secondary-medium')}>
           <button type="button" aria-label="Previous page" className={step} disabled={pager.page <= 1} onClick={() => pager.onPageChange(pager.page - 1)}>
-            <Chevron d="m15 6-6 6 6 6" />
+            <AngleLeftIcon />
           </button>
           <span aria-live="polite">
             {pager.page} of {pager.pageCount}
           </span>
           <button type="button" aria-label="Next page" className={step} disabled={pager.page >= pager.pageCount} onClick={() => pager.onPageChange(pager.page + 1)}>
-            <Chevron d="m9 6 6 6-6 6" />
+            <AngleRightIcon />
           </button>
         </div>
         {items.slice(half).map((i) => <Item key={i.label} item={i} iconOnly />)}

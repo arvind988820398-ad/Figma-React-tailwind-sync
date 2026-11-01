@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
 import { expect } from 'storybook/test';
-import { CogIcon, MailIcon } from '../icons';
+import { CogIcon, EnvelopeIcon } from '../icons';
 import { Accordion, type AccordionItem } from './Accordion';
 import { IconShape } from './IconShape';
 
@@ -64,7 +64,7 @@ export const SubHeader: Story = {
     variant: 'subheader',
     defaultValue: [],
     items: [
-      { value: 'account', title: 'Account', subtitle: 'Name, email and password', icon: <IconShape size="sm" color="brand"><MailIcon /></IconShape>, content: <p>Manage your account details.</p> },
+      { value: 'account', title: 'Account', subtitle: 'Name, email and password', icon: <IconShape size="sm" color="brand"><EnvelopeIcon /></IconShape>, content: <p>Manage your account details.</p> },
       { value: 'settings', title: 'Settings', subtitle: 'Preferences and integrations', icon: <IconShape size="sm" color="success"><CogIcon /></IconShape>, content: <p>Manage your workspace settings.</p> },
     ],
   },

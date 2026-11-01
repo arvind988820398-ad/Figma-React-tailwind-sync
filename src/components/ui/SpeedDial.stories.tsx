@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
 import { expect, fn, waitFor, within } from 'storybook/test';
-import { CheckIcon, CogIcon, MailIcon, PlusIcon } from '../icons';
+import { CheckIcon, CogIcon, EnvelopeIcon, PlusIcon } from '../icons';
 import { SpeedDial, type SpeedDialDirection, type SpeedDialVariant } from './SpeedDial';
 
 // AD Design Kit Speed dial — mirrors the Figma "Speed dial (ready to use examples)" set (node 1149:84847).
 // Shown inline (not `fixed`) so the canvas can display it; pass `fixed` in an app.
 const actions = [
-  { label: 'Share', icon: <MailIcon /> },
+  { label: 'Share', icon: <EnvelopeIcon /> },
   { label: 'Settings', icon: <CogIcon /> },
   { label: 'New', icon: <PlusIcon /> },
   { label: 'Copy', icon: <CheckIcon />, disabled: true },
@@ -70,7 +70,7 @@ export const AllVariants: Story = {
 // ── Interaction tests ────────────────────────────────────────────────────────────────────────────────────────────────
 
 const withSpies = () => [
-  { label: 'Share', icon: <MailIcon />, onSelect: fn() },
+  { label: 'Share', icon: <EnvelopeIcon />, onSelect: fn() },
   { label: 'Settings', icon: <CogIcon />, onSelect: fn() },
   { label: 'New', icon: <PlusIcon /> },
   { label: 'Copy', icon: <CheckIcon />, onSelect: fn(), disabled: true },

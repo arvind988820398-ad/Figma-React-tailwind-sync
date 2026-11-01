@@ -4,6 +4,7 @@
 // Breakpoint variants are responsive classes. Persist dismissal in the app (one banner at a time).
 import type { HTMLAttributes, ReactNode } from 'react';
 import { cn } from '../../lib/cn';
+import { CloseIcon } from '../icons';
 
 export interface BannerProps extends Omit<HTMLAttributes<HTMLDivElement>, 'title'> {
   title?: ReactNode;
@@ -49,9 +50,7 @@ export function Banner({ title, icon, actions, logo, floating, sticky, onDismiss
             aria-label="Dismiss announcement"
             className="inline-flex size-8 items-center justify-center rounded-base text-heading hover:bg-neutral-secondary-medium focus-visible:shadow-focus-secondary focus-visible:outline-none"
           >
-            <svg viewBox="0 0 16 16" className="size-4" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
-              <path d="M4 4l8 8M12 4l-8 8" strokeLinecap="round" />
-            </svg>
+            <CloseIcon className="size-4" />
           </button>
         )}
       </div>

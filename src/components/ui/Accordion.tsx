@@ -2,6 +2,7 @@
 // Figma Style → variant: Default=default · Flush=flush · Separate Cards=cards · Multi-level=nested · With sub-header=subheader.
 import { useId, useState, type ReactNode } from 'react';
 import { cn } from '../../lib/cn';
+import { AngleDownIcon } from '../icons';
 
 export type AccordionVariant = 'default' | 'flush' | 'cards' | 'nested' | 'subheader';
 
@@ -25,12 +26,7 @@ export interface AccordionProps {
   className?: string;
 }
 
-const Chevron = ({ open }: { open: boolean }) => (
-  <svg viewBox="0 0 24 24" className={cn('size-5 shrink-0 transition-transform', open && 'rotate-180')} fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
-    <path d="m6 9 6 6 6-6" strokeLinecap="round" strokeLinejoin="round" />
-  </svg>
-);
-
+const Chevron = ({ open }: { open: boolean }) => <AngleDownIcon className={cn('size-5 shrink-0 transition-transform', open && 'rotate-180')} />;
 export function Accordion({ items, variant = 'default', multiple = false, defaultValue = [], className }: AccordionProps) {
   const [open, setOpen] = useState<string[]>(defaultValue);
   const toggle = (v: string) =>

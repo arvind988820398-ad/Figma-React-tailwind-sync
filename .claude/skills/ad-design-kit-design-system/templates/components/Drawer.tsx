@@ -3,6 +3,7 @@
 // is composed from other AD Design Kit components.
 import { useEffect, useId, useRef, type ReactNode } from 'react';
 import { cn } from '../../lib/cn';
+import { CloseIcon } from '../icons';
 
 export type DrawerPlacement = 'start' | 'end' | 'bottom';
 export type DrawerSize = 'sm' | 'md';
@@ -70,9 +71,7 @@ export function Drawer({ open, onOpenChange, title, icon, children, footer, plac
             aria-label="Close"
             className="inline-flex size-9 shrink-0 items-center justify-center rounded-base text-body hover:bg-neutral-secondary-medium hover:text-heading focus-visible:shadow-focus-secondary focus-visible:outline-none"
           >
-            <svg viewBox="0 0 16 16" className="size-4" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
-              <path d="M4 4l8 8M12 4l-8 8" strokeLinecap="round" />
-            </svg>
+            <CloseIcon className="size-4" />
           </button>
         </header>
         <div className="flex flex-1 flex-col gap-4 text-base text-body">{children}</div>

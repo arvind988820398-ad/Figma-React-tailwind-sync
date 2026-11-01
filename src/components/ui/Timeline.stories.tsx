@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
-import { CheckIcon, CogIcon, InfoIcon } from '../icons';
+import { CheckIcon, CogIcon, InfoCircleIcon } from '../icons';
 import { Avatar } from './Avatar';
 import { Button } from './Button';
 import { Timeline, type TimelineItem } from './Timeline';
@@ -11,7 +11,7 @@ const events: TimelineItem[] = [
   { date: 'May 2026', title: 'React library', description: 'Every component mapped to a React template with the same variants.' },
   { date: 'October 2026', title: 'Design review skill', description: 'Code is checked against Figma automatically before merge.' },
 ];
-const icons = [<CheckIcon key="check" />, <CogIcon key="cog" />, <InfoIcon key="info" />];
+const icons = [<CheckIcon key="check" />, <CogIcon key="cog" />, <InfoCircleIcon key="info" />];
 const people = ['Ada Lovelace', 'Grace Hopper', 'Alan Turing'];
 const actions = (
   <>

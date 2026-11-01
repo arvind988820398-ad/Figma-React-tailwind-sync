@@ -2,6 +2,7 @@
 // Uses the native <dialog> element for focus trapping, Esc handling and top-layer stacking.
 import { useEffect, useId, useRef, type ReactNode } from 'react';
 import { cn } from '../../lib/cn';
+import { CloseIcon } from '../icons';
 
 export type ModalSize = 'sm' | 'md' | 'lg' | 'xl';
 // Figma widths: 384 (Sign In, Popup, OTP), 448 (Share, lists), 576 (Info).
@@ -52,9 +53,7 @@ export function Modal({ open, onOpenChange, title, children, footer, size = 'md'
             aria-label="Close"
             className="inline-flex size-9 items-center justify-center rounded-base text-body hover:bg-neutral-secondary-medium hover:text-heading focus-visible:shadow-focus-secondary focus-visible:outline-none"
           >
-            <svg viewBox="0 0 16 16" className="size-4" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
-              <path d="M4 4l8 8M12 4l-8 8" strokeLinecap="round" />
-            </svg>
+            <CloseIcon className="size-4" />
           </button>
         </header>
         <div className="flex flex-col gap-4 text-base text-body">{children}</div>

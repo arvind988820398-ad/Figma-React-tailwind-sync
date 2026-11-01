@@ -4,7 +4,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Banner, type BannerProps } from './Banner';
 import { Button } from './Button';
 import { Input } from './Input';
-import { MailIcon } from '../icons';
+import { EnvelopeIcon } from '../icons';
 
 // AD Design Kit Banner — mirrors the Figma "Banner" set (node 1146:21254).
 const meta = {
@@ -31,7 +31,7 @@ export const Default: Story = {};
 // Figma "Icon & link".
 export const WithIcon: Story = {
   args: {
-    icon: <MailIcon />,
+    icon: <EnvelopeIcon />,
     children: (
       <>
         Get 5% commission per sale. <a href="#banner">Become a partner →</a>

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { expect, fn, waitFor, within } from 'storybook/test';
 import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
-import { CheckIcon, CogIcon, InfoIcon, MailIcon, PlusIcon } from '../icons';
+import { CheckIcon, CogIcon, InfoCircleIcon, EnvelopeIcon, PlusIcon } from '../icons';
 import { Alert } from './Alert';
 import { Badge } from './Badge';
 import { Button } from './Button';
@@ -13,12 +13,12 @@ import { Sidebar, type SidebarItem } from './Sidebar';
 // AD Design Kit Sidebar — mirrors the Figma "Sidebar (Free component)" set (node 1149:82628). Figma "Contracted" = `collapsed`.
 const main: SidebarItem[] = [
   { label: 'Dashboard', href: '#', icon: <CheckIcon />, current: true },
-  { label: 'Inbox', href: '#', icon: <MailIcon />, badge: <Badge color="danger" size="sm">3</Badge> },
+  { label: 'Inbox', href: '#', icon: <EnvelopeIcon />, badge: <Badge color="danger" size="sm">3</Badge> },
   { label: 'New project', href: '#', icon: <PlusIcon /> },
 ];
 const more: SidebarItem[] = [
   { label: 'Settings', href: '#', icon: <CogIcon /> },
-  { label: 'Billing', href: '#', icon: <InfoIcon />, disabled: true },
+  { label: 'Billing', href: '#', icon: <InfoCircleIcon />, disabled: true },
 ];
 
 const TextHeader = () => <span className="text-lg font-medium leading-6 text-heading">AD Design Kit</span>;
@@ -58,7 +58,7 @@ export const DoubleSidebar: Story = {
       sections: [
         [
           { label: 'Dashboard', href: '#', icon: <CheckIcon />, current: true },
-          { label: 'Inbox', href: '#', icon: <MailIcon /> },
+          { label: 'Inbox', href: '#', icon: <EnvelopeIcon /> },
         ],
         [{ label: 'Settings', href: '#', icon: <CogIcon /> }],
       ],
@@ -111,7 +111,7 @@ const onDelete = fn();
 const history: SidebarItem[] = ['Design tokens in Tailwind', 'Dark mode for the dashboard', 'Accessible colour contrast'].map((label, i) => ({
   label,
   href: '#',
-  icon: <MailIcon />,
+  icon: <EnvelopeIcon />,
   current: i === 0,
   meta: ['2m ago', '45m ago', 'Yesterday'][i],
   actions: (

@@ -2,7 +2,7 @@
 // Navbar (compact, fluid) · Sidebar (header: New chat + History/Clear; items = past chats) · ChatBubble + Avatar ·
 // composer = Figma Textarea "Buttons inside" (auto-growing field + toolbar: attach, Brand send) · Modal + FileDropzone · Modal + Toggle.
 import { useEffect, useMemo, useRef, useState, type FormEvent } from 'react';
-import { ChatIcon, CogIcon, KebabIcon, PencilIcon, PlusIcon, SendIcon, TrashIcon } from '../../components/icons';
+import { MessageDotsIcon, CogIcon, DotsVerticalIcon, PenIcon, PlusIcon, PaperPlaneIcon, TrashBinIcon } from '../../components/icons';
 import { Avatar } from '../../components/ui/Avatar';
 import { Button } from '../../components/ui/Button';
 import { ChatBubble, ChatFile } from '../../components/ui/ChatBubble';
@@ -233,7 +233,7 @@ export function ChatApp() {
             sections={history.length ? [history.map((c) => ({
                     label: c.title,
                     href: `#chat-${c.id}`,
-                    icon: <ChatIcon />,
+                    icon: <MessageDotsIcon />,
                     current: c.id === active.id,
                     meta: <time dateTime={new Date(c.updatedAt).toISOString()}>{relativeTime(c.updatedAt, clock)}</time>,
                     actions: (
@@ -242,14 +242,14 @@ export function ChatApp() {
                         label={`Options for ${c.title}`}
                         trigger={
                           <Button color="ghost" size="xs" iconOnly aria-label={`Options for ${c.title}`}>
-                            <KebabIcon />
+                            <DotsVerticalIcon />
                           </Button>
                         }
                       >
-                        <DropdownItem icon={<PencilIcon />} onSelect={() => openRename(c)}>
+                        <DropdownItem icon={<PenIcon />} onSelect={() => openRename(c)}>
                           Rename
                         </DropdownItem>
-                        <DropdownItem color="danger" icon={<TrashIcon />} onSelect={() => setDeleting(c)}>
+                        <DropdownItem color="danger" icon={<TrashBinIcon />} onSelect={() => setDeleting(c)}>
                           Delete
                         </DropdownItem>
                       </Dropdown>
@@ -266,7 +266,7 @@ export function ChatApp() {
               {active.messages.length === 0 && (
                 <div className="flex flex-col items-center gap-2 py-16 text-center">
                   <IconShape size="lg" color="brand">
-                    <ChatIcon />
+                    <MessageDotsIcon />
                   </IconShape>
                   <h2 className="text-2xl font-bold text-heading">How can I help?</h2>
                   <p className="text-base text-body">Ask about components, tokens or patterns in the AD Design Kit.</p>
@@ -335,7 +335,7 @@ export function ChatApp() {
                     <PlusIcon />
                   </TextareaToolButton>
                   <Button type="submit" size="sm" iconOnly aria-label="Send message" disabled={!canSend}>
-                    <SendIcon />
+                    <PaperPlaneIcon />
                   </Button>
                 </>
               }

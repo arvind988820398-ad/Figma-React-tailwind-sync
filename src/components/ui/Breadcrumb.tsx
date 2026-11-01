@@ -3,6 +3,7 @@
 // "With group buttons": a back/forward ButtonGroup in `leading`. "Only buttons": variant="buttons" (Ghost xs crumbs).
 import type { HTMLAttributes, ReactNode } from 'react';
 import { cn } from '../../lib/cn';
+import { AngleRightIcon } from '../icons';
 import { buttonVariants } from './Button';
 
 export type BreadcrumbVariant = 'default' | 'background' | 'buttons';
@@ -44,9 +45,7 @@ export function Breadcrumb({ items, variant = 'default', leading, className, ...
           return (
             <li key={i} className={cn('inline-flex items-center', buttons ? 'gap-1' : 'gap-2.5')}>
               {i > 0 && (
-                <svg viewBox="0 0 24 24" className="size-4 text-body-subtle" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
-                  <path d="m9 6 6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
+                <AngleRightIcon className="size-4 text-body-subtle" />
               )}
               {current || !item.href ? (
                 <span

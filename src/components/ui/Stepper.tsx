@@ -3,6 +3,7 @@
 // Vertical=vertical (Number & text steps). Step state comes from `current`; `status` overrides with error/disabled.
 import type { ReactNode } from 'react';
 import { cn } from '../../lib/cn';
+import { CheckIcon, CloseIcon } from '../icons';
 import { IconShape } from './IconShape';
 
 export type StepperVariant = 'default' | 'dots' | 'icons' | 'only-icons' | 'cards' | 'vertical';
@@ -25,16 +26,9 @@ export interface StepperProps {
   className?: string;
 }
 
-const Check = () => (
-  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden>
-    <path d="m3.5 8.5 3 3 6-7" strokeLinecap="round" strokeLinejoin="round" />
-  </svg>
-);
-const Alert = () => (
-  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden>
-    <path d="M8 4v5M8 12h.01" strokeLinecap="round" />
-  </svg>
-);
+const Check = () => <CheckIcon />;
+// Figma Stepper "Error" uses the close icon.
+const Alert = () => <CloseIcon />;
 
 const textColor: Record<StepStatus, string> = {
   initial: 'text-body',

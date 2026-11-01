@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
 import { useState, type ComponentProps } from 'react';
 import { ChoiceCard, ChoiceGroup } from './ChoiceCard';
-import { InfoIcon, MailIcon } from '../icons';
+import { InfoCircleIcon, EnvelopeIcon } from '../icons';
 
 // AD Design Kit Choice cards — mirrors the Figma "Checkbox/Radio form" set (node 1149:54726), groups 1149:55022.
 const meta = {
@@ -56,7 +56,7 @@ function PlanGroup(args: ComponentProps<typeof ChoiceCard>) {
 
 export const Default: Story = { args: { defaultChecked: true } };
 export const WithIconAndTrailing: Story = {
-  args: { type: 'checkbox', icon: <MailIcon />, title: 'Email', description: 'Weekly summary', trailing: 'Free', defaultChecked: true },
+  args: { type: 'checkbox', icon: <EnvelopeIcon />, title: 'Email', description: 'Weekly summary', trailing: 'Free', defaultChecked: true },
 };
 export const Bordered: Story = { args: { variant: 'bordered', title: 'Standard shipping', description: '4–6 business days', defaultChecked: true } };
 export const Chip: Story = { args: { variant: 'chip', type: 'checkbox', title: 'React', defaultChecked: true } };
@@ -70,8 +70,8 @@ export const AllVariants: Story = {
   render: (args) => (
     <div className="flex flex-col gap-6">
       <ChoiceGroup label='variant="card"'>
-        <ChoiceCard {...args} variant="card" type="checkbox" icon={<MailIcon />} title="Email" description="Weekly summary" defaultChecked />
-        <ChoiceCard {...args} variant="card" type="checkbox" icon={<InfoIcon />} title="Product updates" description="New features and releases" />
+        <ChoiceCard {...args} variant="card" type="checkbox" icon={<EnvelopeIcon />} title="Email" description="Weekly summary" defaultChecked />
+        <ChoiceCard {...args} variant="card" type="checkbox" icon={<InfoCircleIcon />} title="Product updates" description="New features and releases" />
       </ChoiceGroup>
       <ChoiceGroup label='variant="bordered"'>
         <ChoiceCard {...args} variant="bordered" name="ship" title="Standard shipping" description="4–6 business days" defaultChecked />

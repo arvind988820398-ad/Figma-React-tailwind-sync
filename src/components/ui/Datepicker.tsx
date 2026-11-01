@@ -3,6 +3,7 @@
 // (two months). <Calendar> is the menu on its own; <Datepicker> adds the Input trigger and the popup.
 import { useEffect, useId, useLayoutEffect, useMemo, useRef, useState, type KeyboardEvent } from 'react';
 import { cn } from '../../lib/cn';
+import { AngleLeftIcon, AngleRightIcon, CalendarMonthIcon } from '../icons';
 import { Button } from './Button';
 import { inputVariants, type FieldSize } from './Input';
 
@@ -26,11 +27,7 @@ function monthGrid(month: Date, weekStart: number) {
   return Array.from({ length: 42 }, (_, i) => addDays(first, i - offset));
 }
 
-const Chevron = ({ dir }: { dir: 'left' | 'right' }) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
-    <path d={dir === 'left' ? 'm15 6-6 6 6 6' : 'm9 6 6 6-6 6'} strokeLinecap="round" strokeLinejoin="round" />
-  </svg>
-);
+const Chevron = ({ dir }: { dir: 'left' | 'right' }) => (dir === 'left' ? <AngleLeftIcon /> : <AngleRightIcon />);
 
 const navButton =
   'inline-flex size-8 items-center justify-center rounded-base text-heading hover:bg-neutral-tertiary-medium focus-visible:shadow-focus-secondary focus-visible:outline-none [&_svg]:size-4';
@@ -185,13 +182,6 @@ export function Calendar(props: CalendarProps) {
   );
 }
 
-const CalendarIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
-    <rect x="3" y="5" width="18" height="16" rx="2" />
-    <path d="M3 10h18M8 3v4M16 3v4" strokeLinecap="round" />
-  </svg>
-);
-
 export type DatepickerProps = CalendarBaseProps & {
   size?: FieldSize;
   placeholder?: string;
@@ -234,7 +224,7 @@ export function Datepicker(props: DatepickerProps) {
   return (
     <div ref={rootRef} className={cn('relative', className)}>
       <span className={cn('pointer-events-none absolute inset-y-0 start-0 flex items-center text-body-subtle [&_svg]:size-4', iconPos)}>
-        <CalendarIcon />
+        <CalendarMonthIcon />
       </span>
       <input
         id={id ?? autoId}

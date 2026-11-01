@@ -5,6 +5,7 @@
 // `centered` = Figma Type "Centered logo": from md, links left · logo centre · actions right (gap-6 between links).
 import { useId, useState, type AnchorHTMLAttributes, type ReactNode } from 'react';
 import { cn } from '../../lib/cn';
+import { BarsIcon, CloseIcon } from '../icons';
 
 export interface NavLinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   current?: boolean;
@@ -94,9 +95,7 @@ export function Navbar({ logo, size = 'base', fluid = false, links = [], actions
             onClick={() => setMenuOpen((o) => !o)}
             className="inline-flex size-9 items-center justify-center rounded-base text-heading hover:bg-neutral-secondary-medium focus-visible:shadow-focus-secondary focus-visible:outline-none md:hidden"
           >
-            <svg viewBox="0 0 24 24" className="size-5" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
-              <path strokeLinecap="round" d={menuOpen ? 'M6 6l12 12M18 6 6 18' : 'M4 7h16M4 12h16M4 17h16'} />
-            </svg>
+            {menuOpen ? <CloseIcon className="size-5" /> : <BarsIcon className="size-5" />}
           </button>
         </div>
       </div>

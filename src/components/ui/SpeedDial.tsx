@@ -3,6 +3,7 @@
 // inside the item) · Article dropdown menu=dropdown. Figma Position → direction.
 import { useEffect, useId, useRef, useState, type KeyboardEvent as ReactKeyboardEvent, type ReactNode } from 'react';
 import { cn } from '../../lib/cn';
+import { PlusIcon } from '../icons';
 import { buttonVariants } from './Button';
 import { Tooltip } from './Tooltip';
 
@@ -133,9 +134,7 @@ export function SpeedDial({ actions, variant = 'default', direction = 'top', fix
         onClick={() => setOpen((o) => !o)}
         className={cn(buttonVariants({ size: 'xl', iconOnly: true }), variant === 'rounded' && 'rounded-full')}
       >
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={cn('transition-transform', open && 'rotate-45')} aria-hidden>
-          <path strokeLinecap="round" d="M12 5v14M5 12h14" />
-        </svg>
+        <PlusIcon className={cn('transition-transform', open && 'rotate-45')} />
       </button>
     </div>
   );

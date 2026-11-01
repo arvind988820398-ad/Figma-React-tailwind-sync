@@ -70,7 +70,17 @@ Figma MCP connected (`whoami` works). Before any `use_figma` call: `create_sessi
 - **Audit fixes.** Items in `figma-audit.md` are fixed by designers in Figma; you may offer to apply clear-cut variable re-binds (e.g. Badge Success text → `text-fg-success-strong`) only when the user explicitly asks, then re-run section A and remove the fixed rows.
 - Never change token **values** in Figma from code; values are design decisions.
 
-## D. Storybook docs
+## D. Icon sync (Figma → code)
+
+Every icon on the Figma Icons page is a React component in `src/components/icons/figma.tsx`, generated from the committed snapshot `ad-design-kit-design-system/icons/figma-icons.json`.
+
+1. **Layout.** Run a read-only `use_figma` call that returns, for every top-level frame on the Icons page, its id, name and each icon component's `[name, x, y, w, h]` relative to the frame; save it as `<tmp>/icons/layout.json`.
+2. **Export.** `download_assets` each frame with `defaultFormat: "svg"` and save the export to `<tmp>/icons/<frame-id with : → ->.svg` (one call per frame keeps the SVG out of the conversation).
+3. **Split.** `node ad-design-kit-figma-sync/scripts/split-figma-icons.mjs <tmp>/icons` writes the snapshot: one entry per icon with its frame position as the viewBox, dark fills as `currentColor`, clip paths kept, repeated names suffixed `-alt`.
+4. **Build.** `npm run icons:build` generates `figma.tsx` and `catalog.ts` for the app and the templates; `npm run check` fails when they are stale. Storybook → Foundations → Icons shows every icon.
+5. Components import icons by Figma name; when Figma swaps an icon inside a component, change the import, never draw an inline `<svg>`.
+
+## E. Storybook docs
 
 The Storybook under `.storybook/` is generated from the bridge files above: `scripts/build-docs.mjs` turns `components.json`, `references/components/*.md`, `references/tokens.md`, `figma-audit.md` and `token-manifest.json` into `generated/ad-design-kit-docs.ts`, which the docs page template and the guide pages render. Nothing in Storybook is hand-written per component, so the only way to change what it says is to change those sources and rebuild. Whenever a sync touches them, finish with `npm run docs:build` (or `npm run docs:check` to verify).
 

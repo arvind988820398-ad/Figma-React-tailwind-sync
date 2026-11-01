@@ -3,7 +3,7 @@ import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
 import { Alert, type AlertColor } from './Alert';
 import { Badge } from './Badge';
 import { Button } from './Button';
-import { InfoIcon } from '../icons';
+import { InfoCircleIcon } from '../icons';
 
 // AD Design Kit Alert — mirrors the Figma "Alert" set (node 1146:15151).
 const colors = ['neutral', 'info', 'success', 'warning', 'danger'] as const satisfies readonly AlertColor[];
@@ -23,16 +23,16 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
-export const WithIcon: Story = { args: { color: 'info', icon: <InfoIcon /> } };
-export const Dismissible: Story = { args: { color: 'success', icon: <InfoIcon />, onDismiss: () => {} } };
-export const BorderTop: Story = { args: { variant: 'border-top', color: 'warning', icon: <InfoIcon /> } }; // ad-design-kit-lint-ignore: Alert prop value, not a class
+export const WithIcon: Story = { args: { color: 'info', icon: <InfoCircleIcon /> } };
+export const Dismissible: Story = { args: { color: 'success', icon: <InfoCircleIcon />, onDismiss: () => {} } };
+export const BorderTop: Story = { args: { variant: 'border-top', color: 'warning', icon: <InfoCircleIcon /> } }; // ad-design-kit-lint-ignore: Alert prop value, not a class
 
 // Figma "Complex": title + body + action buttons + dismiss.
 export const Complex: Story = {
   args: {
     variant: 'complex',
     color: 'danger',
-    icon: <InfoIcon />,
+    icon: <InfoCircleIcon />,
     title: 'Danger alert',
     onDismiss: () => {},
     actions: (
@@ -64,7 +64,7 @@ export const AllColors: Story = {
   render: (args) => (
     <div className="flex flex-col gap-3">
       {colors.map((color) => (
-        <Alert key={color} {...args} color={color} icon={<InfoIcon />}>
+        <Alert key={color} {...args} color={color} icon={<InfoCircleIcon />}>
           <span className="font-medium">{color}</span> — a short message for the user.
         </Alert>
       ))}

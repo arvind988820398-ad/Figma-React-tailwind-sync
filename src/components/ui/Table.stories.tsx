@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
-import { InfoIcon, PlusIcon } from '../icons';
+import { InfoCircleIcon, PlusIcon } from '../icons';
 import { Badge } from './Badge';
 import { Button } from './Button';
 import { Input } from './Input';
@@ -56,7 +56,7 @@ const content = (
 
 const toolbar = (
   <>
-    <Input size="sm" className="w-64" aria-label="Search products" placeholder="Search products" leftIcon={<InfoIcon />} />
+    <Input size="sm" className="w-64" aria-label="Search products" placeholder="Search products" leftIcon={<InfoCircleIcon />} />
     <div className="flex gap-3">
       <Button size="sm" color="secondary">
         Filters

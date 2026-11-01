@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
-import { CheckIcon, CogIcon, MailIcon, PlusIcon } from '../icons';
+import { CheckIcon, CogIcon, EnvelopeIcon, PlusIcon } from '../icons';
 import { Avatar } from './Avatar';
 import { Badge } from './Badge';
 import { Button } from './Button';
@@ -98,7 +98,7 @@ export const DividerWithIconShapes: Story = {
       <ListItem
         media={
           <IconShape size="sm" color="danger">
-            <MailIcon />
+            <EnvelopeIcon />
           </IconShape>
         }
         description="Yesterday"
@@ -148,7 +148,7 @@ export const Cta: Story = {
         href="#list"
         media={
           <IconShape size="sm" color="brand">
-            <MailIcon />
+            <EnvelopeIcon />
           </IconShape>
         }
         description="Email and push"

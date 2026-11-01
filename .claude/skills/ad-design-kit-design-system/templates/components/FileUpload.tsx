@@ -3,6 +3,7 @@
 // "With CTAs" × Initial/Hover/Disabled/Success/Danger. The real <input type="file"> stays in the accessibility tree.
 import { useId, useState, type DragEvent, type ReactNode } from 'react';
 import { cn } from '../../lib/cn';
+import { UploadIcon } from '../icons';
 import { buttonVariants } from './Button';
 import type { FieldStatus } from './Input';
 
@@ -68,12 +69,6 @@ export interface FileDropzoneProps {
   actions?: ReactNode;
   className?: string;
 }
-
-const UploadIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
-    <path d="M12 16V4m0 0-4 4m4-4 4 4M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" strokeLinecap="round" strokeLinejoin="round" />
-  </svg>
-);
 
 const statusShell: Record<'default' | FieldStatus, string> = {
   default: 'border-default-medium bg-neutral-secondary-medium',

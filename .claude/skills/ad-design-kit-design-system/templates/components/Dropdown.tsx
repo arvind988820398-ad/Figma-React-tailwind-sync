@@ -15,6 +15,7 @@ import {
   type ReactNode,
 } from 'react';
 import { cn } from '../../lib/cn';
+import { CheckIcon } from '../icons';
 
 const CloseContext = createContext<() => void>(() => {});
 
@@ -165,9 +166,7 @@ export function DropdownCheckboxItem({ checked, onCheckedChange, className, chil
         )}
       >
         {checked && (
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.5" className="size-3">
-            <path d="m3.5 8.5 3 3 6-7" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
+          <CheckIcon className="size-3" />
         )}
       </span>
       {children}

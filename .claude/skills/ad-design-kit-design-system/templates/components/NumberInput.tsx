@@ -3,6 +3,7 @@
 // With spaced buttons=spaced · Ghost input=ghost (borderless sm field with 32px buttons).
 import { useId, useState } from 'react';
 import { cn } from '../../lib/cn';
+import { MinusIcon, PlusIcon } from '../icons';
 import { buttonVariants } from './Button';
 import { inputVariants, type FieldSize } from './Input';
 
@@ -22,17 +23,6 @@ export interface NumberInputProps {
   id?: string;
   className?: string;
 }
-
-const Minus = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
-    <path strokeLinecap="round" d="M5 12h14" />
-  </svg>
-);
-const Plus = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
-    <path strokeLinecap="round" d="M12 5v14M5 12h14" />
-  </svg>
-);
 
 export function NumberInput({ value, onChange, min = -Infinity, max = Infinity, step = 1, variant = 'buttons', size = 'base', disabled, id, className, ...aria }: NumberInputProps) {
   const autoId = useId();
@@ -89,7 +79,7 @@ export function NumberInput({ value, onChange, min = -Infinity, max = Infinity, 
         extra,
       )}
     >
-      {dir < 0 ? <Minus /> : <Plus />}
+      {dir < 0 ? <MinusIcon /> : <PlusIcon />}
     </button>
   );
 

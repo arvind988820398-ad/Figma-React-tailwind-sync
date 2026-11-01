@@ -3,6 +3,7 @@
 // Backspace in an empty field removes the last one.
 import { useId, useState, type KeyboardEvent, type ReactNode } from 'react';
 import { cn } from '../../lib/cn';
+import { CloseIcon } from '../icons';
 import { Badge } from './Badge';
 import type { FieldSize, FieldStatus } from './Input';
 
@@ -71,9 +72,7 @@ export function TagInput({ value, onChange, size = 'base', status, disabled, pla
           rightIcon={
             !disabled && (
               <button type="button" aria-label={`Remove ${tag}`} onClick={() => onChange(value.filter((t) => t !== tag))} className="inline-flex rounded-xs text-body-subtle hover:text-heading focus-visible:shadow-focus-brand focus-visible:outline-none">
-                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
-                  <path d="M4 4l8 8M12 4l-8 8" strokeLinecap="round" />
-                </svg>
+                <CloseIcon />
               </button>
             )
           }

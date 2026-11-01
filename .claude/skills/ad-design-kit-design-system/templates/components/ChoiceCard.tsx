@@ -6,6 +6,7 @@
 // Chromium does not always restyle `:has()` when React unchecks a sibling radio, but sibling selectors are reliable.
 import { forwardRef, useId, type InputHTMLAttributes, type ReactNode } from 'react';
 import { cn } from '../../lib/cn';
+import { CheckIcon } from '../icons';
 
 export type ChoiceCardVariant = 'card' | 'bordered' | 'chip' | 'circle';
 
@@ -83,15 +84,7 @@ export const ChoiceCard = forwardRef<HTMLInputElement, ChoiceCardProps>(function
         )}
       />
       {type === 'checkbox' && !compact && (
-        <svg
-          viewBox="0 0 16 16"
-          className="pointer-events-none absolute start-4 top-4.5 hidden size-4 stroke-white peer-checked:block"
-          fill="none"
-          strokeWidth="2"
-          aria-hidden
-        >
-          <path d="M4 8.5l2.5 2.5L12 5.5" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
+        <CheckIcon className="pointer-events-none absolute start-4 top-4.5 hidden size-4 text-white peer-checked:block" />
       )}
       {compact ? (
         <span className={cn(!disabled && checkedText[variant])}>{title}</span>

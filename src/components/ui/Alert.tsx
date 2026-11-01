@@ -1,6 +1,7 @@
 // AD Design Kit Alert — Figma set "Alert" (node 1146:15151, page 3284:18927).
 import type { HTMLAttributes, ReactNode } from 'react';
 import { cn } from '../../lib/cn';
+import { CloseIcon } from '../icons';
 
 export type AlertColor = 'neutral' | 'info' | 'success' | 'warning' | 'danger';
 export type AlertVariant = 'default' | 'complex' | 'pill' | 'border-top';
@@ -45,9 +46,7 @@ export function Alert({ color = 'neutral', variant = 'default', icon, title, act
           aria-label="Dismiss"
           className="-m-1.5 inline-flex size-8 shrink-0 items-center justify-center rounded-base hover:bg-neutral-tertiary-medium focus-visible:shadow-focus-secondary focus-visible:outline-none"
         >
-          <svg viewBox="0 0 16 16" className="size-4" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
-            <path d="M4 4l8 8M12 4l-8 8" strokeLinecap="round" />
-          </svg>
+          <CloseIcon className="size-4" />
         </button>
       )}
     </div>

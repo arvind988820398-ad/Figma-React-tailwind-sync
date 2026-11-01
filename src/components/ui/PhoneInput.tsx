@@ -2,6 +2,7 @@
 // Country selector = Secondary base Button (flag + dial code + chevron) joined to the Input field; it opens a Dropdown.
 import { useId } from 'react';
 import { cn } from '../../lib/cn';
+import { AngleDownIcon } from '../icons';
 import { Button } from './Button';
 import { Dropdown, DropdownItem } from './Dropdown';
 import { inputVariants, type FieldStatus } from './Input';
@@ -62,9 +63,7 @@ export function PhoneInput({
             aria-label={`Country code ${current.name} ${current.dial}`}
             className="shrink-0 rounded-e-none shadow-none"
             rightIcon={
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
-                <path d="m6 9 6 6 6-6" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
+              <AngleDownIcon />
             }
           >
             <span aria-hidden>{current.flag}</span>

@@ -4,6 +4,7 @@
 // ChatLinkPreview below); Calendar is a composition. "Clean" = no fill.
 import type { HTMLAttributes, ReactNode } from 'react';
 import { cn } from '../../lib/cn';
+import { FileIcon, PlayIcon } from '../icons';
 
 export interface ChatBubbleProps extends HTMLAttributes<HTMLDivElement> {
   direction?: 'received' | 'sent';
@@ -46,13 +47,6 @@ export function ChatBubble({ direction = 'received', name, time, avatar, status,
   );
 }
 
-const FileIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
-    <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" strokeLinejoin="round" />
-    <path d="M14 3v5h5" strokeLinejoin="round" />
-  </svg>
-);
-
 /** File content: name + meta, with a download action. */
 export function ChatFile({ name, meta, action }: { name: ReactNode; meta?: ReactNode; action?: ReactNode }) {
   return (
@@ -78,7 +72,7 @@ export function ChatAudio({ duration, progress = 0.4, onPlay }: { duration: Reac
         onClick={onPlay}
         className="inline-flex size-8 shrink-0 items-center justify-center rounded-full text-heading hover:bg-neutral-tertiary-medium focus-visible:shadow-focus-secondary focus-visible:outline-none"
       >
-        <svg viewBox="0 0 24 24" className="size-4" fill="currentColor" aria-hidden><path d="M7 4v16l13-8z" /></svg>
+        <PlayIcon className="size-4" />
       </button>
       <span className="flex h-6 flex-1 items-center gap-0.5" aria-hidden>
         {bars.map((h, i) => (

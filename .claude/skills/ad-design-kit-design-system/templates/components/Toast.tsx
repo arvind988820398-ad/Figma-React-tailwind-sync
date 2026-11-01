@@ -3,6 +3,7 @@
 // With illustration / Avatar & button = title + actions (+ children); With header = header; Warning / Error = color.
 import { useEffect, useRef, type HTMLAttributes, type ReactNode } from 'react';
 import { cn } from '../../lib/cn';
+import { CloseIcon } from '../icons';
 
 export type ToastColor = 'neutral' | 'warning' | 'danger';
 
@@ -48,9 +49,7 @@ export function Toast({ color = 'neutral', icon, title, header, actions, onDismi
       aria-label="Close"
       className="-m-1.5 inline-flex size-8 shrink-0 items-center justify-center rounded-base text-heading hover:bg-neutral-tertiary-medium focus-visible:shadow-focus-secondary focus-visible:outline-none"
     >
-      <svg viewBox="0 0 16 16" className="size-4" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
-        <path d="M4 4l8 8M12 4l-8 8" strokeLinecap="round" />
-      </svg>
+      <CloseIcon className="size-4" />
     </button>
   );
 

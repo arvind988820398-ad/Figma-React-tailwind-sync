@@ -4,28 +4,23 @@
 // Figma Type: Default = no footer · Buttons inside = `footer` · Buttons outside = put Buttons after the component.
 import { useEffect, useId, useRef, useState, type ReactNode } from 'react';
 import { cn } from '../../lib/cn';
+import { LetterBoldIcon, LetterItalicIcon, LetterUnderlineIcon, ListIcon, OrderedListIcon, QuoteIcon, TextSlashIcon } from '../icons';
 
 type Command = { cmd: string; label: string; icon: ReactNode; arg?: string };
 
-const I = (d: string) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-    <path d={d} />
-  </svg>
-);
-
 const groups: Command[][] = [
   [
-    { cmd: 'bold', label: 'Bold', icon: I('M7 5h6a3.5 3.5 0 0 1 0 7H7zm0 7h7a3.5 3.5 0 0 1 0 7H7z') },
-    { cmd: 'italic', label: 'Italic', icon: I('M10 5h8M6 19h8M14 5l-4 14') },
-    { cmd: 'underline', label: 'Underline', icon: I('M7 4v7a5 5 0 0 0 10 0V4M5 20h14') },
+    { cmd: 'bold', label: 'Bold', icon: <LetterBoldIcon /> },
+    { cmd: 'italic', label: 'Italic', icon: <LetterItalicIcon /> },
+    { cmd: 'underline', label: 'Underline', icon: <LetterUnderlineIcon /> },
   ],
   [
-    { cmd: 'insertUnorderedList', label: 'Bulleted list', icon: I('M9 6h11M9 12h11M9 18h11M4.5 6h.01M4.5 12h.01M4.5 18h.01') },
-    { cmd: 'insertOrderedList', label: 'Numbered list', icon: I('M10 6h10M10 12h10M10 18h10M4 5h1v4M4 9h2M4 15h2l-2 3h2') },
+    { cmd: 'insertUnorderedList', label: 'Bulleted list', icon: <ListIcon /> },
+    { cmd: 'insertOrderedList', label: 'Numbered list', icon: <OrderedListIcon /> },
   ],
   [
-    { cmd: 'formatBlock', arg: 'blockquote', label: 'Quote', icon: I('M7 7h4v6H5V11a4 4 0 0 1 2-4m8 0h4v6h-6V11a4 4 0 0 1 2-4') },
-    { cmd: 'removeFormat', label: 'Clear formatting', icon: I('M6 4h12M10 4 8 20M14 4l-1 6M4 20l16-16') },
+    { cmd: 'formatBlock', arg: 'blockquote', label: 'Quote', icon: <QuoteIcon /> },
+    { cmd: 'removeFormat', label: 'Clear formatting', icon: <TextSlashIcon /> },
   ],
 ];
 

@@ -3,6 +3,7 @@
 // With cards / Cards & bottom controls = cards (scrolling row, controls under it). No auto-advance by design.
 import { Children, useId, useRef, useState, type ReactNode } from 'react';
 import { cn } from '../../lib/cn';
+import { AngleLeftIcon, AngleRightIcon } from '../icons';
 import { buttonVariants } from './Button';
 
 export interface CarouselProps {
@@ -17,11 +18,7 @@ export interface CarouselProps {
   className?: string;
 }
 
-const Chevron = ({ dir }: { dir: 'left' | 'right' }) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
-    <path d={dir === 'left' ? 'm15 6-6 6 6 6' : 'm9 6 6 6-6 6'} strokeLinecap="round" strokeLinejoin="round" />
-  </svg>
-);
+const Chevron = ({ dir }: { dir: 'left' | 'right' }) => (dir === 'left' ? <AngleLeftIcon /> : <AngleRightIcon />);
 
 const overlayControl =
   'inline-flex size-11 items-center justify-center rounded-full bg-overlay-light text-white transition-colors hover:bg-overlay-dark ' +

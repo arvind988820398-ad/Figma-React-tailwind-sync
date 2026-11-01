@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
 import { useState } from 'react';
-import { CogIcon, MailIcon, PlusIcon } from '../icons';
+import { CogIcon, EnvelopeIcon, PlusIcon } from '../icons';
 import { ButtonGroup, ButtonGroupItem, type ButtonGroupProps, type ButtonGroupSize } from './ButtonGroup';
 
 // AD Design Kit Button group — mirrors the Figma "Group button" set (node 1149:31694). Gray = Secondary, White = Tertiary.
@@ -56,7 +56,7 @@ export const IconOnly: Story = {
     label: 'Quick actions',
     children: (
       <>
-        <ButtonGroupItem iconOnly aria-label="Message"><MailIcon /></ButtonGroupItem>
+        <ButtonGroupItem iconOnly aria-label="Message"><EnvelopeIcon /></ButtonGroupItem>
         <ButtonGroupItem iconOnly aria-label="Settings"><CogIcon /></ButtonGroupItem>
         <ButtonGroupItem iconOnly aria-label="Add"><PlusIcon /></ButtonGroupItem>
       </>

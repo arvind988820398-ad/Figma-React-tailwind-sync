@@ -5,6 +5,8 @@
 //
 // Exit code 1 when any error is found (or warnings exceed --max-warnings).
 // Suppress a finding on one line with a trailing comment containing `ad-design-kit-lint-ignore`.
+// Skip a whole generated file (e.g. the icon components, whose icon names look like classes) with
+// `ad-design-kit-lint-ignore-file` in its first lines.
 
 import fs from 'node:fs';
 import os from 'node:os';
@@ -213,6 +215,7 @@ const CLASSY = /^(?:[a-z0-9@&_[\]().\-*>~+'"=#%,/!]+:)*!?-?(bg|text|border|ring|
 
 for (const file of files) {
   const src = fs.readFileSync(file, 'utf8');
+  if (/ad-design-kit-lint-ignore-file/.test(src.slice(0, 600))) continue;
   const lines = src.split('\n');
   const lineOf = (idx) => { let l = 0, c = idx; for (; l < lines.length && c > lines[l].length; l++) c -= lines[l].length + 1; return [l + 1, c + 1]; };
   const ignored = (ln) => /ad-design-kit-lint-ignore/.test(lines[ln - 1] || '');

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
 import { expect, within } from 'storybook/test';
-import { CogIcon, InfoIcon, MailIcon } from '../icons';
+import { CogIcon, InfoCircleIcon, EnvelopeIcon } from '../icons';
 import { Avatar } from './Avatar';
 import { Button } from './Button';
 import { IconShape } from './IconShape';
@@ -64,7 +64,7 @@ export const WithSearch: Story = {
   args: {
     links: [{ label: 'Docs', href: '#', current: true }, { label: 'Components', href: '#' }, { label: 'Blog', href: '#' }],
     actions: undefined,
-    search: <Input size="sm" className="w-56" aria-label="Search" placeholder="Search" leftIcon={<InfoIcon />} />,
+    search: <Input size="sm" className="w-56" aria-label="Search" placeholder="Search" leftIcon={<InfoCircleIcon />} />,
   },
 };
 
@@ -73,7 +73,7 @@ export const WithIconActions: Story = {
     links: [{ label: 'Dashboard', href: '#', current: true }, { label: 'Team', href: '#' }, { label: 'Projects', href: '#' }],
     actions: (
       <>
-        <Button color="ghost" size="sm" iconOnly aria-label="Notifications"><MailIcon /></Button>
+        <Button color="ghost" size="sm" iconOnly aria-label="Notifications"><EnvelopeIcon /></Button>
         <Button color="ghost" size="sm" iconOnly aria-label="Settings"><CogIcon /></Button>
         <Avatar name="Ada Lovelace" size="base" />
       </>
@@ -102,7 +102,7 @@ export const NavLinkStates: Story = {
       <NavLink href="#">Default</NavLink>
       <NavLink href="#" current>Current</NavLink>
       <NavLink href="#" disabled>Disabled</NavLink>
-      <NavLink href="#" icon={<MailIcon />}>With icon</NavLink>
+      <NavLink href="#" icon={<EnvelopeIcon />}>With icon</NavLink>
     </div>
   ),
 };
@@ -129,7 +129,7 @@ export const Fluid: Story = { args: { ...Compact.args, fluid: true }, parameters
 // Interaction (mobile): the menu button opens and closes the menu with links, search and actions.
 export const MobileMenu: Story = {
   globals: { viewport: { value: 'mobile1', isRotated: false } },
-  args: { search: <Input size="sm" aria-label="Search site" placeholder="Search" leftIcon={<InfoIcon />} /> },
+  args: { search: <Input size="sm" aria-label="Search site" placeholder="Search" leftIcon={<InfoCircleIcon />} /> },
   play: async ({ canvas, userEvent }) => {
     const toggle = canvas.getByRole('button', { name: 'Open menu' });
     await expect(toggle).toBeVisible();

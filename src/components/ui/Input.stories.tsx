@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
 import { Button } from './Button';
 import { HelperText, Input, Label } from './Input';
-import { InfoIcon, MailIcon } from '../icons';
+import { InfoCircleIcon, EnvelopeIcon } from '../icons';
 
 // AD Design Kit Input field — mirrors the Figma "Input field" set (node 1149:46826), Label (1149:94727) and Helper (1149:94741).
 const meta = {
@@ -43,8 +43,8 @@ export const Statuses: Story = {
 export const WithIcons: Story = {
   render: (args) => (
     <div className="flex flex-col gap-4">
-      <Input {...args} leftIcon={<MailIcon />} placeholder="Email" />
-      <Input {...args} rightIcon={<InfoIcon />} placeholder="Search" aria-label="Search" />
+      <Input {...args} leftIcon={<EnvelopeIcon />} placeholder="Email" />
+      <Input {...args} rightIcon={<InfoCircleIcon />} placeholder="Search" aria-label="Search" />
     </div>
   ),
 };
@@ -83,7 +83,7 @@ export const AllSizes: Story = {
 
 // Figma "Input field" types beyond Default: each is a slot on the same component.
 export const AddOnText: Story = { args: { addonText: 'https://', placeholder: 'ad-design-kit.dev' } };
-export const AddOnIcon: Story = { args: { addonIcon: <MailIcon />, placeholder: 'name@company.com', type: 'email' } };
+export const AddOnIcon: Story = { args: { addonIcon: <EnvelopeIcon />, placeholder: 'name@company.com', type: 'email' } };
 export const InnerButton: Story = {
   args: {
     placeholder: 'Search the docs',

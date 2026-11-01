@@ -11,6 +11,7 @@ A design system whose Figma file and React + Tailwind CSS v4 code stay in sync. 
 - **56 React components** covering all 58 Figma component sets, each with stories, interaction tests and accessibility checks.
 - **Tokens generated from Figma:** colors, radius, typography and shadows for 2 themes (Modern, Enterprise) × light and dark.
 - **Living docs in Storybook,** generated from the same registry and usage docs the Figma sync maintains: Figma property → React prop maps, recipes, when to use each variant, and a Figma embed.
+- **447 icons from Figma** as React components (`AngleDownIcon`, `CloseIcon`, …), used by every component and shown in Storybook → Foundations → Icons.
 - **A demo app:** the chat screen in `src/features/chat`, composed only from library components.
 
 ## Getting started
@@ -38,6 +39,7 @@ npm run storybook    # docs at http://localhost:6006
 | `npm run storybook` | Regenerate the docs data, then start Storybook |
 | `npm run build-storybook` | Static Storybook in `storybook-static/` |
 | `npm run storybook:deploy` | Build and publish Storybook to Netlify |
+| `npm run icons:build` | Regenerate the icon components from the Figma icon snapshot (`-- --check` to verify) |
 | `npm run tokens:build` | Rebuild the token CSS from the Figma snapshot, copy it into `src/styles/`, regenerate the docs |
 | `npm run docs:build` / `docs:check` | Regenerate / verify `.storybook/generated/ad-design-kit-docs.ts` |
 | `npm run figma:descriptions` | Regenerate the Figma component descriptions from the code docs (`-- --check` to verify) |
@@ -48,7 +50,7 @@ npm run storybook    # docs at http://localhost:6006
 ```
 ├── src/
 │   ├── components/ui/      # the 56 components + their *.stories.tsx
-│   ├── components/icons.tsx
+│   ├── components/icons/   # all 447 Figma icons (generated) + createIcon
 │   ├── features/chat/      # demo app built only from library components
 │   ├── lib/                # cn() class merger, theme switcher
 │   └── styles/             # app.css (Tailwind entry) + ad-design-kit.css (generated tokens, never edit)

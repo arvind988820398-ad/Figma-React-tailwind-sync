@@ -6,7 +6,7 @@ import { Avatar } from './Avatar';
 import { Button } from './Button';
 import { IconShape } from './IconShape';
 import { Progress } from './Progress';
-import { CheckIcon, InfoIcon } from '../icons';
+import { CheckIcon, InfoCircleIcon } from '../icons';
 
 // AD Design Kit Toast — mirrors the Figma "Toast" set (node 1149:93975).
 const colors = ['neutral', 'warning', 'danger'] as const satisfies readonly ToastColor[];
@@ -15,7 +15,7 @@ const meta = {
   title: 'Components/Toast',
   parameters: { design: figmaDesign('Toast') },
   component: Toast,
-  args: { color: 'neutral', icon: <InfoIcon />, children: 'Item moved successfully.', onDismiss: () => {} },
+  args: { color: 'neutral', icon: <InfoCircleIcon />, children: 'Item moved successfully.', onDismiss: () => {} },
   argTypes: {
     color: { control: 'select', options: colors },
   },
@@ -35,7 +35,7 @@ export const WithIconShape: Story = {
 // Figma "Icon shape & buttons".
 export const WithActions: Story = {
   args: {
-    icon: <IconShape color="brand" size="sm"><InfoIcon /></IconShape>,
+    icon: <IconShape color="brand" size="sm"><InfoCircleIcon /></IconShape>,
     title: 'Update available',
     children: 'A new version is ready to install.',
     actions: (
@@ -70,7 +70,7 @@ export const WithHeader: Story = {
 // Figma "With progress bar".
 export const WithProgress: Story = {
   args: {
-    icon: <IconShape color="brand" size="sm"><InfoIcon /></IconShape>,
+    icon: <IconShape color="brand" size="sm"><InfoCircleIcon /></IconShape>,
     title: 'Uploading files',
     children: <Progress className="mt-2" value={60} labelPosition="side" />,
   },
@@ -126,7 +126,7 @@ function LiveToastsDemo({ duration = 5000 }: ToastProps) {
       </div>
       <ToastViewport>
         {live.map((t) => (
-          <Toast key={t.id} color={t.color} icon={<InfoIcon />} duration={duration} onDismiss={() => remove(t.id)}>
+          <Toast key={t.id} color={t.color} icon={<InfoCircleIcon />} duration={duration} onDismiss={() => remove(t.id)}>
             {messages[t.color]}
           </Toast>
         ))}

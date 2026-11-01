@@ -2,6 +2,7 @@
 // Native <select> on the Input field shell (Default/base) with a trailing chevron; same size scale and states as Input.
 import { forwardRef, type SelectHTMLAttributes } from 'react';
 import { cn } from '../../lib/cn';
+import { AngleDownIcon } from '../icons';
 import { inputVariants, type FieldSize, type FieldStatus } from './Input';
 
 // Room for the chevron: size padding + 16/20px icon + 8px gap.
@@ -26,9 +27,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(function Select
         {children}
       </select>
       <span className={cn('pointer-events-none absolute inset-y-0 end-0 flex items-center', chevronPos[size], iconColor)} aria-hidden>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-          <path d="m6 9 6 6 6-6" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
+        <AngleDownIcon />
       </span>
     </div>
   );

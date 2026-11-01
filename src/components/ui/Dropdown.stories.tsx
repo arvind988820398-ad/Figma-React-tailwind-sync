@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
 import { useState } from 'react';
 import { expect, fn, waitFor, within } from 'storybook/test';
-import { CogIcon, MailIcon, PlusIcon } from '../icons';
+import { CogIcon, EnvelopeIcon, PlusIcon } from '../icons';
 import { Avatar } from './Avatar';
 import { Badge } from './Badge';
 import { Button } from './Button';
@@ -22,7 +22,7 @@ const meta = {
     children: (
       <>
         <DropdownItem icon={<PlusIcon />}>New project</DropdownItem>
-        <DropdownItem icon={<MailIcon />}>Invite people</DropdownItem>
+        <DropdownItem icon={<EnvelopeIcon />}>Invite people</DropdownItem>
         <DropdownItem icon={<CogIcon />}>Settings</DropdownItem>
         <DropdownItem disabled>Disabled item</DropdownItem>
       </>

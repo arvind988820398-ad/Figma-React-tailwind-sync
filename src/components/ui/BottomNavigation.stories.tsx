@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
 import { useState, type ReactNode } from 'react';
 import { expect, within } from 'storybook/test';
-import { CheckIcon, CogIcon, InfoIcon, MailIcon, PlusIcon } from '../icons';
+import { CheckIcon, CogIcon, InfoCircleIcon, EnvelopeIcon, PlusIcon } from '../icons';
 import { BottomNavigation } from './BottomNavigation';
 import { Tabs } from './Tabs';
 
@@ -10,8 +10,8 @@ import { Tabs } from './Tabs';
 // Shown inline (not `fixed`) so the canvas can display it; pass `fixed` in an app.
 const items = [
   { label: 'Home', href: '#', icon: <CheckIcon />, current: true },
-  { label: 'Inbox', href: '#', icon: <MailIcon /> },
-  { label: 'Info', href: '#', icon: <InfoIcon /> },
+  { label: 'Inbox', href: '#', icon: <EnvelopeIcon /> },
+  { label: 'Info', href: '#', icon: <InfoCircleIcon /> },
   { label: 'Settings', href: '#', icon: <CogIcon /> },
 ];
 const action = { label: 'New item', icon: <PlusIcon />, onClick: () => {} };

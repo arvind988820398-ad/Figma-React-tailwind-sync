@@ -5,6 +5,7 @@
 // Dropdown & buttons (`select`); With dropdown = `pageSize`, With input = `jumpTo`, Buttons & helper text = `helper`.
 import { useId, useState, type HTMLAttributes, type ReactNode } from 'react';
 import { cn } from '../../lib/cn';
+import { AngleLeftIcon, AngleRightIcon } from '../icons';
 import { buttonVariants } from './Button';
 import { Input } from './Input';
 import { Select } from './Select';
@@ -43,11 +44,7 @@ function pageList(page: number, count: number, siblings: number): (number | 'gap
   return out;
 }
 
-const Chevron = ({ dir }: { dir: 'left' | 'right' }) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
-    <path d={dir === 'left' ? 'm15 6-6 6 6 6' : 'm9 6 6 6-6 6'} strokeLinecap="round" strokeLinejoin="round" />
-  </svg>
-);
+const Chevron = ({ dir }: { dir: 'left' | 'right' }) => (dir === 'left' ? <AngleLeftIcon /> : <AngleRightIcon />);
 
 /** "Go to [n] Page" field: jumps on Enter (and on the Go button in the `jump` variant). */
 function JumpField({ pageCount, onGo, before, after, button }: { pageCount: number; onGo: (p: number) => void; before: string; after?: string; button?: boolean }) {

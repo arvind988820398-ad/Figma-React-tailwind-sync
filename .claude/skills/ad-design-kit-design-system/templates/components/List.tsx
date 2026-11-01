@@ -2,6 +2,7 @@
 // Figma Type → variant: Default=default · Divider=divider · CTA=cta. Figma "Card" = <Card> wrapping a divider list.
 import type { HTMLAttributes, ReactNode } from 'react';
 import { cn } from '../../lib/cn';
+import { AngleRightIcon } from '../icons';
 
 export type ListVariant = 'default' | 'divider' | 'cta';
 
@@ -51,9 +52,7 @@ export function ListItem({ icon, media, children, description, trailing, href, d
       )}
       {trailing && <span className="ms-auto flex shrink-0 items-center text-base font-medium text-heading">{trailing}</span>}
       {cta && (
-        <svg viewBox="0 0 24 24" className="ms-auto size-5 shrink-0 text-body-subtle" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
-          <path d="m9 6 6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
+        <AngleRightIcon className="ms-auto size-5 shrink-0 text-body-subtle" />
       )}
     </>
   );

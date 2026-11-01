@@ -6,7 +6,7 @@ import { Autocomplete, type AutocompleteOption } from './Autocomplete';
 import { Avatar } from './Avatar';
 import { Button } from './Button';
 import { HelperText, Label } from './Input';
-import { CogIcon, InfoIcon, PlusIcon } from '../icons';
+import { CogIcon, InfoCircleIcon, PlusIcon } from '../icons';
 
 // AD Design Kit Autocomplete — mirrors the Figma "Autocomplete input (ready to use examples)" (node 1149:53126).
 const people: AutocompleteOption[] = [
@@ -14,8 +14,8 @@ const people: AutocompleteOption[] = [
   { value: 'grace', label: 'Grace Hopper', description: 'grace@ad-design-kit.dev', icon: <Avatar name="Grace Hopper" size="xs" />, group: 'People' },
   { value: 'alan', label: 'Alan Turing', description: 'alan@ad-design-kit.dev', icon: <Avatar name="Alan Turing" size="xs" />, group: 'People' },
   { value: 'design', label: 'Design system', icon: <CogIcon />, group: 'Projects' },
-  { value: 'docs', label: 'Documentation', icon: <InfoIcon />, group: 'Projects' },
-  { value: 'archived', label: 'Archived project', icon: <InfoIcon />, group: 'Projects', disabled: true },
+  { value: 'docs', label: 'Documentation', icon: <InfoCircleIcon />, group: 'Projects' },
+  { value: 'archived', label: 'Archived project', icon: <InfoCircleIcon />, group: 'Projects', disabled: true },
 ];
 
 const fruits: AutocompleteOption[] = ['Apple', 'Banana', 'Cherry', 'Grape', 'Mango', 'Orange', 'Peach', 'Pear'].map((f) => ({ value: f.toLowerCase(), label: f }));

@@ -4,7 +4,7 @@ import { expect, waitFor, within } from 'storybook/test';
 import { Popover, PopoverItem, type PopoverPlacement } from './Popover';
 import { Avatar } from './Avatar';
 import { Button } from './Button';
-import { CogIcon, MailIcon, PlusIcon } from '../icons';
+import { CogIcon, EnvelopeIcon, PlusIcon } from '../icons';
 
 // AD Design Kit Popover — mirrors the Figma "Popover" set (node 1149:81090), content 1149:81187.
 const placements = ['top', 'right', 'bottom', 'left'] as const satisfies readonly PopoverPlacement[];
@@ -71,7 +71,7 @@ export const VerticalItems: Story = {
       <>
         <PopoverItem icon={<PlusIcon />} href="#popover">New project</PopoverItem>
         <PopoverItem icon={<CogIcon />} href="#popover">Settings</PopoverItem>
-        <PopoverItem icon={<MailIcon />} href="#popover">Messages</PopoverItem>
+        <PopoverItem icon={<EnvelopeIcon />} href="#popover">Messages</PopoverItem>
       </>
     ),
   },
@@ -147,7 +147,7 @@ export const VerticalItemsOpen: Story = {
     children: (
       <>
         <PopoverItem icon={<PlusIcon />} href="#popover">New project</PopoverItem>
-        <PopoverItem icon={<MailIcon />}>3 unread messages</PopoverItem>
+        <PopoverItem icon={<EnvelopeIcon />}>3 unread messages</PopoverItem>
       </>
     ),
   },

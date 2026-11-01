@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
 import { useState } from 'react';
 import { expect, fn, waitFor, within } from 'storybook/test';
-import { InfoIcon, PlusIcon } from '../icons';
+import { InfoCircleIcon, PlusIcon } from '../icons';
 import { Button } from './Button';
 import { Drawer, type DrawerPlacement, type DrawerProps } from './Drawer';
 import { Input, Label } from './Input';
@@ -61,7 +61,7 @@ export const Bottom: Story = { args: { placement: 'bottom' } };
 
 // Figma heading with "Show heading left icon" on (Type "Default").
 export const WithHeadingIcon: Story = {
-  args: { icon: <InfoIcon />, title: 'Drawer heading' },
+  args: { icon: <InfoCircleIcon />, title: 'Drawer heading' },
   play: async ({ canvas, canvasElement, userEvent }) => {
     const body = within(canvasElement.ownerDocument.body);
     await userEvent.click(canvas.getByRole('button', { name: 'Open drawer' }));
