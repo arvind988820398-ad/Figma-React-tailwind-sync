@@ -44,6 +44,7 @@ npm run storybook    # docs at http://localhost:6006
 | `npm run docs:build` / `docs:check` | Regenerate / verify `.storybook/generated/ad-design-kit-docs.ts` |
 | `npm run figma:descriptions` | Regenerate the Figma component descriptions from the code docs (`-- --check` to verify) |
 | `npm run figma:variants` | Print the per-variant guidance for the Figma usage frames (`-- --check` to verify every component has it) |
+| `npm run design-system:build` | Rebuild the files of the published Claude design system from the code (`design-system/README.md`) |
 
 ## Repository structure
 

@@ -1,0 +1,53 @@
+<!-- @dsCard height=288 -->
+<!doctype html>
+<html lang="en" data-theme="modern">
+<head>
+<meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Serif:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  html, body { margin: 0; background: var(--adk-bg-neutral-primary); }
+  .cover { position: relative; width: 960px; height: 288px; overflow: hidden; font-family: var(--adk-font-base, var(--font-sans)); }
+  .cover svg { position: absolute; inset: 0; width: 960px; height: 288px; display: block; }
+  .tile { rx: var(--adk-rounded-base); }
+  .brand { fill: var(--adk-bg-brand); }
+  .ink { fill: var(--adk-bg-dark); }
+  .success { fill: var(--adk-bg-success); }
+  .warning { fill: var(--adk-bg-warning); }
+  .tint { fill: var(--adk-bg-brand-soft); }
+  .name { position: absolute; left: 48px; bottom: 56px; width: 440px; margin: 0; font-size: 80px; line-height: .95; font-weight: 800; letter-spacing: -0.8px; color: var(--adk-text-heading); }
+  .tagline { position: absolute; left: 48px; bottom: 20px; width: 440px; margin: 0; font-size: 13px; line-height: 16px; color: var(--adk-text-body-subtle); }
+</style>
+</head>
+<body>
+<div class="cover">
+  <!--
+    blocks: adk-bg-brand 144×144 (2×2 tiles of spacing-16), adk-bg-dark 144×64, adk-bg-success 64×144, adk-bg-warning 64×64, adk-bg-brand-soft tiles for relief
+    arrangement: a flush modular grid right of x=480, six columns on an 80px pitch (spacing-16 tile + spacing-4 gap), top row bleeding off the top edge
+    pattern: "geometric, modular, dense UI → tiles cut by the radius tokens, some merged two-wide like the components" — the kit is a component grid whose one themed value is its radius (12px Modern, 4px Enterprise), so every tile takes adk-rounded-base and shows the theme
+    scales: tile spacing-16 (64px), gap spacing-4 (16px), corners adk-rounded-base; name in the theme face at 80px/.95, tagline 13px in adk-text-body-subtle
+  -->
+  <svg viewBox="0 0 960 288" aria-hidden="true">
+    <!-- row 0, bleeding off the top -->
+    <rect class="tile tint" x="496" y="-32" width="64" height="64"/>
+    <rect class="tile brand" x="576" y="-32" width="64" height="64"/>
+    <rect class="tile tint" x="656" y="-32" width="144" height="64"/>
+    <rect class="tile ink" x="816" y="-32" width="64" height="64"/>
+    <rect class="tile tint" x="896" y="-32" width="64" height="64"/>
+    <!-- rows 1–2 -->
+    <rect class="tile brand" x="496" y="48" width="144" height="144"/>
+    <rect class="tile ink" x="656" y="48" width="144" height="64"/>
+    <rect class="tile success" x="816" y="48" width="64" height="144"/>
+    <rect class="tile tint" x="896" y="48" width="64" height="64"/>
+    <rect class="tile tint" x="656" y="128" width="144" height="64"/>
+    <rect class="tile warning" x="896" y="128" width="64" height="64"/>
+    <!-- row 3 -->
+    <rect class="tile tint" x="496" y="208" width="64" height="64"/>
+    <rect class="tile ink" x="656" y="208" width="64" height="64"/>
+    <rect class="tile tint" x="736" y="208" width="144" height="64"/>
+    <rect class="tile brand" x="896" y="208" width="64" height="64"/>
+  </svg>
+  <h1 class="name">AD Design<br>Kit</h1>
+  <p class="tagline">Figma variables and component sets, shipped as React + Tailwind with the same names.</p>
+</div>
+</body>
+</html>

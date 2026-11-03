@@ -1,0 +1,2250 @@
+{
+ "$comment": "Uploaded assets of the published design system, keyed by path under assets/. Written by the sync; a file missing here is a new upload for the next sync.",
+ "files": {
+  "Icons/Android/android-robot.svg": {
+   "blob": "753b8d76cdbe98610f376475ba2216a6",
+   "size": 1175,
+   "type": "image/svg+xml"
+  },
+  "Icons/Arrows/angle-down.svg": {
+   "blob": "8734bfe1d9adeb17b565db8992ddb85a",
+   "size": 494,
+   "type": "image/svg+xml"
+  },
+  "Icons/Arrows/angle-left.svg": {
+   "blob": "33b43de837f81e34d0328afa99df7015",
+   "size": 493,
+   "type": "image/svg+xml"
+  },
+  "Icons/Arrows/angle-right.svg": {
+   "blob": "7e5c59023912c11332c185e9549aeb20",
+   "size": 493,
+   "type": "image/svg+xml"
+  },
+  "Icons/Arrows/angle-up.svg": {
+   "blob": "39db9da014588b93f5416266b06e4961",
+   "size": 494,
+   "type": "image/svg+xml"
+  },
+  "Icons/Arrows/arrow-down-to-bracket.svg": {
+   "blob": "59366d3b898ceb9555a9d89342558d12",
+   "size": 839,
+   "type": "image/svg+xml"
+  },
+  "Icons/Arrows/arrow-down.svg": {
+   "blob": "8c108a788187174f0d801e71ed42707a",
+   "size": 583,
+   "type": "image/svg+xml"
+  },
+  "Icons/Arrows/arrow-left-to-bracket.svg": {
+   "blob": "8547fe151a9a5dd007deb43b16663efb",
+   "size": 872,
+   "type": "image/svg+xml"
+  },
+  "Icons/Arrows/arrow-left.svg": {
+   "blob": "f51df8f1ea59220e182d5a41faa82bfb",
+   "size": 559,
+   "type": "image/svg+xml"
+  },
+  "Icons/Arrows/arrow-right-alt.svg": {
+   "blob": "2c437115d8e058a89bde3ebdb8cc0444",
+   "size": 702,
+   "type": "image/svg+xml"
+  },
+  "Icons/Arrows/arrow-right-to-bracket.svg": {
+   "blob": "1e936359e006c81f6c235858f09d4abf",
+   "size": 872,
+   "type": "image/svg+xml"
+  },
+  "Icons/Arrows/arrow-right.svg": {
+   "blob": "431e4998cf8291a1e4a82feb2c19537c",
+   "size": 587,
+   "type": "image/svg+xml"
+  },
+  "Icons/Arrows/arrow-sort-letters.svg": {
+   "blob": "5aa192c991ffc585f4ee1247b886253b",
+   "size": 1304,
+   "type": "image/svg+xml"
+  },
+  "Icons/Arrows/arrow-up-down.svg": {
+   "blob": "96e6a6103bd912eb81e6070b47702d82",
+   "size": 960,
+   "type": "image/svg+xml"
+  },
+  "Icons/Arrows/arrow-up-from-bracket.svg": {
+   "blob": "81eb72733bd0b8210afd3a7d3e4cc920",
+   "size": 869,
+   "type": "image/svg+xml"
+  },
+  "Icons/Arrows/arrow-up-right-down-left.svg": {
+   "blob": "06cddd92b3bf5fe427c9ee4102754477",
+   "size": 812,
+   "type": "image/svg+xml"
+  },
+  "Icons/Arrows/arrow-up.svg": {
+   "blob": "62f8f9fcb2016b38e8392d6994b816eb",
+   "size": 573,
+   "type": "image/svg+xml"
+  },
+  "Icons/Arrows/arrows-repeat-count.svg": {
+   "blob": "b2602c0fabe1e7beb55ea78c4ddc6ef8",
+   "size": 1109,
+   "type": "image/svg+xml"
+  },
+  "Icons/Arrows/arrows-repeat.svg": {
+   "blob": "4b171c34ae2d5de75a3d5598d2cbd3b7",
+   "size": 1037,
+   "type": "image/svg+xml"
+  },
+  "Icons/Arrows/caret-down.svg": {
+   "blob": "fa6d058f1aa0c168af3302d035abf451",
+   "size": 421,
+   "type": "image/svg+xml"
+  },
+  "Icons/Arrows/caret-left.svg": {
+   "blob": "48a2bfc501d812f36ad419c22fc11ea6",
+   "size": 421,
+   "type": "image/svg+xml"
+  },
+  "Icons/Arrows/caret-right.svg": {
+   "blob": "49e0ba0e8f106e3f12d14a442fdcb776",
+   "size": 416,
+   "type": "image/svg+xml"
+  },
+  "Icons/Arrows/caret-sort.svg": {
+   "blob": "3667e87abeb146857363ff3b64785971",
+   "size": 878,
+   "type": "image/svg+xml"
+  },
+  "Icons/Arrows/caret-up.svg": {
+   "blob": "1a2b4b460a05a0bd95a2cc24fd7afad2",
+   "size": 429,
+   "type": "image/svg+xml"
+  },
+  "Icons/Arrows/chevron-double-down.svg": {
+   "blob": "59d3ed1afd0ca92eed0b50d6b5ca57c5",
+   "size": 842,
+   "type": "image/svg+xml"
+  },
+  "Icons/Arrows/chevron-double-left.svg": {
+   "blob": "44dde5a58b3352398df43b7eaf00171d",
+   "size": 872,
+   "type": "image/svg+xml"
+  },
+  "Icons/Arrows/chevron-double-right.svg": {
+   "blob": "be425c8d449688072d6d88a7630c7120",
+   "size": 842,
+   "type": "image/svg+xml"
+  },
+  "Icons/Arrows/chevron-double-up.svg": {
+   "blob": "b82595f0144624bb9b05e3d7dfac4e5b",
+   "size": 812,
+   "type": "image/svg+xml"
+  },
+  "Icons/Arrows/chevron-down.svg": {
+   "blob": "cbd410b5b18dae94151ada6bffe0ea5c",
+   "size": 494,
+   "type": "image/svg+xml"
+  },
+  "Icons/Arrows/chevron-left.svg": {
+   "blob": "5d00701bd691bec00c7cd770d1689cc6",
+   "size": 492,
+   "type": "image/svg+xml"
+  },
+  "Icons/Arrows/chevron-right.svg": {
+   "blob": "016839fa0190505e185808d5f63eb282",
+   "size": 493,
+   "type": "image/svg+xml"
+  },
+  "Icons/Arrows/chevron-sort.svg": {
+   "blob": "acbb021c6b29677394d26ca45ba20053",
+   "size": 812,
+   "type": "image/svg+xml"
+  },
+  "Icons/Arrows/chevron-up.svg": {
+   "blob": "88f54ec28ab6fde5d208aa445f0aca99",
+   "size": 492,
+   "type": "image/svg+xml"
+  },
+  "Icons/Arrows/compress.svg": {
+   "blob": "e330af8da450de24aac643ff88adb0e3",
+   "size": 865,
+   "type": "image/svg+xml"
+  },
+  "Icons/Arrows/expand.svg": {
+   "blob": "31f09201d9b93958ae57178dd037de9b",
+   "size": 1399,
+   "type": "image/svg+xml"
+  },
+  "Icons/Arrows/forward.svg": {
+   "blob": "8eb3b73d83404e056d8a3e18ff509e89",
+   "size": 1773,
+   "type": "image/svg+xml"
+  },
+  "Icons/Arrows/minimize.svg": {
+   "blob": "20627304305ff94524d255ff49384ce4",
+   "size": 1395,
+   "type": "image/svg+xml"
+  },
+  "Icons/Arrows/redo.svg": {
+   "blob": "d552897ea15d3e8faf87f883d0fb1065",
+   "size": 707,
+   "type": "image/svg+xml"
+  },
+  "Icons/Arrows/refresh.svg": {
+   "blob": "8f141a841c58af91d5310cca4084ab9e",
+   "size": 1509,
+   "type": "image/svg+xml"
+  },
+  "Icons/Arrows/reply-all.svg": {
+   "blob": "3899f6cfdc75f875f71fde0278b70260",
+   "size": 2668,
+   "type": "image/svg+xml"
+  },
+  "Icons/Arrows/reply.svg": {
+   "blob": "434ba53e0945a641a5c87b2ee2b54830",
+   "size": 2046,
+   "type": "image/svg+xml"
+  },
+  "Icons/Arrows/share-all.svg": {
+   "blob": "1f1c207406385189ea26bb3c0b1b669c",
+   "size": 2573,
+   "type": "image/svg+xml"
+  },
+  "Icons/Arrows/sort-horizontal.svg": {
+   "blob": "a3a1411f9e8c5fea7ee27059510d1cb4",
+   "size": 996,
+   "type": "image/svg+xml"
+  },
+  "Icons/Arrows/sort.svg": {
+   "blob": "2dbbc5b587bfb0bfed6b04263e469262",
+   "size": 960,
+   "type": "image/svg+xml"
+  },
+  "Icons/Arrows/undo.svg": {
+   "blob": "1b790069952dc779a8e0eab651a8f30b",
+   "size": 707,
+   "type": "image/svg+xml"
+  },
+  "Icons/Brands/ad-design-kit.svg": {
+   "blob": "9f44d9ff3bd970383a16e842818b1360",
+   "size": 419,
+   "type": "image/svg+xml"
+  },
+  "Icons/Brands/android.svg": {
+   "blob": "1c7bad03af47fa4a4889203721f14031",
+   "size": 1205,
+   "type": "image/svg+xml"
+  },
+  "Icons/Brands/apple.svg": {
+   "blob": "8999a638ec3b6d988e579c15ba932b14",
+   "size": 1157,
+   "type": "image/svg+xml"
+  },
+  "Icons/Brands/aws.svg": {
+   "blob": "4a30e0a20f676eddd344536634203ecd",
+   "size": 7339,
+   "type": "image/svg+xml"
+  },
+  "Icons/Brands/bitcoin.svg": {
+   "blob": "5e8ebf946d4cd11e0f3d2d42c242c1bc",
+   "size": 1898,
+   "type": "image/svg+xml"
+  },
+  "Icons/Brands/css.svg": {
+   "blob": "b6c9bb83e032a062555bf5e867ca3bd0",
+   "size": 434,
+   "type": "image/svg+xml"
+  },
+  "Icons/Brands/discord.svg": {
+   "blob": "2155715df9f33933f588150974f58fd4",
+   "size": 1908,
+   "type": "image/svg+xml"
+  },
+  "Icons/Brands/dribbble.svg": {
+   "blob": "b6eeafc871e2d1c49f254b4800ada1c0",
+   "size": 2017,
+   "type": "image/svg+xml"
+  },
+  "Icons/Brands/dropbox.svg": {
+   "blob": "c5afe95d98dd0e901c44efd5fb0b627c",
+   "size": 538,
+   "type": "image/svg+xml"
+  },
+  "Icons/Brands/facebook.svg": {
+   "blob": "d13d4b7f26ee52be21b1e4bcb82bf3ce",
+   "size": 482,
+   "type": "image/svg+xml"
+  },
+  "Icons/Brands/github.svg": {
+   "blob": "b63c1ef9b8e043e1d9b605653d064846",
+   "size": 1743,
+   "type": "image/svg+xml"
+  },
+  "Icons/Brands/gitlab.svg": {
+   "blob": "26cc09568626c23bc663a49874a1b7c4",
+   "size": 1046,
+   "type": "image/svg+xml"
+  },
+  "Icons/Brands/google.svg": {
+   "blob": "c0f74033546bf2cf594c65bff1f87cca",
+   "size": 925,
+   "type": "image/svg+xml"
+  },
+  "Icons/Brands/html.svg": {
+   "blob": "bdca3d997e08263c47fe2737d4774769",
+   "size": 428,
+   "type": "image/svg+xml"
+  },
+  "Icons/Brands/instagram.svg": {
+   "blob": "c99c4bec0255ba3dea0c37ab15b0d4c7",
+   "size": 977,
+   "type": "image/svg+xml"
+  },
+  "Icons/Brands/laravel.svg": {
+   "blob": "c849c50d2bf22cb974c6e40c5d363f24",
+   "size": 533,
+   "type": "image/svg+xml"
+  },
+  "Icons/Brands/linkedin.svg": {
+   "blob": "43cfa3cbe89cfe6ad00640503a510af5",
+   "size": 1067,
+   "type": "image/svg+xml"
+  },
+  "Icons/Brands/mastercard.svg": {
+   "blob": "2bd30db1b381c399a2db46b220a0103a",
+   "size": 1128,
+   "type": "image/svg+xml"
+  },
+  "Icons/Brands/mongo-db.svg": {
+   "blob": "214ee38b1a0a4dba06b8970d5c32b45b",
+   "size": 577,
+   "type": "image/svg+xml"
+  },
+  "Icons/Brands/npm.svg": {
+   "blob": "a5b9e02667871204d940c9058c217f9e",
+   "size": 279,
+   "type": "image/svg+xml"
+  },
+  "Icons/Brands/react.svg": {
+   "blob": "8527d93cb388ac0b7fe6175fdd4b1d9b",
+   "size": 4706,
+   "type": "image/svg+xml"
+  },
+  "Icons/Brands/reddit.svg": {
+   "blob": "fbda52502d46019dd6c70b5dd12f1689",
+   "size": 2037,
+   "type": "image/svg+xml"
+  },
+  "Icons/Brands/stackoverflow.svg": {
+   "blob": "d31cee6f22681ba11d76ec23c6421996",
+   "size": 689,
+   "type": "image/svg+xml"
+  },
+  "Icons/Brands/tailwind.svg": {
+   "blob": "e48a01ca6e656021442eee062122d1c8",
+   "size": 1112,
+   "type": "image/svg+xml"
+  },
+  "Icons/Brands/twitter.svg": {
+   "blob": "034e98962b9b5a6091da80e93c772dd5",
+   "size": 1577,
+   "type": "image/svg+xml"
+  },
+  "Icons/Brands/visa.svg": {
+   "blob": "952d3bd1516b201c723850d7dcd9876c",
+   "size": 1815,
+   "type": "image/svg+xml"
+  },
+  "Icons/Brands/vue.svg": {
+   "blob": "15666eeb0de6462d50b6e618b95f8029",
+   "size": 269,
+   "type": "image/svg+xml"
+  },
+  "Icons/Brands/whatsapp.svg": {
+   "blob": "7a973931c40590a1af0340b16459f9f9",
+   "size": 1987,
+   "type": "image/svg+xml"
+  },
+  "Icons/Brands/windows.svg": {
+   "blob": "f4fe520ac298486dc525bf537853dac2",
+   "size": 421,
+   "type": "image/svg+xml"
+  },
+  "Icons/Brands/x.svg": {
+   "blob": "3a8e60c5c6518930366de05f8fbd72a6",
+   "size": 409,
+   "type": "image/svg+xml"
+  },
+  "Icons/Brands/youtube.svg": {
+   "blob": "624eb926b462d6a2608591fcb7f0c3a5",
+   "size": 980,
+   "type": "image/svg+xml"
+  },
+  "Icons/E-commerce/cart-plus-alt.svg": {
+   "blob": "79de6ffd19a30075a0cfe00bfd6bf3f8",
+   "size": 1310,
+   "type": "image/svg+xml"
+  },
+  "Icons/E-commerce/cart-plus.svg": {
+   "blob": "1a34bc81a41e8aec106588b6667834de",
+   "size": 1468,
+   "type": "image/svg+xml"
+  },
+  "Icons/E-commerce/cart.svg": {
+   "blob": "f5f9bfd797e5a575f09b10c46b0cd409",
+   "size": 1063,
+   "type": "image/svg+xml"
+  },
+  "Icons/E-commerce/cash-register.svg": {
+   "blob": "1355c62a69985df4da459cafbbbcbea5",
+   "size": 1741,
+   "type": "image/svg+xml"
+  },
+  "Icons/E-commerce/cash.svg": {
+   "blob": "269fbbb61297ca2760317ea7c2fb95ad",
+   "size": 863,
+   "type": "image/svg+xml"
+  },
+  "Icons/E-commerce/credit-card-plus-alt.svg": {
+   "blob": "b6285981c5644143c241fdf331629605",
+   "size": 990,
+   "type": "image/svg+xml"
+  },
+  "Icons/E-commerce/credit-card-plus.svg": {
+   "blob": "a5a29c5af9aff0269077b0c026b28351",
+   "size": 646,
+   "type": "image/svg+xml"
+  },
+  "Icons/E-commerce/credit-card.svg": {
+   "blob": "0859f43cfee689c8b41ee033e9d5df23",
+   "size": 635,
+   "type": "image/svg+xml"
+  },
+  "Icons/E-commerce/dollar.svg": {
+   "blob": "15b3c7685e7d36de3d236bbe13e95c1a",
+   "size": 1574,
+   "type": "image/svg+xml"
+  },
+  "Icons/E-commerce/euro.svg": {
+   "blob": "9d35c1df9f9690377d57d972861cf4ab",
+   "size": 1208,
+   "type": "image/svg+xml"
+  },
+  "Icons/E-commerce/filter-dollar.svg": {
+   "blob": "5e8bed9dbafe1bbbee1ee2a3f68bdc71",
+   "size": 2592,
+   "type": "image/svg+xml"
+  },
+  "Icons/E-commerce/receipt.svg": {
+   "blob": "f74e81314ed0fd27e815a09eaaaf242f",
+   "size": 1803,
+   "type": "image/svg+xml"
+  },
+  "Icons/E-commerce/sale-percent.svg": {
+   "blob": "28d26aaf4dd95c51b8b54c46fbbc4aba",
+   "size": 4144,
+   "type": "image/svg+xml"
+  },
+  "Icons/E-commerce/scale-balanced.svg": {
+   "blob": "a594a26492140d02e548f57b7d58163d",
+   "size": 2892,
+   "type": "image/svg+xml"
+  },
+  "Icons/E-commerce/shopping-bag.svg": {
+   "blob": "0be2ba0c01a035a4e5d75b5340e4c582",
+   "size": 717,
+   "type": "image/svg+xml"
+  },
+  "Icons/E-commerce/store.svg": {
+   "blob": "c0e5d0f4fade52605a66f32415da48b1",
+   "size": 3709,
+   "type": "image/svg+xml"
+  },
+  "Icons/E-commerce/tag.svg": {
+   "blob": "d059541c04cbc35ee97cc528bc34f016",
+   "size": 1591,
+   "type": "image/svg+xml"
+  },
+  "Icons/E-commerce/user-headset.svg": {
+   "blob": "90cd5f4dc4690767822487786865eaa0",
+   "size": 2307,
+   "type": "image/svg+xml"
+  },
+  "Icons/E-commerce/wallet.svg": {
+   "blob": "52dbc042be1a660a7a7b3ffc4e55d273",
+   "size": 851,
+   "type": "image/svg+xml"
+  },
+  "Icons/Education/apple-full.svg": {
+   "blob": "19075a4e670ecf89cf080c0402c7343f",
+   "size": 3088,
+   "type": "image/svg+xml"
+  },
+  "Icons/Education/book-open-reader.svg": {
+   "blob": "93e3aaf70ff3c30d53f89d860a5a8deb",
+   "size": 1841,
+   "type": "image/svg+xml"
+  },
+  "Icons/Education/chalkboard-user.svg": {
+   "blob": "a613250f117cf80f074d98bce3c3f9f0",
+   "size": 975,
+   "type": "image/svg+xml"
+  },
+  "Icons/Education/chalkboard.svg": {
+   "blob": "08fe5cc02e635c78cacdaeb38f9786da",
+   "size": 733,
+   "type": "image/svg+xml"
+  },
+  "Icons/Education/graduation-cap.svg": {
+   "blob": "20be36407207f24a547a18e22aab142f",
+   "size": 1228,
+   "type": "image/svg+xml"
+  },
+  "Icons/Education/laptop-code.svg": {
+   "blob": "f19cce35ca04f6adbfb1276606b4d0c8",
+   "size": 941,
+   "type": "image/svg+xml"
+  },
+  "Icons/Education/laptop-file.svg": {
+   "blob": "ab737a4b4a79100dabdaa80961f580ee",
+   "size": 810,
+   "type": "image/svg+xml"
+  },
+  "Icons/Education/microscope.svg": {
+   "blob": "4164845fac33aa4d1f285c53234854ee",
+   "size": 1683,
+   "type": "image/svg+xml"
+  },
+  "Icons/Education/person-chalkboard.svg": {
+   "blob": "c43a501e2cbe6638850163cb32c4e8ff",
+   "size": 1422,
+   "type": "image/svg+xml"
+  },
+  "Icons/Education/school-alt.svg": {
+   "blob": "810e226c73777bc92f609730fbf1d7e1",
+   "size": 1238,
+   "type": "image/svg+xml"
+  },
+  "Icons/Education/school-check-alt.svg": {
+   "blob": "9314b18ed792e85dc50e0a164356a42f",
+   "size": 1845,
+   "type": "image/svg+xml"
+  },
+  "Icons/Education/school-check.svg": {
+   "blob": "d10bd3a7b82ef621f042176688150032",
+   "size": 1526,
+   "type": "image/svg+xml"
+  },
+  "Icons/Education/school-exclamation-alt.svg": {
+   "blob": "b3d191fd2f5f3761e26344daa6df57f4",
+   "size": 1593,
+   "type": "image/svg+xml"
+  },
+  "Icons/Education/school-exclamation.svg": {
+   "blob": "b6b8be1915e22b878a1791d1a8775f58",
+   "size": 1430,
+   "type": "image/svg+xml"
+  },
+  "Icons/Education/school-flag-alt.svg": {
+   "blob": "2098a8cec67dc1d3562907814b7fc703",
+   "size": 1161,
+   "type": "image/svg+xml"
+  },
+  "Icons/Education/school-flag.svg": {
+   "blob": "19f53017aa9ba36cc723b68dc8c33090",
+   "size": 1029,
+   "type": "image/svg+xml"
+  },
+  "Icons/Education/school-lock-alt.svg": {
+   "blob": "5fefff6ac8f1a1d86c5cf0bda6983724",
+   "size": 1785,
+   "type": "image/svg+xml"
+  },
+  "Icons/Education/school-lock.svg": {
+   "blob": "c15166273531b623f3744630e2e6ae39",
+   "size": 1439,
+   "type": "image/svg+xml"
+  },
+  "Icons/Education/school-xmark-alt.svg": {
+   "blob": "bc21d3034b212dda09893e94ffb81f00",
+   "size": 1878,
+   "type": "image/svg+xml"
+  },
+  "Icons/Education/school-xmark.svg": {
+   "blob": "e9ef2698095121b46f7b8e73516e4f5f",
+   "size": 1738,
+   "type": "image/svg+xml"
+  },
+  "Icons/Education/school.svg": {
+   "blob": "fe3b43b0767915060d74edf61907e15a",
+   "size": 1081,
+   "type": "image/svg+xml"
+  },
+  "Icons/Education/shapes.svg": {
+   "blob": "d3d49162397c3a515e46c10f537888ff",
+   "size": 917,
+   "type": "image/svg+xml"
+  },
+  "Icons/Education/theatre.svg": {
+   "blob": "701a96a0c7898d23925f2a652ac6b283",
+   "size": 4732,
+   "type": "image/svg+xml"
+  },
+  "Icons/Education/user-graduate.svg": {
+   "blob": "9b28a987421725351ec117d4475d99c1",
+   "size": 1654,
+   "type": "image/svg+xml"
+  },
+  "Icons/Emoji/face-explode.svg": {
+   "blob": "9037d1d16519107104a5fa5969103572",
+   "size": 6777,
+   "type": "image/svg+xml"
+  },
+  "Icons/Emoji/face-grin-stars.svg": {
+   "blob": "efea6680736b3fb8fa0f4fbaea239a54",
+   "size": 2440,
+   "type": "image/svg+xml"
+  },
+  "Icons/Emoji/face-grin.svg": {
+   "blob": "bfb7abd72f02b4f853c2f6bca931963f",
+   "size": 1867,
+   "type": "image/svg+xml"
+  },
+  "Icons/Emoji/face-laugh.svg": {
+   "blob": "ec8a7ccf3a71c99cd5e9b0a8da50da71",
+   "size": 1285,
+   "type": "image/svg+xml"
+  },
+  "Icons/Emoji/thumbs-down.svg": {
+   "blob": "f6dbcb79a01dd94394c9177fbc9661f6",
+   "size": 2746,
+   "type": "image/svg+xml"
+  },
+  "Icons/Emoji/thumbs-up.svg": {
+   "blob": "d7fc58a1d2e448181306f082fe9f602f",
+   "size": 2746,
+   "type": "image/svg+xml"
+  },
+  "Icons/Files-folders/archive-arrow-down.svg": {
+   "blob": "6a3dd2368cf8c9b735e1c7a7154480a9",
+   "size": 838,
+   "type": "image/svg+xml"
+  },
+  "Icons/Files-folders/clipboard-check.svg": {
+   "blob": "aeab7557ac006f6dc475ee5f738f9bbe",
+   "size": 882,
+   "type": "image/svg+xml"
+  },
+  "Icons/Files-folders/clipboard-clean.svg": {
+   "blob": "659a49ebb72d682215661e28986b5087",
+   "size": 597,
+   "type": "image/svg+xml"
+  },
+  "Icons/Files-folders/clipboard-list.svg": {
+   "blob": "ff57f3edb8014f2a46dde3e527e72360",
+   "size": 1139,
+   "type": "image/svg+xml"
+  },
+  "Icons/Files-folders/clipboard.svg": {
+   "blob": "644e8601188efe9794edc3b8f62a9e40",
+   "size": 837,
+   "type": "image/svg+xml"
+  },
+  "Icons/Files-folders/file-chart-bar.svg": {
+   "blob": "0697863111fb91b65d25b93891047752",
+   "size": 844,
+   "type": "image/svg+xml"
+  },
+  "Icons/Files-folders/file-check.svg": {
+   "blob": "ad8b3a7e0f7dea24465edf6eda52cdee",
+   "size": 806,
+   "type": "image/svg+xml"
+  },
+  "Icons/Files-folders/file-circle-plus.svg": {
+   "blob": "c0e969ae29f9179b15324adbd6c1788d",
+   "size": 1102,
+   "type": "image/svg+xml"
+  },
+  "Icons/Files-folders/file-clone.svg": {
+   "blob": "6414a157f8b3783885c6651b309a5c5d",
+   "size": 735,
+   "type": "image/svg+xml"
+  },
+  "Icons/Files-folders/file-code.svg": {
+   "blob": "808d5889dc315bdaed3bae623d252eb7",
+   "size": 1121,
+   "type": "image/svg+xml"
+  },
+  "Icons/Files-folders/file-copy-alt.svg": {
+   "blob": "58d1de4f21b9c7b15025059d050d7abf",
+   "size": 599,
+   "type": "image/svg+xml"
+  },
+  "Icons/Files-folders/file-copy.svg": {
+   "blob": "fe9324ff94f13299d7f5297f5f3229ba",
+   "size": 656,
+   "type": "image/svg+xml"
+  },
+  "Icons/Files-folders/file-csv.svg": {
+   "blob": "c0563a28a89e05cb60470c6a1fbc1f35",
+   "size": 3123,
+   "type": "image/svg+xml"
+  },
+  "Icons/Files-folders/file-doc.svg": {
+   "blob": "49e73f72cdbb974e4ff2dd7b3d6b6bbe",
+   "size": 2315,
+   "type": "image/svg+xml"
+  },
+  "Icons/Files-folders/file-export.svg": {
+   "blob": "5d4b92702edc8935ddc69a9473c3f48e",
+   "size": 994,
+   "type": "image/svg+xml"
+  },
+  "Icons/Files-folders/file-image.svg": {
+   "blob": "8bce9a996f5307a828e1bd043a896cb9",
+   "size": 1020,
+   "type": "image/svg+xml"
+  },
+  "Icons/Files-folders/file-import.svg": {
+   "blob": "f0aff08459d8416c512e550906082bc3",
+   "size": 989,
+   "type": "image/svg+xml"
+  },
+  "Icons/Files-folders/file-invoice.svg": {
+   "blob": "1896fae2c97ce24778200508b3b9b485",
+   "size": 985,
+   "type": "image/svg+xml"
+  },
+  "Icons/Files-folders/file-lines.svg": {
+   "blob": "b7e03c958b6826b02fb3d145fad9e93f",
+   "size": 761,
+   "type": "image/svg+xml"
+  },
+  "Icons/Files-folders/file-music.svg": {
+   "blob": "bd8426aafdf956d2db2d44681cb8ab61",
+   "size": 1393,
+   "type": "image/svg+xml"
+  },
+  "Icons/Files-folders/file-paste.svg": {
+   "blob": "547008a5c5f00a9bbb0f6ee70382f253",
+   "size": 1007,
+   "type": "image/svg+xml"
+  },
+  "Icons/Files-folders/file-pdf.svg": {
+   "blob": "76a8f2840eca806bc2857a9517c38c75",
+   "size": 1893,
+   "type": "image/svg+xml"
+  },
+  "Icons/Files-folders/file-pen.svg": {
+   "blob": "b390a88b2f0eb2af859e21bd9f39b4ad",
+   "size": 1953,
+   "type": "image/svg+xml"
+  },
+  "Icons/Files-folders/file-ppt.svg": {
+   "blob": "0958bf1c6c1630da5873818dca081eb3",
+   "size": 1832,
+   "type": "image/svg+xml"
+  },
+  "Icons/Files-folders/file-search.svg": {
+   "blob": "16f46ce1248f25fc8087e0f191b8ad8c",
+   "size": 1037,
+   "type": "image/svg+xml"
+  },
+  "Icons/Files-folders/file-shield.svg": {
+   "blob": "587cca616ddb1db64f9dcda330111d1c",
+   "size": 1272,
+   "type": "image/svg+xml"
+  },
+  "Icons/Files-folders/file-video.svg": {
+   "blob": "f0ed0622e3ebaf6e1e5e1b3a9e2378a8",
+   "size": 1080,
+   "type": "image/svg+xml"
+  },
+  "Icons/Files-folders/file-word.svg": {
+   "blob": "6ed623584960abccc4b4fac3517a5db4",
+   "size": 1100,
+   "type": "image/svg+xml"
+  },
+  "Icons/Files-folders/file-zip.svg": {
+   "blob": "e60abedd50527ac43e0368ff13fc1fb3",
+   "size": 660,
+   "type": "image/svg+xml"
+  },
+  "Icons/Files-folders/file.svg": {
+   "blob": "8da7a830d92330c13feb890043350e01",
+   "size": 493,
+   "type": "image/svg+xml"
+  },
+  "Icons/Files-folders/folder-arrow-right.svg": {
+   "blob": "8449097bbac11f701e8c101de0259509",
+   "size": 919,
+   "type": "image/svg+xml"
+  },
+  "Icons/Files-folders/folder-duplicate.svg": {
+   "blob": "d44d8614bd9d0e7541caa163aea0669e",
+   "size": 902,
+   "type": "image/svg+xml"
+  },
+  "Icons/Files-folders/folder-open.svg": {
+   "blob": "5374e8379fa6882dd0deea23688293f2",
+   "size": 679,
+   "type": "image/svg+xml"
+  },
+  "Icons/Files-folders/folder-plus.svg": {
+   "blob": "5a6d2e5a8adcc6790274d136019635d8",
+   "size": 759,
+   "type": "image/svg+xml"
+  },
+  "Icons/Files-folders/folder.svg": {
+   "blob": "e461c9efa430e558ab3ff408ae925384",
+   "size": 528,
+   "type": "image/svg+xml"
+  },
+  "Icons/Food-beverage/apple-full-alt.svg": {
+   "blob": "cbf8ae52f89b8eafb4fb8f8440038fdf",
+   "size": 3088,
+   "type": "image/svg+xml"
+  },
+  "Icons/Food-beverage/bacon.svg": {
+   "blob": "25a751996c6e4185afadd8247d6c278e",
+   "size": 2675,
+   "type": "image/svg+xml"
+  },
+  "Icons/Food-beverage/beer-mug-empty.svg": {
+   "blob": "aea144970d92a0cde9c08d5ed5e81e0b",
+   "size": 1269,
+   "type": "image/svg+xml"
+  },
+  "Icons/Food-beverage/bone.svg": {
+   "blob": "02149c62f2ab32084176c3c057eb210e",
+   "size": 1780,
+   "type": "image/svg+xml"
+  },
+  "Icons/Food-beverage/bowl-food.svg": {
+   "blob": "a1fbfda08b5877f53bb5211670e8d3dc",
+   "size": 3000,
+   "type": "image/svg+xml"
+  },
+  "Icons/Food-beverage/bowl-rice.svg": {
+   "blob": "cf3c34e0ca9c48b96ff0946b1012ccfb",
+   "size": 3108,
+   "type": "image/svg+xml"
+  },
+  "Icons/Food-beverage/bread-slice.svg": {
+   "blob": "602eff6a7508939f99e447c6b6a637d2",
+   "size": 1346,
+   "type": "image/svg+xml"
+  },
+  "Icons/Food-beverage/burger.svg": {
+   "blob": "45b805e3624f15a7ce8cd7d285e077bb",
+   "size": 1505,
+   "type": "image/svg+xml"
+  },
+  "Icons/Food-beverage/cake-candles.svg": {
+   "blob": "08ecb566c8e58061235e40ea3a43739d",
+   "size": 2798,
+   "type": "image/svg+xml"
+  },
+  "Icons/Food-beverage/candy-cane.svg": {
+   "blob": "ed6b059086c9fb70cb96de98a220a2e3",
+   "size": 1353,
+   "type": "image/svg+xml"
+  },
+  "Icons/Food-beverage/carrot.svg": {
+   "blob": "396eca8e086cc1b1663bae6e41ad2177",
+   "size": 2576,
+   "type": "image/svg+xml"
+  },
+  "Icons/Food-beverage/champagne-glasses.svg": {
+   "blob": "ec4e33d8bee977c8197ae5123a5e6a19",
+   "size": 1492,
+   "type": "image/svg+xml"
+  },
+  "Icons/Food-beverage/cheese.svg": {
+   "blob": "67d585a34c1663ef254bab6dd255337e",
+   "size": 2201,
+   "type": "image/svg+xml"
+  },
+  "Icons/Food-beverage/cloud-meatball.svg": {
+   "blob": "af76ebf237b2b17ebcf8ff8021f5a1ad",
+   "size": 2980,
+   "type": "image/svg+xml"
+  },
+  "Icons/Food-beverage/cookie-alt.svg": {
+   "blob": "aee9bcea1d50ad0d78affa8b2479c029",
+   "size": 2683,
+   "type": "image/svg+xml"
+  },
+  "Icons/Food-beverage/cookie.svg": {
+   "blob": "d9419291447aa50ba316bc4999a8cf69",
+   "size": 2685,
+   "type": "image/svg+xml"
+  },
+  "Icons/Food-beverage/cubes-stacked.svg": {
+   "blob": "db8afbba38607d59a88eb3a2e7549d94",
+   "size": 1289,
+   "type": "image/svg+xml"
+  },
+  "Icons/Food-beverage/droplet-bottle-alt.svg": {
+   "blob": "54c52b97885553abb51a4cd9a00c792d",
+   "size": 2734,
+   "type": "image/svg+xml"
+  },
+  "Icons/Food-beverage/droplet-bottle.svg": {
+   "blob": "e661eb1678c47875911712cee127b1cb",
+   "size": 2225,
+   "type": "image/svg+xml"
+  },
+  "Icons/Food-beverage/drumstick-bite.svg": {
+   "blob": "3d996f98c29dc66bfd8b193d536c6d2c",
+   "size": 2421,
+   "type": "image/svg+xml"
+  },
+  "Icons/Food-beverage/egg.svg": {
+   "blob": "5a25ad3d70aa1b9c300d03f4fce74305",
+   "size": 1215,
+   "type": "image/svg+xml"
+  },
+  "Icons/Food-beverage/fish-alt.svg": {
+   "blob": "3471d908fb03a828bfef7cc5640c84d3",
+   "size": 3033,
+   "type": "image/svg+xml"
+  },
+  "Icons/Food-beverage/fish.svg": {
+   "blob": "315d73c967422697a4dd3f79ad283432",
+   "size": 2028,
+   "type": "image/svg+xml"
+  },
+  "Icons/Food-beverage/flask.svg": {
+   "blob": "3e475a4a14ce98cf46380829e351a9b1",
+   "size": 829,
+   "type": "image/svg+xml"
+  },
+  "Icons/Food-beverage/glass-water-droplet.svg": {
+   "blob": "984c9797e940d78867c41a0557e7131a",
+   "size": 1724,
+   "type": "image/svg+xml"
+  },
+  "Icons/Food-beverage/glass-water.svg": {
+   "blob": "264ba7cabef88cb83adac4b85633f2cc",
+   "size": 1558,
+   "type": "image/svg+xml"
+  },
+  "Icons/Food-beverage/hotdog.svg": {
+   "blob": "0afcaa02642e72fa341843a8d3a41292",
+   "size": 1785,
+   "type": "image/svg+xml"
+  },
+  "Icons/Food-beverage/icecream-alt.svg": {
+   "blob": "e1389b944e5face4272b276d6b10b101",
+   "size": 1177,
+   "type": "image/svg+xml"
+  },
+  "Icons/Food-beverage/icecream.svg": {
+   "blob": "03379a0d3cd826f591c16700b445e815",
+   "size": 760,
+   "type": "image/svg+xml"
+  },
+  "Icons/Food-beverage/jar-wheat.svg": {
+   "blob": "1582389e1cc365d90f291e733cee006c",
+   "size": 4333,
+   "type": "image/svg+xml"
+  },
+  "Icons/Food-beverage/jar.svg": {
+   "blob": "065614c4ac2a0eb10ea3afec4ea4747d",
+   "size": 1045,
+   "type": "image/svg+xml"
+  },
+  "Icons/Food-beverage/lemon.svg": {
+   "blob": "c91f101d58b62e95afdc59a8d1982e62",
+   "size": 2701,
+   "type": "image/svg+xml"
+  },
+  "Icons/Food-beverage/martini-glass-citrus.svg": {
+   "blob": "8530ae129503e2847a3863d596aca561",
+   "size": 890,
+   "type": "image/svg+xml"
+  },
+  "Icons/Food-beverage/martini-glass-empty.svg": {
+   "blob": "40ca344c3d31d8e399baa6a88a14c08f",
+   "size": 568,
+   "type": "image/svg+xml"
+  },
+  "Icons/Food-beverage/martini-glass.svg": {
+   "blob": "5b5201b6117db6e703ee71e68f8ffa73",
+   "size": 618,
+   "type": "image/svg+xml"
+  },
+  "Icons/Food-beverage/mug-hot.svg": {
+   "blob": "f685ed63a5e0f7d2500c33b6e94106ad",
+   "size": 1929,
+   "type": "image/svg+xml"
+  },
+  "Icons/Food-beverage/mug-saucer.svg": {
+   "blob": "c0793a02542ffe9aa4b877c60af05a9e",
+   "size": 917,
+   "type": "image/svg+xml"
+  },
+  "Icons/Food-beverage/pepper-hot.svg": {
+   "blob": "9d069d0b41cb2dc32daa06b226d6c9ad",
+   "size": 2147,
+   "type": "image/svg+xml"
+  },
+  "Icons/Food-beverage/pizza-slice.svg": {
+   "blob": "cf9705392f64bc4bdfe03396c069e2b2",
+   "size": 2240,
+   "type": "image/svg+xml"
+  },
+  "Icons/Food-beverage/plate-wheat.svg": {
+   "blob": "0e4e92ce34cfbb1dd34d1022a843fb02",
+   "size": 4982,
+   "type": "image/svg+xml"
+  },
+  "Icons/Food-beverage/seedling.svg": {
+   "blob": "f43fe7266bde5a7f0a30fc3e1a967cdf",
+   "size": 3162,
+   "type": "image/svg+xml"
+  },
+  "Icons/Food-beverage/shrimp.svg": {
+   "blob": "f084ce98eb68d3e8e8f98c6712b18daf",
+   "size": 1819,
+   "type": "image/svg+xml"
+  },
+  "Icons/Food-beverage/stroopwafel.svg": {
+   "blob": "0e1f65d5cb4c391e63807fba8eb044c5",
+   "size": 1427,
+   "type": "image/svg+xml"
+  },
+  "Icons/Food-beverage/water-bottle.svg": {
+   "blob": "9495b194ab24062723e1f1eb251c4df5",
+   "size": 3023,
+   "type": "image/svg+xml"
+  },
+  "Icons/Food-beverage/wheat-exclamation.svg": {
+   "blob": "87eb444c22a041d6fc77aff253049925",
+   "size": 4872,
+   "type": "image/svg+xml"
+  },
+  "Icons/Food-beverage/wheat.svg": {
+   "blob": "77a654d2cb0c7fc9faf886acfefbf98e",
+   "size": 4537,
+   "type": "image/svg+xml"
+  },
+  "Icons/Food-beverage/whiskey-glass.svg": {
+   "blob": "87541c5098dd65a5c238ca98f7d46d92",
+   "size": 655,
+   "type": "image/svg+xml"
+  },
+  "Icons/Food-beverage/wine-bottle.svg": {
+   "blob": "16c09cfb0a5cbb884b4b9c760649d981",
+   "size": 1059,
+   "type": "image/svg+xml"
+  },
+  "Icons/Food-beverage/wine-glass-empty.svg": {
+   "blob": "42e0d05f801acc791e8d67d137a4bae7",
+   "size": 1001,
+   "type": "image/svg+xml"
+  },
+  "Icons/Food-beverage/wine-glass.svg": {
+   "blob": "1269dbab366a55e3833266cae685249f",
+   "size": 1162,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/add-column-after.svg": {
+   "blob": "da0721f5c733e097a2033d336d91f48e",
+   "size": 748,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/add-column-before.svg": {
+   "blob": "60f286ea97c356ddccfe589ccee63517",
+   "size": 892,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/adjustments-horizontal.svg": {
+   "blob": "9b651c1fb144684eb8dddcd103591a82",
+   "size": 1485,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/adjustments-vertical.svg": {
+   "blob": "3647bededdba7b84a0ebd9d90f7b157a",
+   "size": 1469,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/annotation.svg": {
+   "blob": "575fb23d582ccccc8ae82c7d038ef12b",
+   "size": 1172,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/api-key.svg": {
+   "blob": "f7caa39278a886f6ce71b7a7d5ff3ca1",
+   "size": 3366,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/archive.svg": {
+   "blob": "49d873e519f08278e9d1b247f685d3a7",
+   "size": 605,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/arrow-up-right-from-square.svg": {
+   "blob": "3a1f7532c870f907e826d63954fe26a8",
+   "size": 1566,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/atom-alt.svg": {
+   "blob": "1207b5090f292c865a540246ff8af355",
+   "size": 2633,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/atom.svg": {
+   "blob": "c27763d0df933fc5bc5a35b27e455347",
+   "size": 2632,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/award.svg": {
+   "blob": "cc1d8a2e89550a1978f0d59de45aa0ad",
+   "size": 3078,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/badge-check.svg": {
+   "blob": "b4f79d122b40ee06848df445b44f6e77",
+   "size": 3819,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/ban.svg": {
+   "blob": "ab51d007d0b21f15d82dd154cd85124b",
+   "size": 599,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/barcode.svg": {
+   "blob": "0573e0bf2e89eb6f42c2dde8fab18658",
+   "size": 1932,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/bars-from-left.svg": {
+   "blob": "6aed333c4dfa5393ce3485b3e4910c09",
+   "size": 579,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/bars.svg": {
+   "blob": "65d768a4985cc2a83264ad77e7bf2ac2",
+   "size": 585,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/battery.svg": {
+   "blob": "af8966f395896796a149e4a809ea8ef7",
+   "size": 963,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/bed.svg": {
+   "blob": "5a2458951996b83ba2bd150596e45926",
+   "size": 731,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/bell-active-alt.svg": {
+   "blob": "447779ccc17bb9af9d37569a42122220",
+   "size": 2853,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/bell-active.svg": {
+   "blob": "6da190b146e7c067e716456cfa1c78d6",
+   "size": 2914,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/bell-ring.svg": {
+   "blob": "c2467f2771200af583e26254641cacd4",
+   "size": 3047,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/bell.svg": {
+   "blob": "d971279c3fa3a8cc9b8ca481605e0095",
+   "size": 2198,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/blender-phone.svg": {
+   "blob": "1d5529490f9f1db8ce112e73ec9aa161",
+   "size": 3059,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/book-open.svg": {
+   "blob": "2555e75d25d0cb1cf741d0d031641092",
+   "size": 1242,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/book.svg": {
+   "blob": "d5654419bbe11f1e097b316ac56131a7",
+   "size": 581,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/bookmark.svg": {
+   "blob": "fd2311def8cabeedd25792e2e0d6d319",
+   "size": 686,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/booth-curtain.svg": {
+   "blob": "560daf1075eb66aad01952661299b3b6",
+   "size": 1058,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/brain.svg": {
+   "blob": "633f690518426f28fe297e53e2d90693",
+   "size": 5657,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/briefcase.svg": {
+   "blob": "6cb324a34164e6a40fcb0117a1977828",
+   "size": 1229,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/bug.svg": {
+   "blob": "9fcfeaa2d6eaa6ebf514c422dd3ace17",
+   "size": 2672,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/building.svg": {
+   "blob": "14322d332eef4aba3ebadd3fce3f6a39",
+   "size": 1293,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/bullhorn.svg": {
+   "blob": "229633daebefd70ba8302c6d861a7fb7",
+   "size": 747,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/calendar-edit.svg": {
+   "blob": "803fa30a86958a87e31f200a0b5f3b72",
+   "size": 1762,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/calendar-month.svg": {
+   "blob": "c0ad17167096d0a833d010de2423dbd5",
+   "size": 1804,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/calendar-plus.svg": {
+   "blob": "415eb9fc3c17fa604cfb52f8eb7c478f",
+   "size": 1262,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/calendar-week.svg": {
+   "blob": "6d332579952f22906637fce5e26e8490",
+   "size": 908,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/cell-attributes.svg": {
+   "blob": "cd785a87b6cdaf4e619056d2390a594a",
+   "size": 2111,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/chart-line-down.svg": {
+   "blob": "ee3d233f5cd4f53ee94b793881d2d57c",
+   "size": 888,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/chart-line-up.svg": {
+   "blob": "a2a2c73ef0da9601e30ae67b0f2477d4",
+   "size": 855,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/chart-mixed-dollar.svg": {
+   "blob": "48c30a56353c885f034c481ec07d220f",
+   "size": 3099,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/chart-mixed.svg": {
+   "blob": "d8fb9857ab59864e9ee6582ee8cfdb27",
+   "size": 1149,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/chart-pie.svg": {
+   "blob": "2b414617949659abdec4a6f1b613ffb6",
+   "size": 1700,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/chart.svg": {
+   "blob": "b444d3e4acc049bec55795dc198aeed4",
+   "size": 965,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/check-circle.svg": {
+   "blob": "c67c8b27498197a12c274c074a3333f9",
+   "size": 749,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/check-plus-circle.svg": {
+   "blob": "dfa3824e383d8d860872d5bff75282aa",
+   "size": 1205,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/check.svg": {
+   "blob": "a01fc39743fd981371dc3d39d9491657",
+   "size": 491,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/circle-minus.svg": {
+   "blob": "ca05bfa359b73623fb249e4db7196c81",
+   "size": 611,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/circle-plus.svg": {
+   "blob": "f11c99aa6cce2c39e682561d59175618",
+   "size": 833,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/clock-arrow.svg": {
+   "blob": "33fefd3754785610e6d10bff6d1abf9d",
+   "size": 997,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/clock.svg": {
+   "blob": "d7580dcdf2eb07faba5f660ad0615aff",
+   "size": 675,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/close-circle.svg": {
+   "blob": "587ee1929477b0f7b2622352ada8d4c9",
+   "size": 965,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/close-sidebar-alt.svg": {
+   "blob": "f519eed2921d9bd8e702504e582eb255",
+   "size": 698,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/close-sidebar.svg": {
+   "blob": "429198fe675bb567815e0be0f7ba0a8d",
+   "size": 702,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/close.svg": {
+   "blob": "f536cd47c82a66864aadf8c5859b3f8a",
+   "size": 697,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/cloud-arrow-up.svg": {
+   "blob": "34742c4d4aa8c841692455f69d1c0dde",
+   "size": 2098,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/code-branch.svg": {
+   "blob": "fa130775c528d7f2e43ec7024dcf94ee",
+   "size": 1198,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/code-fork.svg": {
+   "blob": "4d51f1f235e7cf792cba4215e4663379",
+   "size": 1382,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/code-merge.svg": {
+   "blob": "2dc652f1843b7b5691e1bf28b4d29d0d",
+   "size": 1122,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/code-pull-request.svg": {
+   "blob": "6f22e7282f83a3b9f7e7b84e78b2e2e9",
+   "size": 1533,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/code.svg": {
+   "blob": "2001a8225676f3e9bb712f14dd40f6b0",
+   "size": 1048,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/cog.svg": {
+   "blob": "8eaf8cffa0e8f1f722d55c22397060af",
+   "size": 3409,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/colapse-sidebar-alt.svg": {
+   "blob": "61c9de54136e1ef8a6dc772eec44e5df",
+   "size": 728,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/colapse-sidebar.svg": {
+   "blob": "b4fcddb550d110ca2f0136d2707549f2",
+   "size": 732,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/column.svg": {
+   "blob": "f229f32e9b255ea2743de4375afbc02c",
+   "size": 406,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/command.svg": {
+   "blob": "7e256289ec02f95e9a127f9746510be7",
+   "size": 1096,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/database.svg": {
+   "blob": "8c867caf697de110c4a233938390ca4e",
+   "size": 2122,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/delete-column.svg": {
+   "blob": "71242052e6112717523c8011bdbd0f14",
+   "size": 966,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/delete-row.svg": {
+   "blob": "a2f1b9e0508247ff870a083e3154e1ff",
+   "size": 965,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/delete-table.svg": {
+   "blob": "e5aa7e9d22a7b0a00bfbcd4f45260d1d",
+   "size": 1247,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/desktop-pc.svg": {
+   "blob": "f8184ae6329efd1fc6821de1125ec723",
+   "size": 537,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/dna.svg": {
+   "blob": "2bac46e8674595e0d1994e6b0f870575",
+   "size": 1688,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/dots-horizontal.svg": {
+   "blob": "c1043a1a2a0be908e3c2d55b575c2a3e",
+   "size": 738,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/dots-vertical.svg": {
+   "blob": "c74bb1e0f8f10971aef448ad676acf29",
+   "size": 718,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/download.svg": {
+   "blob": "b1ae5df5381af17fdc882fbc991d980c",
+   "size": 1068,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/draw-square.svg": {
+   "blob": "51d5a9cc56d33723ed3d61793068f622",
+   "size": 1496,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/edit.svg": {
+   "blob": "cfa7d96d5b64a6be0211198632785047",
+   "size": 1769,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/envelope-open.svg": {
+   "blob": "868ffed0dd30c13c74dc43c62cee5d15",
+   "size": 691,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/envelope.svg": {
+   "blob": "4e7627954ea1c59f120084eaaf09ef04",
+   "size": 450,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/exclamation-circle.svg": {
+   "blob": "8bb955e85a5c80a05acb624527e5d17b",
+   "size": 757,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/eye-slash.svg": {
+   "blob": "93b0890414317baa0ab130a282243504",
+   "size": 2396,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/eye.svg": {
+   "blob": "af569fe53c55f7cd712b0c90bf8476b4",
+   "size": 1862,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/filter.svg": {
+   "blob": "90dd021cb762d03a865e605a44c32fb0",
+   "size": 561,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/fingerprint.svg": {
+   "blob": "a9931220ef6956350427c6d4b5c2cd63",
+   "size": 4296,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/fire.svg": {
+   "blob": "2c72be47f40b07ed9efba23c5f53c8d8",
+   "size": 1861,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/fix-tables.svg": {
+   "blob": "84af3192ef64704852333bc086c3b691",
+   "size": 1694,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/flag.svg": {
+   "blob": "a39f6ed713c313c94cc82691c43fc817",
+   "size": 1228,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/floppy-disk-alt.svg": {
+   "blob": "0c30f29d5fbdca87df5fb357ea0a4e88",
+   "size": 791,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/floppy-disk.svg": {
+   "blob": "6d97a5a7df881dc728c07766105b89ea",
+   "size": 811,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/gift-box.svg": {
+   "blob": "799dffd40142e905299d4d53401340d8",
+   "size": 1884,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/globe.svg": {
+   "blob": "6cc2347d0d65d403a76a8819e0291507",
+   "size": 3078,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/go-to-next-cell.svg": {
+   "blob": "b693209ac141c546d7b8247f30b39ac3",
+   "size": 926,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/go-to-prev-cell.svg": {
+   "blob": "187feaf7eba1bb59cf4f82b8600dac78",
+   "size": 926,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/grid-plus.svg": {
+   "blob": "04a5d9fb1e36da7bacc252c46c4c6e0a",
+   "size": 1117,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/grid.svg": {
+   "blob": "0306354cfea0884c361bb42b231a1ddb",
+   "size": 1034,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/hammer.svg": {
+   "blob": "130c5cc6f2f73a5f0c66b93eddeee03d",
+   "size": 1573,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/heart.svg": {
+   "blob": "d46082aefd7bd2682b46081c0d942bbe",
+   "size": 1070,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/home.svg": {
+   "blob": "f4a21090f0e49fa376604a1648930f43",
+   "size": 876,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/hourglass.svg": {
+   "blob": "944f490e83f3344fa69929832b0c164d",
+   "size": 1562,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/image.svg": {
+   "blob": "557330e83fd1ce1631d01ef941f52ae8",
+   "size": 961,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/inbox-full.svg": {
+   "blob": "5517639258642b80a0a2123f96301273",
+   "size": 1509,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/inbox.svg": {
+   "blob": "388633b5b490373dcfd4df0b9047cbf3",
+   "size": 1219,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/info-circle.svg": {
+   "blob": "50b94ba8a3f108f800897828faa0707b",
+   "size": 918,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/insert-row-after.svg": {
+   "blob": "637a22f43bf8092fed5f3db29dbd17e0",
+   "size": 753,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/insert-row-before.svg": {
+   "blob": "6eeb9f33396cdbeae0d1778363ca34ce",
+   "size": 757,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/insert-table-alt.svg": {
+   "blob": "1c66037238a53983227f930335d3fedc",
+   "size": 1027,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/insert-table.svg": {
+   "blob": "28868550356d77d23f5710be93f67269",
+   "size": 564,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/keyboard.svg": {
+   "blob": "9a3ae0467a23b0a6cbd5a2f0caf1929f",
+   "size": 781,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/label.svg": {
+   "blob": "a0d271c511aedd290b787a188b0414d9",
+   "size": 487,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/landmark.svg": {
+   "blob": "5b67680d01e5bd86b3d07cbc9c8da848",
+   "size": 811,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/layers.svg": {
+   "blob": "3c9b9fa444d8e1b840de1074ac260867",
+   "size": 1435,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/life-saver.svg": {
+   "blob": "65a566c43960af53b1bf3914a77f6083",
+   "size": 6635,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/lightbulb.svg": {
+   "blob": "2aa3da15b48bbc233b65c842921c6816",
+   "size": 1551,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/link-break.svg": {
+   "blob": "39175e52fcf40be41e90b6d14a60e21f",
+   "size": 2546,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/link.svg": {
+   "blob": "9a849a4762d67ac9db56e003ff107956",
+   "size": 2035,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/lock-open.svg": {
+   "blob": "464a82a3433ab423eb937c583e4f579d",
+   "size": 709,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/lock-time.svg": {
+   "blob": "36311265e7054ca4dd8d76a841199c3c",
+   "size": 1203,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/lock.svg": {
+   "blob": "0a0344851c47654838c5db35bfdfa27f",
+   "size": 662,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/mail-box.svg": {
+   "blob": "02f2034ee0772a1e0787d7d30d942223",
+   "size": 1085,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/map-pin-alt.svg": {
+   "blob": "ec9163f09da906d989f4c4ed252a1f5c",
+   "size": 2020,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/map-pin.svg": {
+   "blob": "f4dda51d54a9145b0d44eefde38fedb5",
+   "size": 867,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/merge-cells.svg": {
+   "blob": "07f5b22051551ad9eb373b4a0cfdaf64",
+   "size": 1716,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/merge-or-split.svg": {
+   "blob": "586bf31223540c2aa05c83e475eb07d1",
+   "size": 1130,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/message-caption.svg": {
+   "blob": "d93f92565f0fb8e7fb815602bd7308b0",
+   "size": 1048,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/message-dots.svg": {
+   "blob": "8d390c4414ee195b1e6b90a15ab441f8",
+   "size": 1044,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/messages.svg": {
+   "blob": "7041996eba5702b64505a489fc658527",
+   "size": 995,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/minus.svg": {
+   "blob": "5feea9be62a9aa2eb5f53d657d29d492",
+   "size": 323,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/mobile-phone.svg": {
+   "blob": "8f655bf2a89ca4031600376fe66ab52a",
+   "size": 570,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/newspaper.svg": {
+   "blob": "79eb1c9fbdd368865497d38e419bd24b",
+   "size": 1329,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/objects-column.svg": {
+   "blob": "8883fca6fa6becb7983232a2b22d5a54",
+   "size": 918,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/open-door.svg": {
+   "blob": "8ecc8add1536a0d7f00827bc7554e9b5",
+   "size": 921,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/palette.svg": {
+   "blob": "663aa21118de32f7f18ee868620ba5ad",
+   "size": 3309,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/paper-clip.svg": {
+   "blob": "e8866d486204a45ba61325874a4015d5",
+   "size": 1279,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/paper-plane-horizontal.svg": {
+   "blob": "d07714fc116f6f45aefa3cd6e7003768",
+   "size": 664,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/paper-plane.svg": {
+   "blob": "39d27eac296c5b334ecd9937d661153d",
+   "size": 646,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/pen-nib.svg": {
+   "blob": "da4b55a2ca1e522ceef67f8ae1f05009",
+   "size": 1075,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/pen.svg": {
+   "blob": "3d1d8ffe0dd09546f9bfd705b04a4219",
+   "size": 1406,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/phone-hangup.svg": {
+   "blob": "69ae2e2fe8b130bacbe0d986876020c8",
+   "size": 3195,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/phone.svg": {
+   "blob": "f26025d03f2d6452cdc31a2df2e61156",
+   "size": 2847,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/plus.svg": {
+   "blob": "162effd2d0720f65fa0055e6e112f6b5",
+   "size": 475,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/printer.svg": {
+   "blob": "3491471e68bbe937498592c9ca82056c",
+   "size": 638,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/qr-code.svg": {
+   "blob": "7ae1bbc088223c8212ae1207ce046559",
+   "size": 2176,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/question-circle.svg": {
+   "blob": "01467ebfe42f02b10ae0fd9ac4999fe4",
+   "size": 1696,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/restore-window.svg": {
+   "blob": "d1ce711f4a9466e9cb931c5027560054",
+   "size": 577,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/rocket.svg": {
+   "blob": "04a065a16c0bd22de9d34571e181a568",
+   "size": 3382,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/ruler-combined.svg": {
+   "blob": "7169903ec42d1897371485d0f7b2ba9a",
+   "size": 888,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/search.svg": {
+   "blob": "3c53d90c48ee125110596538682e8641",
+   "size": 674,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/server.svg": {
+   "blob": "013d2749f1c23134538dcd86b6880a30",
+   "size": 1181,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/share-nodes.svg": {
+   "blob": "06a9b418dcb9d8c57b47d4f5c11683f0",
+   "size": 1247,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/shield-check.svg": {
+   "blob": "aed24e26d9eedbe4dc84cd38c97f0cd1",
+   "size": 1150,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/shield.svg": {
+   "blob": "40f58bdef34671d59f546f5cf2bd779f",
+   "size": 827,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/split-cells.svg": {
+   "blob": "7eb71f21637935ffac5df82514bbdbbd",
+   "size": 1740,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/star-half-stroke.svg": {
+   "blob": "5b70e9c18e84221ca06a7b9f8c2a4284",
+   "size": 1353,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/star-half.svg": {
+   "blob": "6345150af294c6e6fdd947b865ea4427",
+   "size": 1213,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/star.svg": {
+   "blob": "671dc210b6c3064ea0c5487845aed762",
+   "size": 990,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/swatchbook.svg": {
+   "blob": "69c20af081307f36844351d8cb81d217",
+   "size": 1204,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/t-shirt.svg": {
+   "blob": "719cd0b6d5f60882f5f8ff122887ef3a",
+   "size": 1471,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/table-column.svg": {
+   "blob": "0565bc757e9fef3b6a6b6a5fed8e5b4d",
+   "size": 388,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/table-row.svg": {
+   "blob": "255c3a5184262b0087d23d38cec586ef",
+   "size": 432,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/tablet.svg": {
+   "blob": "39d0ca74a9d121aca2c7254bc0cf2f22",
+   "size": 517,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/teddy-bear.svg": {
+   "blob": "f2a936e40220875252305f4baf50e149",
+   "size": 3359,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/terminal.svg": {
+   "blob": "c76f171aebc329d1fcb7c386ed882346",
+   "size": 796,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/thumbtack.svg": {
+   "blob": "3792248bfb4849479360543854d5850b",
+   "size": 1692,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/ticket.svg": {
+   "blob": "643ab13a8c343c886ac53a04b275df00",
+   "size": 1506,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/toggle-header-cell.svg": {
+   "blob": "eaf91fce07452aaa7588eb52d6c6693f",
+   "size": 1029,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/toggle-header-column.svg": {
+   "blob": "ab38f561e586951004478403ddafaf92",
+   "size": 961,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/toggle-header-row.svg": {
+   "blob": "867d8714a64844d94ca11aaf272e142b",
+   "size": 826,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/tools.svg": {
+   "blob": "1750a56592e3f4c9bcd9bbe6c4ce1ae2",
+   "size": 2913,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/tracking.svg": {
+   "blob": "9d9ef73b6c4700c069e6cf5ab4c96e95",
+   "size": 1149,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/trash-bin.svg": {
+   "blob": "acc4585fc1aed487358f8b8a5d0eba1a",
+   "size": 962,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/truck-clock.svg": {
+   "blob": "c8916ffcc8f6429885b585212927274e",
+   "size": 2086,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/truck.svg": {
+   "blob": "ea4e7beca2e7177ce55134adcc8d8e81",
+   "size": 1875,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/upload.svg": {
+   "blob": "ebb8045d8c6c1394a7d4208c22f8bf7c",
+   "size": 1068,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/volume-down.svg": {
+   "blob": "55febbdb962f0cf8237913bab097735e",
+   "size": 892,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/volume-up.svg": {
+   "blob": "dc02b7f9266d7a54829f33e8fbea18d1",
+   "size": 1259,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/wand-magic-sparkles.svg": {
+   "blob": "32e24de93663433eb1d46c1678950524",
+   "size": 2296,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/window.svg": {
+   "blob": "373e07c3c8741a992f06c82f880f4fe1",
+   "size": 865,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/zoom-in.svg": {
+   "blob": "a1974a96536322d72c12a4b1d8688595",
+   "size": 950,
+   "type": "image/svg+xml"
+  },
+  "Icons/General/zoom-out.svg": {
+   "blob": "32f2addbf7464bfc134cdb802bb458b7",
+   "size": 810,
+   "type": "image/svg+xml"
+  },
+  "Icons/Media/backward-step.svg": {
+   "blob": "342db004d9e31026d2d75a527b8da2ad",
+   "size": 545,
+   "type": "image/svg+xml"
+  },
+  "Icons/Media/camera-photo.svg": {
+   "blob": "eaac32ac7c19679e7eb06c6f22256aff",
+   "size": 844,
+   "type": "image/svg+xml"
+  },
+  "Icons/Media/caption.svg": {
+   "blob": "25cba58707226ae620ba3e4b0e3ef891",
+   "size": 2269,
+   "type": "image/svg+xml"
+  },
+  "Icons/Media/circle-pause.svg": {
+   "blob": "067d34c6170450994741d32d30ddbef7",
+   "size": 664,
+   "type": "image/svg+xml"
+  },
+  "Icons/Media/clapperboard-play.svg": {
+   "blob": "128de89043d1c352a783f8b71ef52354",
+   "size": 871,
+   "type": "image/svg+xml"
+  },
+  "Icons/Media/computer-speaker.svg": {
+   "blob": "f4b0fc921c13dae07235cca2efb09543",
+   "size": 820,
+   "type": "image/svg+xml"
+  },
+  "Icons/Media/forward-step.svg": {
+   "blob": "b07846e6127f4af3cc832cfabf20de89",
+   "size": 545,
+   "type": "image/svg+xml"
+  },
+  "Icons/Media/headphones.svg": {
+   "blob": "ae36374bd545fdc623c3308c7afe1ee3",
+   "size": 759,
+   "type": "image/svg+xml"
+  },
+  "Icons/Media/incoming-call.svg": {
+   "blob": "b92f103b8ac32c3af94447db2d950a87",
+   "size": 3579,
+   "type": "image/svg+xml"
+  },
+  "Icons/Media/list-music.svg": {
+   "blob": "437f86ffcbbb3a16d31027d6361116c6",
+   "size": 1499,
+   "type": "image/svg+xml"
+  },
+  "Icons/Media/microphone-slash.svg": {
+   "blob": "da9e2a7fc8a3414131c7c7f8c446c2bb",
+   "size": 1828,
+   "type": "image/svg+xml"
+  },
+  "Icons/Media/microphone.svg": {
+   "blob": "88ebd764839c0313968f32d0f66f5300",
+   "size": 1239,
+   "type": "image/svg+xml"
+  },
+  "Icons/Media/missed-call.svg": {
+   "blob": "74851ff51588ca9c3142c9122ce05495",
+   "size": 3502,
+   "type": "image/svg+xml"
+  },
+  "Icons/Media/music-alt.svg": {
+   "blob": "1c4f147e4165d48132bb644867349a37",
+   "size": 1106,
+   "type": "image/svg+xml"
+  },
+  "Icons/Media/music.svg": {
+   "blob": "5bdfd54330ec2ef24d66172ff3d2bcfd",
+   "size": 768,
+   "type": "image/svg+xml"
+  },
+  "Icons/Media/outgoing-call.svg": {
+   "blob": "5771a6aa33c9b3c21bfd15af7be547b3",
+   "size": 3404,
+   "type": "image/svg+xml"
+  },
+  "Icons/Media/pause.svg": {
+   "blob": "64553416c67509ae420d2de0b60e2539",
+   "size": 505,
+   "type": "image/svg+xml"
+  },
+  "Icons/Media/play.svg": {
+   "blob": "e3c15a7707df5801c8b8f0f7fe670230",
+   "size": 533,
+   "type": "image/svg+xml"
+  },
+  "Icons/Media/rectangle-list.svg": {
+   "blob": "379d1035c906a242fc6c6adf4a4f9ee2",
+   "size": 1289,
+   "type": "image/svg+xml"
+  },
+  "Icons/Media/shuffle.svg": {
+   "blob": "fc0d851c4f0b7818e261ca54d3c7a551",
+   "size": 1412,
+   "type": "image/svg+xml"
+  },
+  "Icons/Media/stop.svg": {
+   "blob": "d760bd2c5424dc48ae0e5a770c8cbc63",
+   "size": 329,
+   "type": "image/svg+xml"
+  },
+  "Icons/Media/video-camera.svg": {
+   "blob": "7f137534a99343821503c3ae3fc87496",
+   "size": 586,
+   "type": "image/svg+xml"
+  },
+  "Icons/Media/volume-mute.svg": {
+   "blob": "780755673bc7854d761df7a697046217",
+   "size": 1576,
+   "type": "image/svg+xml"
+  },
+  "Icons/Text/align-center.svg": {
+   "blob": "20a9bd076ae6119ca7ee52864600e645",
+   "size": 721,
+   "type": "image/svg+xml"
+  },
+  "Icons/Text/align-justify.svg": {
+   "blob": "eeb70c5b40ce450e82d7a716f070738e",
+   "size": 721,
+   "type": "image/svg+xml"
+  },
+  "Icons/Text/align-left.svg": {
+   "blob": "01a0f96e6d52a47f6d4d72999eb718a9",
+   "size": 676,
+   "type": "image/svg+xml"
+  },
+  "Icons/Text/align-right.svg": {
+   "blob": "8b976be303db05c0ed9104b140677368",
+   "size": 676,
+   "type": "image/svg+xml"
+  },
+  "Icons/Text/font-color.svg": {
+   "blob": "0e890e5f4db0563545ff772eca8f0cc1",
+   "size": 2144,
+   "type": "image/svg+xml"
+  },
+  "Icons/Text/font-family.svg": {
+   "blob": "275b4aad59f92869124b2784e9f44c53",
+   "size": 1123,
+   "type": "image/svg+xml"
+  },
+  "Icons/Text/font-highlight.svg": {
+   "blob": "b407e33cd657c8a4dcb9be95e52f7a05",
+   "size": 1514,
+   "type": "image/svg+xml"
+  },
+  "Icons/Text/horizontal-lines.svg": {
+   "blob": "11d4dd8d822ad362189e13f672d5d98a",
+   "size": 1185,
+   "type": "image/svg+xml"
+  },
+  "Icons/Text/indent.svg": {
+   "blob": "46a43403c9678323eedd15758c5b6694",
+   "size": 1077,
+   "type": "image/svg+xml"
+  },
+  "Icons/Text/language.svg": {
+   "blob": "a94d8de3769b0f49bea2738cbe919395",
+   "size": 1319,
+   "type": "image/svg+xml"
+  },
+  "Icons/Text/letter-bold.svg": {
+   "blob": "886158ee87c5e24904d9889a31013a26",
+   "size": 927,
+   "type": "image/svg+xml"
+  },
+  "Icons/Text/letter-italic.svg": {
+   "blob": "17736d743072e72b38becb5a6dbdab5d",
+   "size": 589,
+   "type": "image/svg+xml"
+  },
+  "Icons/Text/letter-underline.svg": {
+   "blob": "b461ad453f651c1c7a1718df2507f9ef",
+   "size": 723,
+   "type": "image/svg+xml"
+  },
+  "Icons/Text/list.svg": {
+   "blob": "8fc7576d6ae9c59ff90a26bd62da011d",
+   "size": 1062,
+   "type": "image/svg+xml"
+  },
+  "Icons/Text/ordered-list.svg": {
+   "blob": "09923124c04b375f68c41e8807337444",
+   "size": 2030,
+   "type": "image/svg+xml"
+  },
+  "Icons/Text/outdent.svg": {
+   "blob": "6390c59c25fb898e098d24132da2fc3e",
+   "size": 1078,
+   "type": "image/svg+xml"
+  },
+  "Icons/Text/paragraph.svg": {
+   "blob": "df9a8835d2c27992518f25ab7585922c",
+   "size": 546,
+   "type": "image/svg+xml"
+  },
+  "Icons/Text/quote.svg": {
+   "blob": "03265a3f527512506061339243a4683a",
+   "size": 893,
+   "type": "image/svg+xml"
+  },
+  "Icons/Text/subscript.svg": {
+   "blob": "97d14da8ca4fb5a109348a05c956ced4",
+   "size": 1376,
+   "type": "image/svg+xml"
+  },
+  "Icons/Text/superscript.svg": {
+   "blob": "3b0a9419beaf8bc70522b028b0dfb7c1",
+   "size": 1364,
+   "type": "image/svg+xml"
+  },
+  "Icons/Text/text-size.svg": {
+   "blob": "a4abed6a00e0f59f8ac162ad037359ac",
+   "size": 941,
+   "type": "image/svg+xml"
+  },
+  "Icons/Text/text-slash.svg": {
+   "blob": "59cb14987f0f220e0f495760bfdd1e58",
+   "size": 1062,
+   "type": "image/svg+xml"
+  },
+  "Icons/Text/text-underline.svg": {
+   "blob": "1c922e5c52bffc50548823d9752a3c79",
+   "size": 926,
+   "type": "image/svg+xml"
+  },
+  "Icons/User/address-book.svg": {
+   "blob": "e0bf7c6fb65edcfffc723a924accced0",
+   "size": 1486,
+   "type": "image/svg+xml"
+  },
+  "Icons/User/profile-card.svg": {
+   "blob": "9ceb8362eacf72cdd9370e11714080ca",
+   "size": 1387,
+   "type": "image/svg+xml"
+  },
+  "Icons/User/user-add.svg": {
+   "blob": "231d25d8ca58a432fa27aef7128ca942",
+   "size": 933,
+   "type": "image/svg+xml"
+  },
+  "Icons/User/user-circle.svg": {
+   "blob": "45db1cc0e1ccedff54ffe0b498141505",
+   "size": 1464,
+   "type": "image/svg+xml"
+  },
+  "Icons/User/user-edit.svg": {
+   "blob": "c451554e1ee661e5939d1e40cc71ddd5",
+   "size": 1300,
+   "type": "image/svg+xml"
+  },
+  "Icons/User/user-remove.svg": {
+   "blob": "63de55eaa1adfaa01b7a99a52dd368c7",
+   "size": 793,
+   "type": "image/svg+xml"
+  },
+  "Icons/User/user-settings.svg": {
+   "blob": "44f9d9cc9477e785492457271192626c",
+   "size": 1504,
+   "type": "image/svg+xml"
+  },
+  "Icons/User/user.svg": {
+   "blob": "64917dbf836e533f425954e07e9b6ab5",
+   "size": 620,
+   "type": "image/svg+xml"
+  },
+  "Icons/User/users-group.svg": {
+   "blob": "3e4f949667a399ff5417ba7190eea909",
+   "size": 2038,
+   "type": "image/svg+xml"
+  },
+  "Icons/User/users.svg": {
+   "blob": "ad48e6f1c8d2df097bcd1377b6c5635d",
+   "size": 1300,
+   "type": "image/svg+xml"
+  },
+  "Icons/Weather/moon-plus.svg": {
+   "blob": "bdbb6e88c9bc45d5a34275a13acbc7b0",
+   "size": 1920,
+   "type": "image/svg+xml"
+  },
+  "Icons/Weather/moon.svg": {
+   "blob": "d595cff18aad216fbdc48d19ed19a26f",
+   "size": 935,
+   "type": "image/svg+xml"
+  },
+  "Icons/Weather/sun.svg": {
+   "blob": "b77e36d10dcc88c64b97ae5f60362554",
+   "size": 1878,
+   "type": "image/svg+xml"
+  },
+  "Logos/ad-design-kit.svg": {
+   "blob": "98ca0b6b02d90b51e9ea42ece4915838",
+   "size": 1492,
+   "type": "image/svg+xml"
+  },
+  "Logos/logo-mark.svg": {
+   "blob": "1862e56de480a9a89786d370a92a7bd2",
+   "size": 1168,
+   "type": "image/svg+xml"
+  }
+ }
+}
