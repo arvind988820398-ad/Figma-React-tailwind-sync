@@ -1,0 +1,11 @@
+{
+ "$comment": "Identity of the published design system; createdOnFiles is the marker the page expects and must not change.",
+ "url": "https://claude.ai/artifact/P6dLktxjvuj3x2YPGZprk6",
+ "title": "AD Design Kit",
+ "namespace": "ADDesignKit",
+ "createdOnFiles": {
+  "v": 1,
+  "at": "2026-11-03T11:56:44.430Z"
+ },
+ "by": "Arvind"
+}

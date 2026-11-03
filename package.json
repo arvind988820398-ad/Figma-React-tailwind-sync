@@ -26,7 +26,8 @@
     "docs:check": "node .storybook/scripts/build-docs.mjs --check",
     "check:screens": "node .claude/skills/ad-design-kit-compose/scripts/check-composition.mjs src/features",
     "figma:descriptions": "node .claude/skills/ad-design-kit-figma-sync/scripts/build-figma-descriptions.mjs",
-    "figma:variants": "node .claude/skills/ad-design-kit-figma-sync/scripts/build-variant-guidance.mjs"
+    "figma:variants": "node .claude/skills/ad-design-kit-figma-sync/scripts/build-variant-guidance.mjs",
+    "design-system:build": "node design-system/scripts/build.mjs"
   },
   "dependencies": {
     "clsx": "^2.1.1",
@@ -42,6 +43,7 @@
     "@storybook/addon-mcp": "^10.6.4",
     "@storybook/addon-vitest": "^10.6.4",
     "@storybook/react-vite": "^10.6.4",
+    "@tailwindcss/cli": "^4.3.3",
     "@tailwindcss/vite": "^4.3.3",
     "@types/node": "^24.19.2",
     "@types/react": "^19.3.0",
