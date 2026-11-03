@@ -12,6 +12,7 @@ A design system whose Figma file and React + Tailwind CSS v4 code stay in sync. 
 - **Tokens generated from Figma:** colors, radius, typography and shadows for 2 themes (Modern, Enterprise) × light and dark.
 - **Living docs in Storybook,** generated from the same registry and usage docs the Figma sync maintains: Figma property → React prop maps, recipes, when to use each variant, and a Figma embed.
 - **447 icons from Figma** as React components (`AngleDownIcon`, `CloseIcon`, …), used by every component and shown in Storybook → Foundations → Icons.
+- **The same system in Claude Design:** tokens, guidelines, live previews and icons, re-synced from the code by the `ad-design-kit-claude-design` skill (`npm run claude-design:status` says whether it is behind).
 - **A demo app:** a material management web app in `src/features/materials` (material list, indents with approval, purchase orders, GRN, site transfers, material issue, expenses, vendor payable), composed only from library components.
 
 ## Getting started

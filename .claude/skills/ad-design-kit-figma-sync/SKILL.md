@@ -86,6 +86,8 @@ The Storybook under `.storybook/` is generated from the bridge files above: `scr
 
 The Figma sync page also has **App screens** and **Gaps for Figma**. The builder runs `ad-design-kit-compose/scripts/check-composition.mjs` on every folder under `src/features` (which AD Design Kit components each screen uses, linked to their docs, and anything made by hand with file and line) and reads `ad-design-kit-compose/references/gaps.json` (what screens need that Figma lacks: proposal, stand-in, status, where it is marked). When a sync brings in a component that closes a gap: replace the stand-ins marked `// ad-design-kit-gap: <id>`, remove the markers, set the row's `status` to `done`, and rebuild the docs. A row the designer has drawn but not yet synced is `in-figma`.
 
+**Claude Design.** The same design system also lives in Claude Design (https://claude.ai/artifact/P6dLktxjvuj3x2YPGZprk6). After any sync that changed tokens, icons, components, stories or docs, run the `ad-design-kit-claude-design` skill (`npm run -s claude-design:status` says whether it is behind).
+
 **Hosting.** Storybook is published on Netlify at https://ad-design-kit-storybook.netlify.app (site `ad-design-kit-storybook`, config in `netlify.toml`). Redeploy after any docs or component change with `npm run storybook:deploy` (needs `netlify login` once). Every Figma component set links to its page there; if a story file's title changes, re-run `npm run figma:descriptions` and apply the result to Figma.
 
 ## Drift check for CI (optional)

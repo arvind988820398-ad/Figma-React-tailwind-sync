@@ -25,6 +25,8 @@
     "docs:build": "node .storybook/scripts/build-docs.mjs",
     "docs:check": "node .storybook/scripts/build-docs.mjs --check",
     "check:screens": "node .claude/skills/ad-design-kit-compose/scripts/check-composition.mjs src/features",
+    "claude-design:status": "node .claude/skills/ad-design-kit-claude-design/scripts/build-claude-design.mjs --status",
+    "claude-design:build": "node .claude/skills/ad-design-kit-claude-design/scripts/build-claude-design.mjs",
     "figma:descriptions": "node .claude/skills/ad-design-kit-figma-sync/scripts/build-figma-descriptions.mjs",
     "figma:variants": "node .claude/skills/ad-design-kit-figma-sync/scripts/build-variant-guidance.mjs"
   },
