@@ -90,6 +90,7 @@ if (!arg('out') || !arg('live')) {
   console.error('usage: build-claude-design.mjs --out <dir> --live <dir> [--listing <file>] [--state <file>]');
   process.exit(2);
 }
+fs.mkdirSync(outDir, { recursive: true });
 
 const read = (p) => fs.readFileSync(p, 'utf8');
 const sha = (s) => crypto.createHash('sha256').update(s).digest('hex');
