@@ -3,6 +3,39 @@
   "repository": "https://github.com/arvind988820398-ad/Figma-React-tailwind-sync",
   "versions": [
     {
+      "version": "4.1.1",
+      "date": "2026-11-05",
+      "title": "Button corners 8px (rounded) in every component",
+      "bump": "patch",
+      "counts": {
+        "added": 0,
+        "removed": 0,
+        "renamed": 0,
+        "changed": 1,
+        "breaking": 0
+      },
+      "stats": {
+        "tokens": 493,
+        "modes": [
+          "Modern (light)",
+          "Modern (dark)",
+          "Enterprise (light)",
+          "Enterprise (dark)"
+        ],
+        "effects": 22,
+        "components": 58,
+        "icons": 447
+      },
+      "changes": [
+        {
+          "area": "style",
+          "change": "changed",
+          "name": "Button · corner radius",
+          "detail": "rounded-base (500) → rounded (500)"
+        }
+      ]
+    },
+    {
       "version": "4.1.0",
       "date": "2026-11-01",
       "title": "Add all 447 Figma icons and use them in every component",

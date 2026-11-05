@@ -107,7 +107,7 @@ export const OnlyButtons: Story = {
     ],
   },
   play: async ({ canvas }) => {
-    await expect(canvas.getByRole('link', { name: 'addesignkit.com' })).toHaveClass('rounded-base');
+    await expect(canvas.getByRole('link', { name: 'addesignkit.com' })).toHaveClass('rounded'); // Button's radius (8px in Modern)
     await expect(canvas.getByText('databaseName').closest('[aria-current]')).toHaveAttribute('aria-current', 'page');
   },
 };

@@ -7,7 +7,7 @@ export type ButtonColor = 'brand' | 'secondary' | 'tertiary' | 'success' | 'dang
 export type ButtonSize = 'xs' | 'sm' | 'base' | 'lg' | 'xl';
 
 const base =
-  'inline-flex shrink-0 items-center justify-center gap-1.5 rounded-base font-medium shadow-xs transition-colors ' +
+  'inline-flex shrink-0 items-center justify-center gap-1.5 rounded font-medium shadow-xs transition-colors ' +
   'focus-visible:outline-none disabled:pointer-events-none';
 
 const sizes: Record<ButtonSize, { text: string; icon: string; square: string; iconSvg: string; logoSvg: string }> = {

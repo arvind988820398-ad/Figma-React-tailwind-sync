@@ -23,7 +23,7 @@ Figma: page `2542:21012` · set `1146:24616` "Button" (8 colors × 5 sizes × 4 
 | State | — | CSS: `:hover`, `:focus-visible`, `:disabled` |
 
 ### Recipe
-Base: `inline-flex items-center justify-center gap-1.5 rounded-base font-medium shadow-xs transition-colors focus-visible:outline-none disabled:pointer-events-none`
+Base: `inline-flex items-center justify-center gap-1.5 rounded font-medium shadow-xs transition-colors focus-visible:outline-none disabled:pointer-events-none`
 
 | Size | Classes | Height | Icon |
 |---|---|---|---|
@@ -100,7 +100,7 @@ A11y: the wrapper is `role="group"` with an `aria-label`; toggle groups set `ari
 ## Speed dial
 Figma: page `14231:74723` · examples `1149:84847` (Default, Rounded, Menu, Article dropdown menu × Top/Bottom/Right/Left) · item `1149:84896` (4 types × Initial/Hover/Disabled × Rounded × Horizontal) · menus `1149:84972` (Vertical, Horizontal, Dropdown menu) · template `templates/components/SpeedDial.tsx`
 API: `<SpeedDial actions={[{label,icon,onSelect,disabled}]} variant="default|rounded|menu|dropdown" direction fixed defaultOpen>`.
-- Trigger: Brand `xl` icon-only Button (48px, `rounded-base`; Rounded `rounded-full`) with the plus icon; open = `bg-brand-strong` (Figma State=Focus).
+- Trigger: Brand `xl` icon-only Button (48px, `rounded`; Rounded `rounded-full`) with the plus icon; open = `bg-brand-strong` (Figma State=Focus).
 - Layout: container `inline-flex gap-3 p-1`, menu opening toward the Position and lined up with the trigger's end edge (`items-end`).
 - Default / Rounded: `flex flex-col gap-2` (Left/Right `flex-row`) of items `size-12 rounded-base` (Rounded: `rounded-full`) `border border-default bg-neutral-primary shadow-xs` + icon `size-6 text-body`; hover `bg-neutral-tertiary text-heading` + Tooltip label to the side; disabled icon `text-fg-disabled`.
 - Menu / Article dropdown menu: Dropdown shell `w-32` (Menu) or `w-44` (Article) `rounded-base border border-default-medium bg-neutral-primary-medium p-2 gap-1.5 shadow-lg` with "Icon & text" rows `rounded p-2 gap-1.5 text-sm font-medium leading-none text-body`, icon `size-4`, hover `bg-neutral-tertiary-medium text-heading`.

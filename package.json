@@ -1,6 +1,6 @@
 {
   "name": "ad-design-kit",
-  "version": "4.1.0",
+  "version": "4.1.1",
   "description": "AD Design Kit: a Figma ⇄ React + Tailwind v4 design system kept in sync by Claude Code skills, documented in Storybook.",
   "type": "module",
   "engines": {

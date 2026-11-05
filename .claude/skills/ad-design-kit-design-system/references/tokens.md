@@ -131,7 +131,7 @@ Also available as `ring-*`, `outline-*`, `divide-*` (drop the `border-` prefix: 
 | `rounded-xl` | 24 | 4 |
 | `rounded-full` | 9999 | 9999 |
 
-Component defaults: buttons, inputs, cards, modals, alerts, menus, tooltips → `rounded-base`; badges → `rounded-sm`; checkbox → `rounded-xs`; dropdown rows, inner buttons → `rounded`; pills, avatars, toggles, radios, dots → `rounded-full`.
+Component defaults: inputs, cards, modals, alerts, menus, tooltips → `rounded-base`; buttons (and everything built from them: button groups, pagers, joined input buttons), dropdown rows → `rounded`; badges → `rounded-sm`; checkbox → `rounded-xs`; pills, avatars, toggles, radios, dots → `rounded-full`.
 
 ## Border width
 
