@@ -215,8 +215,8 @@ API: `<Timeline items={[{date,title,description,icon,avatar,actions,entries}]} v
 | Type = Stacked cards | `variant="stacked"` + `entries` | Many events grouped under one date in a compact card. | A few events; use Default. |
 | Type = Horizontal | `variant="horizontal"` | Three to five milestones across a wide layout, such as a roadmap. | Narrow screens or many events; use a vertical type. |
 | Type = Horizontal advanced | `variant="horizontal-advanced"` | Wide-screen milestones that need a description and a link. | Short labels only; use Horizontal. |
-| Breakpoint = Desktop | — (from `sm`: horizontal types run in one row) | Wide screens. | Forcing this layout at another width through `className`; the timeline switches by itself. |
-| Breakpoint = Mobile | — (below `sm`: the same layout narrower; horizontal types show two items per row) | Phones; vertical types keep their layout, horizontal ones wrap. | Forcing this layout at another width through `className`; the timeline switches by itself. |
+| Breakpoint = Desktop | — (from `sm`: horizontal types run in one row) | Viewports from 640px (`sm`) up. | Forcing this layout at another width through `className`; the timeline switches by itself. |
+| Breakpoint = Mobile | — (below `sm`: the same layout narrower; horizontal types show two items per row) | Viewports below 640px (phones); vertical types keep their layout, horizontal ones wrap. | Forcing this layout at another width through `className`; the timeline switches by itself. |
 
 **Use** for chronological events or activity history. **Don't** for steps the user must complete (Stepper) or unordered lists.
 A11y: an ordered list in time order; dots and icons are `aria-hidden`, so dates and events must be in text.
@@ -274,7 +274,6 @@ API: `<Kbd>⌘</Kbd>`.
 
 | Variant | Code | Use when | Don't use when |
 |---|---|---|---|
-| — | — | This component has no design-choice variants; see the usage notes. | — |
 | Keyboard = (49 keys) | `<Kbd>Shift</Kbd>`; arrows: caret icon + `aria-label` | One key per Kbd: modifiers, letters, F1–F12 and the four arrows; join shortcuts as "⌘ + K". | A whole shortcut inside one Kbd, or keys the set does not have; write them as text. |
 | Dark mode = False | — (dark mode comes from the theme scheme) | Always; the key switches with the theme. | Adding dark colours through `className`; switch the scheme instead. |
 

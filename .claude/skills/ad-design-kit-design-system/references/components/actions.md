@@ -63,11 +63,11 @@ Disabled (all but ghost): `bg-disabled border border-default-medium text-fg-disa
 | Size = base | `size="base"` | Default for forms, dialogs and page actions (40px) | Hero sections where the CTA must dominate — use lg or xl |
 | Size = lg | `size="lg"` | Prominent CTAs in landing sections and empty states (48px) | Dense app screens — use base instead |
 | Size = xl | `size="xl"` | Hero CTAs and the Speed dial trigger (52px) | Inside forms, cards or dialogs — use base instead |
-| Icon only = False | `children` text label | Any action whose meaning needs words | — |
+| Icon only = False | `children` text label | Any action whose meaning needs words | Tight toolbars where a universal icon (Close, Settings, More) is clear — use Icon only = True with an `aria-label` |
 | Icon only = True | `iconOnly` + `aria-label` | Universal icons such as Close, Settings or More in tight spaces; add a Tooltip | Actions without a widely understood icon — keep a text label |
-| Outline = False | — | Default filled buttons for every color | — |
+| Outline = False | — | Default filled buttons for every color | A lower-emphasis Success, Danger or Warning action beside a filled one, such as a secondary Remove — use Outline = True |
 | Outline = True | `outline` | Lower-emphasis Success, Danger or Warning actions, such as a secondary Remove | Brand, Secondary or Dark buttons — use Tertiary instead |
-| Logo inside = False | — | All ordinary actions | — |
+| Logo inside = False | — | All ordinary actions | Signing in with a third-party provider — use Logo inside = True with the provider's logo |
 | Logo inside = True | `logo={<Logo />}` | Sign in with a third-party provider or brand-specific actions | Store download links — use Download app button; generic icons — use leftIcon |
 | State = Initial | — (at rest) | The action is available. | The action cannot run yet; use Disabled and say why, or keep it enabled and show the validation message. |
 | State = Hover | — (CSS `hover:`, the color's `-strong` token, automatic) | Pointer feedback on every button. | Showing a selected or pressed button; use `ButtonGroupItem active` or Tabs. |

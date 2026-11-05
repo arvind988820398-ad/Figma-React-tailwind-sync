@@ -50,6 +50,7 @@ function variantRows(body) {
 const data = [];
 const missing = [];
 const uncovered = [];
+const thin = [];
 const norm = (s) => s.toLowerCase().replace(/[‘’`]/g, "'").replace(/\s+/g, ' ').trim();
 for (const c of registry) {
   if (only.length && !only.includes(c.react)) continue;
@@ -65,10 +66,16 @@ for (const c of registry) {
   const names = new Set(rows.map((r) => norm(r[0])));
   const gaps = Object.entries(c.figmaVariants ?? {}).flatMap(([p, vals]) => vals.filter((v) => !names.has(norm(`${p} = ${v}`))).map((v) => `${p} = ${v}`));
   if (gaps.length) uncovered.push(`${c.react}: ${gaps.join(', ')}`);
+  // Every row says when to use it and when not to: no empty cells, no "—" placeholders.
+  for (const r of rows) {
+    const blank = (x) => !x || /^[—-]?$/.test(x.trim());
+    if (r[0] === '—' || blank(r[2]) || blank(r[3])) thin.push(`${c.react}: ${r[0]}`);
+  }
 }
 if (check) {
   if (missing.length) console.error(`No Variants table: ${missing.join(', ')}`);
   if (uncovered.length) console.error(`Figma variants with no row in the Variants table:\n  ${uncovered.join('\n  ')}`);
-  if (missing.length || uncovered.length) process.exit(1);
+  if (thin.length) console.error(`Variants rows without a "Use when" or "Don't use when":\n  ${thin.join('\n  ')}`);
+  if (missing.length || uncovered.length || thin.length) process.exit(1);
   console.log(`${data.length} components have a Variants table with a row for every Figma variant`);
 } else process.stdout.write(JSON.stringify(data));
