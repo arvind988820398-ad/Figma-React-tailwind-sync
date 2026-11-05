@@ -1,6 +1,6 @@
 ---
 name: ad-design-kit-figma-sync
-description: Keep the AD Design Kit Figma file (TKsoawKvPxaNCff4q43Mli) and the React + Tailwind code in sync — pull Figma variables (colors, radius, fonts, themes, dark mode) into the generated Tailwind token CSS, detect token and component-variant drift in both directions, update the component registry/docs, and optionally push usage docs or Code Connect mappings back to Figma. Use when the user says sync/update/pull tokens from Figma, "design changed", "check drift", "are Figma and code in sync", after editing variables or components in Figma, before a release, or when the token linter reports tokens that exist in Figma but not in code.
+description: Keep the AD Design Kit Figma file (TKsoawKvPxaNCff4q43Mli) and the React + Tailwind code in sync — pull Figma variables (colors, radius, fonts, themes, dark mode) into the generated Tailwind token CSS, detect token and component-variant drift in both directions, update the component registry/docs, and optionally push usage docs or Code Connect mappings back to Figma. Use when the user says sync/update/pull tokens from Figma, "design changed", "check drift", "are Figma and code in sync", after editing variables or components in Figma, before a release, or when the token linter reports tokens that exist in Figma but not in code. Every sync is recorded as a design-system version (CHANGELOG.md, Storybook Guides → Changelog, git tag ds-v<version>), so also use it when the user asks what changed in Figma, for the changelog or version history, or to go back to an earlier version of the tokens or components.
 ---
 
 # AD Design Kit Figma ⇄ code sync
@@ -38,7 +38,8 @@ Figma MCP connected (`whoami` works). Before any `use_figma` call: `create_sessi
    ```
    Removed/renamed tokens now show as `unknown-token` errors at every usage, with suggestions. Fix renames mechanically; for removals ask what replaces them (check Figma).
 5. **Docs.** Regenerate `references/tokens.md` usage table if tokens were added/removed (add a "Use for" line for each new token in the same style), and update the cheat sheet in the design-system `SKILL.md` when a commonly used token changes meaning. Then `npm run docs:build` so the Storybook token pages pick the changes up (`npm run tokens:build` already does this).
-6. **Report**: counts by kind, files touched, lint result, follow-ups.
+6. **Version.** Record the sync in the changelog (section F).
+7. **Report**: counts by kind, files touched, lint result, the new version, follow-ups.
 
 ## B. Component sync (Figma → code)
 
@@ -51,10 +52,12 @@ Figma MCP connected (`whoami` works). Before any `use_figma` call: `create_sessi
 3. **Apply.**
    - Update `components.json` (`figmaVariants`, `propMap`, `parts`, new entries with `doc` anchors) and bump `snapshotAt`.
    - For added variant values: extend the React component (variant maps in `templates/components/*` and the app's `components/ui/*`), pull the exact spec with `ad-design-kit-review/scripts/figma-component-spec.js` filtered to the new values, and add rows to the doc's recipe table.
+   - Every Figma variant value gets a row in the doc's **Variants** table (`<Property> = <Value>` · Code · Use when · Don't use when), including states, breakpoints, dark/mobile versions and single-value properties; CSS states and responsive layouts say so in the Code cell. `npm run figma:variants -- --check` (part of `npm run check`) fails on any value without a row.
    - For removed values: remove from the component types so TypeScript flags every usage; fix `code-usage` call sites (ask which replacement to use when not obvious).
    - For a `new-set`: add a registry entry and a doc section with Figma ref, API, recipe (from the spec script), **When to use / When not to use**, accessibility.
 4. Run the reviewer's linter and the project's typecheck/tests.
 5. **Storybook.** Add or update the component's `*.stories.tsx` (one story per variant axis), then `npm run docs:build`. The generator reads `components.json`, the doc sections and the token manifest, and reports registry ↔ code drift (a prop map value missing from the React union); `npm run docs:check` fails in CI on stale docs and prints drift (`npm run docs:check -- --strict` fails on drift too). The Guides → Figma sync page in Storybook shows the same findings.
+6. **Version.** Record the sync in the changelog (section F).
 
 ## C. Code → Figma (only with explicit user approval — these write to the shared Figma file)
 
@@ -84,11 +87,31 @@ Every icon on the Figma Icons page is a React component in `src/components/icons
 
 The Storybook under `.storybook/` is generated from the bridge files above: `scripts/build-docs.mjs` turns `components.json`, `references/components/*.md`, `references/tokens.md`, `figma-audit.md` and `token-manifest.json` into `generated/ad-design-kit-docs.ts`, which the docs page template and the guide pages render. Nothing in Storybook is hand-written per component, so the only way to change what it says is to change those sources and rebuild. Whenever a sync touches them, finish with `npm run docs:build` (or `npm run docs:check` to verify).
 
+**Guides → Changelog** renders the version history (section F) from `references/changelog.json`; `npm run docs:build` re-renders it.
+
+**Guides → Graph** draws the same sources as a knowledge graph (`.storybook/scripts/build-graph.mjs`, run by `npm run docs:build`): components, the tokens and icons in their source, the components they import, app screens and gaps. Use it to see what a token or component change will reach before making it.
+
 The Figma sync page also has **App screens** and **Gaps for Figma**. The builder runs `ad-design-kit-compose/scripts/check-composition.mjs` on every folder under `src/features` (which AD Design Kit components each screen uses, linked to their docs, and anything made by hand with file and line) and reads `ad-design-kit-compose/references/gaps.json` (what screens need that Figma lacks: proposal, stand-in, status, where it is marked). When a sync brings in a component that closes a gap: replace the stand-ins marked `// ad-design-kit-gap: <id>`, remove the markers, set the row's `status` to `done`, and rebuild the docs. A row the designer has drawn but not yet synced is `in-figma`.
 
 **Claude Design.** The same design system also lives in Claude Design (https://claude.ai/artifact/P6dLktxjvuj3x2YPGZprk6). After any sync that changed tokens, icons, components, stories or docs, run the `ad-design-kit-claude-design` skill (`npm run -s claude-design:status` says whether it is behind).
 
 **Hosting.** Storybook is published on Netlify at https://ad-design-kit-storybook.netlify.app (site `ad-design-kit-storybook`, config in `netlify.toml`). Redeploy after any docs or component change with `npm run storybook:deploy` (needs `netlify login` once). Every Figma component set links to its page there; if a story file's title changes, re-run `npm run figma:descriptions` and apply the result to Figma.
+
+## F. Version history
+
+Every sync that changes the Figma snapshot (`tokens/figma-*.json`, `references/components.json` variants and sets, `icons/figma-icons.json`) becomes a version of the design system, so the team can see what changed in Figma and when, and go back to any earlier state. `scripts/changelog.mjs` compares the snapshot with the last version's git tag; nothing in the log is typed by hand.
+
+1. **See what changed.** `npm run changelog` lists the changes since the last version (tokens, theme modes, effect styles, component sets, variant properties and values, icons) and the next version number. Exit 1 = there are changes to record.
+2. **Record the version** once the sync is applied (section A, B or D), before committing:
+   ```bash
+   npm run changelog:release -- --title "<what changed in Figma, in a few words>" [--figma-version "<name of the Figma version>"]
+   ```
+   It writes the entry to `ad-design-kit-design-system/references/changelog.json` and renders `CHANGELOG.md` and Storybook → Guides → Changelog. Semver: anything removed or renamed is breaking (major), anything added is minor, changed values are a patch. Running it again before the commit replaces the entry, so re-run it whenever the sync changes further. Use the title the user gives; otherwise write one from the change list.
+3. **Name the Figma version** (optional, suggest it): in Figma, File → Save to version history (⌥⌘S) with the same title, and pass that name as `--figma-version`, so the code version and the Figma version can be matched.
+4. **Commit, then tag.** Commit the synced files with the changelog (when the user asks for commits), then `npm run changelog:tag`: it tags HEAD as `ds-v<version>` and refuses when the entry or the snapshot is not committed. Tags travel with `git push --follow-tags` (or `git push origin ds-v<version>`); push them when the user asks to push.
+5. `npm run check` (through `docs:check`) fails when the snapshot changed since the last version without an entry, or when an untagged entry no longer matches the snapshot, so a sync cannot skip this step. In a checkout without tags (CI's shallow clone) that part is skipped.
+
+To go back: `git checkout ds-v<version> -- .claude/skills/ad-design-kit-design-system/tokens` (or the whole tag) restores the snapshot of that version; rebuild with `npm run tokens:build`. The history starts at 1.0.0 (the rename to AD Design Kit, 2026-10-31); it was rebuilt from git with `changelog.mjs --backfill 39fd2cc`.
 
 ## Drift check for CI (optional)
 Commit the exports and add a CI step that fails when the app's `ad-design-kit.css` differs from a fresh build:

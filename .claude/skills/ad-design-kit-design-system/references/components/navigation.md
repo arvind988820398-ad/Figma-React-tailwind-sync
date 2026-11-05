@@ -28,6 +28,9 @@ API: `<Navbar logo links={[{label,href,current,disabled,icon,rightIcon}]} action
 | Size = Compact | `size="compact"` | Dense app shells; a 44px bar with `sm` controls. | Marketing headers with `base` buttons (Default). |
 | Width = Contained | `fluid={false}` | Content pages centered in `max-w-screen-xl`. | App shells with a Sidebar or full-width data views (Fluid). |
 | Width = Fluid | `fluid` | App shells where the bar spans the full width beside a Sidebar or wide tables. | Marketing or reading pages with centered content (Contained). |
+| Breakpoint = Mobile | — (below `linksFrom`: logo, actions and a menu button; links move to the mobile menu) | Phones; the bar keeps the logo and the most important action visible. | Forcing this layout at another width through `className`; the navbar switches by itself. |
+| Breakpoint = Tablet | — (`md`: `tabletLinks` shows the first N links, the rest stay in the menu) | Tablets, when a few top links fit beside the logo. | Forcing this layout at another width through `className`; the navbar switches by itself. |
+| Breakpoint = Desktop | — (from `linksFrom`, `md` or `lg`: every link in the bar) | Wide screens with up to about 7 top-level links. | Forcing this layout at another width through `className`; the navbar switches by itself. |
 
 **Use** as the global site/app header. **Don't** exceed ~7 top-level links (use a mega menu or Sidebar), duplicate Sidebar navigation, or switch in-page views (Tabs).
 A11y: links sit in a `<nav>` with an `aria-label`; the current page has `aria-current="page"`; the mobile menu button has `aria-expanded` and `aria-controls`.
@@ -101,6 +104,9 @@ Icons `size-4`, `gap-1.5`. Mobile: horizontal scroll, or `mobile` for Figma's Mo
 | Type = Border bottom | `variant="underline"` | The section-tab row directly below the Navbar (Figma Nav tabs) or a page header. | Small cards and panels where a full-width rule is too heavy (Default). |
 | Type = Vertical with list item | `variant="vertical-list"` | Settings pages with many sections listed in a side column. | App-wide navigation between pages (Sidebar). |
 | Type = Vertical pills | `variant="vertical-pills"` | A side column of views that needs a strong filled active state. | There is room for a horizontal row (Pills). |
+| State = Initial | — (at rest; the active tab comes from `value`) | The tab row as users first see it, with one tab selected. | Showing no selected tab; a tab list always has one active tab. |
+| Mobile = False | — (default; the row scrolls sideways on small screens) | A few short tabs that fit, or scroll comfortably, at phone width. | Many or long tabs on phones; use Mobile = True. |
+| Mobile = True | `mobile` | Below `sm`, Default / Pills / Border bottom become a Select and Button types stack full width. | Tabs that already fit on a phone; the Select hides the other options. |
 
 **Use** to switch peer views of the same context. **Don't** for sequential steps (Stepper), navigating to pages (links + `aria-current`), >7 tabs, or list filtering.
 A11y: `tablist`/`tab`/`tabpanel`, roving focus, `aria-selected`.
@@ -174,6 +180,8 @@ Connectors drawn as borders in Figma: Default `border-t border-default` (Mobile:
 | Type = Icons & text | `variant="icons"` | Each step has a recognizable icon, such as Cart, Shipping, Payment. | Steps without distinct icons (Default). |
 | Type = With dots | `variant="dots"` | A light progress indicator, such as onboarding screens. | Users need step numbers to see how far they are (Default). |
 | Type = Cards | `variant="cards"` | Steps shown as a stacked list of status cards beside or above a wizard. | More than four steps or tight width (Default). |
+| Breakpoint = Mobile | — (below `sm`: steps wrap or stack with vertical connectors) | Phones; the steps stack so titles stay readable. | Forcing this layout at another width through `className`; the stepper switches by itself. |
+| Breakpoint = Desktop | — (from `sm`: steps in one row) | Wide screens where every step title fits on one line. | Forcing this layout at another width through `className`; the stepper switches by itself. |
 
 **Use** for linear multi-step processes. **Don't** for non-linear navigation (Tabs) or >6 steps. Current step `aria-current="step"`.
 A11y: an ordered list; the current step has `aria-current`; completed steps are also stated in screen-reader text, not only with a check icon.

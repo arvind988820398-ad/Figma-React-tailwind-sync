@@ -1,0 +1,20 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { Changelog, ChangelogSummary } from '../ad-design-kit/changelog';
+
+<Meta title="Guides/Changelog" />
+
+# Changelog
+
+Every change to AD Design Kit that came from Figma, newest first: tokens, theme modes, effect styles, component sets, variants and icons. Each sync records one version, built by comparing the Figma snapshot committed in this repository with the previous version, so nothing here is typed by hand.
+
+<ChangelogSummary />
+
+## Versions
+
+- **Major** — something was removed or renamed (a token, theme mode, effect style, component set, variant or icon). Code that used it has to change; the token linter and TypeScript point at every usage.
+- **Minor** — something was added.
+- **Patch** — values changed (a colour, a radius, a shadow), nothing added or removed.
+
+Each version is a git tag, `ds-v<version>`. **Code** opens the repository as it was at that version; **Diff** shows every file that changed since the version before.
+
+<Changelog />

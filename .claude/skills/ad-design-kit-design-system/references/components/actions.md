@@ -69,6 +69,10 @@ Disabled (all but ghost): `bg-disabled border border-default-medium text-fg-disa
 | Outline = True | `outline` | Lower-emphasis Success, Danger or Warning actions, such as a secondary Remove | Brand, Secondary or Dark buttons — use Tertiary instead |
 | Logo inside = False | — | All ordinary actions | — |
 | Logo inside = True | `logo={<Logo />}` | Sign in with a third-party provider or brand-specific actions | Store download links — use Download app button; generic icons — use leftIcon |
+| State = Initial | — (at rest) | The action is available. | The action cannot run yet; use Disabled and say why, or keep it enabled and show the validation message. |
+| State = Hover | — (CSS `hover:`, the color's `-strong` token, automatic) | Pointer feedback on every button. | Showing a selected or pressed button; use `ButtonGroupItem active` or Tabs. |
+| State = Focus | — (CSS `focus-visible:` `shadow-focus-*`, automatic) | Keyboard focus; the ring must stay visible. | Removing the ring, or adding it through `className` to draw attention. |
+| State = Disabled | `disabled` | The action is temporarily unavailable and the reason is visible nearby. | Blocking a form submit with no explanation; prefer an enabled button that shows what is missing. |
 
 **When to use**: any action that changes state, submits, opens an overlay or starts a flow. **One `brand` button per section**; `secondary`/`tertiary` for the rest; `danger` for destructive confirmations; `ghost` in toolbars, rows, card headers; `dark` on light marketing sections; `iconOnly` for universal icons with `aria-label` + Tooltip.
 **When not to use**: navigation (use a link, or `<a className={buttonVariants({...})}>`); status display (Badge); view switching (Tabs/ButtonGroup); two `brand` buttons side by side; `success`/`warning` for ordinary primary actions; outline on brand/secondary/dark (use `tertiary`).
@@ -88,6 +92,7 @@ A joined row of Buttons: Figma "Gray" = **Secondary** buttons, "White" = **Terti
 | Size = lg | `size="lg"` | Prominent switchers on marketing or pricing pages | Dense app screens — use base |
 | Color = Gray | `color="gray"` | Groups on white surfaces where the items need a visible fill | Groups on gray surfaces where contrast is low — use White |
 | Color = White | `color="white"` | Low-emphasis groups and groups placed on tinted surfaces | Groups that should read as filled controls — use Gray |
+| Type = Default | `<ButtonGroup>` + `<ButtonGroupItem>` | The only type in the set; the examples page shows icon, pager, dropdown and badge compositions of it. | Unrelated actions; use separate Buttons. |
 
 **Use** for 2–5 closely related actions or a compact view switcher. **Don't** for unrelated actions, primary CTAs, or >5 options. If it switches content panels, use `Tabs variant="segmented"` for ARIA.
 A11y: the wrapper is `role="group"` with an `aria-label`; toggle groups set `aria-pressed` on each button; icon-only items need an `aria-label`.

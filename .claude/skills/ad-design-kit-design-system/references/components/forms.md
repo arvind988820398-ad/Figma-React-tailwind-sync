@@ -68,6 +68,13 @@ Joined compositions (Select, Search, Number, Phone and Copy "With buttons", "Thr
 | Size = base | `size="base"` | Default for most forms, dialogs and side panels. | Neighbouring controls use another size — match the row. |
 | Size = lg | `size="lg"` | Prominent single fields: sign-in, onboarding, main search. | Dense multi-column forms — use base. |
 | Size = xl | `size="xl"` | Hero or touch-first forms with one or two fields. | Regular forms or dialogs — use base or lg. |
+| State = Initial | — (empty, at rest) | The field is empty and waiting for input; the placeholder shows an example value. | The placeholder is the only label; always pair the field with a `Label`. |
+| State = Focus/Typing | — (CSS `focus:` `border-brand` + `shadow-focus-brand`, automatic) | Always, while the field has keyboard or pointer focus. | Highlighting a field that is not focused; never add focus styles through `className`. |
+| State = Filled | — (has a value; text `text-heading`) | The field holds a value the user entered or that was prefilled. | Showing placeholder text styled as a value; users mistake it for an answer. |
+| State = Disabled | `disabled` | The value does not apply right now, e.g. it depends on another choice; say why nearby. | Users still need to read or copy the value; use Read-only. |
+| State = Read-only | `readOnly` | A value shown in a form that cannot be changed (an ID, a computed total); it stays focusable and is submitted. | Display-only data outside a form; use plain text. |
+| State = Success | `status="success"` + HelperText | A check the user waits for passed, e.g. "Username is available". | Every valid field after submit; reserve it for checks that need confirmation. |
+| State = Danger | `status="danger"` + `aria-invalid` + HelperText | The value failed validation; the helper text says how to fix it. | Before the user has interacted; validate on blur or submit, not on the first keystroke. |
 
 **Use** for single-line free text: names, emails, URLs, search terms, numbers without steppers.
 **Don't** for long text (`Textarea`), known options (`Select`/`Autocomplete`/`Radio`), dates (`Datepicker`), on/off (`Toggle`), or read-only data that isn't a form value.
@@ -227,6 +234,12 @@ API: `<FileInput onFiles>` (Default) · `<FileDropzone onFiles variant="advanced
 |---|---|---|---|
 | Type = Advanced | `<FileDropzone variant="advanced">` | Drag-and-drop for several files or media inside a form. | One file in a form — use `<FileInput>`. |
 | Type = With cta's | `<FileDropzone variant="ctas" actions={…}>` | Upload steps or empty states that offer other sources, e.g. camera or cloud import. | A plain form field — use Advanced or `<FileInput>`. |
+| Size = base | — (one size; the dropzone fills its container) | Always; it is the only size in Figma. | A smaller dropzone; make its container narrower instead, or use `<FileInput>`. |
+| State = Initial | — (at rest) | Waiting for files. | Files are uploading; show them with Progress in a list below the dropzone. |
+| State = Hover | — (CSS `hover:`, also while files are dragged over, automatic) | Pointer and drag-over feedback. | Highlighting the zone permanently through `className`. |
+| State = Disabled | `disabled` | Uploads are not allowed yet, e.g. the file limit is reached or an earlier step is incomplete; say why in `hint`. | An upload failed; use Danger. |
+| State = Success | `status="success"` | The files passed validation or finished uploading. | Before the upload has finished; show Progress. |
+| State = Danger | `status="danger"` | A file was rejected (type, size or count); `hint` names the reason. | A network error a retry will fix; show it on the file row with a retry action. |
 
 **Use** Default for one file in a form; dropzone for multiple files or media. **Don't** hide the real `<input type="file">` from assistive tech.
 A11y: built on a real `<input type="file">` inside a `<label>`, so it works with keyboard and screen readers; put type and size limits in helper text linked by `aria-describedby`.
@@ -243,6 +256,13 @@ API: `<TagInput value onChange size status disabled renderLeading>`.
 | Size = base | `size="base"` | Default for most forms, dialogs and side panels. | Neighbouring controls use another size — match the row. |
 | Size = lg | `size="lg"` | Prominent single fields: sign-in, onboarding, main search. | Dense multi-column forms — use base. |
 | Size = xl | `size="xl"` | Hero or touch-first forms with one or two fields. | Regular forms or dialogs — use base or lg. |
+| Type = Default | `<TagInput>` | The only type in the set. | Values from a fixed list; use a multi-select Autocomplete. |
+| State = Initial | — (empty, at rest) | The field is empty and waiting for input; the placeholder shows an example value. | The placeholder is the only label; always pair the field with a `Label`. |
+| State = Focus | — (CSS `focus:` `border-brand` + `shadow-focus-brand`, automatic) | Always, while the field has keyboard or pointer focus. | Highlighting a field that is not focused; never add focus styles through `className`. |
+| State = Filled | `value={[…]}` (tags shown as Badges) | The field holds a value the user entered or that was prefilled. | Showing placeholder text styled as a value; users mistake it for an answer. |
+| State = Disabled | `disabled` | The value does not apply right now, e.g. it depends on another choice; say why nearby. | Users still need to read or copy the value; use Read-only. |
+| State = Success | `status="success"` + HelperText | A check the user waits for passed, e.g. "Username is available". | Every valid field after submit; reserve it for checks that need confirmation. |
+| State = Danger | `status="danger"` + `aria-invalid` + HelperText | The value failed validation; the helper text says how to fix it. | Before the user has interacted; validate on blur or submit, not on the first keystroke. |
 
 **Use** for free-form multiple values (emails, keywords). **Don't** when values come from a fixed list (multi-select Autocomplete or Checkbox group).
 A11y: Enter adds a tag and Backspace removes the last one; each tag's remove button has an `aria-label` naming the tag; the clear button is labelled "Clear all tags"; errors set `aria-invalid`.
@@ -260,6 +280,14 @@ Box = Input shell, square (`base` `size-10`, `sm` `size-9`, `lg` `size-12`, `xl`
 | Size = base | `size="base"` | Standalone verification cards with room to spare. | Narrow dialogs or 8-digit codes — use sm. |
 | Size = lg | `size="lg"` | Touch-first or full-page verification steps. | Dense forms — use sm. |
 | Size = xl | `size="xl"` | Kiosk or hero verification screens with a short code. | Dialogs or long codes — use sm or base. |
+| Type = Default | `<OtpInput>` (layouts via `variant`) | The only box type; Default, Spaced and Separator layouts are the `variant` prop. | Passwords or general numbers; use Input. |
+| State = Initial | — (empty, at rest) | The field is empty and waiting for input; the placeholder shows an example value. | The placeholder is the only label; always pair the field with a `Label`. |
+| State = Focus | — (CSS `focus:` `border-brand` + `shadow-focus-brand`, automatic) | Always, while the field has keyboard or pointer focus. | Highlighting a field that is not focused; never add focus styles through `className`. |
+| State = Filled | `value` (digits `font-semibold text-heading`) | The field holds a value the user entered or that was prefilled. | Showing placeholder text styled as a value; users mistake it for an answer. |
+| State = Disabled | `disabled` | The value does not apply right now, e.g. it depends on another choice; say why nearby. | Users still need to read or copy the value; use Read-only. |
+| State = Read-only | `readOnly` | A value shown in a form that cannot be changed (an ID, a computed total); it stays focusable and is submitted. | Display-only data outside a form; use plain text. |
+| State = Success | `status="success"` + HelperText | A check the user waits for passed, e.g. "Username is available". | Every valid field after submit; reserve it for checks that need confirmation. |
+| State = Danger | `status="danger"` + `aria-invalid` + HelperText | The value failed validation; the helper text says how to fix it. | Before the user has interacted; validate on blur or submit, not on the first keystroke. |
 
 **Use** for one-time codes (4–8 characters) with `autocomplete="one-time-code"`, paste support, auto-advance. **Don't** for passwords or general numbers.
 A11y: the fields sit in a `role="group"` with a label; each digit field has its own `aria-label`; typing moves focus forward and Backspace moves back. An empty box between filled ones is a space in `value`, so clearing one box never shifts the others.
@@ -280,6 +308,9 @@ API: `<Textarea status rows footer>`; `footer` = Buttons inside (Brand `sm` subm
 | Type = Chatroom | `compose: <TextareaToolButton>s + <Input size="sm"> + <TextareaToolButton brand>` | Chat or messaging composers pinned to the bottom of a thread. | Long-form text — use Default. |
 | Type = Buttons inside | `footer={<Button size="sm"/> + <TextareaToolButton>s}` | Comment boxes with attach or emoji tools and a submit in one shell. | The text is one field in a larger form — use Default. |
 | Type = Buttons outside | `compose: <Textarea> + <Button size="sm">` | Simple comment or reply boxes with a separate submit. | Users need formatting — use RichTextEditor. |
+| State = Initial | — (empty, at rest) | The area is empty and waiting for input. | The placeholder is the only label; pair it with a `Label`. |
+| State = Focus | — (CSS `focus-within:` `border-brand`, automatic) | Always, while the user is writing. | Highlighting an area that is not focused; never add focus styles through `className`. |
+| State = Filled | — (has content; text `text-heading`) | The area holds text the user wrote or that was prefilled. | Showing an example as if it were content; use the placeholder. |
 
 **Use** for multi-line plain text. **Don't** for single-line values or formatted content (RichTextEditor).
 A11y: pair it with a `Label`; set `aria-invalid` together with an error helper; toolbar buttons, when shown, have `aria-label`s.
@@ -296,6 +327,9 @@ Shell: `rounded-base border border-default-medium shadow-xs` (focus `border-bran
 | Type = Buttons inside | `footer={…}` | Post or comment composers with a submit inside the editor shell. | The editor is one field in a larger form — use Default. |
 | Type = Buttons outside | `compose: <RichTextEditor> + <Button>` | Stand-alone editors with actions below, e.g. Save draft and Publish. | Plain comments — use Textarea. |
 | Type = Default | `<RichTextEditor>` | Formatted content inside a larger form submitted later. | Plain text without formatting — use Textarea. |
+| State = Initial | — (empty, at rest) | The area is empty and waiting for input. | The placeholder is the only label; pair it with a `Label`. |
+| State = Focus | — (CSS `focus-within:` `border-brand`, automatic) | Always, while the user is writing. | Highlighting an area that is not focused; never add focus styles through `className`. |
+| State = Filled | — (has content; text `text-heading`) | The area holds text the user wrote or that was prefilled. | Showing an example as if it were content; use the placeholder. |
 
 **Use** when users must format text. **Don't** for plain comments.
 A11y: the editing area is `role="textbox"` with `aria-multiline`; formatting buttons sit in a `role="toolbar"` and each has an `aria-label`.
@@ -323,6 +357,13 @@ Field heights 36 / 40 / 48 / 52 (sm `p-2`, base `p-2.5`, lg `p-3 text-base`, xl 
 | Size = base | `size="base"` | Default for most forms, dialogs and side panels. | Neighbouring controls use another size — match the row. |
 | Size = lg | `size="lg"` | Prominent single fields: sign-in, onboarding, main search. | Dense multi-column forms — use base. |
 | Size = xl | `size="xl"` | Hero or touch-first forms with one or two fields. | Regular forms or dialogs — use base or lg. |
+| State = Initial | — (empty; the label sits inside the field) | The field is empty and waiting for input. | Adding a separate placeholder; the label is the prompt. |
+| State = Focus | — (CSS `peer-focus:`; label floats in `text-fg-brand`, automatic) | Always, while the field has focus. | Highlighting a field that is not focused through `className`. |
+| State = Filled | — (has a value; the label stays floated) | The field holds a value. | Hiding the floated label to save space; it is the accessible name. |
+| State = Disabled | `disabled` | The value does not apply right now; say why nearby. | Users still need to read or copy the value; use Read only. |
+| State = Read only | `readOnly` | A value shown in the form that cannot be changed; it stays focusable and is submitted. | Display-only data outside a form; use plain text. |
+| State = Success | `status="success"` + HelperText | A check the user waits for passed. | Every valid field after submit. |
+| State = Danger | `status="danger"` + `aria-invalid` + HelperText | The value failed validation; the helper says how to fix it. | Before the user has interacted with the field. |
 
 **Use** in compact forms (login, checkout). **Don't** mix with standard labelled inputs in the same form or use in long forms.
 A11y: the floating text is a real `<label>` and stays the accessible name; never replace it with a placeholder; errors set `aria-invalid`.
@@ -431,6 +472,12 @@ Toggle inputs: label `text-sm font-medium text-heading` + helper `text-xs leadin
 |---|---|---|---|
 | Size = base | `size="base"` | Default for settings lists, cards and table rows. | Touch-first or stand-alone settings — use lg. |
 | Size = lg | `size="lg"` | Touch-first or prominent stand-alone settings. | Dense lists and table rows — use base. |
+| Type = Default | `<Toggle>` | The only switch type; labelled, card and segmented layouts are on the inputs page. | Choosing between named options; use Tabs or Radio. |
+| Status = Initial | — (at rest) | The switch is available. | The switch cannot be used right now; use Disabled. |
+| Status = Focus | — (CSS `focus-visible:` `shadow-focus-brand`, automatic) | Keyboard focus; the ring must stay visible. | Removing the ring or adding it through `className` to highlight a control. |
+| Status = Disabled | `disabled` | The option does not apply in the current context; explain why nearby. | Hiding an option the user may not have; leave it out instead. |
+| Checked = False | `checked={false}` | The setting is off; the label names what turning it on does ("Email notifications"). | Labels phrased in the negative ("Disable emails"); users cannot tell what off means. |
+| Checked = True | `checked` | The setting is on and already applied. | A choice that only applies after Save; use Checkbox. |
 
 **Use** for settings that apply immediately. **Don't** inside forms submitted later (Checkbox), for choosing between named options (Tabs/Radio), or for actions. `role="switch"` + `aria-checked`.
 A11y: `role="switch"` with `aria-checked`; the visible label is the accessible name and is clickable; Space toggles it.
@@ -445,6 +492,13 @@ Box `size-4 border border-default-strong bg-neutral-secondary-strong` — checkb
 |---|---|---|---|
 | Type = Checkbox input | `<Checkbox>` | Independent opt-ins, consent and multi-select lists in a form. | Settings that apply immediately — use Toggle. |
 | Type = Radio input | `<Radio>` | Exactly one of 2–5 visible options, grouped in a fieldset. | 6 or more options — use Select. |
+| Size = base | — (Figma name of the 16px checkbox; no size prop) | Always; checkboxes come in one size. | A bigger target; make the whole label clickable or use ChoiceCard. |
+| Size = Default | — (Figma name of the 16px radio; no size prop) | Always; radios come in one size. | A bigger target; use ChoiceCard. |
+| Status = Initial | — (at rest) | The option is available. | The option cannot be used right now; use Disabled. |
+| Status = Focus | — (CSS `focus-visible:` `shadow-focus-brand`, automatic) | Keyboard focus; the ring must stay visible. | Removing the ring or adding it through `className` to highlight a control. |
+| Status = Disabled | `disabled` | The option does not apply in the current context; explain why nearby. | Hiding an option the user may not have; leave it out instead. |
+| Checked = False | `checked={false}` / `defaultChecked={false}` | The option is not chosen. | Pre-unchecking consent the user gave earlier; keep their choice. |
+| Checked = True | `checked` / `defaultChecked` | The option is chosen, by the user or as a sensible default. | Pre-checking marketing or legal consent; the user must opt in. |
 
 **Checkbox — use** for independent opt-ins, multi-select lists, consent. **Don't** for mutually exclusive options or instant settings.
 **Radio — use** for one of 2–5 visible options. **Don't** for 6+ options (Select).
@@ -490,6 +544,9 @@ Groups stack items `gap-4` (grid variants use `grid gap-4`).
 | Type = Payment | `compose: variant="card" icon={card logo}` | Choosing a payment method with brand and card details. | Entering new card details — use Input fields. |
 | Type = Icon & toggle | `compose: bordered card + icon + <Toggle aria-labelledby>` (a switch cannot sit inside the card's label) | Setting cards whose switch applies immediately. | Inside a form submitted later — use Left checkbox card. |
 | Type = Bordered left input | `variant="bordered"` | Lighter card lists where only the border marks the choice. | Selection needs strong emphasis — use Left checkbox card. |
+| Status = Initial | — (at rest) | The option is available and not chosen. | The option is unavailable; set `disabled` on the card. |
+| Status = Hover | — (CSS `hover:`, automatic) | Pointer feedback over the whole card. | Showing the chosen card; that is Checked. |
+| Status = Checked | `checked` / `defaultChecked` on the input (styled with `has-checked:`) | The option is chosen; the border and tint come from the real input state. | Highlighting a recommended plan; use a Badge in `trailing` instead. |
 
 **Use** when options need description or visuals (plans, payment, shipping). **Don't** for short simple labels. The whole card is the `<label>` around a real input.
 A11y: real radio or checkbox inputs inside a `fieldset` with a `legend`; the whole card is the label, so clicking anywhere selects it.

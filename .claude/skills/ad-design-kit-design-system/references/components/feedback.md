@@ -147,6 +147,7 @@ SVG `animate-spin`: track `fill-neutral-quaternary` (omit when `track={false}`),
 | Size = xl | `size="xl"` | Full-page or empty-screen loading only. | Anything smaller than a page; use md or lg. |
 | Track = True | `track` | Default; the track gives the arc contrast on neutral surfaces. | Solid colored fills where the track looks muddy; use False. |
 | Track = False | `track={false}` | On solid fills such as Brand buttons, where only the arc should show. | Neutral surfaces where the arc alone is hard to see; keep the track. |
+| Type = Default | `<Spinner>` | The only type; size and track are props. | Known layouts (Skeleton) or known progress (Progress). |
 
 **Use** for short waits where layout is unknown, or in-button loading. **Don't** for known layouts (Skeleton) or known progress (Progress). `role="status"` + sr-only label.
 A11y: `role="status"` with screen-reader text ("Loading"); inside a button, also set `aria-busy` and `disabled` on the button.
@@ -168,6 +169,7 @@ Lines `h-2 rounded-full` — primary line `bg-gray`, secondary/meta line `bg-neu
 | Type = List | `type="list"` | Loading list or table rows with a title, subtitle and value. | Card grids; use Card + Image. |
 | Type = Simple text | `type="simple-text"` | Loading paragraphs or an article body. | A headline with an author; use Text. |
 | Type = Widget | `type="widget"` | Loading a dashboard widget or chart card. | Text content; use Text or Simple text. |
+| Dark Version = False | — (dark mode comes from the theme scheme) | Always; the skeleton switches with the theme. | Adding a dark skeleton through `className`; switch the scheme instead. |
 
 **Use** while loading content of known layout. **Don't** for button loading, waits >3s without progress, or a layout different from the loaded content. `aria-busy="true"` + sr-only "Loading".
 A11y: the placeholder is `role="status"` with `aria-busy` and screen-reader text; the shapes themselves are `aria-hidden`.

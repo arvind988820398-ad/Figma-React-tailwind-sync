@@ -48,6 +48,8 @@ Mobile Version = the same content stacked at mobile width (responsive classes, n
 | Type = Grid card | `<Card padding="roomy">` + 2×2 testimonial grid | Four short related items, such as features or stats, as one divided block. | Each item needs its own link or action; use separate cards. |
 | Type = Card with list | `<Card>` + `List variant="card"` | A titled short list, such as top customers, with a view-all link. | Data with many attributes to compare; use Table. |
 | Type = Crypto | `<Card>` + asset rows | Choosing or showing a few wallets or assets with logos and values. | Long or sortable asset lists; use Table. |
+| Mobile Version = False | — (from `sm`: `p-6 gap-6`, `p-7` for Default and Grid card) | Tablet and desktop widths. | Forcing roomy padding on phones through `className`. |
+| Mobile Version = True | — (below `sm`: `p-5 gap-5`, content stacked) | Phones; applied by responsive classes, not a prop. | Making a desktop card look compact; use `padding` instead. |
 
 **Use** to group information about one entity (products, posts, profiles, plans, KPIs). **Don't** wrap every section in a card, nest cards, or put cards inside a Modal. Whole-card links: one stretched `<a>`, no nested interactive elements.
 A11y: a plain container, so give its title a real heading; if the whole card is clickable, use one stretched link, never nested links or buttons.
@@ -72,6 +74,10 @@ API: `<Accordion items={[{value,title,content,icon,subtitle,items}]} variant mul
 | Style = Separate Cards | `variant="cards"` | Each item is an independent topic that reads better as its own block. | Many items or tight vertical space; use Default or Flush. |
 | Style = Multi-level | `variant="nested"` | Sections have sub-sections, at most two levels deep. | Deeper hierarchies or page navigation; use Sidebar. |
 | Style = With sub-header | `variant="subheader"` | Each section needs an icon and a one-line summary before it opens. | Plain question-and-answer lists; use Default. |
+| Dark Version = False | — (dark mode comes from the theme scheme) | Always; the accordion switches with the theme. | Adding dark colours through `className`; switch the scheme instead. |
+| Icon = True | `icon` on an item (20px `question-circle` before the title) | FAQ-style lists where an icon helps scanning, or a sub-header with an IconShape. | Decorating every item with the same icon in a short list; it adds noise. |
+| Breakpoint = Desktop | — (from `sm`: triggers `px-6 py-5`, panels `px-6 py-5`) | Tablet and desktop widths. | Forcing roomy padding on phones through `className`. |
+| Breakpoint = Mobile | — (below `sm`: triggers `px-4 py-3.5`, panels `p-4`) | Phones; applied by responsive classes. | Making a desktop accordion compact; use Flush instead. |
 
 **Use** for FAQs, long settings, progressive disclosure. **Don't** hide content users must compare or read, nest >2 levels, or use as page navigation. Triggers are `<button aria-expanded aria-controls>`.
 A11y: each header is a `<button>` with `aria-expanded` and `aria-controls`; each panel is a `role="region"` labelled by its header.
@@ -103,6 +109,7 @@ Group label `<AvatarGroupLabel name src helper size="sm|base|lg|xl">` (Figma Typ
 | Size = lg | `size="lg"` | Card headers and prominent list rows. | Inline with body text; use sm. |
 | Size = xl | `size="xl"` | Profile summaries and stacked timeline rows. | Lists with many rows; use base. |
 | Size = 2xl | `size="2xl"` | The User profile card or a profile page header, once per view. | Repeated in lists or avatar groups; use base or lg. |
+| User = (13 sample people) | `src` + `alt`, or `name` / `initials` | Figma's sample photos stand for a real person: pass their photo, or initials when there is none. | Shipping a sample photo as a stand-in; use Type = Placeholder. |
 
 **Use** for people and organizations. **Don't** for generic icons (IconShape) or brand logos in content. Provide `alt` or `aria-hidden` when the name is adjacent.
 A11y: image avatars are `role="img"` with the person's name as `aria-label`; status dots have screen-reader text; an avatar next to the visible name can be decorative.
@@ -181,6 +188,7 @@ API: `<Table striped="rows|columns" caption={{ title, description, actions }} to
 | Type = Striped columns | `striped="columns"` | Users compare values down columns, such as plans or features side by side. | Users read records row by row; use Striped rows. |
 | Type = Striped rows | `striped="rows"` | Many wide rows where the eye must track across. | Short tables of a few rows; plain row borders are enough. |
 | Type = With table caption | `caption={{ title, description, actions }}` | The table needs a visible title and short context. | A heading right above already names it; use `aria-label`. |
+| Breakpoint = Desktop | — (the wrapper scrolls sideways on narrow screens) | Desktop and tablet layouts; the only breakpoint in Figma. | Many columns on phones; show the rows as a List or Cards in the mobile layout. |
 
 **Use** for data users compare, sort or act on across rows. **Don't** for layout, ≤2 attributes (List), or narrow screens without a responsive strategy. `<th scope>`; sortable headers are buttons with `aria-sort`.
 A11y: a real `<table>` with `<th>` headers; give it a caption or `aria-label`; row-selection checkboxes need labels naming the row; sortable headers should set `aria-sort`.
@@ -207,6 +215,8 @@ API: `<Timeline items={[{date,title,description,icon,avatar,actions,entries}]} v
 | Type = Stacked cards | `variant="stacked"` + `entries` | Many events grouped under one date in a compact card. | A few events; use Default. |
 | Type = Horizontal | `variant="horizontal"` | Three to five milestones across a wide layout, such as a roadmap. | Narrow screens or many events; use a vertical type. |
 | Type = Horizontal advanced | `variant="horizontal-advanced"` | Wide-screen milestones that need a description and a link. | Short labels only; use Horizontal. |
+| Breakpoint = Desktop | — (from `sm`: horizontal types run in one row) | Wide screens. | Forcing this layout at another width through `className`; the timeline switches by itself. |
+| Breakpoint = Mobile | — (below `sm`: the same layout narrower; horizontal types show two items per row) | Phones; vertical types keep their layout, horizontal ones wrap. | Forcing this layout at another width through `className`; the timeline switches by itself. |
 
 **Use** for chronological events or activity history. **Don't** for steps the user must complete (Stepper) or unordered lists.
 A11y: an ordered list in time order; dots and icons are `aria-hidden`, so dates and events must be in text.
@@ -265,6 +275,8 @@ API: `<Kbd>⌘</Kbd>`.
 | Variant | Code | Use when | Don't use when |
 |---|---|---|---|
 | — | — | This component has no design-choice variants; see the usage notes. | — |
+| Keyboard = (49 keys) | `<Kbd>Shift</Kbd>`; arrows: caret icon + `aria-label` | One key per Kbd: modifiers, letters, F1–F12 and the four arrows; join shortcuts as "⌘ + K". | A whole shortcut inside one Kbd, or keys the set does not have; write them as text. |
+| Dark mode = False | — (dark mode comes from the theme scheme) | Always; the key switches with the theme. | Adding dark colours through `className`; switch the scheme instead. |
 
 **Use** to show keyboard shortcuts in tooltips, menus, docs. **Don't** for generic code (`<code>`) or as a button.
 A11y: uses the semantic `<kbd>` element; spell out key names that could be ambiguous.

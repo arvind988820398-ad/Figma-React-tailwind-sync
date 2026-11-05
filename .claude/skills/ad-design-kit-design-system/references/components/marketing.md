@@ -22,6 +22,9 @@ API: `<Banner title icon actions logo floating centered sticky onDismiss>`.
 | Type = Newsletter | `centered actions={<form>…</form>}` | Collecting an email for a newsletter or waitlist from a dismissible strip. | Signup is the page's main goal; put the form in the Jumbotron or a form section. |
 | Type = Icon & link | `centered icon` + link in children | A short announcement with a leading icon and one "learn more" link. | The message needs a title or buttons; use Heading & description. |
 | Type = Heading & description | `title actions` | The announcement needs a title, a supporting sentence and up to two actions. | One line is enough; use Default or Icon & link. |
+| Breakpoint = Mobile | — (below `sm`: content stacks, dismiss button top-right; the floating card closes with a full-width Tertiary "Close") | Phones. | Forcing this layout at another width through `className`; the banner switches by itself. |
+| Breakpoint = Tablet | — (`sm`: one row; Heading & description keeps its buttons under the text) | Tablets. | Forcing this layout at another width through `className`; the banner switches by itself. |
+| Breakpoint = Desktop | — (`lg`+: one row, Heading & description buttons beside the text) | Wide screens. | Forcing this layout at another width through `className`; the banner switches by itself. |
 
 **Use** for site-wide, dismissible announcements. **Don't** for contextual errors (Alert), action feedback (Toast), or more than one banner at a time. Persist dismissal.
 A11y: a `role="region"` landmark with a label; the dismiss button has an `aria-label`; never put essential information only in a dismissable banner.
@@ -49,6 +52,9 @@ API: `<Jumbotron title lead actions eyebrow variant="centered|split|image" media
 | Type = Bg gradient | `variant="centered" surface="gradient" eyebrow={<Alert variant="pill">}` + email `Input` in `actions` | Launch pages pairing an announcement pill with an inline email input. | There is nothing new to announce; use Heading + CTA. |
 | Type = With navbar | `<Navbar>` + `<Jumbotron>` | The landing page has no app shell and the hero sits under its own Navbar. | The layout already renders a Navbar; use the hero alone to avoid two. |
 | Type = Bento cards | `<Jumbotron>` + Card grid | Showcasing several features or screenshots at once below the headline. | There is one message or one visual; use Heading + CTA or Text + Illustration. |
+| Breakpoint = Mobile | — (base: `py-8`, heading `text-3xl`, lead `text-base`) | Phones. | Forcing this layout at another width through `className`; the hero switches by itself. |
+| Breakpoint = Tablet | — (`md:`: `py-16`, heading `text-5xl`, lead `text-xl`) | Tablets. | Forcing this layout at another width through `className`; the hero switches by itself. |
+| Breakpoint = Desktop | — (`lg:`: `py-24`, heading `text-6xl`; split types side by side) | Wide screens. | Forcing this layout at another width through `className`; the hero switches by itself. |
 
 **Use** as the first section of landing pages with one message and CTA. **Don't** inside app screens, stack heroes, or show more than 2 CTAs.
 A11y: its headline is the page's single `h1`; decorative art is `aria-hidden`; text over images must keep 4.5:1 contrast.
@@ -68,6 +74,9 @@ Images `h-auto max-w-full rounded-base bg-neutral-tertiary` (the Figma placehold
 | Type = Carousel | `variant="carousel"` | Space allows one image at a time and images are viewed in sequence. | Users need to scan or compare all images at once; use a grid. |
 | Type = With filters | `variant="filters"` + `tags` on images | Large collections that users narrow down by category. | The collection is small or has one category; use Grid 3 columns. |
 | Type = Masonry | `variant="masonry"` | Mixed portrait and landscape images that should keep their original crops. | Row order matters or images share one ratio; use Grid 3 columns. |
+| Breakpoint = Mobile | — (base: 2 columns, masonry 2 columns) | Phones. | Forcing this layout at another width through `className`; the gallery switches by itself. |
+| Breakpoint = Tablet | — (`md:`: 3 columns for Grid 3 and thumbnails) | Tablets. | Forcing this layout at another width through `className`; the gallery switches by itself. |
+| Breakpoint = Desktop | — (`lg:`: masonry 3 columns) | Wide screens. | Forcing this layout at another width through `className`; the gallery switches by itself. |
 
 **Use** for browsable image collections. **Don't** for a single hero image or product listings with data (Cards).
 A11y: every image needs `alt` text; the active filter has `aria-current`; carousel controls have `aria-label`s.

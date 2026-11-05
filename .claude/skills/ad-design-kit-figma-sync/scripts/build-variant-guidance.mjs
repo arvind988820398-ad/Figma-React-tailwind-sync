@@ -3,7 +3,8 @@
 // of every main component's doc section, with the component's page id, so the Figma usage frames show the same
 // per-variant guidance as Storybook.
 // Usage: node build-variant-guidance.mjs [Component …]   (no arguments = every main component)
-//        node build-variant-guidance.mjs --check         (exit 1 and list components whose doc has no Variants table)
+//        node build-variant-guidance.mjs --check         (exit 1 when a doc has no Variants table, or the table has no row
+//                                                         "<Figma property> = <value>" for a value in the registry's figmaVariants)
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -48,6 +49,8 @@ function variantRows(body) {
 
 const data = [];
 const missing = [];
+const uncovered = [];
+const norm = (s) => s.toLowerCase().replace(/[‘’`]/g, "'").replace(/\s+/g, ' ').trim();
 for (const c of registry) {
   if (only.length && !only.includes(c.react)) continue;
   let rows = variantRows(sectionFor(c.doc));
@@ -58,8 +61,14 @@ for (const c of registry) {
     if (own.length) rows = own;
   }
   data.push({ react: c.react, page: c.page, rows });
+  // Every Figma variant value needs its own row, states and breakpoints included.
+  const names = new Set(rows.map((r) => norm(r[0])));
+  const gaps = Object.entries(c.figmaVariants ?? {}).flatMap(([p, vals]) => vals.filter((v) => !names.has(norm(`${p} = ${v}`))).map((v) => `${p} = ${v}`));
+  if (gaps.length) uncovered.push(`${c.react}: ${gaps.join(', ')}`);
 }
 if (check) {
-  if (missing.length) { console.error(`No Variants table: ${missing.join(', ')}`); process.exit(1); }
-  console.log(`${data.length} components have a Variants table`);
+  if (missing.length) console.error(`No Variants table: ${missing.join(', ')}`);
+  if (uncovered.length) console.error(`Figma variants with no row in the Variants table:\n  ${uncovered.join('\n  ')}`);
+  if (missing.length || uncovered.length) process.exit(1);
+  console.log(`${data.length} components have a Variants table with a row for every Figma variant`);
 } else process.stdout.write(JSON.stringify(data));

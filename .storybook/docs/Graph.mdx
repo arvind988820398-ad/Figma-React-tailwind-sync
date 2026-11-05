@@ -1,0 +1,18 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { KnowledgeGraph } from '../ad-design-kit/graph';
+
+<Meta title="Guides/Graph" />
+
+# Design system graph
+
+How the pieces of AD Design Kit connect: every component, the tokens and Figma icons it uses, the components it builds on, the app screens that use it, and the gaps those screens recorded for Figma. Components cluster around their category; the more a token or component is used, the larger its dot.
+
+Every connection is read from the code when the docs are built (`npm run docs:build`), so the graph changes with the system: a new component, a token swap or a new screen shows up here on the next build.
+
+<KnowledgeGraph />
+
+## Reading the graph
+
+- **Hubs** are the most reused parts of the system. A token connected to dozens of components (`rounded-base`, `text-body`) is a high-impact change in Figma; check the components around it before changing its value.
+- **Builds on** shows composition: a change to Button reaches every component that builds on it.
+- **Screens and gaps** show the system in use: which components a real screen relies on, and what it still needs from Figma.

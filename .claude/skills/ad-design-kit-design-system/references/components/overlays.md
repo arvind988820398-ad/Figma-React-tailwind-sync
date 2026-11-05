@@ -140,6 +140,7 @@ Bubble `rounded-base bg-dark px-3 py-2 text-sm font-medium leading-4 text-white 
 | Position = Bottom | `placement="bottom"` | The trigger is near the top of the page, such as in a navbar or table header. | The trigger is near the bottom of the viewport — use Top. |
 | Position = Left | `placement="left"` | The trigger sits at the right edge, such as a row-end icon button. | Space is narrow, as on mobile — use Top or Bottom. |
 | Position = Right | `placement="right"` | The trigger sits in a vertical icon rail or sidebar with room to its right. | Space is narrow, as on mobile — use Top or Bottom. |
+| Type = Default | `<Tooltip>` | The only type; the side is the `placement` prop. | Interactive or long content; use Popover. |
 
 **Use** for short (≤ ~8 words) labels of icon-only buttons, truncated text, shortcuts (with Kbd). **Don't** for essential or interactive content, controls that already have a visible label, or errors.
 A11y: show on hover **and** focus, hide on Esc, `role="tooltip"` + `aria-describedby`.

@@ -11,6 +11,8 @@ A design system whose Figma file and React + Tailwind CSS v4 code stay in sync. 
 - **56 React components** covering all 58 Figma component sets, each with stories, interaction tests and accessibility checks.
 - **Tokens generated from Figma:** colors, radius, typography and shadows for 2 themes (Modern, Enterprise) × light and dark.
 - **Living docs in Storybook,** generated from the same registry and usage docs the Figma sync maintains: Figma property → React prop maps, recipes, when to use each variant, and a Figma embed.
+- **Version history of the Figma file in code** (`CHANGELOG.md`, Storybook → Guides → Changelog): every sync is a version with its token, variant, component and icon changes, tagged in git as `ds-v<version>`.
+- **A design system graph** (Storybook → Guides → Graph): every component, the tokens and icons it uses, the components it builds on, and the screens and Figma gaps around it, read from the code on every docs build.
 - **447 icons from Figma** as React components (`AngleDownIcon`, `CloseIcon`, …), used by every component and shown in Storybook → Foundations → Icons.
 - **The same system in Claude Design:** tokens, guidelines, live previews and icons, re-synced from the code by the `ad-design-kit-claude-design` skill (`npm run claude-design:status` says whether it is behind).
 - **A demo app:** a material management web app in `src/features/materials` (material list, indents with approval, purchase orders, GRN, site transfers, material issue, expenses, vendor payable), composed only from library components.
@@ -43,6 +45,9 @@ npm run storybook    # docs at http://localhost:6006
 | `npm run icons:build` | Regenerate the icon components from the Figma icon snapshot (`-- --check` to verify) |
 | `npm run tokens:build` | Rebuild the token CSS from the Figma snapshot, copy it into `src/styles/`, regenerate the docs |
 | `npm run docs:build` / `docs:check` | Regenerate / verify `.storybook/generated/ad-design-kit-docs.ts` |
+| `npm run changelog` | What changed in the Figma snapshot since the last design-system version |
+| `npm run changelog:release -- --title "…"` | Record those changes as the next version (`CHANGELOG.md`, Guides → Changelog) |
+| `npm run changelog:tag` | Tag the committed version as `ds-v<version>` |
 | `npm run figma:descriptions` | Regenerate the Figma component descriptions from the code docs (`-- --check` to verify) |
 | `npm run figma:variants` | Print the per-variant guidance for the Figma usage frames (`-- --check` to verify every component has it) |
 
@@ -77,7 +82,7 @@ The sources of truth live in `.claude/skills/ad-design-kit-design-system/`:
 - `references/components.json`: the registry. Figma node ids, variant properties and how each maps to a React prop.
 - `references/components/*.md`: usage docs per component: recipe, a **Variants** table (when to use and when not to use each variant), do's and don'ts, accessibility.
 
-From those, Storybook docs, Figma component descriptions and the "Usage guidelines" frames in Figma are generated, so the three never disagree. The `ad-design-kit-figma-sync` skill explains the full workflow: pull tokens and component inventories from Figma, diff them against the snapshot and registry, update the code, then push descriptions and usage frames back to Figma.
+From those, Storybook docs, Figma component descriptions and the "Usage guidelines" frames in Figma are generated, so the three never disagree. Every sync is recorded as a version: `npm run changelog:release` compares the snapshot with the last `ds-v*` tag and writes the changes to `CHANGELOG.md` and Storybook, and `npm run check` fails when the snapshot changed without a version. The `ad-design-kit-figma-sync` skill explains the full workflow: pull tokens and component inventories from Figma, diff them against the snapshot and registry, update the code, then push descriptions and usage frames back to Figma.
 
 ## Rules of thumb
 

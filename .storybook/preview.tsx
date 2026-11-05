@@ -46,7 +46,7 @@ const preview: Preview = {
     layout: 'centered',
     options: {
       storySort: {
-        order: ['Introduction', 'Foundations', ['Colors', 'Typography', 'Radius & shadows', 'Themes'], 'Guides', ['Choosing a component', 'Figma sync'], 'Components'],
+        order: ['Introduction', 'Foundations', ['Colors', 'Typography', 'Radius & shadows', 'Themes'], 'Guides', ['Choosing a component', 'Figma sync', 'Changelog', 'Graph'], 'Components'],
       },
     },
     docs: {
