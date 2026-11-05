@@ -115,7 +115,7 @@ for (const [h, ids] of fileOf) {
 }
 
 // ---------- screens and gaps ----------
-const walk = (dir) => fs.readdirSync(dir, { withFileTypes: true }).flatMap((e) => (e.isDirectory() ? walk(path.join(dir, e.name)) : /\.tsx?$/.test(e.name) ? [path.join(dir, e.name)] : []));
+const walk = (dir) => fs.readdirSync(dir, { withFileTypes: true }).sort((a, b) => (a.name < b.name ? -1 : a.name > b.name ? 1 : 0)).flatMap((e) => (e.isDirectory() ? walk(path.join(dir, e.name)) : /\.tsx?$/.test(e.name) ? [path.join(dir, e.name)] : []));
 if (fs.existsSync(featuresDir)) {
   for (const screen of fs.readdirSync(featuresDir, { withFileTypes: true }).filter((d) => d.isDirectory()).map((d) => d.name).sort()) {
     const id = `s:${screen}`;
@@ -135,8 +135,10 @@ if (fs.existsSync(featuresDir)) {
 for (const g of gaps) if (!nodes.has(`g:${g.id}`)) node(`g:${g.id}`, { kind: 'gap', label: g.title, group: g.status, proposal: g.proposal, standIn: g.standIn });
 
 // ---------- layout: seeded force simulation ----------
-const list = [...nodes.values()].sort((a, b) => a.id.localeCompare(b.id));
-const links = [...edges.values()].sort((a, b) => `${a.from}${a.to}`.localeCompare(`${b.from}${b.to}`));
+// Plain code-point order: localeCompare depends on the machine's ICU data and language settings.
+const byCode = (a, b) => (a < b ? -1 : a > b ? 1 : 0);
+const list = [...nodes.values()].sort((a, b) => byCode(a.id, b.id));
+const links = [...edges.values()].sort((a, b) => byCode(`${a.from}${a.to}`, `${b.from}${b.to}`));
 let seed = 7;
 const rand = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
 const index = new Map(list.map((n, i) => [n.id, i]));
@@ -227,7 +229,15 @@ export const adDesignKitGraph: ADDesignKitGraph = `;
 const output = header + JSON.stringify(graph) + ';\n';
 const previous = fs.existsSync(outFile) ? read(outFile) : '';
 if (check) {
-  const stale = previous !== output;
+  // The layout is a 500-step simulation, so the last decimals of x and y differ between machines and Node builds
+  // (floating point). The coordinates only seed the page's live physics, so the check compares everything else.
+  const content = (text) => {
+    const i = text.indexOf('adDesignKitGraph: ADDesignKitGraph = ');
+    if (i < 0) return null;
+    const g = JSON.parse(text.slice(i + 'adDesignKitGraph: ADDesignKitGraph = '.length).trim().replace(/;$/, ''));
+    return JSON.stringify({ ...g, nodes: g.nodes.map(({ x, y, ...n }) => n) });
+  };
+  const stale = !previous || !previous.startsWith(header) || content(previous) !== content(output);
   console.log(`Graph: ${graph.nodes.length} nodes, ${graph.links.length} links · ${stale ? 'STALE (run npm run docs:build)' : 'up to date'}`);
   process.exit(stale ? 1 : 0);
 }
