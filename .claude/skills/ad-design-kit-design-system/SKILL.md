@@ -33,7 +33,9 @@ Pick the component with the "Choosing a component" table below, then the variant
 
 ## Setup in a React project (once)
 
-Full details: `references/setup.md`. Short version:
+**Preferred: install the package.** `npm install ad-design-kit` (public on npm, React 19 + Tailwind CSS v4 as peers), then `@import "tailwindcss"; @import "ad-design-kit/styles.css";`, load the theme fonts, set `data-theme`, and import components from `ad-design-kit` and icons from `ad-design-kit/icons`. The repository README ("Use it in another project") has every step. Never copy components into an app that can install the package: copies stop receiving Figma updates.
+
+**Without the package**, copy the files. Full details: `references/setup.md`. Short version:
 1. Copy `tokens/ad-design-kit.css` into the app (e.g. `src/styles/ad-design-kit.css`) and import it after Tailwind: `@import "tailwindcss"; @import "./ad-design-kit.css";` (Tailwind v4).
 2. Load the two theme fonts (Google Fonts `<link>` in `index.html`, listed in setup.md).
 3. Set `<html data-theme="modern">`; toggle `class="dark"` for dark mode.

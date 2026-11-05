@@ -35,3 +35,6 @@ lerna-debug.log*
 
 # Agent worktrees created for skill test runs
 .claude/worktrees/
+
+# Built npm package (npm run build:package)
+dist-package

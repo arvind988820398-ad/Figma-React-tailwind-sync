@@ -1,7 +1,6 @@
 {
   "name": "ad-design-kit",
-  "private": true,
-  "version": "0.1.0",
+  "version": "4.1.0",
   "description": "AD Design Kit: a Figma ⇄ React + Tailwind v4 design system kept in sync by Claude Code skills, documented in Storybook.",
   "type": "module",
   "engines": {
@@ -16,7 +15,7 @@
     "lint:tokens": "node .claude/skills/ad-design-kit-review/scripts/lint-tokens.mjs src",
     "test": "vitest run --project storybook",
     "test:coverage": "vitest run --project storybook --coverage",
-    "check": "npm run typecheck && npm run lint && npm run lint:tokens && npm run check:screens && npm run docs:check && npm run figma:descriptions -- --check && npm run figma:variants -- --check && npm run icons:build -- --check",
+    "check": "npm run typecheck && npm run lint && npm run lint:tokens && npm run check:screens && npm run docs:check && npm run figma:descriptions -- --check && npm run figma:variants -- --check && npm run icons:build -- --check && node scripts/build-package.mjs --check",
     "storybook": "npm run docs:build && NODE_OPTIONS=--max-old-space-size=8192 storybook dev -p 6006",
     "build-storybook": "npm run docs:build && storybook build",
     "storybook:deploy": "npm run build-storybook && npx -y netlify-cli deploy --prod --dir storybook-static --no-build --site 5c4cfb1c-721f-4500-aca8-f53b0d116efc",
@@ -31,12 +30,11 @@
     "figma:variants": "node .claude/skills/ad-design-kit-figma-sync/scripts/build-variant-guidance.mjs",
     "changelog": "node .claude/skills/ad-design-kit-figma-sync/scripts/changelog.mjs",
     "changelog:release": "node .claude/skills/ad-design-kit-figma-sync/scripts/changelog.mjs --release",
-    "changelog:tag": "node .claude/skills/ad-design-kit-figma-sync/scripts/changelog.mjs --tag"
+    "changelog:tag": "node .claude/skills/ad-design-kit-figma-sync/scripts/changelog.mjs --tag",
+    "build:package": "node scripts/build-package.mjs"
   },
   "dependencies": {
     "clsx": "^2.1.1",
-    "react": "^19.3.1",
-    "react-dom": "^19.3.1",
     "tailwind-merge": "^3.7.0"
   },
   "devDependencies": {
@@ -56,11 +54,60 @@
     "@vitest/coverage-v8": "^5.0.5",
     "oxlint": "^1.88.0",
     "playwright": "^1.64.1",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
     "react-force-graph-2d": "1.29.2",
     "storybook": "^10.6.4",
     "tailwindcss": "^4.3.3",
     "typescript": "~6.0.3",
     "vite": "^8.3.4",
     "vitest": "^5.0.5"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arvind988820398-ad/Figma-React-tailwind-sync.git"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "access": "public",
+    "provenance": true
+  },
+  "files": [
+    "dist-package"
+  ],
+  "sideEffects": [
+    "*.css"
+  ],
+  "main": "./dist-package/index.js",
+  "module": "./dist-package/index.js",
+  "types": "./dist-package/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist-package/index.d.ts",
+      "import": "./dist-package/index.js"
+    },
+    "./icons": {
+      "types": "./dist-package/components/icons/index.d.ts",
+      "import": "./dist-package/icons.js"
+    },
+    "./styles.css": "./dist-package/styles.css",
+    "./tokens.css": "./dist-package/tokens.css",
+    "./package.json": "./package.json"
+  },
+  "peerDependencies": {
+    "react": ">=19",
+    "react-dom": ">=19",
+    "tailwindcss": ">=4"
+  },
+  "homepage": "https://ad-design-kit-storybook.netlify.app",
+  "bugs": {
+    "url": "https://github.com/arvind988820398-ad/Figma-React-tailwind-sync/issues"
+  },
+  "keywords": [
+    "design-system",
+    "react",
+    "tailwindcss",
+    "figma",
+    "components"
+  ]
 }

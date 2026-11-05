@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.app.json",
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.package.tsbuildinfo",
+    "noEmit": false,
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "rootDir": "src",
+    "outDir": "dist-package",
+    "types": []
+  },
+  "include": ["src/index.ts", "src/components/icons/index.ts"],
+  "exclude": ["**/*.stories.tsx"]
+}

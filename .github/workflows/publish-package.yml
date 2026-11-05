@@ -1,0 +1,60 @@
+name: Publish package
+
+# Publishes ad-design-kit to npm (https://www.npmjs.com/package/ad-design-kit), public, with provenance.
+# Runs when a design-system version tag is pushed (npm run changelog:tag → git push --follow-tags), or by hand from
+# the Actions tab. The package version is always the design system version: the newest entry in
+# .claude/skills/ad-design-kit-design-system/references/changelog.json.
+# No token: npm trusts this workflow directly (trusted publishing over OIDC; set up once on the package's npm
+# settings page → Trusted publisher → GitHub Actions, repository arvind988820398-ad/Figma-React-tailwind-sync,
+# workflow publish-package.yml). The first version was published by hand, since a package must exist before it
+# can trust a workflow.
+
+on:
+  push:
+    tags: ['ds-v*']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write # trusted publishing and provenance: npm verifies this workflow run instead of a token
+
+concurrency:
+  group: publish-package
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+          registry-url: https://registry.npmjs.org
+
+      - run: npm ci
+
+      # Same gates as CI: types, linters, token linter, screens, docs, Figma descriptions, variant guidance, icons,
+      # and the package entry point and version.
+      - run: npm run check
+
+      - name: Version = the design system version
+        run: |
+          V=$(node -p "require('./.claude/skills/ad-design-kit-design-system/references/changelog.json').versions[0].version")
+          if [ "$GITHUB_REF_TYPE" = tag ] && [ "$GITHUB_REF_NAME" != "ds-v$V" ]; then
+            echo "Tag $GITHUB_REF_NAME is not the newest changelog version ($V)."; exit 1
+          fi
+          npm version "$V" --no-git-tag-version --allow-same-version
+          echo "VERSION=$V" >> "$GITHUB_ENV"
+
+      - run: npm run build:package
+
+      - name: Publish (skipped when this version is already published)
+        run: |
+          if npm view "ad-design-kit@$VERSION" version > /dev/null 2>&1; then
+            echo "ad-design-kit@$VERSION is already published."
+          else
+            npm publish --provenance --access public
+          fi

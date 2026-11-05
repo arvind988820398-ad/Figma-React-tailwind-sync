@@ -364,9 +364,15 @@ if (has('--release')) {
   };
   log.versions = [entry, ...log.versions.slice(pending.length)];
   saveLog(log);
+  // The npm package (ad-design-kit) carries the design system version.
+  const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+  if (pkg.version !== entry.version) {
+    pkg.version = entry.version;
+    fs.writeFileSync('package.json', `${JSON.stringify(pkg, null, 2)}\n`);
+  }
   console.log(`${entry.version} (${bump}) — ${title}`);
   printChanges(changes);
-  console.log(`\nWritten to ${LOG}, ${MD} and ${TS}. After committing, run \`npm run changelog:tag\`.`);
+  console.log(`\nWritten to ${LOG}, ${MD}, ${TS} and the package.json version. After committing, run \`npm run changelog:tag\`; pushing the tag publishes the npm package.`);
   process.exit(0);
 }
 
