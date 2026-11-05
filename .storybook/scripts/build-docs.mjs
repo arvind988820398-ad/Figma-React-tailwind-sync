@@ -171,7 +171,9 @@ for (const c of registry.components) {
   walk(c.propMap);
 
   const storyFile = path.join(uiDir, `${templateFile.replace(/\.tsx$/, '')}.stories.tsx`);
-  const storyTitle = exists(storyFile) ? (/title:\s*'([^']+)'/.exec(read(storyFile)) || [])[1] : undefined;
+  // The Storybook title (Components/…), not the first `title:` in the file, which can be a story's sample data.
+  const storySrc = exists(storyFile) ? read(storyFile) : '';
+  const storyTitle = (/title:\s*'((?:Components|Foundations|Guides)\/[^']+)'/.exec(storySrc) || /title:\s*'([^']+)'/.exec(storySrc) || [])[1];
   if (!storyTitle) findings.push({ kind: 'missing-stories', detail: `${path.basename(storyFile)} not found or has no title` });
 
   for (const f of findings) drift.push({ component: c.react, ...f });
