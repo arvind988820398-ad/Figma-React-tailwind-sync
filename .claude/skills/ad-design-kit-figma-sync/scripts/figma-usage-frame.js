@@ -186,7 +186,7 @@ const base = { Color: 'Brand', Size: 'base', State: 'Initial', 'Icon only': 'Fal
 const B = (o, label) => inst(set, Object.assign({}, base, o), label ? { 'Button text#27:0': label, 'Show left icon#27:451': false, 'Show right icon#27:1804': false } : null);
 await header(W, 'Button — usage guidelines', 'Triggers an action: submit a form, open an overlay or start a flow.', 'Code: <Button color size outline iconOnly leftIcon rightIcon>   ·   Storybook: Components / Button');
 let s = await section(W, 'Anatomy');
-await parts(s, inst(set, Object.assign({}, base, { Size: 'lg' }), { 'Button text#27:0': 'Create project' }), ['Container — bg-brand fill, rounded-base corners, shadow-xs.', 'Left icon — optional, 16px.', 'Label — text-sm, font-medium, text-white. Start with a verb.', 'Right icon — optional; disclosure or external link.'], 420);
+await parts(s, inst(set, Object.assign({}, base, { Size: 'lg' }), { 'Button text#27:0': 'Create project' }), ['Container — bg-brand fill, rounded corners (8px in Modern), shadow-xs.', 'Left icon — optional, 16px.', 'Label — text-sm, font-medium, text-white. Start with a verb.', 'Right icon — optional; disclosure or external link.'], 420);
 s = await section(W, 'Do and don’t');
 await pairRow(s, 'Use one Brand button per section and Secondary or Tertiary for the rest.', [B({}, 'Save changes'), B({ Color: 'Tertiary' }, 'Cancel')], 'Don’t put two Brand buttons side by side.', [B({}, 'Save'), B({}, 'Publish')]);
 s = await section(W, 'States');

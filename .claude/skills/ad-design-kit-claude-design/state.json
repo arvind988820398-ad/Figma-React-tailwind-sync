@@ -1,14 +1,14 @@
 {
   "url": "https://claude.ai/artifact/P6dLktxjvuj3x2YPGZprk6",
-  "ref": "main@0366aa9",
-  "syncedAt": "2026-11-05T18:26:14.541Z",
+  "ref": "main@3a90924",
+  "syncedAt": "2026-11-05T19:15:34.100Z",
   "files": {
     "tokens.json": "e82813701a2badc38522791e20414b2e34d12adc02c9a79e2352457fe35da7f4",
     "tokens.css": "562389d2b1f81cda43d2440f67b072cf276952a0a6a2a8532d93e0e5cfe1b919",
-    "components/Button/README.md": "fb8b3b12efaba519af6eadfbae05fc7c27bc92cad9e6279b25fceaa30df693bd",
+    "components/Button/README.md": "e50484d9d0de044480f5c81b0400ce44b49058e5210cc3afda017bd6208266b0",
     "components/DownloadAppButton/README.md": "848e6f17d761216fa3abffc8cd4aaa26d7451510f9a951cea17503033eeda381",
     "components/ButtonGroup/README.md": "2d14fc2117eb8359978dcd7eb02751aaae3c2bf968ea7cc873320dff42dcbae4",
-    "components/SpeedDial/README.md": "ab13287babfc96bdcd90345462a7207bd384b8e9aa80709b4f1297667fcc1c17",
+    "components/SpeedDial/README.md": "8c130227f9f640d5a00a241d6f84c6eab3deebde52192728708d4c6c93a0c314",
     "components/Input/README.md": "e17a0901248f97cd15d0d7fa788982068d95daa401dca35a8880c195afbe5edc",
     "components/Label/README.md": "23e8cffa931d0c0eb693d8be8137f8299644511aec952af726b51b969e7bc71b",
     "components/HelperText/README.md": "f6a01d4bced1ede55c91d6c7cc344f6b508e5a00aa82c7f5942fc5146008dd5e",
@@ -64,7 +64,7 @@
     "components/Gallery/README.md": "292a9f7344e726b9141a84a2b5217f0ed6258a22a025aa864e30f279656c697a",
     "components/DeviceMockup/README.md": "a2a799aab5c5380f6cc17293bfba37fca4c54c32c2514cd55f46681ffbe6dd77",
     "assets/Icons/README.md": "9f030ffa655bf77e4398f15cdd262c86c806cf87af59bd9d777d2926b12a8b6d",
-    "components/bundle.js": "1fb67b4faf864ee8ed8174b382dad0a7c7b9881c8e0c4ae13f26e92871c5e081",
+    "components/bundle.js": "3510f3d09fec5718abd4ec3dc1cb3657308c078ced0ce661e352fc53e34bccc9",
     "components/bundle.css": "74a4f9c3e1e96518dc14bf036021fe4c2bdc3f80d4bac345d6ae3b4a23c96787",
     "components/index.d.ts": "08ee2805185a0726eb31dbab34401d3c0c53c50d661872762a38bd7f84be6353"
   },
