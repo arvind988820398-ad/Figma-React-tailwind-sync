@@ -1,7 +1,7 @@
 {
   "url": "https://claude.ai/artifact/P6dLktxjvuj3x2YPGZprk6",
-  "ref": "main@18cd07f",
-  "syncedAt": "2026-11-05T19:32:52.599Z",
+  "ref": "main@5da2046",
+  "syncedAt": "2026-11-05T22:14:47.173Z",
   "files": {
     "tokens.json": "e82813701a2badc38522791e20414b2e34d12adc02c9a79e2352457fe35da7f4",
     "tokens.css": "562389d2b1f81cda43d2440f67b072cf276952a0a6a2a8532d93e0e5cfe1b919",
@@ -64,8 +64,8 @@
     "components/Gallery/README.md": "292a9f7344e726b9141a84a2b5217f0ed6258a22a025aa864e30f279656c697a",
     "components/DeviceMockup/README.md": "a2a799aab5c5380f6cc17293bfba37fca4c54c32c2514cd55f46681ffbe6dd77",
     "assets/Icons/README.md": "9f030ffa655bf77e4398f15cdd262c86c806cf87af59bd9d777d2926b12a8b6d",
-    "components/bundle.js": "05f185ae73c53f00b85ddbce41bf946ee390b48a2198d8d7a5aead0dc1c5e07a",
-    "components/bundle.css": "5ceee82129773ffa7d9f12b7ebcc848232a562441138624d380ed9723bc212be",
+    "components/bundle.js": "fc9ce8fd8f9f0d809b4ead995050644ecbc787fac7e50eedc5b44e293d49890c",
+    "components/bundle.css": "8135828de90e2278971314c3aaa00a146448b7dfcd690053d8be96fe6573f42c",
     "components/index.d.ts": "08ee2805185a0726eb31dbab34401d3c0c53c50d661872762a38bd7f84be6353"
   },
   "assets": {
