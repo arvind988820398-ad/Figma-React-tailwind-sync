@@ -5,6 +5,7 @@
 // removes the active option, Ctrl/⌘+S saves it. `header` holds category buttons (Figma "Categories").
 import { useId, useMemo, useRef, useState, type KeyboardEvent, type ReactNode } from 'react';
 import { cn } from '../../lib/cn';
+import { useAnchored } from '../../lib/floating';
 import { CheckIcon, CloseIcon, FloppyDiskAltIcon, SearchIcon } from '../icons';
 import { inputVariants, type FieldSize } from './Input';
 
@@ -71,6 +72,8 @@ export function Autocomplete({
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(0);
   const listRef = useRef<HTMLUListElement>(null);
+  // The list opens under the input at its width; it flips above when there is no room and is not clipped by a parent's overflow.
+  const a = useAnchored({ open, placement: 'bottom-start', gap: 8, matchWidth: true });
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -109,7 +112,7 @@ export function Autocomplete({
   const activeOption = open ? enabled[active] : undefined;
 
   return (
-    <div className={cn('relative', className)}>
+    <div ref={a.setReference} className={cn('relative', className)}>
       <span className="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-3 text-body-subtle [&_svg]:size-4">
         <SearchIcon />
       </span>
@@ -136,7 +139,7 @@ export function Autocomplete({
         {...aria}
       />
       {open && (
-        <div className={cn('absolute start-0 top-full z-40 mt-2 flex w-full flex-col gap-2 rounded-base border border-default-medium bg-neutral-primary-medium p-2 shadow-lg', menuClassName)}>
+        <div ref={a.setFloating} style={a.floatingStyles} data-placement={a.placement} className={cn('z-40 flex flex-col gap-2 rounded-base border border-default-medium bg-neutral-primary-medium p-2 shadow-lg', menuClassName)}>
           {header && <div className="flex flex-wrap items-center gap-2" onMouseDown={(e) => e.preventDefault()}>{header}</div>}
           <ul ref={listRef} id={listId} role="listbox" className="flex max-h-150 flex-col gap-1 overflow-y-auto">
             {filtered.length === 0 && <li className="p-2 text-sm text-body-subtle">{emptyText}</li>}

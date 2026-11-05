@@ -39,7 +39,7 @@ Pick the component with the "Choosing a component" table below, then the variant
 1. Copy `tokens/ad-design-kit.css` into the app (e.g. `src/styles/ad-design-kit.css`) and import it after Tailwind: `@import "tailwindcss"; @import "./ad-design-kit.css";` (Tailwind v4).
 2. Load the two theme fonts (Google Fonts `<link>` in `index.html`, listed in setup.md).
 3. Set `<html data-theme="modern">`; toggle `class="dark"` for dark mode.
-4. `npm i clsx tailwind-merge`, then copy `templates/lib/cn.ts` and the components you need from `templates/components/` into `src/components/ui/`.
+4. `npm i clsx tailwind-merge @floating-ui/react-dom`, then copy `templates/lib/` (`cn.ts`, and `floating.ts` for Dropdown, Popover, Tooltip, Autocomplete and Datepicker) and the components you need from `templates/components/` into `src/components/ui/`.
 5. Never hand-edit `ad-design-kit.css`; regenerate it with the `ad-design-kit-figma-sync` skill.
 
 ## Token cheat sheet (full table: `references/tokens.md`)

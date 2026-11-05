@@ -4,7 +4,7 @@
 
 ```bash
 npm i -D tailwindcss @tailwindcss/vite   # or @tailwindcss/postcss
-npm i clsx tailwind-merge
+npm i clsx tailwind-merge @floating-ui/react-dom   # Floating UI positions Dropdown, Popover, Tooltip, Autocomplete, Datepicker
 ```
 
 `src/styles/app.css`:

@@ -1,6 +1,6 @@
 // AD Design Kit Dropdown — Figma set "Dropdown menu" (node 1149:39895, page 3282:18862), item 1149:39651, header 1149:39866,
-// triggers 1149:40204. Minimal menu (arrow keys, Esc, outside click). For collision-aware positioning, wrap a headless
-// primitive (Radix DropdownMenu / Floating UI) and keep these classes.
+// triggers 1149:40204. Menu with arrow keys, Esc and outside click. Opens below the trigger, aligned by `align`; it flips
+// above and shifts to stay on screen, and is not clipped by a parent's overflow (see lib/floating.ts).
 import {
   cloneElement,
   createContext,
@@ -15,6 +15,7 @@ import {
   type ReactNode,
 } from 'react';
 import { cn } from '../../lib/cn';
+import { useAnchored } from '../../lib/floating';
 import { CheckIcon } from '../icons';
 
 const CloseContext = createContext<() => void>(() => {});
@@ -52,6 +53,7 @@ export function Dropdown({ trigger, children, align = 'start', label, className,
   const menuRef = useRef<HTMLDivElement>(null);
   // Move focus into the menu only when the user opened it, not when it starts open.
   const [userOpened, setUserOpened] = useState(false);
+  const a = useAnchored({ open, placement: align === 'end' ? 'bottom-end' : 'bottom-start', gap: 8 });
 
   const close = (returnFocus = true) => {
     setOpen(false);
@@ -97,7 +99,13 @@ export function Dropdown({ trigger, children, align = 'start', label, className,
   };
 
   return (
-    <div ref={rootRef} className="relative inline-flex">
+    <div
+      ref={(el) => {
+        rootRef.current = el;
+        a.setReference(el);
+      }}
+      className="relative inline-flex"
+    >
       {cloneElement(trigger, {
         onClick: toggle,
         'aria-haspopup': panel ? 'dialog' : 'menu',
@@ -106,7 +114,12 @@ export function Dropdown({ trigger, children, align = 'start', label, className,
       })}
       {open && (
         <div
-          ref={panelRef}
+          ref={(el) => {
+            panelRef.current = el;
+            a.setFloating(el);
+          }}
+          style={a.floatingStyles}
+          data-placement={a.placement}
           id={panel ? id : undefined}
           role={panel ? 'dialog' : undefined}
           aria-label={panel ? label : undefined}
@@ -116,8 +129,7 @@ export function Dropdown({ trigger, children, align = 'start', label, className,
             if (e.relatedTarget && !rootRef.current?.contains(e.relatedTarget as Node)) setOpen(false);
           }}
           className={cn(
-            'absolute top-full z-40 mt-2 flex w-52 flex-col gap-1.5 rounded-base border border-default-medium bg-neutral-primary-medium p-2 shadow-lg',
-            align === 'end' ? 'end-0' : 'start-0',
+            'z-40 flex w-52 flex-col gap-1.5 rounded-base border border-default-medium bg-neutral-primary-medium p-2 shadow-lg',
             className,
           )}
         >

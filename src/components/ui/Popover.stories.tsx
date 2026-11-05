@@ -180,7 +180,8 @@ export const VerticalItemsOpen: Story = {
     // The plain row is text, not a link.
     await expect(within(dialog).getAllByRole('link')).toHaveLength(1);
     await expect(within(dialog).getByText('3 unread messages')).toBeVisible();
-    await expect(dialog).toHaveClass('left-full');
+    await waitFor(() => expect(dialog).toHaveAttribute('data-placement', 'right'));
+    await expect(dialog.getBoundingClientRect().left).toBeGreaterThan(canvas.getByRole('button', { name: 'Vertical items' }).getBoundingClientRect().right);
   },
 };
 
@@ -215,5 +216,24 @@ export const UntitledOpenThenClosed: Story = {
     // Closed again before the a11y scan: an untitled dialog has no accessible name (see report).
     await userEvent.click(trigger);
     await expect(canvas.queryByRole('dialog')).not.toBeInTheDocument();
+  },
+};
+
+// `placement` is the preferred side. With no room above the trigger (here it sits at the top of the viewport), the
+// panel flips below it and its arrow moves to the edge that faces the trigger.
+export const FlipsWhenNoRoom: Story = {
+  args: { trigger: <Button size="sm">At the top</Button>, placement: 'top', title: 'Flipped', children: 'Opened below because there was no room above.' },
+  render: (args) => (
+    <div className="fixed start-4 top-2">
+      <Popover {...args} />
+    </div>
+  ),
+  play: async ({ canvas, userEvent }) => {
+    const trigger = canvas.getByRole('button', { name: 'At the top' });
+    await userEvent.click(trigger);
+    const dialog = canvas.getByRole('dialog', { name: 'Flipped' });
+    await waitFor(() => expect(dialog).toHaveAttribute('data-placement', 'bottom'));
+    await expect(dialog.getBoundingClientRect().top).toBeGreaterThan(trigger.getBoundingClientRect().bottom);
+    await expect(dialog.getBoundingClientRect().left).toBeGreaterThanOrEqual(8);
   },
 };

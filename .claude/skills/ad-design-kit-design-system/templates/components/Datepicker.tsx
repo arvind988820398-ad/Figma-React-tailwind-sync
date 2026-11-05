@@ -3,6 +3,7 @@
 // (two months). <Calendar> is the menu on its own; <Datepicker> adds the Input trigger and the popup.
 import { useEffect, useId, useLayoutEffect, useMemo, useRef, useState, type KeyboardEvent, type ReactNode } from 'react';
 import { cn } from '../../lib/cn';
+import { useAnchored } from '../../lib/floating';
 import { ArrowLeftIcon, ArrowRightIcon, CalendarMonthIcon, CalendarWeekIcon } from '../icons';
 import { Button } from './Button';
 import { inputVariants, Label, type FieldSize } from './Input';
@@ -210,6 +211,8 @@ export function Datepicker(props: DatepickerProps) {
   const autoId = useId();
   const baseId = id ?? autoId;
   const rootRef = useRef<HTMLDivElement>(null);
+  // The calendar opens under the field; it flips above when there is no room and is not clipped by a parent's overflow.
+  const a = useAnchored({ open, placement: 'bottom-start', gap: 8 });
   const fmt = (d: Date | null) => (d ? d.toLocaleDateString(locale, { day: 'numeric', month: 'short', year: 'numeric' }) : '');
 
   useEffect(() => {
@@ -265,7 +268,13 @@ export function Datepicker(props: DatepickerProps) {
   );
 
   return (
-    <div ref={rootRef} className={cn('relative', className)}>
+    <div
+      ref={(el) => {
+        rootRef.current = el;
+        a.setReference(el);
+      }}
+      className={cn('relative', className)}
+    >
       {props.mode === 'range' ? (
         <div className="flex gap-4">
           {(['start', 'end'] as const).map((edge) => {
@@ -293,7 +302,7 @@ export function Datepicker(props: DatepickerProps) {
         field(baseId, fmt(props.value), placeholder, props['aria-label'], props['aria-describedby'])
       )}
       {open && (
-        <div id={dialogId} role="dialog" aria-label="Choose date" className="absolute start-0 top-full z-40 mt-2 flex w-max flex-col gap-4 rounded-base border border-default-medium bg-neutral-primary-medium p-5 shadow-lg">
+        <div id={dialogId} ref={a.setFloating} style={a.floatingStyles} data-placement={a.placement} role="dialog" aria-label="Choose date" className="z-40 flex w-max flex-col gap-4 rounded-base border border-default-medium bg-neutral-primary-medium p-5 shadow-lg">
           {props.mode === 'range' ? (
             <Calendar autoFocus mode="range" value={props.value} onChange={props.onChange} min={min} max={max} weekStart={weekStart} locale={locale} />
           ) : (

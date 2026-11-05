@@ -1,11 +1,8 @@
 {
   "name": "ad-design-kit",
-  "version": "4.1.2",
+  "version": "4.1.3",
   "description": "AD Design Kit: a Figma ⇄ React + Tailwind v4 design system kept in sync by Claude Code skills, documented in Storybook.",
   "type": "module",
-  "engines": {
-    "node": ">=24"
-  },
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
@@ -34,6 +31,7 @@
     "build:package": "node scripts/build-package.mjs"
   },
   "dependencies": {
+    "@floating-ui/react-dom": "^2.1.9",
     "clsx": "^2.1.1",
     "tailwind-merge": "^3.7.0"
   },
@@ -109,5 +107,13 @@
     "tailwindcss",
     "figma",
     "components"
-  ]
+  ],
+  "devEngines": {
+    "runtime": {
+      "name": "node",
+      "version": ">=24",
+      "onFail": "warn"
+    }
+  },
+  "license": "MIT"
 }

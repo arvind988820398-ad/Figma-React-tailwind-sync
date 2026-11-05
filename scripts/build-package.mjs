@@ -65,5 +65,24 @@ fs.writeFileSync(
   ].join('\n'),
 );
 
+// ---- Server Components ------------------------------------------------------------------------------------------
+// Every module that needs the browser (state, effects, context, event handlers) must start with "use client", or
+// importing it into a Next.js Server Component fails. The banner in vite.package.config.ts adds it; this checks it.
+const CLIENT = /\b(useState|useEffect|useLayoutEffect|useRef|useContext|createContext|useAnchored)\b/;
+const js = fs.readdirSync(OUT, { recursive: true }).map(String).filter((f) => f.endsWith('.js') && !f.startsWith('node_modules'));
+const missing = js.filter((f) => {
+  const code = fs.readFileSync(path.join(OUT, f), 'utf8');
+  return CLIENT.test(code) && !/^(\/\/[^\n]*\n|\s)*['"]use client['"]/.test(code);
+});
+if (missing.length) {
+  console.error(`These modules use React state or effects but do not start with "use client":\n  ${missing.join('\n  ')}`);
+  process.exit(1);
+}
+const client = js.filter((f) => /^(\/\/[^\n]*\n|\s)*['"]use client['"]/.test(fs.readFileSync(path.join(OUT, f), 'utf8'))).length;
+if (fs.existsSync(path.join(OUT, 'node_modules'))) {
+  console.error('dist-package/node_modules exists: a dependency was bundled instead of kept external (vite.package.config.ts).');
+  process.exit(1);
+}
+
 const count = (dir) => fs.readdirSync(dir, { recursive: true }).filter((f) => String(f).endsWith('.js')).length;
-console.log(`Built ${OUT}/: ${count(OUT)} modules, types, styles.css and tokens.css (${ui.length} component files).`);
+console.log(`Built ${OUT}/: ${count(OUT)} modules (${client} marked "use client"), types, styles.css and tokens.css (${ui.length} component files).`);

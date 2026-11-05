@@ -31,7 +31,7 @@ npm run storybook    # docs at http://localhost:6006
 
 The kit is published on npm as [`ad-design-kit`](https://www.npmjs.com/package/ad-design-kit), with the same version as the design system (see `CHANGELOG.md`). It works in any React 19 + Tailwind CSS v4 app.
 
-1. Install: `npm install ad-design-kit` (React 19 and Tailwind CSS v4 are peer dependencies).
+1. Install: `npm install ad-design-kit` (React 19 and Tailwind CSS v4 are peer dependencies). Works in Vite and in the Next.js App Router: interactive components are marked `"use client"`, presentational ones (Badge, Button, Card, Table…) render as Server Components.
 2. In the app's main stylesheet:
    ```css
    @import "tailwindcss";
@@ -120,3 +120,7 @@ From those, Storybook docs, Figma component descriptions and the "Usage guidelin
 - Variants mirror Figma. Hover, focus and disabled are CSS states, never props; breakpoints are responsive classes.
 - Build screens from existing components. If the design needs something the library lacks, add it in Figma first.
 - Run `npm run check` and `npm run test` before pushing; CI runs the same gates plus the build.
+
+## License
+
+[MIT](LICENSE)

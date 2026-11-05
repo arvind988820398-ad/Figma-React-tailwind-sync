@@ -12,7 +12,7 @@ Surfaces as drawn in Figma:
 | Popover | `bg-neutral-primary-medium` | `border-default-medium` | `shadow-lg` |
 | Tooltip | `bg-dark` | none | `shadow-md` |
 
-Elevation ladder: Tooltip `shadow-md` → Dropdown, Popover, Toast, menus `shadow-lg` → Modal, Drawer `shadow-xl`. All use `rounded-base`. Backdrop: `bg-black/50`. z-index ladder: menus/popovers `z-40`, drawer/modal `z-50`, toasts `z-60`. Use an accessible headless primitive (native `<dialog>`, Radix, Headless UI, Floating UI, React Aria) and apply these classes.
+Elevation ladder: Tooltip `shadow-md` → Dropdown, Popover, Toast, menus `shadow-lg` → Modal, Drawer `shadow-xl`. All use `rounded-base`. Backdrop: `bg-black/50`. z-index ladder: menus/popovers `z-40`, drawer/modal `z-50`, toasts `z-60`. Modal and Drawer are the native `<dialog>` (focus trap, Esc, inert page). Dropdown, Popover and Tooltip are positioned by `lib/floating.ts` (Floating UI): `placement`/`align` is the preferred side, the panel flips and shifts to stay on screen, and it is `fixed`, so a parent with `overflow: hidden` (Table, Card, Drawer body) does not clip it. It stays in the trigger's DOM, so a scoped `data-theme` or `.dark` still applies.
 
 ## Modal
 Figma: page `3284:23179` · set `1149:71305` (Info, Popup, Sign In, Create product, With radio inputs, With timeline, With progress bar, With list, OTP, Share) · header `1149:71403` (7 types) · footer `1149:71444` (4 types) · template `templates/components/Modal.tsx`

@@ -730,8 +730,9 @@ export const OpenAlignedEnd: Story = {
   play: async ({ canvas, userEvent }) => {
     await userEvent.click(canvas.getByRole('button', { name: 'More actions' }));
     const panel = canvas.getByRole('menu', { name: 'More' }).parentElement!;
-    await expect(panel).toHaveClass('end-0');
-    await expect(panel).not.toHaveClass('start-0');
+    const trigger = canvas.getByRole('button', { name: 'More actions' });
+    await waitFor(() => expect(panel).toHaveAttribute('data-placement', 'bottom-end'));
+    await waitFor(() => expect(Math.abs(panel.getBoundingClientRect().right - trigger.getBoundingClientRect().right)).toBeLessThan(1));
     await expect(within(panel).getByText('Grace Hopper')).toBeVisible();
     await expect(within(panel).queryByText(/@/)).not.toBeInTheDocument();
   },
@@ -754,5 +755,26 @@ export const DangerItem: Story = {
     const del = within(canvasElement).getByRole('menuitem', { name: 'Delete' });
     await expect(del).toHaveClass('text-fg-danger-strong');
     await expect(within(canvasElement).getByRole('menuitem', { name: 'Rename' })).not.toHaveClass('text-fg-danger-strong');
+  },
+};
+
+// A menu inside a container that clips its content (a table cell, a card, a scroll area) still shows in full: it is
+// positioned against the viewport, not the container.
+export const InsideClippedContainer: Story = {
+  args: { trigger: <Button size="sm">Row actions</Button>, label: 'Row actions', children: <><DropdownItem>Edit</DropdownItem><DropdownItem>Duplicate</DropdownItem><DropdownItem>Archive</DropdownItem></> },
+  render: (args) => (
+    <div className="h-14 w-72 overflow-hidden rounded-base border border-default p-2">
+      <Dropdown {...args} />
+    </div>
+  ),
+  play: async ({ canvas, userEvent }) => {
+    await userEvent.click(canvas.getByRole('button', { name: 'Row actions' }));
+    const menu = canvas.getByRole('menu', { name: 'Row actions' });
+    const box = menu.closest('.overflow-hidden')!.getBoundingClientRect();
+    await waitFor(() => expect(menu.parentElement!.getBoundingClientRect().bottom).toBeGreaterThan(box.bottom));
+    // The last item is outside the container's box, yet it is the element the browser hits there: nothing clips it.
+    const last = canvas.getByRole('menuitem', { name: 'Archive' }).getBoundingClientRect();
+    await expect(last.top).toBeGreaterThan(box.bottom);
+    await expect(document.elementFromPoint(last.left + last.width / 2, last.top + last.height / 2)?.closest('[role="menuitem"]')).toHaveTextContent('Archive');
   },
 };

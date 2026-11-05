@@ -1,16 +1,18 @@
 // AD Design Kit Popover — Figma set "Popover" (node 1149:81090, page 3303:16685), content 1149:81187.
-// Click-to-open panel anchored to its trigger; Esc and outside click close it. For collision-aware positioning,
-// wrap a headless primitive (Radix Popover / Floating UI) and keep these classes.
+// Click-to-open panel anchored to its trigger; Esc and outside click close it. `placement` is the preferred side: the
+// panel flips and shifts to stay on screen and is not clipped by a parent's overflow (see lib/floating.ts).
 import { cloneElement, useEffect, useId, useRef, useState, type ReactElement, type ReactNode } from 'react';
 import { cn } from '../../lib/cn';
+import { useAnchored, type Side } from '../../lib/floating';
 
 export type PopoverPlacement = 'top' | 'bottom' | 'left' | 'right';
 
-const placements: Record<PopoverPlacement, { panel: string; arrow: string }> = {
-  top: { panel: 'bottom-full left-1/2 mb-3 -translate-x-1/2', arrow: 'top-full left-1/2 -translate-x-1/2 -translate-y-1.5 border-t-0 border-s-0' },
-  bottom: { panel: 'top-full left-1/2 mt-3 -translate-x-1/2', arrow: 'bottom-full left-1/2 -translate-x-1/2 translate-y-1.5 border-b-0 border-e-0' },
-  left: { panel: 'right-full top-1/2 me-3 -translate-y-1/2', arrow: 'left-full top-1/2 -translate-y-1/2 -translate-x-1.5 border-b-0 border-s-0' },
-  right: { panel: 'left-full top-1/2 ms-3 -translate-y-1/2', arrow: 'right-full top-1/2 -translate-y-1/2 translate-x-1.5 border-t-0 border-e-0' },
+// The arrow sits on the panel's edge that faces the trigger; its position along that edge comes from lib/floating.
+const arrows: Record<Side, string> = {
+  top: 'top-full -translate-y-1.5 border-t-0 border-s-0',
+  bottom: 'bottom-full translate-y-1.5 border-b-0 border-e-0',
+  left: 'left-full -translate-x-1.5 border-b-0 border-s-0',
+  right: 'right-full translate-x-1.5 border-t-0 border-e-0',
 };
 
 export interface PopoverProps {
@@ -33,7 +35,7 @@ export function Popover({ trigger, title, children, placement = 'top', padding =
   const [open, setOpen] = useState(defaultOpen);
   const id = useId();
   const rootRef = useRef<HTMLSpanElement>(null);
-  const p = placements[placement];
+  const a = useAnchored({ open, placement, gap: 12, withArrow: true });
 
   useEffect(() => {
     if (!open) return;
@@ -55,7 +57,13 @@ export function Popover({ trigger, title, children, placement = 'top', padding =
   }, [open]);
 
   return (
-    <span ref={rootRef} className="relative inline-flex">
+    <span
+      ref={(el) => {
+        rootRef.current = el;
+        a.setReference(el);
+      }}
+      className="relative inline-flex"
+    >
       {cloneElement(trigger, {
         onClick: () => setOpen((o) => !o),
         'aria-haspopup': 'dialog',
@@ -65,17 +73,19 @@ export function Popover({ trigger, title, children, placement = 'top', padding =
       {open && (
         <div
           id={id}
+          ref={a.setFloating}
+          style={a.floatingStyles}
+          data-placement={a.placement}
           role="dialog"
           aria-labelledby={title ? `${id}-title` : undefined}
           aria-label={title ? undefined : label}
           className={cn(
-            'absolute z-40 rounded-base border border-default-medium bg-neutral-primary-medium text-sm text-body shadow-lg',
+            'z-40 rounded-base border border-default-medium bg-neutral-primary-medium text-sm text-body shadow-lg',
             padding === 'none' ? 'w-max' : 'w-64',
-            p.panel,
             className,
           )}
         >
-          <span aria-hidden className={cn('absolute size-3 rotate-45 border border-default-medium bg-neutral-primary-medium', p.arrow)} />
+          <span aria-hidden ref={a.arrowRef} style={a.arrowStyle} className={cn('absolute size-3 rotate-45 border border-default-medium bg-neutral-primary-medium', arrows[a.side])} />
           <div className="relative overflow-hidden rounded-base">
             {title && (
               <div id={`${id}-title`} className="border-b border-default-medium bg-neutral-tertiary-medium px-3 py-1.5 text-sm font-medium leading-5 text-heading">
