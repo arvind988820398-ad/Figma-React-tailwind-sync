@@ -3,6 +3,38 @@
   "repository": "https://github.com/arvind988820398-ad/Figma-React-tailwind-sync",
   "versions": [
     {
+      "version": "4.1.2",
+      "date": "2026-11-05",
+      "title": "ButtonGroup and Pagination outer corners follow Button",
+      "bump": "patch",
+      "counts": {
+        "added": 0,
+        "removed": 0,
+        "renamed": 0,
+        "changed": 1,
+        "breaking": 0
+      },
+      "stats": {
+        "tokens": 493,
+        "modes": [
+          "Modern (light)",
+          "Modern (dark)",
+          "Enterprise (light)",
+          "Enterprise (dark)"
+        ],
+        "effects": 22,
+        "components": 58,
+        "icons": 447
+      },
+      "changes": [
+        {
+          "area": "code",
+          "change": "changed",
+          "name": "ButtonGroup and Pagination: outer corners use Button's radius (8px in Modern) instead of rounded-base, as in Figma"
+        }
+      ]
+    },
+    {
       "version": "4.1.1",
       "date": "2026-11-05",
       "title": "Button corners 8px (rounded) in every component",

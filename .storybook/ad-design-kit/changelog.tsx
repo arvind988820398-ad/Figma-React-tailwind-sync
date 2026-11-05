@@ -16,6 +16,7 @@ const areas: [ADDesignKitChangeArea, string][] = [
   ['variant', 'Variants'],
   ['style', 'Component styling'],
   ['icon', 'Icons'],
+  ['code', 'Code fixes'],
 ];
 const verb = { added: 'Added', removed: 'Removed', renamed: 'Renamed', changed: 'Changed' } as const;
 const verbColor = { added: 'success', removed: 'danger', renamed: 'warning', changed: 'brand' } as const;

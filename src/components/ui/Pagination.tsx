@@ -31,7 +31,7 @@ export interface PaginationProps extends Omit<HTMLAttributes<HTMLElement>, 'onCh
   siblings?: number;
 }
 
-const joined = 'rounded-none shadow-none first:rounded-s-base last:rounded-e-base';
+const joined = 'rounded-none shadow-none first:rounded-s last:rounded-e';
 const current = 'relative z-10 border-brand-subtle bg-brand-softer text-fg-brand hover:bg-brand-softer hover:text-fg-brand';
 
 function pageList(page: number, count: number, siblings: number): (number | 'gap')[] {

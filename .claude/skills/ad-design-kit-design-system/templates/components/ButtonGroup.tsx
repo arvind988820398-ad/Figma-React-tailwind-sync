@@ -50,7 +50,7 @@ export const ButtonGroupItem = forwardRef<HTMLButtonElement, ButtonGroupItemProp
       className={cn(
         buttonVariants({ color: color === 'gray' ? 'secondary' : 'tertiary', size, iconOnly }),
         'relative rounded-none shadow-none focus-visible:z-10',
-        vertical ? 'w-full first:rounded-t-base last:rounded-b-base' : 'first:rounded-s-base last:rounded-e-base',
+        vertical ? 'w-full first:rounded-t last:rounded-b' : 'first:rounded-s last:rounded-e',
         iconOnly && 'text-body',
         active && 'bg-neutral-secondary-medium text-heading',
         className,
