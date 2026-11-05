@@ -52,7 +52,7 @@ for (const d of DATA) {
   for (const old of W.children.filter((n) => n.name === SECTION)) old.remove();
   const s = await box('VERTICAL', { name: SECTION, gap: 6 });
   add(s, await txt(SECTION, 'h2', 'heading'));
-  add(s, await txt('One row per Figma variant. Hover, focus and disabled are CSS states and breakpoints are responsive classes, so they are not listed.', 'sm', 'body', 1100));
+  add(s, await txt('One row per Figma variant value, states and breakpoints included. Where a variant is a CSS state or a responsive layout rather than a prop, the Code column says so.', 'sm', 'body', 1100));
   const t = await box('VERTICAL', { name: 'Variant table', stroke: C.border, radius: true });
   t.clipsContent = true;
   add(s, t);

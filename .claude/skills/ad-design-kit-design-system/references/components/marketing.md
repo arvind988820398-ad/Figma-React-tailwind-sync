@@ -53,8 +53,8 @@ API: `<Jumbotron title lead actions eyebrow variant="centered|split|image" media
 | Type = With navbar | `<Navbar>` + `<Jumbotron>` | The landing page has no app shell and the hero sits under its own Navbar. | The layout already renders a Navbar; use the hero alone to avoid two. |
 | Type = Bento cards | `<Jumbotron>` + Card grid | Showcasing several features or screenshots at once below the headline. | There is one message or one visual; use Heading + CTA or Text + Illustration. |
 | Breakpoint = Mobile | — (base: `py-8`, heading `text-3xl`, lead `text-base`) | Phones. | Forcing this layout at another width through `className`; the hero switches by itself. |
-| Breakpoint = Tablet | — (`md:`: `py-16`, heading `text-5xl`, lead `text-xl`) | Tablets. | Forcing this layout at another width through `className`; the hero switches by itself. |
-| Breakpoint = Desktop | — (`lg:`: `py-24`, heading `text-6xl`; split types side by side) | Wide screens. | Forcing this layout at another width through `className`; the hero switches by itself. |
+| Breakpoint = Tablet | — (from `md`: `py-16`, heading `text-5xl`, lead `text-xl`) | Tablets. | Forcing this layout at another width through `className`; the hero switches by itself. |
+| Breakpoint = Desktop | — (from `lg`: `py-24`, heading `text-6xl`; split types side by side) | Wide screens. | Forcing this layout at another width through `className`; the hero switches by itself. |
 
 **Use** as the first section of landing pages with one message and CTA. **Don't** inside app screens, stack heroes, or show more than 2 CTAs.
 A11y: its headline is the page's single `h1`; decorative art is `aria-hidden`; text over images must keep 4.5:1 contrast.
@@ -75,8 +75,8 @@ Images `h-auto max-w-full rounded-base bg-neutral-tertiary` (the Figma placehold
 | Type = With filters | `variant="filters"` + `tags` on images | Large collections that users narrow down by category. | The collection is small or has one category; use Grid 3 columns. |
 | Type = Masonry | `variant="masonry"` | Mixed portrait and landscape images that should keep their original crops. | Row order matters or images share one ratio; use Grid 3 columns. |
 | Breakpoint = Mobile | — (base: 2 columns, masonry 2 columns) | Phones. | Forcing this layout at another width through `className`; the gallery switches by itself. |
-| Breakpoint = Tablet | — (`md:`: 3 columns for Grid 3 and thumbnails) | Tablets. | Forcing this layout at another width through `className`; the gallery switches by itself. |
-| Breakpoint = Desktop | — (`lg:`: masonry 3 columns) | Wide screens. | Forcing this layout at another width through `className`; the gallery switches by itself. |
+| Breakpoint = Tablet | — (from `md`: 3 columns for Grid 3 and thumbnails) | Tablets. | Forcing this layout at another width through `className`; the gallery switches by itself. |
+| Breakpoint = Desktop | — (from `lg`: masonry 3 columns) | Wide screens. | Forcing this layout at another width through `className`; the gallery switches by itself. |
 
 **Use** for browsable image collections. **Don't** for a single hero image or product listings with data (Cards).
 A11y: every image needs `alt` text; the active filter has `aria-current`; carousel controls have `aria-label`s.
