@@ -231,12 +231,17 @@ function Details({ node, onSelect }: { node: ADDesignKitGraphNode; onSelect: (id
   );
 }
 
-export function KnowledgeGraph() {
+/**
+ * The design system graph. `embed` is for showing it on its own in an iframe (the Guides/Graph "Embed" story):
+ * the graph fills the frame's height and the details of a selected node float over it instead of sitting beside it.
+ */
+export function KnowledgeGraph({ embed = false }: { embed?: boolean } = {}) {
   const [show, setShow] = useState<Record<ADDesignKitGraphKind, boolean>>({ component: true, category: true, token: true, icon: true, screen: true, gap: true });
   const [hover, setHover] = useState<string | null>(null);
   const [selected, setSelected] = useState<string | null>(null);
   const [query, setQuery] = useState('');
   const [width, setWidth] = useState(0);
+  const [height, setHeight] = useState(640);
   const [palette, setPalette] = useState<Palette | null>(null);
   const host = useRef<HTMLDivElement>(null);
   const fg = useRef<ForceGraphMethods<GNode, GLink> | undefined>(undefined);
@@ -260,7 +265,10 @@ export function KnowledgeGraph() {
     const el = host.current;
     if (!el) return undefined;
     setPalette(readPalette(el));
-    const ro = new ResizeObserver(([entry]) => setWidth(Math.floor(entry.contentRect.width)));
+    const ro = new ResizeObserver(([entry]) => {
+      setWidth(Math.floor(entry.contentRect.width));
+      if (embed) setHeight(Math.floor(entry.contentRect.height));
+    });
     ro.observe(el);
     const mo = new MutationObserver(() => setPalette(readPalette(el)));
     mo.observe(document.documentElement, { attributes: true, attributeFilter: ['class', 'data-theme', 'style'] });
@@ -268,10 +276,10 @@ export function KnowledgeGraph() {
       ro.disconnect();
       mo.disconnect();
     };
-  }, []);
+  }, [embed]);
 
   // Forces, once the graph exists.
-  const ready = Boolean(palette && width);
+  const ready = Boolean(palette && width && height);
   useEffect(() => {
     const g = fg.current;
     if (!ready || !g) return;
@@ -373,7 +381,7 @@ export function KnowledgeGraph() {
   };
 
   return (
-    <div className="my-4 flex flex-col gap-3">
+    <div className={embed ? 'flex h-full flex-col gap-3' : 'my-4 flex flex-col gap-3'}>
       <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
         <div className="relative w-64">
           <Input
@@ -411,6 +419,8 @@ export function KnowledgeGraph() {
             </ul>
           )}
         </div>
+        {/* Embedded on a phone, the toggles would take most of the frame: the graph gets the space instead. */}
+        <div className={embed ? 'hidden flex-wrap items-center gap-x-5 gap-y-3 sm:flex' : 'contents'}>
         {kinds.map((k) => (
           <Toggle key={k.kind} checked={show[k.kind]} onCheckedChange={(on) => setShow((s) => ({ ...s, [k.kind]: on }))}>
             <span className="inline-flex items-center gap-1.5">
@@ -419,6 +429,7 @@ export function KnowledgeGraph() {
             </span>
           </Toggle>
         ))}
+        </div>
         <Button
           size="xs"
           color="secondary"
@@ -431,24 +442,26 @@ export function KnowledgeGraph() {
         </Button>
       </div>
 
-      <div className="flex flex-col gap-3 lg:flex-row">
+      <div className={embed ? 'flex min-h-0 flex-1' : 'flex flex-col gap-3 lg:flex-row'}>
         <div
           ref={host}
           role="img"
           aria-label={`Graph of ${counts.component} components, ${counts.token} tokens, ${counts.icon} icons, ${counts.screen} app screens and ${counts.gap} gaps. Use the search or the list beside it to explore.`}
-          className="relative h-160 min-w-0 flex-1 overflow-hidden rounded-base border border-default bg-neutral-primary-soft"
+          className={`relative min-w-0 flex-1 overflow-hidden rounded-base border border-default bg-neutral-primary-soft ${embed ? 'min-h-0' : 'h-160'}`}
         >
           {ready && (
             <ForceGraph2D<ADDesignKitGraphNode, { kind: ADDesignKitGraphLink['kind'] }>
               ref={fg}
               width={width}
-              height={640}
+              height={height}
               graphData={data}
               backgroundColor="rgba(0,0,0,0)"
               autoPauseRedraw={false}
               warmupTicks={40}
               cooldownTime={8000}
               minZoom={0.3}
+              // Embedded in another page, a plain scroll scrolls that page; pinch or ⌘/Ctrl + scroll zooms.
+              enableZoomInteraction={(e) => !embed || e.type !== 'wheel' || e.ctrlKey || e.metaKey}
               maxZoom={12}
               nodeLabel={() => ''}
               nodeVisibility={(n) => show[n.kind]}
@@ -482,9 +495,15 @@ export function KnowledgeGraph() {
               }}
             />
           )}
-          <p className="pointer-events-none absolute bottom-2 start-3 m-0 rounded-sm bg-neutral-primary-soft px-1.5 py-0.5 text-xs text-body-subtle">Drag a node to pull it · scroll to zoom · click a node to see its connections</p>
+          <p className={`pointer-events-none absolute bottom-2 start-3 m-0 ${embed ? 'hidden sm:block' : ''} rounded-sm bg-neutral-primary-soft px-1.5 py-0.5 text-xs text-body-subtle`}>{embed ? 'Drag a node to pull it · pinch or ⌘/Ctrl + scroll to zoom · click a node to see its connections' : 'Drag a node to pull it · scroll to zoom · click a node to see its connections'}</p>
+          {embed && selected && byId.get(selected) && (
+            <aside aria-label="Selected node" className="absolute end-3 top-3 bottom-10 hidden w-72 overflow-y-auto rounded-base border border-default bg-neutral-primary-soft p-4 shadow-lg sm:block">
+              <Details node={byId.get(selected)!} onSelect={select} />
+            </aside>
+          )}
         </div>
 
+        {!embed && (
         <aside aria-label="Selected node" className="w-full shrink-0 rounded-base border border-default bg-neutral-primary-soft p-4 lg:w-80 lg:max-h-160 lg:overflow-y-auto">
           {selected && byId.get(selected) ? (
             <Details node={byId.get(selected)!} onSelect={select} />
@@ -497,6 +516,7 @@ export function KnowledgeGraph() {
             </div>
           )}
         </aside>
+        )}
       </div>
     </div>
   );
