@@ -14,6 +14,7 @@ const areas: [ADDesignKitChangeArea, string][] = [
   ['effect', 'Effect styles'],
   ['component', 'Component sets'],
   ['variant', 'Variants'],
+  ['style', 'Component styling'],
   ['icon', 'Icons'],
 ];
 const verb = { added: 'Added', removed: 'Removed', renamed: 'Renamed', changed: 'Changed' } as const;

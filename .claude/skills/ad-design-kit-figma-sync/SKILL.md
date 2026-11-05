@@ -57,7 +57,8 @@ Figma MCP connected (`whoami` works). Before any `use_figma` call: `create_sessi
    - For a `new-set`: add a registry entry and a doc section with Figma ref, API, recipe (from the spec script), **When to use / When not to use**, accessibility.
 4. Run the reviewer's linter and the project's typecheck/tests.
 5. **Storybook.** Add or update the component's `*.stories.tsx` (one story per variant axis), then `npm run docs:build`. The generator reads `components.json`, the doc sections and the token manifest, and reports registry ↔ code drift (a prop map value missing from the React union); `npm run docs:check` fails in CI on stale docs and prints drift (`npm run docs:check -- --strict` fails on drift too). The Guides → Figma sync page in Storybook shows the same findings.
-6. **Version.** Record the sync in the changelog (section F).
+6. **Styling.** Variants are not the whole component: a set's corner radius, padding, fills, borders, shadows and text styles change too (Button moving from `rounded-base` to `rounded`). Export them for every set: `node ad-design-kit-figma-sync/scripts/build-specs.mjs --sets` prints four batches; paste each into `scripts/figma-export-specs.js` as `SETS` and run the four with `use_figma` in parallel (read-only); save the four returned strings as lines of `<tmp>/specs.jsonl`, then `node ad-design-kit-figma-sync/scripts/build-specs.mjs <tmp>/specs.jsonl` rewrites `references/figma-specs.json`. `npm run changelog` then lists each changed property per set ("Button · corner radius: rounded-base (500) → rounded (500)"). For every change: update the component's classes and doc recipe, and check what reuses it in code (`buttonVariants`, shared shells) against the same parts in Figma — instances inside other sets can keep an old value pinned; ask the user whether to follow the main component or the pin, and never ship a part with mixed corners.
+7. **Version.** Record the sync in the changelog (section F).
 
 ## C. Code → Figma (only with explicit user approval — these write to the shared Figma file)
 
@@ -99,9 +100,9 @@ The Figma sync page also has **App screens** and **Gaps for Figma**. The builder
 
 ## F. Version history
 
-Every sync that changes the Figma snapshot (`tokens/figma-*.json`, `references/components.json` variants and sets, `icons/figma-icons.json`) becomes a version of the design system, so the team can see what changed in Figma and when, and go back to any earlier state. `scripts/changelog.mjs` compares the snapshot with the last version's git tag; nothing in the log is typed by hand.
+Every sync that changes the Figma snapshot (`tokens/figma-*.json`, `references/components.json` variants and sets, `references/figma-specs.json` component styling, `icons/figma-icons.json`) becomes a version of the design system, so the team can see what changed in Figma and when, and go back to any earlier state. `scripts/changelog.mjs` compares the snapshot with the last version's git tag; nothing in the log is typed by hand.
 
-1. **See what changed.** `npm run changelog` lists the changes since the last version (tokens, theme modes, effect styles, component sets, variant properties and values, icons) and the next version number. Exit 1 = there are changes to record.
+1. **See what changed.** `npm run changelog` lists the changes since the last version (tokens, theme modes, effect styles, component sets, variant properties and values, component styling, icons) and the next version number. Exit 1 = there are changes to record.
 2. **Record the version** once the sync is applied (section A, B or D), before committing:
    ```bash
    npm run changelog:release -- --title "<what changed in Figma, in a few words>" [--figma-version "<name of the Figma version>"]
