@@ -68,7 +68,7 @@ The kit is published on npm as [`ad-design-kit`](https://www.npmjs.com/package/a
 | `npm run check` | All static gates: typecheck, both linters, docs drift, Figma descriptions and variant guidance |
 | `npm run storybook` | Regenerate the docs data, then start Storybook |
 | `npm run build-storybook` | Static Storybook in `storybook-static/` |
-| `npm run storybook:deploy` | Build and publish Storybook to Netlify |
+| `npm run storybook:deploy` | Build and publish Storybook to Netlify (CI does this automatically on `main`) |
 | `npm run icons:build` | Regenerate the icon components from the Figma icon snapshot (`-- --check` to verify) |
 | `npm run tokens:build` | Rebuild the token CSS from the Figma snapshot, copy it into `src/styles/`, regenerate the docs |
 | `npm run docs:build` / `docs:check` | Regenerate / verify `.storybook/generated/ad-design-kit-docs.ts` |

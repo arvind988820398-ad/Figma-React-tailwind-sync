@@ -72,4 +72,4 @@ Two to four lines: the commit it now matches, what changed (files, assets, new c
 
 - The bundle is one classic script: every component and its Storybook stories, React from `components/lib`, `window.ADDesignKit.renderStories(...)` for the previews. Stories' play functions never run (their `storybook/test` imports are stubbed).
 - `bundle.css` is the app's Tailwind build against the token mapping only; colour values come from `tokens.css`, and the four Claude Design themes (`modern`, `modern-dark`, `enterprise`, `enterprise-dark`) get their radius and font from a small adapter block.
-- Pair with the other skills: after `ad-design-kit-figma-sync` (tokens or variants changed), after component or story edits, and after icon syncs, finish with this skill; Storybook (`npm run storybook:deploy`) and Figma descriptions are separate steps.
+- Pair with the other skills: after `ad-design-kit-figma-sync` (tokens or variants changed), after component or story edits, and after icon syncs, finish with this skill; Storybook redeploys by itself when the push reaches `main` (CI's `deploy-storybook` job); Figma descriptions are a separate step.

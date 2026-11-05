@@ -95,7 +95,7 @@ The Figma sync page also has **App screens** and **Gaps for Figma**. The builder
 
 **Claude Design.** The same design system also lives in Claude Design (https://claude.ai/artifact/P6dLktxjvuj3x2YPGZprk6). After any sync that changed tokens, icons, components, stories or docs, run the `ad-design-kit-claude-design` skill (`npm run -s claude-design:status` says whether it is behind).
 
-**Hosting.** Storybook is published on Netlify at https://ad-design-kit-storybook.netlify.app (site `ad-design-kit-storybook`, config in `netlify.toml`). Redeploy after any docs or component change with `npm run storybook:deploy` (needs `netlify login` once). Every Figma component set links to its page there; if a story file's title changes, re-run `npm run figma:descriptions` and apply the result to Figma.
+**Hosting.** Storybook is published on Netlify at https://ad-design-kit-storybook.netlify.app (site `ad-design-kit-storybook`, config in `netlify.toml`). It redeploys by itself: the `deploy-storybook` job in `.github/workflows/ci.yml` runs `npm run storybook:deploy` after CI passes on `main`, whenever the push changed `src/`, `.storybook/`, the skills' references or dependencies (repository secret `NETLIFY_AUTH_TOKEN`). So a sync only has to be committed and pushed; run `npm run storybook:deploy` locally (after `netlify login`) or the workflow by hand only to force a deploy. Every Figma component set links to its page there; if a story file's title changes, re-run `npm run figma:descriptions` and apply the result to Figma.
 
 ## F. Version history
 

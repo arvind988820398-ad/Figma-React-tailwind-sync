@@ -4,6 +4,7 @@ on:
   push:
     branches: [main]
   pull_request:
+  workflow_dispatch: # run by hand to force a Storybook deploy
 
 concurrency:
   group: ci-${{ github.ref }}
@@ -40,3 +41,53 @@ jobs:
 
       # Every story renders in Chromium with its interaction tests and axe accessibility checks.
       - run: npm run test:coverage
+
+  # Publishes Storybook (https://ad-design-kit-storybook.netlify.app) after the checks above pass on main — only when
+  # the push changed something Storybook shows, so README or workflow edits don't spend a Netlify deploy. A newer
+  # push cancels a deploy that is still waiting. Run it by hand from the Actions tab (Run workflow) to force one.
+  # Needs the repository secret NETLIFY_AUTH_TOKEN (a Netlify personal access token).
+  deploy-storybook:
+    name: Deploy Storybook
+    needs: check
+    if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-latest
+    concurrency:
+      group: deploy-storybook
+      cancel-in-progress: true
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Did this push change what Storybook shows?
+        id: changes
+        run: |
+          if [ "$GITHUB_EVENT_NAME" = workflow_dispatch ] || ! git cat-file -e "$BEFORE^{commit}" 2>/dev/null; then
+            echo "deploy=true" >> "$GITHUB_OUTPUT"; exit 0
+          fi
+          changed=$(git diff --name-only "$BEFORE" "$GITHUB_SHA" | grep -E '^(src/|\.storybook/|\.claude/skills/|public/|package(-lock)?\.json$)' || true)
+          if [ -n "$changed" ]; then
+            echo "Storybook inputs changed:"; echo "$changed" | head -20
+            echo "deploy=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "Nothing Storybook shows changed; skipping the deploy."
+            echo "deploy=false" >> "$GITHUB_OUTPUT"
+          fi
+        env:
+          BEFORE: ${{ github.event.before }}
+
+      - uses: actions/setup-node@v4
+        if: steps.changes.outputs.deploy == 'true'
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - if: steps.changes.outputs.deploy == 'true'
+        run: npm ci
+
+      # The same command as a manual deploy: build Storybook, then publish it to the Netlify site.
+      - if: steps.changes.outputs.deploy == 'true'
+        run: npm run storybook:deploy
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NODE_OPTIONS: --max-old-space-size=8192
