@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { figmaDesign } from '../../../.storybook/ad-design-kit/figma';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { expect, fn } from 'storybook/test';
+import { expect, fn, waitFor } from 'storybook/test';
 import walletIllustration from '../../../.storybook/assets/toast-wallet-illustration.svg';
 import { Toast, ToastViewport, type ToastColor, type ToastProps } from './Toast';
 import { Avatar } from './Avatar';
@@ -211,4 +211,40 @@ export const LiveViewport: Story = {
   parameters: { layout: 'padded' },
   args: { duration: 5000 },
   render: (args) => <LiveToastsDemo {...args} />,
+};
+
+// Auto-dismiss keeps counting while the parent re-renders and passes a new inline onDismiss each time (a streaming
+// chat re-renders many times a second): the toast still closes after `duration`.
+function RerenderingParent({ onGone }: { onGone: () => void }) {
+  const [shown, setShown] = useState(true);
+  const [, setTick] = useState(0);
+  useEffect(() => {
+    const t = window.setInterval(() => setTick((n) => n + 1), 30);
+    return () => window.clearInterval(t);
+  }, []);
+  return (
+    <ToastViewport>
+      {shown && (
+        <Toast
+          duration={400}
+          onDismiss={() => {
+            setShown(false);
+            onGone();
+          }}
+        >
+          Saved
+        </Toast>
+      )}
+    </ToastViewport>
+  );
+}
+
+export const AutoDismissWhileParentRerenders: Story = {
+  args: { onDismiss: fn() },
+  render: (args) => <RerenderingParent onGone={args.onDismiss!} />,
+  play: async ({ canvas, args }) => {
+    await expect(canvas.getByText('Saved')).toBeInTheDocument();
+    await waitFor(() => expect(args.onDismiss).toHaveBeenCalledTimes(1), { timeout: 2000 });
+    await expect(canvas.queryByText('Saved')).not.toBeInTheDocument();
+  },
 };

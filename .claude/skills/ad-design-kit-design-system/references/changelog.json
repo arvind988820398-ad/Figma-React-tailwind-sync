@@ -3,6 +3,48 @@
   "repository": "https://github.com/arvind988820398-ad/Figma-React-tailwind-sync",
   "versions": [
     {
+      "version": "4.1.4",
+      "date": "2026-11-05",
+      "title": "Tooltip and Popover wrap long content; Toast auto-dismiss is reliable; Card scrolls at a fixed height",
+      "bump": "patch",
+      "counts": {
+        "added": 0,
+        "removed": 0,
+        "renamed": 0,
+        "changed": 3,
+        "breaking": 0
+      },
+      "stats": {
+        "tokens": 493,
+        "modes": [
+          "Modern (light)",
+          "Modern (dark)",
+          "Enterprise (light)",
+          "Enterprise (dark)"
+        ],
+        "effects": 22,
+        "components": 58,
+        "icons": 447
+      },
+      "changes": [
+        {
+          "area": "code",
+          "change": "changed",
+          "name": "Tooltip and Popover always wrap their text (whitespace-normal text-start on the bubble and panel): long content inside a whitespace-nowrap table header or a centred row now breaks onto more lines at max-w-xs instead of running out of the bubble. New test story Tooltip / Long Content In No Wrap Parent."
+        },
+        {
+          "area": "code",
+          "change": "changed",
+          "name": "Toast auto-dismiss keeps counting when the parent re-renders: the timer no longer restarts each time onDismiss is a new function, so `duration` is honoured in apps that re-render often (a streaming chat). New test story Toast / Auto Dismiss While Parent Rerenders."
+        },
+        {
+          "area": "code",
+          "change": "changed",
+          "name": "Card: the content area can shrink (min-h-0), so a Card given a height (a side panel, a fixed tile) keeps it and lets its content scroll instead of overflowing. Cards that size to their content look the same. New test story Card / Fixed Height Scrolls."
+        }
+      ]
+    },
+    {
       "version": "4.1.3",
       "date": "2026-11-05",
       "title": "Production-ready package: floating panels, Next.js, any Node version",

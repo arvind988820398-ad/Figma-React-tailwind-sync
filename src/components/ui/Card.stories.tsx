@@ -449,3 +449,29 @@ export const Crypto: Story = {
     ),
   },
 };
+
+// A card given a height (a side panel, a fixed tile) keeps that height and lets its content scroll, instead of the
+// content pushing past the card's edge.
+export const FixedHeightScrolls: Story = {
+  render: () => (
+    <Card padding="none" className="h-60 w-72">
+      <div className="flex min-h-0 flex-1 flex-col">
+        <p className="border-b border-default px-4 py-3 text-sm font-semibold text-heading">Sources</p>
+        <ul data-testid="scroll" tabIndex={0} aria-label="Sources" className="min-h-0 flex-1 overflow-y-auto px-4 py-2 text-sm text-body">
+          {Array.from({ length: 20 }, (_, i) => (
+            <li key={i} className="py-1.5">{`Source ${i + 1}`}</li>
+          ))}
+        </ul>
+        <p className="border-t border-default px-4 py-3 text-sm text-body">Footer stays visible</p>
+      </div>
+    </Card>
+  ),
+  play: async ({ canvas, canvasElement }) => {
+    const list = canvas.getByTestId('scroll');
+    const card = canvasElement.querySelector<HTMLElement>('.h-60')!;
+    await expect(Math.round(card.getBoundingClientRect().height)).toBe(240);
+    await expect(list.scrollHeight).toBeGreaterThan(list.clientHeight);
+    const footer = canvas.getByText('Footer stays visible').getBoundingClientRect();
+    await expect(footer.bottom).toBeLessThanOrEqual(card.getBoundingClientRect().bottom + 0.5);
+  },
+};

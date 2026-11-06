@@ -32,17 +32,24 @@ export interface ToastProps extends Omit<HTMLAttributes<HTMLDivElement>, 'title'
 export function Toast({ color = 'neutral', icon, title, header, stacked, actions, onDismiss, duration, className, children, ...props }: ToastProps) {
   const c = colors[color];
   const timer = useRef<number | undefined>(undefined);
+  // The latest onDismiss, so a parent that re-renders (and passes a new inline function each time) does not restart
+  // the countdown: the toast still closes `duration` ms after it appeared.
+  const dismissRef = useRef(onDismiss);
+  useEffect(() => {
+    dismissRef.current = onDismiss;
+  });
+  const canDismiss = Boolean(onDismiss);
   const start = () => {
-    if (duration && onDismiss) timer.current = window.setTimeout(onDismiss, duration);
+    if (duration && dismissRef.current) timer.current = window.setTimeout(() => dismissRef.current?.(), duration);
   };
   const stop = () => window.clearTimeout(timer.current);
 
   useEffect(() => {
     start();
     return stop;
-    // Restart only when the timing inputs change.
+    // Restart only when the timing inputs change, not when onDismiss is a new function.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [duration, onDismiss]);
+  }, [duration, canDismiss]);
 
   const rich = !!(title || header || actions);
   const dismiss = onDismiss && (

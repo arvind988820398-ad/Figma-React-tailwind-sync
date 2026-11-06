@@ -15,7 +15,8 @@ export function Card({ padding = 'base', media, className, children, ...props }:
   return (
     <div className={cn('flex flex-col overflow-hidden rounded-base border border-default bg-neutral-primary-soft shadow-xs', className)} {...props}>
       {media}
-      <div className={cn('flex flex-1 flex-col', paddings[padding])}>{children}</div>
+      {/* min-h-0: a card given a height (a panel, a fixed-height tile) lets its content scroll instead of overflowing. */}
+      <div className={cn('flex min-h-0 flex-1 flex-col', paddings[padding])}>{children}</div>
     </div>
   );
 }

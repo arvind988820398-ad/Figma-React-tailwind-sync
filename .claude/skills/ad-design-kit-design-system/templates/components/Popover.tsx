@@ -80,7 +80,8 @@ export function Popover({ trigger, title, children, placement = 'top', padding =
           aria-labelledby={title ? `${id}-title` : undefined}
           aria-label={title ? undefined : label}
           className={cn(
-            'z-40 rounded-base border border-default-medium bg-neutral-primary-medium text-sm text-body shadow-lg',
+            // whitespace-normal text-start: the panel's text wraps even when the trigger sits in a `whitespace-nowrap` table.
+            'z-40 whitespace-normal text-start rounded-base border border-default-medium bg-neutral-primary-medium text-sm text-body shadow-lg',
             padding === 'none' ? 'w-max' : 'w-64',
             className,
           )}

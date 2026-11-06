@@ -130,7 +130,7 @@ A11y: the trigger has `aria-haspopup`, `aria-expanded` and `aria-controls`; the 
 ## Tooltip
 Figma: page `3283:24170` · set `1149:93859` (Top/Bottom/Left/Right) · template `templates/components/Tooltip.tsx`
 API: `<Tooltip content placement defaultOpen>{trigger}</Tooltip>`.
-Bubble `rounded-base bg-dark px-3 py-2 text-sm font-medium leading-4 text-white shadow-md` + 8px arrow `bg-dark`; `max-w-xs`.
+Bubble `rounded-base bg-dark px-3 py-2 text-sm font-medium leading-4 text-white shadow-md` + 8px arrow `bg-dark`; `max-w-xs`. Long content wraps onto more lines at that width (`whitespace-normal text-start` on the bubble, so a `whitespace-nowrap` table or a centred parent cannot stop it).
 
 **Variants**
 

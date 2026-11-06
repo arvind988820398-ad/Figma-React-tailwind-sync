@@ -73,7 +73,7 @@ export interface ADDesignKitDocs {
 }
 
 export const adDesignKitDocs: ADDesignKitDocs = {
-  "generatedAt": "2026-11-05",
+  "generatedAt": "2026-11-06",
   "fileKey": "TKsoawKvPxaNCff4q43Mli",
   "fileUrl": "https://www.figma.com/design/TKsoawKvPxaNCff4q43Mli/",
   "registrySnapshotAt": "2026-10-27",
@@ -3609,7 +3609,7 @@ export const adDesignKitDocs: ADDesignKitDocs = {
       "parts": {},
       "template": "Tooltip.tsx",
       "storyTitle": "Components/Tooltip",
-      "doc": "API: `<Tooltip content placement defaultOpen>{trigger}</Tooltip>`.\nBubble `rounded-base bg-dark px-3 py-2 text-sm font-medium leading-4 text-white shadow-md` + 8px arrow `bg-dark`; `max-w-xs`.\n\n**Variants**\n\n| Variant | Code | Use when | Don't use when |\n|---|---|---|---|\n| Position = Top | `placement=\"top\"` (default) | The default; the trigger has room above it, such as a toolbar icon button. | The trigger is near the top of the viewport — use Bottom. |\n| Position = Bottom | `placement=\"bottom\"` | The trigger is near the top of the page, such as in a navbar or table header. | The trigger is near the bottom of the viewport — use Top. |\n| Position = Left | `placement=\"left\"` | The trigger sits at the right edge, such as a row-end icon button. | Space is narrow, as on mobile — use Top or Bottom. |\n| Position = Right | `placement=\"right\"` | The trigger sits in a vertical icon rail or sidebar with room to its right. | Space is narrow, as on mobile — use Top or Bottom. |\n| Type = Default | `<Tooltip>` | The only type; the side is the `placement` prop. | Interactive or long content; use Popover. |\n\n**Use** for short (≤ ~8 words) labels of icon-only buttons, truncated text, shortcuts (with Kbd). **Don't** for essential or interactive content, controls that already have a visible label, or errors.\nA11y: show on hover **and** focus, hide on Esc, `role=\"tooltip\"` + `aria-describedby`.",
+      "doc": "API: `<Tooltip content placement defaultOpen>{trigger}</Tooltip>`.\nBubble `rounded-base bg-dark px-3 py-2 text-sm font-medium leading-4 text-white shadow-md` + 8px arrow `bg-dark`; `max-w-xs`. Long content wraps onto more lines at that width (`whitespace-normal text-start` on the bubble, so a `whitespace-nowrap` table or a centred parent cannot stop it).\n\n**Variants**\n\n| Variant | Code | Use when | Don't use when |\n|---|---|---|---|\n| Position = Top | `placement=\"top\"` (default) | The default; the trigger has room above it, such as a toolbar icon button. | The trigger is near the top of the viewport — use Bottom. |\n| Position = Bottom | `placement=\"bottom\"` | The trigger is near the top of the page, such as in a navbar or table header. | The trigger is near the bottom of the viewport — use Top. |\n| Position = Left | `placement=\"left\"` | The trigger sits at the right edge, such as a row-end icon button. | Space is narrow, as on mobile — use Top or Bottom. |\n| Position = Right | `placement=\"right\"` | The trigger sits in a vertical icon rail or sidebar with room to its right. | Space is narrow, as on mobile — use Top or Bottom. |\n| Type = Default | `<Tooltip>` | The only type; the side is the `placement` prop. | Interactive or long content; use Popover. |\n\n**Use** for short (≤ ~8 words) labels of icon-only buttons, truncated text, shortcuts (with Kbd). **Don't** for essential or interactive content, controls that already have a visible label, or errors.\nA11y: show on hover **and** focus, hide on Esc, `role=\"tooltip\"` + `aria-describedby`.",
       "docHeading": "Tooltip",
       "drift": [],
       "extraDocs": [],
@@ -4742,99 +4742,39 @@ export const adDesignKitDocs: ADDesignKitDocs = {
   "drift": [],
   "screens": [
     {
-      "name": "materials",
-      "path": "src/features/materials",
-      "files": 10,
+      "name": "damia",
+      "path": "src/features/damia",
+      "files": 5,
       "components": [
         {
-          "name": "TableCell",
-          "count": 134,
-          "docs": "Table"
-        },
-        {
-          "name": "TableHeaderCell",
-          "count": 115,
-          "docs": "Table"
-        },
-        {
           "name": "Button",
-          "count": 80,
+          "count": 22,
           "docs": "Button"
         },
         {
-          "name": "TableRow",
-          "count": 43,
-          "docs": "Table"
-        },
-        {
-          "name": "Input",
-          "count": 35,
-          "docs": "Input"
-        },
-        {
-          "name": "Label",
-          "count": 34,
-          "docs": "Input"
-        },
-        {
-          "name": "Select",
-          "count": 19,
-          "docs": "Select"
-        },
-        {
-          "name": "TableBody",
-          "count": 17,
-          "docs": "Table"
-        },
-        {
-          "name": "TableHead",
-          "count": 17,
-          "docs": "Table"
-        },
-        {
-          "name": "Table",
-          "count": 16,
-          "docs": "Table"
-        },
-        {
-          "name": "DropdownItem",
-          "count": 12,
-          "docs": "Dropdown"
-        },
-        {
-          "name": "HelperText",
-          "count": 11,
-          "docs": "Input"
-        },
-        {
           "name": "Badge",
-          "count": 9,
+          "count": 5,
           "docs": "Badge"
         },
         {
-          "name": "Drawer",
-          "count": 9,
-          "docs": "Drawer"
+          "name": "ListItem",
+          "count": 5,
+          "docs": "List"
+        },
+        {
+          "name": "Card",
+          "count": 4,
+          "docs": "Card"
         },
         {
           "name": "Dropdown",
-          "count": 8,
+          "count": 4,
           "docs": "Dropdown"
         },
         {
-          "name": "Modal",
-          "count": 8,
-          "docs": "Modal"
-        },
-        {
-          "name": "Textarea",
-          "count": 6,
-          "docs": "Textarea"
-        },
-        {
-          "name": "Checkbox",
-          "count": 5,
-          "docs": "Checkbox"
+          "name": "List",
+          "count": 4,
+          "docs": "List"
         },
         {
           "name": "Avatar",
@@ -4842,64 +4782,89 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "docs": "Avatar"
         },
         {
-          "name": "Datepicker",
+          "name": "DropdownItem",
           "count": 3,
-          "docs": "Datepicker"
-        },
-        {
-          "name": "FileDropzone",
-          "count": 3,
-          "docs": "FileUpload"
-        },
-        {
-          "name": "Card",
-          "count": 2,
-          "docs": "Card"
-        },
-        {
-          "name": "DropdownCheckboxItem",
-          "count": 2,
           "docs": "Dropdown"
         },
         {
-          "name": "IconShape",
-          "count": 2,
-          "docs": "IconShape"
+          "name": "Input",
+          "count": 3,
+          "docs": "Input"
         },
         {
-          "name": "Radio",
+          "name": "Modal",
+          "count": 3,
+          "docs": "Modal"
+        },
+        {
+          "name": "Spinner",
+          "count": 3,
+          "docs": "Spinner"
+        },
+        {
+          "name": "TableCell",
+          "count": 3,
+          "docs": "Table"
+        },
+        {
+          "name": "TableHeaderCell",
+          "count": 3,
+          "docs": "Table"
+        },
+        {
+          "name": "Breadcrumb",
+          "count": 2,
+          "docs": "Breadcrumb"
+        },
+        {
+          "name": "ChatBubble",
+          "count": 2,
+          "docs": "ChatBubble"
+        },
+        {
+          "name": "Checkbox",
           "count": 2,
           "docs": "Checkbox"
         },
         {
-          "name": "Sidebar",
-          "count": 2,
-          "docs": "Sidebar"
-        },
-        {
-          "name": "Tabs",
-          "count": 2,
-          "docs": "Tabs"
-        },
-        {
-          "name": "Toggle",
-          "count": 2,
-          "docs": "Toggle"
-        },
-        {
-          "name": "Autocomplete",
-          "count": 1,
-          "docs": "Autocomplete"
-        },
-        {
           "name": "DropdownHeader",
-          "count": 1,
+          "count": 2,
           "docs": "Dropdown"
         },
         {
           "name": "DropdownRadioItem",
-          "count": 1,
+          "count": 2,
           "docs": "Dropdown"
+        },
+        {
+          "name": "Progress",
+          "count": 2,
+          "docs": "Progress"
+        },
+        {
+          "name": "TableRow",
+          "count": 2,
+          "docs": "Table"
+        },
+        {
+          "name": "TextareaToolButton",
+          "count": 2,
+          "docs": "Textarea"
+        },
+        {
+          "name": "Tooltip",
+          "count": 2,
+          "docs": "Tooltip"
+        },
+        {
+          "name": "Accordion",
+          "count": 1,
+          "docs": "Accordion"
+        },
+        {
+          "name": "CardTitle",
+          "count": 1,
+          "docs": "Card"
         },
         {
           "name": "DropdownSeparator",
@@ -4907,24 +4872,64 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "docs": "Dropdown"
         },
         {
+          "name": "FileDropzone",
+          "count": 1,
+          "docs": "FileUpload"
+        },
+        {
+          "name": "IconShape",
+          "count": 1,
+          "docs": "IconShape"
+        },
+        {
           "name": "Navbar",
           "count": 1,
           "docs": "Navbar"
         },
         {
-          "name": "Pagination",
+          "name": "Popover",
           "count": 1,
-          "docs": "Pagination"
+          "docs": "Popover"
         },
         {
-          "name": "Progress",
+          "name": "RichTextEditor",
           "count": 1,
-          "docs": "Progress"
+          "docs": "RichTextEditor"
+        },
+        {
+          "name": "Sidebar",
+          "count": 1,
+          "docs": "Sidebar"
+        },
+        {
+          "name": "Skeleton",
+          "count": 1,
+          "docs": "Skeleton"
         },
         {
           "name": "Stepper",
           "count": 1,
           "docs": "Stepper"
+        },
+        {
+          "name": "Table",
+          "count": 1,
+          "docs": "Table"
+        },
+        {
+          "name": "TableBody",
+          "count": 1,
+          "docs": "Table"
+        },
+        {
+          "name": "TableHead",
+          "count": 1,
+          "docs": "Table"
+        },
+        {
+          "name": "Textarea",
+          "count": 1,
+          "docs": "Textarea"
         },
         {
           "name": "Toast",
@@ -4937,14 +4942,15 @@ export const adDesignKitDocs: ADDesignKitDocs = {
           "docs": "Toast"
         },
         {
-          "name": "Tooltip",
+          "name": "Toggle",
           "count": 1,
-          "docs": "Tooltip"
+          "docs": "Toggle"
         }
       ],
       "handMade": 0,
       "findings": [],
       "gaps": [
+        "action-tile",
         "tinted-summary"
       ]
     }
@@ -4955,14 +4961,40 @@ export const adDesignKitDocs: ADDesignKitDocs = {
       "title": "Tinted summary band (description list)",
       "status": "open",
       "found": "2026-11-01",
-      "screen": "src/features/materials",
-      "reference": "Material - powerplay (VH1RUJ8Q0lqiNRfPgIAxRA): the key-facts band at the top of the Indent, PO and GRN drawers, e.g. node 27:17108",
-      "need": "Record facts (project, created by, dates, amounts) as label/value pairs in 2–4 columns on a light brand-tinted band.",
+      "screen": "src/features/damia",
+      "reference": "damia-case-study (bbyGbZ3b8P2uT84Pul9qu7): the light-blue \"Source Guide\" band in the open Sources panel, node 10:672. Earlier seen in Material - powerplay (VH1RUJ8Q0lqiNRfPgIAxRA) 27:17108 and Material Management (Copy) (8gQnE0UCLGaNL5bBMiGERT) 2021:58722.",
+      "need": "Key facts or a summary (label/value pairs, or a summary next to key-topic chips) on a light brand-tinted band.",
       "proposal": "Figma component \"Description list\": Style = Plain | Tinted (bg-brand-softer), Columns = 2 | 3 | 4; item = label (text-xs text-body) over value (text-sm font-medium text-heading).",
-      "standIn": "Card with a <dl> grid (SummaryCard in src/features/materials/shared.tsx): same content, no tint.",
+      "standIn": "Accordion \"Source Guide\" holding the same summary and topics, no tint (src/features/damia/SourcesPanel.tsx).",
       "usedIn": [
-        "src/features/materials"
+        "src/features/damia"
       ]
+    },
+    {
+      "id": "action-tile",
+      "title": "Action tile (large icon + label tile button)",
+      "status": "open",
+      "found": "2026-11-06",
+      "screen": "src/features/damia",
+      "reference": "damia-case-study (bbyGbZ3b8P2uT84Pul9qu7): Studio creation entry points Overview, Process Map, Slide Deck, Proposal, node 12:1048",
+      "need": "Large tinted tiles that start creating an output, laid out two per row, each an icon over or beside a label.",
+      "proposal": "Figma component \"Action tile\": Style = Tinted (bg-brand-softer) | Neutral, Layout = Icon start | Icon top, Size = base | lg, States = Initial, Hover, Focus, Disabled, Busy (spinner).",
+      "standIn": "Button color=\"secondary\" with the icon as leftIcon, full width (src/features/damia/StudioPanel.tsx).",
+      "usedIn": [
+        "src/features/damia"
+      ]
+    },
+    {
+      "id": "connector-logos",
+      "title": "Connector logos: Outlook and Microsoft Teams",
+      "status": "done",
+      "found": "2026-11-06",
+      "screen": "src/features/damia",
+      "reference": "damia-case-study (bbyGbZ3b8P2uT84Pul9qu7): Connectors list in the Sources panel, node 10:836",
+      "need": "Recognisable brand marks for the connected apps in the Sources panel and its closed rail.",
+      "proposal": "Add outlook and microsoft-teams to the Figma Icons page, Brands group (16px, currentColor-friendly), then run the icon sync.",
+      "standIn": "Official Outlook, Teams, Google Drive and Slack SVG marks shown as images (brand content, like the Damia logo), not icons.",
+      "usedIn": []
     }
   ]
 };

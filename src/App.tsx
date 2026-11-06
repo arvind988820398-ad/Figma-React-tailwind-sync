@@ -1,5 +1,5 @@
-import { MaterialsApp } from './features/materials/MaterialsApp';
+import { DamiaApp } from './features/damia/DamiaApp';
 
 export default function App() {
-  return <MaterialsApp />;
+  return <DamiaApp />;
 }

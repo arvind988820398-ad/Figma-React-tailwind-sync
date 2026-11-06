@@ -114,3 +114,24 @@ export const ShowOnFocus: Story = {
     await waitFor(() => expect(tooltip).not.toBeVisible());
   },
 };
+
+// Long content inside a one-line context (a `whitespace-nowrap` table header, as in a data table): the bubble still
+// wraps at max-w-xs instead of letting the text run out of it.
+export const LongContentInNoWrapParent: Story = {
+  args: { content: 'Total requested quantity from all indents which have not been ordered yet.', defaultOpen: true, placement: 'bottom' },
+  render: (args) => (
+    <div className="whitespace-nowrap text-center">
+      <Tooltip {...args}>
+        <Button color="secondary">Approved Req. Qty</Button>
+      </Tooltip>
+    </div>
+  ),
+  play: async ({ canvasElement }) => {
+    const bubble = canvasElement.querySelector<HTMLElement>('[role="tooltip"]')!;
+    await waitFor(() => expect(bubble).toBeVisible());
+    const box = bubble.getBoundingClientRect();
+    await expect(box.width).toBeLessThanOrEqual(320);
+    await expect(box.height).toBeGreaterThan(30); // two lines or more
+    await expect(bubble.scrollWidth).toBeLessThanOrEqual(bubble.clientWidth); // nothing runs out of the bubble
+  },
+};

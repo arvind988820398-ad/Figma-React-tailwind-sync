@@ -46,7 +46,8 @@ export function Tooltip({ content, placement = 'top', children, defaultOpen = fa
         style={a.floatingStyles}
         data-placement={a.placement}
         className={cn(
-          'pointer-events-none z-50 w-max max-w-xs rounded-base bg-dark px-3 py-2 text-sm font-medium leading-4 text-white shadow-md transition-opacity',
+          // whitespace-normal text-start: the bubble wraps at max-w-xs even inside a `whitespace-nowrap` table or a centred row.
+          'pointer-events-none z-50 w-max max-w-xs whitespace-normal text-start rounded-base bg-dark px-3 py-2 text-sm font-medium leading-4 text-white shadow-md transition-opacity',
           open ? 'opacity-100' : 'invisible opacity-0',
         )}
       >

@@ -6,11 +6,33 @@
       "title": "Tinted summary band (description list)",
       "status": "open",
       "found": "2026-11-01",
-      "screen": "src/features/materials",
-      "reference": "Material - powerplay (VH1RUJ8Q0lqiNRfPgIAxRA): the key-facts band at the top of the Indent, PO and GRN drawers, e.g. node 27:17108",
-      "need": "Record facts (project, created by, dates, amounts) as label/value pairs in 2–4 columns on a light brand-tinted band.",
+      "screen": "src/features/damia",
+      "reference": "damia-case-study (bbyGbZ3b8P2uT84Pul9qu7): the light-blue \"Source Guide\" band in the open Sources panel, node 10:672. Earlier seen in Material - powerplay (VH1RUJ8Q0lqiNRfPgIAxRA) 27:17108 and Material Management (Copy) (8gQnE0UCLGaNL5bBMiGERT) 2021:58722.",
+      "need": "Key facts or a summary (label/value pairs, or a summary next to key-topic chips) on a light brand-tinted band.",
       "proposal": "Figma component \"Description list\": Style = Plain | Tinted (bg-brand-softer), Columns = 2 | 3 | 4; item = label (text-xs text-body) over value (text-sm font-medium text-heading).",
-      "standIn": "Card with a <dl> grid (SummaryCard in src/features/materials/shared.tsx): same content, no tint."
+      "standIn": "Accordion \"Source Guide\" holding the same summary and topics, no tint (src/features/damia/SourcesPanel.tsx)."
+    },
+    {
+      "id": "action-tile",
+      "title": "Action tile (large icon + label tile button)",
+      "status": "open",
+      "found": "2026-11-06",
+      "screen": "src/features/damia",
+      "reference": "damia-case-study (bbyGbZ3b8P2uT84Pul9qu7): Studio creation entry points Overview, Process Map, Slide Deck, Proposal, node 12:1048",
+      "need": "Large tinted tiles that start creating an output, laid out two per row, each an icon over or beside a label.",
+      "proposal": "Figma component \"Action tile\": Style = Tinted (bg-brand-softer) | Neutral, Layout = Icon start | Icon top, Size = base | lg, States = Initial, Hover, Focus, Disabled, Busy (spinner).",
+      "standIn": "Button color=\"secondary\" with the icon as leftIcon, full width (src/features/damia/StudioPanel.tsx)."
+    },
+    {
+      "id": "connector-logos",
+      "title": "Connector logos: Outlook and Microsoft Teams",
+      "status": "done",
+      "found": "2026-11-06",
+      "screen": "src/features/damia",
+      "reference": "damia-case-study (bbyGbZ3b8P2uT84Pul9qu7): Connectors list in the Sources panel, node 10:836",
+      "need": "Recognisable brand marks for the connected apps in the Sources panel and its closed rail.",
+      "proposal": "Add outlook and microsoft-teams to the Figma Icons page, Brands group (16px, currentColor-friendly), then run the icon sync.",
+      "standIn": "Official Outlook, Teams, Google Drive and Slack SVG marks shown as images (brand content, like the Damia logo), not icons."
     }
   ]
 }
