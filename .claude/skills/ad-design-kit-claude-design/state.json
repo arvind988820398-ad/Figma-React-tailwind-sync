@@ -1,7 +1,7 @@
 {
   "url": "https://claude.ai/artifact/P6dLktxjvuj3x2YPGZprk6",
-  "ref": "main@5da2046",
-  "syncedAt": "2026-11-05T22:14:47.173Z",
+  "ref": "main@95297bf",
+  "syncedAt": "2026-11-06T09:46:51.287Z",
   "files": {
     "tokens.json": "e82813701a2badc38522791e20414b2e34d12adc02c9a79e2352457fe35da7f4",
     "tokens.css": "562389d2b1f81cda43d2440f67b072cf276952a0a6a2a8532d93e0e5cfe1b919",
@@ -41,7 +41,7 @@
     "components/Drawer/README.md": "71bece6a745b394bbdd03eb68f003e43d9ea7440f8288c019c05d8201264b922",
     "components/Dropdown/README.md": "c18f34bc5c039096fafa5091f99925b628c5265e7067dbfc8521978cd623e311",
     "components/Popover/README.md": "ef540bdfa56edbf7d51803cd1f7ff4944b52fb8c6e224952570afe17c61bf3f9",
-    "components/Tooltip/README.md": "2d0489b4f344bd57bb8c6c454a4c1830582cddef2aa281cf8c73deec917875c2",
+    "components/Tooltip/README.md": "34aea21a93298bcfdbd1ce2ccd8f37d3c06d4868c64768bb5fd48d4c1f7e9db4",
     "components/Navbar/README.md": "6862cdaac4e9853623cd938eb7fc6d4e06e1b33d7f9ebf08f60fdf34476f691b",
     "components/Sidebar/README.md": "11589cff4fe4114f86517380e91b0e19acd1d6c50dba214696c00fb6d247d8e6",
     "components/Breadcrumb/README.md": "195793a8c46b0f62e8b6ee7480a96b13ab012f8108619157a906ec32096302f9",
@@ -64,8 +64,8 @@
     "components/Gallery/README.md": "292a9f7344e726b9141a84a2b5217f0ed6258a22a025aa864e30f279656c697a",
     "components/DeviceMockup/README.md": "a2a799aab5c5380f6cc17293bfba37fca4c54c32c2514cd55f46681ffbe6dd77",
     "assets/Icons/README.md": "9f030ffa655bf77e4398f15cdd262c86c806cf87af59bd9d777d2926b12a8b6d",
-    "components/bundle.js": "fc9ce8fd8f9f0d809b4ead995050644ecbc787fac7e50eedc5b44e293d49890c",
-    "components/bundle.css": "8135828de90e2278971314c3aaa00a146448b7dfcd690053d8be96fe6573f42c",
+    "components/bundle.js": "a4479f7ba4d42548df12ca7f507b595cf3dfbedc6f37dd578dbfc49a0118e6fa",
+    "components/bundle.css": "62a74c39ee14ae6d8c019bec3ae1ffa34907b1b4042da7705e7674ccd5d8faad",
     "components/index.d.ts": "08ee2805185a0726eb31dbab34401d3c0c53c50d661872762a38bd7f84be6353"
   },
   "assets": {
