@@ -111,7 +111,10 @@ const dirty = git('status', '--porcelain', '--', 'src', '.claude/skills/ad-desig
 // ---------- sources ----------
 const registry = JSON.parse(read(path.join(ds, 'references/components.json'))).components;
 const docsTs = read(path.join(root, '.storybook/generated/ad-design-kit-docs.ts'));
-const docs = JSON.parse(docsTs.slice(docsTs.indexOf('= {') + 2).replace(/;\s*$/, ''));
+// The docs object is the first `export const … = {` block; the file also exports image maps after it.
+const docsStart = docsTs.indexOf('export const adDesignKitDocs');
+const docsBody = docsTs.slice(docsTs.indexOf('= {', docsStart) + 2);
+const docs = JSON.parse(docsBody.slice(0, docsBody.indexOf('\n};') + 2));
 const tokenCss = read(path.join(root, 'src/styles/ad-design-kit.css'));
 const icons = JSON.parse(read(path.join(ds, 'icons/figma-icons.json'))).icons;
 const categoryLabels = Object.fromEntries(
