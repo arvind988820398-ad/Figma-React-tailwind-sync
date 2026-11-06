@@ -49,10 +49,4 @@ Code mirrors Figma values exactly (the generated CSS is a faithful copy, so desi
 Naming only (no code impact): the Checkbox input set's `Size` property has `base` on the checkbox variants and `Default` on the radio variants, and both are 16px. Suggest one value (or removing the property) in Figma; code has no size prop because there is no second size.
 ## Code ahead of Figma
 
-Variants that exist in code because a product needed them; add them to the Figma set, then re-run the sync so the registry lists them.
-
-| # | Component | Code | Proposed Figma addition |
-|---|---|---|---|
-| 48 | Sidebar item `1149:82699` | `meta` (second line, e.g. timestamp) and `actions` (per-item menu beside the link, shown on hover/focus) for chat or file history | Add `Type = With meta` (two-line label) and a `Show actions` boolean with a trailing ghost icon Button (visible in Hover/Active) to the Navigation list item set |
-
-Closed: Navbar `size="compact"` and `fluid` (old rows 45 and 46) were added to Figma on 2026-10-31 as `Size = Default / Compact` and `Width = Contained / Fluid` (Desktop variants). Chat bubble `width="fluid"` (old row 47) is Figma `Width = Fixed / Fluid` on the Chat bubble and Bubble sets, and DropdownItem `color="danger"` (old row 49) is Figma `Color = Default / Danger` on the Dropdown list item set (Default type), both added on 2026-10-31.
+Moved to `code-ahead.json` next to this file: each variant code has and Figma lacks, with its status (open → in-figma → done), the proposal for Figma, where screens use it and two screenshots. Old row numbers 45–49 are kept there as `num`.

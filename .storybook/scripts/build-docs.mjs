@@ -263,22 +263,12 @@ const cssStamp = (/Source: Figma (.+)$/m.exec(appCss) || [])[1] || '';
 const rules = sectionBody(skillMd, 'Non-negotiable rules');
 const cheatSheet = sectionBody(skillMd, 'Token cheat sheet');
 const choosing = sectionBody(skillMd, 'Choosing a component');
-// "Code ahead of Figma" becomes rows of its own (rendered with screenshots); the other open sections stay Markdown.
+// "Code ahead of Figma" lives in references/code-ahead.json (rendered as its own table with statuses and screenshots);
+// the other open sections of figma-audit.md stay Markdown.
 const auditOpen = auditMd.split('\n## ').slice(1).filter((s) => !s.startsWith('Fixed in Figma') && !s.startsWith('Code ahead of Figma')).map((s) => '## ' + s).join('\n\n').trim();
-const codeAheadBody = sectionBody(auditMd, 'Code ahead of Figma') || '';
-const codeAheadLines = codeAheadBody.split('\n');
-const tableStart = codeAheadLines.findIndex((l) => l.trim().startsWith('|'));
-const tableEnd = tableStart < 0 ? -1 : tableStart + codeAheadLines.slice(tableStart).findIndex((l) => !l.trim().startsWith('|'));
-const cells = (l) => l.trim().replace(/^\||\|$/g, '').split('|').map((c) => c.trim());
-const codeAhead = {
-  intro: (tableStart < 0 ? codeAheadBody : codeAheadLines.slice(0, tableStart).join('\n')).trim(),
-  rows: tableStart < 0 ? [] : codeAheadLines.slice(tableStart + 2, tableEnd < tableStart ? undefined : tableEnd).filter((l) => l.trim()).map((l) => {
-    const [num, component, code, proposal] = cells(l);
-    const images = Object.fromEntries(['figma', 'code'].map((k) => [k, `code-ahead/${num}-${k}.png`]).filter(([, f]) => exists(path.join(refs, f))));
-    return { num, component, code, proposal, images };
-  }),
-  notes: tableStart < 0 || tableEnd < tableStart ? '' : codeAheadLines.slice(tableEnd).join('\n').trim(),
-};
+const codeAheadFile = JSON.parse(read(path.join(refs, 'code-ahead.json')));
+const statusOrder = { open: 0, 'in-figma': 1, done: 2 };
+const codeAheadItems = [...codeAheadFile.items].sort((a, b) => statusOrder[a.status] - statusOrder[b.status] || Number(b.num) - Number(a.num));
 
 const auditFixed = sectionBody(auditMd, 'Fixed in Figma');
 
@@ -326,6 +316,47 @@ if (exists(featuresDir)) {
     });
   }
 }
+// Where screens use each code-ahead variant: an opening JSX tag of the component that sets the prop (to the value, if given).
+const openingTags = (src, name) => {
+  const tags = [];
+  const re = new RegExp(`<${name}(?=[\\s/>])`, 'g');
+  for (let m; (m = re.exec(src)); ) {
+    let depth = 0;
+    let quote = '';
+    let i = m.index + m[0].length;
+    for (; i < src.length; i++) {
+      const ch = src[i];
+      if (quote) { if (ch === quote) quote = ''; continue; }
+      if (depth === 0 && (ch === '"' || ch === "'")) { quote = ch; continue; }
+      if (ch === '{') depth++;
+      else if (ch === '}') depth--;
+      else if (ch === '>' && depth === 0) break;
+    }
+    tags.push(src.slice(m.index, i + 1));
+  }
+  return tags;
+};
+const featureFiles = exists(featuresDir)
+  ? fs.readdirSync(featuresDir, { recursive: true }).filter((f) => String(f).endsWith('.tsx')).map((f) => path.join(featuresDir, String(f)))
+  : [];
+const usesVariant = (src, { component, prop, value }) =>
+  openingTags(src, component).some((tag) => {
+    const attr = new RegExp(`\\s${prop}(?=[\\s=/>])(=(?:"([^"]*)"|\\{["']([^"']*)["']\\}|\\{[^}]*\\}))?`).exec(tag);
+    if (!attr) return false;
+    return value === undefined || attr[2] === value || attr[3] === value;
+  });
+const codeAhead = {
+  intro: 'Variants that exist in code because a product needed them first. The designer adds each to its Figma set, the next sync confirms it, and the row moves from open → in-figma → done. The list lives in `.claude/skills/ad-design-kit-design-system/references/code-ahead.json`.',
+  rows: codeAheadItems.map((it) => {
+    const files = featureFiles.filter((f) => (it.usage ?? []).some((u) => usesVariant(read(f), u)));
+    const usedIn = [...new Set(files.map((f) => path.relative(root, f).split(path.sep).slice(0, 3).join('/')))].sort();
+    const images = Object.fromEntries(Object.entries(it.images ?? {}).filter(([, f]) => exists(path.join(refs, f))));
+    for (const f of Object.values(it.images ?? {})) if (!exists(path.join(refs, f))) warnings.push(`code-ahead.json names a missing image: references/${f}`);
+    const { usage: _usage, images: _images, ...rest } = it;
+    return { ...rest, usedIn, images };
+  }),
+};
+
 const gapRows = gaps.map((g) => ({
   ...g,
   usedIn: screens.filter((sc) => sc.gaps.includes(g.id)).map((sc) => sc.path),
@@ -377,6 +408,7 @@ export interface ADDesignKitScreen {
   gaps: string[];
 }
 export interface ADDesignKitGap { id: string; title: string; status: 'open' | 'in-figma' | 'done'; found: string; screen: string; reference: string; need: string; proposal: string; standIn: string; usedIn: string[]; images?: { figma?: string; code?: string }; source?: { issue: number; url: string; reportedBy: string; project: string; version: string } }
+export interface ADDesignKitCodeAhead { id: string; num: string; title: string; status: 'open' | 'in-figma' | 'done'; found: string; closed?: string; component: string; figmaSet: string; node?: string; code: string; proposal: string; resolution?: string; addedFor?: string; usedIn: string[]; images: { figma?: string; code?: string } }
 export interface ADDesignKitColorToken { cls: string; use: string; light: string; dark: string; cssVar: string; values: Record<string, string> }
 export interface ADDesignKitExtraDoc { react: string; heading: string; figmaLine: string; doc: string; node?: string; figmaUrl?: string }
 export interface ADDesignKitComponentDoc {
@@ -427,7 +459,7 @@ export interface ADDesignKitDocs {
     typographyNote: string;
     fonts: Record<string, string>;
   };
-  guides: { rules: string; cheatSheet: string; choosing: string; auditOpen: string; auditFixed: string; codeAhead: { intro: string; rows: { num: string; component: string; code: string; proposal: string; images: { figma?: string; code?: string } }[]; notes: string } };
+  guides: { rules: string; cheatSheet: string; choosing: string; auditOpen: string; auditFixed: string; codeAhead: { intro: string; rows: ADDesignKitCodeAhead[] } };
   categoryIntro: Record<string, string>;
   components: Record<string, ADDesignKitComponentDoc>;
   drift: ADDesignKitDrift[];
@@ -445,14 +477,14 @@ const gapImageVar = (id, kind) => `gap_${id.replace(/\W/g, '_')}_${kind}`;
 const gapImageFiles = gapRows.flatMap((g) => Object.entries(g.images ?? {}).map(([kind, file]) => ({ id: g.id, kind, file })));
 for (const { file } of gapImageFiles) if (!exists(path.join(composeDir, 'references', file))) warnings.push(`gaps.json names a missing image: references/${file}`);
 const rel = (abs) => path.relative(path.dirname(outFile), abs).split(path.sep).join('/');
-const aheadVar = (num, kind) => `codeAhead_${num.replace(/\W/g, '_')}_${kind}`;
+const aheadVar = (id, kind) => `codeAhead_${id.replace(/\W/g, '_')}_${kind}`;
 const gapImports = [
   ...gapImageFiles.filter(({ file }) => exists(path.join(composeDir, 'references', file))).map(({ id, kind, file }) => `import ${gapImageVar(id, kind)} from '${rel(path.join(composeDir, 'references', file))}';`),
-  ...codeAhead.rows.flatMap((r) => Object.entries(r.images).map(([kind, file]) => `import ${aheadVar(r.num, kind)} from '${rel(path.join(refs, file))}';`)),
+  ...codeAhead.rows.flatMap((r) => Object.entries(r.images).map(([kind, file]) => `import ${aheadVar(r.id, kind)} from '${rel(path.join(refs, file))}';`)),
 ];
 const codeAheadImageMap =
-  '\n/** Screenshots per "Code ahead of Figma" row (by its # in figma-audit.md): Figma today and the code that is ahead. */\nexport const adDesignKitCodeAheadImages: Record<string, { figma?: string; code?: string }> = {\n' +
-  codeAhead.rows.filter((r) => Object.keys(r.images).length).map((r) => `  ${JSON.stringify(r.num)}: { ${Object.keys(r.images).map((k) => `${k}: ${aheadVar(r.num, k)}`).join(', ')} },`).join('\n') +
+  '\n/** Screenshots per "Code ahead of Figma" row (by its id in code-ahead.json): Figma today and the code that is ahead. */\nexport const adDesignKitCodeAheadImages: Record<string, { figma?: string; code?: string }> = {\n' +
+  codeAhead.rows.filter((r) => Object.keys(r.images).length).map((r) => `  ${JSON.stringify(r.id)}: { ${Object.keys(r.images).map((k) => `${k}: ${aheadVar(r.id, k)}`).join(', ')} },`).join('\n') +
   '\n};\n';
 const gapImageMap =
   '\n/** Screenshots per gap: the Figma reference and the stand-in as it renders. */\nexport const adDesignKitGapImages: Record<string, { figma?: string; code?: string }> = {\n' +

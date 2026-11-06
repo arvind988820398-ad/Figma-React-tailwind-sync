@@ -8,8 +8,8 @@ import gap_action_tile_figma from '../../.claude/skills/ad-design-kit-compose/re
 import gap_action_tile_code from '../../.claude/skills/ad-design-kit-compose/references/gaps/action-tile-code.png';
 import gap_connector_logos_figma from '../../.claude/skills/ad-design-kit-compose/references/gaps/connector-logos-figma.png';
 import gap_connector_logos_code from '../../.claude/skills/ad-design-kit-compose/references/gaps/connector-logos-code.png';
-import codeAhead_48_figma from '../../.claude/skills/ad-design-kit-design-system/references/code-ahead/48-figma.png';
-import codeAhead_48_code from '../../.claude/skills/ad-design-kit-design-system/references/code-ahead/48-code.png';
+import codeAhead_sidebar_item_meta_actions_figma from '../../.claude/skills/ad-design-kit-design-system/references/code-ahead/sidebar-item-meta-actions-figma.png';
+import codeAhead_sidebar_item_meta_actions_code from '../../.claude/skills/ad-design-kit-design-system/references/code-ahead/sidebar-item-meta-actions-code.png';
 
 export interface ADDesignKitDrift { component?: string; kind: string; detail: string }
 export interface ADDesignKitScreen {
@@ -23,6 +23,7 @@ export interface ADDesignKitScreen {
   gaps: string[];
 }
 export interface ADDesignKitGap { id: string; title: string; status: 'open' | 'in-figma' | 'done'; found: string; screen: string; reference: string; need: string; proposal: string; standIn: string; usedIn: string[]; images?: { figma?: string; code?: string }; source?: { issue: number; url: string; reportedBy: string; project: string; version: string } }
+export interface ADDesignKitCodeAhead { id: string; num: string; title: string; status: 'open' | 'in-figma' | 'done'; found: string; closed?: string; component: string; figmaSet: string; node?: string; code: string; proposal: string; resolution?: string; addedFor?: string; usedIn: string[]; images: { figma?: string; code?: string } }
 export interface ADDesignKitColorToken { cls: string; use: string; light: string; dark: string; cssVar: string; values: Record<string, string> }
 export interface ADDesignKitExtraDoc { react: string; heading: string; figmaLine: string; doc: string; node?: string; figmaUrl?: string }
 export interface ADDesignKitComponentDoc {
@@ -73,7 +74,7 @@ export interface ADDesignKitDocs {
     typographyNote: string;
     fonts: Record<string, string>;
   };
-  guides: { rules: string; cheatSheet: string; choosing: string; auditOpen: string; auditFixed: string; codeAhead: { intro: string; rows: { num: string; component: string; code: string; proposal: string; images: { figma?: string; code?: string } }[]; notes: string } };
+  guides: { rules: string; cheatSheet: string; choosing: string; auditOpen: string; auditFixed: string; codeAhead: { intro: string; rows: ADDesignKitCodeAhead[] } };
   categoryIntro: Record<string, string>;
   components: Record<string, ADDesignKitComponentDoc>;
   drift: ADDesignKitDrift[];
@@ -1594,20 +1595,101 @@ export const adDesignKitDocs: ADDesignKitDocs = {
     "auditOpen": "## Components\n\nNone open.\n\nCode mirrors Figma values exactly (the generated CSS is a faithful copy, so designers see exactly what ships).\n\n\nNaming only (no code impact): the Checkbox input set's `Size` property has `base` on the checkbox variants and `Default` on the radio variants, and both are 16px. Suggest one value (or removing the property) in Figma; code has no size prop because there is no second size.",
     "auditFixed": "- **Row 26:** `typography/line-height/leading-heading(none)` was not unused: the Jumbotron headline binds it (60px = text-6xl with leading-none). It is renamed `typography/line-height/leading-none-6xl` and documented; the token CSS does not change.\n- **Row 32:** KBD gap and paddings are bound to `spacing/2` and `spacing/5`. The Range slider 67px gap no longer exists.\n- **Row 36:** 77 nav-link, tab, breadcrumb, list-row and stepper corners (6px) are bound to `rounded-base`, and 20 corners of 8px (Accordion, Autocomplete, Textarea chatroom bar, choice cards, Timeline, Skeleton, chat bubble, Carousel media) to `rounded-lg`, matching code. Tooltip arrows and device bezels stay unbound as art.\n- **Row 43:** Jumbotron copy is bound to text tokens; only the Bento illustration colors and its 16/20px art radii stay unbound, as intended.\n- **Rows 30, 37, 38, 42 and 44, resolved to common design-system practice (Material, Carbon, Atlassian, WCAG 2.2):**\n  - **Glyph vs surface colors (30).** Icons, stars and separator dots keep foreground tokens (`text-*`, used in code as `fill-*`); that is the standard, not a defect. Image placeholders follow one recipe: surface `bg-neutral-tertiary`, glyph `text-body-subtle` (Card and Chat no longer use `text-body` or the disabled color for it).\n  - **Line height follows font size (37).** `text-sm` always uses `leading-5` (20px) and `text-xs` `leading-4` (16px): checkbox and radio labels, choice-card titles, dropdown and autocomplete items now match form labels and nav links. Menu rows keep 32px by moving padding from 8px to 6px. Fixed 14px line heights are gone, which also meets WCAG 1.4.12 text spacing.\n  - **One helper-text size (38).** Every helper or description under a control is `text-xs leading-4 text-body` (12/16): form Helper, checkbox, radio and toggle helpers.\n  - **Selected is not hover (42).** The current Pagination page uses the selected style `bg-brand-softer border-brand-subtle text-fg-brand` with `aria-current=\"page\"`, unchanged on hover.\n  - **Only tokens are published (44).** The eight colored demo shadows are renamed `_demo/shadow-…/50`, so they stay on the Shadows page but leave the published library; the token CSS is unchanged.\n- **Remote components relinked.** Instances on many pages still pointed to the kit this file was copied from, which no longer publishes them (\"Component removed from library\" in the Swap panel). Every instance is now local (0 of 15,542 remote):\n  - Rebuilt as local sets with the same variants, layout and component properties: `Table header`, `Table cell (header)`, `Table cell (base)`, `Table Footer` (Tables page), `Country flag` (Dropdowns), `Text Block` (Skeleton), `Separator` (Modals).\n  - The 240 logos, illustrations and icons on the Logos, Illustrations and Icons pages are now local components in place; `Apple` and `Google Play` sit on the Buttons page.\n  - Variables too: the copied layers were still bound to the old kit's variables, and some pages set a mode on its collection, so Figma painted them from stale cached (dark) values. That is why the rebuilt Table header looked dark. About 20,000 bindings now point to the local Themes and Primitives variables (same name, or the renamed one: `bg-primary-soft` → `bg-neutral-primary-soft`, `border-base` → `border-default`, `size/lg` → `typography/font-size/text-lg`, `primary/*` → `colors/brand/*`). About 2,700 stale overrides on nested layers were cleared, and 60 stale modes removed. The file has 0 remote variable bindings. The Colors page \"Slate\" column, which was bound to violet, is now bound to `colors/slate/*`.\n  - Instances with a local twin (Button, Badge, Tooltip, Avatar, Icon Shape, Nav tabs, Pattern, the form sets, icons) were swapped to it, keeping their overrides. One old-style Badge became the Badge set, and the Gallery grid example was detached.\n- **Rows 45–46:** Navbar `Size = Default / Compact` and `Width = Contained / Fluid` were added (see \"Code ahead of Figma\").",
     "codeAhead": {
-      "intro": "Variants that exist in code because a product needed them; add them to the Figma set, then re-run the sync so the registry lists them.",
+      "intro": "Variants that exist in code because a product needed them first. The designer adds each to its Figma set, the next sync confirms it, and the row moves from open → in-figma → done. The list lives in `.claude/skills/ad-design-kit-design-system/references/code-ahead.json`.",
       "rows": [
         {
+          "id": "sidebar-item-meta-actions",
           "num": "48",
-          "component": "Sidebar item `1149:82699`",
-          "code": "`meta` (second line, e.g. timestamp) and `actions` (per-item menu beside the link, shown on hover/focus) for chat or file history",
-          "proposal": "Add `Type = With meta` (two-line label) and a `Show actions` boolean with a trailing ghost icon Button (visible in Hover/Active) to the Navigation list item set",
+          "title": "Sidebar item: second line and per-item menu",
+          "status": "open",
+          "found": "2026-10-31",
+          "component": "Sidebar",
+          "figmaSet": "Navigation list item",
+          "node": "1149:82699",
+          "code": "`meta` (a second line under the label, e.g. a timestamp) and `actions` (a per-item menu beside the link, shown on hover and focus) for chat or file history.",
+          "proposal": "Add `Type = With meta` (two-line label) and a `Show actions` boolean with a trailing ghost icon Button (visible in Hover/Active) to the Navigation list item set.",
+          "addedFor": "Chat and file history lists",
+          "usedIn": [],
           "images": {
-            "figma": "code-ahead/48-figma.png",
-            "code": "code-ahead/48-code.png"
+            "figma": "code-ahead/sidebar-item-meta-actions-figma.png",
+            "code": "code-ahead/sidebar-item-meta-actions-code.png"
           }
+        },
+        {
+          "id": "dropdown-item-danger",
+          "num": "49",
+          "title": "Dropdown item: Danger colour",
+          "status": "done",
+          "found": "2026-10-31",
+          "closed": "2026-10-31",
+          "component": "Dropdown",
+          "figmaSet": "Dropdown list item",
+          "node": "1149:39651",
+          "code": "`color=\"danger\"`: a destructive item (Delete) with `text-fg-danger-strong` text and icon and a `bg-danger-soft` hover.",
+          "proposal": "Add a `Color = Default / Danger` property to the Dropdown list item set.",
+          "resolution": "Figma `Color = Default / Danger` on the Dropdown list item set (Default type).",
+          "addedFor": "Destructive actions in row menus",
+          "usedIn": [],
+          "images": {}
+        },
+        {
+          "id": "chat-bubble-fluid",
+          "num": "47",
+          "title": "Chat bubble: fluid width",
+          "status": "done",
+          "found": "2026-10-31",
+          "closed": "2026-10-31",
+          "component": "ChatBubble",
+          "figmaSet": "Chat bubble",
+          "node": "1149:35687",
+          "code": "`width=\"fluid\"`: the bubble fills up to 80% of the conversation width (full-page chat) instead of Figma's 320px.",
+          "proposal": "Add a `Width = Fixed / Fluid` property to the Bubble set (Fluid = fill container, max 80%).",
+          "resolution": "Figma `Width = Fixed / Fluid` on the Chat bubble and Bubble sets.",
+          "addedFor": "Full-page chat",
+          "usedIn": [
+            "src/features/damia"
+          ],
+          "images": {}
+        },
+        {
+          "id": "navbar-fluid",
+          "num": "46",
+          "title": "Navbar: fluid width",
+          "status": "done",
+          "found": "2026-10-31",
+          "closed": "2026-10-31",
+          "component": "Navbar",
+          "figmaSet": "Navbar",
+          "node": "1149:74216",
+          "code": "`fluid`: the content row runs full width (`px-4`, no `max-w-screen-xl`) for app shells.",
+          "proposal": "Add a `Width = Contained / Fluid` property to the Navbar set.",
+          "resolution": "Figma `Width = Contained / Fluid` on the Navbar set (Desktop variants).",
+          "addedFor": "App shells",
+          "usedIn": [
+            "src/features/damia"
+          ],
+          "images": {}
+        },
+        {
+          "id": "navbar-compact",
+          "num": "45",
+          "title": "Navbar: compact size",
+          "status": "done",
+          "found": "2026-10-31",
+          "closed": "2026-10-31",
+          "component": "Navbar",
+          "figmaSet": "Navbar",
+          "node": "1149:74216",
+          "code": "`size=\"compact\"`: the bar uses `py-1` (44px tall with `sm` logo and action controls) for dense app shells.",
+          "proposal": "Add a `Size = Default / Compact` property to the Navbar set with the compact padding.",
+          "resolution": "Figma `Size = Default / Compact` on the Navbar set (Desktop variants).",
+          "addedFor": "Dense app shells",
+          "usedIn": [
+            "src/features/damia"
+          ],
+          "images": {}
         }
-      ],
-      "notes": "Closed: Navbar `size=\"compact\"` and `fluid` (old rows 45 and 46) were added to Figma on 2026-10-31 as `Size = Default / Compact` and `Width = Contained / Fluid` (Desktop variants). Chat bubble `width=\"fluid\"` (old row 47) is Figma `Width = Fixed / Fluid` on the Chat bubble and Bubble sets, and DropdownItem `color=\"danger\"` (old row 49) is Figma `Color = Default / Danger` on the Dropdown list item set (Default type), both added on 2026-10-31."
+      ]
     }
   },
   "categoryIntro": {
@@ -5043,7 +5125,7 @@ export const adDesignKitGapImages: Record<string, { figma?: string; code?: strin
   "connector-logos": { figma: gap_connector_logos_figma, code: gap_connector_logos_code },
 };
 
-/** Screenshots per "Code ahead of Figma" row (by its # in figma-audit.md): Figma today and the code that is ahead. */
+/** Screenshots per "Code ahead of Figma" row (by its id in code-ahead.json): Figma today and the code that is ahead. */
 export const adDesignKitCodeAheadImages: Record<string, { figma?: string; code?: string }> = {
-  "48": { figma: codeAhead_48_figma, code: codeAhead_48_code },
+  "sidebar-item-meta-actions": { figma: codeAhead_sidebar_item_meta_actions_figma, code: codeAhead_sidebar_item_meta_actions_code },
 };

@@ -105,6 +105,7 @@ Pick the component with the "Choosing a component" table below, then the variant
 - `references/components/marketing.md` — Banner, Jumbotron, Gallery, Device mockups
 - `references/components.json` — registry: Figma node ids ↔ React components ↔ prop mapping
 - `references/figma-audit.md` — inconsistencies found in the Figma file; how code handles each
+- `references/code-ahead.json` — variants code has that Figma lacks yet (status, proposal, screenshots in `references/code-ahead/`)
 - `tokens/ad-design-kit.css` — generated Tailwind v4 theme (source of truth in code); `tokens/token-manifest.json` — resolved values per theme/mode
 - `templates/` — React implementations of every AD Design Kit component (cn helper + 56 files covering all 58 registry entries; Label and HelperText live in Input.tsx). The registry's `template` field links each component to its file; copy what you need into `components/ui/`
 

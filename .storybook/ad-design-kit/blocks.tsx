@@ -599,55 +599,85 @@ function GapRows({ gap: g }: { gap: (typeof gaps)[number] }) {
   );
 }
 
-/** "Code ahead of Figma" (figma-audit.md): variants code has that the Figma set lacks, each with Figma today and the code. */
+/** "Code ahead of Figma" (code-ahead.json): variants code has that the Figma set lacks, laid out like Gaps for Figma —
+ *  status, where screens use it, the proposal, and Figma today next to the code. */
 export function CodeAheadTable() {
-  const { intro, rows, notes } = adDesignKitDocs.guides.codeAhead;
+  const { intro, rows } = adDesignKitDocs.guides.codeAhead;
+  const open = rows.filter((r) => r.status !== 'done').length;
   return (
     <div className="my-4 flex flex-col gap-4">
       {intro && <p className="m-0 text-sm text-body"><Prose text={intro} /></p>}
       {rows.length === 0 ? (
         <p className="m-0 text-sm text-body">Nothing ahead: every variant in code exists in Figma.</p>
       ) : (
-        <div className="overflow-x-auto">
-          <table className={tableClass}>
-            <thead>
-              <tr>
-                <th className={thClass}>#</th>
-                <th className={thClass}>Component</th>
-                <th className={thClass}>In code</th>
-                <th className={thClass}>Proposed Figma addition</th>
-              </tr>
-            </thead>
-            <tbody>
-              {rows.map((r) => {
-                const images = adDesignKitCodeAheadImages[r.num];
-                return (
-                  <Fragment key={r.num}>
-                    <tr>
-                      <td className={tdClass}>{r.num}</td>
-                      <td className={tdClass}><Prose text={r.component} /></td>
-                      <td className={tdClass}><Prose text={r.code} /></td>
-                      <td className={tdClass}><Prose text={r.proposal} /></td>
-                    </tr>
-                    {images && (
-                      <tr>
-                        <td className={tdClass} colSpan={4}>
-                          <div className="grid gap-4 sm:grid-cols-2">
-                            <Shot src={images.figma} label="In Figma today" alt={`${r.component}: what the Figma set has today`} />
-                            <Shot src={images.code} label="In code (ahead of Figma)" alt={`${r.component}: what code renders`} />
-                          </div>
-                        </td>
-                      </tr>
-                    )}
-                  </Fragment>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
+        <>
+          <p className="m-0 text-sm text-body">{open ? `${open} open, ${rows.length - open} done.` : `All ${rows.length} are in Figma now.`}</p>
+          <div className="overflow-x-auto">
+            <table className={tableClass}>
+              <thead>
+                <tr>
+                  <th className={thClass}>Variant in code</th>
+                  <th className={thClass}>Status</th>
+                  <th className={thClass}>In code</th>
+                  <th className={thClass}>Proposed in Figma</th>
+                  <th className={thClass}>Added for</th>
+                </tr>
+              </thead>
+              <tbody>
+                {rows.map((r) => (
+                  <CodeAheadRows key={r.id} row={r} />
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </>
       )}
-      {notes && <p className="m-0 text-sm text-body-subtle"><Prose text={notes} /></p>}
     </div>
+  );
+}
+
+/** One code-ahead row: its text row, then Figma today and the code side by side while it is still open. */
+function CodeAheadRows({ row: r }: { row: (typeof adDesignKitDocs.guides.codeAhead.rows)[number] }) {
+  const images = adDesignKitCodeAheadImages[r.id];
+  const figmaUrl = r.node ? `${adDesignKitDocs.fileUrl}?node-id=${r.node.replace(':', '-')}` : undefined;
+  return (
+    <>
+      <tr>
+        <td className={tdClass}>
+          <p className="m-0 font-medium text-heading">{r.title}</p>
+          <Code>{r.id}</Code>
+          <p className="m-0 mt-1 text-xs text-body-subtle">
+            Found {r.found}
+            {r.closed && ` · in Figma ${r.closed}`} · {r.usedIn.length ? `used in ${r.usedIn.join(', ')}` : 'not used in a screen yet'}
+          </p>
+        </td>
+        <td className={tdClass}><Badge color={gapColor[r.status]}>{r.status}</Badge></td>
+        <td className={tdClass}>
+          <DocsLink component={r.component} />
+          <p className="m-0 mt-1"><Prose text={r.code} /></p>
+        </td>
+        <td className={tdClass}>
+          <Prose text={r.proposal} />
+          <p className="m-0 mt-1 text-xs text-body-subtle">
+            {r.resolution ? <>Added: <Prose text={r.resolution} /></> : <>Figma set: {figmaUrl ? <a href={figmaUrl} target="_blank" rel="noreferrer" className="text-fg-brand hover:underline">{r.figmaSet}</a> : r.figmaSet}</>}
+          </p>
+        </td>
+        <td className={tdClass}>
+          <p className="m-0 font-medium text-heading">This repo</p>
+          {r.addedFor && <p className="m-0 mt-1 text-xs text-body-subtle">{r.addedFor}</p>}
+        </td>
+      </tr>
+      {images && (
+        <tr>
+          <td className={tdClass} colSpan={5}>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <Shot src={images.figma} label="In Figma today" alt={`${r.title}: what the Figma set has today`} />
+              <Shot src={images.code} label="In code (ahead of Figma)" alt={`${r.title}: what code renders`} />
+            </div>
+          </td>
+        </tr>
+      )}
+    </>
   );
 }
 

@@ -17,10 +17,10 @@ export interface SidebarItem {
   disabled?: boolean;
   /** Trailing count, e.g. <Badge color="danger" size="sm">3</Badge>. */
   badge?: ReactNode;
-  /** Second line under the label (e.g. a timestamp). Code ahead of Figma: see figma-audit.md. */
+  /** Second line under the label (e.g. a timestamp). Code ahead of Figma: see code-ahead.json (sidebar-item-meta-actions). */
   meta?: ReactNode;
   /** Item actions, e.g. a <Dropdown> with a ghost xs kebab Button. Rendered beside the link (never inside it),
-   *  shown on hover and keyboard focus, always on touch screens. Code ahead of Figma: see figma-audit.md. */
+   *  shown on hover and keyboard focus, always on touch screens. Code ahead of Figma: see code-ahead.json (sidebar-item-meta-actions). */
   actions?: ReactNode;
   /** Sub-pages: the item becomes an expandable group (button with a chevron) listing them indented. */
   items?: SidebarItem[];

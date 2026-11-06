@@ -187,7 +187,7 @@ export const ExpandedAndCollapsed: Story = {
 };
 
 // Two-line items (timestamp under the label) with a per-item actions menu beside the link, as in a chat history.
-// Code ahead of Figma (figma-audit.md row 48).
+// Code ahead of Figma (code-ahead.json: sidebar-item-meta-actions).
 const onRename = fn();
 const onDelete = fn();
 const history: SidebarItem[] = ['Design tokens in Tailwind', 'Dark mode for the dashboard', 'Accessible colour contrast'].map((label, i) => ({
