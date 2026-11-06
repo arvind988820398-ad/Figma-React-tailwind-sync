@@ -1,5 +1,5 @@
 {
-  "about": "Things a screen needed that AD Design Kit cannot express yet. The compose skill adds a row for every gap it finds and marks the stand-in in code with `// ad-design-kit-gap: <id>`. Storybook → Guides → Figma sync lists the rows and where each stand-in is used. Status: open (waiting for Figma) · in-figma (designed, not synced to code yet) · done (synced; remove the stand-in markers, keep the row as history).",
+  "about": "Things a screen needed that AD Design Kit cannot express yet. The compose skill adds a row for every gap it finds and marks the stand-in in code with `// ad-design-kit-gap: <id>`. Storybook → Guides → Figma sync lists the rows and where each stand-in is used. Status: open (waiting for Figma) · in-figma (designed, not synced to code yet) · done (synced; remove the stand-in markers, keep the row as history). `images` pairs a crop of the Figma reference (<id>-figma.png, from get_screenshot on the reference node) with the stand-in as it renders (<id>-code.png, from scripts/capture-standin.mjs), both in references/gaps/; Storybook shows them side by side under the gap.",
   "gaps": [
     {
       "id": "tinted-summary",
@@ -10,7 +10,11 @@
       "reference": "damia-case-study (bbyGbZ3b8P2uT84Pul9qu7): the light-blue \"Source Guide\" band in the open Sources panel, node 10:672. Earlier seen in Material - powerplay (VH1RUJ8Q0lqiNRfPgIAxRA) 27:17108 and Material Management (Copy) (8gQnE0UCLGaNL5bBMiGERT) 2021:58722.",
       "need": "Key facts or a summary (label/value pairs, or a summary next to key-topic chips) on a light brand-tinted band.",
       "proposal": "Figma component \"Description list\": Style = Plain | Tinted (bg-brand-softer), Columns = 2 | 3 | 4; item = label (text-xs text-body) over value (text-sm font-medium text-heading).",
-      "standIn": "Accordion \"Source Guide\" holding the same summary and topics, no tint (src/features/damia/SourcesPanel.tsx)."
+      "standIn": "Accordion \"Source Guide\" holding the same summary and topics, no tint (src/features/damia/SourcesPanel.tsx).",
+      "images": {
+        "figma": "gaps/tinted-summary-figma.png",
+        "code": "gaps/tinted-summary-code.png"
+      }
     },
     {
       "id": "action-tile",
@@ -21,7 +25,11 @@
       "reference": "damia-case-study (bbyGbZ3b8P2uT84Pul9qu7): Studio creation entry points Overview, Process Map, Slide Deck, Proposal, node 12:1048",
       "need": "Large tinted tiles that start creating an output, laid out two per row, each an icon over or beside a label.",
       "proposal": "Figma component \"Action tile\": Style = Tinted (bg-brand-softer) | Neutral, Layout = Icon start | Icon top, Size = base | lg, States = Initial, Hover, Focus, Disabled, Busy (spinner).",
-      "standIn": "Button color=\"secondary\" with the icon as leftIcon, full width (src/features/damia/StudioPanel.tsx)."
+      "standIn": "Button color=\"secondary\" with the icon as leftIcon, full width (src/features/damia/StudioPanel.tsx).",
+      "images": {
+        "figma": "gaps/action-tile-figma.png",
+        "code": "gaps/action-tile-code.png"
+      }
     },
     {
       "id": "connector-logos",
@@ -32,7 +40,11 @@
       "reference": "damia-case-study (bbyGbZ3b8P2uT84Pul9qu7): Connectors list in the Sources panel, node 10:836",
       "need": "Recognisable brand marks for the connected apps in the Sources panel and its closed rail.",
       "proposal": "Add outlook and microsoft-teams to the Figma Icons page, Brands group (16px, currentColor-friendly), then run the icon sync.",
-      "standIn": "Official Outlook, Teams, Google Drive and Slack SVG marks shown as images (brand content, like the Damia logo), not icons."
+      "standIn": "Brand logo images used as content (src/features/damia/assets/outlook.svg, teams.svg, google-drive.svg, slack.svg); the Figma Icons page still has no connector logos, so other screens cannot reuse them.",
+      "images": {
+        "figma": "gaps/connector-logos-figma.png",
+        "code": "gaps/connector-logos-code.png"
+      }
     }
   ]
 }

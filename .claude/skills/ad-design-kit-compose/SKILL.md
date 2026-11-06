@@ -56,7 +56,11 @@ Status meanings:
 - **gap** — no component or variant expresses it. Do not build it. Either leave a clearly labelled placeholder (`<div className="rounded-base border border-dashed border-default-medium p-4 text-sm text-body-subtle">Needs AD Design Kit component: Colour picker</div>`), or — when the screen cannot work without it — use the closest existing component as a stand-in. Either way, **record the gap the moment you find it**:
   1. Add a row to `references/gaps.json`: `id` (kebab-case), `title`, `status: "open"`, `found` (today), `screen` (`src/features/<name>`), `reference` (file + node id or image), `need` (what the screen needs, one sentence), `proposal` (the Figma component or variant to add: name and properties), `standIn` (what code uses meanwhile).
   2. Put `// ad-design-kit-gap: <id>` on the line above the placeholder or stand-in. The checker fails on an id that is not in `gaps.json`.
-  3. Storybook → Guides → Figma sync then lists the gap, its status and where it is used, so designers see it without reading chat.
+  3. **Show it, don't only describe it.** Save two screenshots in `references/gaps/` and name them in the row as `"images": { "figma": "gaps/<id>-figma.png", "code": "gaps/<id>-code.png" }`:
+     - `<id>-figma.png`: the reference region, from `get_screenshot` on the smallest node that shows the gap (or a crop of the reference image). Crop to the region, not the whole screen.
+     - `<id>-code.png`: the stand-in as it renders, once the screen runs: `node scripts/capture-standin.mjs <url> '<selector or text:"…">' references/gaps/<id>-code.png [--click "<button or link>"]` (the clicks open the panel or drawer that holds it). It saves a 2× crop.
+     Storybook shows the pair side by side under the gap ("In Figma" / "In code today"), so a reader sees what is missing without decoding the text; `npm run docs:build` warns when a named image is missing.
+  4. Storybook → Guides → Figma sync then lists the gap, its status, where it is used and the two screenshots, so designers see it without reading chat.
   The fix is a Figma addition through the designer, then `ad-design-kit-figma-sync` section B, then replacing the stand-in and setting the row to `done`; never a local component.
 
 If more than a third of the regions are gaps, stop after the map and ask whether to proceed with placeholders or wait for Figma — building a page that is mostly placeholders helps nobody.

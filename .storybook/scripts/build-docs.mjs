@@ -263,7 +263,23 @@ const cssStamp = (/Source: Figma (.+)$/m.exec(appCss) || [])[1] || '';
 const rules = sectionBody(skillMd, 'Non-negotiable rules');
 const cheatSheet = sectionBody(skillMd, 'Token cheat sheet');
 const choosing = sectionBody(skillMd, 'Choosing a component');
-const auditOpen = auditMd.split('\n## ').slice(1).filter((s) => !s.startsWith('Fixed in Figma')).map((s) => '## ' + s).join('\n\n').trim();
+// "Code ahead of Figma" becomes rows of its own (rendered with screenshots); the other open sections stay Markdown.
+const auditOpen = auditMd.split('\n## ').slice(1).filter((s) => !s.startsWith('Fixed in Figma') && !s.startsWith('Code ahead of Figma')).map((s) => '## ' + s).join('\n\n').trim();
+const codeAheadBody = sectionBody(auditMd, 'Code ahead of Figma') || '';
+const codeAheadLines = codeAheadBody.split('\n');
+const tableStart = codeAheadLines.findIndex((l) => l.trim().startsWith('|'));
+const tableEnd = tableStart < 0 ? -1 : tableStart + codeAheadLines.slice(tableStart).findIndex((l) => !l.trim().startsWith('|'));
+const cells = (l) => l.trim().replace(/^\||\|$/g, '').split('|').map((c) => c.trim());
+const codeAhead = {
+  intro: (tableStart < 0 ? codeAheadBody : codeAheadLines.slice(0, tableStart).join('\n')).trim(),
+  rows: tableStart < 0 ? [] : codeAheadLines.slice(tableStart + 2, tableEnd < tableStart ? undefined : tableEnd).filter((l) => l.trim()).map((l) => {
+    const [num, component, code, proposal] = cells(l);
+    const images = Object.fromEntries(['figma', 'code'].map((k) => [k, `code-ahead/${num}-${k}.png`]).filter(([, f]) => exists(path.join(refs, f))));
+    return { num, component, code, proposal, images };
+  }),
+  notes: tableStart < 0 || tableEnd < tableStart ? '' : codeAheadLines.slice(tableEnd).join('\n').trim(),
+};
+
 const auditFixed = sectionBody(auditMd, 'Fixed in Figma');
 
 // ---------- app screens & gaps ----------
@@ -337,7 +353,7 @@ const data = {
     typographyNote,
     fonts,
   },
-  guides: { rules, cheatSheet, choosing, auditOpen, auditFixed },
+  guides: { rules, cheatSheet, choosing, auditOpen, auditFixed, codeAhead },
   categoryIntro,
   components: byStory,
   drift,
@@ -360,7 +376,7 @@ export interface ADDesignKitScreen {
   findings: { level: string; rule: string; file: string; line: number; detail: string }[];
   gaps: string[];
 }
-export interface ADDesignKitGap { id: string; title: string; status: 'open' | 'in-figma' | 'done'; found: string; screen: string; reference: string; need: string; proposal: string; standIn: string; usedIn: string[] }
+export interface ADDesignKitGap { id: string; title: string; status: 'open' | 'in-figma' | 'done'; found: string; screen: string; reference: string; need: string; proposal: string; standIn: string; usedIn: string[]; images?: { figma?: string; code?: string } }
 export interface ADDesignKitColorToken { cls: string; use: string; light: string; dark: string; cssVar: string; values: Record<string, string> }
 export interface ADDesignKitExtraDoc { react: string; heading: string; figmaLine: string; doc: string; node?: string; figmaUrl?: string }
 export interface ADDesignKitComponentDoc {
@@ -411,7 +427,7 @@ export interface ADDesignKitDocs {
     typographyNote: string;
     fonts: Record<string, string>;
   };
-  guides: { rules: string; cheatSheet: string; choosing: string; auditOpen: string; auditFixed: string };
+  guides: { rules: string; cheatSheet: string; choosing: string; auditOpen: string; auditFixed: string; codeAhead: { intro: string; rows: { num: string; component: string; code: string; proposal: string; images: { figma?: string; code?: string } }[]; notes: string } };
   categoryIntro: Record<string, string>;
   components: Record<string, ADDesignKitComponentDoc>;
   drift: ADDesignKitDrift[];
@@ -424,7 +440,28 @@ export const adDesignKitDocs: ADDesignKitDocs = `;
 // Keep output stable across runs: generatedAt is the only date, and it only changes when content changes.
 const previous = exists(outFile) ? read(outFile) : '';
 const prevDate = (/"generatedAt": "([^"]+)"/.exec(previous) || [])[1];
-const render = (d) => header + JSON.stringify(d, null, 2) + ';\n';
+// Gap screenshots (references/gaps/*.png next to gaps.json) are imported so Vite bundles them with the docs.
+const gapImageVar = (id, kind) => `gap_${id.replace(/\W/g, '_')}_${kind}`;
+const gapImageFiles = gapRows.flatMap((g) => Object.entries(g.images ?? {}).map(([kind, file]) => ({ id: g.id, kind, file })));
+for (const { file } of gapImageFiles) if (!exists(path.join(composeDir, 'references', file))) warnings.push(`gaps.json names a missing image: references/${file}`);
+const rel = (abs) => path.relative(path.dirname(outFile), abs).split(path.sep).join('/');
+const aheadVar = (num, kind) => `codeAhead_${num.replace(/\W/g, '_')}_${kind}`;
+const gapImports = [
+  ...gapImageFiles.filter(({ file }) => exists(path.join(composeDir, 'references', file))).map(({ id, kind, file }) => `import ${gapImageVar(id, kind)} from '${rel(path.join(composeDir, 'references', file))}';`),
+  ...codeAhead.rows.flatMap((r) => Object.entries(r.images).map(([kind, file]) => `import ${aheadVar(r.num, kind)} from '${rel(path.join(refs, file))}';`)),
+];
+const codeAheadImageMap =
+  '\n/** Screenshots per "Code ahead of Figma" row (by its # in figma-audit.md): Figma today and the code that is ahead. */\nexport const adDesignKitCodeAheadImages: Record<string, { figma?: string; code?: string }> = {\n' +
+  codeAhead.rows.filter((r) => Object.keys(r.images).length).map((r) => `  ${JSON.stringify(r.num)}: { ${Object.keys(r.images).map((k) => `${k}: ${aheadVar(r.num, k)}`).join(', ')} },`).join('\n') +
+  '\n};\n';
+const gapImageMap =
+  '\n/** Screenshots per gap: the Figma reference and the stand-in as it renders. */\nexport const adDesignKitGapImages: Record<string, { figma?: string; code?: string }> = {\n' +
+  gapRows
+    .filter((g) => gapImageFiles.some((f) => f.id === g.id && exists(path.join(composeDir, 'references', f.file))))
+    .map((g) => `  ${JSON.stringify(g.id)}: { ${Object.keys(g.images).filter((k) => exists(path.join(composeDir, 'references', g.images[k]))).map((k) => `${k}: ${gapImageVar(g.id, k)}`).join(', ')} },`)
+    .join('\n') +
+  '\n};\n';
+const render = (d) => header.replace('\n\nexport interface ADDesignKitDrift', `\n${gapImports.length ? '\n' + gapImports.join('\n') : ''}\n\nexport interface ADDesignKitDrift`) + JSON.stringify(d, null, 2) + ';\n' + gapImageMap + codeAheadImageMap;
 let output = render(data);
 if (prevDate && render({ ...data, generatedAt: prevDate }) === previous) output = previous;
 

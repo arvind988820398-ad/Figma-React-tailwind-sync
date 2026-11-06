@@ -1,6 +1,6 @@
 import { Markdown, Meta } from '@storybook/addon-docs/blocks';
 import { adDesignKitDocs } from '../generated/ad-design-kit-docs';
-import { GapsTable, ScreensTable, SyncSummary, SyncTable } from '../ad-design-kit/blocks';
+import { CodeAheadTable, GapsTable, ScreensTable, SyncSummary, SyncTable } from '../ad-design-kit/blocks';
 
 <Meta title="Guides/Figma sync" />
 
@@ -40,6 +40,10 @@ What a screen needed that the design system cannot express yet. Code uses the st
 Code follows the intended design where Figma is still inconsistent; each row says what code does so reviewers do not flag it as drift. Designers fix these in Figma, then the sync removes the row.
 
 <Markdown>{adDesignKitDocs.guides.auditOpen}</Markdown>
+
+## Code ahead of Figma
+
+<CodeAheadTable />
 
 <details>
 <summary>Previously fixed in Figma</summary>

@@ -1,12 +1,12 @@
 // Doc blocks for the AD Design Kit Storybook: token tables, theme matrix, sync status and the per-component
 // Figma header. All data comes from the generated registry (.storybook/generated/ad-design-kit-docs.ts).
-import { useState, type CSSProperties, type ReactNode } from 'react';
+import { Fragment, useState, type CSSProperties, type ReactNode } from 'react';
 import { Badge } from '../../src/components/ui/Badge';
 import { Button, buttonVariants } from '../../src/components/ui/Button';
 import { Input, Label } from '../../src/components/ui/Input';
 import { Toggle } from '../../src/components/ui/Toggle';
 import { cn } from '../../src/lib/cn';
-import { adDesignKitDocs, type ADDesignKitColorToken, type ADDesignKitComponentDoc, type ADDesignKitDrift } from '../generated/ad-design-kit-docs';
+import { adDesignKitCodeAheadImages, adDesignKitDocs, adDesignKitGapImages, type ADDesignKitColorToken, type ADDesignKitComponentDoc, type ADDesignKitDrift } from '../generated/ad-design-kit-docs';
 import { categoryLabels, docsId } from './figma';
 
 const { tokens, components, drift, screens, gaps } = adDesignKitDocs;
@@ -529,7 +529,34 @@ export function GapsTable() {
         </thead>
         <tbody>
           {gaps.map((g) => (
-            <tr key={g.id}>
+            <GapRows key={g.id} gap={g} />
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+/** A labelled screenshot that opens full size: the "In Figma" / "In code" pairs under gaps and code-ahead rows. */
+function Shot({ src, label, alt }: { src?: string; label: string; alt: string }) {
+  if (!src) return null;
+  return (
+    <figure className="m-0 flex min-w-0 flex-col gap-2">
+      <figcaption className="text-xs font-medium uppercase tracking-wide text-body-subtle">{label}</figcaption>
+      <a href={src} target="_blank" rel="noreferrer" title="Open full size" className="block overflow-hidden rounded-base border border-default bg-neutral-primary p-2 transition-colors hover:border-default-strong">
+        <img src={src} alt={alt} className="mx-auto block max-h-64 w-auto max-w-full object-contain" />
+      </a>
+    </figure>
+  );
+}
+
+/** One gap: its text row, then the Figma reference and the code stand-in side by side, so the gap is seen, not only read. */
+function GapRows({ gap: g }: { gap: (typeof gaps)[number] }) {
+  const images = adDesignKitGapImages[g.id];
+  const shot = (src: string | undefined, label: string, alt: string) => <Shot src={src} label={label} alt={alt} />;
+  return (
+    <>
+            <tr>
               <td className={tdClass}>
                 <p className="m-0 font-medium text-heading">{g.title}</p>
                 <Code>{g.id}</Code>
@@ -540,9 +567,68 @@ export function GapsTable() {
               <td className={tdClass}>{g.proposal}</td>
               <td className={tdClass}>{g.standIn}</td>
             </tr>
-          ))}
-        </tbody>
-      </table>
+            {images && (
+              <tr>
+                <td className={tdClass} colSpan={5}>
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    {shot(images.figma, 'In Figma (reference)', `${g.title}: what the Figma reference shows`)}
+                    {shot(images.code, 'In code today (stand-in)', `${g.title}: what the code shows instead`)}
+                  </div>
+                </td>
+              </tr>
+            )}
+    </>
+  );
+}
+
+/** "Code ahead of Figma" (figma-audit.md): variants code has that the Figma set lacks, each with Figma today and the code. */
+export function CodeAheadTable() {
+  const { intro, rows, notes } = adDesignKitDocs.guides.codeAhead;
+  return (
+    <div className="my-4 flex flex-col gap-4">
+      {intro && <p className="m-0 text-sm text-body"><Prose text={intro} /></p>}
+      {rows.length === 0 ? (
+        <p className="m-0 text-sm text-body">Nothing ahead: every variant in code exists in Figma.</p>
+      ) : (
+        <div className="overflow-x-auto">
+          <table className={tableClass}>
+            <thead>
+              <tr>
+                <th className={thClass}>#</th>
+                <th className={thClass}>Component</th>
+                <th className={thClass}>In code</th>
+                <th className={thClass}>Proposed Figma addition</th>
+              </tr>
+            </thead>
+            <tbody>
+              {rows.map((r) => {
+                const images = adDesignKitCodeAheadImages[r.num];
+                return (
+                  <Fragment key={r.num}>
+                    <tr>
+                      <td className={tdClass}>{r.num}</td>
+                      <td className={tdClass}><Prose text={r.component} /></td>
+                      <td className={tdClass}><Prose text={r.code} /></td>
+                      <td className={tdClass}><Prose text={r.proposal} /></td>
+                    </tr>
+                    {images && (
+                      <tr>
+                        <td className={tdClass} colSpan={4}>
+                          <div className="grid gap-4 sm:grid-cols-2">
+                            <Shot src={images.figma} label="In Figma today" alt={`${r.component}: what the Figma set has today`} />
+                            <Shot src={images.code} label="In code (ahead of Figma)" alt={`${r.component}: what code renders`} />
+                          </div>
+                        </td>
+                      </tr>
+                    )}
+                  </Fragment>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      )}
+      {notes && <p className="m-0 text-sm text-body-subtle"><Prose text={notes} /></p>}
     </div>
   );
 }
