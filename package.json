@@ -19,6 +19,7 @@
     "tokens:build": "node .claude/skills/ad-design-kit-design-system/scripts/build-tokens.mjs && cp .claude/skills/ad-design-kit-design-system/tokens/ad-design-kit.css src/styles/ad-design-kit.css && npm run docs:build",
     "icons:build": "node .claude/skills/ad-design-kit-design-system/scripts/build-icons.mjs",
     "docs:build": "node .storybook/scripts/build-docs.mjs && node .storybook/scripts/build-graph.mjs && node .claude/skills/ad-design-kit-figma-sync/scripts/changelog.mjs --write",
+    "gaps:pull": "node .claude/skills/ad-design-kit-compose/scripts/pull-gap-reports.mjs",
     "docs:check": "node .storybook/scripts/build-docs.mjs --check && node .storybook/scripts/build-graph.mjs --check && node .claude/skills/ad-design-kit-figma-sync/scripts/changelog.mjs --check",
     "check:screens": "node .claude/skills/ad-design-kit-compose/scripts/check-composition.mjs src/features",
     "claude-design:status": "node .claude/skills/ad-design-kit-claude-design/scripts/build-claude-design.mjs --status",

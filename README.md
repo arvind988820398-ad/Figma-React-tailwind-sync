@@ -52,6 +52,10 @@ The kit is published on npm as [`ad-design-kit`](https://www.npmjs.com/package/a
    ```
    Every module is a separate file, so an app only bundles the components and icons it imports.
 
+**Missing something?** If your screen needs a component, variant or icon the kit does not have, [report a gap](https://github.com/arvind988820398-ad/Figma-React-tailwind-sync/issues/new?template=gap-report.yml) with a screenshot and what you use instead meanwhile. Accepted reports are listed in Storybook → Guides → Figma sync → Gaps for Figma with your name and project, and the report is closed when the component ships.
+
+**Reviewing gap reports (maintainers).** Reports arrive as issues labelled `gap`. Close the ones an existing component already covers, with a pointer to it; label the real ones `gap:accepted`. `npm run gaps:pull` then adds every accepted report to `.claude/skills/ad-design-kit-compose/references/gaps.json` (with the reporter, project, version and screenshots) and refreshes the Storybook docs; commit the result. When a gap's row is set to `done`, `npm run gaps:pull -- --close-done` thanks the reporter and closes the report.
+
 **Publishing.** `.github/workflows/publish-package.yml` publishes a new version to npm (with provenance) whenever a design-system version tag (`ds-v*`) is pushed, or when the workflow is run by hand. It uses npm trusted publishing, so there is no token to store or renew: npm accepts only this repository's workflow. `npm run changelog:release` sets the version, `npm run changelog:tag` tags the commit, and `git push --follow-tags` publishes. `npm run build:package` builds the same package locally into `dist-package/`.
 
 ## Scripts
@@ -72,6 +76,7 @@ The kit is published on npm as [`ad-design-kit`](https://www.npmjs.com/package/a
 | `npm run icons:build` | Regenerate the icon components from the Figma icon snapshot (`-- --check` to verify) |
 | `npm run tokens:build` | Rebuild the token CSS from the Figma snapshot, copy it into `src/styles/`, regenerate the docs |
 | `npm run docs:build` / `docs:check` | Regenerate / verify `.storybook/generated/ad-design-kit-docs.ts` |
+| `npm run gaps:pull` | Add accepted gap reports from GitHub (label `gap:accepted`) to the Figma sync page (`-- --dry-run` to preview, `-- --close-done` to close reports whose gap shipped) |
 | `npm run changelog` | What changed in the Figma snapshot since the last design-system version |
 | `npm run changelog:release -- --title "…"` | Record those changes as the next version (`CHANGELOG.md`, Guides → Changelog) |
 | `npm run build:package` | Build the npm package into `dist-package/` (regenerates `src/index.ts`) |

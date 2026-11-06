@@ -1,0 +1,67 @@
+name: Report a gap
+description: Your screen needs something AD Design Kit cannot express yet (a component, a variant, an icon).
+title: "[Gap]: "
+labels: ["gap"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting. Before you send it, check that the kit really has no answer: [Storybook](https://ad-design-kit-storybook.netlify.app) lists every component and variant, and many look-alikes are covered already (an icon rail is `Sidebar collapsed`, a text link button is `Button color="ghost"`, a split button is `Button` + `Dropdown`).
+
+        Accepted reports are added to Storybook → Guides → Figma sync → **Gaps for Figma**, with your name and project, and this issue is closed when the component ships.
+  - type: input
+    id: project
+    attributes:
+      label: Project or company
+      description: Where you use AD Design Kit. Shown next to the gap in Storybook.
+      placeholder: Acme dashboard
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: ad-design-kit version
+      description: From your package.json or `npm ls ad-design-kit`.
+      placeholder: 4.1.4
+    validations:
+      required: true
+  - type: input
+    id: where
+    attributes:
+      label: Screen
+      description: The screen or flow where you need it (a name or a URL).
+      placeholder: Orders → order details drawer
+  - type: textarea
+    id: need
+    attributes:
+      label: What the screen needs
+      description: One or two sentences on what has to be shown or done, not how it should look in code.
+      placeholder: Key facts about the order (label/value pairs) on a light tinted band above the line items.
+    validations:
+      required: true
+  - type: textarea
+    id: reference
+    attributes:
+      label: Screenshot of what you need
+      description: Drag in the design or mockup (PNG, JPG or GIF). A Figma link helps too.
+    validations:
+      required: true
+  - type: textarea
+    id: standin
+    attributes:
+      label: What you use instead today
+      description: The closest kit component you used meanwhile, and a screenshot of it if you have one.
+      placeholder: A Card holding a <dl>, without the tint.
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed component or variant
+      description: Optional. The name and properties you would expect in Figma and code.
+      placeholder: 'Description list: Style = Plain | Tinted, Columns = 2 | 3 | 4'
+  - type: checkboxes
+    id: checked
+    attributes:
+      label: Checked
+      options:
+        - label: I looked through Storybook and no existing component or variant covers this.
+          required: true

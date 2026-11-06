@@ -33,6 +33,8 @@ Every screen under `src/features`, checked by the compose skill's `check-composi
 
 What a screen needed that the design system cannot express yet. Code uses the stand-in and marks it with `// ad-design-kit-gap: <id>`; designers add the proposal to Figma, the sync brings it to code, and the row moves from open → in-figma → done. The list lives in `.claude/skills/ad-design-kit-compose/references/gaps.json`.
 
+Gaps also come from teams who use the npm package: they [report a gap](https://github.com/arvind988820398-ad/Figma-React-tailwind-sync/issues/new?template=gap-report.yml) on GitHub, a maintainer reviews it and labels it `gap:accepted`, and `npm run gaps:pull` adds it here with who reported it, their project and the version they use (**Reported by**). Reports not reviewed yet stay on GitHub. Rows from this repo's own screens show **This repo**.
+
 <GapsTable />
 
 ## Open Figma inconsistencies

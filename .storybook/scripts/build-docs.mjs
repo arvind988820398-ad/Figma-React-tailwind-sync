@@ -376,7 +376,7 @@ export interface ADDesignKitScreen {
   findings: { level: string; rule: string; file: string; line: number; detail: string }[];
   gaps: string[];
 }
-export interface ADDesignKitGap { id: string; title: string; status: 'open' | 'in-figma' | 'done'; found: string; screen: string; reference: string; need: string; proposal: string; standIn: string; usedIn: string[]; images?: { figma?: string; code?: string } }
+export interface ADDesignKitGap { id: string; title: string; status: 'open' | 'in-figma' | 'done'; found: string; screen: string; reference: string; need: string; proposal: string; standIn: string; usedIn: string[]; images?: { figma?: string; code?: string }; source?: { issue: number; url: string; reportedBy: string; project: string; version: string } }
 export interface ADDesignKitColorToken { cls: string; use: string; light: string; dark: string; cssVar: string; values: Record<string, string> }
 export interface ADDesignKitExtraDoc { react: string; heading: string; figmaLine: string; doc: string; node?: string; figmaUrl?: string }
 export interface ADDesignKitComponentDoc {

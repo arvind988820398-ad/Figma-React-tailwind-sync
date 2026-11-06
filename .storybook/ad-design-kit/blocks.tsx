@@ -525,6 +525,7 @@ export function GapsTable() {
             <th className={thClass}>What the screen needs</th>
             <th className={thClass}>Proposed in Figma</th>
             <th className={thClass}>Stand-in until then</th>
+            <th className={thClass}>Reported by</th>
           </tr>
         </thead>
         <tbody>
@@ -560,19 +561,36 @@ function GapRows({ gap: g }: { gap: (typeof gaps)[number] }) {
               <td className={tdClass}>
                 <p className="m-0 font-medium text-heading">{g.title}</p>
                 <Code>{g.id}</Code>
-                <p className="m-0 mt-1 text-xs text-body-subtle">Found {g.found} · {g.usedIn.length ? `marked in ${g.usedIn.join(', ')}` : 'not marked in code'}</p>
+                <p className="m-0 mt-1 text-xs text-body-subtle">Found {g.found} · {g.usedIn.length ? `marked in ${g.usedIn.join(', ')}` : g.source ? 'reported from a project using the package' : 'not marked in code'}</p>
               </td>
               <td className={tdClass}><Badge color={gapColor[g.status]}>{g.status}</Badge></td>
               <td className={tdClass}>{g.need}<p className="m-0 mt-1 text-xs text-body-subtle">{g.reference}</p></td>
               <td className={tdClass}>{g.proposal}</td>
               <td className={tdClass}>{g.standIn}</td>
+              <td className={tdClass}>
+                {g.source ? (
+                  <>
+                    <a href={`https://github.com/${g.source.reportedBy}`} target="_blank" rel="noreferrer" className="font-medium text-fg-brand">@{g.source.reportedBy}</a>
+                    <p className="m-0 mt-1 text-xs text-body-subtle">
+                      {[g.source.project, g.source.version && `v${g.source.version}`].filter(Boolean).join(' · ')}
+                      {' · '}
+                      <a href={g.source.url} target="_blank" rel="noreferrer" className="text-fg-brand">report #{g.source.issue}</a>
+                    </p>
+                  </>
+                ) : (
+                  <>
+                    <p className="m-0 font-medium text-heading">This repo</p>
+                    <p className="m-0 mt-1 text-xs text-body-subtle">{g.screen}</p>
+                  </>
+                )}
+              </td>
             </tr>
             {images && (
               <tr>
-                <td className={tdClass} colSpan={5}>
+                <td className={tdClass} colSpan={6}>
                   <div className="grid gap-4 sm:grid-cols-2">
-                    {shot(images.figma, 'In Figma (reference)', `${g.title}: what the Figma reference shows`)}
-                    {shot(images.code, 'In code today (stand-in)', `${g.title}: what the code shows instead`)}
+                    {shot(images.figma, g.source ? 'What they need (from the report)' : 'In Figma (reference)', `${g.title}: what the reference shows`)}
+                    {shot(images.code, g.source ? 'Their stand-in today' : 'In code today (stand-in)', `${g.title}: what the code shows instead`)}
                   </div>
                 </td>
               </tr>
