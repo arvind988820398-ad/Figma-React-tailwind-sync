@@ -1,7 +1,7 @@
 {
   "url": "https://claude.ai/artifact/P6dLktxjvuj3x2YPGZprk6",
-  "ref": "main@cc571e9",
-  "syncedAt": "2026-11-06T12:59:08.487Z",
+  "ref": "main@e3059ad",
+  "syncedAt": "2026-11-06T13:14:08.936Z",
   "files": {
     "tokens.json": "e82813701a2badc38522791e20414b2e34d12adc02c9a79e2352457fe35da7f4",
     "tokens.css": "562389d2b1f81cda43d2440f67b072cf276952a0a6a2a8532d93e0e5cfe1b919",
@@ -64,9 +64,9 @@
     "components/Gallery/README.md": "292a9f7344e726b9141a84a2b5217f0ed6258a22a025aa864e30f279656c697a",
     "components/DeviceMockup/README.md": "a2a799aab5c5380f6cc17293bfba37fca4c54c32c2514cd55f46681ffbe6dd77",
     "assets/Icons/README.md": "9f030ffa655bf77e4398f15cdd262c86c806cf87af59bd9d777d2926b12a8b6d",
-    "components/bundle.js": "6f34632e98d5973ae70be4b5b5acacb1d0fea0e3ef5bc5ff5c59faff4327159a",
+    "components/bundle.js": "98e06bab0ee76270b0a86742c7f719d62f56090e6df491d6883b39f4f32f647d",
     "components/bundle.css": "62a74c39ee14ae6d8c019bec3ae1ffa34907b1b4042da7705e7674ccd5d8faad",
-    "components/index.d.ts": "08ee2805185a0726eb31dbab34401d3c0c53c50d661872762a38bd7f84be6353"
+    "components/index.d.ts": "62881f8a5a29edcc9a628e0d9fb6e8cb9e5156d109dacb08b57cbfd57d448059"
   },
   "assets": {
     "Icons/Brands/ad-design-kit.svg": "c5c4e14b2b04f126a241c8bb120c974a48853a5b16efebc8479c4120e3066267",
